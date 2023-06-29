@@ -21,21 +21,21 @@ table{
     font-size: 1.5vw;
 }  /*이중선 제거*/
 th{
-     width: 4vw;
-     height: 4vw;
-     text-align: center;
-     border: 1px solid #000;
-     
+    width: 4vw;
+    height: 4vw;
+    text-align: center;
+    border: 1px solid #000;
+    
      vertical-align: top;	/* 위 */
      vertical-align: bottom;   /* 아래 */
      vertical-align: middle;   /* 가운데 */
-   }
+}
 td{
-     width: 15vw;
-     height: 4vw;
-     text-align: center;
-     border: 1px solid #000;
-     
+    width: 15vw;
+    height: 4vw;
+    text-align: center;
+    border: 1px solid #000;
+    
      vertical-align: top;	/* 위 */
      vertical-align: bottom;   /* 아래 */
      vertical-align: middle;   /* 가운데 */
@@ -53,7 +53,7 @@ td{
 .mainPage {margin-top: 30px;}
 .mainPage button{
     width: 100%; height: 5%;
-    font-size: 17px;
+    font-size: 2vw;
     font-weight: bold;
     color: #D9D9D9;
     border: none;
