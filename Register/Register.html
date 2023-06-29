@@ -45,7 +45,7 @@
             </div>
             <div class="Certified">
                 <input id='certified' type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                name="authNum" id="authNum" autocomplete="off">
+                name="authNum" autocomplete="off">
                 <label for="authNum">인증번호를 입력하세요</label>
             </div>
             <div class="btn-register">
@@ -69,7 +69,7 @@
 
         // 입력칸을 모두 입력하고 인증번호 받기 버튼을 누르면 인증번호 입력 칸이 나타남
         btnsend.on('click', function() {
-            if($(id).val() == ""){
+            if(id.val() == ""){
                 id.next('label').addClass('warning');
                 setTimeout(function() {
                     $('label').removeClass('warning')
