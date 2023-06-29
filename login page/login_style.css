@@ -30,7 +30,7 @@ body:not(.btn-register){
     border-radius: 6px;
 }
 .int-area label {
-    position: absolute; left: -10px; top: 15px;
+    position: absolute; left: 10px; top: 15px;
     font-size: 18px; color: #999;
     transition: all .5s ease;
 }
