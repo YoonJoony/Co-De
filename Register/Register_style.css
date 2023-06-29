@@ -16,19 +16,19 @@ body{
 
 .Register {position: relative; z-index: 2;}
 .Register h1 {
-    font-size: 5vw; color: #7CAB75; font-weight: 900;
+    font-size: 2vw; color: #7CAB75; font-weight: 900;
     text-align: center;
     margin-bottom: 40px;
 }
 
 
 .input-area{
-    width: 80vw; position: relative;
+    width: 50%; position: relative;
     margin-top: 20px;
 }
 .input-area:first-child {margin-top: 0;}
 .input-area input{
-    width: 105%; height: 7vw;
+    width: 50%; height: 10%;
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
