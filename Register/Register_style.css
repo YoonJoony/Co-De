@@ -32,13 +32,13 @@ body{
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 3vw; color: #000000;
+    font-size: 18px; color: #000000;
     outline: none;
-    border-radius: 2vw;
+    border-radius: 6px;
 }
 .input-area label{
-    position: absolute; left: 1vw; top: 1vw;
-    font-size: 3vw; color: #999;
+    position: absolute; left: 10px; top: 15px;
+    font-size: 18px; color: #999;
     transition: all .5s ease;
 }
 .input-area label.warning{
@@ -55,27 +55,27 @@ body{
 .input-area input:focus + label,
 .input-area input:valid + label {
     top: -2px;
-    font-size: 2vw; color: #7CAB75;
+    font-size: 13px; color: #7CAB75;
 }
 
 
 .phone-input-area{
-    width: 80vw; position: relative;
+    width: 400px; position: relative;
     margin-top: 20px;
 }
 .phone-input-area:first-child {margin-top: 0;}
 .phone-input-area input{
-    width: 75%; height: 7vw;
+    width: 70%;
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 3vw; color: #000000;
+    font-size: 18px; color: #000000;
     outline: none;
-    border-radius: 2vw;
+    border-radius: 6px;
 }
 .phone-input-area label{
-    position: absolute; left: 1vw; top: 1vw;
-    font-size: 3vw; color: #999;
+    position: absolute; left: 10px; top: 15px;
+    font-size: 18px; color: #999;
     transition: all .5s ease;
 }
 .phone-input-area label.warning{
@@ -92,39 +92,27 @@ body{
 .phone-input-area input:focus + label,
 .phone-input-area input:valid + label {
     top: -2px;
-    font-size: 2vw; color: #7CAB75;
-}
-.phone-input-area button{
-    width: 27%; height: 7vw;
-    font-size: 2.5vw;
-    font-weight: bold;
-    color: #D9D9D9;
-    border: none;
-    background: #7CAB75;
-    border-radius: 6px;
-    position: absolute;
-    left: 62vw;
-    cursor: pointer;
+    font-size: 13px; color: #7CAB75;
 }
 
 
 .Certified{
-    width: 80vw; position: relative;
-    margin-top: 4vw;
+    width: 400px; position: relative;
+    margin-top: 20px;
 }
 .Certified:first-child {margin-top: 0;}
 .Certified input{
-    width: 105%; height: 7vw;
+    width: 105%;
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 3vw; color: #000000;
+    font-size: 18px; color: #000000;
     outline: none;
-    border-radius: 2vw;
+    border-radius: 6px;
 }
 .Certified label{
-    position: absolute; left: 1vw; top: 1vw;
-    font-size: 3vw; color: #999;
+    position: absolute; left: 10px; top: 15px;
+    font-size: 18px; color: #999;
     transition: all .5s ease;
 }
 .Certified label.warning{
@@ -141,14 +129,30 @@ body{
 .Certified input:focus + label,
 .Certified input:valid + label {
     top: -2px;
-    font-size: 2vw; color: #7CAB75;
+    font-size: 13px; color: #7CAB75;
+}
+
+
+.btn-Certified{margin-top: 30px;}
+.btn-Certified button{
+    width: 30%; height: 50px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #D9D9D9;
+    border: none;
+    background: #7CAB75;
+    border-radius: 6px;
+    position: absolute;
+    top: 370px;
+    left: 300px;
+    cursor: pointer;
 }
 
 
 .btn-register{margin-top: 30px;}
 .btn-register button{
-    width: 105%; height: 7vw;
-    font-size: 3vw;
+    width: 105%; height: 50px;
+    font-size: 17px;
     font-weight: bold;
     color: #D9D9D9;
     border: none;
