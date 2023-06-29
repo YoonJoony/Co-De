@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="Register_style.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <section class="Register">
+        <h1>CO-ORDER</h1>
+        <form action="">
+            <div class="input-area">
+                <input type="text" name="id" id="id"
+                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
+                autocomplete="off" required>
+                <label for="id">ID</label>
+            </div>
+            <div class="input-area">
+                <input type="password" name="pw" id="pw"
+                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
+                autocomplete="off" required>
+                <label for="pw">PW</label>
+            </div>
+            <div class="input-area">
+                <input type="password" name="pw_check" id="pw_check"
+                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
+                autocomplete="off" required>
+                <label for="pw-check">PW check</label>
+            </div>
+            <div class="input-area">
+                <input type="text" name="nickname" id="nickname"
+                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
+                autocomplete="off" required>
+                <label for="nickname">Nick Name</label>
+            </div>
+            <div class="phone-input-area">
+                <input type="text" name="phone" id="phone" oninput="autoHyphen(this)" maxlength="13"
+                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
+                autocomplete="off" required>
+                <label for="phone">Phone Number</label>
+            </div>
+            <div class="btn-Certified">
+                <button id='btnsend' type="submit">인증번호 받기</button>
+            </div>
+            <div class="Certified">
+                <input id='certified' type="number" name="authNum" id="authNum"
+                autocomplete="off" required>
+                <label for="authNum">인증번호를 입력하세요</label>
+            </div>
+            <div class="btn-register">
+                <button id='btnRegister' type="submit">가입하기</button>
+            </div>
+        </form>
+    </section>
+
+    <script>
+        $("#certified").hide();
+
+        let id = $('#id');
+        let pw = $('#pw');
+        let pw_check = $('#pw_check');
+        let nickname = $('#nickname');
+        let phone = $('#phone');
+        let btnsend = $('#btnsend');
+        let btnRegister = $('#btnRegister');
+
+        btnsend.on('click', function() {
+            $("#certified").show();
+            if(id.val() == ""){
+                id.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }else if(pw.val() == ""){
+                pw.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }else if(pw_check.val() == ""){
+                pw_check.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }
+            else if(nickname.val() == ""){
+                nickname.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }
+            else if(phone.val() == ""){
+                phone.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }
+        });
+
+        btnRegister.on('click', function() {
+            if(id.val() == ""){
+                id.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }else if(pw.val() == ""){
+                pw.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }else if(pw_check.val() == ""){
+                pw_check.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }
+            else if(nickname.val() == ""){
+                nickname.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }
+            else if(phone.val() == ""){
+                phone.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+            }
+        });
+
+        const autoHyphen = (target) => {
+            target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+        }
+
+    </script>
+
+
+</body>
+</html>
