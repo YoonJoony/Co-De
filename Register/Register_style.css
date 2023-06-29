@@ -3,12 +3,10 @@
 * {margin: 0; padding: 0; box-sizing: border-box;}
 
 body{
-    width: 100%;
     font-family: 'Noto Sans KR', sans-serif;
     display: flex;
     justify-content: center;
     height: 100vh;
-    justify-content: center;
     align-items: center;
     background-color: #F0F0F0;
     background-size: cover;
@@ -17,14 +15,14 @@ body{
 
 .Register {position: relative; z-index: 2;}
 .Register h1 {
-    font-size: 200%; color: #7CAB75; font-weight: 900;
+    font-size: 300%; color: #7CAB75;
     text-align: center;
     margin-bottom: 40px;
 }
 
 
 .input-area{
-    width: 100%; position: relative;
+    width: 103%; position: relative;
     margin-top: 20px;
 }
 .input-area:first-child {margin-top: 0;}
@@ -61,7 +59,7 @@ body{
 
 
 .phone-input-area{
-    width: 400px; position: relative;
+    width: 100%; position: relative;
     margin-top: 20px;
 }
 .phone-input-area:first-child {margin-top: 0;}
@@ -97,26 +95,25 @@ body{
 }
 .phone-input-area button{
     width: 30%; height: 50px;
-    font-size: 17px;
+    font-size: 70%;
     font-weight: bold;
     color: #D9D9D9;
     border: none;
     background: #7CAB75;
     border-radius: 6px;
     position: absolute;
-    top: -57%;
     left: 73%;
     cursor: pointer;
 }
 
 
 .Certified{
-    width: 400px; position: relative;
-    margin-top: 10%;
+    width: 100%; position: relative;
+    margin-top: 20%;
 }
 .Certified:first-child {margin-top: 0;}
 .Certified input{
-    width: 105%;
+    width: 100%;
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
@@ -144,22 +141,6 @@ body{
 .Certified input:valid + label {
     top: -2px;
     font-size: 13px; color: #7CAB75;
-}
-
-
-.btn-Certified{margin-top: 30px;}
-.btn-Certified button{
-    width: 30%; height: 50px;
-    font-size: 17px;
-    font-weight: bold;
-    color: #D9D9D9;
-    border: none;
-    background: #7CAB75;
-    border-radius: 6px;
-    position: absolute;
-    top: 370px;
-    left: 300px;
-    cursor: pointer;
 }
 
 
