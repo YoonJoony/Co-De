@@ -11,6 +11,6 @@ public class LoginController implements WebMvcConfigurer {
         // TODO [resources >> static >> 리소스 연결]
         //WebMvcConfigurer.super.addResourceHandlers(registry);
         registry.addResourceHandler("/**")
-                .addResourceLocations("classpath:/templates/", "classpath:/static/css");
+                .addResourceLocations("classpath:/templates/", "classpath:/static/");
     }
 }
