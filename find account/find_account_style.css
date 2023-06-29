@@ -17,7 +17,7 @@ body{
     margin-bottom: 10px;
 }
 .phone {
-    width: 300px; position: relative;
+    width: 100%; position: relative;
     margin-top: 10px;
     display: inline-block; 
     white-space: nowrap;
@@ -27,7 +27,7 @@ body{
     padding: 5px 5px 5px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 20px; color: #000000;
+    font-size: 120%; color: #000000;
     outline: none;
     border-radius: 6px;
     text-align: center;
@@ -56,8 +56,8 @@ body{
 }
 /* 인증번호 확인 칸 */
 .auth-check{
-    display: none;
-    width: 300px; position: relative;
+    display: block;
+    width: 100%; position: relative;
     margin-top: 10px;
     white-space: nowrap;
 }
@@ -66,7 +66,7 @@ body{
     padding: 5px 5px 5px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 20px; color: #000000;
+    font-size: 120%; color: #000000;
     outline: none;
     border-radius: 6px;
     text-align: center;
