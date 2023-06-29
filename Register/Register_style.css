@@ -16,7 +16,7 @@ body{
 
 .Register {position: relative; z-index: 2;}
 .Register h1 {
-    font-size: 32px; color: #7CAB75;
+    font-size: 60px; color: #7CAB75; font-weight: 900;
     text-align: center;
     margin-bottom: 40px;
 }
@@ -145,6 +145,7 @@ body{
     position: absolute;
     top: 370px;
     left: 300px;
+    cursor: pointer;
 }
 
 
