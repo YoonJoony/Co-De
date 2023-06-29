@@ -5,7 +5,7 @@ const loginErrorMsg = document.querySelector('#login-error-msg');
 
 loginButton.addEventListener("click", () => {
     if (id.value === "user" && pw.value === "1234") {
-        alert("You have successfully logged in.");
+        alert("로그인 성공");
     } else {
         loginErrorMsg.style.opacity = 1;
     }
