@@ -10,6 +10,6 @@ loginButton.addEventListener("click", () => {
         alert("로그인 성공");
     } else {
         //숨겨진 오류 메시지 보이게 설정
-        loginErrorMsg.style.opacity = 1;
+        alert("로그인 정보가 올바르지 않습니다.")
     }
 });

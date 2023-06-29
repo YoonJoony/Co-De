@@ -12,7 +12,7 @@ body{
 }
 .find-account-form {position: relative; z-index: 2;}
 .find-account-form h1{
-    font-size: 32px; color: #fff;
+    font-size: 60px; color: #fff;
     text-align: center;
     margin-bottom: 10px;
 }
