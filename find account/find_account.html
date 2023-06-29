@@ -15,13 +15,13 @@
             <input id="phone1" type="text" size="1" maxlength="3" oninput="changePhone1()"> -
             <input id="phone2" type="text" size="3" maxlength="4" oninput="changePhone2()"> -
             <input id="phone3" type="text" size="3" maxlength="4" oninput="changePhone3()">
-            <button id="auth-button">인증번호 전송</button>
+            <button disabled id="auth-button">인증번호 전송</button>
         </div>
         <div class="auth-check">
             <input id="auth-number" maxlength="6" type="text">
             <button id="completion" onclick="checkCompletion()">인증확인</button>
         </div>
     </section>
-
+    <script src="find_account.js"></script>
 </body>
 </html>
