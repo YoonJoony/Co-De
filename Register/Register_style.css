@@ -16,29 +16,29 @@ body{
 
 .Register {position: relative; z-index: 2;}
 .Register h1 {
-    font-size: 60px; color: #7CAB75; font-weight: 900;
+    font-size: 5vw; color: #7CAB75; font-weight: 900;
     text-align: center;
     margin-bottom: 40px;
 }
 
 
 .input-area{
-    width: 400px; position: relative;
+    width: 80vw; position: relative;
     margin-top: 20px;
 }
 .input-area:first-child {margin-top: 0;}
 .input-area input{
-    width: 105%;
+    width: 105%; height: 7vw;
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 18px; color: #000000;
+    font-size: 3vw; color: #000000;
     outline: none;
-    border-radius: 6px;
+    border-radius: 2vw;
 }
 .input-area label{
-    position: absolute; left: 10px; top: 15px;
-    font-size: 18px; color: #999;
+    position: absolute; left: 1vw; top: 1vw;
+    font-size: 3vw; color: #999;
     transition: all .5s ease;
 }
 .input-area label.warning{
@@ -55,27 +55,27 @@ body{
 .input-area input:focus + label,
 .input-area input:valid + label {
     top: -2px;
-    font-size: 13px; color: #7CAB75;
+    font-size: 2vw; color: #7CAB75;
 }
 
 
 .phone-input-area{
-    width: 400px; position: relative;
+    width: 80vw; position: relative;
     margin-top: 20px;
 }
 .phone-input-area:first-child {margin-top: 0;}
 .phone-input-area input{
-    width: 70%;
+    width: 75%; height: 7vw;
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 18px; color: #000000;
+    font-size: 3vw; color: #000000;
     outline: none;
-    border-radius: 6px;
+    border-radius: 2vw;
 }
 .phone-input-area label{
-    position: absolute; left: 10px; top: 15px;
-    font-size: 18px; color: #999;
+    position: absolute; left: 1vw; top: 1vw;
+    font-size: 3vw; color: #999;
     transition: all .5s ease;
 }
 .phone-input-area label.warning{
@@ -92,27 +92,39 @@ body{
 .phone-input-area input:focus + label,
 .phone-input-area input:valid + label {
     top: -2px;
-    font-size: 13px; color: #7CAB75;
+    font-size: 2vw; color: #7CAB75;
+}
+.phone-input-area button{
+    width: 27%; height: 7vw;
+    font-size: 2.5vw;
+    font-weight: bold;
+    color: #D9D9D9;
+    border: none;
+    background: #7CAB75;
+    border-radius: 6px;
+    position: absolute;
+    left: 62vw;
+    cursor: pointer;
 }
 
 
 .Certified{
-    width: 400px; position: relative;
-    margin-top: 20px;
+    width: 80vw; position: relative;
+    margin-top: 4vw;
 }
 .Certified:first-child {margin-top: 0;}
 .Certified input{
-    width: 105%;
+    width: 105%; height: 7vw;
     padding: 20px 10px 10px;
     background-color: #D9D9D9;
     border: none;
-    font-size: 18px; color: #000000;
+    font-size: 3vw; color: #000000;
     outline: none;
-    border-radius: 6px;
+    border-radius: 2vw;
 }
 .Certified label{
-    position: absolute; left: 10px; top: 15px;
-    font-size: 18px; color: #999;
+    position: absolute; left: 1vw; top: 1vw;
+    font-size: 3vw; color: #999;
     transition: all .5s ease;
 }
 .Certified label.warning{
@@ -129,30 +141,14 @@ body{
 .Certified input:focus + label,
 .Certified input:valid + label {
     top: -2px;
-    font-size: 13px; color: #7CAB75;
-}
-
-
-.btn-Certified{margin-top: 30px;}
-.btn-Certified button{
-    width: 30%; height: 50px;
-    font-size: 17px;
-    font-weight: bold;
-    color: #D9D9D9;
-    border: none;
-    background: #7CAB75;
-    border-radius: 6px;
-    position: absolute;
-    top: 370px;
-    left: 300px;
-    cursor: pointer;
+    font-size: 2vw; color: #7CAB75;
 }
 
 
 .btn-register{margin-top: 30px;}
 .btn-register button{
-    width: 105%; height: 50px;
-    font-size: 17px;
+    width: 105%; height: 7vw;
+    font-size: 3vw;
     font-weight: bold;
     color: #D9D9D9;
     border: none;
