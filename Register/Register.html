@@ -26,7 +26,7 @@
                 <input type="password" name="pw_check" id="pw_check"
                 oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
                 autocomplete="off" required>
-                <label for="pw-check">PW check</label>
+                <label for="pw_check">PW check</label>
             </div>
             <div class="input-area">
                 <input type="text" name="nickname" id="nickname"
@@ -45,7 +45,7 @@
             </div>
             <div class="Certified">
                 <input id='certified' type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                name="authNum" id="authNum" autocomplete="off">
+                name="authNum" autocomplete="off">
                 <label for="authNum">인증번호를 입력하세요</label>
             </div>
             <div class="btn-register">
@@ -55,8 +55,10 @@
     </section>
 
     <script>
+        // 인증번호 입력칸은 디폴트로 숨겨 놓음
         $("#certified").hide();
 
+        // input 및 button 변수화
         let id = $('#id');
         let pw = $('#pw');
         let pw_check = $('#pw_check');
@@ -65,8 +67,8 @@
         let btnsend = $('#btnsend');
         let btnRegister = $('#btnRegister');
 
+        // 입력칸을 모두 입력하고 인증번호 받기 버튼을 누르면 인증번호 입력 칸이 나타남
         btnsend.on('click', function() {
-            $("#certified").show();
             if(id.val() == ""){
                 id.next('label').addClass('warning');
                 setTimeout(function() {
@@ -94,9 +96,12 @@
                 setTimeout(function() {
                     $('label').removeClass('warning')
                 }, 1500);
+            }else {
+                $("#certified").show();
             }
         });
 
+        // 입력칸에 모두 빈칸이 없어야 가입하기 버튼이 정상동작함
         btnRegister.on('click', function() {
             if(id.val() == ""){
                 id.next('label').addClass('warning');
