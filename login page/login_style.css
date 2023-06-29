@@ -75,6 +75,7 @@ body:not(.btn-register){
     font-weight: bold;
     color: #7CAB75;
     border: none;
+    cursor: pointer;
     background: #D9D9D9;
     border-radius: 6px;
 }

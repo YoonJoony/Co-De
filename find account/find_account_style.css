@@ -52,6 +52,7 @@ body{
     border: none;
     background: #7CAB75;
     border-radius: 3px;
+    cursor: pointer;
 }
 /* 인증번호 확인 칸 */
 .auth-check{
@@ -78,4 +79,5 @@ body{
     border: none;
     background: #7CAB75;
     border-radius: 3px;
+    cursor: pointer;
 }

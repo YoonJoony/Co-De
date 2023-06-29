@@ -145,6 +145,7 @@ body{
     position: absolute;
     top: 370px;
     left: 300px;
+    cursor: pointer;
 }
 
 
