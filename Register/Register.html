@@ -40,9 +40,7 @@
                 oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
                 autocomplete="off" required>
                 <label for="phone">Phone Number</label>
-            </div>
-            <div class="btn-Certified">
-                <button id='btnsend' type="button">인증번호 받기</button>
+                <button class="btn-Certified" id='btnsend' type="button">인증번호 받기</button>
             </div>
             <div class="Certified">
                 <input id='certified' type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
