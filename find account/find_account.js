@@ -20,6 +20,7 @@ function changePhone3(){
 }
 // display: none으로 숨겨놨던 인증번호 입력 창을 보이게 설정
 function getToken(){
+    alert("인증번호가 전송 되었습니다")
     document.querySelectorAll(".auth-check").forEach(a=>a.style.display = "block");
 }
 
