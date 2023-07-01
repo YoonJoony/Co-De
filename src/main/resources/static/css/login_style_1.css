@@ -112,17 +112,6 @@ input {
   width: 80%;
 }
 
-.container {
-  background-color: #fff;
-  border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-      0 10px 10px rgba(0,0,0,0.22);
-  position: relative; /* 이렇게 하면 하위에서 자신을 기준으로(틀)로 위치를 맞출 수 있어서 중요함 */
-  overflow: hidden;
-  width: 768px; /* 박스 크기 */
-  max-width: 100%;
-  min-height: 700px;
-}
 
 .form-container {
   position: absolute;
@@ -137,11 +126,74 @@ input {
     overflow : auto;
 }
 
-.sign-in-container {
-  left: 0;
-  width: 50%;
-  z-index: 2;
+@media (max-width:1200px){
+    .container{
+         background-color: #fff;
+         border-radius: 10px;
+           box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+             0 10px 10px rgba(0,0,0,0.22);
+         position: relative; /* 이렇게 하면 하위에서 자신을 기준으로(틀)로 위치를 맞출 수 있어서 중요함 */
+         overflow: hidden;
+         width: 350px; /* 박스 크기 */
+         max-width: 100%;
+         min-height: 568px;
+    }
+
+    .sign-in-container {
+      width: 10 0%;
+      z-index: 2;
+    }
 }
+
+@media (min-width:1200px){
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+          0 10px 10px rgba(0,0,0,0.22);
+      position: relative; /* 이렇게 하면 하위에서 자신을 기준으로(틀)로 위치를 맞출 수 있어서 중요함 */
+      overflow: hidden;
+      width: 768px; /* 박스 크기 */
+      max-width: 100%;
+      min-height: 700px;
+      -webkit-transition: width 1s, height 2s, background-color 2s;
+      transition: width 1s, height 2s, background-color 2s;
+    }
+
+
+
+    .overlay-container {
+      position: absolute; /* absolute : 부모요소 기준으로 배치 따라서 부모요서 left 50퍼 만큰 뒤로 밀린다는 뜻 */
+      top: 0;
+      left: 50%;
+      width: 50%; /* 컨트롤러 크기 비율 */
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+      z-index: 100; /* 값이 높을수록 다른 요소보다 위에 쌓인다 */
+    }
+
+    .sign-in-container {
+      left: 0;
+      width: 50%;
+      z-index: 2;
+    }
+}
+
+.container.next-page {
+      transform: scaleY( 0.01 );
+      transition: transform 0.5s ease-in-out; /*축소 애니메이션*/
+}
+
+.container.out-page .form-container{
+     transform: scale(0);
+
+}
+
+.container.out-page .overlay-panel{
+    transform: scale(0);
+}
+
 
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%); /* right-panel-active 클래스 요청시 로그인 창 옆으로 이동 */
@@ -163,16 +215,6 @@ input {
 }
 
 
-.overlay-container {
-  position: absolute; /* absolute : 부모요소 기준으로 배치 따라서 부모요서 left 50퍼 만큰 뒤로 밀린다는 뜻 */
-  top: 0;
-  left: 50%;
-  width: 50%; /* 컨트롤러 크기 비율 */
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100; /* 값이 높을수록 다른 요소보다 위에 쌓인다 */
-}
 
 .container.right-panel-active .overlay-container{
   transform: translateX(-100%); /*오버레이 왼쪽으로 이동 */

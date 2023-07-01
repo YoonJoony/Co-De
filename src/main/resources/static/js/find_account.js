@@ -28,7 +28,10 @@ function getToken(){
 function checkCompletion(){
     const auth_number = document.getElementById("auth-number").value
     if ( auth_number === "123456") {
+        var PNum = auth_number
         alert("인증이 완료되었습니다.")
+        localStorage.setItem('PNum', auth_number);
+        location.href = "result_account.html";
     } else{
         alert("인증번호가 올바르지 않습니다.")
     }
