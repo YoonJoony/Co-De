@@ -14,7 +14,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Long join(Member member) {
+    public String join(Member member) {
         validateDuplicateMember(member); //중복 회원 검증
 
         memberRepository.save(member);
@@ -22,7 +22,7 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        memberRepository.findByName(member.getName())
+        memberRepository.findByName(member.getNickname())
                 .ifPresent(m -> { //값이 있으면 특정 로직이 동작한다. optional이기 때문에 optional 메소드 ifPresent() 사용가능.
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
@@ -32,7 +32,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findOne(Long memberId) {
+    public Optional<Member> findOne(String memberId) {
         return memberRepository.findById(memberId);
     }
 }

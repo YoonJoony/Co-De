@@ -2,22 +2,49 @@ package backend.codebackend.domain;
 
 
 public class Member {
-    private Long Id;
-    private String name;
+    private String Id;
+    private String pw;
+    private String pwcheck;
+    private String nickname;
+    private int pnum;
 
-    public Long getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.Id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPw() {
+        return pw;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public String getPwcheck() {
+        return pwcheck;
+    }
+
+    public void setPwcheck(String pwcheck) {
+        this.pwcheck = pwcheck;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public int getPnum() {
+        return pnum;
+    }
+
+    public void setPnum(int pnum) {
+        this.pnum = pnum;
     }
 }
