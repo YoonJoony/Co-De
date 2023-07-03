@@ -10,22 +10,48 @@
 
 <body>
     <div class="main">
+        <!-- 헤더 부분 -->
         <div class="header">
+            <!-- 로그인 부분 -->
             <div class="login">
                 <a href="로그인페이지 링크" style="color: #8E8E8E">로그인</a>
             </div>
+            <!-- CO-ORDER 제목 부분 -->
             <div class="name">
                 <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
             </div>
+            <!-- 주소 입력 부분 -->
             <div class="address">
                 <input id="address_input" type="text" name="address" required placeholder="">
                 <input type="button" onclick="DaumPostcode()" value="주소 찾기">
                 <input type="button" onclick="Address_commit()" value="완료">
             </div>
+            <!-- 검색어 입력 부분 -->
             <div class="search">
                 <input id="search_text" type="text" name="search" required placeholder="검색어를 입력해주세요">
                 <input type="button" onclick="search_button()" value="검색">
             </div>
+        </div>
+        <!-- 게시판 틀 -->
+        <div class="board">
+            <div class="content-list">
+                <div class="title"><a href="view.html">게시판에 제목을 입력합니다.</a></div>
+            </div>
+            <div class="content-list">
+                <div class="title"><a href="view.html">게시판에 제목을 입력합니다.</a></div>
+            </div>
+            <div class="content-list">
+                <div class="title"><a href="view.html">게시판에 제목을 입력합니다.</a></div>
+            </div>
+
+            <ul class="number">
+                <li><a href="#">&lt;</a></li>
+                <li><a href="#" class="active">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">&gt;</a></li>
+            </ul>
         </div>
     </div>
     <script src="main_page.js"></script>
