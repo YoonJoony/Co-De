@@ -10,7 +10,7 @@
 
 <body>
     <div class="main">
-        <div class="header">
+        <div class="header1">
             <div class="header-login">
                 <a href="로그인페이지 링크" style="color: #8E8E8E">로그인</a>
             </div>
@@ -18,15 +18,17 @@
                 <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
             </div>
         </div>
-        <div class="address">
-            <input id="address_input" type="text" name="address" required placeholder="">
-            <input type="button" onclick="DaumPostcode()" value="주소 찾기">
-            <input type="button" onclick="Address_commit()" value="완료">
-        </div>
-        <div class="search">
-            <input id="search_text" type="text" name="search" required placeholder="검색어를 입력해주세요">
-            <input type="button" onclick="search_button()" value="검색">
-        </div>
+        <div class="header2">
+            <div class="address">
+                <input id="address_input" type="text" name="address" required placeholder="">
+                <input type="button" onclick="DaumPostcode()" value="주소 찾기">
+                <input type="button" onclick="Address_commit()" value="완료">
+            </div>
+            <div class="search">
+                <input id="search_text" type="text" name="search" required placeholder="검색어를 입력해주세요">
+                <input type="button" onclick="search_button()" value="검색">
+            </div>
+        </div> 
     </div>
     <script src="main_page.js"></script>
 

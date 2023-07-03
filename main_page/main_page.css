@@ -20,6 +20,7 @@ a{
     font-size: 13px;
     font-weight: bold;
     white-space : nowrap;
+    z-index: 1;
 }
 .header-login a{
     display: inline-block;
