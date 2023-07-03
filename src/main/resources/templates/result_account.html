@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:float="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,41 +7,31 @@
     <link rel="stylesheet" href="/static/css/result_account_style.css">
 </head>
 <body>
-    <section class="result-account-form">
-        <div>
-            <h1 style="color: #7CAB75">CO-ORDER</h1>
+<section class="result-account-form">
+    <div>
+        <h1 style="color: #7CAB75">CO-ORDER</h1>
 
-            <!-- 사용자이름을 변수로 해야함. -->
-            <h>"000" 님이 가입한 계정 정보입니다.</h>
-        </div>
+        <!-- 사용자이름을 변수로 해야함. -->
+        <h>"000" 님이 가입한 계정 정보입니다.</h>
+    </div>
 
-        <!-- 마찬가지로 계정정보를 변수로 불러와야함. -->
-        <table>
-            <tr>
-                <th>ID</th>
-                <td class="asd">아이디 변수</td>
-                <td style="border: none;">
-                    <div class="btn-Ok1">
-                        <button id="btn-Ok1" onclick="handleClick(this)">확인</button>
-                    </div>
-                </td>
-            </tr>
+    <!-- 마찬가지로 계정정보를 변수로 불러와야함. -->
+    <table>
+        <tr>
+            <th>ID</th>
+            <td>아이디 변수</td>
+        </tr>
 
-            <tr>
-                <th>PW</th>
-                <td>비밀번호 변수</td>
-                <td style="border: none;">
-                    <div class="btn-Ok2">
-                        <button id="btn-Ok2" onclick="handleClick(this)">확인</button>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <tr>
+            <th>PW</th>
+            <td>비밀번호 변수</td>
+        </tr>
+    </table>
 
-        <div class="mainPage">
-            <button id="mainPage">로그인 페이지로 이동</button>
-        </div>
-    </section>
-    <script src="/static/js/find_account.js"></script>
+    <div class="mainPage">
+        <button id="mainPage">로그인 페이지로 이동</button>
+    </div>
+</section>
+<script src="find_account.js"></script>
 </body>
 </html>

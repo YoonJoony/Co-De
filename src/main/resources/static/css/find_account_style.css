@@ -4,12 +4,43 @@
 body{
     font-family: 'Noto Sans KR', sans-serif;
     display: flex;
-    height: 80vh;
+    height: 100vh;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* 아이템 수직방향 생성 (기본값 : 수평) */
+    flex-direction: column;
     background-color: #F0F0F0;
     background-size: cover;
 }
+.container {
+      background-color: #fff;
+      border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+          0 10px 10px rgba(0,0,0,0.22);
+      position: relative; /* 이렇게 하면 하위에서 자신을 기준으로(틀)로 위치를 맞출 수 있어서 중요함 */
+      overflow: hidden;
+      width: 500px; /* 박스 크기 */
+      max-width: 100%;
+      min-height: 300px;
+      -webkit-transition: width 1s, height 2s, background-color 2s;
+      transition: width 1s, height 2s, background-color 2s;
+}
+
+.form-container {
+  position: absolute; /* 상위 div에 position : relative으로 섧정하고 하위에서 absolute 설정하면
+                         하위에서 지정한 범위 안에서만 상대적인 위치를 가질 수 있다. */
+  display: flex;
+  align-items: center;
+  justify-content: top;
+  flex-direction: column; /* 세로 정렬 */
+  padding-top: 53px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
 .find-account-form {position: relative; z-index: 2;}
 .find-account-form h1{
     font-size: 60px; color: #fff;
@@ -19,7 +50,7 @@ body{
 .phone {
     width: 300px; position: relative;
     margin-top: 10px;
-    display: inline-block; 
+    display: inline-block;
     white-space: nowrap;
 }
 .phone input {
@@ -44,7 +75,6 @@ body{
     width: 20%;
 }
 #auth-button{
-    position: absolute;
     width: 35%; height: 33px;
     margin-left: 10px;
     font-weight: bold;
