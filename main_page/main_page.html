@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Main</title>
+    <link rel="stylesheet" href="main_page.css">
 </head>
 <body>
+    <div class="header">
+        <div class="header-login">
+            <a href="로그인페이지 링크" style="color: #8E8E8E">로그인</a>
+        </div>
+        <div class="header-name">
+            <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
+        </div>
+    </div>
+    <div class="address">
+        <input id="address_input" type="text" name="address" required placeholder="">
+        <input type="button" onclick="DaumPostcode()" value="주소 찾기">
+        <input type="button" onclick="Address_commit()" value="완료">
+    </div>
+    <div class="search">
+        <input id="search_text" type="text" name="search" required placeholder="검색어를 입력해주세요">
+        <input type="button" onclick="search_button()" value="검색">
+    </div>
+
+
+    <script src="main_page.js"></script>
     
+    <!-- 다음 주소 찾기 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function DaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    document.getElementById('address_input').value = data.address;
+                }
+            }).open();
+        }
+    </script>
 </body>
 </html>

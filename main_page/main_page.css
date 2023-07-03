@@ -1,0 +1,52 @@
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #F0F0F0;
+    line-height: 1.6;
+}
+a{
+    text-decoration: none;
+}
+.header-login{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space : nowrap;
+    z-index: 1;
+}
+.header-name{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 14px;
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
+}
+.address{
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+#address_input{
+    height: 20px;
+    width: 25%;
+}
+.search{
+    position: absolute;
+    top: 65px;
+    left: 400px;
+    width: 100%;
+    text-align: center;
+}
+#search_text{
+    height: 15px;
+    width: 14%;
+}
