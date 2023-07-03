@@ -56,7 +56,7 @@ body{
 }
 /* 인증번호 확인 칸 */
 .auth-check{
-    display: block;
+    display: none;
     width: 100%; position: relative;
     margin-top: 10px;
     white-space: nowrap;
