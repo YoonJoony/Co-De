@@ -1,5 +1,6 @@
 package backend.codebackend.domain;
 
+
 public class Member {
     private Long Id;
     private String name;
@@ -9,11 +10,11 @@ public class Member {
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.Id = id;
     }
 
     public String getName() {
-        return getName();
+        return name;
     }
 
     public void setName(String name) {
