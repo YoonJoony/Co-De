@@ -14,7 +14,7 @@
         <div class="header">
             <!-- 로그인 부분 -->
             <div class="login">
-                <a href="로그인페이지 링크" style="color: #8E8E8E">로그인</a>
+                <a href="로그아웃페이지 링크" style="color: #8E8E8E">로그아웃</a>
             </div>
             <!-- CO-ORDER 제목 부분 -->
             <div class="name">
@@ -62,11 +62,20 @@
             <div class="content-list">
                 <div class="title"><a href="view.html">게시판에 제목을 입력합니다.</a></div>
             </div>
+            <li>
+                <div id="divPaging">
+                    <div><b>1</b></div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                </div>
+            </li>
             
 
-            <div class="load-btn">
+            <!-- <div class="load-btn">
                 <button type="button" id="load_btn" onclick="load_btn_click()">더보기</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- 다음 주소 찾기 API -->
@@ -80,6 +89,10 @@
             }).open();
         }
     </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
     <script src="main_page.js"></script>
 </body>
 
