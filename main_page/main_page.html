@@ -22,10 +22,27 @@
             </div>
             <!-- 주소 입력 부분 -->
             <div class="address">
-                <button id="loc_btn" type="button" name="loc_btn" onclick="loc_btn()"></button>
+                <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                    <img src="images/gps.png" height="30px" width="30px">
+                </button>
                 <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
                 <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
                 <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
+            </div>
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="images/profile.png" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <dl class="header-member-direct__information">
+                            <dd>엄준식</dd>
+                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                            <dd>ㅇㅇ</dd>
+                            <dd>ㅇㅇ</dd>
+                        </dl>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- 게시판 틀 -->
@@ -40,18 +57,11 @@
                 <div class="title"><a href="view.html">게시판에 제목을 입력합니다.</a></div>
             </div>
 
-            <ul class="number">
-                <li><a href="#">&lt;</a></li>
-                <li><a href="#" class="active">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">&gt;</a></li>
-            </ul>
+            <div class="load-btn">
+                <button type="button" id="load_btn">더보기</button>
+            </div>
         </div>
     </div>
-    <script src="main_page.js"></script>
-
     <!-- 다음 주소 찾기 API -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -63,6 +73,7 @@
             }).open();
         }
     </script>
+    <script src="main_page.js"></script>
 </body>
 
 </html>
