@@ -219,3 +219,24 @@ li {
   width: 70%;
   text-align: left;
 }
+
+.make-content {
+  position: absolute;
+  right: 20px;
+  text-align: center;
+  white-space: nowrap; /*줄바꿈 방지*/
+}
+
+#make_content_btn {
+  width: 110%;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #7cab75;
+  color: #f0f0f0;
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1;
+}

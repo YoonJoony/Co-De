@@ -54,6 +54,9 @@ const makeButton = (id) => {
 // 마이페이지로 버튼 클릭시 마이페이지로 이동
 function myPage() {}
 
+// 모집글 생성 버튼 클릭시
+function make_content() {}
+
 // // 현재 위치 가져오기
 // navigator.geolocation.getCurrentPosition(getSuccess, getError);
 
