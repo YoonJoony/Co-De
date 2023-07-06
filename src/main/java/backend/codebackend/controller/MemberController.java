@@ -24,17 +24,10 @@ public class MemberController {
         return "ex_register";
     }
 
+
     @PostMapping(value = "/members/new")
     public String create(MemberForm form) {
-       Member member = new Member();
-       member.setId(form.getId());
-       member.setPw(form.getPw());
-       member.setPwcheck(form.getPwcheck());
-       member.setNickname(form.getNickname());
-       member.setPnum(form.getPnum());
-
-
-       memberService.join(member);
+       memberService.join(form);
 
        return "redirect:/";
     }
