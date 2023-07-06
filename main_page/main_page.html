@@ -22,14 +22,10 @@
             </div>
             <!-- 주소 입력 부분 -->
             <div class="address">
-                <input id="address_input" type="text" name="address" required placeholder="">
-                <input type="button" onclick="DaumPostcode()" value="주소 찾기">
-                <input type="button" onclick="Address_commit()" value="완료">
-            </div>
-            <!-- 검색어 입력 부분 -->
-            <div class="search">
-                <input id="search_text" type="text" name="search" required placeholder="검색어를 입력해주세요">
-                <input type="button" onclick="search_button()" value="검색">
+                <button id="loc_btn" type="button" name="loc_btn" onclick="loc_btn()"></button>
+                <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
+                <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
+                <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
             </div>
         </div>
         <!-- 게시판 틀 -->

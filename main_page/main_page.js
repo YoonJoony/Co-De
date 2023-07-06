@@ -2,3 +2,7 @@
 function Address_commit(){
     
 }
+
+function loc_btn(){
+
+}
