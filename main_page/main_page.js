@@ -17,16 +17,9 @@ function profile_btn(){
 }
 
 //글 더보기 버튼
-$(function(){
-    $(".content-list").slice(0, 1).show(); // 초기갯수
-    $("#load").click(function(e){ // 클릭시 more
-        e.preventDefault();
-        $("div:hidden").slice(0, 1).show(); // 클릭시 more 갯수 지저정
-        if($("div:hidden").length == 0){ // 컨텐츠 남아있는지 확인
-            alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기 
-        }
-    });
-});
+load_btn_click(){
+    $('.load-btn')
+}
 
 // 마이페이지로 버튼 클릭시 마이페이지로 이동
 function myPage(){
