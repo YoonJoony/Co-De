@@ -8,14 +8,17 @@ public class Member {
     private String pw;
     private String pwcheck;
     private String nickname;
-    private int pnum;
+    private String pnum;
 
-    public Member(String Id, String pw, String pwcheck, String nickname, int pnum) {
+    private String certified;
+
+    public Member(String Id, String pw, String pwcheck, String nickname, String pnum, String certified) {
         this.Id = Id;
         this.pw = pw;
         this.pwcheck = pwcheck;
         this.nickname = nickname;
         this.pnum = pnum;
+        this.certified = certified;
     }
 
     public Member(Member.Builder builder) { //Builder에 변수를 다 저장하고 나서 build()메소드가 실행되면 이 생성자 실행되어서 변수들 다 저장됨
@@ -24,6 +27,7 @@ public class Member {
         this.pwcheck = builder.pwcheck;
         this.nickname = builder.nickname;
         this.pnum = builder.pnum;
+        this.certified = builder.certified;
     }
 
     public String getId() {
@@ -58,20 +62,30 @@ public class Member {
         this.nickname = nickname;
     }
 
-    public int getPnum() {
+    public String getPnum() {
         return pnum;
     }
 
-    public void setPnum(int pnum) {
+    public void setPnum(String pnum) {
         this.pnum = pnum;
     }
+
+    public String getCertified() {
+        return certified;
+    }
+
+    public void setCertified(String certified) {
+        this.certified = certified;
+    }
+
 
     public static class Builder {
         private String Id;
         private String pw;
         private String pwcheck;
         private String nickname;
-        private int pnum;
+        private String pnum;
+        private String certified;
 
         public Builder(String Id, String pw, String pwcheck) { //필수로 저장되어야 하는 객체
             this.Id = Id;
@@ -84,8 +98,13 @@ public class Member {
             return this;
         }
 
-        public Member.Builder pnum(int pnum) {
+        public Member.Builder pnum(String pnum) {
             this.pnum = pnum;
+            return this;
+        }
+
+        public Member.Builder certified(String certified) {
+            this.certified = certified;
             return this;
         }
 

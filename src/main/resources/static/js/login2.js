@@ -16,7 +16,15 @@ const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 
+const termsService = document.getElementById('termsService');
+const termsPrivacy = document.getElementById('termsPrivacy');
+const termsLocation = document.getElementById('termsLocation');
+
+
 signUpButton.addEventListener('click', () => {
+  termsService.checked = false;
+  termsPrivacy.checked = false;
+  termsLocation.checked = false;
   container.classList.add("right-panel-active");
 });
 
@@ -27,9 +35,6 @@ signInButton.addEventListener('click', () => {
 const nextButton = document.getElementById('next');
 const forgotButton = document.getElementById('forgot');
 
-const termsService = document.getElementById('termsService');
-const termsPrivacy = document.getElementById('termsPrivacy');
-const termsLocation = document.getElementById('termsLocation');
 
 
 nextButton.addEventListener('click', () => {
@@ -56,5 +61,7 @@ forgotButton.addEventListener('click', () => {
    function gotoForgot(){
        location.href="find_account.html";  // 이동주소
    }
+
+
 
 
