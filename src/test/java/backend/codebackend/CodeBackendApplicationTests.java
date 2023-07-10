@@ -2,22 +2,24 @@ package backend.codebackend;
 
 import backend.codebackend.controller.MemberForm;
 import backend.codebackend.domain.Member;
-import backend.codebackend.repository.MemoryMemberRepository;
+import backend.codebackend.repository.MemberRepository;
 import backend.codebackend.service.MemberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @SpringBootTest
+@Transactional
 class CodeBackendApplicationTests {
 	@Autowired MemberService memberService;
-	@Autowired MemoryMemberRepository memoryMemberRepository;
+	@Autowired MemberRepository MemberRepository;
 
 
 
@@ -36,8 +38,8 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("중복회원 검사")
 	void 중복회원_검사() {
-		MemberForm memberForm1 = new MemberForm(" ", "123", "123", "김윤준", "123", "123");
-		MemberForm memberForm2 = new MemberForm("2 3 4", "234", "234", "김윤준", "234", "123");
+		MemberForm memberForm1 = new MemberForm("123", "123", "123", "김윤준", "123", "123");
+		MemberForm memberForm2 = new MemberForm("234", "234", "234", "김윤준", "234", "123");
 
 		memberService.join(memberForm1);
 		IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(memberForm2));

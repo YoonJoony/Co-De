@@ -1,13 +1,12 @@
 package backend.codebackend.controller;
 
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class MemberForm {
 
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
-    private String id;
+    private String Login;
 
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
     @Pattern(regexp = "(?=.*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣])(?=.*[0-9])(?=.*[^\\w\\s]).{4,20}",
@@ -29,8 +28,8 @@ public class MemberForm {
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
     private String certified;
 
-    public MemberForm(String id, String pw, String pwcheck, String nickname, String pnum, String certified) {
-        this.id = id;
+    public MemberForm(String Login, String pw, String pwcheck, String nickname, String pnum, String certified) {
+        this.Login = Login;
         this.pw = pw;
         this.pwcheck = pwcheck;
         this.nickname = nickname;
@@ -38,12 +37,12 @@ public class MemberForm {
         this.certified = certified;
     }
 
-    public String getId() {
-        return id;
+    public String getLoginId() {
+        return Login;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setLoginId(String Login) {
+        this.Login = Login;
     }
 
     public String getPw() {

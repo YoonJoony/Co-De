@@ -4,10 +4,12 @@ package backend.codebackend.service;
 import backend.codebackend.controller.MemberForm;
 import backend.codebackend.domain.Member;
 import backend.codebackend.repository.MemberRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional //데이터를 저장하거나 변경할때 트랜잭션이 있어야 한다.
 public class MemberService {
     private final MemberRepository memberRepository;
 
@@ -17,8 +19,7 @@ public class MemberService {
 
 
     public String join(MemberForm memberForm) {
-
-        Member member = new Member.Builder(memberForm.getId(), memberForm.getPw(), memberForm.getPwcheck())
+        Member member = new Member.Builder(memberForm.getLoginId(), memberForm.getPw(), memberForm.getPwcheck())
                 .nickname(memberForm.getNickname())
                 .pnum(memberForm.getPnum()) //MemberFrom으로 넘어온 변수들 Builder 클래스의 변수에 다 저장
                 .certified(memberForm.getCertified()) //MemberFrom으로 넘어온 변수들 Builder 클래스의 변수에 다 저장
@@ -28,7 +29,7 @@ public class MemberService {
 
         //MemberForm으로 저장된 값들을 Member 객체에 저장함.
         memberRepository.save(member);
-        return member.getId();
+        return member.getLoginId();
     }
 
     private void validateDuplicateMember(Member Member) {
@@ -37,7 +38,6 @@ public class MemberService {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
     }
-
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
