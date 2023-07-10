@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="비싼 배달비는 이제 그만! 함께 배달주문하는 서비스를 이용해보세요">
+    <title>Co_Order</title>
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="로그아웃페이지 링크" style="color: #8E8E8E">로그아웃</a>
+            </div>
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="name">
+                <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
+            </div>
+            <!-- 주소 입력 부분 -->
+            <div class="address">
+                <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                    <img src="images/gps.png" height="30px" width="30px">
+                </button>
+                <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
+                <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
+                <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
+            </div>
+            <!-- 프로필 -->
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="images/profile.png" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <dl class="header-member-direct__information">
+                            <dd>엄준식</dd>
+                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                            <dd>ㅇㅇ</dd>
+                            <dd>ㅇㅇ</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="cotegory.js"></script>
+
+</html>
