@@ -189,9 +189,9 @@ li {
 .thumbnail {
     position: relative;
     margin-top: 20px;
-    margin-left: 15px;
-    width: 200px;
-    height: 200px;
+    margin-left: 25px;
+    width: 20vh;
+    height: 20vh;
     display: block;
     padding: 4px;
     line-height: 1.42857143;
@@ -201,7 +201,9 @@ li {
 }
 .thumbnail img {
     float: right;
-    margin-top: 50px;
+    margin-top: 73px;
+    width : 50%;
+    height : 50%;
 }
 .category-title{
     position: absolute;
@@ -214,9 +216,8 @@ li {
 
 .main-content{
     position: relative;
-    
 }
 
-.total, .chicken, .pizza{
+.total, .chicken, .pizza, .china, .korea, .japan, .pighocks, .meet, .schoolfood, .coffee, .asian, .sandwich, .salad, .boxlunch{
     float: left;
 }
