@@ -188,12 +188,12 @@ li {
 
 .thumbnail {
     position: relative;
-    margin: 20px;
+    margin-top: 20px;
+    margin-left: 15px;
     width: 200px;
     height: 200px;
     display: block;
     padding: 4px;
-    margin-bottom: 20px;
     line-height: 1.42857143;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -201,7 +201,7 @@ li {
 }
 .thumbnail img {
     float: right;
-    margin-top: 60px;
+    margin-top: 10px;
 }
 .category-title{
     position: absolute;
@@ -210,4 +210,13 @@ li {
     color: #333;
     font-size: 110%;
     font-weight: bold;
+}
+
+.main-content{
+    position: relative;
+    
+}
+
+.total, .chicken, .pizza{
+    float: left;
 }
