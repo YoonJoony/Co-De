@@ -39,7 +39,7 @@ li {
 .login {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   width: 100%;
   text-align: right;
   font-size: 13px;
@@ -132,7 +132,7 @@ li {
   text-align: center;
   white-space: nowrap;
   /*줄바꿈 방지*/
-  z-index: 1;
+  z-index: 3;
 }
 
 /*프로필 버튼*/
@@ -182,18 +182,17 @@ li {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 3;
 }
 
 .board {
   position: relative;
-  top: 10px;
+  top: 40px;
   width: 100%;
-  height: 450px;
+  height: 400px;
   border: 1px solid #d9d9d9;
   background-color: #f0f0f0;
   border-radius: 10px;
-  text-align: center;
   overflow: auto;
 }
 
@@ -202,33 +201,76 @@ li {
     left: 50%;
     transform: translate(-50%);
 } */
-
-.board div {
-  margin-top: 10px;
-  border-bottom: 1px solid #e6e6e6;
+.board .search-list {
+  top: 140px;
+  right: 14px;
+  position: fixed;
+  text-align: right;
+  width: 100%;
+  z-index: 1;
 }
-
-.board div div {
+.board .search-list #search_list {
+  border: none;
+  height: 24px;
+  width: 20%;
+  background-color: #d9d9d9;
+  color: black;
+}
+.board .search-list #search_btn {
+  position: relative;
+  width: 4%;
+  height: 24px;
+  right: 6px;
+  top: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #7cab75;
+  color: white;
+  border: none;
   display: inline-block;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+.board .content-list {
+  display: none;
+  margin: 10px;
+  border-bottom: 1px solid #e6e6e6;
+  font-weight: bold;
+  background-color: #d9d9d9;
+  color: #656565;
+  border-radius: 4px;
+}
+.board .content-list div {
+  display: inline-block;
+  text-align: center;
   padding: 15px 10px 15px 10px;
-  margin: 0;
   border: none;
 }
 
-.board .title {
-  width: 70%;
+.board .content-list .food {
+  width: 15%;
+}
+.board .content-list .title {
+  width: 60%;
   text-align: left;
 }
+.board .content-list .writer {
+  width: 10%;
+}
+.board .content-list .time {
+  width: 10%;
+}
 
-.make-content {
-  position: absolute;
-  right: 20px;
+.board .make-content {
+  position: fixed;
+  top: 580px;
+  right: 25px;
   text-align: center;
   white-space: nowrap; /*줄바꿈 방지*/
 }
 
-#make_content_btn {
-  width: 110%;
+.board .make-content #make_content_btn {
+  width: 120%;
   height: 30px;
   font-size: 15px;
   font-weight: bold;
@@ -239,4 +281,22 @@ li {
   border-radius: 4px;
   cursor: pointer;
   z-index: 1;
+}
+
+.board .load-btn {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.board .load-btn #load_btn {
+  width: 10%;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #7cab75;
+  color: #f0f0f0;
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
 }
