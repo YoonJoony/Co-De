@@ -1,11 +1,42 @@
 package backend.codebackend.controller;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 public class MemberForm {
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
     private String id;
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
+    @Pattern(regexp = "(?=.*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣])(?=.*[0-9])(?=.*[^\\w\\s]).{4,20}",
+            message = "길이가 8~20의 알파벳, 숫자, 특수문자가 각 1개이상 포함된 어야 합니다.")
     private String pw;
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
     private String pwcheck;
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
+    @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9_-]{3,20}$", message = "길이가 3~20의 알파벳, 숫자, 한글만 허용 됩니다.")
     private String nickname;
-    private int pnum;
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
+    @Pattern(regexp = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$",
+            message = "01로 시작하는 10-11자리 숫자여야 합니다.")
+    private String pnum;
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
+    private String certified;
+
+    public MemberForm(String id, String pw, String pwcheck, String nickname, String pnum, String certified) {
+        this.id = id;
+        this.pw = pw;
+        this.pwcheck = pwcheck;
+        this.nickname = nickname;
+        this.pnum = pnum;
+        this.certified = certified;
+    }
 
     public String getId() {
         return id;
@@ -39,11 +70,19 @@ public class MemberForm {
         this.nickname = nickname;
     }
 
-    public int getPnum() {
+    public String getPnum() {
         return pnum;
     }
 
-    public void setPnum(int pnum) {
+    public void setPnum(String pnum) {
         this.pnum = pnum;
+    }
+
+    public String getCertified() {
+        return certified;
+    }
+
+    public void setCertified(String certified) {
+        this.certified = certified;
     }
 }

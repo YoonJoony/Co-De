@@ -193,7 +193,6 @@ li {
   border: 1px solid #d9d9d9;
   background-color: #f0f0f0;
   border-radius: 10px;
-  text-align: center;
   overflow: auto;
 }
 
@@ -202,22 +201,55 @@ li {
     left: 50%;
     transform: translate(-50%);
 } */
-
-.board div {
+.board .search-list {
+  text-align: right;
+  margin-right: 20px;
+}
+.board .search-list #search_list {
+  border: none;
+  height: 24px;
+  width: 20%;
+  background-color: #d9d9d9;
+  color: black;
+}
+.board .search-list #search_btn {
+  position: relative;
+  width: 4%;
+  height: 24px;
+  right: 6px;
+  top: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #7cab75;
+  color: white;
+  border: none;
+  display: inline-block;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+.board .content-list {
   margin-top: 10px;
   border-bottom: 1px solid #e6e6e6;
 }
-
-.board div div {
+.board .content-list div {
   display: inline-block;
+  text-align: center;
   padding: 15px 10px 15px 10px;
-  margin: 0;
   border: none;
 }
 
-.board .title {
-  width: 70%;
+.board .content-list .num {
+  width: 10%;
+}
+.board .content-list .title {
+  width: 60%;
   text-align: left;
+}
+.board .content-list .writer {
+  width: 10%;
+}
+.board .content-list .time {
+  width: 10%;
 }
 
 .make-content {
