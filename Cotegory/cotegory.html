@@ -11,6 +11,7 @@
 
 <body>
     <div class="main">
+
         <div class="header">
             <!-- 로그인 부분 -->
             <div class="login">
@@ -37,14 +38,26 @@
                 <div id="layer-header-profile">
                     <div class="header-profile-direct">
                         <dl class="header-member-direct__information">
-                            <dd>엄준식</dd>
-                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
-                            <dd>ㅇㅇ</dd>
-                            <dd>ㅇㅇ</dd>
+                            <span>망그곰</span>
+                            <br><br>
+                            <div class="profile_content">
+                                <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                                <br>
+                                <input type="button" id="profile_btn_btn" onclick="myPage()" value="참여중인 모집글"></input>
+                                <br>
+                                <input type="button" id="profile_btn_btn" onclick="myPage()" value="결제내역 조회"></input>
+                            </div>
                         </dl>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="main-content">
+            <a href="" class="thumbnail" ng-click="select_home_category('all')">
+                <div class="category-title">전체보기</div>
+                <img src="image/category-01.png">
+            </a>
         </div>
     </div>
 </body>
