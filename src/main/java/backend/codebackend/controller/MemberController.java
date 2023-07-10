@@ -21,7 +21,7 @@ public class MemberController {
 
     @GetMapping(value = "/members/new")
     public String createForm() {
-        return "ex_register";
+        return "Register.html";
     }
 
 
