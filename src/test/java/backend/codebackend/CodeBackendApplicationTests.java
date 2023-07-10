@@ -15,9 +15,9 @@ class CodeBackendApplicationTests {
 	MemberService memberService;
 	MemberRepository memberRepository;
 
-	@Test
-	void 회원가입() {
-		Member member = new MemberForm()
-	}
+//	@Test
+//	void 회원가입() {
+//		Member member = new MemberForm()
+//	}
 
 }

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="/static/css/Register_style.css">
+    <link rel="stylesheet" href="/css/Register_style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <div class="container" id="container">
         <div class="form-container">
-            <form action="#">
+            <form action="/members/new" method="post">
                 <h1 class="Register">Sign Up</h1>
                 <h3 class="Register">회원가입을 위해</br> 정보를 입력해주세요.</h3>
                 <label for="id"><p>* ID</p>
@@ -33,8 +33,8 @@
                            oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
                            autocomplete="off" required>
                 </label>
-                <label for="phone"><p>* Phone Number</p>
-                    <input type="text" class="phone" name="phone" id="phone" oninput="autoHyphen(this)" maxlength="13"
+                <label for="pnum"><p>* Phone Number</p>
+                    <input type="text" class="pnum" name="pnum" id="pnum" oninput="autoHyphen(this)" maxlength="13"
                            oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
                            autocomplete="off"  required>
                     <button class="btn-Certified" id='btnsend' type="button">인증번호 받기</button>
@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <script src="/static/js/Register.js"></script>
+    <script src="/js/Register.js"></script>
 
 
 
