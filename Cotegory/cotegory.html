@@ -43,9 +43,9 @@
                             <div class="profile_content">
                                 <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
                                 <br>
-                                <input type="button" id="profile_btn_btn" onclick="myPage()" value="참여중인 모집글"></input>
+                                <input type="button" id="profile_btn_btn" onclick="joining()" value="참여중인 모집글"></input>
                                 <br>
-                                <input type="button" id="profile_btn_btn" onclick="myPage()" value="결제내역 조회"></input>
+                                <input type="button" id="profile_btn_btn" onclick="credit()" value="참여중인 모집글"></input>
                             </div>
                         </dl>
                     </div>
@@ -54,9 +54,13 @@
         </div>
 
         <div class="main-content">
-            <a href="" class="thumbnail" ng-click="select_home_category('all')">
+            <a href="전체 게시판 링크" class="thumbnail" ng-click="select_home_category('all')">
                 <div class="category-title">전체보기</div>
-                <img src="image/category-01.png">
+                <img src="category-01.png" width="190vw" height="190vw">
+            </a>
+            <a href="전제 게시판 링크" class="thumbnail" ng-click="select_home_category('all')">
+                <div class="category-title">치킨</div>
+                <img src="" width="190vw" height="190vw">
             </a>
         </div>
     </div>
