@@ -7,11 +7,13 @@
         // input 및 button 변수화
         let id = $('#id');
         let pw = $('#pw');
-        let pw_check = $('#pw_check');
+        let pwcheck = $('#pwcheck');
         let nickname = $('#nickname');
         let phone = $('#phone');
         let btnsend = $('#btnsend');
         let btnRegister = $('#btnRegister');
+
+
 
         // 입력칸을 모두 입력하고 인증번호 받기 버튼을 누르면 인증번호 입력 칸이 나타남
         btnsend.on('click', function() {
@@ -25,8 +27,8 @@
                 setTimeout(function() {
                     $('label').removeClass('warning')
                 }, 1500);
-            }else if(pw_check.val() == ""){
-                pw_check.next('label').addClass('warning');
+            }else if(pwcheck.val() == ""){
+                pwcheck.next('label').addClass('warning');
                 setTimeout(function() {
                     $('label').removeClass('warning')
                 }, 1500);
@@ -49,8 +51,23 @@
 
         });
 
+        var regex = / /gi;
+        var pattern = /\s/g;
+
         // 입력칸에 모두 빈칸이 없어야 가입하기 버튼이 정상동작함
         btnRegister.on('click', function() {
+            var str = id.val();
+
+            if(str == "") {
+                id.value = null;
+                alert("띄워쓰기좀");
+            }
+
+            if(str.match(pattern)) {
+                 id.value = null;
+                 alert("띄워쓰기좀");
+            }
+
             if(id.val() == ""){
                 id.next('label').addClass('warning');
                 setTimeout(function() {
@@ -61,8 +78,8 @@
                 setTimeout(function() {
                     $('label').removeClass('warning')
                 }, 1500);
-            }else if(pw_check.val() == ""){
-                pw_check.next('label').addClass('warning');
+            }else if(pwcheck.val() == ""){
+                pwcheck.next('label').addClass('warning');
                 setTimeout(function() {
                     $('label').removeClass('warning')
                 }, 1500);
@@ -80,6 +97,7 @@
                 }, 1500);
             }
         });
+
 
     const autoHyphen = (target) => {
      target.value = target.value
