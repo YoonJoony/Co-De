@@ -10,3 +10,18 @@ function profile_btn() {
       box.style.display = "none";
     }
   }
+
+// 마이페이지 메뉴 선택시 
+function myPage() {
+
+}
+
+// 참여중인 모집글 메뉴 선택시
+function joining() {
+
+}
+
+// 결제내역 조회 선택시
+function credit() {
+    
+}
