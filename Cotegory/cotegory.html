@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="비싼 배달비는 이제 그만! 함께 배달주문하는 서비스를 이용해보세요">
     <title>Co_Order</title>
+    <link rel="stylesheet" href="cotrgory.css">
 </head>
+
 <body>
     <div class="main">
         <div class="header">
@@ -20,7 +23,7 @@
             <!-- 주소 입력 부분 -->
             <div class="address">
                 <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-                    <img src="images/gps.png" height="30px" width="30px">
+                    <img src="gps.png" height="30px" width="30px">
                 </button>
                 <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
                 <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
@@ -29,7 +32,7 @@
             <!-- 프로필 -->
             <div class="profile">
                 <button id="profile_btn" type="button" onclick="profile_btn()">
-                    <img src="images/profile.png" height="40px" width="40px">
+                    <img src="gom.PNG" height="40px" width="40px">
                 </button>
                 <div id="layer-header-profile">
                     <div class="header-profile-direct">
