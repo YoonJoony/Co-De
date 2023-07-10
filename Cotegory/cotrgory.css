@@ -201,6 +201,7 @@ li {
 }
 .thumbnail img {
     float: right;
+    margin-top: 60px;
 }
 .category-title{
     position: absolute;
