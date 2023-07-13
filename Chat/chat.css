@@ -5,10 +5,13 @@
 }
 
 html,
+body{
+    height: 100%;
+}
+
 body {
     font-family: "Noto Sans KR", sans-serif;
     line-height: 1.6;
-    height: 100%;
     display: block;
 }
   
@@ -18,25 +21,18 @@ a {
     text-decoration: none;
 }
   
-li {
-    list-style: none;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-}
-  
 .main {
     position: relative;
 }
-  
+
 .header {
     position: relative;
-    width: 100%;
+    width: 90%;
     height: 130px;
-    margin-bottom: 40px
+    margin: auto;
 }
-  
-.login {
+
+.logout {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -48,7 +44,7 @@ li {
     z-index: 1;
 }
   
-.name {
+.domain {
     position: absolute;
     top: 14px;
     left: 0;
@@ -56,73 +52,6 @@ li {
     text-align: center;
     font-size: 50px;
     font-weight: bold;
-}
-  
-.address {
-    position: relative;
-    top: 80px;
-    width: 100%;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    /*줄바꿈 방지*/
-    max-width: 600px;
-    margin: 0 auto;
-}
-  
-#loc_btn {
-    position: relative;
-    top: 11px;
-    left: 6px;
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-    border: none;
-    background-color: #d9d9d9;
-    display: inline-block;
-    border-radius: 4px 0 0 4px;
-    cursor: pointer;
-}
-  
-#address_input {
-    position: relative;
-    height: 30px;
-    width: 40%;
-    border: none;
-    background-color: #d9d9d9;
-    color: black;
-}
-  
-#find_address {
-    position: relative;
-    top: 2px;
-    right: 6px;
-    width: 12%;
-    height: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: #7cab75;
-    color: white;
-    border: none;
-    display: inline-block;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-  
-#address_input_commit {
-    position: relative;
-    top: 2px;
-    right: 5px;
-    width: 6%;
-    height: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    background-color: #7cab75;
-    color: white;
-    border: none;
-    display: inline-block;
-    border-radius: 4px;
-    cursor: pointer;
 }
   
 .profile {
@@ -154,7 +83,7 @@ li {
     display: none;
     position: absolute;
     top: 130%;
-    left: -35px;
+    left: -5px;
     box-sizing: border-box;
     border: 1px solid #ddd;
     background-color: #bfbfbf;
@@ -183,4 +112,28 @@ li {
     border-radius: 4px;
     cursor: pointer;
     z-index: 1;
+}
+
+.main-content{
+    margin: auto;
+    position: relative;
+    align-items: center;
+    width: 90%;
+}
+
+.chat_wrap{
+    position: relative;
+}
+
+.chat-header { 
+    padding: 15px 0;
+    background: #7CAB75; 
+}
+
+.map{
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    filter: invert(0);
 }
