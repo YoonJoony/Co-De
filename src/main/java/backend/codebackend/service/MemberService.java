@@ -21,15 +21,19 @@ public class MemberService {
     }
 
 
+    //로그인
     public Member signIn(SignInRequest signInRequest) {
+        //로그인 한 아이디와 비밀번호를 받음
         String Login = signInRequest.getLogin();
         String pw = signInRequest.getPw();
 
+        //데이터베이스에 로그인 한 아이디가 존재하는지 확인 없으면 null
         Member member = getMemberByLoginAndPw(Login, pw);
 
         return member;
     }
-
+    
+    //회원가입
     public Member signUp(MemberForm memberForm) {
         Member member = new Member.Builder(memberForm.getLoginId(), memberForm.getPw(), memberForm.getPwcheck())
                 .nickname(memberForm.getNickname())
@@ -46,20 +50,21 @@ public class MemberService {
 
     //아이디
     public Member getMemberByLoginAndPw(String Login, String pw) {
-        //값이 없는 에러 발생 시
+        //값이 없는 에러 발생 시 (db에 로그인 한 아이디가 없을 시) 에러 캐치해서 null 리턴
         try {
             memberRepository.findById(Login).get();
         } catch (NoSuchElementException e) {
             return null;
         }
-
+        
+        //에러 발생 안하면 로그인에 해당하는 아이디에 객체 member 리턴받음
         Member member = memberRepository.findById(Login).get();
 
         //비밀번호가 다르면 null 출력
         if(!pw.equals(member.getPw())) {
             return null;
         }
-
+        
         return member;
     }
 

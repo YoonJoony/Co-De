@@ -27,18 +27,22 @@ public class MemberController {
         return "login";
     }
 
-
+    //로그인
     @PostMapping(value = "/member/login")
     public String SignIn(SignInRequest signInRequest) {
+        //로그인 후 아이디가 데이터베이스에 존재하는지 검사
         Member member = memberService.signIn(signInRequest);
 
+        //없으면 에러 페이지를 보여줌
         if(member == null) {
             return "errorpage";
         }
 
-        return "";
+        //성공 시 메인 페이지 이동
+        return "Cotegory/cotegory.html";
     }
 
+    //회원가입 성공 시 처음 화면으로 이동
     @PostMapping(value = "/members/new")
     public String create(MemberForm form) {
         memberService.signUp(form);
