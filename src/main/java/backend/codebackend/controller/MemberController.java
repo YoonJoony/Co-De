@@ -36,7 +36,7 @@ public class MemberController {
             return "errorpage";
         }
 
-        return "";
+        return "Cotegory/cotegory.html";
     }
 
     @PostMapping(value = "/members/new")
