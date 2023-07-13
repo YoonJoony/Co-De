@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="비싼 배달비는 이제 그만! 함께 배달주문하는 서비스를 이용해보세요">
+    <title>Co-Order</title>
+    <link rel="stylesheet" href="cotrgory.css">
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="header">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="로그아웃페이지 링크" style="color: #8E8E8E">로그아웃</a>
+            </div>
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="name">
+                <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
+            </div>
+            <!-- 주소 입력 부분 -->
+            <div class="address">
+                <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                    <img src="gps.png" height="30px" width="30px">
+                </button>
+                <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
+                <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
+                <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
+            </div>
+            <!-- 프로필 -->
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="gom.PNG" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <dl class="header-member-direct__information">
+                            <span>망그곰</span>
+                            <br><br>
+                            <div class="profile_content">
+                                <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                                <br>
+                                <input type="button" id="profile_btn_btn" onclick="joining()" value="참여중인 모집글"></input>
+                                <br>
+                                <input type="button" id="profile_btn_btn" onclick="credit()" value="결제 내역 조회"></input>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="total">
+                <a href="전체 게시판 링크" class="thumbnail">
+                    <div class="category-title">전체보기</div>
+                    <img src="category-01.png">
+                </a>
+            </div>
+            <div class="chicken">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">치킨</div>
+                    <img src="치킨.png">
+                </a>
+            </div>
+            <div class="pizza">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">피자/양식</div>
+                    <img src="피자.png">
+                </a>
+            </div>
+            <div class="china">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">중식</div>
+                    <img src="증식.jpg">
+                </a>
+            </div>
+            <div class="korea">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">한식</div>
+                    <img src="한식.jpg">
+                </a>
+            </div>
+            <div class="japan">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">일식/돈까스</div>
+                    <img src="일식.png">
+                </a>
+            </div>
+            <div class="pighocks">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">족발/보쌈</div>
+                    <img src="족발.jpg">
+                </a>
+            </div>
+            <div class="meet">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">고기</div>
+                    <img src="고기.jpg">
+                </a>
+            </div>
+            <div class="schoolfood">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">분식</div>
+                    <img src="분식.jpg">
+                </a>
+            </div>
+            <div class="coffee">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">카페/디저트</div>
+                    <img src="커피.jpg">
+                </a>
+            </div>
+            <div class="asian">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">아시안</div>
+                    <img src="쌀국수.jpg">
+                </a>
+            </div>
+            <div class="sandwich">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">샌드위치</div>
+                    <img src="샌드위치.jpg">
+                </a>
+            </div>
+            <div class="salad">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">샐러드</div>
+                    <img src="셀러드.jpg">
+                </a>
+            </div>
+            <div class="boxlunch">
+                <a href="전제 게시판 링크" class="thumbnail">
+                    <div class="category-title">도시락/죽</div>
+                    <img src="도시락.jpg">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+
+        </div>
+    </div>
+</body>
+
+<script src="cotegory.js"></script>
+
+</html>

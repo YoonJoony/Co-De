@@ -5,7 +5,7 @@
 
 
         // input 및 button 변수화
-        let id = $('#id');
+        let id = $('#Login');
         let pw = $('#pw');
         let pwcheck = $('#pwcheck');
         let nickname = $('#nickname');

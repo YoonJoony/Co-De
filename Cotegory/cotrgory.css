@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    line-height: 1.6;
+    display: block;
+}
+  
+a {
+    color: inherit;
+    /* 글자 색생은 부모로부터 상속 */
+    text-decoration: none;
+}
+  
+li {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+  
+.main {
+    position: relative;
+}
+  
+.header {
+    position: relative;
+    width: 100%;
+    height: 130px;
+    margin-bottom: 40px
+}
+  
+.login {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100%;
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: 1;
+}
+  
+.name {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+  
+.address {
+    position: relative;
+    top: 80px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    /*줄바꿈 방지*/
+    max-width: 600px;
+    margin: 0 auto;
+}
+  
+#loc_btn {
+    position: relative;
+    top: 11px;
+    left: 6px;
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    border: none;
+    background-color: #d9d9d9;
+    display: inline-block;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+}
+  
+#address_input {
+    position: relative;
+    height: 30px;
+    width: 40%;
+    border: none;
+    background-color: #d9d9d9;
+    color: black;
+}
+  
+#find_address {
+    position: relative;
+    top: 2px;
+    right: 6px;
+    width: 12%;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #7cab75;
+    color: white;
+    border: none;
+    display: inline-block;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+  
+#address_input_commit {
+    position: relative;
+    top: 2px;
+    right: 5px;
+    width: 6%;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #7cab75;
+    color: white;
+    border: none;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+.profile {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    text-align: center;
+    white-space: nowrap;
+    /*줄바꿈 방지*/
+    z-index: 1;
+}
+  
+/*프로필 버튼*/
+#profile_btn {
+    position: relative;
+    top: 11px;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    border: none;
+    background-color: #f0f0f0;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+/*프로필 클릭시 표시되는 창*/
+#layer-header-profile {
+    display: none;
+    position: absolute;
+    top: 130%;
+    left: -35px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    background-color: #bfbfbf;
+    font-size: 14px;
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 10px;
+}
+  
+.header-profile-direct {
+    z-index: 1;
+    width: 150px;
+    padding: 15px;
+    font-size: 15px;
+}
+  
+#profile_btn_btn {
+    top: 2px;
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #d9d9d900;
+    color: #656565;
+    border: none;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+
+.main-content{
+    margin: auto;
+    max-width: 800px;
+}
+
+.thumbnail {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 20vh;
+    height: 20vh;
+    display: block;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.thumbnail img {
+    position: relative;
+    float: right;
+    margin-top: 73px;
+    width : 50%;
+    height : 50%;
+}
+.category-title{
+    position: absolute;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+    color: #333;
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.total, .chicken, .pizza, .china, .korea, .japan, .pighocks, .meet, .schoolfood, .coffee, .asian, .sandwich, .salad, .boxlunch{
+    float: left;
+}

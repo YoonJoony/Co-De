@@ -2,9 +2,18 @@ package backend.codebackend.domain;
 
 
 import backend.codebackend.controller.MemberForm;
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Member {
-    private String Id;
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 ID를 자동으로 생성해 주는 전략 : IDENTITY
+    private Long id;
+
+    private String Login;
     private String pw;
     private String pwcheck;
     private String nickname;
@@ -12,8 +21,10 @@ public class Member {
 
     private String certified;
 
-    public Member(String Id, String pw, String pwcheck, String nickname, String pnum, String certified) {
-        this.Id = Id;
+
+    public Member(Long id, String Login, String pw, String pwcheck, String nickname, String pnum, String certified) {
+        this.id = id;
+        this.Login = Login;
         this.pw = pw;
         this.pwcheck = pwcheck;
         this.nickname = nickname;
@@ -21,8 +32,10 @@ public class Member {
         this.certified = certified;
     }
 
+
+
     public Member(Member.Builder builder) { //Builder에 변수를 다 저장하고 나서 build()메소드가 실행되면 이 생성자 실행되어서 변수들 다 저장됨
-        this.Id = builder.Id; //builder 클래스의 id 저장.
+        this.Login = builder.Login; //builder 클래스의 id 저장.
         this.pw = builder.pw;
         this.pwcheck = builder.pwcheck;
         this.nickname = builder.nickname;
@@ -30,12 +43,20 @@ public class Member {
         this.certified = builder.certified;
     }
 
-    public String getId() {
-        return Id;
+    public Long getId() {
+        return id;
     }
 
-    public void setId(String id) {
-        this.Id = id;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLoginId() {
+        return Login;
+    }
+
+    public void setLoginId(String Login) {
+        this.Login = Login;
     }
 
     public String getPw() {
@@ -80,15 +101,15 @@ public class Member {
 
 
     public static class Builder {
-        private String Id;
+        private String Login;
         private String pw;
         private String pwcheck;
         private String nickname;
         private String pnum;
         private String certified;
 
-        public Builder(String Id, String pw, String pwcheck) { //필수로 저장되어야 하는 객체
-            this.Id = Id;
+        public Builder(String Login, String pw, String pwcheck) { //필수로 저장되어야 하는 객체
+            this.Login = Login;
             this.pw = pw;
             this.pwcheck = pwcheck;
         }
