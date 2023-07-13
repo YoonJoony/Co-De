@@ -3,10 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
-  
+
+html,
 body {
     font-family: "Noto Sans KR", sans-serif;
     line-height: 1.6;
+    height: 100%;
     display: block;
 }
   

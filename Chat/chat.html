@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co-Order</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="logout">
+                <a href="..\login page\login.html" style="color: #8E8E8E">로그아웃</a>
+            </div>
+            <div class="domain">
+                <a href="..\Cotegory\cotegory.html" style="color: #7CAB75">CO-ORDER</a>
+            </div>
+
+            <!-- 프로필 -->
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="gom.PNG" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <dl class="header-member-direct__information">
+                            <span>망그곰</span>
+                            <br><br>
+                            <div class="profile_content">
+                                <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                                <br>
+                                <input type="button" id="profile_btn_btn" onclick="joining()" value="참여중인 모집글"></input>
+                                <br>
+                                <input type="button" id="profile_btn_btn" onclick="credit()" value="결제 내역 조회"></input>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="chat_wrap">
+                <div class="chat-header"></div>
+
+                <div class="chat-content">
+                    <span>지도</span>
+                    <div class="map">
+                        <!-- * 카카오맵 - 지도퍼가기 -->
+                        <!-- 1. 지도 노드 -->
+                        <div id="daumRoughmapContainer1689244398279"
+                            class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+                        <!--
+	                    2. 설치 스크립트
+	                    * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+                        -->
+                        <script charset="UTF-8" class="daum_roughmap_loader_script"
+                            src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+                        <!-- 3. 실행 스크립트 -->
+                        <script charset="UTF-8">
+                            new daum.roughmap.Lander({
+                                "timestamp": "1689244398279",
+                                "key": "2fhwy",
+                                "mapWidth": "500",
+                                "mapHeight": "300"
+                            }).render();
+                        </script>
+                    </div>
+
+                    <div class="chat">
+                        <h1> "방 이름" ← 이거 변수처리 해줄꺼지? ㅎ</h1>
+                        <div class='chatbox' ng-controller="MessageCtrl as chatMessage">
+                            <div class='chatbox__user-list'>
+                                <h1>User list</h1>
+                                <div class='chatbox__user--active'>
+                                    <p>Jack Thomson</p>
+                                </div>
+                                <div class='chatbox__user--active'>
+                                    <p>Angelina Jolie</p>
+                                </div>
+                                <div class='chatbox__user--active'>
+                                    <p>George Clooney</p>
+                                </div>
+                                <div class='chatbox__user--active'>
+                                    <p>Seth Rogen</p>
+                                </div>
+                            </div>
+                            <div class="chatbox__messages" ng-repeat="message in messages">
+                                <div class="chatbox__messages__user-message">
+                                    <div class="chatbox__messages__user-message--ind-message">
+                                        <p class="name">망그곰</p>
+                                        <br />
+                                        <p class="message">이것은 채팅 예시 내가 쓰는것</p>
+                                    </div>
+                                    <div class="chatbox__messages__user-message--ind-message">
+                                        <p class="name">망그곰</p>
+                                        <br />
+                                        <p class="message">이것은 채팅 예시 내가 쓰는것</p>
+                                    </div>
+                                    <div class="chatbox__messages__user-message--ind-message">
+                                        <p class="name">망그곰</p>
+                                        <br />
+                                        <p class="message">이것은 채팅 예시 내가 쓰는것</p>
+                                    </div>
+                                    <div class="chatbox__messages__user-message--ind-message">
+                                        <p class="name">망그곰</p>
+                                        <br />
+                                        <p class="message">이것은 채팅 예시 내가 쓰는것</p>
+                                    </div>
+                                    <div class="chatbox__messages__user-message--ind-message">
+                                        <p class="name">망그곰</p>
+                                        <br />
+                                        <p class="message">이것은 채팅 예시 내가 쓰는것</p>
+                                    </div>
+                                    <div class="chatbox__messages__user-message--ind-message">
+                                        <p class="name">망그곰</p>
+                                        <br />
+                                        <p class="message">이것은 채팅 예시 내가 쓰는것</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <form>
+                                <input type="text" placeholder="Enter your message">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="chat.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</html>
