@@ -1,7 +1,6 @@
 package backend.codebackend.domain;
 
 
-import backend.codebackend.controller.MemberForm;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +20,9 @@ public class Member {
 
     private String certified;
 
+    public Member() {
+        super();
+    }
 
     public Member(Long id, String Login, String pw, String pwcheck, String nickname, String pnum, String certified) {
         this.id = id;

@@ -1,12 +1,15 @@
 package backend.codebackend.controller;
 
 import backend.codebackend.domain.Member;
+import backend.codebackend.domain.SignInRequest;
+import backend.codebackend.dto.MemberForm;
 import backend.codebackend.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import java.util.List;
 
@@ -19,15 +22,26 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping(value = "/members/new")
-    public String createForm() {
-        return "Register.html";
+    @GetMapping("/")
+    public String home() {
+        return "login";
     }
 
 
+    @PostMapping(value = "/member/login")
+    public String SignIn(SignInRequest signInRequest) {
+        Member member = memberService.signIn(signInRequest);
+
+        if(member == null) {
+            return "errorpage";
+        }
+
+        return "";
+    }
+
     @PostMapping(value = "/members/new")
     public String create(MemberForm form) {
-        memberService.join(form);
+        memberService.signUp(form);
 
        return "redirect:/";
     }
