@@ -141,10 +141,9 @@ a {
 }
 
 .map{
-    position: relative;
+    position: absolute;
     width: 30%;
     border-radius: 10px;
-    overflow: hidden;
     filter: invert(0);
 }
 
@@ -154,7 +153,7 @@ a {
   .chat {
     width: 55%;
     height: 40vw;
-    position: relative;
+    float: right;
     display: flex;
     justify-content: center;
     align-items: center;
