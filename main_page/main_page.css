@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
 
 body {
   font-family: "Noto Sans KR", sans-serif;
@@ -17,15 +22,16 @@ a {
   text-decoration: none;
 }
 
-li {
-  list-style: none;
-  text-align: center;
-  padding: 0;
-  margin: 0;
+input:focus {
+  outline: none;
 }
 
 .main {
   position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .header {
@@ -70,7 +76,7 @@ li {
   margin: 0 auto;
 }
 
-#loc_btn {
+.address #loc_btn {
   position: relative;
   top: 11px;
   left: 6px;
@@ -84,7 +90,7 @@ li {
   cursor: pointer;
 }
 
-#address_input {
+.address #address_input {
   position: relative;
   height: 30px;
   width: 40%;
@@ -93,7 +99,7 @@ li {
   color: black;
 }
 
-#find_address {
+.address #find_address {
   position: relative;
   top: 2px;
   right: 6px;
@@ -109,7 +115,7 @@ li {
   cursor: pointer;
 }
 
-#address_input_commit {
+.address #address_input_commit {
   position: relative;
   top: 2px;
   right: 5px;
@@ -196,11 +202,6 @@ li {
   overflow: auto;
 }
 
-/* .load-btn {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-} */
 .board .search-list {
   top: 140px;
   right: 14px;
@@ -215,6 +216,7 @@ li {
   width: 20%;
   background-color: #d9d9d9;
   color: black;
+  z-index: 1;
 }
 .board .search-list #search_btn {
   position: relative;
@@ -247,11 +249,14 @@ li {
   border: none;
 }
 
+.board .content-list .participant_num {
+  width: 10%;
+}
 .board .content-list .food {
-  width: 15%;
+  width: 10%;
 }
 .board .content-list .title {
-  width: 60%;
+  width: 55%;
   text-align: left;
 }
 .board .content-list .writer {
@@ -299,4 +304,42 @@ li {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  opacity: 1;
+
+  /*숨기기*/
+  /* z-index: -1;
+  opacity: 0; */
+}
+.show {
+  opacity: 1;
+  z-index: 1000;
+  transition: all 0.5s;
+}
+.modal-window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+  width: 100px;
+  height: 100px;
+
+  transform: translate(-50%, -40%);
 }

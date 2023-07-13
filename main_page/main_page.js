@@ -1,6 +1,7 @@
 // 주소 설정 완료 버튼 클릭시
 function Address_commit() {}
 
+// 프로필 클릭시
 function profile_btn() {
   const box = document.getElementById("layer-header-profile");
 
@@ -50,3 +51,12 @@ function make_content() {}
 // function getError() {
 //     alert('Geolocation Error');
 // }
+
+$(function () {
+  $(".title").click(function () {
+    $(".modal-overlay").css("display", "flex");
+    if ($(".modal-overlay").display == "none") {
+      $(".modal-overlay").show();
+    }
+  });
+});
