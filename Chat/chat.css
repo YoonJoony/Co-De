@@ -139,14 +139,40 @@ a {
 }
 
 .map {
-  position: relative;
+  position: absolute;
   width: 30%;
   border-radius: 10px;
-  overflow: hidden;
   filter: invert(0);
 }
 
 /* 채팅 관련 Css */
+
+.chat {
+  width: 55%;
+  height: 40vw;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.chat h1 {
+  color: #000;
+  text-align: center;
+}
+
+.chatbox {
+  background: rgba(50, 53, 51, 0.685);
+  width: 600px;
+  height: 75%;
+  border-radius: 0.2em;
+  position: relative;
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+}
+.chatbox__messages {
+  height: 28.25vw;
+  overflow: scroll;
+}
 
 .chat {
   width: 55%;
