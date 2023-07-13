@@ -2,7 +2,7 @@ package backend.codebackend.domain;
 
 
 import backend.codebackend.controller.MemberForm;
-
+import lombok.Data;
 public class Member {
     private String Id;
     private String pw;
