@@ -52,11 +52,16 @@ function make_content() {}
 //     alert('Geolocation Error');
 // }
 
-$(function () {
-  $(".title").click(function () {
-    $(".modal-overlay").css("display", "flex");
-    if ($(".modal-overlay").display == "none") {
-      $(".modal-overlay").show();
-    }
-  });
-});
+let el = document.querySelectorAll(".title");
+el.forEach((target) => target.addEventListener("click", show));
+
+function show() {
+  document.querySelector(".modal-background").className =
+    "modal-background show";
+}
+
+function close() {
+  document.querySelector(".modal-background").className = "modal-background";
+}
+
+document.querySelector("#modal_close_btn").addEventListener("click", close);

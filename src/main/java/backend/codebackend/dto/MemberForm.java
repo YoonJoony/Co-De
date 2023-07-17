@@ -1,4 +1,4 @@
-package backend.codebackend.controller;
+package backend.codebackend.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;

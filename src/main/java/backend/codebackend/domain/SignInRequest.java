@@ -1,49 +1,33 @@
 package backend.codebackend.domain;
 
-
+import jakarta.validation.constraints.NotEmpty;
 
 public class SignInRequest {
-    private String Login;
-    private String pw;
 
-    public SignInRequest(builder builder) {
+    @NotEmpty(message = "유효하지 않은 로그인 형식입니다.")
+    private String signid;
+    @NotEmpty
+    private String signpw;
+
+    public SignInRequest(String signid, String signpw) {
+        this.signid = signid;
+        this.signpw = signpw;
     }
 
     public String getLogin() {
-        return Login;
+        return signid;
     }
 
-    public void setLogin(String Login) {
-        Login = Login;
+    public void setLogin(String signid) {
+        this.signid = signid;
     }
+
 
     public String getPw() {
-        return pw;
+        return signpw;
     }
 
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public static class builder{
-        private String Login;
-        private String pw;
-
-        public builder(String Login, String pw){
-            this.Login = Login;
-            this.pw = pw;
-        }
-
-        public builder Login(String Login){
-            this.Login = Login;
-            return this;
-        }
-        public builder pw(String pw){
-            this.pw = pw;
-            return this;
-        }
-        public SignInRequest build() {
-            return new SignInRequest(this);
-        }
+    public void setPw(String signpw) {
+        this.signpw = signpw;
     }
 }

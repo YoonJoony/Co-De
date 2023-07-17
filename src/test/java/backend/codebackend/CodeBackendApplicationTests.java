@@ -1,10 +1,9 @@
 package backend.codebackend;
 
-import backend.codebackend.controller.MemberForm;
+import backend.codebackend.dto.MemberForm;
 import backend.codebackend.domain.Member;
 import backend.codebackend.repository.MemberRepository;
 import backend.codebackend.service.MemberService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,8 @@ class CodeBackendApplicationTests {
 	@DisplayName("회원가입 성공")
 	void 회원가입() {
 		MemberForm memberForm = new MemberForm("123", "123", "123", "123", "123", "123");
-		String id = memberService.join(memberForm);
+		Member member = memberService.signUp(memberForm);
+		String id = member.getLoginId();
 
 		Member findMember = memberService.findOne(id).get();
 		assertThat(memberForm.getNickname()).isEqualTo(findMember.getNickname());
@@ -41,8 +41,8 @@ class CodeBackendApplicationTests {
 		MemberForm memberForm1 = new MemberForm("123", "123", "123", "김윤준", "123", "123");
 		MemberForm memberForm2 = new MemberForm("234", "234", "234", "김윤준", "234", "123");
 
-		memberService.join(memberForm1);
-		IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(memberForm2));
+		memberService.signUp(memberForm1);
+		IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.signUp(memberForm2));
 		assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다."); //예외 클래스에서 넘어온 메시지랑 해당 메시지랑 같은지 비교
 	}
 
