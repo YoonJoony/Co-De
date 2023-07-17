@@ -4,19 +4,17 @@ import backend.codebackend.domain.Member;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-
+@RequiredArgsConstructor //생성자 주입으로 생성자 생략
 public class JpaMemberRepository implements MemberRepository{
 
     private final EntityManager em; //jpa를 라이브러리로 받으면 스프링 부트가 자동으로 EntityManager를 생성해줌
 
-    public JpaMemberRepository(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public Member save(Member member) {

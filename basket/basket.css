@@ -25,6 +25,14 @@ body {
   text-align: center;
   white-space: nowrap;
   overflow: auto;
+  background-color: #cfcfcf;
+  border-radius: 10px;
+  box-shadow: 0.8rem 0.5rem 1.4rem #bec5d0, -0.3rem -0.4rem 0.8rem #fbfbfb;
+}
+.basket-btn:active {
+  box-shadow: inset -0.3rem -0.1rem 1.4rem #fbfbfb,
+    inset 0.3rem 0.4rem 0.8rem #bec5d0;
+  cursor: pointer;
 }
 /* 장바구니 뷰 */
 .basket-view {
@@ -45,7 +53,7 @@ body {
 }
 .show {
   opacity: 1;
-  z-index: 1000;
+  z-index: 10;
   transition: all 0.5s;
 }
 .hide {
@@ -70,7 +78,8 @@ body {
 .basket-view .menu-view {
   position: relative;
   width: 100%;
-  height: 87%;
+  height: 78%;
+
   overflow: auto;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -105,6 +114,19 @@ body {
 .menu-view .menu-list .food-count {
   width: 22%;
 }
+#modify_menu_btn {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  border: none;
+  color: #ffffff;
+  background-color: #7cab75;
+  display: inline-block;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
 
 .modal-background {
   position: fixed;
@@ -118,9 +140,9 @@ body {
   z-index: -1;
   opacity: 0;
 }
-.show {
+.show-modal {
   opacity: 1;
-  z-index: 1000;
+  z-index: 20;
   transition: all 0.5s;
 }
 .modal-window {
@@ -136,28 +158,45 @@ body {
   background-color: #ffffff;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 
-  width: 200px;
-  height: 100px;
+  width: 70%;
+  height: 70%;
 
   transform: translate(-50%, -40%);
 }
-.show .modal-popup {
+.show-modal .modal-popup {
   transform: translate(-50%, -50%);
   transition: all 0.5s;
   display: inline-block;
   font-weight: bold;
-  color: #272727;
+  color: #ffffff;
   background-color: #e6e6e6;
   border-radius: 6px;
   text-align: center;
 }
-.modal-popup .modal-btn {
-  position: relative;
-  top: 20px;
+.modal-popup .modal-popup-close {
+  position: absolute;
+  width: 100%;
+  height: 7%;
 }
-
-.modal-popup .modal-btn .modal_btn {
+.modal-popup-close-name {
+  position: absolute;
+  width: 5%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: -10px;
   cursor: pointer;
-  width: 30%;
-  margin: 10px;
+  z-index: 1;
+}
+.modal-popup .modal-popup-title {
+  position: relative;
+  width: 100%;
+  height: 7%;
+  background-color: #7cab75;
+  border-radius: 6px 6px 0 0;
+}
+.modal-popup-title-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
