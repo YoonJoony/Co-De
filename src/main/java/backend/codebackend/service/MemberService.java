@@ -5,6 +5,7 @@ import backend.codebackend.domain.SignInRequest;
 import backend.codebackend.dto.MemberForm;
 import backend.codebackend.domain.Member;
 import backend.codebackend.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -13,13 +14,9 @@ import java.util.Optional;
 
 
 @Transactional //데이터를 저장하거나 변경할때 트랜잭션이 있어야 한다.
+@RequiredArgsConstructor //생성자 주입. 번거롭게 생성자를 생성해서 객체를 주입받지 않아도 됨.
 public class MemberService {
     private final MemberRepository memberRepository;
-
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
-
 
     //로그인
     public Member signIn(SignInRequest signInRequest) {

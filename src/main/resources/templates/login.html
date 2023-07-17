@@ -109,15 +109,11 @@
             </form>
         </div>
         <div class="form-container sign-in-container">
-            <form action="/member/login" method="post">
+            <form action="/login" method="post">
                 <h1 class="login">Login</h1>
                 <span>or use your account</span>
-                <label for="signid">
                     <input type="text" id="signid"  name="signid" autocomplete="off" placeholder="ID">
-                </label>
-                <label for="signpw">
                     <input type="password" id="signpw" name="signpw" autocomplete="off" placeholder="Password">
-                </label>
                 <a href="#" id="forgot">Forgot Password?</a>
                 <button id="login-form-submit" type="submit">Login</button>
             </form>
@@ -137,7 +133,7 @@
             </div>
         </div>
 </div>
-<a href="/members" class="list">회원 리스트</a>
+<a href="/session-list" class="list">세션 리스트</a>
 
 <script src="/js/login2.js"></script>
 </body>
