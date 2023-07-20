@@ -45,13 +45,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- 게시판 틀 -->
-        <div class="board">
             <div class="search-list">
                 <input id="search_list" type="text">
                 <input id="search_btn" type="button" value="검색"></input>
             </div>
+        </div>
+        <!-- 게시판 틀 -->
+        <div class="board">
             <div class="content-list">
                 <div class="participant_num">1/4</div>
                 <div class="food">BBQ</div>
@@ -156,10 +156,6 @@
                 <input type="button" id="load_btn" value="더보기">
             </div>
 
-            <!-- 모집글 생성 -->
-            <div class="make-content">
-                <button type="button" class="createOpen" id="createOpen">모집글 생성</button>
-            </div>
             <section class="Register">
                 <div class="modal" id="modal">
                     <div class="popup" id="popup">
@@ -173,22 +169,22 @@
                                 <div class="body-titlebox">
                                     <h2>모집 글 생성</h2>
                                 </div>
-            
+
                                 <div class="body-contentbox">
                                     <div class="input-area">
                                         <input type="text" name="title" id="title"
-                                        oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                                        autocomplete="off" required>
+                                            oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')" ;
+                                            autocomplete="off" required>
                                         <label for="title">제목</label>
                                     </div>
-            
+
                                     <div class="input-area">
                                         <input type="text" name="range" id="ragne"
-                                        oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                                        autocomplete="off" required>
+                                            oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')" ;
+                                            autocomplete="off" required>
                                         <label for="ragne">글 노출 거리 제한</label>
                                     </div>
-            
+
                                     <div class="input-area">
                                         <div class="cotegory">
                                             <select id="cotegory">
@@ -208,7 +204,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="input-area">
                                         <div class="people">
                                             <select>
@@ -218,22 +214,26 @@
                                             </select>
                                         </div>
                                     </div>
-                                    
-            
+
+
                                 </div>
                             </div>
                         </div>
-            
+
                         <div class="m_footer">
                             <span class="pop-btn create" id="create">글 생성</span>
                             <span class="pop-btn close" id="close">창 닫기</span>
                         </div>
                     </div>
                 </div>
-                </section>
-            
-
+            </section>
         </div>
+
+        <!-- 모집글 생성 -->
+        <div class="make-content">
+            <button type="button" class="createOpen" id="createOpen">모집글 생성</button>
+        </div>
+
         <!-- 모집글 클릭시 모달창 보여줌 -->
         <div class="modal-background">
             <div class="modal-window">
