@@ -467,7 +467,7 @@ body {
   left:0;
   right:0;
   bottom:0;             
-  display:flex;
+  display:none;
   /* //이벤트가 발생할 때 띄우기 위해 숨김
   //처음부터 보이게 하는 상황이라면 display:flex; */
 
