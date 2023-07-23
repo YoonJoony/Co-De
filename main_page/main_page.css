@@ -38,7 +38,7 @@ input:focus {
 .header {
   position: relative;
   width: 100%;
-  height: 130px;
+  height: 200px;
   overflow: visible;
   /*div 박스 바깥으로 삐져나와도 표시*/
 }
@@ -80,7 +80,7 @@ input:focus {
 .address #loc_btn {
   position: relative;
   top: 11px;
-  left: 6px;
+  left: 5px;
   width: 30px;
   height: 30px;
   font-size: 14px;
@@ -89,6 +89,11 @@ input:focus {
   display: inline-block;
   border-radius: 4px 0 0 4px;
   cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.address #loc_btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .address #address_input {
@@ -98,6 +103,7 @@ input:focus {
   border: none;
   background-color: #d9d9d9;
   color: black;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
 .address #find_address {
@@ -114,6 +120,11 @@ input:focus {
   display: inline-block;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.address #find_address:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .address #address_input_commit {
@@ -130,6 +141,11 @@ input:focus {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.address #address_input_commit:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .profile {
@@ -154,6 +170,7 @@ input:focus {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
 /*프로필 클릭시 표시되는 창*/
@@ -163,11 +180,11 @@ input:focus {
   top: 130%;
   left: -35px;
   box-sizing: border-box;
-  border: 1px solid #ddd;
   background-color: #bfbfbf;
   font-size: 14px;
   transform: translate3d(-50%, 0, 0);
   border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
 .header-profile-direct {
@@ -190,38 +207,44 @@ input:focus {
   border-radius: 4px;
   cursor: pointer;
   z-index: 3;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+}
+#profile_btn_btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .board {
   position: relative;
-  top: 40px;
   width: 100%;
   height: 400px;
   border: 1px solid #d9d9d9;
   background-color: #f0f0f0;
   border-radius: 10px;
   overflow: auto;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
-.board .search-list {
-  top: 140px;
-  right: 14px;
-  position: fixed;
+.search-list {
+  position: relative;
+  top: 60%;
+  right: 4px;
   text-align: right;
   width: 100%;
   z-index: 1;
 }
 
-.board .search-list #search_list {
+.search-list #search_list {
   border: none;
   height: 24px;
   width: 20%;
   background-color: #d9d9d9;
   color: black;
   z-index: 1;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
-.board .search-list #search_btn {
+.search-list #search_btn {
   position: relative;
   width: 4%;
   height: 24px;
@@ -235,6 +258,11 @@ input:focus {
   display: inline-block;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.search-list #search_btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .board .content-list {
@@ -245,6 +273,10 @@ input:focus {
   background-color: #d9d9d9;
   color: #656565;
   border-radius: 4px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.board .content-list:hover {
+  opacity: 0.7;
 }
 
 .board .content-list div {
@@ -275,18 +307,18 @@ input:focus {
   width: 10%;
 }
 
-.board .make-content {
-  position: fixed;
-  top: 580px;
-  right: 25px;
-  text-align: center;
+.make-content {
+  position: relative;
+  width: 100%;
+  text-align: right;
   white-space: nowrap;
   /*줄바꿈 방지*/
 }
 
-.board .make-content #createOpen {
-  width: 120%;
+.make-content #createOpen {
+  width: 10%;
   height: 30px;
+  margin: 10px;
   font-size: 15px;
   font-weight: bold;
   background-color: #7cab75;
@@ -295,7 +327,11 @@ input:focus {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
-  z-index: 1;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.make-content #createOpen:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .board .load-btn {
@@ -314,6 +350,11 @@ input:focus {
   display: inline-block;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+.board .load-btn #load_btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 /* 모집글 클릭시 입장 확인 모달창 */
@@ -375,20 +416,28 @@ input:focus {
 .modal-popup .modal-btn .modal_btn {
   cursor: pointer;
   width: 30%;
+  height: 20px;
   margin: 10px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 6px 6px 6px 6px;
+  display: inline-block;
+}
+.modal-popup .modal-btn .modal_btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
-
-
 /* 모집글 생성 css */
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   justify-content: center;
   height: 100%;
   align-items: center;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   background-size: cover;
 }
 
@@ -399,47 +448,47 @@ body {
 
 .Register h1 {
   font-size: 200%;
-  color: #7CAB75;
+  color: #7cab75;
   text-align: center;
   margin-bottom: 5px;
   white-space: nowrap;
 }
 
-
-
 /* 생성 창에 대한 css
 /* 생성 창을 감쌀박스의 css */
-.modal {
-  background-color: rgba(0, 0, 0, .3);
+.modal{
+  background-color:rgba(0,0,0,.3);
+  height: 100%;
   /* 배경색과 투명도로 살짝 어둡지만 투명한 배경
-    허공에 붕 떠있는 느낌을 주고 싶으면 안넣어도 무방 */
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: none;
+  허공에 붕 떠있는 느낌을 주고 싶으면 안넣어도 무방 */
+  justify-content:center;    
+  position:fixed;         
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;             
+  display:none;
   /* //이벤트가 발생할 때 띄우기 위해 숨김
-    //처음부터 보이게 하는 상황이라면 display:flex; */
+  //처음부터 보이게 하는 상황이라면 display:flex; */
 
-  padding: 15px;
+  padding:15px; 
 }
-
 /* 몸체 css */
-.popup {
-  width: 100%;
+.popup{
+  margin-top: 100px;
+  width:100%;
+  height: 45%;              
   max-width: 600px;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #464f66;
-  box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, .3);
+  border-radius:10px;      
+  overflow:visible;          
+  background-color:#464f66;
+  box-shadow: 5px 10px 10px 1px rgba(0,0,0,.3); 
 }
 
 /* 로고 영역 css */
 .m_head {
   width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -449,6 +498,7 @@ body {
 .m_body {
   /* 몸통 */
   width: 100%;
+  height: 70%;
   background-color: #ffffff;
   /* 컨텐츠 영역의 배경색 */
 }
@@ -456,6 +506,7 @@ body {
 .body-content {
   /* 몸통 내부 컨텐츠 영역*/
   width: 100%;
+  height: 10%;
   padding: 1px;
   /* 좌우에 내용이 붙으면 보기 안좋기 때문에 간격 띄움*/
 }
@@ -465,6 +516,7 @@ body {
   text-align: center;
   /* 제목 중앙정렬 */
   width: 100%;
+  height: 10%;
   margin-bottom: 10px;
   /* 내용과 간격 조정 */
 }
@@ -473,13 +525,13 @@ body {
   /* 컨텐츠 내용 영역 */
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 50%;
 }
 
 /* 푸터 영역 */
 .m_footer {
   width: 100%;
-  height: 50px;
+  height: 10%;
   margin-top: 20px;
 }
 
@@ -505,8 +557,6 @@ body {
   /* 오른쪽 줄 */
 }
 
-
-
 /* 내용에 대한 css */
 .input-area {
   width: 98%;
@@ -521,7 +571,7 @@ body {
 .input-area input {
   width: 100%;
   padding: 20px 10px 10px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border: none;
   font-size: 18px;
   color: #000000;
@@ -535,12 +585,12 @@ body {
   top: 15px;
   font-size: 18px;
   color: #999;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .input-area label.warning {
   color: red !important;
-  animation: waring .3s ease;
+  animation: waring 0.3s ease;
   animation-iteration-count: 3;
 }
 
@@ -562,9 +612,172 @@ body {
   }
 }
 
-.input-area input:focus+label,
-.input-area input:valid+label {
+.input-area input:focus + label,
+.input-area input:valid + label {
   top: -2px;
   font-size: 13px;
   color: #7CAB75;
 }
+
+/* input창 거리에 화살표 없애기 */
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+/* selectbox css */
+
+/* 익스플로어 적용 */
+select::-ms-expand {
+  display: none;
+}
+
+/* css 탬플릿 적용*/
+
+/* ===== Resets and Housekeeping ===== */
+
+
+/* ===== Horizontal Rule ===== */
+.rule {
+  border: none;
+  height: 1.5px;
+}
+
+/* ===== Select Box ===== */
+.sel {
+  font-size: 7px;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 10px;
+  width: 100px;
+  background-color: transparent;
+  position: absolute;
+  cursor: auto;
+}
+
+.sel::before {
+  position: absolute;
+  font-family: 'FontAwesome';
+  font-size: 2px;
+  color: #FFF;
+  right: 20px;
+  top: calc(50% - 0.5em);
+}
+
+.sel.active::before {
+  transform: rotateX(-180deg);
+}
+
+.sel__placeholder {
+  display: block;
+  font-family: 'Quicksand';
+  font-size: 2.3em;
+  color: #838e95;
+  padding: 0.2em 0.5em;
+  text-align: left;
+  pointer-events: none;
+  user-select: none;
+  visibility: visible;
+}
+
+.sel.active .sel__placeholder {
+  visibility: hidden;
+}
+
+.sel__placeholder::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.2em 0.5em;
+  content: attr(data-placeholder);
+  visibility: hidden;
+}
+
+.sel.active .sel__placeholder::before {
+  visibility: visible;
+}
+
+.sel__box {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -4px;
+  display: none;
+  list-style-type: none;
+  text-align: left;
+  font-size: 1em;
+  background-color: #FFF;
+  width: calc(100% + 8px);
+  box-sizing: border-box;
+}
+
+.sel.active .sel__box {
+  display: block;
+  animation: fadeInUp 500ms;
+}
+
+.sel__box__options {
+  display: list-item;
+  font-family: 'Quicksand';
+  font-size: 1.5em;
+  color: #838e95;
+  padding: 0.5em 1em;
+  user-select: none;
+}
+
+.sel__box__options::after {
+  font-family: 'FontAwesome';
+  font-size: 0.5em;
+  margin-left: 5px;
+  display: none;
+}
+
+.sel__box__options.selected::after {
+  display: inline;
+}
+
+.sel__box__options:hover {
+  background-color: #ebedef;
+}
+
+/* ----- Select Box Black Panther ----- */
+.sel {
+  border-bottom: 4px solid rgba(0, 0, 0, 0.3);
+}
+
+.people {
+  left: 150px;
+}
+
+.people .sel__box {
+  left: -5px;
+}
+
+/* ===== Keyframes ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
