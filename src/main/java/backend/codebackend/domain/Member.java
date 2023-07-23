@@ -20,9 +20,9 @@ public class Member {
 
     private String certified;
 
-    public Member() {
-        super();
-    }
+//    public Member() {
+//        super();
+//    }
 
     public Member(Long id, String Login, String pw, String pwcheck, String nickname, String pnum, String certified) {
         this.id = id;
