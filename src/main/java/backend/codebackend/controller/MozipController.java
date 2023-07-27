@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -20,16 +21,16 @@ public class MozipController {
     public String list(Model model) {
         List<MozipForm> mozipFormList = mozipService.getMozipList();
         model.addAttribute("postList", mozipFormList);
-        return "Mozip/mozipList.html";
+        return "main_page";
     }
 
-    @GetMapping("/post")    //모집 글 생성하는 화면
+    @GetMapping("/mozip")    //모집 글 생성하는 화면
     public String post() {
         return "main_page";
     }
 
-    @PostMapping("/post")
-    public String createMozip(MozipForm mozipForm) {
+    @PostMapping("/mozip")
+    public String createMozip(@ModelAttribute MozipForm mozipForm) {
         mozipService.savePost(mozipForm);
         return "redirect:/";
     }

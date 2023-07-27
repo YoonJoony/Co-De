@@ -25,7 +25,7 @@ public class MozipService {
 
         for(Mozip mozip : mozipList){
             MozipForm mozipForm = MozipForm.builder()
-                    .id(mozip.getId())
+                    //.id(mozip.getId())
                     .title(mozip.getTitle())
                     .distanceLimit(mozip.getDistanceLimit())
                     .category(mozip.getCategory())
