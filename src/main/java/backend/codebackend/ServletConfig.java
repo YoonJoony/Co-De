@@ -1,4 +1,4 @@
-//package backend.codebackend;
+package backend.codebackend;//package backend.codebackend;
 //
 //import org.springframework.boot.web.servlet.ServletComponentScan;
 //import org.springframework.boot.web.servlet.ServletRegistrationBean;
