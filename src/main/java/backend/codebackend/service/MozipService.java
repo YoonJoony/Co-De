@@ -4,22 +4,18 @@ import backend.codebackend.domain.Mozip;
 import backend.codebackend.dto.MozipForm;
 import backend.codebackend.repository.MozipRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 @Transactional
+@RequiredArgsConstructor //생성자 주입. 번거롭게 생성자를 생성해서 객체를 주입받지 않아도 됨.
 public class MozipService {
-    private MozipRepository mozipRepository;
+    private final MozipRepository mozipRepository; //final을 해줘야 config에서 생성자 주입이 됨.
 
-    public MozipService(MozipRepository mozipRepository) {
-        this.mozipRepository = mozipRepository;
-
-    }
-
-    public Long savePost(MozipForm mozipForm) {
+    public String savePost(MozipForm mozipForm) {
         return mozipRepository.save(mozipForm.toEntity()).getTitle();
     }
 
@@ -33,7 +29,7 @@ public class MozipService {
                     .title(mozip.getTitle())
                     .distanceLimit(mozip.getDistanceLimit())
                     .category(mozip.getCategory())
-                    .numberOfPeople(mozip.getNumberOfPeople())
+                    .people(mozip.getPeople())
                     .build();
             mozipFormList.add(mozipForm);
         }
