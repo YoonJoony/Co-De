@@ -48,7 +48,7 @@
         <div class="search-list">
             <input id="search_list" type="text">
             <input id="search_btn" type="button" value="검색"></input>
-            <input id="mozip_list" type="button" value="게시글">
+
         </div>
     </div>
     <!-- 게시판 틀 -->
@@ -172,11 +172,13 @@
                         <h1>CO-ORDER</h1>
                     </div>
                 </div>
+                <form action="/mozip" method="post">
                 <div class="m_body">
                     <div class="input-area">
                         <div class="body-titlebox">
                             <h2>모집 글 생성</h2>
                         </div>
+
 
                         <div class="body-contentbox">
                             <div class="input-area">
@@ -223,13 +225,16 @@
 
 
                         </div>
+
                     </div>
                 </div>
 
                 <div class="m_footer">
-                    <span class="pop-btn create" id="create">글 생성</span>
+<!--                    <input id="mozip_list" type="submit" value="게시글">-->
+                    <span class="pop-btn create" id="create" type="submit">글 생성</span>
                     <span class="pop-btn close" id="close">창 닫기</span>
                 </div>
+                </form>
             </div>
         </div>
     </section>
