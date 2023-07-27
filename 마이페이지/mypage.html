@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="mypage.css">
+</head>
+
+<body>
+    <div class="main">
+        <!-- 헤더 부분 -->
+        <div class="header">
+            <div class="login">
+                <a href="#" style="color: #8E8E8E">로그아웃</a>
+            </div>
+            <div class="name">
+                <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
+            </div>
+            <!-- 프로필 -->
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="images/profile.png" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <dl class="header-member-direct__information">
+                            <dd>엄준식</dd>
+                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                            <dd>ㅇㅇ</dd>
+                            <dd>ㅇㅇ</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 개인정보 수정 칸 -->
+        <div class="board">
+            <div class="h3">아이디/비밀번호</div>
+            <div class="form-round signup">
+                <ul class="form-list">
+                    <li>
+                        <span class="subject">ㆍ 아이디</span>
+                        <input type="text" name="mb_id" value="(현재 아이디 값)" id="reg_mb_id" readonly="" placeholder="아이디"
+                            minlength="3" maxlength="20">
+                    </li>
+                    <li>
+                        <span class="subject">ㆍ 비밀번호</span>
+                        <input type="password" name="mb_password" id="reg_mb_password" class="form-control input-sm"
+                            placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'"
+                            minlength="3" maxlength="20" aria-autocomplete="list">
+                    </li>
+                    <li>
+                        <span class="subject">ㆍ 비밀번호 확인</span>
+                        <input type="password" name="mb_password_re" id="reg_mb_password_re"
+                            class="form-control input-sm" placeholder="비밀번호 확인" onfocus="this.placeholder=''"
+                            onblur="this.placeholder='비밀번호 확인'" minlength="3" maxlength="20">
+                    </li>
+                </ul>
+            </div>
+            <div class="h3">내 정보</div>
+            <div class="form-round signup">
+                <ul class="form-list">
+                    <li>
+                        <span class="subject">ㆍ 닉네임</span>
+                        <input type="hidden" name="mb_nick_default" value="(현재 닉네임 값)">
+                        <input type="text" name="mb_nick" value="(현재 닉네임 값)" id="reg_mb_nick"
+                            class="form-control input-sm" required="" placeholder="닉네임" onfocus="this.placeholder=''"
+                            onblur="this.placeholder='닉네임'" size="10" maxlength="20">
+                    </li>
+                    <li>
+                        <span class="subject">ㆍ 휴대폰 번호</span>
+                        <input type="text" name="mb_hp" value="(현재 휴대폰 번호 값)" id="reg_mb_hp" readonly="" required=""
+                            placeholder="휴대폰 번호" maxlength="20">
+                    </li>
+                </ul>
+            </div>
+            <div class="button-align center">
+                <a href="메인페이지 이동 링크" class="button">취소</a>
+                <button type="submit" id="btn_submit" class="button button-green">정보 수정</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="mypage.js"></script>
+</body>
+
+</html>
