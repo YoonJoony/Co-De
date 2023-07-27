@@ -27,7 +27,7 @@ public class MemberController {
 
     @GetMapping("/")
     public String home() {
-        return "login";
+        return "main_page";
     }
 
     @GetMapping("/logout")
