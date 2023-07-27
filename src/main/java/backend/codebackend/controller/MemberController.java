@@ -25,10 +25,10 @@ public class MemberController {
     private final MemberService memberService;
     public static Hashtable sessionList = new Hashtable();
 
-    @GetMapping("/")
-    public String home() {
-        return "main_page";
-    }
+//    @GetMapping("/")
+//    public String home() {
+//        return "main_page";
+//    }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
