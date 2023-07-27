@@ -1,363 +1,138 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-  width: 100%;
+// 주소 설정 완료 버튼 클릭시
+function Address_commit() { }
+
+// 프로필 클릭시
+function profile_btn() {
+  const box = document.getElementById("layer-header-profile");
+
+  // btn1 숨기기 (display: none)
+  if (box.style.display !== "block") {
+    box.style.display = "block";
+  }
+  // btn` 보이기 (display: block)
+  else {
+    box.style.display = "none";
+  }
 }
 
-body {
-  font-family: "Noto Sans KR", sans-serif;
-  background-color: #ffffff;
-  line-height: 1.6;
-  display: block;
+$(function () {
+  $(".content-list").slice(0, 5).css("display", "block"); // 초기갯수
+  $(".load-btn").click(function (e) {
+    // 클릭시 more
+    e.preventDefault();
+    if ($(".content-list:hidden").length == 0) {
+      // 컨텐츠 남아있는지 확인
+      alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기
+    }
+    $(".content-list:hidden").slice(0, 5).css("display", "block"); // 클릭시 more 갯수 지정
+  });
+});
+
+// 마이페이지로 버튼 클릭시 마이페이지로 이동
+function myPage() { }
+
+// // 현재 위치 가져오기
+// navigator.geolocation.getCurrentPosition(getSuccess, getError);
+
+// // 가져오기 성공
+// function getSuccess(position) {
+//   // 위도
+//     const lat = position.coords.latitude;
+//   // 경도
+//     const lng = position.coords.logitude;
+
+//     document.getElementById("address_input").value = lat;
+// }
+
+// // 가지오기 실패(거부)
+// function getError() {
+//     alert('Geolocation Error');
+// }
+
+let el = document.querySelectorAll(".title");
+el.forEach((target) => target.addEventListener("click", show));
+
+function show() {
+  document.querySelector(".modal-background").className =
+    "modal-background show";
 }
 
-a {
-  color: inherit;
-  /* 글자 색생은 부모로부터 상속 */
-  text-decoration: none;
+function close() {
+  document.querySelector(".modal-background").className = "modal-background";
 }
 
-input:focus {
-  outline: none;
-}
+document.querySelector("#modal_close_btn").addEventListener("click", close);
 
-.main {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
+// 모집글 생성 버튼 클릭시
+$(function () {
+  function modalClose() {
+    $("#modal").fadeOut();
+  }
 
-.header {
-  position: relative;
-  width: 100%;
-  height: 130px;
-  overflow: visible;
-  /*div 박스 바깥으로 삐져나와도 표시*/
-}
 
-.login {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  width: 100%;
-  text-align: right;
-  font-size: 13px;
-  font-weight: bold;
-  white-space: nowrap;
-  z-index: 1;
-}
+  $("#create").click(function () {
+    // 생성 & DB 저장
 
-.name {
-  position: absolute;
-  top: 14px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 50px;
-  font-weight: bold;
-}
+    // 백앤드 화이팅
 
-.address {
-  position: relative;
-  top: 80px;
-  width: 100%;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  /*줄바꿈 방지*/
-  max-width: 600px;
-  margin: 0 auto;
-}
+    modalClose(); // 모달 닫기 함수 호출
+  });
+  $("#createOpen").click(function () {
+    $("#modal").css('display', 'flex').hide().fadeIn(); // 속성 변경 후 hide로 숨기고 fadeIn으로 효과 나타내기
+  });
+  $("#close").click(function () {
+    modalClose(); // 모달 닫기 함수 호출
+  });
+});
 
-.address #loc_btn {
-  position: relative;
-  top: 11px;
-  left: 6px;
-  width: 30px;
-  height: 30px;
-  font-size: 14px;
-  border: none;
-  background-color: #d9d9d9;
-  display: inline-block;
-  border-radius: 4px 0 0 4px;
-  cursor: pointer;
-}
+// selectbox js
 
-.address #address_input {
-  position: relative;
-  height: 30px;
-  width: 40%;
-  border: none;
-  background-color: #d9d9d9;
-  color: black;
-}
+/* ===== Logic for creating fake Select Boxes ===== */
+$('.sel').each(function () {
+  $(this).children('select').css('display', 'none');
 
-.address #find_address {
-  position: relative;
-  top: 2px;
-  right: 6px;
-  width: 12%;
-  height: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #7cab75;
-  color: white;
-  border: none;
-  display: inline-block;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-}
+  var $current = $(this);
 
-.address #address_input_commit {
-  position: relative;
-  top: 2px;
-  right: 5px;
-  width: 6%;
-  height: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #7cab75;
-  color: white;
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  $(this).find('option').each(function (i) {
+    if (i == 0) {
+      $current.prepend($('<div>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__box')
+      }));
 
-.profile {
-  position: absolute;
-  top: 70px;
-  right: 20px;
-  text-align: center;
-  white-space: nowrap;
-  /*줄바꿈 방지*/
-  z-index: 3;
-}
+      var placeholder = $(this).text();
+      $current.prepend($('<span>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+        text: placeholder,
+        'data-placeholder': placeholder
+      }));
 
-/*프로필 버튼*/
-#profile_btn {
-  position: relative;
-  top: 11px;
-  width: 40px;
-  height: 40px;
-  font-size: 14px;
-  border: none;
-  background-color: #f0f0f0;
-  display: inline-block;
-  border-radius: 4px;
-  cursor: pointer;
-}
+      return;
+    }
 
-/*프로필 클릭시 표시되는 창*/
-#layer-header-profile {
-  display: none;
-  position: absolute;
-  top: 130%;
-  left: -35px;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  background-color: #bfbfbf;
-  font-size: 14px;
-  transform: translate3d(-50%, 0, 0);
-  border-radius: 10px;
-}
+    $current.children('div').append($('<span>', {
+      class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+      text: $(this).text()
+    }));
+  });
+});
 
-.header-profile-direct {
-  z-index: 1;
-  width: 150px;
-  padding: 15px;
-  font-size: 15px;
-}
+// Toggling the `.active` state on the `.sel`.
+$('.sel').click(function () {
+  $(this).toggleClass('active');
+});
 
-#profile_btn_btn {
-  top: 2px;
-  width: 100%;
-  height: 30px;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: #d9d9d9;
-  color: #656565;
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 3;
-}
+// Toggling the `.selected` state on the options.
+$('.sel__box__options').click(function () {
+  var txt = $(this).text();
+  var index = $(this).index();
 
-.board {
-  position: relative;
-  top: 40px;
-  width: 100%;
-  height: 400px;
-  border: 1px solid #d9d9d9;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  overflow: auto;
-}
+  $(this).siblings('.sel__box__options').removeClass('selected');
+  $(this).addClass('selected');
 
-.board .search-list {
-  top: 140px;
-  right: 14px;
-  position: fixed;
-  text-align: right;
-  width: 100%;
-  z-index: 1;
-}
-.board .search-list #search_list {
-  border: none;
-  height: 24px;
-  width: 20%;
-  background-color: #d9d9d9;
-  color: black;
-  z-index: 1;
-}
-.board .search-list #search_btn {
-  position: relative;
-  width: 4%;
-  height: 24px;
-  right: 6px;
-  top: 2px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #7cab75;
-  color: white;
-  border: none;
-  display: inline-block;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-}
-.board .content-list {
-  display: none;
-  margin: 10px;
-  border-bottom: 1px solid #e6e6e6;
-  font-weight: bold;
-  background-color: #d9d9d9;
-  color: #656565;
-  border-radius: 4px;
-}
-.board .content-list div {
-  display: inline-block;
-  text-align: center;
-  padding: 15px 10px 15px 10px;
-  border: none;
-}
+  var $currentSel = $(this).closest('.sel');
+  $currentSel.children('.sel__placeholder').text(txt);
+  $currentSel.children('select').prop('selectedIndex', index + 1);
+});
 
-.board .content-list .participant_num {
-  width: 10%;
-}
-.board .content-list .food {
-  width: 10%;
-}
-.board .content-list .title {
-  width: 55%;
-  text-align: left;
-}
-.board .content-list .writer {
-  width: 10%;
-}
-.board .content-list .time {
-  width: 10%;
-}
 
-.board .make-content {
-  position: fixed;
-  top: 580px;
-  right: 25px;
-  text-align: center;
-  white-space: nowrap; /*줄바꿈 방지*/
-}
-
-.board .make-content #make_content_btn {
-  width: 120%;
-  height: 30px;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: #7cab75;
-  color: #f0f0f0;
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.board .load-btn {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.board .load-btn #load_btn {
-  width: 10%;
-  height: 30px;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: #7cab75;
-  color: #f0f0f0;
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  cursor: pointer;
-}
-/* 모집글 클릭시 입장 확인 모달창 */
-.modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-
-  /*숨기기*/
-  z-index: -1;
-  opacity: 0;
-}
-.show {
-  opacity: 1;
-  z-index: 1000;
-  transition: all 0.5s;
-}
-.modal-window {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.modal-popup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-
-  width: 200px;
-  height: 100px;
-
-  transform: translate(-50%, -40%);
-}
-.show .modal-popup {
-  transform: translate(-50%, -50%);
-  transition: all 0.5s;
-  display: inline-block;
-  font-weight: bold;
-  color: #272727;
-  background-color: #e6e6e6;
-  border-radius: 6px;
-  text-align: center;
-}
-.modal-popup .modal-btn {
-  position: relative;
-  top: 20px;
-}
-
-.modal-popup .modal-btn .modal_btn {
-  cursor: pointer;
-  width: 30%;
-  margin: 10px;
-}
+// ----------------------------------------
