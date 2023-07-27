@@ -13,3 +13,17 @@ loginButton.addEventListener("click", () => {
         alert("로그인 정보가 올바르지 않습니다.")
     }
 });
+
+$('#defaultReal').realperson(); 
+ 
+$('#disableReal').click(function() { 
+    var disable = $(this).text() === 'Disable'; 
+    $(this).text(disable ? 'Enable' : 'Disable'); 
+    $('#defaultReal').realperson(disable ? 'disable' : 'enable'); 
+}); 
+ 
+$('#removeReal').click(function() { 
+    var destroy = $(this).text() === 'Remove'; 
+    $(this).text(destroy ? 'Re-attach' : 'Remove'); 
+    $('#defaultReal').realperson(destroy ? 'destroy' : {}); 
+});

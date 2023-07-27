@@ -33,9 +33,39 @@
             <a href="../../find account/find_account.html">Forgot Password?</a>
         </div>
 
+        <label for="exampleInputname">자동 가입 방지문자</label>
+        <form id="noauto" method="post">
+            <div class="input-group" style="margin-bottom: 15px;">
+                <p><label>보이는 문자를 입력해 주세요</label>
+                    <input type="text" id="numberReal" name="numberReal">
+                    <button type="button" onclick="auto();" class="btn btn-theme-dark">확인</button>
+                </p>
+            </div>
+        </form>
+
     </section>
 
     <script src="login_test1.js"></script>
 </body>
+
+<script>
+    $('#defaultReal').realperson();
+
+    $('#disableReal').click(function () {
+        var disable = $(this).text() === 'Disable';
+        $(this).text(disable ? 'Enable' : 'Disable');
+        $('#defaultReal').realperson(disable ? 'disable' : 'enable');
+    });
+
+    $('#removeReal').click(function () {
+        var destroy = $(this).text() === 'Remove';
+        $(this).text(destroy ? 'Re-attach' : 'Remove');
+        $('#defaultReal').realperson(destroy ? 'destroy' : {});
+    });
+
+    $('#numberReal').realperson({ length: 5, chars: $.realperson.alphanumeric, dot: '@', regenerate: '클릭하면 변경 될껄?' });
+
+    
+</script>
 
 </html>

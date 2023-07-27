@@ -146,10 +146,11 @@ a {
 }
 
 /* 지도 */
-.map_box{
+.map_box {
     width: 40%;
     position: absolute;
 }
+
 .map {
     position: absolute;
     width: 28%;
@@ -201,6 +202,7 @@ a {
     position: relative;
     z-index: 1;
     -moz-osx-font-smoothing: grayscale;
+    cursor: pointer;
 }
 
 .button:focus {
@@ -280,7 +282,9 @@ a {
     display: block;
 }
 
+
 /* ------------------------------------------------------------------------------------------- */
+/* 채팅 */
 .chat_wrap {
     border: 1px solid #999;
     width: 50%;
@@ -293,7 +297,6 @@ a {
 
 .chat_wrap .inner {
     background-color: #acc2d2;
-    border-radius: 5px;
     padding: 10px;
     overflow-y: scroll;
     height: 500px;
@@ -437,4 +440,57 @@ table {
     border-collapse: collapse;
     border-spacing: 0
 }
+
 /* ---------------------------------------------------------------- */
+
+/* 판매자 연락처 */
+.phone_number {
+    background-color: #fff;
+    position: relative;
+    margin: auto;
+}
+
+.phone {
+    font-family: 'Gugi', cursive;
+    font-size: 1vw;
+}
+
+/* 채팅방 이름 */
+.chat_name {
+    font-family: 'Gugi', cursive;
+    font-size: 2vw;
+    margin-top: 20px;
+    background-color: #acc2d2;
+}
+.chat_title {
+    margin-left: 30px;
+}
+
+.vote {
+    float: right;
+    position: absolute;
+    margin-left: 25vw;
+    width: 15%;
+    background: #a71a1a;
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+}
+.vote:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background: #e0e5ec;
+    transition: all 0.3s ease;
+}
+.vote:hover {
+    color: #000;
+}
+.vote:hover:after {
+    left: 0;
+    width: 100%;
+}
