@@ -1,0 +1,228 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #ffffff;
+  line-height: 1.6;
+  display: block;
+}
+
+a {
+  color: inherit;
+  /* 글자 색생은 부모로부터 상속 */
+  text-decoration: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: visible;
+  /*div 박스 바깥으로 삐져나와도 표시*/
+}
+.login {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 100%;
+  text-align: right;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  z-index: 1;
+}
+.name {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+.profile {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  text-align: center;
+  white-space: nowrap;
+  /*줄바꿈 방지*/
+  z-index: 3;
+}
+
+/*프로필 버튼*/
+#profile_btn {
+  position: relative;
+  top: 11px;
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+  border: none;
+  background-color: #f0f0f0;
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+/*프로필 클릭시 표시되는 창*/
+#layer-header-profile {
+  display: none;
+  position: absolute;
+  top: 130%;
+  left: -35px;
+  box-sizing: border-box;
+  background-color: #bfbfbf;
+  font-size: 14px;
+  transform: translate3d(-50%, 0, 0);
+  border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.header-profile-direct {
+  z-index: 1;
+  width: 150px;
+  padding: 15px;
+  font-size: 15px;
+}
+
+#profile_btn_btn {
+  top: 2px;
+  width: 100%;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #d9d9d9;
+  color: #656565;
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 3;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+}
+#profile_btn_btn:hover {
+  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+.board {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.h3 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.form-round {
+  position: relative;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: solid 1px #7cab75;
+}
+.form-list li {
+  position: relative;
+  min-height: 28px;
+  padding-left: 90px;
+  font-size: 11px;
+  padding: 2px 0 2px 120px;
+  color: #333333;
+}
+.form-list .subject {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 90px;
+  padding: 6px 0;
+}
+.form-list input[type="text"],
+.form-list input[type="password"] {
+  width: 100%;
+  margin-right: 0;
+}
+input[type="text"],
+input[type="password"] {
+  height: 28px;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #333;
+  border: solid 1px #dddddd;
+  background-color: white;
+  outline: none;
+}
+.form-control {
+  display: block;
+  background-image: none;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.form-control:focus {
+  border-color: #7cab75;
+  outline: none;
+}
+.input-sm {
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.button-align {
+  position: relative;
+  min-height: 53px;
+}
+.button-align.center {
+  text-align: center;
+  margin-top: 30px;
+}
+.button-align .button {
+  vertical-align: top;
+}
+.button {
+  position: relative;
+  display: inline-block;
+  margin: 1px 0;
+  color: white;
+  min-width: 110px;
+  height: 42px;
+  padding: 0 10px;
+  font-size: 13px;
+  line-height: 42px;
+  text-align: center;
+  border: 0;
+  border-radius: 5px;
+  background-color: #cecdd4;
+  overflow: hidden;
+  cursor: pointer;
+}
+.button.button-green {
+  background-color: #7cab75;
+}
