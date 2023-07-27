@@ -12,10 +12,10 @@ public class MemoryMemberRepository implements MemberRepository{
     private static long sequence = 0L;
 
 
-    @Override
-    public Member save(Member member) {
-        member.setId(++sequence); //member id값 셋팅
-        store.put(member.getLoginId(), member);
+   @Override
+   public Member save(Member member) {
+       member.setId(++sequence); //member id값 셋팅
+       store.put(member.getLoginId(), member);
         return member;
     }
 
