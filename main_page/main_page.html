@@ -45,13 +45,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- 게시판 틀 -->
-        <div class="board">
             <div class="search-list">
                 <input id="search_list" type="text">
                 <input id="search_btn" type="button" value="검색"></input>
             </div>
+        </div>
+        <!-- 게시판 틀 -->
+        <div class="board">
             <div class="content-list">
                 <div class="participant_num">1/4</div>
                 <div class="food">BBQ</div>
@@ -156,84 +156,83 @@
                 <input type="button" id="load_btn" value="더보기">
             </div>
 
-            <!-- 모집글 생성 -->
-            <div class="make-content">
-                <button type="button" class="createOpen" id="createOpen">모집글 생성</button>
-            </div>
-            <section class="Register">
-                <div class="modal" id="modal">
-                    <div class="popup" id="popup">
-                        <div class="m_head">
-                            <div class="modal_title">
-                                <h1>CO-ORDER</h1>
-                            </div>
-                        </div>
-                        <div class="m_body">
-                            <div class="input-area">
-                                <div class="body-titlebox">
-                                    <h2>모집 글 생성</h2>
-                                </div>
-            
-                                <div class="body-contentbox">
-                                    <div class="input-area">
-                                        <input type="text" name="title" id="title"
-                                        oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                                        autocomplete="off" required>
-                                        <label for="title">제목</label>
-                                    </div>
-            
-                                    <div class="input-area">
-                                        <input type="text" name="range" id="ragne"
-                                        oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                                        autocomplete="off" required>
-                                        <label for="ragne">글 노출 거리 제한</label>
-                                    </div>
-            
-                                    <div class="input-area">
-                                        <div class="cotegory">
-                                            <select id="cotegory">
-                                                <option value="chicken">치킨</option>
-                                                <option value="pizza">피자/양식</option>
-                                                <option value="china">중식</option>
-                                                <option value="korea">한식</option>
-                                                <option value="japan">일식/돈까스</option>
-                                                <option value="pighocks">족발/보쌈</option>
-                                                <option value="meet">고기</option>
-                                                <option value="schoolfood">분식</option>
-                                                <option value="coffee">카페/디저트</option>
-                                                <option value="asian">아시안</option>
-                                                <option value="sandwich">샌드위치</option>
-                                                <option value="salad">셀러드</option>
-                                                <option value="boxlunch">도시락/죽</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="input-area">
-                                        <div class="people">
-                                            <select>
-                                                <option value="2P">2명</option>
-                                                <option value="3P">3명</option>
-                                                <option value="4P">4명</option>
-                                            </select>
-                                        </div>
-                                    </div>
+        </div>
 
+        <!-- 모집글 생성 -->
+        <div class="make-content">
+            <button type="button" class="createOpen" id="createOpen">모집글 생성</button>
+        </div>
 
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="m_footer">
-                            <span class="pop-btn create" id="create">글 생성</span>
-                            <span class="pop-btn close" id="close">창 닫기</span>
+        <section class="Register">
+            <div class="modal" id="modal">
+                <div class="popup" id="popup">
+                    <div class="m_head">
+                        <div class="modal_title">
+                            <h1>CO-ORDER</h1>
                         </div>
                     </div>
-                </div>
-                </section>
-            
+                    <div class="m_body">
+                        <div class="input-area">
+                            <div class="body-titlebox">
+                                <h2>모집 글 생성</h2>
+                            </div>
 
-        </div>
+                            <div class="body-contentbox">
+                                <div class="input-area">
+                                    <input type="text" name="title" id="title" autocomplete="off" required>
+                                    <label for="title">제목</label>
+                                </div>
+
+                                <div class="input-area">
+                                    <input type="number" name="range" id="ragne" autocomplete="off" required max="500">
+                                    <label for="ragne">글 노출 거리 제한</label>
+                                </div>
+
+                                <div class="input-area">
+                                    <div class="sel">
+                                        <select id="cotegory" required>
+                                            <option value="" disabled>카테고리</option>
+                                            <option value="chicken">치킨</option>
+                                            <option value="pizza">피자/양식</option>
+                                            <option value="china">중식</option>
+                                            <option value="korea">한식</option>
+                                            <option value="japan">일식/돈까스</option>
+                                            <option value="pighocks">족발/보쌈</option>
+                                            <option value="meet">고기</option>
+                                            <option value="schoolfood">분식</option>
+                                            <option value="coffee">카페/디저트</option>
+                                            <option value="asian">아시안</option>
+                                            <option value="sandwich">샌드위치</option>
+                                            <option value="salad">셀러드</option>
+                                            <option value="boxlunch">도시락/죽</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="input-area">
+                                    <div class="sel people">
+                                        <select required>
+                                            <option value="" disabled>인원 수</option>
+                                            <option value="2P">2명</option>
+                                            <option value="3P">3명</option>
+                                            <option value="4P">4명</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m_footer">
+                        <span class="pop-btn create" id="create">글 생성</span>
+                        <span class="pop-btn close" id="close">창 닫기</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 모집글 클릭시 모달창 보여줌 -->
         <div class="modal-background">
             <div class="modal-window">
