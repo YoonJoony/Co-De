@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+@Builder
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,68 +33,69 @@ public class Mozip {
         this.category = category;
         this.numberOfPeople = numberOfPeople;
     }
-
-    public Mozip(Mozip.Builder builder){
-        //this.id = builder.id;
-        this.title = builder.title;
-        this.distanceLimit = builder.distanceLimit;
-        this.category = builder.category;
-        this.numberOfPeople = builder.numberOfPeople;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getTitle() {
-        return title;
-    }
-
-    public void setTitle(Long title) {
-        this.title = title;
-    }
-
-    public String getDistanceLimit() {
-        return distanceLimit;
-    }
-
-    public void setDistanceLimit(String distanceLimit) {
-        this.distanceLimit = distanceLimit;
-    }
-
-    public int getCategory() {
-        return category;
-    }
-
-    public void setCategory(int category) {
-        this.category = category;
-    }
-
-    public int getNumberOfPeople() {
-        return numberOfPeople;
-    }
-
-    public void setNumberOfPeople(int numberOfPeople) {
-        this.numberOfPeople = numberOfPeople;
-    }
-
-    public class Builder {
-        //private Long id;
-        private Long title;
-        private String distanceLimit;
-        private int category;
-        private int numberOfPeople;
-
-        public Builder(Long title, String distanceLimit, int category, int numberOfPeople){
-            this.title = title;
-            this.distanceLimit = distanceLimit;
-            this.category = category;
-            this.numberOfPeople = numberOfPeople;
-        }
-    }
+//
+//    public Mozip(Mozip.Builder builder){
+//        //this.id = builder.id;
+//        this.title = builder.title;
+//        this.distanceLimit = builder.distanceLimit;
+//        this.category = builder.category;
+//        this.numberOfPeople = builder.numberOfPeople;
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public Long getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(Long title) {
+//        this.title = title;
+//    }
+//
+//    public String getDistanceLimit() {
+//        return distanceLimit;
+//    }
+//
+//    public void setDistanceLimit(String distanceLimit) {
+//        this.distanceLimit = distanceLimit;
+//    }
+//
+//    public int getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(int category) {
+//        this.category = category;
+//    }
+//
+//    public int getNumberOfPeople() {
+//        return numberOfPeople;
+//    }
+//
+//    public void setNumberOfPeople(int numberOfPeople) {
+//        this.numberOfPeople = numberOfPeople;
+//    }
+//
+//
+//    public class Builder {
+//        //private Long id;
+//        private Long title;
+//        private String distanceLimit;
+//        private int category;
+//        private int numberOfPeople;
+//
+//        public Builder(Long title, String distanceLimit, int category, int numberOfPeople){
+//            this.title = title;
+//            this.distanceLimit = distanceLimit;
+//            this.category = category;
+//            this.numberOfPeople = numberOfPeople;
+//        }
+//    }
 
 }

@@ -23,18 +23,21 @@ public class MozipService {
     }
 
     @Transactional
-    public List<Mozip> getMozipList(){
+    public List<MozipForm> getMozipList(){
         List<Mozip> mozipList = mozipRepository.findAll();
-        List<Mozip> MozipForm = new ArrayList<>();
+        List<MozipForm> mozipFormList = new ArrayList<>();
 
-//        for(Mozip mozip : mozipList){
-//            Mozip mozip = MozipForm.builder()
-//                    //.id(id)
-//                    .title(title)
-//                    .distanceLimit(distanceLimit)
-//                    .category(category)
-//                    .numberOfPeople(numberOfPeople)
-//                    .build();
-//        }
+        for(Mozip mozip : mozipList){
+            MozipForm mozipForm = MozipForm.builder()
+                    .id(mozip.getId())
+                    .title(mozip.getTitle())
+                    .distanceLimit(mozip.getDistanceLimit())
+                    .category(mozip.getCategory())
+                    .numberOfPeople(mozip.getNumberOfPeople())
+                    .build();
+            mozipFormList.add(mozipForm);
+        }
+        return mozipFormList;
     }
+
 }
