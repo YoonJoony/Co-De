@@ -13,13 +13,10 @@ public class MozipController {
 
     private MozipService mozipService;
 
-//    @GetMapping("/")
-//    public String home() {
-//        return "main_page";
-//    }
-
-//    @GetMapping("/")
-//    public String
+    @GetMapping("/")
+    public String home() {
+        return "main_page";
+    }
 
     @GetMapping("/post")    //모집 글 생성하는 화면
     public String post() {
