@@ -74,7 +74,7 @@ var currentTime = function () {
 }
 
 // 햄버거 버튼
-const list = document.getElementById("map_button");
+const list = document.querySelector('.vistor')
 
 function visit_btn() {
   // 숨기기 (display: none)
