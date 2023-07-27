@@ -11,10 +11,10 @@ import lombok.*;
 @Builder
 public class MozipForm {
     private Long id;
-    private Long title;
+    private String title;
     private String distanceLimit;
-    private int category;
-    private int numberOfPeople;
+    private String category;
+    private String people;
 
     public Mozip toEntity(){
         Mozip build = Mozip.builder()
@@ -22,17 +22,17 @@ public class MozipForm {
                 .title(title)
                 .distanceLimit(distanceLimit)
                 .category(category)
-                .numberOfPeople(numberOfPeople)
+                .people(people)
                 .build();
         return build;
     }
 
-    public MozipForm(Long id, Long title, String distanceLimit, int category, int numberOfPeople) {
+    public MozipForm(Long id, String title, String distanceLimit, String category, String numberOfPeople) {
         this.id = id;
         this.title = title;
         this.distanceLimit = distanceLimit;
         this.category = category;
-        this.numberOfPeople = numberOfPeople;
+        this.people = people;
 
     }
 

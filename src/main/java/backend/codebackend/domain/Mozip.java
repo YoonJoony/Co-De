@@ -19,18 +19,18 @@ public class Mozip {
     private Long id;
 
     @Column(length = 20, nullable = false)
-    private Long title;
+    private String title;
     @Column(length = 10, nullable = false)
     private String distanceLimit;
 
-    private int category;
-    private int numberOfPeople;
+    private String category;
+    private String people;
 
-    public Mozip(Long id, Long title, String distanceLimit, int category, int numberOfPeople) {
+    public Mozip(Long id, String title, String distanceLimit, String category, String people) {
         this.id = id;
         this.title = title;
         this.distanceLimit = distanceLimit;
         this.category = category;
-        this.numberOfPeople = numberOfPeople;
+        this.people = people;
     }
 }
