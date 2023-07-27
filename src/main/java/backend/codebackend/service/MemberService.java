@@ -32,11 +32,7 @@ public class MemberService {
     
     //회원가입
     public Member signUp(MemberForm memberForm) {
-        Member member = new Member.Builder(memberForm.getLoginId(), memberForm.getPw(), memberForm.getPwcheck())
-                .nickname(memberForm.getNickname())
-                .pnum(memberForm.getPnum()) //MemberFrom으로 넘어온 변수들 Builder 클래스의 변수에 다 저장
-                .certified(memberForm.getCertified()) //MemberFrom으로 넘어온 변수들 Builder 클래스의 변수에 다 저장
-                .build(); //new User(this)가 반환되므로 저장된 변수를 가지고 있는 Builder 클래스가 Member 생성자에 반환됨.
+        Member member = memberForm.toEntity(); //MemberForm toEntitiy() 메소드로 회원가입에서 받아온 객체 바로 member 변수로 객체화 하여 member타입으로 리턴...
 
         validateDuplicateMember(member); //중복 회원 검증
 

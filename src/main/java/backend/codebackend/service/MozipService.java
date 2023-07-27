@@ -10,22 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class MozipService {
     private MozipRepository mozipRepository;
 
     public MozipService(MozipRepository mozipRepository) {
         this.mozipRepository = mozipRepository;
+
     }
 
-    @Transactional
     public Long savePost(MozipForm mozipForm) {
         return mozipRepository.save(mozipForm.toEntity()).getTitle();
     }
 
-    @Transactional
     public List<MozipForm> getMozipList(){
         List<Mozip> mozipList = mozipRepository.findAll();
-        List<MozipForm> mozipFormList = new ArrayList<>();
+        List<MozipForm> mozipFormList= new ArrayList<>();
 
         for(Mozip mozip : mozipList){
             MozipForm mozipForm = MozipForm.builder()
@@ -39,5 +39,4 @@ public class MozipService {
         }
         return mozipFormList;
     }
-
 }

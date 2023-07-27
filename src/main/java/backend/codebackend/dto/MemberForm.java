@@ -1,8 +1,11 @@
 package backend.codebackend.dto;
 
+import backend.codebackend.domain.Member;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
 
+@Builder
 public class MemberForm {
 
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
@@ -37,51 +40,15 @@ public class MemberForm {
         this.certified = certified;
     }
 
-    public String getLoginId() {
-        return Login;
-    }
-
-    public void setLoginId(String Login) {
-        this.Login = Login;
-    }
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public String getPwcheck() {
-        return pwcheck;
-    }
-
-    public void setPwcheck(String pwcheck) {
-        this.pwcheck = pwcheck;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getPnum() {
-        return pnum;
-    }
-
-    public void setPnum(String pnum) {
-        this.pnum = pnum;
-    }
-
-    public String getCertified() {
-        return certified;
-    }
-
-    public void setCertified(String certified) {
-        this.certified = certified;
+    public Member toEntity(){
+        Member member = Member.builder()
+                .Login(Login)
+                .pw(pw)
+                .pwcheck(pwcheck)
+                .nickname(nickname)
+                .pnum(pnum)
+                .certified(certified)
+                .build();
+        return member;
     }
 }
