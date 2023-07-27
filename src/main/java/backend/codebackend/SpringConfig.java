@@ -1,9 +1,8 @@
 package backend.codebackend;
 
-import backend.codebackend.repository.JpaMemberRepository;
-import backend.codebackend.repository.MemberRepository;
-import backend.codebackend.repository.MemoryMemberRepository;
+import backend.codebackend.repository.*;
 import backend.codebackend.service.MemberService;
+import backend.codebackend.service.MozipService;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,6 @@ public class SpringConfig {
     private final EntityManager em;
 
     public SpringConfig(EntityManager em) {
-
         this.em = em;
     }
 
@@ -30,8 +28,20 @@ public class SpringConfig {
     public MemberService memberService() {
         return new MemberService(memberRepository());
     }
+
+    @Bean
+    public MozipService mozipService() {
+        return new MozipService(mozipRepository());
+    }
+
+
     @Bean
     public MemberRepository memberRepository() {
         return new JpaMemberRepository(em);
+    }
+
+    @Bean
+    public MozipRepository mozipRepository() {
+        return new JpaMozipRepository(em);
     }
 }
