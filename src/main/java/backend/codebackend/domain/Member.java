@@ -15,7 +15,8 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Member {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 ID를 자동으로 생성해 주는 전략 : IDENTITY
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 ID를 자동으로 생성해 주는 전략 : IDENTITY
     private Long id;
 
     private String Login;

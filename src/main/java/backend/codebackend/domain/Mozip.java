@@ -5,13 +5,16 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EntityListeners(AuditingEntityListener.class)  // JPA에게 해당 Entity는 Auditiong 기능을 사용함을 알림.
-@Builder
+@EntityListeners(AuditingEntityListener.class)
 public class Mozip {
 
     @Id
@@ -21,16 +24,25 @@ public class Mozip {
     @Column(length = 20, nullable = false)
     private String title;
     @Column(length = 10, nullable = false)
-    private String distanceLimit;
+    private Long distance_limit;
 
-    private String category;
-    private String people;
+    private String categories;
+    private String peoples;
 
-    public Mozip(Long id, String title, String distanceLimit, String category, String people) {
+    //스프리에서 제공하는 시간관련 변수
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime create_Date; //생성시간
+
+    @LastModifiedDate
+    private LocalDateTime modified_Date; //수정시간
+
+    @Builder
+    public Mozip(Long id, String title, Long distance_limit, String categories, String peoples) {
         this.id = id;
         this.title = title;
-        this.distanceLimit = distanceLimit;
-        this.category = category;
-        this.people = people;
+        this.distance_limit = distance_limit;
+        this.categories = categories;
+        this.peoples = peoples;
     }
 }

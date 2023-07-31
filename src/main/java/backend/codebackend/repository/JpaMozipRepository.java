@@ -3,9 +3,11 @@ package backend.codebackend.repository;
 import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class JpaMozipRepository implements MozipRepository {
@@ -14,11 +16,39 @@ public class JpaMozipRepository implements MozipRepository {
 
     @Override
     public Mozip save(Mozip mozip) {
-        return null;
+        em.persist(mozip); //persist : 영구적으로 저장?
+        return mozip;
+    }
+
+    @Override
+    public Optional<Mozip> findById(Long id) {
+        //Member member = em.find(Member.class, Login);
+        //return Optional.ofNullable(member);
+
+        List<Mozip> result = em.createQuery("select m from Mozip m where m.id = :id", Mozip.class)
+                .setParameter("id", id)
+                .getResultList();
+
+        return result.stream().findAny();
+    }
+
+    @Override
+    public Optional<Mozip> findByName(String Title) {
+        List<Mozip> result = em.createQuery("select m from Mozip m where m.title = :title", Mozip.class)
+                .setParameter("Title", Title)
+                .getResultList();
+
+        return result.stream().findAny();
     }
 
     @Override
     public List<Mozip> findAll() {
-        return null;
+        TypedQuery typedQuery = em.createQuery("select m from Mozip m", Mozip.class);
+        return typedQuery.getResultList();
+        /*
+        return em.createQuery("select m from Member m", Member.class) //객체를 대상으로 쿼리를 날림. m이 sql로 번역됨
+                .getResultList();
+
+         */
     }
 }
