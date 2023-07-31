@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마이페이지</title>
+    <title>거래 내역</title>
     <link rel="stylesheet" href="Payment_details.css">
 </head>
 
@@ -48,6 +48,7 @@
         <div class="body">
             <div class="board">
                 <div class="board_board">
+                    <!-- 거래 내역 리스트 div -->
                     <div class="payment_list">
                         <div class="pay_title">
                             방제목
@@ -58,14 +59,14 @@
                             </div>
                         </div>
                         <div class="pay_price">
-                            20,000원
+                            8,000원
                         </div>
-                        <div class="btn">
-                            <div class="star_rating">
-                                <button id="star_rating_btn">별점주기</button>
+                        <div class="btn_div">
+                            <div class="star-rating-btn">
+                                <button class="payment_list_btn" id="star_rating_btn">호스트 평가</button>
                             </div>
-                            <div class="pay_commit">
-                                <button id="pay_commit_btn">구매확정</button>
+                            <div class="pay-commit-btn">
+                                <button class="payment_list_btn" id="pay_commit_btn">구매확정</button>
                             </div>
                         </div>
                     </div>
@@ -75,18 +76,18 @@
                         </div>
                         <div class="pay_name">
                             <div class="pay">
-                                치킨버거
+                                치즈버거
                             </div>
                         </div>
                         <div class="pay_price">
-                            20,000원
+                            8,000원
                         </div>
-                        <div class="btn">
-                            <div class="star_rating">
-                                <button id="star_rating_btn">별점주기</button>
+                        <div class="btn_div">
+                            <div class="star-rating-btn">
+                                <button class="payment_list_btn" id="star_rating_btn">호스트 평가</button>
                             </div>
-                            <div class="pay_commit">
-                                <button id="pay_commit_btn">구매확정</button>
+                            <div class="pay-commit-btn">
+                                <button class="payment_list_btn" id="pay_commit_btn">구매확정</button>
                             </div>
                         </div>
                     </div>
@@ -96,18 +97,18 @@
                         </div>
                         <div class="pay_name">
                             <div class="pay">
-                                치킨버거
+                                엄준식
                             </div>
                         </div>
                         <div class="pay_price">
-                            20,000원
+                            200,000원
                         </div>
-                        <div class="btn">
-                            <div class="star_rating">
-                                <button id="star_rating_btn">별점주기</button>
+                        <div class="btn_div">
+                            <div class="star-rating-btn">
+                                <button class="payment_list_btn" id="star_rating_btn">호스트 평가</button>
                             </div>
-                            <div class="pay_commit">
-                                <button id="pay_commit_btn">구매확정</button>
+                            <div class="pay-commit-btn">
+                                <button class="payment_list_btn" id="pay_commit_btn">구매확정</button>
                             </div>
                         </div>
                     </div>
@@ -117,20 +118,46 @@
                         </div>
                         <div class="pay_name">
                             <div class="pay">
-                                치킨버거
+                                허니 콤보
                             </div>
                         </div>
                         <div class="pay_price">
                             20,000원
                         </div>
-                        <div class="btn">
-                            <div class="star_rating">
-                                <button id="star_rating_btn">별점주기</button>
+                        <div class="btn_div">
+                            <div class="star-rating-btn">
+                                <button class="payment_list_btn" id="star_rating_btn">호스트 평가</button>
                             </div>
-                            <div class="pay_commit">
-                                <button id="pay_commit_btn">구매확정</button>
+                            <div class="pay-commit-btn">
+                                <button class="payment_list_btn" id="pay_commit_btn">구매확정</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 호스트 평가 창 -->
+        <div class="modal-background">
+            <div class="modal-window">
+                <div class="modal-popup">
+                    <div class="modal-popup-close">
+                        <div class="modal-popup-close-name">X</div>
+                    </div>
+                    <div class="modal-popup-title">
+                        <div class="modal-popup-title-name">호스트 평가</div>
+                    </div>
+                    <div class="modal-star-rating">
+                        <div class="starRev">
+                            <span class="starR">⭐</span>
+                            <span class="starR">⭐</span>
+                            <span class="starR">⭐</span>
+                            <span class="starR">⭐</span>
+                            <span class="starR">⭐</span>
+                        </div>
+
+                    </div>
+                    <div class="modal-commit">
+                        <input id="modal_commit" type="button" value="확인">
                     </div>
                 </div>
             </div>
