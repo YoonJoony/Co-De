@@ -479,6 +479,7 @@ table {
 .button--antiman {
     background: none;
     border: none;
+    width: 100%;
     height: 50px;
 }
 
@@ -577,10 +578,13 @@ table {
 }
 
 .profile_name {
-    font-size: 20px;
+    font-size: 1.2vw;
 }
-
-.pick {}
+.invite{
+    font-size: 1vw;
+    align: center;
+    margin-left: 3vw;
+}
 
 /* 햄버거 버튼*/
 .menu_trigger {
@@ -590,6 +594,8 @@ table {
     background-color: #acc2d2;
     color: #acc2d2;
     background: #acc2d2;
+    margin-top: 6px;
+    margin-left: 4px;
 }
 
 /* ---------------------------------------------------------------- */
@@ -621,14 +627,15 @@ table {
 
 /* 추방투표 버튼 */
 .vote {
-    float: right;
     position: absolute;
-    margin-left: 15vw;
+    margin-left: 13vw;
     width: 15%;
-    background: #a71a1a;
-    color: #fff;
+    height: 10%;
+    background: #fff;
+    color: #000;
     z-index: 1;
     cursor: pointer;
+    margin-top: -2vw;
 }
 
 .vote:after {
@@ -639,12 +646,12 @@ table {
     top: 0;
     right: 0;
     z-index: -1;
-    background: #e0e5ec;
+    background: #a71a1a;
     transition: all 0.3s ease;
 }
 
 .vote:hover {
-    color: #000;
+    color: #fff;
 }
 
 .vote:hover:after {

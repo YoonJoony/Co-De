@@ -15,24 +15,10 @@ import java.util.List;
 public class MozipService {
     private final MozipRepository mozipRepository; //final을 해줘야 config에서 생성자 주입이 됨.
 
-    public String savePost(MozipForm mozipForm) {
-        return mozipRepository.save(mozipForm.toEntity()).getTitle();
-    }
+    public Mozip savePost(MozipForm mozipForm) {
+        Mozip mozip = mozipForm.toEntity();
+        mozipRepository.save(mozip);
 
-    public List<MozipForm> getMozipList(){
-        List<Mozip> mozipList = mozipRepository.findAll();
-        List<MozipForm> mozipFormList= new ArrayList<>();
-
-        for(Mozip mozip : mozipList){
-            MozipForm mozipForm = MozipForm.builder()
-                    .id(mozip.getId())
-                    .title(mozip.getTitle())
-                    .distanceLimit(mozip.getDistanceLimit())
-                    .category(mozip.getCategory())
-                    .people(mozip.getPeople())
-                    .build();
-            mozipFormList.add(mozipForm);
-        }
-        return mozipFormList;
+        return mozip;
     }
 }

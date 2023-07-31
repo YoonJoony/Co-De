@@ -27,7 +27,7 @@ public class MemberController {
 
 //    @GetMapping("/")
 //    public String home() {
-//        return "main_page";
+//        return "login";
 //    }
 
     @GetMapping("/logout")
