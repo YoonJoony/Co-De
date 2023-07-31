@@ -27,6 +27,11 @@ for (var i = 0; i < star_rating_btns.length; i++) {
 // 모달 창 닫기
 function close_modal() {
   document.querySelector(".modal-background").className = "modal-background";
+
+  // 별점 초기화
+  $(".starRev span").parent().children("span").removeClass("on");
+  // 별점 점수 텍스트 없애기
+  document.querySelector("#star_num_text").innerHTML = null;
 }
 // x클릭 시 close_modal 함수 호출
 document
@@ -40,14 +45,14 @@ for (var i = 0; i < modal_commit_btns.length; i++) {
   modal_commit_btns[i].addEventListener("click", close_modal);
 }
 
-//별점 클릭 시
+//별점 클릭 시 별점 변화
 $(".starRev span").click(function () {
   $(this).parent().children("span").removeClass("on");
   $(this).addClass("on").prevAll("span").addClass("on");
 
   // starRev span 개수로 별점 점수 출력하기
-  var star_count = document.querySelectorAll(".starRev span");
-  console.log(star_count.length);
+  var star_count = document.querySelectorAll(".starR.on");
+  document.querySelector("#star_num_text").innerHTML = star_count.length + "점";
 
   return false;
 });
