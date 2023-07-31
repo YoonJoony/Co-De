@@ -1,5 +1,6 @@
 package backend.codebackend.controller;
 
+import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.SelectedValue;
 import backend.codebackend.dto.MozipForm;
 import backend.codebackend.service.MozipService;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -23,8 +27,15 @@ public class MozipController {
 //    private String selectedValue1;
 //    private String selectedValue2;
 
+//    @GetMapping("/")
+//    public String test1(Model model) {
+//        return "main_page";
+//    }
+
     @GetMapping("/")
-    public String test1() {
+    public String list(Model model) {
+        List<Mozip> mozipFormList = mozipService.getMozipList();
+        model.addAttribute("postList", mozipFormList);
         return "main_page";
     }
 
@@ -33,7 +44,7 @@ public class MozipController {
     public String createMozip1(@ModelAttribute MozipForm mozipForm) {
         create(mozipForm);
 
-        return "main_page";
+        return "redirect:/"; //글 생성 시 다시 초기화면으로
     }
 
     //모집글 생성(caterory, people) 변수 저장
@@ -55,13 +66,6 @@ public class MozipController {
     public void create(MozipForm mozipForm) {
         mozipForm.setCategories(sv.getSelectedValue1()); //카테고리, 인원 수가 저장된 싱글톤 객체에서 값을 꺼내오기
         mozipForm.setPeoples(sv.getSelectedValue2());
-
-
         mozipService.savePost(mozipForm); //모집글 저장.
-
     }
-
-
-
-
 }

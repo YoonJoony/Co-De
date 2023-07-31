@@ -64,30 +64,40 @@ $(function () {
 
 });
 
-var currentTime = function () {
-  var date = new Date();
-  var hh = date.getHours();
-  var mm = date.getMinutes();
-  var apm = hh > 12 ? "오후" : "오전";
-  var ct = apm + " " + hh + ":" + mm + "";
-  return ct;
-}
 
-// 햄버거 버튼
-const list = document.querySelector('.vistor')
+// 참가자 리스트
+function ListOpen() {
+  const list = document.getElementById("vistor");
 
-function visit_btn() {
-  // 숨기기 (display: none)
   if (list.style.display !== "block") {
     list.style.display = "block";
   }
-  // 보이기 (display: block)
   else {
     list.style.display = "none";
   }
 }
 
-// ----------------------------------------------
+// 사용자 초대
+
+$(function () {
+  function invitemodalClose() {
+    $("#invite_modal").fadeOut();
+  }
+
+  $("#invite").click(function () {
+    // 초대 하기
+
+    // 백앤드 화이팅
+
+    invitemodalClose(); // 모달 닫기 함수 호출
+  });
+  $("#invite_btn").click(function () {
+    $("#invite_modal").css('display', 'flex').hide().fadeIn(); // 속성 변경 후 hide로 숨기고 fadeIn으로 효과 나타내기
+  });
+  $("#close").click(function () {
+    invitemodalClose(); // 모달 닫기 함수 호출
+  });
+});
 
 // 투표
 
