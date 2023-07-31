@@ -27,7 +27,7 @@ public class MozipForm {
         return build;
     }
 
-    public MozipForm(String title, String distanceLimit, String category, String numberOfPeople) {
+    public MozipForm(String title, String distanceLimit, String category, String people) {
         //this.id = id;
         this.title = title;
         this.distanceLimit = distanceLimit;
