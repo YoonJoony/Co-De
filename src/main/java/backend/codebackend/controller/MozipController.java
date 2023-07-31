@@ -62,25 +62,6 @@ public class MozipController {
     }
 
 
-//    모집 생성창 카테고리 선택, 인원 선택 저장
-//    @PostMapping("/mozip")
-//    public String yourControllerMethod(@RequestParam(value = "selectedValue1", required = false) String selectedValue1,
-//                                       @RequestParam(value = "selectedValue2", required = false) String selectedValue2) {
-//        System.out.println(selectedValue1);
-//        System.out.println(selectedValue2);
-//        // 전달된 값 처리 코드
-//        return "main_page";
-//    }
-
-
-
-
-//    @GetMapping("/list")
-//    public String list(Model model) {
-//        List<MozipForm> MozipdtoList = mozipService.getMozipList();
-//        model.addAttribute("postList", MozipdtoList);
-////        return "board/list.html";
-////    }
 
 
 }
