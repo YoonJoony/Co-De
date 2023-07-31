@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/css/main_page.css">
+    <link rel="stylesheet" href="/css/main_page2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script></head>
 </head>
 
@@ -49,117 +49,26 @@
         <div class="search-list">
             <input id="search_list" type="text">
             <input id="search_btn" type="button" value="검색"></input>
-            <input id="mozip_list" type="button" value="게시글">
-            <input type="text" id="changeInput"/>
         </div>
     </div>
-    <!-- 게시판 틀 -->
+    <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
     <div class="board">
-        <div class="content-list">
-            <div class="participant_num">1/4</div>
-            <div class="food">BBQ</div>
-            <div class="title"><a href="#"> BBQ 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
+        <div class="board" th:each="post : ${postList}">
+            <div class="content-list">
+                <div class="participant_num" th:text="${post.peoples}"></div>
+                <div class="food" th:text="${post.categories}"></div>
+                <div class="title" th:text="${post.title}"><a href="#"></a></div>
+                <div class="writer" th:text="${post.distance_limit}+m"></div>
+                <div class="time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
+            </div>
         </div>
-        <div class="content-list">
-            <div class="participant_num">2/4</div>
-            <div class="food">bhc</div>
-            <div class="title"><a href="#"> bhc 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">3/4</div>
-            <div class="food">네네치킨</div>
-            <div class="title"><a href="#"> 네네치킨 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">4/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식1 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">1/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식2 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">2/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식3 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">3/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식4 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">4/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식5 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">1/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식6 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">2/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식7 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">3/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식8 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">4/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식9 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">1/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식10 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-        <div class="content-list">
-            <div class="participant_num">2/4</div>
-            <div class="food">엄준식</div>
-            <div class="title"><a href="#"> 엄준식11 같이 시키실분</a></div>
-            <div class="writer">엄준식</div>
-            <div class="time">10분전</div>
-        </div>
-
-        <!-- 모집글 더보기 버튼 -->
+            <!-- 모집글 더보기 버튼 -->
         <div class="load-btn">
             <input type="button" id="load_btn" value="더보기">
         </div>
-
     </div>
+
+
 
     <!-- 모집글 생성 -->
     <div class="make-content">
@@ -216,9 +125,9 @@
                                     <div class="sel people">
                                         <select id="people" required>
                                             <option value="" disabled>인원 수</option>
-                                            <option value="2">2명</option>
-                                            <option value="3">3명</option>
-                                            <option value="4">4명</option>
+                                            <option value="1/2">2명</option>
+                                            <option value="1/3">3명</option>
+                                            <option value="1/4">4명</option>
                                         </select>
                                     </div>
                                 </div>
