@@ -7,7 +7,8 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="chating.css" />
-    <script src="https://code.jquery.com/jquery-1.8.3.min.js" integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.8.3.min.js"
+        integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,9 +50,7 @@
             </div>
         </div>
 
-        <div class="chat-header">
-
-        </div>
+        <div class="chat-header"></div>
 
         <div class="map_box">
             <button id="map_button" class="button button--ujarak button--border-thin button--text-thick">지도</button>
@@ -72,9 +71,53 @@
                 <button type="button" id="vote" class="vote" onclick="out_btn()">추방투표</button>
                 <button type="button" id="menu_trigger" onclick="visit_btn()">참가자</button>
                 <div class="vistor">
-                    dsasdfasdfasdfasdadsasdasdddfdsadfasd
+                    <div class="visit_header">
+
+                    </div>
+
+                    <div class="visit_body">
+                        <ul>
+                            <li>
+                                <button type="button" class="list_box button--antiman">
+                                    <div class="list_content">
+                                        <img src="gom.PNG" height="35px" width="35px">
+                                        <span class="profile_name">망그곰(나)</span>
+                                    </div>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="list_box button--antiman">
+                                    <div class="list_content">
+                                        <img src="gom.PNG" height="35px" width="35px">
+                                        <span class="profile_name">농담곰</span>
+                                    </div>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="list_box button--antiman">
+                                    <div class="list_content">
+                                        <img src="gom.PNG" height="35px" width="35px">
+                                        <span class="profile_name">북극곰</span>
+                                    </div>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="list_box button--antiman">
+                                    <div class="list_content">
+                                        <img src="gom.PNG" height="35px" width="35px">
+                                        <span class="profile_name">반달곰</span>
+                                    </div>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="visit_footer">
+
+                    </div>
                 </div>
             </div>
+
             <div class="inner"></div>
             <input type="text" class="mymsg" placeholder="내 메세지">
             <input type="text" class="yourmsg" placeholder="상대 메세지">
@@ -83,4 +126,5 @@
 </body>
 
 <script src="chating.js"></script>
+
 </html>
