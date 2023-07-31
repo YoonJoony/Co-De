@@ -21,20 +21,4 @@ public class MozipService {
 
         return mozip;
     }
-
-    public List<MozipForm> getMozipList(){
-        List<Mozip> mozipList = mozipRepository.findAll();
-        List<MozipForm> mozipFormList= new ArrayList<>();
-
-        for(Mozip mozip : mozipList){
-            MozipForm mozipForm = MozipForm.builder()
-                    .title(mozip.getTitle())
-                    .distanceLimit(mozip.getDistanceLimit())
-                    .category(mozip.getCategory())
-                    .people(mozip.getPeople())
-                    .build();
-            mozipFormList.add(mozipForm);
-        }
-        return mozipFormList;
-    }
 }

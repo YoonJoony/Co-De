@@ -20,13 +20,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="mozip : ${postList}"> <!-- member 객체 안에 model로 넘어온 members 넣어줌-->
-                <td th:text="${postList.id}"></td> <!-- each로 list에 저장된 멤버들을 member에 순서대로 대입 반복 처리 -->
-                <td th:text="${postList.title}"></td> <!-- each로 list에 저장된 멤버들을 member에 순서대로 대입 반복 처리 -->
-                <td th:text="${postList.distanceLimit}"></td>
-                <td th:text="${postList.category}"></td>
-                <td th:text="${postList.numberOfPeople}"></td>
-
+            <tr th:each="mozip : ${mozips}"> <!-- member 객체 안에 model로 넘어온 members 넣어줌-->
+                <td th:text="${member.id}"></td> <!-- each로 list에 저장된 멤버들을 member에 순서대로 대입 반복 처리 -->
+                <td th:text="${member.title}"></td> <!-- each로 list에 저장된 멤버들을 member에 순서대로 대입 반복 처리 -->
+                <td th:text="${member.distanceLimit}"></td>
+                <td th:text="${member.category}"></td>
+                <td th:text="${member.people}"></td>
             </tr>
             </tbody>
         </table>

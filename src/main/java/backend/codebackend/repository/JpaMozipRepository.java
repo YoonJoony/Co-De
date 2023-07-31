@@ -16,23 +16,26 @@ public class JpaMozipRepository implements MozipRepository {
 
     @Override
     public Mozip save(Mozip mozip) {
-        em.persist(mozip);
+        em.persist(mozip); //persist : 영구적으로 저장?
         return mozip;
     }
-    @Override
-    public Optional<Mozip> findById(String Login) {
 
-        List<Mozip> result = em.createQuery("select m from Mozip m where m.Login = :Login", Mozip.class)
-                .setParameter("Login", Login)
+    @Override
+    public Optional<Mozip> findById(Long id) {
+        //Member member = em.find(Member.class, Login);
+        //return Optional.ofNullable(member);
+
+        List<Mozip> result = em.createQuery("select m from Mozip m where m.id = :id", Mozip.class)
+                .setParameter("id", id)
                 .getResultList();
 
         return result.stream().findAny();
     }
 
     @Override
-    public Optional<Mozip> findByName(String nickname) {
-        List<Mozip> result = em.createQuery("select m from Mozip m where m.nickname = :nickname", Mozip.class)
-                .setParameter("nickname", nickname)
+    public Optional<Mozip> findByName(String Title) {
+        List<Mozip> result = em.createQuery("select m from Mozip m where m.title = :title", Mozip.class)
+                .setParameter("Title", Title)
                 .getResultList();
 
         return result.stream().findAny();

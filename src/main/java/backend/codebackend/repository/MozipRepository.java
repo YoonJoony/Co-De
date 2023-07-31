@@ -9,8 +9,9 @@ import java.util.Optional;
 
 public interface MozipRepository {
     Mozip save(Mozip mozip);
-    Optional<Mozip> findById(String id);
+    Optional<Mozip> findById(Long ID);
 
-    Optional<Mozip> findByName(String name);
+    Optional<Mozip> findByName(String Title);
+
     List<Mozip> findAll();
 }

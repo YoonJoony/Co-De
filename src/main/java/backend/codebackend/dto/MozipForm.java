@@ -10,30 +10,36 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class MozipForm {
-    //private Long id;
+
     private String title;
-    private String distanceLimit;
-    private String category;
-    private String people;
+    private Long distance_limit;
+
+    //모집글 select oprion 선택값 받기 위해 선언
+    public void setCategories(String categories) {
+        this.categories = categories;
+    }
+
+    public void setPeoples(String peoples) {
+        this.peoples = peoples;
+    }
+
+    private String categories;
+    private String peoples;
 
     public Mozip toEntity(){
         Mozip build = Mozip.builder()
-                //.id(id)
                 .title(title)
-                .distanceLimit(distanceLimit)
-                .category(category)
-                .people(people)
+                .distance_limit(distance_limit)
+                .categories(categories)
+                .peoples(peoples)
                 .build();
         return build;
     }
 
-    public MozipForm(String title, String distanceLimit, String category, String people) {
-        //this.id = id;
+    public MozipForm(String title, Long distance_limit, String categories, String peoples) {
         this.title = title;
-        this.distanceLimit = distanceLimit;
-        this.category = category;
-        this.people = people;
-
+        this.distance_limit = distance_limit;
+        this.categories = categories;
+        this.peoples = peoples;
     }
-
 }
