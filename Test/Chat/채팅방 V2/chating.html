@@ -68,8 +68,9 @@
 
             <div class="chat_name">
                 <span class="chat_title" name="chat_title">방이름</span>
-                <button type="button" class="menu_trigger" onclick="visit_btn()"><img src="사람.jpg" width="30px" height="30px"></button>
-                <div class="vistor">
+                <button type="button" class="menu_trigger" onclick="ListOpen()"><img src="사람.jpg" width="30px" height="30px"></button>
+
+                <div class="vistor" id="vistor">
                     <div class="visit_header">
 
                     </div>
@@ -80,7 +81,7 @@
                                 <button type="button" class="list_box button--antiman">
                                     <div class="list_content">
                                         <img src="gom.PNG" height="35px" width="35px">
-                                        <span class="profile_name">망그곰(나)</span>
+                                        <span class="profile_name">망그곰(호스트)</span>
                                     </div>
                                 </button>
                             </li>
@@ -115,9 +116,9 @@
                     </div>
 
                     <div class="visit_footer">
-                        <button type="button" class="list_box button--antiman">
+                        <button type="button" class="list_box button--antiman invite_btn" id="invite_btn" onclick="invite_btn()">
                             <div>
-                                <span class="invite"> ＋ 사용자 초대</span>
+                                <span class="invite_content"> ＋ 사용자 초대</span>
                             </div>
                         </button>
                     </div>
@@ -127,6 +128,38 @@
             <div class="inner"></div>
             <input type="text" class="mymsg" placeholder="내 메세지">
             <input type="text" class="yourmsg" placeholder="상대 메세지">
+        </div>
+
+        <!-- 초대 모달 -->
+        <div class="invite_modal" id="invite_modal">
+            <div class="popup" id="popup">
+                <div class="m_head">
+                    <div class="modal_title">
+                        <h1>CO-ORDER</h1>
+                    </div>
+                </div>
+                <div class="m_body">
+                    <div class="input-area">
+                        <div class="body-titlebox">
+                            <h2>초대</h2>
+                        </div>
+
+                        <div class="body-contentbox">
+                            <div class="input-area">
+                                <input type="number" name="range" id="ragne" autocomplete="off" required max="500" required>
+                                <label for="ragne">초대 할 사용자 닉네임</label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m_footer">
+                    <span class="pop-btn invite" id="invite">초대</span>
+                    <span class="pop-btn close" id="close">창 닫기</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>
