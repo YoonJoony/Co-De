@@ -31,12 +31,6 @@ body {
     overflow: scroll;
 }
 
-a {
-    color: inherit;
-    /* 글자 색생은 부모로부터 상속 */
-    text-decoration: none;
-}
-
 .main {
     position: relative;
     width: 95%;
@@ -61,6 +55,9 @@ a {
     white-space: nowrap;
     z-index: 1;
 }
+.logout_btn{
+    text-decoration: none;
+}
 
 .domain {
     position: absolute;
@@ -70,6 +67,10 @@ a {
     text-align: center;
     font-size: 50px;
     font-weight: bold;
+    text-decoration: none;
+}
+.domain_btn{
+    text-decoration: none;
 }
 
 .profile {
@@ -287,7 +288,7 @@ a {
 /* 채팅 */
 .chat_wrap {
     border: 1px solid #999;
-    width: 50%;
+    width: 35%;
     padding: 5px;
     font-size: 13px;
     color: #333;
@@ -441,6 +442,30 @@ table {
     border-spacing: 0
 }
 
+/* 채팅 참가자 */
+.vistor{
+    border: 1px solid #999;
+    padding: 5px;
+    font-size: 13px;
+    color: #333;
+    position: absolute;
+    background-color: #fc0000;
+    width: 250px;
+    height: 400px;
+    margin-top: 55px;
+    box-sizing: border-box;
+    border: 1px solid #ff0000;
+    font-size: 14px;
+    transform: translate3d(-30%, 0, 0);
+    border-radius: 10px;
+    display: block;
+}
+
+/* 햄버거 버튼*/
+.menu_trigger{
+    cursor: pointer;
+}
+
 /* ---------------------------------------------------------------- */
 
 /* 판매자 연락처 */
@@ -458,7 +483,7 @@ table {
 /* 채팅방 이름 */
 .chat_name {
     font-family: 'Gugi', cursive;
-    font-size: 2vw;
+    font-size: 1.4vw;
     margin-top: 20px;
     background-color: #acc2d2;
 }
@@ -466,10 +491,12 @@ table {
     margin-left: 30px;
 }
 
+
+/* 추방투표 버튼 */
 .vote {
     float: right;
     position: absolute;
-    margin-left: 25vw;
+    margin-left: 15vw;
     width: 15%;
     background: #a71a1a;
     color: #fff;
@@ -494,3 +521,4 @@ table {
     left: 0;
     width: 100%;
 }
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
