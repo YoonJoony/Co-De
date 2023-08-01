@@ -22,6 +22,16 @@ public class SelectedValue {
 
     private String selectedValue1;
     private String selectedValue2;
+    private String nickname;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     private SelectedValue() {
     }
     public static SelectedValue getInstance() {

@@ -25,12 +25,15 @@ public class MozipForm {
     public void setPeoples(String peoples) {
         this.peoples = peoples;
     }
-
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
     private String categories;
     private String peoples;
     private LocalDateTime create_Date;
     private LocalDateTime modified_Date;
 
+    private String nickname;
 
     public Mozip toEntity(){
         Mozip build = Mozip.builder() //date할려면 Mozip에 생성자에 @builder를 해야 builder()실행이 되네
@@ -38,17 +41,19 @@ public class MozipForm {
                 .distance_limit(distance_limit)
                 .categories(categories)
                 .peoples(peoples)
+                .nickname(nickname)
                 .build();
         return build;
     }
 
-    public MozipForm(String title, Long distance_limit, String categories, String peoples, LocalDateTime create_Date, LocalDateTime modified_Date) {
+    public MozipForm(String title, Long distance_limit, String categories, String peoples, LocalDateTime create_Date, LocalDateTime modified_Date, String nickname) {
         this.title = title;
         this.distance_limit = distance_limit;
         this.categories = categories;
         this.peoples = peoples;
         this.create_Date = create_Date;
         this.modified_Date = modified_Date;
+        this.nickname = nickname;
     }
 
 //    private static class TIME_MAXIMUM {

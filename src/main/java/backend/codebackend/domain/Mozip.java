@@ -37,12 +37,15 @@ public class Mozip {
     @LastModifiedDate
     private LocalDateTime modified_Date; //수정시간
 
+    private String nickname;
+
     @Builder
-    public Mozip(Long id, String title, Long distance_limit, String categories, String peoples) {
+    public Mozip(Long id, String title, Long distance_limit, String categories, String peoples, String nickname) {
         this.id = id;
         this.title = title;
         this.distance_limit = distance_limit;
         this.categories = categories;
         this.peoples = peoples;
+        this.nickname = nickname;
     }
 }

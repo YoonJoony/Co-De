@@ -71,7 +71,8 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findOne(String memberId) {
-        return memberRepository.findById(memberId);
+    public Optional<Member> findLoginId(String Login) {
+        return memberRepository.findById(Login);
     }
+
 }
