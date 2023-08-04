@@ -13,12 +13,12 @@ body{
 }
 
 .logo {
-  width : 300px;
+  width : 350px;
 
 }
 .name {
   position: absolute;
-  top: -13px;
+  top: 50px;
   left: 0;
   width: 100%;
   text-align: center;

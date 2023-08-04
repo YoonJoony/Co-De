@@ -59,6 +59,11 @@ input:focus {
   /*div ë°•ìŠ¤ ë°”ê¹¥ìœ¼ë¡œ ì‚ì ¸ë‚˜ì™€ë„ í‘œì‹œ*/
 }
 
+.logo {
+  width : 40px;
+  height : 20px;
+}
+
 .fixed { /* 스크롤 할 시 header를 top0으로 최상단에 고정하기 위해 */
   position: fixed;
   top: 0;
@@ -259,6 +264,15 @@ input:focus {
   /*overflow: auto;        ê²Œì‹œê¸€ íƒ€ìž„ë¦¬í”„ë¡œ ë°›ì•„ì™€ì„œ ì§€ì›Œì¤Œ*/
   z-index: 0;
   /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+}
+
+.ad{
+    text-align: center;
+    padding: 40px 0px 15px;
+}
+
+.ad-img {
+  width: 84%;
 }
 
 .search-list {
