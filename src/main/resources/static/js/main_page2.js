@@ -148,3 +148,30 @@ window.addEventListener('scroll', function(){
   }
 });
 // ----------------------------------------
+
+//모집글 board 영역 설정
+const elements = document.querySelectorAll('.board');
+const rowHeight = 223;
+const i = 0;
+elements.forEach((element, index) => {
+    const row = Math.floor(index/3); //현재 요소가 속한 행 번호
+
+    const left = parseFloat(element.style.left); //left값을 받아온다. 처음에는 0. 두번째는 24.9617
+    //const top = parseFloat(element.style.top);
+
+    // 비율에 맞게 조정
+
+    if(i % 3 == 0) {
+        left = 0;
+    }
+
+    const newLeft = left + 24.9617;
+    const newTop = row * rowHeight; //해당 해의 top 값이 223씩 증가
+
+    // 새로운 left와 top 값을 설정
+    element.style.left = `${newLeft}%`;
+    element.style.top = `${newTop}px`;
+    i++;
+});
+
+// ----------------------------------------

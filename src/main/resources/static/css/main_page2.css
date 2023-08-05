@@ -4,6 +4,8 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+
 html,
 body {
   height: 100%;
@@ -19,6 +21,7 @@ body {
 }
 
 a {
+  font-size : 10px;
   color: inherit;
   /* ê¸€ìž ìƒ‰ìƒì€ ë¶€ëª¨ë¡œë¶€í„° ìƒì† */
   text-decoration: none;
@@ -42,7 +45,7 @@ input:focus {
     top: -201px;
     width: 100%;
     height: 37px;
-    background-color: #c3d3c5;
+    background-color: #ffffff;
     border-bottom: 1px solid #b0cbba6b;
 }
 
@@ -50,8 +53,8 @@ input:focus {
   position: absolute;
   z-index: 1;
   top: 35px;
-  border-bottom: solid 1px #1a6d1978;
-  background-color : #cadbca;
+  border-bottom: solid 1px #ff8c16;
+  background-color : #ffffff;
   position: fixed;
   width: 100%;
   height: 167px;
@@ -60,8 +63,38 @@ input:focus {
 }
 
 .logo {
-  width : 300px;
+  width : 190px;
 
+}
+
+.logo-img {
+  position: absolute;
+  top: 26px;
+  left: 14px;
+  width: 100%;
+  text-align: left;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+p{
+      display: inline;
+      position: absolute;
+      top: 30%;
+      left: 46%;
+      font-size: 20px;
+      font-family: 'Play', sans-serif;
+      /* height: 33%; */
+      /* margin: auto; */
+      /* justify-content: center; */
+}
+
+.gps {
+    width: 19px;
+    height: 19px;
+    top: 5px;
+    left: 6px;
+    position: absolute;
 }
 
 .fixed { /* 스크롤 할 시 header를 top0으로 최상단에 고정하기 위해 */
@@ -93,19 +126,11 @@ input:focus {
     border-left: 1px solid #c0c0c06b;
 }
 
-.name {
-  position: absolute;
-  top: -13px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 50px;
-  font-weight: bold;
-}
+
 
 .address {
   position: relative;
-  top: 105px;
+  top: 118px;
   width: 100%;
   text-align: center;
   vertical-align: middle;
@@ -117,7 +142,7 @@ input:focus {
 
 .address #loc_btn {
   position: relative;
-  top: 11px;
+  top: -3.1px;
   left: 5px;
   width: 30px;
   height: 30px;
@@ -127,7 +152,7 @@ input:focus {
   display: inline-block;
   border-radius: 4px 0 0 4px;
   cursor: pointer;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
 }
 .address #loc_btn:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
@@ -137,11 +162,12 @@ input:focus {
 .address #address_input {
   position: relative;
   height: 30px;
+  font-size : 11px;
   width: 40%;
   border: none;
   background-color: #d9d9d9;
   color: black;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  /*box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);*/
 }
 
 .address #find_address {
@@ -150,15 +176,15 @@ input:focus {
   right: 6px;
   width: 12%;
   height: 30px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
-  background-color: #7cab75;
+  background-color: #FE9F47;
   color: white;
   border: none;
   display: inline-block;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  /*box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);*/
 }
 .address #find_address:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
@@ -173,7 +199,7 @@ input:focus {
   height: 30px;
   font-size: 14px;
   font-weight: bold;
-  background-color: #7cab75;
+  background-color: #FE9F47;
   color: white;
   border: none;
   display: inline-block;
@@ -252,11 +278,11 @@ input:focus {
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
-.board {
+.board-list {
   margin : auto;
   position: relative;
-  width: 85%;
-  /*top: 20%;*/
+  height : 1117.5px;
+  width: calc(80%);  /*top: 20%;*/
   /* height: 500px; */
   /* border: 1px solid #d9d9d9; */
   background-color: #f0f0f0;
@@ -264,6 +290,115 @@ input:focus {
   /*overflow: auto;        ê²Œì‹œê¸€ íƒ€ìž„ë¦¬í”„ë¡œ ë°›ì•„ì™€ì„œ ì§€ì›Œì¤Œ*/
   z-index: 0;
   /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+}
+
+.board {
+  position: relative;
+  width: calc(25% - 26px);
+  margin : 10px;
+  padding : 21px 25px;
+  display : inline-block;
+  /*top: 20%;*/
+  height:45%;
+  border: 1px solid #d9d9d9; */
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  /*overflow: auto;        ê²Œì‹œê¸€ íƒ€ìž„ë¦¬í”„ë¡œ ë°›ì•„ì™€ì„œ ì§€ì›Œì¤Œ*/
+  z-index: 0;
+  /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+  overflow : hidden;
+}
+
+
+.boards {
+  position: relative;
+  width: calc(25% - 26px);
+  margin : 10px;
+  padding : 21px 25px;
+  display : inline-block;
+  /*top: 20%;*/
+  height:45%;
+  border: 1px solid #d9d9d9; */
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  /*overflow: auto;        ê²Œì‹œê¸€ íƒ€ìž„ë¦¬í”„ë¡œ ë°›ì•„ì™€ì„œ ì§€ì›Œì¤Œ*/
+  z-index: 0;
+  /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+  overflow : hidden;
+}
+
+.board-img {
+}
+
+.board-time {
+    font-family: 'Play', sans-serif;
+    text-align: center;
+    font-size: 17px;
+    color: #333333;
+    overflow: hidden;
+}
+
+.board-nickname {
+    text-align: center;
+    margin-top: 44px;
+    font-size: 30px;
+    color: #333333;
+    overflow: hidden;
+}
+
+.board-title {
+    font-size: 15px;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 60px;
+    color: #333333;
+    overflow: hidden;
+}
+
+.board-categories {
+    font-size: 15px;
+    margin: 0;
+    /* text-align: right; */
+    left: 14px;
+    position: absolute;
+    bottom: 10px;
+    color: #333333;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.board-peoples {
+    font-size: 15px;
+    margin: 0;
+    /* text-align: right; */
+    right: 14px;
+    position: absolute;
+    bottom: 10px;
+    color: #333333;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.board-button {
+    overflow: hidden;
+    text-align: center;
+    /* margin: auto; */
+    width: 53%;
+    height: 35px;
+    left: 24%;
+    /* margin-top: 10px; */
+    position: absolute;
+    top: 65%;
+}
+
+.join {
+    font-family: 'Play', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: #FF9A61;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
 }
 
 .ad{

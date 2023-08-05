@@ -5,10 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/css/main_page2.css">
+    <link rel="stylesheet" href="/css/main_page.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script></head>
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
 </head>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
 <body>
 <div class="main">
     <div class="topper">
@@ -22,14 +30,15 @@
     <!-- 헤더 부분 -->
     <div class="header">
         <!-- CO-ORDER 제목 부분 -->
-        <div class="name">
+        <div class="logo-img">
 <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-            <img class="logo" src="images/COOR.png">
+            <img class="logo" src="images/COOR2.png">
+            <p>ALL 📒 POST </p>
         </div>
         <!-- 주소 입력 부분 -->
         <div class="address">
             <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-                <img src="images/gps.png" height="30px" width="30px">
+                <img class="gps" src="images/GPS.png">
             </button>
             <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
             <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
@@ -54,25 +63,35 @@
     </div>
 
     <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
-    <div class="board">
-        <div class="ad">
-            <a href="#">
-                <img img="" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/guide_main_banner.png" alt="" title="" class="ad-img">
-            </a>
+    <div class="ad">
+        <a href="#">
+            <img img="" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/guide_main_banner.png" alt="" title="" class="ad-img">
+        </a>
+    </div>
+    <div class="search-list">
+        <input id="search_list" type="text">
+        <input id="search_btn" type="button" value="검색"></input>
+    </div>
+
+    <div class="board-list">
+        <div class="board"  style="position: absolute; left: 0%; top: 0px;" th:each="post : ${postList}">
+            <img class="board-img" src="images\chicken.png">
+            <div class="boards">
+                <div class="board-header" >
+                    <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
+                    <img class="board-link" src="images\link.png">
+                </div>
+                <div class="board-nickname" th:text="${post.nickname}"></div>
+                <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
+                <div class="board-button"></a>
+                    <button class="join">Go GO~</button>
+                </div>
+                <div class="board-categories" th:text="${post.categories}"></div>
+                <div class="board-peoples" th:text="${post.peoples}"></div>
+    <!--            <div class="food" th:text="${post.categories}"></div>-->
+             </div>
         </div>
-        <div class="search-list">
-            <input id="search_list" type="text">
-            <input id="search_btn" type="button" value="검색"></input>
-        </div>
-        <div class="board" th:each="post : ${postList}">
-            <div class="content-list">
-                <div class="participant_num" th:text="${post.peoples}"></div>
-                <div class="food" th:text="${post.categories}"></div>
-                <div class="title" th:text="${post.title}"><a href="#"></a></div>
-                <div class="writer" th:text="${post.nickname}"></div>
-                <div class="time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
-            </div>
-        </div>
+    </div>
             <!-- 모집글 더보기 버튼 -->
         <div class="load-btn">
             <input type="button" id="load_btn" value="더보기">
@@ -201,7 +220,7 @@
     </script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="/js/main_page2.js"></script>
+<script src="/js/main_page.js"></script>
 </body>
 
 </html>

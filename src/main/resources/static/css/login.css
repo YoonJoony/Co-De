@@ -13,12 +13,12 @@ body{
 }
 
 .logo {
-  width : 350px;
+  width : 280px;
 
 }
 .name {
   position: absolute;
-  top: 50px;
+  top: 53px;
   left: 0;
   width: 100%;
   text-align: center;
@@ -140,7 +140,7 @@ input {
     overflow : auto;
 }
 
-@media (max-width:1200px){
+@media (max-width:800px){
     .container{
          background-color: #fff;
          border-radius: 10px;
@@ -159,7 +159,7 @@ input {
     }
 }
 
-@media (min-width:1200px){
+@media (min-width:800px){
     .container {
       background-color: #fff;
       border-radius: 10px;
