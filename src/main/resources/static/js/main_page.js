@@ -151,7 +151,7 @@ window.addEventListener('scroll', function(){
 
 //모집글 board 영역 설정
 const elements = document.querySelectorAll('.board');
-const rowHeight = 542;
+const rowHeight = 615.56;
 var i = 0;
 elements.forEach((element, index) => {
     const row = Math.floor(index/4); //현재 요소가 속한 행 번호

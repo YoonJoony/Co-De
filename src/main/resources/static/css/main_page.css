@@ -4,7 +4,12 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+@font-face { /* 나눔스퀘어 폰트 지리네 */
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html,
 body {
@@ -14,7 +19,7 @@ body {
 
 body {
   padding: 199px 0; /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: 'NanumSquareNeo-Variable';
   background-color: #ffffff;
   line-height: 1.6;
   display: block;
@@ -92,7 +97,7 @@ p{
 .gps {
     width: 19px;
     height: 19px;
-    top: 5px;
+    top: 7.8px;
     left: 6px;
     position: absolute;
 }
@@ -104,6 +109,7 @@ p{
 }
 
 .login {
+    font-family: 'NanumSquareNeo-Variable';
   word-spacing : 21px;
   position: absolute;
   top: 10px;
@@ -141,50 +147,52 @@ p{
 }
 
 .address #loc_btn {
-  position: relative;
-  top: -3.1px;
-  left: 5px;
-  width: 30px;
-  height: 30px;
-  font-size: 14px;
-  border: none;
-  background-color: #d9d9d9;
-  display: inline-block;
-  border-radius: 4px 0 0 4px;
-  cursor: pointer;
-  /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+    position: relative;
+    top: -3.1px;
+    left: 5px;
+    width: 30px;
+    height: 34px;
+    font-size: 14px;
+    border: none;
+    background-color: #d9d9d9;
+    display: inline-block;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+    /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
 }
 .address #loc_btn:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
-.address #address_input {
-  position: relative;
-  height: 30px;
-  font-size : 11px;
-  width: 40%;
-  border: none;
-  background-color: #d9d9d9;
-  color: black;
-  /*box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);*/
+.address #address_input {\
+    font-family: 'NanumSquareNeo-Variable';
+    position: relative;
+    height: 34px;
+    font-size: 11px;
+    width: 40%;
+    border: none;
+    background-color: #d9d9d9;
+    color: black;
+    /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
 }
 
 .address #find_address {
-  position: relative;
-  top: 2px;
-  right: 6px;
-  width: 12%;
-  height: 30px;
-  font-size: 12px;
-  font-weight: bold;
-  background-color: #FE9F47;
-  color: white;
-  border: none;
-  display: inline-block;
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  /*box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);*/
+    font-family: 'NanumSquareNeo-Variable';
+    position: relative;
+    /*top: 1px;*/
+    right: 6px;
+    width: 12%;
+    height: 34px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #FE9F47;
+    color: white;
+    border: none;
+    display: inline-block;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
 }
 .address #find_address:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
@@ -192,20 +200,21 @@ p{
 }
 
 .address #address_input_commit {
-  position: relative;
-  top: 2px;
-  right: 5px;
-  width: 6%;
-  height: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  background-color: #FE9F47;
-  color: white;
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    font-family: 'NanumSquareNeo-Variable';
+    position: relative;
+    top: 1px;
+    right: 5px;
+    width: 6%;
+    height: 34px;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #FE9F47;
+    color: white;
+    border: none;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 .address #address_input_commit:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
@@ -283,6 +292,7 @@ p{
   position: relative;
   height : 1117.5px;
   width: calc(80%);  /*top: 20%;*/
+  left : 35px;
   /* height: 500px; */
   /* border: 1px solid #d9d9d9; */
   background-color: #f0f0f0;
@@ -293,13 +303,13 @@ p{
 }
 
 .board {
+    font-family: 'NanumSquareNeo-Variable';
     position: relative;
-    width: calc(25% - 26px);
+    width: calc(23% - 42px);
     display: inline-block;
     /* top: 20%; */
-    height: 45%;
-    border: 1px solid #d9d9d9;
-    */: ;
+    height: 49%;
+    border: 4px solid #7c7c7c;
     background-color: #f0f0f0;
     border-radius: 20px;
     z-index: 0;
@@ -409,7 +419,7 @@ p{
     text-align: center;
     /* margin: auto; */
     width: 53%;
-    height: 35px;
+    height: 50px;
     left: 24%;
     /* margin-top: 10px; */
     position: absolute;
@@ -435,8 +445,9 @@ p{
 }
 
 .ad-img {
-  width: 84%;
-}
+    width: 76%;
+    position: relative;
+    top: -13px;}
 
 .search-list {
     /* padding: 15px 0px 20px 15px; */
@@ -615,31 +626,77 @@ p{
   transform: translate(-50%, -40%);
 }
 
+.div-join-p{
+    position: relative;
+    width: 100%;
+    height: 67%;
+    /* text-align: center; */
+}
+
+.join-icon{
+    width: 67%;
+    font-size: 37px;
+    left: 17%;
+    top: 14%;
+    position: absolute;
+}
+
+.join-p{
+    font-family: 'NanumSquareNeo-Variable';
+    width: 67%;
+    left: 17%;
+    top: 47%;
+    position: absolute;
+    /* text-align: center; */
+}
+
+/*입장 모달창에 뜨는 이미지*/
+.join-img{
+    position: absolute;
+    width: 1405px;
+    top: 50px;}
+
 .show .modal-popup {
-  transform: translate(-50%, -50%);
-  transition: all 0.5s;
-  display: inline-block;
-  font-weight: bold;
-  color: #272727;
-  background-color: #e6e6e6;
-  border-radius: 6px;
-  text-align: center;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+    width: 21%;
+    height: 23%;
+    display: inline-block;
+    font-weight: bold;
+    color: #272727;
+    background-color: #ffffff;
+    border-radius: 6px;
+    text-align: center;
 }
 
 .modal-popup .modal-btn {
-  position: relative;
-  top: 20px;
+    height: 22%;
+    position: relative;
+    top: 12px;
 }
 
 .modal-popup .modal-btn .modal_btn {
-  cursor: pointer;
-  width: 30%;
-  height: 20px;
-  margin: 10px;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 6px 6px 6px 6px;
-  display: inline-block;
+    font-family: 'NanumSquareNeo-Variable';
+    cursor: pointer;
+    width: 20%;
+    height: 77%;
+    margin: 10px;
+    border-style: dotted;
+    border-width: 0.1px;
+    border-color: #d9d9d9;
+    /* background-color: #FFFFFF; */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); */
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.modal-btn-join {
+    background-color: #FFFFFF;
+}
+
+.modal-btn-ok {
+    background-color: #3fc358;
+    color : #FFFFFF;
 }
 .modal-popup .modal-btn .modal_btn:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
@@ -693,6 +750,7 @@ body {
 }
 /* ëª¸ì²´ css */
 .popup {
+  font-family: 'NanumSquareNeo-Variable';
   position : relative;
   margin-top: 100px;
   width: 100%;
@@ -881,6 +939,7 @@ select::-ms-expand {
 
 /* ===== Select Box ===== */
 .sel {
+  z-index : 2;
   font-size: 7px;
   display: inline-block;
   margin-top: 5px;
