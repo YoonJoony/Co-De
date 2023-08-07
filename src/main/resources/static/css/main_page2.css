@@ -165,7 +165,8 @@ p{
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
-.address #address_input {
+.address #address_input {\
+    font-family: 'NanumSquareNeo-Variable';
     position: relative;
     height: 34px;
     font-size: 11px;
@@ -177,8 +178,9 @@ p{
 }
 
 .address #find_address {
+    font-family: 'NanumSquareNeo-Variable';
     position: relative;
-    top: 1px;
+    /*top: 1px;*/
     right: 6px;
     width: 12%;
     height: 34px;
@@ -198,8 +200,9 @@ p{
 }
 
 .address #address_input_commit {
+    font-family: 'NanumSquareNeo-Variable';
     position: relative;
-    top: 2px;
+    top: 1px;
     right: 5px;
     width: 6%;
     height: 34px;
@@ -249,6 +252,7 @@ p{
   position: absolute;
   top: 130%;
   left: -35px;
+  height: 290px;
   box-sizing: border-box;
   background-color: #bfbfbf;
   font-size: 14px;
@@ -306,8 +310,7 @@ p{
     display: inline-block;
     /* top: 20%; */
     height: 49%;
-    border: 1px solid #d9d9d9;
-    */: ;
+    border: 4px solid #7c7c7c;
     background-color: #f0f0f0;
     border-radius: 20px;
     z-index: 0;
@@ -428,14 +431,13 @@ p{
 
 .join {
     font-family: 'Play', sans-serif;
-    font-size: 16px;
     width: 100%;
     height: 100%;
     background-color: #FF9A61;
     color: #ffffff;
     border: none;
     border-radius: 20px;
-    cursor: pointer;
+    cursor : pointer;
 }
 
 .ad{
@@ -446,8 +448,7 @@ p{
 .ad-img {
     width: 76%;
     position: relative;
-    top: -13px;
-}
+    top: -13px;}
 
 .search-list {
     /* padding: 15px 0px 20px 15px; */
@@ -629,27 +630,32 @@ p{
 .div-join-p{
     position: relative;
     width: 100%;
-    height: 64%;
+    height: 67%;
     /* text-align: center; */
+}
+
+.join-icon{
+    width: 67%;
+    font-size: 37px;
+    left: 17%;
+    top: 14%;
+    position: absolute;
 }
 
 .join-p{
     font-family: 'NanumSquareNeo-Variable';
     width: 67%;
     left: 17%;
-    /* top: 35px; */
+    top: 47%;
     position: absolute;
     /* text-align: center; */
 }
 
 /*입장 모달창에 뜨는 이미지*/
-.div-join-img{
-    position : relative;
-}
-
 .join-img{
-    position : absolute;
-}
+    position: absolute;
+    width: 1405px;
+    top: 50px;}
 
 .show .modal-popup {
     transform: translate(-50%, -50%);
@@ -667,7 +673,7 @@ p{
 .modal-popup .modal-btn {
     height: 22%;
     position: relative;
-    top: 16px;
+    top: 12px;
 }
 
 .modal-popup .modal-btn .modal_btn {

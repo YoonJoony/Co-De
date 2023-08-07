@@ -30,20 +30,6 @@ public class MozipService {
 
     //게시글 가져오기
     public List<Mozip> getMozipList() {
-//        List<Mozip> mozipList = mozipRepository.findAll();
-//        List<MozipForm> mozipFormList = new ArrayList<>();
-//
-//        for(Mozip mozip : mozipList) {
-//            MozipForm mozipForm = MozipForm.builder()
-//                    .title(mozip.getTitle())
-//                    .distance_limit(mozip.getDistance_limit())
-//                    .categories(mozip.getCategories())
-//                    .peoples(mozip.getPeoples())
-//                    .build();
-//            mozipFormList.add(mozipForm);
-//        }
-//        return mozipFormList;
-
         List<Mozip> mozipList = mozipRepository.findAll();
 
         return mozipList;
