@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="stylesheet" href="/css/main_page.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script></head>
+</head>
 <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
 <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
@@ -14,85 +14,88 @@
 </head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+
 <body>
-<div class="main">
-    <div class="topper">
-        <!-- 로그인 부분 -->
-        <div class="login">
-            <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
-            <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
-            <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+    <div class="main">
+        <div class="topper">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+            </div>
         </div>
-    </div>
-    <!-- 헤더 부분 -->
-    <div class="header">
-        <!-- CO-ORDER 제목 부분 -->
-        <div class="logo-img">
-<!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-            <img class="logo" src="images/COOR2.png">
-            <p>ALL 📒 POST </p>
-        </div>
-        <!-- 주소 입력 부분 -->
-        <div class="address">
-            <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-                <img class="gps" src="images/GPS.png">
-            </button>
-            <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
-            <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
-            <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
-        </div>
-        <!-- 프로필 -->
-        <div class="profile">
-            <button id="profile_btn" type="button" onclick="profile_btn()">
-                <img src="images/profile.png" height="40px" width="40px">
-            </button>
-            <div id="layer-header-profile">
-                <div class="header-profile-direct">
-                    <dl class="header-member-direct__information">
-                        <dd>엄준식</dd>
-                        <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
-                        <dd>ㅇㅇ</dd>
-                        <dd>ㅇㅇ</dd>
-                    </dl>
+        <!-- 헤더 부분 -->
+        <div class="header">
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="logo-img">
+                <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                <img class="logo" src="images/COOR2.png">
+                <p>ALL 📒 POST </p>
+            </div>
+            <!-- 주소 입력 부분 -->
+            <div class="address">
+                <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                    <img class="gps" src="images/GPS.png">
+                </button>
+                <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
+                <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
+                <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
+            </div>
+            <!-- 프로필 -->
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="images/profile.png" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <dl class="header-member-direct__information">
+                            <dd>엄준식</dd>
+                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                            <dd>ㅇㅇ</dd>
+                            <dd>ㅇㅇ</dd>
+                        </dl>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
-    <div class="ad">
-        <a href="#">
-            <img img="" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/guide_main_banner.png" alt="" title="" class="ad-img">
-        </a>
-    </div>
-    <div class="search-list">
-        <input id="search_list" type="text">
-        <input id="search_btn" type="button" value="검색"></input>
-    </div>
-
-    <div class="board-list">
-        <div class="board"  style="position: absolute; left: 0%; top: 0px;" th:each="post : ${postList}">
-            <img class="board-img" src="images\chicken.png">
-            <div class="boards">
-                <div class="board-header" >
-                    <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
-                    <img class="board-link" src="images\link.png">
-                </div>
-                <div class="board-nickname" th:text="${post.nickname}"></div>
-                <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
-                <div class="board-button"></a>
-                    <button class="join">Go GO~</button>
-                </div>
-                <div class="board-categories" th:text="${post.categories}"></div>
-                <div class="board-peoples" th:text="${post.peoples}"></div>
-    <!--            <div class="food" th:text="${post.categories}"></div>-->
-             </div>
+        <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
+        <div class="ad">
+            <a href="#">
+                <img img="" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/guide_main_banner.png" alt="" title=""
+                    class="ad-img">
+            </a>
         </div>
-    </div>
-            <!-- 모집글 더보기 버튼 -->
+        <div class="search-list">
+            <input id="search_list" type="text">
+            <input id="search_btn" type="button" value="검색"></input>
+        </div>
+
+        <div class="board-list">
+            <div class="board" style="position: absolute; left: 0%; top: 0px;" th:each="post : ${postList}">
+                <img class="board-img" src="images\chicken.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
+                        <img class="board-link" src="images\link.png">
+                    </div>
+                    <div class="board-nickname" th:text="${post.nickname}"></div>
+                    <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
+                    <div class="board-button"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories" th:text="${post.categories}"></div>
+                    <div class="board-peoples" th:text="${post.peoples}"></div>
+                    <!--            <div class="food" th:text="${post.categories}"></div>-->
+                </div>
+            </div>
+        </div>
+        <!-- 모집글 더보기 버튼 -->
         <div class="load-btn">
             <input type="button" id="load_btn" value="더보기">
         </div>
@@ -126,7 +129,8 @@
                                 </div>
 
                                 <div class="input-area">
-                                    <input type="number" name="distance_limit" id="distance_limit" autocomplete="off" required max="500">
+                                    <input type="number" name="distance_limit" id="distance_limit" autocomplete="off"
+                                        required max="500">
                                     <label for="distance_limit">글 노출 거리 제한</label>
                                 </div>
 
@@ -167,7 +171,7 @@
                     </div>
 
                     <div class="m_footer">
-                        <button class="pop-btn create" id="create" type="submit" >글 생성</button>
+                        <button class="pop-btn create" id="create" type="submit">글 생성</button>
                         <span class="pop-btn close" id="close">창 닫기</span>
                     </div>
                 </form>
@@ -192,10 +196,10 @@
             </div>
         </div>
     </div>
-</div>
-<!-- 다음 주소 찾기 API -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+    </div>
+    <!-- 다음 주소 찾기 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
         function DaumPostcode() {
             new daum.Postcode({
                 oncomplete: function (data) {
@@ -204,28 +208,29 @@
             }).open();
         }
 
-    document.getElementById("create").addEventListener("click", function() {
-    var selectedValue1 = document.getElementById("category").value; // select option에서 선택된 값 가져오기
-    var selectedValue2 = document.getElementById("people").value; // select option에서 선택된 값 가져오기
-    $.ajax({
-        type: "POST", // 전송 방식
-        url: "/mozipCreate", // 컨트롤러 URL
-        data: {selectedValue1: selectedValue1,
-               selectedValue2 : selectedValue2
-        }, // 전달할 데이터
-        success: function(result) {
-            $("#changeInput").val('성공');
-        },
-        error: function(xhr, status, error) {
-            $("#changeInput").val('실패');
-        }
-    });
-});
-  </script>
+        document.getElementById("create").addEventListener("click", function () {
+            var selectedValue1 = document.getElementById("category").value; // select option에서 선택된 값 가져오기
+            var selectedValue2 = document.getElementById("people").value; // select option에서 선택된 값 가져오기
+            $.ajax({
+                type: "POST", // 전송 방식
+                url: "/mozipCreate", // 컨트롤러 URL
+                data: {
+                    selectedValue1: selectedValue1,
+                    selectedValue2: selectedValue2
+                }, // 전달할 데이터
+                success: function (result) {
+                    $("#changeInput").val('성공');
+                },
+                error: function (xhr, status, error) {
+                    $("#changeInput").val('실패');
+                }
+            });
+        });
+    </script>
     </script>
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="/js/main_page.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/js/main_page.js"></script>
 </body>
 
 </html>
