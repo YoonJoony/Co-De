@@ -92,7 +92,7 @@
                                         <span class="profile_name">농담곰</span>
                                     </div>
                                 </button>
-                                <button type="button" id="vote1" class="vote" onclick="vote()">추방투표</button>
+                                <button type="button" id="vote1" class="vote" onclick="voteOpen()">추방투표</button>
                             </li>
                             <li>
                                 <button type="button" class="list_box button--antiman">
@@ -101,7 +101,7 @@
                                         <span class="profile_name">북극곰</span>
                                     </div>
                                 </button>
-                                <button type="button" id="vote2" class="vote" onclick="vote()">추방투표</button>
+                                <button type="button" id="vote2" class="vote" onclick="voteOpen()">추방투표</button>
                             </li>
                             <li>
                                 <button type="button" class="list_box button--antiman">
@@ -110,7 +110,7 @@
                                         <span class="profile_name">반달곰</span>
                                     </div>
                                 </button>
-                                <button type="button" id="vote3" class="vote" onclick="vote()">추방투표</button>
+                                <button type="button" id="vote3" class="vote" onclick="voteOpen()">추방투표</button>
                             </li>
                         </ul>
                     </div>
@@ -177,14 +177,14 @@
     
             <div id="holder">
     
-                <div class="vote_button">
+                <div class="vote_button" onclick="ok()">
                     <p class="btnText">찬성</p>
                     <div class="btnO">
                         <p class="btnText2">O</p>
                     </div>
                 </div>
         
-                <div class="vote_button">
+                <div class="vote_button" onclick="nop()">
                     <p class="btnText">반대</p>
                     <div class="btnX">
                         <p class="btnText2">X</p>

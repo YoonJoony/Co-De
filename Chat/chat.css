@@ -297,6 +297,7 @@ body {
     color: #333;
     position: absolute;
     left: 30%;
+    margin-top: 10px;
 }
 
 .chat_wrap .inner {

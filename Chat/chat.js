@@ -100,10 +100,15 @@ $(function () {
 });
 
 // 투표
-function vote() {
+const vote_box = document.getElementById("vote_modal_box");
+
+// 투표 시작
+function voteOpen() {
   if (!confirm('ㅇㅇㅇ 사용자에 대한 추방투표를 진행하시겠습니까?')) {
+    // 취소 선택시
     return false;
   } else {
+    // 확인 선택시
     const vote_box = document.getElementById("vote_modal_box");
 
     if (vote_box.style.display !== "block") {
@@ -112,146 +117,161 @@ function vote() {
     else {
       vote_box.style.display = "none";
     }
-  }
-}
 
-const timer = document.getElementById('timer');
-const lines = timer.querySelector('#lines');
-const fins = timer.querySelector('#fins');
-const nums = timer.querySelector('#num-container');
-const control = document.querySelector('.button-container #control');
-const remainTime = document.querySelector('.time-container #remain-time');
-const totalTime = document.querySelector('.time-container #total-time');
+    // 타이머
+    const timer = document.getElementById('timer');
+    const lines = timer.querySelector('#lines');
+    const fins = timer.querySelector('#fins');
+    const nums = timer.querySelector('#num-container');
+    const control = document.querySelector('.button-container #control');
+    const remainTime = document.querySelector('.time-container #remain-time');
+    const totalTime = document.querySelector('.time-container #total-time');
 
-const endTime = 60
+    const endTime = 60
 
-let intervalID = null;
-let progressTimeSec = 0;
+    let intervalID = null;
+    let progressTimeSec = 0;
 
-let isPlay = true;
+    let isPlay = true;
 
-function paintLines() {
-  for (let i = 0; i < 30; i++) {
-    const line = document.createElement('div');
-    line.classList.add('line');
-    line.style.transform = `rotate(${i * 6}deg)`;
+    function paintLines() {
+      for (let i = 0; i < 30; i++) {
+        const line = document.createElement('div');
+        line.classList.add('line');
+        line.style.transform = `rotate(${i * 6}deg)`;
 
-    if (i % 5 == 0) {
-      line.classList.add('thick')
+        if (i % 5 == 0) {
+          line.classList.add('thick')
+        }
+
+        lines.append(line);
+      }
     }
 
-    lines.append(line);
-  }
-}
+    function paintNumber() {
+      let left = 15;
+      let right = 45;
 
-function paintNumber() {
-  let left = 15;
-  let right = 45;
+      for (let i = 0; i < 6; i++) {
+        const numBox = document.createElement('div');
+        numBox.classList.add('num-box');
+        numBox.style.transform = `rotate(${i * 30}deg)`;
 
-  for (let i = 0; i < 6; i++) {
-    const numBox = document.createElement('div');
-    numBox.classList.add('num-box');
-    numBox.style.transform = `rotate(${i * 30}deg)`;
+        const spanLeft = document.createElement('span');
+        const spanRight = document.createElement('span');
 
-    const spanLeft = document.createElement('span');
-    const spanRight = document.createElement('span');
+        const leftText = left - 5 * i;
+        spanLeft.textContent = leftText < 0 ? 60 + leftText : leftText;
+        spanRight.textContent = right - (5 * i);
 
-    const leftText = left - 5 * i;
-    spanLeft.textContent = leftText < 0 ? 60 + leftText : leftText;
-    spanRight.textContent = right - (5 * i);
+        spanLeft.style.transform = `rotate(${-30 * i}deg)`;
+        spanRight.style.transform = `rotate(${-30 * i}deg)`;
 
-    spanLeft.style.transform = `rotate(${-30 * i}deg)`;
-    spanRight.style.transform = `rotate(${-30 * i}deg)`;
-
-    numBox.append(spanLeft, spanRight);
-    nums.append(numBox);
-  }
-}
-
-function paintRemainTime() {
-  for (let min = 0; min < endTime; min++) {
-    for (let sec = 0; sec < 60; sec++) {
-      const remainFin = document.createElement('div');
-      remainFin.classList.add('fin');
-
-      const deg = min * 6 + sec * 0.1;
-      remainFin.style.transform = `rotate(${-deg}deg)`
-
-      fins.append(remainFin);
+        numBox.append(spanLeft, spanRight);
+        nums.append(numBox);
+      }
     }
-  }
-}
 
-function tickSec() {
-  progressTimeSec++;
-  if (progressTimeSec >= endTime * 60) pause();
+    function paintRemainTime() {
+      for (let min = 0; min < endTime; min++) {
+        for (let sec = 0; sec < 60; sec++) {
+          const remainFin = document.createElement('div');
+          remainFin.classList.add('fin');
 
-  const lastFin = fins.lastChild;
+          const deg = min * 6 + sec * 0.1;
+          remainFin.style.transform = `rotate(${-deg}deg)`
 
-  if (lastFin) {
-    lastFin.remove();
-  }
+          fins.append(remainFin);
+        }
+      }
+    }
 
-  renderRemainTime();
-}
+    function tickSec() {
+      progressTimeSec++;
+      if (progressTimeSec >= endTime * 60) pause();
 
-function play() {
-  intervalID = setInterval(tickSec, 16.9)
-  isPlay = true;
-  control.innerHTML = `<i class="fas fa-pause"></i>`;
-}
+      const lastFin = fins.lastChild;
 
-function pause() {
-  clearInterval(intervalID);
-  isPlay = false;
-  control.innerHTML = `<i class="fas fa-play"></i>`;
-}
+      if (lastFin) {
+        lastFin.remove();
+      }
 
-function onClickControl() {
-  if (isPlay) {
-    pause();
+      renderRemainTime();
+    }
 
-  } else {
+    function play() {
+      intervalID = setInterval(tickSec, 16.9)
+      isPlay = true;
+      control.innerHTML = `<i class="fas fa-pause"></i>`;
+    }
+
+    function pause() {
+      clearInterval(intervalID);
+      isPlay = false;
+      control.innerHTML = `<i class="fas fa-play"></i>`;
+    }
+
+    function onClickControl() {
+      if (isPlay) {
+        pause();
+
+      } else {
+        play();
+      }
+    }
+
+    function renderRemainTime() {
+      const totalSec = endTime * 60 - progressTimeSec;
+      const min = Math.floor(totalSec / 60);
+      const sec = totalSec % 60;
+
+      remainTime.textContent = `
+        ${min < 10 ? `0${min}` : min} : 
+        ${sec < 10 ? `0${sec}` : sec}
+    `;
+    }
+
+    function paintTime() {
+      renderRemainTime();
+      totalTime.textContent = `(${endTime} : 00)`;
+    }
+
+    if (lines) {
+      paintLines();
+    }
+
+    if (nums) {
+      paintNumber();
+    }
+
+    if (fins) {
+      paintRemainTime();
+    }
+
+    if (control) {
+      control.addEventListener('click', onClickControl);
+    }
+
+    if (remainTime && totalTime) {
+      paintTime();
+    }
+
     play();
   }
 }
 
-function renderRemainTime() {
-  const totalSec = endTime * 60 - progressTimeSec;
-  const min = Math.floor(totalSec / 60);
-  const sec = totalSec % 60;
+// 찬성
+function ok() {
+  vote_box.style.display = "none";
+  // 투표 집계
 
-  remainTime.textContent = `
-        ${min < 10 ? `0${min}` : min} : 
-        ${sec < 10 ? `0${sec}` : sec}
-    `;
 }
 
-function paintTime() {
-  renderRemainTime();
-  totalTime.textContent = `(${endTime} : 00)`;
-}
+// 반대
+function nop() {
+  vote_box.style.display = "none";
+  // 투표 집계
 
-if (lines) {
-  paintLines();
 }
-
-if (nums) {
-  paintNumber();
-}
-
-if (fins) {
-  paintRemainTime();
-}
-
-if (control) {
-  control.addEventListener('click', onClickControl);
-}
-
-if (remainTime && totalTime) {
-  paintTime();
-}
-
-play();
 
 // ----------------------------------------------
