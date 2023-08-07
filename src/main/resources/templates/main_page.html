@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/css/main_page.css">
+    <link rel="stylesheet" href="/css/main_page2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script></head>
 <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -52,7 +52,8 @@
             <div id="layer-header-profile">
                 <div class="header-profile-direct">
                     <dl class="header-member-direct__information">
-                        <dd>엄준식</dd>
+                    <!--<dd>엄준식</dd>-->
+                        <div class="profile-nickname" th:text="${nickname}"></div>     <!--자신의 닉네임으로 표시-->
                         <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
                         <dd>ㅇㅇ</dd>
                         <dd>ㅇㅇ</dd>
