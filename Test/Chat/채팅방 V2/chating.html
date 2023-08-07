@@ -92,7 +92,7 @@
                                         <span class="profile_name">농담곰</span>
                                     </div>
                                 </button>
-                                <button type="button" id="vote" class="vote" onclick="out_btn()">추방투표</button>
+                                <button type="button" id="vote" class="vote" onclick="VoteOpen()">추방투표</button>
                             </li>
                             <li>
                                 <button type="button" class="list_box button--antiman">
@@ -101,7 +101,7 @@
                                         <span class="profile_name">북극곰</span>
                                     </div>
                                 </button>
-                                <button type="button" id="vote" class="vote" onclick="out_btn()">추방투표</button>
+                                <button type="button" id="vote" class="vote" onclick="VoteOpen()">추방투표</button>
                             </li>
                             <li>
                                 <button type="button" class="list_box button--antiman">
@@ -110,7 +110,7 @@
                                         <span class="profile_name">반달곰</span>
                                     </div>
                                 </button>
-                                <button type="button" id="vote" class="vote" onclick="out_btn()">추방투표</button>
+                                <button type="button" id="vote" class="vote" onclick="VoteOpen()">추방투표</button>
                             </li>
                         </ul>
                     </div>
@@ -161,6 +161,38 @@
                 </div>
             </div>
         </div>
+
+        <!-- 추방투표 모달 -->
+
+        <div id="vote_modal_box">
+            <span class="vote_text"> 000 추방 투표</span>
+            <div class="timer-container">
+                <div id="timer" class="timer">
+                    <div class="cover1"></div>
+                    <div id="lines"></div>
+                    <div id="fins"></div>
+                </div>
+                <div class="cover2"></div>
+            </div>
+    
+            <div id="holder">
+    
+                <div class="vote_button">
+                    <p class="btnText">찬성</p>
+                    <div class="btnO">
+                        <p class="btnText2">O</p>
+                    </div>
+                </div>
+        
+                <div class="vote_button">
+                    <p class="btnText">반대</p>
+                    <div class="btnX">
+                        <p class="btnText2">X</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 
