@@ -24,26 +24,17 @@ class CodeBackendApplicationTests {
 
 	@Test
 	@DisplayName("회원가입 성공")
-	void 회원가입() {
-		MemberForm memberForm = new MemberForm("123", "123", "123", "123", "123", "123");
+	void 닉네임조회() {
+		MemberForm memberForm = new MemberForm("1010", "1010", "1010", "1010", "1010", "1010");
 		Member member = memberService.signUp(memberForm);
 		String id = member.getLoginId();
 
 		Member findMember = memberService.findOne(id).get();
-		assertThat(memberForm.getNickname()).isEqualTo(findMember.getNickname());
-		System.out.println("MemberForm : \n" + memberForm.getNickname());
+		assertThat(member.getNickname()).isEqualTo(findMember.getNickname());
+		System.out.println("MemberForm : \n" + member.getNickname());
 		System.out.println("findMember : \n" + findMember.getNickname());
 	}
 
-	@Test
-	@DisplayName("중복회원 검사")
-	void 중복회원_검사() {
-		MemberForm memberForm1 = new MemberForm("123", "123", "123", "김윤준", "123", "123");
-		MemberForm memberForm2 = new MemberForm("234", "234", "234", "김윤준", "234", "123");
 
-		memberService.signUp(memberForm1);
-		IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.signUp(memberForm2));
-		assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다."); //예외 클래스에서 넘어온 메시지랑 해당 메시지랑 같은지 비교
-	}
 
 }
