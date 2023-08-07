@@ -33,9 +33,9 @@ public class JpaMozipRepository implements MozipRepository {
     }
 
     @Override
-    public Optional<Mozip> findByName(String Title) {
-        List<Mozip> result = em.createQuery("select m from Mozip m where m.title = :title", Mozip.class)
-                .setParameter("Title", Title)
+    public Optional<Mozip> findByName(String title) {
+        List<Mozip> result = em.createQuery("select m from mozip m where m.title = :title", Mozip.class)
+                .setParameter("title", title)
                 .getResultList();
 
         return result.stream().findAny();
@@ -43,7 +43,7 @@ public class JpaMozipRepository implements MozipRepository {
 
     @Override
     public List<Mozip> findAll() {
-        TypedQuery typedQuery = em.createQuery("select m from Mozip m", Mozip.class);
+        TypedQuery typedQuery = em.createQuery("select m from Mozip m order by m.create_Date desc", Mozip.class); //테이블 생성시간 역순으로 조회
         return typedQuery.getResultList();
         /*
         return em.createQuery("select m from Member m", Member.class) //객체를 대상으로 쿼리를 날림. m이 sql로 번역됨

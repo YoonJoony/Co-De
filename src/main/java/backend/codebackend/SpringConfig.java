@@ -31,7 +31,7 @@ public class SpringConfig {
 
     @Bean
     public MozipService mozipService() {
-        return new MozipService(mozipRepository());
+        return new MozipService(mozipRepository(), memberRepository());
     }
 
 
