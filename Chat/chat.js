@@ -102,7 +102,7 @@ $(function () {
 // 투표
 $(function () {
   $('#vote').click(function () {
-    if (!confirm('삭제하시면 복구할수 없습니다. \n 정말로 삭제하시겠습니까??')) {
+    if (!confirm('ㅇㅇㅇ 사용자에 대한 추방투표를 진행하시겠습니까?')) {
       return false;
     } else {
       const list = document.getElementById("vote_modal_box");
