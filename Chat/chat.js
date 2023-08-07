@@ -100,22 +100,20 @@ $(function () {
 });
 
 // 투표
-$(function () {
-  $('#vote').click(function () {
-    if (!confirm('ㅇㅇㅇ 사용자에 대한 추방투표를 진행하시겠습니까?')) {
-      return false;
-    } else {
-      const list = document.getElementById("vote_modal_box");
+function vote() {
+  if (!confirm('ㅇㅇㅇ 사용자에 대한 추방투표를 진행하시겠습니까?')) {
+    return false;
+  } else {
+    const vote_box = document.getElementById("vote_modal_box");
 
-      if (list.style.display !== "block") {
-        list.style.display = "block";
-      }
-      else {
-        list.style.display = "none";
-      }
+    if (vote_box.style.display !== "block") {
+      vote_box.style.display = "block";
     }
-  });
-});
+    else {
+      vote_box.style.display = "none";
+    }
+  }
+}
 
 const timer = document.getElementById('timer');
 const lines = timer.querySelector('#lines');
