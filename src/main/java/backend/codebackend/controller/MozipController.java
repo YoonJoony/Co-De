@@ -38,7 +38,7 @@ public class MozipController {
 //    }
 
     @GetMapping("/main_page.html")
-    public String list(Model model) { //리스트들을 한 줄이 아니라 벗츠처럼? 네모 칸 예쁘게 수정?
+    public String list(Model model) {
         List<Mozip> mozipFormList = mozipService.getMozipList();
         model.addAttribute("postList", mozipFormList);
         return "main_page";
@@ -59,7 +59,7 @@ public class MozipController {
         }
         //세션ID에 저장된 로그인 한 ID를 가져온 후 memberSerice에서 해당 로그인 ID에 해당하는 nickname 가져옴
         sv.setNickname(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname());
-        create(mozipForm);
+        create(mozipForm); //닉네임은 넘어온 객체에 저장할 수 있도록 함
 
         return "redirect:/main_page.html"; //글 생성 시 다시 초기화면으로
     }
@@ -71,7 +71,6 @@ public class MozipController {
         //카테고리, 인원 수가 저장되는 싱글톤 객체 안에 데이터로 넘어온 변수 저장해두기
         sv.setSelectedValue1(selectedValue1); //카테고리 저장
         sv.setSelectedValue2(selectedValue2); //인원 수 저장
-
         return "main_page";
     }
     //2번 post로 저장하는 이유 : 버튼 클릭시 html에서 넘어오는 form 태그에서 한번, ajax에서 넘어오는 데이터에서 또 한번
