@@ -1,3 +1,11 @@
+@font-face {
+  /* 나눔스퀘어 폰트 지리네 */
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
@@ -164,6 +172,9 @@ input:focus {
   border-bottom: 1px solid #d6d6d6;
   align-items: center;
 }
+.pay_date {
+  flex: 2;
+}
 .pay_title {
   flex: 2;
 }
@@ -171,7 +182,7 @@ input:focus {
   flex: 2;
 }
 .pay_price {
-  flex: 1;
+  flex: 1.5;
 }
 .btn_div {
   display: flex;
