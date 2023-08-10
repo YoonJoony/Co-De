@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>챗봇</title>
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+
+<body>
+    <div class="main">
+        <div class="topper">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+            </div>
+        </div>
+        <!-- 헤더 부분 -->
+        <div class="header">
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="logo-img">
+                <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                <img class="logo" src="images/COOR2.png">
+                <p>ALL 📒 POST </p>
+            </div>
+            <!-- 프로필 -->
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="images/profile.png" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <div class="profile-div">
+                            엄준식</div>
+                        <div class="profile-div">
+                            <input type="button" class="profile-btn" id="profile_btn_btn1" onclick=""
+                                value="마이페이지"></input>
+                        </div>
+                        <div class="profile-div">
+                            <input type="button" class="profile-btn" id="profile_btn_btn2" onclick=""
+                                value="참여중인 모집글"></input>
+                        </div>
+                        <div class="profile-div">
+                            <input type="button" class="profile-btn" id="profile_btn_btn3" onclick=""
+                                value="거래 내역 조회"></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 거래 내역 -->
+        <div class="body_title">
+            챗 봇
+        </div>
+        <!-- 채팅 -->
+        <div id="chat-container">
+            <div id="chat-messages"></div>
+            <div id="user-input">
+                <input type="text" placeholder="메시지를 입력하세요..." />
+                <button>전송</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+
+</html>
