@@ -1,17 +1,3 @@
-// 기본 마커 표시
-
-// var map = new naver.maps.Map('map', {
-//     center: new naver.maps.LatLng(37.5112, 127.0981), // 잠실 롯데월드를 중심으로 하는 지도
-//     zoom: 15
-// });
-
-// var marker = new naver.maps.Marker({
-//     position: new naver.maps.LatLng(37.5112, 127.0981),
-//     map: map
-// });
-
-// -------------------------------------------------
-
 // 다중 마커 표시
 
 $(function () {
@@ -21,22 +7,26 @@ $(function () {
 });
 
 function initMap() {
+    // 호스트 좌표 변수
+    let main_lat, main_lng;
+    main_lat = 37.64359950713993;
+    main_lng = 127.02755816582702;
 
     var areaArr = new Array();  // 지역을 담는 배열 ( 지역명/위도경도 )
     areaArr.push(
         /*이름*/			/*위도*/					/*경도*/
-        { location: '농담곰', lat: '37.5112', lng: '127.0981' },  // 호스트 좌표
-        { location: '북극곰', lat: '37.64355498448049', lng: '127.02785652511915' },  // 참가자1 좌표
-        { location: '콜라곰', lat: '37.64355498448049', lng: '127.02785652511915' },  // 참가자2 좌표
-        { location: '망그곰', lat: '37.64355498448049', lng: '127.02785652511915' },  // 참가자3 좌표
+        { location: '농담곰', lat: main_lat, lng: main_lng },  // 호스트 좌표
+        { location: '북극곰', lat: '37.643554984480', lng: '127.027856525115' },  // 참가자1 좌표
+        { location: '콜라곰', lat: '37.640668966010516', lng: '127.02720710334465' },  // 참가자2 좌표
+        { location: '망그곰', lat: ' 37.64302726452654', lng: '127.02830864442011' },  // 참가자3 좌표
     );
 
     let markers = new Array(); // 마커 정보를 담는 배열
     let infoWindows = new Array(); // 정보창을 담는 배열
 
     var map = new naver.maps.Map('map', {
-        center: new naver.maps.LatLng(37.5112, 127.0981), //지도 시작 지점 = 호스트 좌표
-        zoom: 12
+        center: new naver.maps.LatLng(main_lat, main_lng), //지도 시작 지점 = 호스트 좌표
+        zoom: 18
     });
 
     let Slat = 0, Slng = 0;
@@ -70,17 +60,20 @@ function initMap() {
         infoWindows.push(infoWindow); // 생성한 정보창을 배열에 담는다.
     }
 
-    var middlemarker = new naver.maps.Marker({
+    // 중간지점 마커
+    var middlemarker_option = {
         map: map,
         position: new naver.maps.LatLng(middlelat, middlelng), // 사용자의 위도 경도 넣기
         title: '중간지점',
         icon: {
-            url: 'maker.png',
-            size: new naver.maps.Size(50, 52),
+            url: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
+            size: new naver.maps.Size(60, 62),
             origin: new naver.maps.Point(0, 0),
             anchor: new naver.maps.Point(25, 26)
         }
-    });
+    };
+
+    var middlePoint = new naver.maps.Marker(middlemarker_option);
 
 
     function getClickHandler(seq) {
