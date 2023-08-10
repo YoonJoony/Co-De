@@ -252,6 +252,7 @@ p {
   position: absolute;
   top: 130%;
   left: -35px;
+  height: 290px;
   box-sizing: border-box;
   background-color: #bfbfbf;
   font-size: 14px;

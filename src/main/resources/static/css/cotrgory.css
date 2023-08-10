@@ -151,16 +151,16 @@ li {
   
 /*프로필 클릭시 표시되는 창*/
 #layer-header-profile {
-    display: none;
-    position: absolute;
-    top: 130%;
-    left: -35px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    background-color: #bfbfbf;
-    font-size: 14px;
-    transform: translate3d(-50%, 0, 0);
-    border-radius: 10px;
+        display: none;
+        position: absolute;
+        top: 130%;
+        left: -35px;
+        box-sizing: border-box;
+        background-color: #bfbfbf;
+        font-size: 14px;
+        transform: translate3d(-50%, 0, 0);
+        border-radius: 10px;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
   
 .header-profile-direct {

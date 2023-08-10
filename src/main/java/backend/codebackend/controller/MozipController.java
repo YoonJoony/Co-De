@@ -38,15 +38,23 @@ public class MozipController {
 //    }
 
     @GetMapping("/main_page.html")
-    public String list(Model model) { //리스트들을 한 줄이 아니라 벗츠처럼? 네모 칸 예쁘게 수정?
+    public String list(Model model, HttpServletRequest request) { //리스트들을 한 줄이 아니라 벗츠처럼? 네모 칸 예쁘게 수정?
         List<Mozip> mozipFormList = mozipService.getMozipList();
         model.addAttribute("postList", mozipFormList);
-        return "main_page";
+
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return "세션이 없습니다.";
+        }
+        //세션ID에 저장된 로그인 한 ID를 가져온 후 memberSerice에서 해당 로그인 ID에 해당하는 nickname 가져옴
+        //create2(mozipForm);
+        model.addAttribute("nickname",
+                memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname());
+
+        return "main_page"; //글 생성 시 다시 초기화면으로
     }
     @GetMapping("/session-info")
     public String sessionInfo(HttpServletRequest request) {
-
-
         return "세션 출력";
     }
 
@@ -63,6 +71,7 @@ public class MozipController {
 
         return "redirect:/main_page.html"; //글 생성 시 다시 초기화면으로
     }
+
 
     //모집글 생성(caterory, people) 변수 저장
     @PostMapping("/mozipCreate")
@@ -84,4 +93,7 @@ public class MozipController {
         mozipForm.setNickname(sv.getNickname());
         mozipService.savePost(mozipForm); //모집글 저장.
     }
+
+
+
 }
