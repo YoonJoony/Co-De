@@ -216,192 +216,43 @@ input:focus {
   border: solid 1px #7cab75;
   background-color: #ffffff;
 }
-.board {
-  position: relative;
-  width: 100%;
-  overflow: auto;
-  max-width: 800px;
-  margin: 0 auto;
-}
 .h1 {
   margin-bottom: 25px;
   margin-top: 30px;
 }
-.payment_list {
+.message {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #e6e6e6;
+}
+#chat-container {
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+}
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+#user-input {
   display: flex;
   padding: 10px;
-  border-bottom: 1px solid #d6d6d6;
-  align-items: center;
 }
-.pay_date {
-  flex: 1.5;
+#user-input input {
+  flex: 1;
+  padding: 10px;
+  outline: none;
 }
-.pay_title {
-  flex: 2;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  padding-right: 10px;
-}
-.pay_name {
-  flex: 2;
-}
-.pay_price {
-  flex: 1.5;
-}
-.btn_div {
-  display: flex;
-  width: 21%;
-  justify-content: space-between;
-}
-.payment_list_btn {
-  position: relative;
-  display: flex;
-  height: 30px;
-  padding: 0 8px;
-  font-size: 13px;
-  line-height: 42px;
-  text-align: center;
-  align-items: center;
-  border: 0;
-  border-radius: 5px;
-  background-color: #7cab75;
-  color: white;
-  overflow: hidden;
-  cursor: pointer;
-}
-.payment_list_btn:hover {
-  opacity: 0.7;
-}
-/* 모달창 css*/
-.modal-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-
-  /*숨기기*/
-  z-index: -1;
-  opacity: 0;
-}
-.show-modal {
-  opacity: 1;
-  z-index: 20;
-  transition: all 0.5s;
-}
-.modal-window {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.modal-popup {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-
-  width: 30%;
-  height: 27%;
-
-  transform: translate(-50%, -40%);
-}
-.modal-popup {
-  transform: translate(-50%, -50%);
-  transition: all 0.5s;
-  display: inline-block;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #e6e6e6;
-  border-radius: 6px;
-  text-align: center;
-}
-.modal-popup .modal-popup-close {
-  position: absolute;
-  width: 100%;
-  height: 13%;
-}
-.modal-popup-close-name {
-  position: absolute;
-  width: 5%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  right: 0px;
-  cursor: pointer;
-  z-index: 1;
-}
-.modal-popup .modal-popup-title {
-  position: relative;
-  width: 100%;
-  height: 13%;
-  background-color: #7cab75;
-  border-radius: 6px 6px 0 0;
-}
-.modal-popup-title-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.modal-star-rating {
-  position: relative;
-  width: 100%;
-  height: 74%;
-}
-.modal-commit {
-  position: relative;
-  width: 100%;
-  height: 13%;
-}
-.modal-commit #modal_commit {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  font-size: 14px;
+#user-input button {
   border: none;
-  color: #ffffff;
-  background-color: #7cab75;
-  display: inline-block;
-  border-radius: 0 0 6px 6px;
+  background-color: #1e88e5;
+  color: white;
+  padding: 10px 15px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-.modal-commit #modal_commit:hover {
-  opacity: 0.7;
-}
-.starRev {
-  position: relative;
-  padding-top: 30px;
-  padding-bottom: 10px;
-}
-/* 각 별들의 기본 설정 */
-.starR {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  color: transparent;
-  text-shadow: 0 0 0 #bfbfbf;
-  font-size: 1.8em;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-/* 별 이모지에 마우스 오버 시 */
-.starR:hover {
-  text-shadow: 0 0 0 #ccc;
-}
-
-/* 별 이모지를 클릭 후 class="on"이 되었을 경우 */
-.starR.on {
-  text-shadow: 0 0 0 #ffbc00;
-}
-#star_num_text {
-  color: #7cab75;
-}
-.modal-star-rating p {
-  display: inline-block;
-  position: relative;
-  font-size: 20px;
 }
