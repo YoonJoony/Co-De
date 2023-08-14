@@ -1,105 +1,145 @@
 package backend.codebackend.repository;
 
-import backend.codebackend.dto.ChatRoom;
+import backend.codebackend.dto.ChatRoomDto;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
+import static java.util.UUID.randomUUID;
+
 @Slf4j
 public class ChatRepository {
-    private Map<String, ChatRoom> chatRoomMap;
+    private Map<String, ChatRoomDto> chatRoomDtoMap;
 
-    @PostConstruct
+    @PostConstruct //의존성 주입 후 초기화 작업이 필요한 메서드에 사용됨
     private void init() {
-        chatRoomMap = new LinkedHashMap<>();
+        chatRoomDtoMap = new LinkedHashMap<>(); //LinkedHashMap 은 리스트 생성 순서를 지켜서 생성됨.
     }
+
     //전체 채팅방 조회
-    public List<ChatRoom> findAllRoom(){
-        //채팅방 생성 순서를 최근순으로 반환 (chatRoomMap에서 모든 채팅방을 가져와 최근순으로 뒤집은 후 List 형태로 반환하는 메소드)
-        List chatRooms = new ArrayList<>(chatRoomMap.values()); //ArrayList는 List 인터페이스를 구현한 클래스 중 하나로, 내부적으로 배열을 이용하여 요소들을 저장
-        Collections.reverse(chatRooms);     // List의 순서를 뒤집어주는 메소드
+    public List<ChatRoomDto> findAllRoom() {
+        //채팅방 생성 순서를 최근순으로 반환
+        List chatRooms = new ArrayList<>(chatRoomDtoMap.values());
+        Collections.reverse(chatRooms); //파라미터로 받은 chatRooms를 거꾸로 뒤집음(최근순)
 
         return chatRooms;
     }
-    // roomID 기준으로 채팅방 찾기
-    public ChatRoom findRoomById(String roomId){
-        return chatRoomMap.get(roomId);
+
+    //roomID 기준으로 채팅방 찾기
+    public ChatRoomDto findRoomById(String roomId) {
+        return chatRoomDtoMap.get(roomId);
     }
 
-    // roomName 로 채팅방 만들기
-    public ChatRoom createChatRoom(String roomName){
-        ChatRoom chatRoom = new ChatRoom().create(roomName); // 채팅룸 이름으로 채팅 룸 생성 후
+    //roomName로 채팅방 만들기
+    public ChatRoomDto createChatRoom(String roomName, String roomPwd, boolean secretChk, int maxUserCnt) {
+        ChatRoomDto chatRoomDTO = ChatRoomDto.builder() //채팅룸 이름으로 채팅방 생성
+                        .roomId(UUID.randomUUID().toString())
+                        .roomName(roomName)
+                        .roomPwd(roomPwd)
+                        .secretChk(secretChk)
+                        .userlist(new HashMap<String, String>())
+                        .userCount(0)
+                        .maxUserCnt(maxUserCnt)
+                        .build();
 
-        // map 에 채팅룸 아이디와 만들어진 채팅룸을 저장장
-        chatRoomMap.put(chatRoom.getRoomId(), chatRoom);
+        //map에 채팅룸 아이디와 만들어진 채팅룸을 저장
+        chatRoomDtoMap.put(chatRoomDTO.getRoomId(), chatRoomDTO);
 
-        return chatRoom;
+        return chatRoomDTO;
     }
 
-    // 채팅방 인원+1
-    public void plusUserCnt(String roomId){
-        ChatRoom room = chatRoomMap.get(roomId);
+    //채팅방 인원 +1
+    public void plusUserCnt(String roomId) {
+        ChatRoomDto room = chatRoomDtoMap.get(roomId);
         room.setUserCount(room.getUserCount()+1);
     }
 
-    // 채팅방 인원-1
-    public void minusUserCnt(String roomId){
-        ChatRoom room = chatRoomMap.get(roomId);
+    //채팅방 인원-1
+    public void minusUserCnt(String roomId) {
+        ChatRoomDto room = chatRoomDtoMap.get(roomId);
         room.setUserCount(room.getUserCount()-1);
     }
 
-    // 채팅방 유저 리스트에 유저 추가
-    public String addUser(String roomId, String userName){
-        ChatRoom room = chatRoomMap.get(roomId);
-        String userUUID = UUID.randomUUID().toString();
+    //채팅방 유저 리스트에 유저 추가
+    public String addUser(String roomId, String userName) {
+        ChatRoomDto room = chatRoomDtoMap.get(roomId);
+        String userUUID = randomUUID().toString();
 
-        // 아이디 중복 확인 후 userList 에 추가
+        //아이디 중복 확인 후 userList에 추가
         room.getUserlist().put(userUUID, userName);
 
         return userUUID;
     }
 
-    // 채팅방 유저 이름 중복 확인
-    public String isDuplicateName(String roomId, String username){
-        ChatRoom room = chatRoomMap.get(roomId);
+    //채팅방 유저 이름 중복 확인
+    public String isDuplicateName(String roomId, String username) {
+        ChatRoomDto room = chatRoomDtoMap.get(roomId);
         String tmp = username;
 
-        // 만약 userName 이 중복이라면 랜덤한 숫자를 붙임
-        // 이때 랜덤한 숫자를 붙였을 때 getUserlist 안에 있는 닉네임이라면 다시 랜덤한 숫자 붙이기!
-        while(room.getUserlist().containsValue(tmp)){
-            int ranNum = (int) (Math.random()*100)+1;
+        //만약 userName이 중복이라면 랜덤한 숫자를 붙임
+        //이때 랜덤한 숫자를 붙였을 때 getUserlist안에 있는 닉네임이라면 다시 랜덤한 숫자를 부여
+        //하지만 난 중복일 수가 없으니 걍 false로 해야됨
+        if(room.getUserlist().containsValue(tmp)) {
+            int ranNum = (int)(Math.random()*100)+1;
 
-            tmp = username+ranNum;
+            tmp = username + ranNum;
         }
 
         return tmp;
     }
 
-    // 채팅방 유저 리스트 삭제
-    public void delUser(String roomId, String userUUID){
-        ChatRoom room = chatRoomMap.get(roomId);
+    //채팅방 유저 리스트 삭제
+    public void delUser(String roomId, String userUUID) {
+        ChatRoomDto room = chatRoomDtoMap.get(roomId);
         room.getUserlist().remove(userUUID);
     }
 
-    // 채팅방 userName 조회
-    public String getUserName(String roomId, String userUUID){
-        ChatRoom room = chatRoomMap.get(roomId);
-        return room.getUserlist().get(userUUID);
+    //채팅방 userName 조회
+    public String getUserName(String roomId, String userUUID) {
+        ChatRoomDto roomDTO = chatRoomDtoMap.get(roomId);
+        return roomDTO.getUserlist().get(userUUID);
     }
 
-    // 채팅방 전체 userlist 조회
-    public ArrayList<String> getUserList(String roomId){
+    //채팅방 전체 userList 조회
+    public ArrayList<String> getUserList(String roomId) {
         ArrayList<String> list = new ArrayList<>();
 
-        ChatRoom room = chatRoomMap.get(roomId);
+        ChatRoomDto room = chatRoomDtoMap.get(roomId);
 
-        // hashmap 을 for 문을 돌린 후
-        // value 값만 뽑아내서 list 에 저장 후 reutrn
+        //hashmap을 for문을 돌린 후
+        //value 값만 뽑아내서 list에 저장 후 return
         room.getUserlist().forEach((key, value) -> list.add(value));
+
         return list;
     }
-}
 
+    //maxUserCnt에 따른 채팅방 입장 여부
+    public boolean chkRoomUserCnt(String roomId) {
+        ChatRoomDto room = chatRoomDtoMap.get(roomId);
+
+        log.info("참여인원 확인 [{}, {}]", room.getUserCount(), room.getMaxUserCnt());
+
+        if(room.getUserCount()+1 > room.getMaxUserCnt()) {
+            return false;
+        }
+        return true;
+    }
+
+    //채팅방 비밀번호 조회
+    public boolean confirmPwd(String roomId, String roomPwd) {
+        return roomPwd.equals(chatRoomDtoMap.get(roomId).getRoomPwd());
+    }
+
+    //채팅방 삭제
+    public void delChatRoom(String roomId) {
+        try {
+            //채팅방 삭제
+            chatRoomDtoMap.remove(roomId);
+
+            log.info("삭제 완료 roonId : {}", roomId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}

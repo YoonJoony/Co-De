@@ -78,7 +78,8 @@
         </div>
 
         <div class="board-list">
-            <div class="board" style="position: absolute; left: 0%; top: 0px;" th:each="post : ${postList}">
+            <th:block th:each="post : ${postList}">
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
                 <img class="board-img" src="images\chicken.png">
                 <div class="boards">
                     <div class="board-header">
@@ -95,6 +96,7 @@
                     <!--            <div class="food" th:text="${post.categories}"></div>-->
                 </div>
             </div>
+            </th:block>
         </div>
         <!-- 모집글 더보기 버튼 -->
         <div class="load-btn">

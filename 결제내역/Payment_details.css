@@ -401,9 +401,7 @@ input:focus {
   color: #7cab75;
 }
 .modal-star-rating p {
-  display: inline;
-  position: absolute;
-  top: 40%;
-  left: 46%;
+  display: inline-block;
+  position: relative;
   font-size: 20px;
 }
