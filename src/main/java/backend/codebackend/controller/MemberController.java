@@ -82,12 +82,13 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/members")
-    public String list(Model model) {
-        List<Member> members = memberService.findMembers();
-        model.addAttribute("members", members);
-        return "members/memberList";
-    }
+
+//    @GetMapping("/members")
+//    public String list(Model model) {
+//        List<Member> members = memberService.findMembers();
+//        model.addAttribute("members", members);
+//        return "members/memberList";
+//    }
 
     //!!!! 다른 브라우저를 써야 세션 리스트가 나옴.
     @GetMapping("/session-list")
