@@ -1,0 +1,11 @@
+@startuml
+class backend.codebackend.controller.MemberController {
+- MemberService memberService
++ {static} Hashtable sessionList
++ String logout(HttpServletRequest)
++ String SignIn(SignInRequest,HttpServletRequest)
++ String create(MemberForm)
++ String list(Model)
++ Map<String,String> sessionList()
+}
+@enduml

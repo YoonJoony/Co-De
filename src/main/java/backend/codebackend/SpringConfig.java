@@ -1,9 +1,13 @@
 package backend.codebackend;
 
 import backend.codebackend.repository.*;
+import backend.codebackend.service.FileService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MozipService;
-import jakarta.persistence.Entity;
+import backend.codebackend.service.S3FileService;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +16,6 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
-
-import javax.sql.DataSource;
 
 //빈을 직접 찾아서 등록하는거라 따로 서비스나 저장소에서 @service... @repo.. 안해줘도 됨
 
@@ -25,8 +27,12 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
 
     private final EntityManager em;
 
-    public SpringConfig(EntityManager em) {
+    private final AmazonS3 amazonS3;
+
+
+    public SpringConfig(EntityManager em, AmazonS3 amazonS3) {
         this.em = em;
+        this.amazonS3 = amazonS3;
     }
 
     @Bean
@@ -37,6 +43,11 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     @Bean
     public MozipService mozipService() {
         return new MozipService(mozipRepository(), memberRepository());
+    }
+
+    @Bean
+    public FileService fileService() {
+        return new S3FileService(amazonS3);
     }
 
 
