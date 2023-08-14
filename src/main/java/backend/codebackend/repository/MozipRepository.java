@@ -1,6 +1,5 @@
 package backend.codebackend.repository;
 
-import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import org.springframework.data.jpa.repository.JpaRepository;
 
