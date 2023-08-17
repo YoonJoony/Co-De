@@ -956,7 +956,7 @@ input::-webkit-inner-spin-button {
     height: 250px;
     background-color: #acc2d2;
     position: absolute;
-    display: none;
+    display: block;
     left: 115%;
     top: 30%;
 }
@@ -1121,58 +1121,50 @@ input::-webkit-inner-spin-button {
 
 .btnO {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 100px;
+    margin-top: -100px;
+    padding-top: 2px;
     background: #0004ff;
-    left: -100px;
+    left: -250px;
     transition: .3s;
 }
 
 .btnX {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 100px;
+    margin-top: -100px;
+    padding-top: 2px;
     background: #ff0000;
-    left: -100px;
+    left: -250px;
     transition: .3s;
 }
 
-.btnText0 {
+.btnText {
     color: white;
-    transition: .3s;
-    margin-top: -18px;
-}
-
-.btnTextX {
-    margin-top: 40px;
-    color: #FFF;
     transition: .3s;
 }
 
 .btnText2 {
-    margin-top: -5px;
+    margin-top: 63px;
+    margin-right: -130px;
     color: #FFF;
-    transition: .3s;
 }
 
 .vote_button:hover .btnO {
     /*When hovering over .button change .btnTwo*/
-    left: -10px;
+    left: -130px;
 }
 
 .vote_button:hover .btnX {
     /*When hovering over .button change .btnTwo*/
-    left: -10px;
+    left: -130px;
 }
 
-.vote_button:hover .btnText0 {
+.vote_button:hover .btnText {
     /*When hovering over .button change .btnText*/
-    margin-left: 10px;
-}
-
-.vote_button:hover .btnTextX {
-    /*When hovering over .button change .btnText*/
-    margin-left: 10px;
+    margin-left: 65px;
 }
 
 .vote_button:active {
