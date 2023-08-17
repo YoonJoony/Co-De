@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="비싼 배달비는 이제 그만! 함께 배달주문하는 서비스를 이용해보세요">
+    <title>Co-Order</title>
+
+    <script type="text/javascript"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=99by68keh8"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="chat_v2.css">
+
+    <script src="https://code.jquery.com/jquery-1.8.3.min.js" integrity="sha256-YcbK69I5IXQftf/mYD8WY0/KmEDCv1asggHpJk1trM8=" crossorigin="anonymous"></script>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+
+<body>
+    <div class="main">
+        <div class="topper">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+            </div>
+        </div>
+        <div class="header">
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="logo-img">
+                <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                <img class="logo" src="images/COOR2.png">
+            </div>
+            <!-- 주소 입력 부분 -->
+            <div class="address">
+                <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                    <img class="gps" src="images/GPS.png">
+                </button>
+                <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
+                <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
+                <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
+            </div>
+            <!-- 프로필 -->
+            <div class="profile">
+                <button id="profile_btn" type="button" onclick="profile_btn()">
+                    <img src="images/profile.png" height="40px" width="40px">
+                </button>
+                <div id="layer-header-profile">
+                    <div class="header-profile-direct">
+                        <dl class="header-member-direct__information">
+                            <dd>엄준식</dd>
+                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
+                            <dd>ㅇㅇ</dd>
+                            <dd>ㅇㅇ</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="map_box">
+                <button id="map_button" class="button button--ujarak button--border-thin button--text-thick">지도</button>
+                <button id="map_close" class="button button--ujarak button--border-thin button--text-thick">닫기</button>
+            </div>
+            <div id="map" class="map"></div>
+
+            <div class="chat_wrap">
+                <div class="phone_number">
+                    <span class="phone" name="phone">방장 연락처 : 010-8888-9999</span>
+                </div>
+
+                <div class="chat_name">
+                    <span class="chat_title" name="chat_title">방이름</span>
+                    <button type="button" class="menu_trigger" onclick="ListOpen()"><img src="images/사람.jpg" width="30px"
+                            height="30px"></button>
+
+                    <div class="vistor" id="vistor">
+                        <div class="visit_header">
+
+                        </div>
+
+                        <div class="visit_body">
+                            <ul class="no_dot">
+                                <li>
+                                    <button type="button" class="list_box button--antiman">
+                                        <div class="list_content">
+                                            <img src="images/gom.PNG" height="35px" width="35px">
+                                            <span class="profile_name">망그곰(호스트)</span>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="list_box button--antiman">
+                                        <div class="list_content">
+                                            <img src="images/gom.PNG" height="35px" width="35px">
+                                            <span class="profile_name">농담곰</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" id="vote1" class="vote" onclick="voteOpen()">추방투표</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="list_box button--antiman">
+                                        <div class="list_content">
+                                            <img src="images/gom.PNG" height="35px" width="35px">
+                                            <span class="profile_name">북극곰</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" id="vote2" class="vote" onclick="voteOpen()">추방투표</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="list_box button--antiman">
+                                        <div class="list_content">
+                                            <img src="images/gom.PNG" height="35px" width="35px">
+                                            <span class="profile_name">반달곰</span>
+                                        </div>
+                                    </button>
+                                    <button type="button" id="vote3" class="vote" onclick="voteOpen()">추방투표</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="visit_footer">
+                            <button type="button" class="list_box button--antiman invite_btn" id="invite_btn"
+                                onclick="invite_btn()">
+                                <div>
+                                    <span class="invite_content"> ＋ 사용자 초대</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner"></div>
+                <input type="text" class="mymsg" placeholder="내 메세지">
+                <input type="text" class="yourmsg" placeholder="상대 메세지">
+            </div>
+
+            <!-- 초대 모달 -->
+            <div class="invite_modal" id="invite_modal">
+                <div class="popup" id="popup">
+                    <div class="m_head">
+                        <img class="m_logo" src="images/COOR.png">
+                    </div>
+                    <div class="m_body">
+                        <div class="input-area">
+                            <div class="body-titlebox">
+                                <h2>초대</h2>
+                            </div>
+
+                            <div class="body-contentbox">
+                                <div class="input-area">
+                                    <input type="number" name="range" id="ragne" autocomplete="off" required max="500"
+                                        required>
+                                    <label for="ragne">초대 할 사용자 닉네임</label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m_footer">
+                        <span class="pop-btn invite" id="invite">초대</span>
+                        <span class="pop-btn close" id="close">창 닫기</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 추방투표 모달 -->
+
+            <div id="vote_modal_box">
+                <span class="vote_text"> 000 추방 투표</span>
+                <div class="timer-container">
+                    <div id="timer" class="timer">
+                        <div class="cover1"></div>
+                        <div id="lines"></div>
+                        <div id="fins"></div>
+                    </div>
+                    <div class="cover2"></div>
+                </div>
+
+                <div id="holder">
+                    <div class="vote_button" onclick="ok()">
+                        <p class="btnText0">찬성</p>
+                        <div class="btnO">
+                            <p class="btnText2">O</p>
+                        </div>
+                    </div>
+
+                    <div class="vote_button" onclick="nop()">
+                        <p class="btnTextX">반대</p>
+                        <div class="btnX">
+                            <p class="btnText2">X</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div class="section">
+                <input type="radio" name="slide" id="slide01" checked>
+                <input type="radio" name="slide" id="slide02">
+                <input type="radio" name="slide" id="slide03">
+                <div class="slidewrap">
+
+                    <ul class="slidelist">
+                        <!-- 슬라이드 영역 -->
+                        <li class="slideitem">
+                            <a>
+                                <div class="textbox">
+                                    <h3>광고 문의(1)</h3>
+                                </div>
+                                <img src="images/slide.jpg" height="80px">
+                            </a>
+                        </li>
+                        <li class="slideitem">
+                            <a>
+                                <div class="textbox">
+                                    <h3>광고 문의(2)</h3>
+                                </div>
+                                <img src="images/slide.jpg" height="80px">
+                            </a>
+                        </li>
+                        <li class="slideitem">
+                            <a>
+                                <div class="textbox">
+                                    <h3>광고 문의(3)</h3>
+                                </div>
+                                <img src="images/slide.jpg" height="80px">
+                            </a>
+                        </li class="slideitem">
+
+                        <!-- 좌,우 슬라이드 버튼 -->
+                        <div class="slide-control">
+                            <div>
+                                <label for="slide03" class="left"></label>
+                                <label for="slide02" class="right"></label>
+                            </div>
+                            <div>
+                                <label for="slide01" class="left"></label>
+                                <label for="slide03" class="right"></label>
+                            </div>
+                            <div>
+                                <label for="slide02" class="left"></label>
+                                <label for="slide01" class="right"></label>
+                            </div>
+                        </div>
+
+                    </ul>
+                    <!-- 페이징 -->
+                    <ul class="slide-pagelist">
+                        <li><label for="slide01"></label></li>
+                        <li><label for="slide02"></label></li>
+                        <li><label for="slide03"></label></li>
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="chat_v2.js"></script>
+
+</html>
