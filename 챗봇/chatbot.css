@@ -205,21 +205,6 @@ input:focus {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-.body {
-  position: relative;
-  width: 100%;
-  overflow: auto;
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: solid 1px #7cab75;
-  background-color: #ffffff;
-}
-.h1 {
-  margin-bottom: 25px;
-  margin-top: 30px;
-}
 .message {
   border-top: 1px solid #ccc;
   padding: 10px;
@@ -227,11 +212,16 @@ input:focus {
   background-color: #e6e6e6;
 }
 #chat-container {
-  width: 400px;
-  height: 600px;
+  position: relative;
+  width: 40%;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
+  border: 1px solid #7cab75;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 260px;
 }
 #chat-messages {
   flex: 1;
@@ -248,10 +238,11 @@ input:focus {
   flex: 1;
   padding: 10px;
   outline: none;
+  border: 1px solid #7cab75;
 }
 #user-input button {
   border: none;
-  background-color: #1e88e5;
+  background-color: #7cab75;
   color: white;
   padding: 10px 15px;
   cursor: pointer;

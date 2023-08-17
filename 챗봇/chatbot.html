@@ -62,16 +62,18 @@
                 </div>
             </div>
         </div>
-        <!-- 거래 내역 -->
-        <div class="body_title">
-            챗 봇
-        </div>
-        <!-- 채팅 -->
-        <div id="chat-container">
-            <div id="chat-messages"></div>
-            <div id="user-input">
-                <input type="text" placeholder="메시지를 입력하세요..." />
-                <button>전송</button>
+        <div>
+            <div class="body_title">
+                Chat Bot
+            </div>
+            <!-- 채팅 -->
+            <div id="chat-container">
+                <div id="chat-messages"></div>
+                <div id="user-input">
+                    <input type="text" placeholder="메시지를 입력하세요" onfocus="this.placeholder=''"
+                        onblur="this.placeholder='메시지를 입력하세요'" />
+                    <button>전송</button>
+                </div>
             </div>
         </div>
     </div>
