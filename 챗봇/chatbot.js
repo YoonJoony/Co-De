@@ -1,25 +1,40 @@
-// 프로필 클릭시
-function profile_btn() {
-  const box = document.getElementById("layer-header-profile");
+$(function () {
+  // 프로필 클릭시
+  var $profile = $(".header-profile");
+  var $layerProfile = $(".layer-header-profile");
 
-  // btn1 숨기기 (display: none)
-  if (box.style.display !== "block") {
-    box.style.display = "block";
-  }
-  // btn1 보이기 (display: block)
-  else {
-    box.style.display = "none";
-  }
-}
+  $profile
+    .on("mouseenter", function (e) {
+      e.preventDefault();
+      $layerProfile.css({ left: "auto" }).fadeIn(100);
+    })
+    .on("mouseleave", function (e) {
+      e.preventDefault();
+      $layerProfile.css({ left: "auto" }).fadeOut(100);
+    });
+
+  $(".board-list").slice(0, 5).css("display", "block"); // 초기갯수
+  $(".load-btn").click(function (e) {
+    // 클릭시 more
+    e.preventDefault();
+    if ($(".board-list:hidden").length == 0) {
+      // 컨텐츠 남아있는지 확인
+      alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기
+    }
+    $(".board-list:hidden").slice(0, 5).css("display", "block"); // 클릭시 more 갯수 지정
+  });
+});
 
 //위에 header를 스크롤 할 시 header fixed로 바뀌며가 자동으로 고정되게 하기
 const header = document.querySelector(".header");
+var $topper = $(".topper");
+var $window = $(window);
 
 // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
 const contentTop = header.getBoundingClientRect().top + window.scrollY;
 
 window.addEventListener("scroll", function () {
-  if (window.scrollY >= contentTop) {
+  if ($window.scrollTop() > $topper.height()) {
     header.classList.add("fixed");
   } else {
     header.classList.remove("fixed");
