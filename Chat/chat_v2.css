@@ -416,7 +416,7 @@ p{
 .map {
     position: relative;
     width: 50%;
-    height: 40%;
+    height: 55%;
     border-radius: 20px;
     display: none;
     margin-left: 10px;
@@ -683,7 +683,7 @@ input[type="text"]::placeholder {
 .invite_content {
     font-size: 20px;
     align: center;
-    margin-left: 3vw;
+    margin-left: 50px;
 }
 
 /* 햄버거 버튼*/
@@ -956,7 +956,7 @@ input::-webkit-inner-spin-button {
     height: 250px;
     background-color: #acc2d2;
     position: absolute;
-    display: block;
+    display: none;
     left: 115%;
     top: 30%;
 }
@@ -1104,6 +1104,7 @@ input::-webkit-inner-spin-button {
     left: 60%;
     margin-top: 60px;
     margin-left: 3px;
+    font-weight: bold;
 }
 
 .vote_button {
@@ -1121,8 +1122,8 @@ input::-webkit-inner-spin-button {
 
 .btnO {
     position: relative;
-    width: 200px;
-    height: 100px;
+    width: 190px;
+    height: 150px;
     margin-top: -100px;
     padding-top: 2px;
     background: #0004ff;
@@ -1132,8 +1133,8 @@ input::-webkit-inner-spin-button {
 
 .btnX {
     position: relative;
-    width: 200px;
-    height: 100px;
+    width: 190px;
+    height: 150px;
     margin-top: -100px;
     padding-top: 2px;
     background: #ff0000;
@@ -1144,10 +1145,11 @@ input::-webkit-inner-spin-button {
 .btnText {
     color: white;
     transition: .3s;
+    margin-top: 10px;
 }
 
 .btnText2 {
-    margin-top: 63px;
+    margin-top: 75px;
     margin-right: -130px;
     color: #FFF;
 }
