@@ -1,182 +1,366 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="main_page.css">
-</head>
+    <link rel="stylesheet" href="main_page3.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
 
+<!-- 다음 주소 찾기 API -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+            crossorigin="anonymous"></script>
+</head>
 <body>
     <div class="main">
-        <!-- 헤더 부분 -->
-        <div class="header">
+        <div class="topper">
             <!-- 로그인 부분 -->
             <div class="login">
-                <a href="#" style="color: #8E8E8E">로그아웃</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
             </div>
+        </div>
+        <!-- 헤더 부분 -->
+        <div class="header">
             <!-- CO-ORDER 제목 부분 -->
-            <div class="name">
-                <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
-            </div>
-            <!-- 주소 입력 부분 -->
-            <div class="address">
-                <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-                    <img src="images/gps.png" height="30px" width="30px">
-                </button>
-                <input id="address_input" type="text" name="address" required placeholder=" 주소 찾기를 눌러 검색하세요." readonly>
-                <input id="find_address" type="button" onclick="DaumPostcode()" value="주소 찾기">
-                <input id="address_input_commit" type="button" onclick="Address_commit()" value="완료">
-            </div>
-            <!-- 프로필 -->
-            <div class="profile">
-                <button id="profile_btn" type="button" onclick="profile_btn()">
-                    <img src="images/profile.png" height="40px" width="40px">
-                </button>
-                <div id="layer-header-profile">
-                    <div class="header-profile-direct">
-                        <dl class="header-member-direct__information">
-                            <dd>엄준식</dd>
-                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>
-                            <dd>ㅇㅇ</dd>
-                            <dd>ㅇㅇ</dd>
-                        </dl>
+            <div class="width-container">
+                <div class="logo-img">
+                    <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                    <img class="logo" src="images/COOR2.png">
+                </div>
+                <div id="header-bell" class="header-bell">
+                    <span class="bell">
+                            <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
+                    </span>
+                </div>
+                <div id="header-profile" class="header-profile">
+                    <a class="header-user">
+                        <span class="user-picture">
+                            <img src="images/profile.png" height="50px" width="50px">
+                        </span>
+                        <span class="user-name" th:text="${nickname}">
+                                김윤준
+                        </span>
+                        <span class="header-arrow">
+                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+                        </span>
+                    </a>
+                    <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+                        <div class="block block-name">
+                            <div class="profile-name" th:text="${nickname}">
+                                김윤준
+                            </div>
+                            <div class="buttons">
+                                <a href="#">파티관리</a>
+                            </div>
+                        </div>
+                        <!--                    <div class="header-profile-direct">-->
+                        <!--                        <dl class="header-member-direct__information">-->
+                        <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
+                        <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
+                        <!--                            <dd>ㅇㅇ</dd>-->
+                        <!--                            <dd>ㅇㅇ</dd>-->
+                        <!--                        </dl>-->
+                        <!--                    </div>-->
                     </div>
                 </div>
             </div>
-            <div class="search-list">
-                <input id="search_list" type="text">
-                <input id="search_btn" type="button" value="검색"></input>
-            </div>
-        </div>
-        <!-- 게시판 틀 -->
-        <div class="board">
-            <div class="content-list">
-                <div class="participant_num">1/4</div>
-                <div class="food">BBQ</div>
-                <div class="title"><a href="#"> BBQ 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">2/4</div>
-                <div class="food">bhc</div>
-                <div class="title"><a href="#"> bhc 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">3/4</div>
-                <div class="food">네네치킨</div>
-                <div class="title"><a href="#"> 네네치킨 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">4/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식1 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">1/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식2 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">2/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식3 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">3/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식4 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">4/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식5 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">1/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식6 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">2/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식7 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">3/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식8 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">4/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식9 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">1/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식10 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
-            <div class="content-list">
-                <div class="participant_num">2/4</div>
-                <div class="food">엄준식</div>
-                <div class="title"><a href="#"> 엄준식11 같이 시키실분</a></div>
-                <div class="writer">엄준식</div>
-                <div class="time">10분전</div>
-            </div>
+            <!-- 주소 입력 부분 -->
+            <div class="search-container">
+                <div class="search">
+                    <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                        <img class="gps" src="images/search.png">
+                    </button>
+                    <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
+                    <div class="tag-container">
+                        <div class="tag real-time-text">
+                            <p class="search-tag-text">실시간 검색 태그</p>
+                        </div>
+                        <div class="tag real-time">
+                            #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                        <li class="menu-li">
+                            <a class="menu-a">전체 글</a>
+                        </li>
+                        <li class="menu-li">
+                            <a class="menu-a">카테고리</a>
+                        </li>
+                        <li class="menu-li">
+                            <a class="menu-a">내 채팅</a>
+                        </li>
+                    </ul>
 
-            <!-- 모집글 더보기 버튼 -->
-            <div class="load-btn">
-                <input type="button" id="load_btn" value="더보기">
             </div>
+            <!-- 프로필 -->
 
         </div>
 
-        <!-- 모집글 생성 -->
-        <div class="make-content">
-            <button type="button" class="createOpen" id="createOpen">모집글 생성</button>
+        <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
+        <div class="ad">
+            <a href="#">
+                <img img="" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/guide_main_banner.png" alt="" title=""
+                    class="ad-img">
+            </a>
         </div>
+        <div class="search-list">
+            <input id="search_btn" type="button" value="태그 들어가야함."></input>
+        </div>
+        <div class="board-list">
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/meet.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/chicken.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/japan-food.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/korean-food.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/redbead.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/Sandwich.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/Vietnamese-food.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/pizza.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/meet.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/meet.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/meet.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/meet.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+            <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                <img class="board-img" src="categories/meet.png">
+                <div class="boards">
+                    <div class="board-header">
+                        <div class="board-time">11:00</div>
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                    </div>
+                    <div class="board-nickname">김윤준</div>
+                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                        <button class="join">Go GO~</button>
+                    </div>
+                    <div class="board-categories">치킨</div>
+                    <div class="board-peoples">2/4</div>
+                </div>
+            </div>
+        </div>
+        <!-- 모집글 더보기 버튼 -->
+        <div class="load-btn">
+            <input type="button" id="load_btn" value="더보기">
+        </div>
+    </div>
 
-        <section class="Register">
-            <div class="modal" id="modal">
-                <div class="popup" id="popup">
+
+
+    <!-- 모집글 생성 -->
+    <div class="make-content">
+        <button type="button" class="createOpen" id="createOpen">모집글 생성 📣</button>
+    </div>
+
+    <section class="Register">
+        <div class="modal" id="modal">
+            <div class="popup" id="popup">
+                <form action="/mozip" method="post">
                     <div class="m_head">
                         <div class="modal_title">
-                            <h1>CO-ORDER</h1>
+                            <h1></h1>
                         </div>
                     </div>
                     <div class="m_body">
                         <div class="input-area">
                             <div class="body-titlebox">
-                                <h2>모집 글 생성</h2>
+                                <h2 class="mozip-h2">배고픈 사람 모여라!</h2>
                             </div>
-
                             <div class="body-contentbox">
                                 <div class="input-area">
                                     <input type="text" name="title" id="title" autocomplete="off" required>
@@ -184,80 +368,78 @@
                                 </div>
 
                                 <div class="input-area">
-                                    <input type="number" name="range" id="ragne" autocomplete="off" required max="500">
-                                    <label for="ragne">글 노출 거리 제한</label>
+                                    <input type="number" name="distance_limit" id="distance_limit" autocomplete="off"
+                                        required max="500">
+                                    <label for="distance_limit">글 노출 거리 제한</label>
                                 </div>
 
                                 <div class="input-area">
                                     <div class="sel">
-                                        <select id="cotegory" required>
+                                        <select id="category" required>
                                             <option value="" disabled>카테고리</option>
-                                            <option value="chicken">치킨</option>
-                                            <option value="pizza">피자/양식</option>
-                                            <option value="china">중식</option>
-                                            <option value="korea">한식</option>
-                                            <option value="japan">일식/돈까스</option>
-                                            <option value="pighocks">족발/보쌈</option>
-                                            <option value="meet">고기</option>
-                                            <option value="schoolfood">분식</option>
-                                            <option value="coffee">카페/디저트</option>
-                                            <option value="asian">아시안</option>
-                                            <option value="sandwich">샌드위치</option>
-                                            <option value="salad">셀러드</option>
-                                            <option value="boxlunch">도시락/죽</option>
+                                            <option value="치킨">치킨</option>
+                                            <option value="피자/양식">피자/양식</option>
+                                            <option value="중식">중식</option>
+                                            <option value="한식">한식</option>
+                                            <option value="일식/돈까스">일식/돈까스</option>
+                                            <option value="족발/보쌈">족발/보쌈</option>
+                                            <option value="고기">고기</option>
+                                            <option value="분식">분식</option>
+                                            <option value="카페/디저트">카페/디저트</option>
+                                            <option value="아시안">아시안</option>
+                                            <option value="샌드위치">샌드위치</option>
+                                            <option value="셀러드">셀러드</option>
+                                            <option value="도시락/죽">도시락/죽</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="input-area">
                                     <div class="sel people">
-                                        <select required>
+                                        <select id="people" required>
                                             <option value="" disabled>인원 수</option>
-                                            <option value="2P">2명</option>
-                                            <option value="3P">3명</option>
-                                            <option value="4P">4명</option>
+                                            <option value="2">2명</option>
+                                            <option value="3">3명</option>
+                                            <option value="4">4명</option>
                                         </select>
                                     </div>
                                 </div>
-
-
                             </div>
+
                         </div>
                     </div>
 
                     <div class="m_footer">
-                        <span class="pop-btn create" id="create">글 생성</span>
+                        <button class="pop-btn create" id="create" type="submit">글 생성</button>
                         <span class="pop-btn close" id="close">창 닫기</span>
                     </div>
-                </div>
+                </form>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 모집글 클릭시 모달창 보여줌 -->
-        <div class="modal-background">
-            <div class="modal-window">
-                <div class="modal-popup">
-                    <p>입장하시겠습니까?</p>
-                    <div class="modal-btn">
-                        <input class="modal_btn" id="join_btn" type="button" value="입장">
-                        <input class="modal_btn" id="modal_close_btn" type="button" value="취소">
-                    </div>
+    <!-- 모집글 클릭시 모달창 보여줌 -->
+    <div class="modal fade" id="enterRoomModal" tabindex="-1" aria-labelledby="enterRoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img class="join-img" src="images/join.png">
+                    <p class="join-icon">💡</p>
+                    <p class="join-p">입장 하시겠습니까?</p>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-access" id="join_btn"
+                           type="button" value="입장" data-bs-dismiss="modal" onclick="enterRoom()">
+                    <input class="btn btn-back" id="modal_close_btn" type="button" data-bs-dismiss="modal" value="취소">
                 </div>
             </div>
         </div>
     </div>
 
+<script src="main_page2.js"></script>
+    <script th:inline="javascript">
 
 
-
-
-
-
-
-
-    <!-- 다음 주소 찾기 API -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
         function DaumPostcode() {
             new daum.Postcode({
                 oncomplete: function (data) {
@@ -265,10 +447,75 @@
                 }
             }).open();
         }
-    </script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="main_page.js"></script>
+        document.getElementById("create").addEventListener("click", function () {
+            var selectedValue1 = document.getElementById("category").value; // select option에서 선택된 값 가져오기
+            var selectedValue2 = document.getElementById("people").value; // select option에서 선택된 값 가져오기
+            $.ajax({
+                type: "POST", // 전송 방식
+                url: "/mozipCreate", // 컨트롤러 URL
+                data: {
+                    selectedValue1: selectedValue1,
+                    selectedValue2: selectedValue2
+                }, // 전달할 데이터
+                success: function (result) {
+                    $("#changeInput").val('성공');
+                },
+                error: function (xhr, status, error) {
+                    $("#changeInput").val('실패');
+                }
+            });
+        });
+
+    let id;
+
+
+
+    function backdropDelete() {
+       // $('.modal-backdrop').remove();
+    }
+
+      var myModal = new bootstrap.Modal(document.getElementById('enterRoomModal'), {
+    backdropDelete: true
+  });
+    $(function() {
+
+        $("#enterRoomModal").on("show.bs.modal", function (event) {
+            id = $(event.relatedTarget).data('id');
+        });
+
+    })
+
+
+    function chkRoomUserCnt(id) {
+            let chk;
+
+            $.ajax({
+                type : "GET",
+                url : "/mozip/chat/chkRoomUserCnt/"+id,
+                async : false,
+                success : function(result) {
+                    if (!result) {
+                        alert("채탕방이 꽉 찼다!");
+                    }
+                    chk = result;
+                },
+                error : function() {
+                    alert("실패!");
+                }
+            })
+            return chk;
+        }
+
+
+
+    function enterRoom(){
+            alert("방 번호 : " + id)
+             if (chkRoomUserCnt(id)) {
+                  location.href = "/mozip/chat/room?id="+id;
+             }
+        }
+    </script>
 </body>
 
 </html>

@@ -402,5 +402,8 @@ var currentTime = function () {
     var mm = date.getMinutes();
     var apm = hh > 12 ? "오후" : "오전";
     var ct = apm + " " + hh + ":" + mm + "";
+    if(mm < 10){
+        var ct = apm + " " + hh + ":0" + mm + "";
+    }
     return ct;
 }
