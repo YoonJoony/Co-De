@@ -53,7 +53,7 @@ public class ChatController {
         //채팅방 유저 +1
         chatRepository.plusUserCnt(chat.getRoomId());
 
-        //채티방에 유저 추가 및 UserUUID 반환
+        //채팅방에 유저 추가 및 UserUUID 반환
         String userUUID = chatRepository.addUser(chat.getRoomId(), chat.getSender());
 
         headerAccessor.getSessionAttributes().put("userUUID", userUUID);
