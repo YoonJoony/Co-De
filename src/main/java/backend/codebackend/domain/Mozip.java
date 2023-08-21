@@ -1,20 +1,22 @@
 package backend.codebackend.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.extern.java.Log;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
+@Builder
+@Data
 public class Mozip {
 
     @Id
@@ -27,25 +29,25 @@ public class Mozip {
     private Long distance_limit;
 
     private String categories;
-    private String peoples;
+
+    private int usercount; //채팅방 인원 수, 방 만들때마다 방장 인원도 추가해야 하므로 + 1
+    private int peoples; //채팅방 최대 인원 제한
 
     //스프리에서 제공하는 시간관련 변수
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime create_Date; //생성시간
 
-    @LastModifiedDate
-    private LocalDateTime modified_Date; //수정시간
-
     private String nickname;
 
-    @Builder
-    public Mozip(Long id, String title, Long distance_limit, String categories, String peoples, String nickname) {
+    public Mozip(Long id, String title, Long distance_limit, String categories, int usercount, int peoples, LocalDateTime create_Date, String nickname) {
         this.id = id;
         this.title = title;
         this.distance_limit = distance_limit;
         this.categories = categories;
+        this.usercount = usercount;
         this.peoples = peoples;
+        this.create_Date = create_Date;
         this.nickname = nickname;
     }
 }
