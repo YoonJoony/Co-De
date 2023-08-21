@@ -186,7 +186,7 @@ elements.forEach((element, index) => {
 
 //스크롤 할 시 게시물 추가로 보여짐
 $(function () {
-  $(".board").slice(0, 4).fadeIn(1500).css("display", "inline-block"); // 초기갯수
+  $(".board").slice(0, 4).fadeIn(1000).css("display", "inline-block"); // 초기갯수
 
   $(window).scroll(function () {
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
@@ -198,7 +198,7 @@ $(function () {
       }
       $(".board:hidden")
         .slice(0, 4)
-        .fadeIn(1500)
+        .fadeIn(1000)
         .css("display", "inline-block"); // 클릭시 more 갯수 지정
     }
   });
