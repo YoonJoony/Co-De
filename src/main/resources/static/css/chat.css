@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  /* 나눔스퀘어 폰트 지리네 */
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: "NanumSquareNeo-Variable";
+  background-color: #ffffff;
+  line-height: 1.6;
+  display: block;
+}
+
+/* 태그 css*/
+
+
+
+
+/* 클래스 이름css*/
+.main {
+    position : relative;
+    overflow : hidden;
+    min-height : 100%;
+    background-color : #dfdfdf8a;
+    overflow-y: auto;
+}
+
+.header {
+    position: absolute;
+    top: 0x;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-bottom: solid 34px #ff8c16;
+    background-color: #ffffff;
+    border-radius: 350px;
+    width: 85%;
+    height: 165%;
+    margin : 0 auto;
+    overflow: visible;
+    transition: all 0.3s ease-in-out;
+}
+
+.header .main-back {
+    position :relative;
+    top : 49%;
+    height : 10%;
+    width : 100%;
+}
+
+
+.back-button {
+    position : absolute;
+    left : 3%;
+    top : 15%;
+}
+
+
+.main-user {
+    position :relative;
+    text-align : center;
+    top : 50%;
+    height : 25%;
+    width : 100%;
+    display : block;
+}
+
+
+.user-picture {
+    position :absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display : block;
+    overflow: hidden;
+    border-radius: 10px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.picture {
+
+}
+
+
+.user-name {
+    font-family: "NanumSquareNeo-Variable";
+    position :relative;
+    top: 80%;
+    font-size : 30px;
+    color : #606060;
+    transform: translate(-50%, -50%);
+}
+
+.main-join {
+    position :relative;
+    text-align : center;
+    top : 50%;
+    height : 15%;
+    width : 100%;
+    display : block;
+}
+
+.user-join{
+    position :relative;
+    max-width : 1280px;
+    height : 100%;
+    left : 0%;
+    top : 50%;
+    margin : 0 auto;
+    display : inline-block;
+}
+
+.join-button {
+    font-family: "NanumSquareNeo-Variable";
+    position : relative;
+    display :inline-block;
+    width: 200px;
+    height: 60px;
+    left : 21%;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #FF9A32;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.3);
+}
+
+.join-button-picture {
+    position : relative;
+    width : 130px;
+    right : 20px;
+    bottom : 1.5%;
+    display :inline-block;
+
+}
+
+.body-main {
+    position :absolute;
+    display : block;
+    text-align : center;
+    top : 94%;
+    height : 100%;
+    width : 100%;
+}
+
+.body-main .li-1{
+    font-family: "NanumSquareNeo-Variable";
+    font-size : 30px;
+    font-weight : 700;
+    position : relative;
+    text-align : left;
+    left : 2%;
+}
+.board {
+    position :relative;
+    width : 60%;
+    height : 40%;
+    text-align : center;
+    margin : 0 auto;
+}
+
+.boards {
+    font-family: "NanumSquareNeo-Variable";
+    position :relative;
+    height : 100%;
+    background-color : #FF9162;
+    border-radius : 30px;
+    padding: 37px 37px;
+
+}
+
+
+.boards-left{
+    position : relative;
+    width : 50%;
+    display : block;
+}
+
+.board-title{
+  font-size: 25px;
+  text-align: left;
+  line-height: 23px;
+  color: #333333;
+  overflow: hidden;
+}
+
+.boards-right{
+    position : relative;
+    right : 0;
+    width : 50%;
+    display : block;
+}
+
+
+.board-map{
+  font-size: 25px;
+  text-align: left;
+  line-height: 23px;
+  color: #333333;
+  overflow: hidden;
+}
+
+.boards-right .map_wrap .map_div {
+    border-radius: 25px;
+    width : 75%;
+    height : 320px;
+}
+
+
+.board-title p{
+    color : #FFFFFF;
+}
