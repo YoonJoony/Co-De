@@ -139,17 +139,20 @@ $('.sel__box__options').click(function () {
 
 //위에 header를 스크롤 할 시 header fixed로 바뀌며가 자동으로 고정되게 하기
 const header = document.querySelector('.header');
+var $topper = $('.topper');
+var $window = $(window);
 
 // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
 const contentTop = header.getBoundingClientRect().top + window.scrollY;
 
 window.addEventListener('scroll', function(){
-  if(window.scrollY >= contentTop){
+  if($window.scrollTop() > $topper.height()){
     header.classList.add('fixed');
   }else{
     header.classList.remove('fixed');
   }
 });
+
 // ----------------------------------------
 
 //모집글 board 영역 설정

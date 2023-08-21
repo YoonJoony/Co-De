@@ -139,17 +139,20 @@ $('.sel__box__options').click(function () {
 
 //위에 header를 스크롤 할 시 header fixed로 바뀌며가 자동으로 고정되게 하기
 const header = document.querySelector('.header');
+var $topper = $('.topper');
+var $window = $(window);
 
 // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
 const contentTop = header.getBoundingClientRect().top + window.scrollY;
 
 window.addEventListener('scroll', function(){
-  if(window.scrollY >= contentTop){
+  if($window.scrollTop() > $topper.height()){
     header.classList.add('fixed');
   }else{
     header.classList.remove('fixed');
   }
 });
+
 // ----------------------------------------
 
 //모집글 board 영역 설정
@@ -176,36 +179,3 @@ elements.forEach((element, index) => {
     element.style.top = `${newTop}px`;
     i++;
 });
-// ----------------------------------------
-
-//카테고리 별 이미지
-const imagePaths = {
-  '치킨': 'images/categories/chicken.png',
-  '피자/양식': 'images/categories/pizza.png',
-  '중식': 'images/categories/chines-food.png',
-  '한식': 'images/categories/korean-food.png',
-  '일식/돈까스': 'images/categories/japan-food.png',
-  '족발/보쌈': 'images/categories/pighocks.png',
-  '고기': 'images/categories/meet.png',
-  '분식': 'images/categories/BoonSick.png',
-  '카페/디저트': 'images/categories/Cafe.png',
-  '아시안': 'images/categories/Vietnamese-food.png',
-  '샌드위치': 'images/categories/Sandwich.png',
-  '셀러드': 'images/categories/Salad.png',
-  '도시락/죽': 'images/categories/redbead.png',
-
-  // 나머지 카테고리도 추가해주세요
-};
-
-const boardList = document.querySelector('.board-list'); //큰 부모 div boardList 게시물 목록 선택하기 위한 큰 목록
-const boardElements = boardList.querySelectorAll('.board'); //boardList 게시물 목록안에 든 게시글 배열로 생성
-
-boardElements.forEach(boardElement => { //배열을 하나씩 돈다(게시물 하나씩 돔) boardElement는 객체1,,,2 란 변수 이름 for i in range(10)에서 i라고 생각하면 됨
-  const category = boardElement.querySelector('.board-categories').textContent; //데이터베이스에 넣어둔 categories의 텍스트 값을 html에서 가져옴
-  const imagePath = imagePaths[category]; //위 imagePaths에 저장한 이미지들과 categories의 텍스트 값을 이미지에 맞게 매핑시켜 줬으므로 같은 이름이면 해당하는 이미지 경로를 imagePaths 배열에서 가져옴.
-  const imgElement = boardElement.querySelector('.board-img'); //img 경로를 바꿔주기 위해
-  imgElement.src = imagePath; //img 클래스의 src 경로를 해당하는 categories로 설정해줌
-});
-
-
-// ----------------------------------------
