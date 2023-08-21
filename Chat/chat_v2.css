@@ -444,6 +444,10 @@ p{
     height: 400px;
 }
 
+.inner::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+
 .chat_wrap .item {
     margin-top: 15px
 }
