@@ -204,3 +204,6 @@ $(function () {
   });
   // 클릭시 more
 });
+
+//새로고침시 스크롤 위치 초기화
+history.scrollRestoration = "manual";
