@@ -260,7 +260,7 @@ a {
   text-align: center;
   align-items: center;
   font-size: 20px;
-  color: #7cab75;
+  color: #ff8c16;
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -276,7 +276,7 @@ a {
   height: 500px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #7cab75;
+  border: 1px solid #ff8c16;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -297,11 +297,11 @@ a {
   flex: 1;
   padding: 10px;
   outline: none;
-  border: 1px solid #7cab75;
+  border: 1px solid #ff8c16;
 }
 #user-input button {
   border: none;
-  background-color: #7cab75;
+  background-color: #ff8c16;
   color: white;
   padding: 10px 15px;
   cursor: pointer;
