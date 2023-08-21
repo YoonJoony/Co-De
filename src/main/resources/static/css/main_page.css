@@ -584,7 +584,7 @@ p {
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
-/* ëª¨ì§‘ê¸€ í´ë¦­ì‹œ ìž…ìž¥ í™•ì¸ ëª¨ë‹¬ì°½ */
+/*
 .modal-background {
   position: fixed;
   top: 0;
@@ -593,7 +593,6 @@ p {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
 
-  /*ìˆ¨ê¸°ê¸°*/
   z-index: -1;
   opacity: 0;
 }
@@ -603,6 +602,7 @@ p {
   z-index: 1000;
   transition: all 0.5s;
 }
+
 
 .modal-window {
   position: relative;
@@ -624,11 +624,14 @@ p {
   transform: translate(-50%, -40%);
 }
 
+.modal-backdrop {
+  display: none !important;
+}
+
 .div-join-p {
   position: relative;
   width: 100%;
   height: 67%;
-  /* text-align: center; */
 }
 
 .join-icon {
@@ -645,14 +648,6 @@ p {
   left: 17%;
   top: 47%;
   position: absolute;
-  /* text-align: center; */
-}
-
-/*입장 모달창에 뜨는 이미지*/
-.join-img {
-  position: absolute;
-  width: 1405px;
-  top: 50px;
 }
 
 .show .modal-popup {
@@ -667,39 +662,115 @@ p {
   border-radius: 6px;
   text-align: center;
 }
+*/
 
-.modal-popup .modal-btn {
-  height: 22%;
-  position: relative;
-  top: 12px;
+.modal-dialog {
+    position: relative;
+    width: 100%;
+    height: 30%;
+    top: 26%;
+    margin: .5rem;
+    pointer-events: none;
 }
 
-.modal-popup .modal-btn .modal_btn {
-  font-family: "NanumSquareNeo-Variable";
-  cursor: pointer;
-  width: 20%;
-  height: 77%;
-  margin: 10px;
-  border-style: dotted;
-  border-width: 0.1px;
-  border-color: #d9d9d9;
-  /* background-color: #FFFFFF; */
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); */
-  border-radius: 6px;
-  display: inline-block;
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
 }
 
-.modal-btn-join {
-  background-color: #ffffff;
+.modal-header {
+    display: flex;
+    flex-shrink: 0;
+    height: 77%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
 }
 
-.modal-btn-ok {
-  background-color: #3fc358;
-  color: #ffffff;
+.modal-footer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    text-align: center;
+    justify-content: center;
+    border-top: 1px solid #dee2e6;
+    border-bottom-right-radius: calc(.3rem - 1px);
+    border-bottom-left-radius: calc(.3rem - 1px);
 }
-.modal-popup .modal-btn .modal_btn:hover {
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+
+.join-icon {
+    width: 10%;
+    font-size: 37px;
+    left: 46%;
+    top: 10%;
+    position: absolute;
+}
+
+.join-p {
+    font-family: "NanumSquareNeo-Variable";
+    width: 34%;
+    left: 35%;
+    top: 35%;
+    position: absolute;
+    /* text-align: center; */
+}
+
+.join-img {
+    position: absolute;
+    left: 53%;
+    width: 1405px;
+    top: 65%;
+    z-index : -1;
+}
+
+.btn {
+    display: inline-block;
+    width: 16%;
+    margin: 3px 24px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border-style: solid;
+    border-width: 0.01px;
+    border-color: #d9d9d9;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.modal-footer>* {
+    /* margin: .25rem; */
+}
+
+.btn-access {
+    background-color: #3fc358;
+    color: #FFFFFF;
+}
+
+.btn-back {
+    background-color: #FFFFFF;
 }
 
 /* ëª¨ì§‘ê¸€ ìƒì„± css */
@@ -729,12 +800,11 @@ body {
 }
 
 /* ìƒì„± ì°½ì— ëŒ€í•œ css
-/* ìƒì„± ì°½ì„ ê°ìŒ€ë°•ìŠ¤ì˜ css */
+/* ìƒì„± ì°½ì„ ê°ìŒ€ë°•ìŠ¤ì˜ css
 .modal {
   background-color: rgba(0, 0, 0, 0.3);
   height: 100%;
-  /* ë°°ê²½ìƒ‰ê³¼ íˆ¬ëª…ë„ë¡œ ì‚´ì§ ì–´ë‘¡ì§€ë§Œ íˆ¬ëª…í•œ ë°°ê²½
-  í—ˆê³µì— ë¶• ë– ìžˆëŠ” ëŠë‚Œì„ ì£¼ê³  ì‹¶ìœ¼ë©´ ì•ˆë„£ì–´ë„ ë¬´ë°© */
+
   justify-content: center;
   position: fixed;
   top: 0;
@@ -742,12 +812,9 @@ body {
   right: 0;
   bottom: 0;
   display: none;
-  /* //ì´ë²¤íŠ¸ê°€ ë°œìƒí•  ë•Œ ë„ìš°ê¸° ìœ„í•´ ìˆ¨ê¹€
-  //ì²˜ìŒë¶€í„° ë³´ì´ê²Œ í•˜ëŠ” ìƒí™©ì´ë¼ë©´ display:flex; */
-
   padding: 15px;
 }
-/* ëª¸ì²´ css */
+
 .popup {
   font-family: "NanumSquareNeo-Variable";
   position: relative;
@@ -760,8 +827,7 @@ body {
   background-color: #464f66;
   box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, 0.3);
 }
-
-/* ë¡œê³  ì˜ì—­ css */
+*/
 .m_head {
   position: absolute;
   width: 100%;
@@ -771,9 +837,7 @@ body {
   justify-content: center;
 }
 
-/* ë³¸ë¬¸ css */
 .m_body {
-  /* ëª¸í†µ */
   position: absolute;
   border-radius: 4px;
   width: 98%;
@@ -783,15 +847,12 @@ body {
   /* margin: unset; */
   box-shadow: inset 0px 1px 13px 3px rgb(77, 71, 71);
   background-color: #ffffff;
-  /* ì»¨í…ì¸  ì˜ì—­ì˜ ë°°ê²½ìƒ‰ */
 }
 
 .body-content {
-  /* ëª¸í†µ ë‚´ë¶€ ì»¨í…ì¸  ì˜ì—­*/
   width: 100%;
   height: 10%;
   padding: 1px;
-  /* ì¢Œìš°ì— ë‚´ìš©ì´ ë¶™ìœ¼ë©´ ë³´ê¸° ì•ˆì¢‹ê¸° ë•Œë¬¸ì— ê°„ê²© ë„ì›€*/
 }
 
 .mozip-h2 {

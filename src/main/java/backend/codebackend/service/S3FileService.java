@@ -33,6 +33,7 @@ public class S3FileService implements FileService{
     private final AmazonS3 amazonS3;
 
     //S3 bucket 이름
+    //application.properties에 넣어 둔 내용이 들어오게 된다.
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
@@ -44,23 +45,30 @@ public class S3FileService implements FileService{
     //이때 transcation은 파일 이름 중복 방지를 위한 UUID를 의미한다.
     @Override
     public FileUploadDto uploadFile(MultipartFile file, String transaction, String roomId) {
-        try{
+        /*  MultipartFile : HTTP 요청에서 전송된 파일을 나타내는 인터페이스 입니다.
+                            일반적으로 클라이언트에서 서버로 파일을 업로드할 때 사용됨.    */
 
+        try{
             String filename = file.getOriginalFilename(); // 파일원본 이름
+        /*  getOriginalFilename() : 클라이언트에서 전송한 파일의 원래 이름을 반환한다.
+                                    서버에서는 보안상 파일의 이름을 변경하는 경우가 많기 때문.    */
+
             String key = roomId+"/"+transaction+"/"+filename; // S3 파일 경로
+            log.info("\n\n 파일 경로 : " + key);
 
             // 매개변수로 넘어온 multipartFile 을 File 객체로 변환 시켜서 저장하기 위한 메서드
             File convertedFile = convertMultipartFileToFile(file, transaction + filename);
 
             // 아마존 S3 에 파일 업로드를 위해 사용하는 TransferManagerBuilder
-            TransferManager transferManager = TransferManagerBuilder
-                    .standard()
-                    .withS3Client(amazonS3)
-                    .build();
+            TransferManager transferManager = TransferManagerBuilder //TransferManagerBuiler : TransferManager 객체를 생성하기 위한 빌더 클래스
+                    .standard() //빌더 객체 생성
+                    .withS3Client(amazonS3) // Amazon S3 클라이언트 객체 지정
+                    .build(); // 객체 생성
 
             // bucket 에 key 와 converedFile 을 이용해서 파일 업로드
             Upload upload = transferManager.upload(bucket, key, convertedFile);
-            upload.waitForUploadResult();
+            //upload(버킷이름, 업로드할 파일의 경로(이름), 업로드 할 파일)
+            upload.waitForUploadResult(); //업로드가 완료 될 때까지 대기한다.
 
             // 변환된 File 객체 삭제
             removeFile(convertedFile);
@@ -83,8 +91,16 @@ public class S3FileService implements FileService{
         }
     }
 
+    //S3에서 파일 또는 디렉토리를 삭제하는 메소드.
+    //path 매개변수로 전달된 경로에 있는 파일 또는 디렉토리를 삭제
     @Override
     public void deleteFileDir(String path) {
+        /*  amazonS3.listObject(bucket, path) 는 S3 에서 지정된 버킷과 경로에 있는 객체 목록을 가져오는 메소드
+            S3ObjectSummaries()는 객체 목록을 반환한다.
+
+            for 에서는 getSummaries() 메소드로 가져온 S3ObjectSummary 객체의 목록을 반복하며
+            amazonS3.deleteObject() 메소드로 객체를 삭제한다.
+         */
         for (S3ObjectSummary summary : amazonS3.listObjects(bucket, path).getObjectSummaries()) {
             amazonS3.deleteObject(bucket, summary.getKey());
         }
@@ -107,9 +123,16 @@ public class S3FileService implements FileService{
         // 여기는 httpHeader 에 파일 다운로드 요청을 하기 위한내용
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        /*
+            HttpHeader 클래스는 HTTP 요청 또는 응답의 헤더 저오를 나타내느 클래스.
+                            위 객체를 사용하여 HTTP요청 또는 응답의 헤더정보를 설정할 수 있음
+            setContentType을 이용하여 컨텐츠 타입을 APPLICATION_OCTET_STREAM으로 설정.
+         */
+
 
         // 지정된 fileName 으로 파일이 다운로드 된다.
         httpHeaders.setContentDispositionFormData("attachment", fileName);
+        //컨텐츠의 디스포지션 헤더를 설정한다. (파일이 다운될 때 브라우저에서 보여줄 파일 이름, 실제 파일 이름)
 
         log.info("HttpHeader : [{}]", httpHeaders);
 
