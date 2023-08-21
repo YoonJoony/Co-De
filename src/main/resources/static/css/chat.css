@@ -58,7 +58,8 @@ body{
 
 .header .main-back {
     position :relative;
-    top : 49%;
+    top : 51%;
+    left : 1%;
     height : 10%;
     width : 100%;
 }
@@ -170,7 +171,7 @@ body{
     font-weight : 700;
     position : relative;
     text-align : left;
-    left : 2%;
+    left : 6%;
 }
 .board {
     position :relative;
@@ -183,48 +184,67 @@ body{
 .boards {
     font-family: "NanumSquareNeo-Variable";
     position :relative;
-    height : 100%;
+    height : 80%;
+    width : 90%;
     background-color : #FF9162;
     border-radius : 30px;
     padding: 37px 37px;
-
+    display : inline-block;
 }
 
 
 .boards-left{
-    position : relative;
-    width : 50%;
-    display : block;
+    position : absolute;
+    width : 40%;
+    left : 5%;
+    display : inline-block;
 }
 
 .board-title{
   font-size: 25px;
+  width : 100%;
   text-align: left;
   line-height: 23px;
   color: #333333;
+  overflow: hidden;
+}
+
+.board-peoples{
+  font-size: 15px;
+  text-align: left;
+  line-height: 23px;
+  color: #FFFFFF;
   overflow: hidden;
 }
 
 .boards-right{
     position : relative;
-    right : 0;
-    width : 50%;
-    display : block;
+    left : 47.3%;
+    bottom : 9%;
+    height : 120%;
+    width : 52%;
+    display : inline-block;
 }
 
 
-.board-map{
-  font-size: 25px;
-  text-align: left;
-  line-height: 23px;
-  color: #333333;
-  overflow: hidden;
+.boards-map{
+  position : relative;
+
 }
 
-.boards-right .map_wrap .map_div {
+.map_wrap {
+    position : relative;
+    height : 100%;
+    width : 100%;
+}
+
+.map_wrap .map_div {
+    position : absolute;
     border-radius: 25px;
-    width : 75%;
-    height : 320px;
+    border-none;
+    margin : none;
+    width : 300px;
+    height : 300px;
 }
 
 

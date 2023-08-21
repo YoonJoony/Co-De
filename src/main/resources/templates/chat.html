@@ -60,11 +60,15 @@
         <div class="boards">
           <div class="boards-left">
             <div class="board-title" th:text="${post.title}"><p href="#">과자 먹을사람</p></div>
+            <div class="board-peoples"><p>참가 인원</p></div>
+            <div class="board-peoples-ficture"></div>
           </div>
           <div class="boards-right">
-            <div class="map_wrap">
-              <div id="map_v3" class="map_div"></div>
-              <div class="map_tit">map v3</div>
+            <div class="boards-map">
+              <div class="map_wrap" id="map_wrap">
+                <div id="map_v3" class="map_div"></div>
+                <div class="map_tit"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -72,7 +76,7 @@
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="#"></script>
+<script src="/static/js/chat.js"></script>
 
 
 <!-- 예제 시작 -->
@@ -89,27 +93,15 @@
 		text-align:center;
 	}
 	.map_wrap .map_div {
-		border-radius:5px;
-		border:4px solid gray;
 		box-sizing:border-box;
-		height:650px;
-		margin:0 auto;
-		width:900px;
 	}
 	.map_wrap .map_tit {
 		font-size:12pt !important;
-		padding:10px 0;
 	}
 
 </style>
 <script>
 
-	// v3 버전 지도 생성
-	var map_v3 = new naver.maps.Map('map_v3', {
-		center : new naver.maps.LatLng(37.2900533, 127.1036797),
-		zoom : 10,
-		mapTypeControl : true // 일반, 위성 버튼 보이기 (v3 에서 바뀐 방식)
-	});
 
 </script>
 
