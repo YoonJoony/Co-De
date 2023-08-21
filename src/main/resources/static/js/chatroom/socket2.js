@@ -227,7 +227,7 @@ function onMessageReceived(payload) {
         contentElement.appendChild(downBtnElement);
 
     }else{
-        // 만약 s3DataUrl 의 값이 null 이라면
+        // 만약 s3DataUrl 의 값이 null 이라면 (일반 채팅일 경우)
         // 이전에 넘어온 채팅 내용 보여주기기
        var messageText = document.createTextNode(chat.message);
         contentElement.appendChild(messageText);
@@ -266,7 +266,7 @@ messageForm.addEventListener('submit', sendMessage, true); //messageForm 리스�
 
 /// 파일 업로드 부분 ////
 function uploadFile(){
-    var file = $("#file")[0].files[0];
+    var file = $("#file")[0].files[0]; //선택한 파일 변수에 저장
     var formData = new FormData();
     formData.append("file",file);
     formData.append("roomId", roomId);

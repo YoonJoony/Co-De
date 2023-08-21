@@ -49,17 +49,17 @@ function myPage() { }
 //     alert('Geolocation Error');
 // }
 
-let el = document.querySelectorAll(".board");
-el.forEach((target) => target.addEventListener("click", show));
-
-function show() {
-  document.querySelector(".modal-background").className =
-    "modal-background show";
-}
-
-function close() {
-  document.querySelector(".modal-background").className = "modal-background";
-}
+//let el = document.querySelectorAll(".board-button");
+//el.forEach((target) => target.addEventListener("click", show));
+//
+//function show() {
+//  document.querySelector(".modal-background").className =
+//    "modal-background show";
+//}
+//
+//function close() {
+//  document.querySelector(".modal-background").className = "modal-background";
+//}
 
 document.querySelector("#modal_close_btn").addEventListener("click", close);
 

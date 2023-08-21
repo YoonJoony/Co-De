@@ -30,7 +30,7 @@ public class JpaMemberRepository implements MemberRepository{
         List<Member> result = em.createQuery("select m from Member m where m.Login = :Login", Member.class)
                 .setParameter("Login", Login)
                 .getResultList();
-
+        
         return result.stream().findAny();
     }
 

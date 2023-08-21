@@ -27,7 +27,7 @@ public class FileController {
         FileUploadDto fileReq = fileService.uploadFile(file, UUID.randomUUID().toString(), roomId);
         log.info("최종 upload Data {}", fileReq);
 
-        // fileReq 객체 리턴
+        // fileReq 객체 리턴 : S3 파일 url이 적힌 객체
         return fileReq;
     }
 

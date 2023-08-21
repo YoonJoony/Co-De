@@ -4,6 +4,7 @@ import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.SelectedValue;
 import backend.codebackend.dto.MozipForm;
+import backend.codebackend.dto.MozipMap;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MozipService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,10 +13,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -57,6 +55,13 @@ public class MozipController {
     public String sessionInfo(HttpServletRequest request) {
         return "세션 출력";
     }
+    
+    //채팅방 입장시 id에 해당하는 mozip 객체 넘겨줌
+    @GetMapping("/mozip/chat/room")
+    public String roomDetail(Model model, Long id) {
+        System.out.println("입장 성공!!");
+        return "redirect:/main_page.html";
+    }
 
     //모집글 생성(title, distance_limit) 변수 저장
     @PostMapping("/mozip")
@@ -89,11 +94,20 @@ public class MozipController {
     //모집글 테이블에 저장
     public void create(MozipForm mozipForm) {
         mozipForm.setCategories(sv.getSelectedValue1()); //카테고리, 인원 수가 저장된 싱글톤 객체에서 값을 꺼내오기
-        mozipForm.setPeoples(sv.getSelectedValue2());
+        mozipForm.setPeoples(Integer.parseInt(sv.getSelectedValue2()));
         mozipForm.setNickname(sv.getNickname());
         mozipService.savePost(mozipForm); //모집글 저장.
     }
 
-
-
+    @GetMapping("/mozip/chat/chkRoomUserCnt/{id}")
+    @ResponseBody
+    public boolean chkRoomUserCnt(@PathVariable Long id) {
+        if(mozipService.chkRoomUserCnt(id)) {
+            mozipService.plusUserCnt(id);
+            System.out.println("\n\n\n현재 인원 : " + mozipService.findRoomById(id).get().getUsercount());
+            return true;
+        }
+        System.out.println("\n\n\n입장 실패 ㅜㅜ");
+        return false;
+    }
 }

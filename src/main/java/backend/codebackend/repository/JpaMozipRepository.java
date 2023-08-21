@@ -51,4 +51,28 @@ public class JpaMozipRepository implements MozipRepository {
 
          */
     }
+
+    @Override
+    public void plusUserCnt(Long id) {
+        List<Mozip> result = em.createQuery("select m from Mozip m where m.id = :id", Mozip.class)
+                .setParameter("id", id)
+                .getResultList();
+        if(!result.isEmpty()) { //id에 해당하는 방이 있을 경우 입장 시 인원 + 1
+            Mozip mozip = result.get(0);
+            mozip.setUsercount(mozip.getUsercount()+1);
+            em.merge(mozip);
+        }
+    }
+
+    @Override
+    public void minusUserCnt(Long id) {
+        List<Mozip> result = em.createQuery("select m from Mozip m where m.id = :id", Mozip.class)
+                .setParameter("id", id)
+                .getResultList();
+        if(!result.isEmpty()) { //id에 해당하는 방이 있을 경우 입장 시 인원 + 1
+            Mozip mozip = result.get(0);
+            mozip.setUsercount(mozip.getUsercount()-1);
+            em.merge(mozip);
+        }
+    }
 }

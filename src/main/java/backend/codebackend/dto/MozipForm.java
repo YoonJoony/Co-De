@@ -5,7 +5,12 @@ import jakarta.persistence.Column;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @Getter
 @Setter
@@ -22,41 +27,45 @@ public class MozipForm {
         this.categories = categories;
     }
 
-    public void setPeoples(String peoples) {
+    public void setPeoples(int peoples) {
         this.peoples = peoples;
     }
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }
     private String categories;
-    private String peoples;
+    
+    private int usercount; //현재 유저 인원 수
+    private int peoples; //최대 인원 수
     private LocalDateTime create_Date;
-    private LocalDateTime modified_Date;
 
     private String nickname;
 
+    private ConcurrentMap<String, String> userList = new ConcurrentHashMap<>(); //채팅방 참가한 인원 리스트
+
     public Mozip toEntity(){
-        Mozip build = Mozip.builder() //date할려면 Mozip에 생성자에 @builder를 해야 builder()실행이 되네
+        Mozip build = Mozip.builder()
                 .title(title)
                 .distance_limit(distance_limit)
                 .categories(categories)
                 .peoples(peoples)
                 .nickname(nickname)
+                .usercount(1)
                 .build();
         return build;
     }
 
-    public MozipForm(String title, Long distance_limit, String categories, String peoples, LocalDateTime create_Date, LocalDateTime modified_Date, String nickname) {
+    public MozipForm(String title, Long distance_limit, String categories, int usercount, int peoples, LocalDateTime create_Date, String nickname, ConcurrentMap<String, String> userList) {
         this.title = title;
         this.distance_limit = distance_limit;
         this.categories = categories;
+        this.usercount = usercount;
         this.peoples = peoples;
         this.create_Date = create_Date;
-        this.modified_Date = modified_Date;
         this.nickname = nickname;
+        this.userList = userList;
     }
-
-//    private static class TIME_MAXIMUM {
+    //    private static class TIME_MAXIMUM {
 //        public static final int SEC = 60;
 //        public static final int MIN = 60;
 //        public static final int HOUR = 24;

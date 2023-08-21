@@ -1,30 +1,33 @@
 // 주소 설정 완료 버튼 클릭시
 function Address_commit() { }
 
-// 프로필 클릭시
-function profile_btn() {
-  const box = document.getElementById("layer-header-profile");
 
-  // btn1 숨기기 (display: none)
-  if (box.style.display !== "block") {
-    box.style.display = "block";
-  }
-  // btn` 보이기 (display: block)
-  else {
-    box.style.display = "none";
-  }
-}
 
 $(function () {
-  $(".content-list").slice(0, 5).css("display", "block"); // 초기갯수
+   // 프로필 클릭시
+    var $profile = $(".header-profile");
+    var $layerProfile = $(".layer-header-profile");
+
+    $profile
+    .on('mouseenter', function (e) {
+        e.preventDefault();
+        $layerProfile.css({ left : 'auto'}).fadeIn(100);
+    })
+    .on('mouseleave', function (e) {
+        e.preventDefault();
+        $layerProfile.css({ left : 'auto'}).fadeOut(100);
+    });
+
+
+  $(".board-list").slice(0, 5).css("display", "block"); // 초기갯수
   $(".load-btn").click(function (e) {
     // 클릭시 more
     e.preventDefault();
-    if ($(".content-list:hidden").length == 0) {
+    if ($(".board-list:hidden").length == 0) {
       // 컨텐츠 남아있는지 확인
       alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기
     }
-    $(".content-list:hidden").slice(0, 5).css("display", "block"); // 클릭시 more 갯수 지정
+    $(".board-list:hidden").slice(0, 5).css("display", "block"); // 클릭시 more 갯수 지정
   });
 });
 
@@ -49,17 +52,17 @@ function myPage() { }
 //     alert('Geolocation Error');
 // }
 
-let el = document.querySelectorAll(".title");
-el.forEach((target) => target.addEventListener("click", show));
-
-function show() {
-  document.querySelector(".modal-background").className =
-    "modal-background show";
-}
-
-function close() {
-  document.querySelector(".modal-background").className = "modal-background";
-}
+//let el = document.querySelectorAll(".board-button");
+//el.forEach((target) => target.addEventListener("click", show));
+//
+//function show() {
+//  document.querySelector(".modal-background").className =
+//    "modal-background show";
+//}
+//
+//function close() {
+//  document.querySelector(".modal-background").className = "modal-background";
+//}
 
 document.querySelector("#modal_close_btn").addEventListener("click", close);
 
@@ -151,21 +154,21 @@ window.addEventListener('scroll', function(){
 
 //모집글 board 영역 설정
 const elements = document.querySelectorAll('.board');
-const rowHeight = 223;
-const i = 0;
+const rowHeight = 615.56;
+var i = 0;
 elements.forEach((element, index) => {
-    const row = Math.floor(index/3); //현재 요소가 속한 행 번호
+    const row = Math.floor(index/4); //현재 요소가 속한 행 번호
 
-    const left = parseFloat(element.style.left); //left값을 받아온다. 처음에는 0. 두번째는 24.9617
+    var left = parseFloat(element.style.left); //left값을 받아온다. 처음에는 0. 두번째는 24.9617
     //const top = parseFloat(element.style.top);
 
     // 비율에 맞게 조정
 
-    if(i % 3 == 0) {
-        left = 0;
+    if(i % 4 == 0) {
+        i = 0;
     }
 
-    const newLeft = left + 24.9617;
+    const newLeft = i * 25;
     const newTop = row * rowHeight; //해당 해의 top 값이 223씩 증가
 
     // 새로운 left와 top 값을 설정
@@ -173,5 +176,36 @@ elements.forEach((element, index) => {
     element.style.top = `${newTop}px`;
     i++;
 });
+// ----------------------------------------
+
+//카테고리 별 이미지
+const imagePaths = {
+  '치킨': 'images/categories/chicken.png',
+  '피자/양식': 'images/categories/pizza.png',
+  '중식': 'images/categories/chines-food.png',
+  '한식': 'images/categories/korean-food.png',
+  '일식/돈까스': 'images/categories/japan-food.png',
+  '족발/보쌈': 'images/categories/pighocks.png',
+  '고기': 'images/categories/meet.png',
+  '분식': 'images/categories/BoonSick.png',
+  '카페/디저트': 'images/categories/Cafe.png',
+  '아시안': 'images/categories/Vietnamese-food.png',
+  '샌드위치': 'images/categories/Sandwich.png',
+  '셀러드': 'images/categories/Salad.png',
+  '도시락/죽': 'images/categories/redbead.png',
+
+  // 나머지 카테고리도 추가해주세요
+};
+
+const boardList = document.querySelector('.board-list'); //큰 부모 div boardList 게시물 목록 선택하기 위한 큰 목록
+const boardElements = boardList.querySelectorAll('.board'); //boardList 게시물 목록안에 든 게시글 배열로 생성
+
+boardElements.forEach(boardElement => { //배열을 하나씩 돈다(게시물 하나씩 돔) boardElement는 객체1,,,2 란 변수 이름 for i in range(10)에서 i라고 생각하면 됨
+  const category = boardElement.querySelector('.board-categories').textContent; //데이터베이스에 넣어둔 categories의 텍스트 값을 html에서 가져옴
+  const imagePath = imagePaths[category]; //위 imagePaths에 저장한 이미지들과 categories의 텍스트 값을 이미지에 맞게 매핑시켜 줬으므로 같은 이름이면 해당하는 이미지 경로를 imagePaths 배열에서 가져옴.
+  const imgElement = boardElement.querySelector('.board-img'); //img 경로를 바꿔주기 위해
+  imgElement.src = imagePath; //img 클래스의 src 경로를 해당하는 categories로 설정해줌
+});
+
 
 // ----------------------------------------
