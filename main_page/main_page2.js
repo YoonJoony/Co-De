@@ -196,6 +196,7 @@ $(function () {
   $(".board").slice(0, 4).css("display", "inline-block"); // 초기갯수
 
   $(window).scroll(function () {
+
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
       console.log("스크롤바 끝 도달");
 
