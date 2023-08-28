@@ -21,9 +21,14 @@ public class ChatUserService {
                 .build();
 
         if(chatUserRepository.addUser(chatUser)) {
-            mozipService.plusUserCnt(id);
             return true;
         }
+        return false;
+    }
+
+    public boolean isDuplicateName(Long id, String nickname) {
+        if(chatUserRepository.isDuplicateName(id, nickname))
+            return true;
         return false;
     }
 

@@ -71,8 +71,12 @@ public class ChatController {
             //convertAndSend : 지정된 대상 주소로 메시지를 전송.
             //"/sub/chat/room/" + chat.getRoomId() => 메시지를 보낼 대상 주소를 의미. chat => 전송할 메시지 내용을 담은 객체
         }
-        else
+        else {
+            headerAccessor.getSessionAttributes().put("nickname", chat.getSender());
+            headerAccessor.getSessionAttributes().put("roomId", chat.getId());
+            chat.setMessage(chat.getSender() + "님이 다시 입장하셨습니다.");
             log.info(chat.getSender() + "님은 이미 방에 들어와 있습니다");
+        }
 
         template.convertAndSend("/sub/mozip/chat/room/" + chat.getId(), chat);
     }
@@ -88,5 +92,12 @@ public class ChatController {
     @ResponseBody
     public ArrayList<String> getUserList(Long id) {
         return chatUserService.getUserList(id);
+    }
+
+    @GetMapping("/mozip/chat/inDuplicateName")
+    @ResponseBody
+    public String inDuplicateName(String nickname) {
+
+        return nickname;
     }
 }
