@@ -1,31 +1,28 @@
 package backend.codebackend.controller;
 
-import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.SelectedValue;
 import backend.codebackend.dto.MozipForm;
-import backend.codebackend.dto.MozipMap;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MozipService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequiredArgsConstructor
 public class MozipController {
 
     private final MozipService mozipService;
     private final MemberService memberService;
+
     private SelectedValue sv = SelectedValue.getInstance(); //싱글톤으로 객체 인스턴스 1개만 생성되도록 함
 //    private String selectedValue1;
 //    private String selectedValue2;
@@ -55,12 +52,20 @@ public class MozipController {
     public String sessionInfo(HttpServletRequest request) {
         return "세션 출력";
     }
-    
+
     //채팅방 입장시 id에 해당하는 mozip 객체 넘겨줌
     @GetMapping("/mozip/chat/room")
-    public String roomDetail(Model model, Long id) {
-        System.out.println("입장 성공!!");
-        return "redirect:/main_page.html";
+    public String roomDetail(Model model, Long id,  HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return "세션이 없습니다.";
+        }
+        System.out.println("입장 성공!!" + id);
+
+        model.addAttribute("room", mozipService.findRoomById(id).get());
+        model.addAttribute("nickname",
+                memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname());
+        return "chat";
     }
 
     //모집글 생성(title, distance_limit) 변수 저장

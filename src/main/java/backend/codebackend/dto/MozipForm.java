@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentMap;
 
 @Getter
 @Setter
+@Data
 @ToString
 @NoArgsConstructor
 @Builder
@@ -41,8 +42,6 @@ public class MozipForm {
 
     private String nickname;
 
-    private ConcurrentMap<String, String> userList = new ConcurrentHashMap<>(); //채팅방 참가한 인원 리스트
-
     public Mozip toEntity(){
         Mozip build = Mozip.builder()
                 .title(title)
@@ -55,7 +54,7 @@ public class MozipForm {
         return build;
     }
 
-    public MozipForm(String title, Long distance_limit, String categories, int usercount, int peoples, LocalDateTime create_Date, String nickname, ConcurrentMap<String, String> userList) {
+    public MozipForm(String title, Long distance_limit, String categories, int usercount, int peoples, LocalDateTime create_Date, String nickname) {
         this.title = title;
         this.distance_limit = distance_limit;
         this.categories = categories;
@@ -63,7 +62,6 @@ public class MozipForm {
         this.peoples = peoples;
         this.create_Date = create_Date;
         this.nickname = nickname;
-        this.userList = userList;
     }
     //    private static class TIME_MAXIMUM {
 //        public static final int SEC = 60;

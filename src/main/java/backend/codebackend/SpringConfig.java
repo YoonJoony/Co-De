@@ -1,15 +1,9 @@
 package backend.codebackend;
 
 import backend.codebackend.repository.*;
-import backend.codebackend.service.FileService;
-import backend.codebackend.service.MemberService;
-import backend.codebackend.service.MozipService;
-import backend.codebackend.service.S3FileService;
-import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import backend.codebackend.service.*;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -50,6 +44,10 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
         return new S3FileService(amazonS3);
     }
 
+    @Bean
+    public ChatUserService chatUserService() {
+        return new ChatUserService(chatUserRepository());
+    }
 
     @Bean
     public MemberRepository memberRepository() {
@@ -59,6 +57,11 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     @Bean
     public MozipRepository mozipRepository() {
         return new JpaMozipRepository(em);
+    }
+
+    @Bean
+    public ChatUserRepository chatUserRepository() {
+        return new JpaChatUserRepository(em);
     }
 
 
