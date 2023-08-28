@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main</title>
+  <link rel="stylesheet" href="/css/chatroom/chat.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+
+  <!-- 다음 주소 찾기 API -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+          crossorigin="anonymous"></script>
+
+  <!-- 네이버 지도 API 추가 -->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+<!--채팅 페이지 입장 버튼 영역-->
+<div id="chat-join" class="chat-join">
+  <div class="header">
+    <div class="join-back">
+      <div id="back-button" class="back-button">
+        <img src="/images/back.png" height="80px" width="80px">
+      </div>
+    </div>
+    <div class="join-user">
+      <span class="user-picture">
+          <img class="picture" src="/images/profile.png" height="300px" width="300px">
+      </span>
+      <span id="user-name" class="user-name" th:text="${nickname}">
+        김윤준
+      </span>
+    </div>
+    <form id="main-join" class="main-join">
+      <div class="user-join">
+        <button type="submit" class="join-button">입장</button>
+        <img class="join-button-picture" src="/images/join.png">
+      </div>
+    </form>
+  </div>
+  <div class="body-main">
+    <div class="board">
+      <p class="li-1">모집글 정보</p>
+      <div class="boards">
+        <div class="boards-left">
+          <div class="board-title" th:text="${room.title}"></div>
+          <div class="board-peoples"><p1>참가 인원</p1></div>
+          <div class="board-peoples-ficture"></div>
+        </div>
+        <div class="boards-right">
+          <div class="boards-map">
+            <div class="map_wrap" id="map_wrap">
+              <div id="map_v3" class="map_div"></div>
+              <div class="map_tit"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--채팅 페이지 영역-->
+<div id="main">
+  <div class="topper">
+    <!-- 로그인 부분 -->
+    <div class="login">
+      <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+      <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+      <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+    </div>
+  </div>
+  <!-- 헤더 부분 -->
+  <div class="header2">
+    <!-- CO-ORDER 제목 부분 -->
+    <div class="width-container">
+      <div class="logo-img">
+        <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+        <img class="logo" src="/images/COOR2.png">
+      </div>
+      <div id="header-bell" class="header-bell">
+                    <span class="bell">
+                            <img src="/images/bell.png" style="width : 25px; height : 25px;" alt="">
+                    </span>
+      </div>
+      <div id="header-profile" class="header-profile">
+        <a class="header-user">
+                        <span class="user-picture2">
+                            <img src="/images/profile.png" height="50px" width="50px">
+                        </span>
+          <span class="user-name2" th:text="${nickname}"> 야왕이네
+                        </span>
+          <span class="header-arrow">
+                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+                        </span>
+        </a>
+        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+          <div class="block block-name">
+            <div class="profile-name" th:text="${nickname}"> 야왕이네
+            </div>
+            <div class="buttons">
+              <a href="#">파티관리</a>
+            </div>
+          </div>
+          <!--                    <div class="header-profile-direct">-->
+          <!--                        <dl class="header-member-direct__information">-->
+          <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
+          <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
+          <!--                            <dd>ㅇㅇ</dd>-->
+          <!--                            <dd>ㅇㅇ</dd>-->
+          <!--                        </dl>-->
+          <!--                    </div>-->
+        </div>
+      </div>
+    </div>
+    <!-- 주소 입력 부분 -->
+    <div class="search-container">
+      <div class="search">
+        <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+          <img class="gps" src="/images/search.png">
+        </button>
+        <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
+        <div class="tag-container">
+          <div class="tag real-time-text">
+            <p class="search-tag-text">실시간 검색 태그</p>
+          </div>
+          <div class="tag real-time">
+            #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
+          </div>
+        </div>
+      </div>
+      <ul>
+        <li class="menu-li off">
+          <a class="menu-a">전체 글</a>
+        </li>
+        <li class="menu-li off">
+          <a class="menu-a">카테고리</a>
+        </li>
+        <li class="menu-li on">
+          <a class="menu-a">내 채팅</a>
+        </li>
+      </ul>
+
+    </div>
+    <!-- 프로필 -->
+
+  </div>
+
+  <div id="chat-page">
+    <div class="chat-container">
+      <div class="chat">
+        <div class="chat-group">
+          <div class="chat-header">
+            <h2 th:text="${room.title}"></h2>
+          </div>
+          <div class="connecting">
+            Connecting...
+          </div>
+          <ul id="messageArea">
+            <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
+          </ul>
+          <form id="messageForm" name="messageForm" nameForm="messageForm">
+            <div class="form-group">
+              <div class="input-group clearfix">
+                <input type="text" id="message" placeholder="Type a message..." autocomplete="off"
+                       class="form-control"/>
+                <button type="submit" class="primary">Send</button>
+              </div>
+            </div>
+          </form>
+
+          <div class="file-group">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="showMenu" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+              파일 업로드
+            </button>
+            <div id="menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <input type="file" id="file"> <!--  파일 선택하는 태그 -->
+              <button type="button" class="btn btn-primary" id="uploadFile" onclick="uploadFile()">저장</button>
+            </div>
+          </div>
+        </div>
+        <div class="dock-group">
+          <div class="user-list">
+            <div id="list" class="user-menu">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="/js/chatroom/chat2.js"></script>
+
+<!--WebSocket 스크립트-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<!-- 예제 시작 -->
+
+<!-- http://localhost 에서 테스트 하시려면 cpw9RMOfkmb0qIa7Vz23 키를 사용해 보세요 -->
+
+<!-- 맵 v3 스크립트 -->
+<script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mn7cwsrvym"></script>
+
+<!-- 네이버 지도 API 관련 -->
+<style type="text/css">
+
+
+	.map_wrap .map_div {
+		box-sizing:border-box;
+	}
+	.map_wrap .map_tit {
+		font-size:12pt !important;
+	}
+
+</style>
+<script>
+
+
+</script>
+
+<!-- 예제 종료 -->
+
+
+</body>
+
+</html>
