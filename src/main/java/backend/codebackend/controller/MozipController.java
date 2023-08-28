@@ -33,7 +33,7 @@ public class MozipController {
 //    }
 
     @GetMapping("/main_page.html")
-    public String list(Model model, HttpServletRequest request) { //리스트들을 한 줄이 아니라 벗츠처럼? 네모 칸 예쁘게 수정?
+    public String list(Model model, HttpServletRequest request) {
         List<Mozip> mozipFormList = mozipService.getMozipList();
         model.addAttribute("postList", mozipFormList);
 
@@ -108,7 +108,6 @@ public class MozipController {
     @ResponseBody
     public boolean chkRoomUserCnt(@PathVariable Long id) {
         if(mozipService.chkRoomUserCnt(id)) {
-            mozipService.plusUserCnt(id);
             System.out.println("\n\n\n현재 인원 : " + mozipService.findRoomById(id).get().getUsercount());
             return true;
         }

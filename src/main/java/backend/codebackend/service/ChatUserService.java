@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor //생성자 주입. 번거롭게 생성자를 생성해서 객체를 주입받지 않아도 됨.
 public class ChatUserService {
     private final ChatUserRepository chatUserRepository;
+    private final MozipService mozipService;
 
     public boolean addUser(Long id, String nickname) {
         ChatUser chatUser = ChatUser.builder()
@@ -19,7 +20,11 @@ public class ChatUserService {
                 .nickname(nickname)
                 .build();
 
-        return chatUserRepository.addUser(chatUser);
+        if(chatUserRepository.addUser(chatUser)) {
+            mozipService.plusUserCnt(id);
+            return true;
+        }
+        return false;
     }
 
     public void deleteUser(Long id, String nickname) {
