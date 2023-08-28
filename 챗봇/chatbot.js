@@ -12,17 +12,6 @@ $(function () {
       e.preventDefault();
       $layerProfile.css({ left: "auto" }).fadeOut(100);
     });
-
-  $(".board-list").slice(0, 5).css("display", "block"); // 초기갯수
-  $(".load-btn").click(function (e) {
-    // 클릭시 more
-    e.preventDefault();
-    if ($(".board-list:hidden").length == 0) {
-      // 컨텐츠 남아있는지 확인
-      alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기
-    }
-    $(".board-list:hidden").slice(0, 5).css("display", "block"); // 클릭시 more 갯수 지정
-  });
 });
 
 //위에 header를 스크롤 할 시 header fixed로 바뀌며가 자동으로 고정되게 하기
