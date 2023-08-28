@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/static/css/main_page3.css">
+    <link rel="stylesheet" href="/css/main_page3.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -46,7 +46,7 @@
                 </div>
                 <div id="header-bell" class="header-bell">
                     <span class="bell">
-                            <img src="/templates/images/bell.png" style="width : 25px; height : 25px;" alt="">
+                            <img src="/images/bell.png" style="width : 25px; height : 25px;" alt="">
                     </span>
                 </div>
                 <div id="header-profile" class="header-profile">
@@ -55,7 +55,6 @@
                             <img src="images/profile.png" height="50px" width="50px">
                         </span>
                         <span class="user-name" th:text="${nickname}">
-                                김윤준
                         </span>
                         <span class="header-arrow">
                             <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
@@ -64,7 +63,6 @@
                     <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
                         <div class="block block-name">
                             <div class="profile-name" th:text="${nickname}">
-                                김윤준
                             </div>
                             <div class="buttons">
                                 <a href="#">파티관리</a>
@@ -144,10 +142,6 @@
                 </div>
             </div>
             </th:block>
-        </div>
-        <!-- 모집글 더보기 버튼 -->
-        <div class="load-btn">
-            <input type="button" id="load_btn" value="더보기">
         </div>
     </div>
 
@@ -247,7 +241,7 @@
         </div>
     </div>
 
-<script src="/static/js/main_page2.js"></script>
+<script src="/js/main_page2.js"></script>
     <script th:inline="javascript">
 
 
@@ -321,7 +315,6 @@
 
 
     function enterRoom(){
-            alert("방 번호 : " + id)
              if (chkRoomUserCnt(id)) {
                   location.href = "/mozip/chat/room?id="+id;
              }
