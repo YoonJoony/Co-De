@@ -18,7 +18,7 @@ body {
 }
 
 body {
-  padding: 240px 0; /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
+  padding: 199px 0; /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
   font-family: "NanumSquareNeo-Variable";
   background-color: #f0f0f0;
   line-height: 1.6;
@@ -250,6 +250,15 @@ a {
   color: #58b26c;
   text-align: center;
   line-height: 30px;
+}
+.body_title {
+  position: relative;
+  text-align: center;
+  align-items: center;
+  font-size: 20px;
+  color: #ff8c16;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .body {
   position: relative;
