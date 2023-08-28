@@ -8,39 +8,70 @@
     <link rel="stylesheet" href="mypage.css">
 </head>
 
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+
 <body>
     <div class="main">
         <!-- 헤더 부분 -->
-        <div class="header">
+        <div class="topper">
+            <!-- 로그인 부분 -->
             <div class="login">
-                <a href="#" style="color: #8E8E8E">로그아웃</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
             </div>
-            <div class="name">
-                <a href="메인화면 링크" style="color: #7CAB75">CO-ORDER</a>
+        </div>
+        <!-- 헤더 부분 -->
+        <div class="header">
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="logo-img">
+                <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                <img class="logo" src="images/COOR2.png">
+                <p>ALL 📒 POST </p>
             </div>
-            <!-- 프로필 -->
-            <div class="profile">
-                <button id="profile_btn" type="button" onclick="profile_btn()">
-                    <img src="images/profile.png" height="40px" width="40px">
-                </button>
-                <div id="layer-header-profile">
-                    <div class="header-profile-direct">
-                        <div class="profile-div">
-                            엄준식</div>
-                        <div class="profile-div">
-                            <input type="button" class="profile-btn" id="profile_btn_btn1" onclick=""
-                                value="마이페이지"></input>
+            <div id="header-bell" class="header-bell">
+                <span class="bell">
+                    <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
+                </span>
+            </div>
+            <div id="header-profile" class="header-profile">
+                <a class="header-user">
+                    <span class="user-picture">
+                        <img src="images/profile.png" height="50px" width="50px">
+                    </span>
+                    <span class="user-name" th:text="${nickname}">
+                        김윤준
+                    </span>
+                    <span class="header-arrow">
+                        <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+                    </span>
+                </a>
+                <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+                    <div class="block block-name">
+                        <div class="profile-name" th:text="${nickname}">
+                            김윤준
                         </div>
-                        <div class="profile-div">
-                            <input type="button" class="profile-btn" id="profile_btn_btn2" onclick=""
-                                value="참여중인 모집글"></input>
+                        <div class="buttons">
+                            <a href="#">파티관리</a>
                         </div>
-                        <div class="profile-div">
-                            <input type="button" class="profile-btn" id="profile_btn_btn3" onclick=""
-                                value="거래 내역 조회"></input>
-                        </div>
-
                     </div>
+                    <!--                    <div class="header-profile-direct">-->
+                    <!--                        <dl class="header-member-direct__information">-->
+                    <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
+                    <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
+                    <!--                            <dd>ㅇㅇ</dd>-->
+                    <!--                            <dd>ㅇㅇ</dd>-->
+                    <!--                        </dl>-->
+                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -88,7 +119,7 @@
                 </div>
                 <div class="button-align center">
                     <a href="메인페이지 이동 링크" class="button">취소</a>
-                    <button type="submit" id="btn_submit" class="button button-green">정보 수정</button>
+                    <button type="submit" id="btn_submit" class="button button-color">정보 수정</button>
                 </div>
             </div>
         </div>

@@ -35,6 +35,11 @@ public class MozipService {
         return member.getNickname();
     }
 
+    //이미 방에 입장 해 있는 경우 다시 접속 시
+    public boolean isDuplicateName(Long id, String ninkname) {
+        return false;
+    }
+
     //게시글 가져오기
     public List<Mozip> getMozipList() {
         List<Mozip> mozipList = mozipRepository.findAll();
@@ -49,8 +54,11 @@ public class MozipService {
 
     public boolean chkRoomUserCnt(Long id) {
         Mozip mozip = mozipRepository.findById(id).get();
-        if(mozip.getUsercount()+1 > mozip.getPeoples())
+        if(mozip.getUsercount()+1 > mozip.getPeoples()) {
+            System.out.println("입장 인원 초과");
             return false;
+        }
+        System.out.println("입장 가능.\n인원 : " + mozip.getUsercount());
         return true;
     }
 
