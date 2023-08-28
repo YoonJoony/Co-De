@@ -962,7 +962,7 @@ a {
     height: 250px;
     border-radius: 20px;
     top: 190px;
-    display: block;
+    display: none;
 }
 
 .map_close{
