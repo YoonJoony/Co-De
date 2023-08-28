@@ -1,25 +1,40 @@
-// 프로필 클릭시
-function profile_btn() {
-  const box = document.getElementById("layer-header-profile");
+$(function () {
+  // 프로필 클릭시
+  var $profile = $(".header-profile");
+  var $layerProfile = $(".layer-header-profile");
 
-  // btn1 숨기기 (display: none)
-  if (box.style.display !== "block") {
-    box.style.display = "block";
-  }
-  // btn1 보이기 (display: block)
-  else {
-    box.style.display = "none";
-  }
-}
+  $profile
+    .on("mouseenter", function (e) {
+      e.preventDefault();
+      $layerProfile.css({ left: "auto" }).fadeIn(100);
+    })
+    .on("mouseleave", function (e) {
+      e.preventDefault();
+      $layerProfile.css({ left: "auto" }).fadeOut(100);
+    });
+
+  $(".board-list").slice(0, 5).css("display", "block"); // 초기갯수
+  $(".load-btn").click(function (e) {
+    // 클릭시 more
+    e.preventDefault();
+    if ($(".board-list:hidden").length == 0) {
+      // 컨텐츠 남아있는지 확인
+      alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기
+    }
+    $(".board-list:hidden").slice(0, 5).css("display", "block"); // 클릭시 more 갯수 지정
+  });
+});
 
 //위에 header를 스크롤 할 시 header fixed로 바뀌며가 자동으로 고정되게 하기
 const header = document.querySelector(".header");
+var $topper = $(".topper");
+var $window = $(window);
 
 // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
 const contentTop = header.getBoundingClientRect().top + window.scrollY;
 
 window.addEventListener("scroll", function () {
-  if (window.scrollY >= contentTop) {
+  if ($window.scrollTop() > $topper.height()) {
     header.classList.add("fixed");
   } else {
     header.classList.remove("fixed");
@@ -60,7 +75,7 @@ const userInput = document.querySelector("#user-input input");
 // 전송 버튼
 const sendButton = document.querySelector("#user-input button");
 // 발급받은 OpenAI API 키를 변수로 저장
-const apiKey = "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";
+const apiKey = "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";
 // OpenAI API 엔드포인트 주소를 변수로 저장
 const apiEndpoint = "https://api.openai.com/v1/chat/completions";
 function addMessage(sender, message) {
@@ -84,14 +99,15 @@ async function fetchAIResponse(prompt) {
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo", // 사용할 AI 모델
+      // prompt: "배달음식을 시킬껀데 음식 추천해줘",
       messages: [
         {
           role: "user", // 메시지 역할을 user로 설정
           content: prompt, // 사용자가 입력한 메시지
         },
       ],
-      temperature: 0.8, // 모델의 출력 다양성
-      max_tokens: 1024, // 응답받을 메시지 최대 토큰(단어) 수 설정
+      temperature: 0.2, // 모델의 출력 다양성
+      max_tokens: 300, // 응답받을 메시지 최대 토큰(단어) 수 설정
       top_p: 1, // 토큰 샘플링 확률을 설정
       frequency_penalty: 0.5, // 일반적으로 나오지 않는 단어를 억제하는 정도
       presence_penalty: 0.5, // 동일한 단어나 구문이 반복되는 것을 억제하는 정도
@@ -109,6 +125,7 @@ async function fetchAIResponse(prompt) {
     return "OpenAI API 호출 중 오류 발생";
   }
 }
+
 // 전송 버튼 클릭 이벤트 처리
 sendButton.addEventListener("click", async () => {
   // 사용자가 입력한 메시지
@@ -127,4 +144,12 @@ userInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     sendButton.click();
   }
+});
+
+$(async function () {
+  const message =
+    "한국에서 배달 음식을 시킬껀데 나한테 질문 한 다음에 음식을 200자 이내로 추천해주고 음식에 대한 정보는 필요없어";
+
+  const aiResponse = await fetchAIResponse(message);
+  addMessage("챗봇", aiResponse);
 });

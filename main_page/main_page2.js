@@ -184,16 +184,9 @@ elements.forEach((element, index) => {
   i++;
 });
 
-//
-
-$(window).scroll(function () {
-  if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-    console.log("스크롤바 끝 도달");
-  }
-});
-
+//스크롤 할 시 게시물 추가로 보여짐
 $(function () {
-  $(".board").slice(0, 4).css("display", "inline-block"); // 초기갯수
+  $(".board").slice(0, 8).fadeIn(1000).css("display", "inline-block"); // 초기갯수
 
   $(window).scroll(function () {
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
@@ -201,10 +194,16 @@ $(function () {
 
       if ($(".board:hidden").length == 0) {
         // 컨텐츠 남아있는지 확인
-        alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기
+        // alert("게시물의 끝입니다."); // 컨텐츠 없을시 alert 창 띄우기
       }
-      $(".board:hidden").slice(0, 4).css("display", "inline-block"); // 클릭시 more 갯수 지정
+      $(".board:hidden")
+        .slice(0, 4)
+        .fadeIn(1000)
+        .css("display", "inline-block"); // 클릭시 more 갯수 지정
     }
   });
   // 클릭시 more
 });
+
+//새로고침시 스크롤 위치 초기화
+history.scrollRestoration = "manual";
