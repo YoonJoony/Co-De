@@ -129,11 +129,11 @@
                 <div class="boards">
                     <div class="board-header">
                         <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}" onclick="backdropDelete()">
                     </div>
                     <div class="board-nickname" th:text="${post.nickname}"></div>
                     <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
+                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}" onclick="backdropDelete()"></a>
                         <button class="join">Go GO~</button>
                     </div>
                     <div class="board-categories" th:text="${post.categories}"></div>
@@ -241,7 +241,6 @@
         </div>
     </div>
 
-<script src="/js/main_page2.js"></script>
     <script th:inline="javascript">
 
 
@@ -287,17 +286,23 @@
 
         $("#enterRoomModal").on("show.bs.modal", function (event) {
             id = $(event.relatedTarget).data('id');
+            nickname = $(event.relatedTarget).data('nickname');
+            alert(nickname);
         });
 
     })
 
 
-    function chkRoomUserCnt(id) {
+    function chkRoomUserCnt(id, nickname) {
             let chk;
 
             $.ajax({
                 type : "GET",
-                url : "/mozip/chat/chkRoomUserCnt/"+id,
+                url : "/mozip/chat/chkRoomUserCnt",
+                data : {
+                    id : id,
+                    nickname : nickname
+                },
                 async : false,
                 success : function(result) {
                     if (!result) {
@@ -315,11 +320,12 @@
 
 
     function enterRoom(){
-             if (chkRoomUserCnt(id)) {
+             if (chkRoomUserCnt(id, nickname)) {
                   location.href = "/mozip/chat/room?id="+id;
              }
         }
     </script>
+    <script src="/js/main_page2.js"></script>
 </body>
 
 </html>

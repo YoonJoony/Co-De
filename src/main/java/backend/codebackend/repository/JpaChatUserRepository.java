@@ -28,6 +28,19 @@ public class JpaChatUserRepository implements ChatUserRepository{
         return false;
     }
 
+    //기존에 접속한 유저인 경우
+    @Override
+    public boolean isDuplicateName(Long id, String nickname) {
+        List<String> result = em.createQuery("select m.nickname from ChatUser m where m.nickname = :nickname and m.id = :id", String.class)
+                .setParameter("nickname", nickname)
+                .setParameter("id", id)
+                .getResultList();
+        if(result.isEmpty()){ //기존 유저가 아닌 경우
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void deleteUser(Long id, String nickname) {
         Query query = em.createQuery("delete from chat_user where id = :id and nickname = :nickname");

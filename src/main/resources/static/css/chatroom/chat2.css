@@ -691,9 +691,6 @@ a {
     clear: both;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
 
 #chat-page {
     position: relative;
@@ -720,7 +717,7 @@ a {
 
 .chat-group {
     width: 80%;
-    background-color: #fff;
+    background-color: #EFEFEF;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     height: 100%;
     max-height: 600px;
@@ -751,14 +748,46 @@ a {
     border-radius: 7px;
 }
 
+.form-group {
+    padding : 10px;
+    background-color : #FFFFFF;
+    height: 80%;
+   }
+
+
 .file-group{
 
+}
+
+.control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-clip: padding-box;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-upload {
+  width: 30px;
+  height: 30px;
+}
+
+#file {
+  display: none;
 }
 
 
 #chat-page ul {
     list-style-type: none;
-    background-color: #FFF;
     margin: 0;
     overflow: auto;
     overflow-y: scroll;
@@ -767,7 +796,9 @@ a {
 }
 
 #chat-page #messageForm {
-    padding: 20px;
+    padding: 5px 20px;
+    position : relative;
+
 }
 
 #chat-page ul li {
