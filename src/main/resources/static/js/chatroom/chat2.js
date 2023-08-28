@@ -10,6 +10,9 @@ document.write("<script\n" +
 var join = document.querySelector('#chat-join');
 var mainJoin = document.querySelector('#main-join');
 var main = document.querySelector('#main');
+var messageForm = document.querySelector('#messageForm');
+var messageInput = document.querySelector('#message'); //입력한 메시지 가져오기
+var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('connecting');
 
 var stompClient = null;
@@ -58,7 +61,7 @@ function onConnected() {
            서버에서 메시지를 수신하면 이 콜백 함수(onMessageReceived) 가 호출된다.
        */
 
-        /* 서버에 username 을 가진 유저가 들어왔다는 것을 알림
+        /* 서버에 nickname 을 가진 유저가 들어왔다는 것을 알림
            /pub/chat/enterUser 로 메시지를 보냄
            ajax가 라니라 stomp 클라이언트 객체로 보내야 서버에서 stomp 객체를 통해 구독, 메시지 발행 기능을 수행할 수 있음 */
     stompClient.send("/pub/mozip/chat/enterUser",
@@ -112,6 +115,23 @@ function getUserList() {
     })
 }
 
+function sendMessage(event) {
+    var messageContent = messageInput.value.trim();
+
+    if (messageContent && stompClient) {
+        var chatMessage = {
+            "id" = id,
+            sender = nickname;
+            nickname = nickname;
+            message = messageInput.value,
+            type : 'TALK'
+        };
+
+        stompClient.send("/pub/mozip/sendMessage", {}, JSON.stringify(chatMessage));
+        messageInput.value = '';
+    }
+    event.preventDefault();
+}
 
 
 function onMessageReceived(payload) {
@@ -125,19 +145,47 @@ function onMessageReceived(payload) {
         messageElement.classList.add('event-message');
         chat.content = chat.sender + chat.message;
         getUserList();
+    } else if (chat.type === 'LEAVE') {
+        massageElement.classList.add('event-message');
+        chat.content = chat.sender + chat.message;
+        getUserList();
+    } else {
+        messageElement.classList.add('event-message');
+
+        var avatarElement = document.createElement('i'); //[아바타 요소 생성]
+        var avatarText = document.createTextNode(chat.sender[0]);
+        avatarElement.appendChild(avatarText);
+        avatarElement.style['background-color'] = getAvatarColor(chat.sender);
+
+        messageElement.appendChild(avatarElement);
+
+        var usernameElement = document.createElement('span');
+        var usernameText = document.createTextNode(chat.sender);
+        usernameElement.appendChild(usernameText);
+        messageElement.appendChild(usernameElement);
     }
+
+    var contentElement = document.createElement('p');
+    contentElement.appendChild(connectingElement);
+
+    messageElement.appendChild(contentElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
 }
 
+function getAvatarColor(messageSender) {
+    var hash = 0;
+    for (var i = 0; i < messageSender.length; i++) {
+        hash = 31 * hash + messageSender.charCodeAt(i);
+    }
 
-
-
-
-
+    var index = Math.abs(hash % colors.length);
+    return colors[index];
+}
 
 mainJoin.addEventListener('submit', connect, true); //usernameForm 리스너에 connect 함수 연결
-
-
-
+messageForm.addEventListener('submit', sendMessage, true); //messageForm 리스너에 sendMessage 함수 연결
 
 $(function () {
     document.getElementById('back-button').addEventListener('click', function() {

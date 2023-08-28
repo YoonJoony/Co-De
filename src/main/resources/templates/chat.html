@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/static/css/chatroom/chat.css">
+  <link rel="stylesheet" href="/static/css/chatroom/chat2.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -21,10 +21,10 @@
   <!-- 다음 주소 찾기 API -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-          crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 
   <!-- 네이버 지도 API 추가 -->
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -177,23 +177,21 @@
           <form id="messageForm" name="messageForm" nameForm="messageForm">
             <div class="form-group">
               <div class="input-group clearfix">
-                <input type="text" id="message" placeholder="Type a message..." autocomplete="off"
-                       class="form-control"/>
+                <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="control" data-listener-added_1008ea1e="true">
                 <button type="submit" class="primary">Send</button>
+              </div>
+              <div class="file-group">
+                <div id="menu">
+                  <label for="file">
+                    <div class="btn-upload">
+                      <img src="/templates/images/picture.png" >
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="file" onchange="uploadFile(this)">
+                </div>
               </div>
             </div>
           </form>
-
-          <div class="file-group">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="showMenu" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-              파일 업로드
-            </button>
-            <div id="menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <input type="file" id="file"> <!--  파일 선택하는 태그 -->
-              <button type="button" class="btn btn-primary" id="uploadFile" onclick="uploadFile()">저장</button>
-            </div>
-          </div>
         </div>
         <div class="dock-group">
           <div class="user-list">
@@ -206,8 +204,11 @@
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="/static/js/chatroom/chat2.js"></script>
-
+<script src="/static/js/chatroom/chat.js"></script>
+<!-- Add Bootstrap JavaScript and its dependencies -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 <!--WebSocket 스크립트-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>

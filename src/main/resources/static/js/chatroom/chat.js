@@ -10,10 +10,18 @@ document.write("<script\n" +
 var join = document.querySelector('#chat-join');
 var mainJoin = document.querySelector('#main-join');
 var main = document.querySelector('#main');
+var messageForm = document.querySelector('#messageForm');
+var messageInput = document.querySelector('#message'); //입력한 메시지 가져오기
+var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('connecting');
 
 var stompClient = null;
 var nickname = null;
+
+var colors = [
+    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+];
 
 // id 파라미터 가져오기
 const url = new URL(location.href).searchParams;
@@ -48,7 +56,7 @@ function connect(event) {
 //연결 성공 시
 function onConnected() {
     console.log("연결 성공");
-    stompClient.subscribe('/sub/mozip/chat/room/' + id, onMessageReceived);
+    stompClient.subscribe("/sub/mozip/chat/room/"+ id, onMessageReceived);
        /*  Stomp 클라이언트 객체를 사용하여 서버로부터 메시지를 구독 한다. 이 메소드는 두 개의 인자를 받는다.
            첫 번째 인자는 구독할 대상의 주소(address)이다. 이 주소는 서버에서 메시지를 보낼 때 사용 된다.
            /sub/chat/room/ 과 roomId를 조합하여 주소를 생성한다. -> 이 주소는 특정 채팅방의 메시지를 구독하는데 사용 됨
@@ -58,17 +66,17 @@ function onConnected() {
            서버에서 메시지를 수신하면 이 콜백 함수(onMessageReceived) 가 호출된다.
        */
 
-        /* 서버에 username 을 가진 유저가 들어왔다는 것을 알림
+        /* 서버에 nickname 을 가진 유저가 들어왔다는 것을 알림
            /pub/chat/enterUser 로 메시지를 보냄
            ajax가 라니라 stomp 클라이언트 객체로 보내야 서버에서 stomp 객체를 통해 구독, 메시지 발행 기능을 수행할 수 있음 */
-       stompClient.send("/pub/mozip/chat/enterUser",
-           {},
-           JSON.stringify({
-               "id": id,
-               sender: nickname,
-               type: 'ENTER'
-           })
-       )
+    stompClient.send("/pub/mozip/chat/enterUser",
+        {},
+        JSON.stringify({
+            "id": id,
+            sender: nickname,
+            type: 'ENTER'
+        })
+    )
        /*  stompClient.send() 메서드는 Stomp 클라이언트 객체를 사용하여 서버로 메시지를 전송한다.
            이 때 메서드는 세 개의 인자를 받는다
            첫 번째 인자는 메시지를 전송할 대상의 주소. 이 주소는 서버에서 메시지를 받을 때 사용된다.
@@ -79,9 +87,8 @@ function onConnected() {
            세 번째 인자는 전송할 메시지의 본문.
            여기서는 JSON.stringify() 함수를 사용하여 객체를 JSON 문자열로 변환한 뒤, 이를 메시지 본문으로 사용한다.
        */
-       connectingElement.classList.add('hidden');
+//    connectingElement.classList.add('hidden');
 
-     getUserList();
 }
 
 function onError(error) {
@@ -90,7 +97,7 @@ function onError(error) {
 
 // 유저 리스트 받기
 function getUserList() {
-    const $list = $('list');
+    const $list = $('#list');
 
     $.ajax({
         type : "GET",
@@ -102,7 +109,7 @@ function getUserList() {
             console.log("데이터 받기 성공 : " + data[0]);
             var users = "";
             for (let i = 0; i < data.length; i++) {
-                console.log("data[i] : " + data[i]);
+                console.log("data[" + i + "] : " + data[i]);
                 users += "<li class='dropdown-item'>" + data[i] + "</li>";
             }
             $list.html(users);
@@ -113,17 +120,86 @@ function getUserList() {
     })
 }
 
+function sendMessage(event) {
+    var messageContent = messageInput.value.trim();
+
+    if (messageContent && stompClient) {
+        var chatMessage = {
+            "id" : id,
+            sender : nickname,
+            message : messageInput.value,
+            type : 'TALK'
+        };
+
+        stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
+        messageInput.value = '';
+    }
+    event.preventDefault();
+}
 
 
+function onMessageReceived(payload) {
+    console.log("onMessage");
+    var chat = JSON.parse(payload.body);
+    // payload는 클라이언트에서 수신한 메시지를 나타냄.
+    // 하지만 클라이언트가 수신한건지 서버로 송신한 메시지인지 모르니 payload.body로 수신한 메시지를 확인하는 로직을 써줌
+    var messageElement = document.createElement('li'); //li 타입의 [메시지 요소]를 만든다.
+
+    if (chat.type === 'ENTER') {
+        messageElement.classList.add('event-message');
+        chat.content = chat.sender + chat.message;
+        getUserList();
+    } else if (chat.type === 'LEAVE') {
+        massageElement.classList.add('event-message');
+        chat.content = chat.sender + chat.message;
+        getUserList();
+    } else {
+        messageElement.classList.add('chat-message');
+
+        var avatarElement = document.createElement('i'); //[아바타 요소 생성]
+        var avatarText = document.createTextNode(chat.sender[0]);
+        avatarElement.appendChild(avatarText);
+        avatarElement.style['background-color'] = getAvatarColor(chat.sender);
+
+        messageElement.appendChild(avatarElement);
+
+        var usernameElement = document.createElement('span');
+        var usernameText = document.createTextNode(chat.sender);
+        usernameElement.appendChild(usernameText);
+        messageElement.appendChild(usernameElement);
+    }
+
+    var contentElement = document.createElement('p');
+
+    var messageText = document.createTextNode(chat.message);
+    contentElement.appendChild(messageText);
+
+    messageElement.appendChild(contentElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
+}
+
+function getAvatarColor(messageSender) {
+    var hash = 0;
+    for (var i = 0; i < messageSender.length; i++) {
+        hash = 31 * hash + messageSender.charCodeAt(i);
+    }
+
+    var index = Math.abs(hash % colors.length);
+    return colors[index];
+}
+
+function uploadFile(input) {
+
+}
 
 
 
 
 
 mainJoin.addEventListener('submit', connect, true); //usernameForm 리스너에 connect 함수 연결
-
-
-
+messageForm.addEventListener('submit', sendMessage, true); //messageForm 리스너에 sendMessage 함수 연결
 
 $(function () {
     document.getElementById('back-button').addEventListener('click', function() {

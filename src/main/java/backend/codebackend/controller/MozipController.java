@@ -3,6 +3,7 @@ package backend.codebackend.controller;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.SelectedValue;
 import backend.codebackend.dto.MozipForm;
+import backend.codebackend.service.ChatUserService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MozipService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ public class MozipController {
 
     private final MozipService mozipService;
     private final MemberService memberService;
+    private final ChatUserService chatUserService;
 
     private SelectedValue sv = SelectedValue.getInstance(); //싱글톤으로 객체 인스턴스 1개만 생성되도록 함
 //    private String selectedValue1;
@@ -104,11 +106,18 @@ public class MozipController {
         mozipService.savePost(mozipForm); //모집글 저장.
     }
 
-    @GetMapping("/mozip/chat/chkRoomUserCnt/{id}")
+    @GetMapping("/mozip/chat/chkRoomUserCnt")
     @ResponseBody
-    public boolean chkRoomUserCnt(@PathVariable Long id) {
-        if(mozipService.chkRoomUserCnt(id)) {
+    public boolean chkRoomUserCnt(Long id, String nickname) {
+        if(!chatUserService.isDuplicateName(id, nickname)){ //기존에 입장 되어 있는 경우 들어가짐
             System.out.println("\n\n\n현재 인원 : " + mozipService.findRoomById(id).get().getUsercount());
+            log.info("이미 입장해 계십니다.");
+            return true;
+        }
+        else if(mozipService.chkRoomUserCnt(id)) {
+            mozipService.plusUserCnt(id);
+            System.out.println("\n\n\n현재 인원 : " + mozipService.findRoomById(id).get().getUsercount());
+            log.info("신입이군요");
             return true;
         }
         System.out.println("\n\n\n입장 실패 ㅜㅜ");
