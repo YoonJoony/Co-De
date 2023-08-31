@@ -13,10 +13,16 @@ var main = document.querySelector('#main');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message'); //입력한 메시지 가져오기
 var messageArea = document.querySelector('#messageArea');
-var connectingElement = document.querySelector('connecting');
+var connectingElement = document.querySelector('.connecting');
+var body = document.querySelector('body');
 
 var stompClient = null;
 var nickname = null;
+
+var colors = [
+    '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+    '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+];
 
 // id 파라미터 가져오기
 const url = new URL(location.href).searchParams;
@@ -37,6 +43,7 @@ function connect(event) {
       main.classList.add('visible');
       join.classList.remove('chat-join');
       join.classList.add('hidden');
+      body.classList.add('body-chat');
     }, 550);
 
     //연결하고자 하는 socket의 endpoint
@@ -82,12 +89,14 @@ function onConnected() {
            세 번째 인자는 전송할 메시지의 본문.
            여기서는 JSON.stringify() 함수를 사용하여 객체를 JSON 문자열로 변환한 뒤, 이를 메시지 본문으로 사용한다.
        */
-//    connectingElement.classList.add('hidden');
-
+    connectingElement.innerText = 'Online';
+    connectingElement.style.color = '#32e12f';
 }
 
 function onError(error) {
     console.log("실패!!");
+    connectingElement.innerText = 'Offline';
+    connectingElement.style.color = '#ff4a4a';
 }
 
 // 유저 리스트 받기
@@ -120,14 +129,13 @@ function sendMessage(event) {
 
     if (messageContent && stompClient) {
         var chatMessage = {
-            "id" = id,
-            sender = nickname;
-            nickname = nickname;
-            message = messageInput.value,
+            "id" : id,
+            sender : nickname,
+            message : messageInput.value,
             type : 'TALK'
         };
 
-        stompClient.send("/pub/mozip/sendMessage", {}, JSON.stringify(chatMessage));
+        stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
@@ -145,12 +153,32 @@ function onMessageReceived(payload) {
         messageElement.classList.add('event-message');
         chat.content = chat.sender + chat.message;
         getUserList();
+
+        var contentElement = document.createElement('p');
+
+        var messageText = document.createTextNode(chat.message);
+        contentElement.appendChild(messageText);
+
+        messageElement.appendChild(contentElement);
+
+        messageArea.appendChild(messageElement);
+        messageArea.scrollTop = messageArea.scrollHeight;
     } else if (chat.type === 'LEAVE') {
         massageElement.classList.add('event-message');
         chat.content = chat.sender + chat.message;
         getUserList();
+
+        var contentElement = document.createElement('p');
+
+        var messageText = document.createTextNode(chat.message);
+        contentElement.appendChild(messageText);
+
+        messageElement.appendChild(contentElement);
+
+        messageArea.appendChild(messageElement);
+        messageArea.scrollTop = messageArea.scrollHeight;
     } else {
-        messageElement.classList.add('event-message');
+        messageElement.classList.add('chat-message');
 
         var avatarElement = document.createElement('i'); //[아바타 요소 생성]
         var avatarText = document.createTextNode(chat.sender[0]);
@@ -163,15 +191,21 @@ function onMessageReceived(payload) {
         var usernameText = document.createTextNode(chat.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
+
+        var cloudElement = document.createElement('div');
+        cloudElement.classList.add('cloud');
+
+        var contentElement = document.createElement('p');
+        var messageText = document.createTextNode(chat.message);
+        contentElement.appendChild(messageText);
+        cloudElement.appendChild(contentElement);
+
+        messageElement.appendChild(cloudElement);
+
+
+        messageArea.appendChild(messageElement);
+        messageArea.scrollTop = messageArea.scrollHeight;
     }
-
-    var contentElement = document.createElement('p');
-    contentElement.appendChild(connectingElement);
-
-    messageElement.appendChild(contentElement);
-
-    messageArea.appendChild(messageElement);
-    messageArea.scrollTop = messageArea.scrollHeight;
 }
 
 function getAvatarColor(messageSender) {
@@ -183,6 +217,14 @@ function getAvatarColor(messageSender) {
     var index = Math.abs(hash % colors.length);
     return colors[index];
 }
+
+function uploadFile(input) {
+
+}
+
+
+
+
 
 mainJoin.addEventListener('submit', connect, true); //usernameForm 리스너에 connect 함수 연결
 messageForm.addEventListener('submit', sendMessage, true); //messageForm 리스너에 sendMessage 함수 연결

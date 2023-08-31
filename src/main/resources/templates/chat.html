@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/static/css/chatroom/chat2.css">
+  <link rel="stylesheet" href="/css/chatroom/chat2.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -166,45 +166,94 @@
       <div class="chat">
         <div class="chat-group">
           <div class="chat-header">
-            <h2 th:text="${room.title}"></h2>
-          </div>
-          <div class="connecting">
-            Connecting...
-          </div>
-          <ul id="messageArea">
-            <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
-          </ul>
-          <form id="messageForm" name="messageForm" nameForm="messageForm">
-            <div class="form-group">
-              <div class="input-group clearfix">
-                <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="control" data-listener-added_1008ea1e="true">
-                <button type="submit" class="primary">Send</button>
+            <div class="chat-header-left">
+
+              <div style="position: absolute; left: 0%;">
+                <span class="user-picture2">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </span>
               </div>
-              <div class="file-group">
-                <div id="menu">
-                  <label for="file">
-                    <div class="btn-upload">
-                      <img src="/templates/images/picture.png" >
-                    </div>
-                  </label>
-                  <input type="file" name="file" id="file" onchange="uploadFile(this)">
-                </div>
+
+              <div>
+                <span class="user-picture2" style="position: absolute; left: 0%;">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </span>
+              </div>
+
+              <div>
+                <span class="user-picture2" style="position: absolute; left: 0%;">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </span>
+              </div>
+
+              <div>
+                <span class="user-picture2" style="position: absolute; left: 0%;">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </span>
+              </div>
+
+            </div>
+            <div class="chat-header-center">
+              <div class="chat-header-center-group">
+                <h2 th:text="${room.title}"></h2>
+                <div class="connecting">offline</div>
               </div>
             </div>
-          </form>
+            <div class="chat-header-right"><img src="/images/Icon/menu_5259008.png" width="23px" height="23px" class="header-img">
+            </div>
+          </div>
+          <div class="chat-left-right">
+            <div class="chat-left">
+              <ul id="messageArea">
+                <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
+              </ul>
+              <form id="messageForm" name="messageForm" nameForm="messageForm">
+                <div class="form-group">
+                  <div class="input-group clearfix">
+                    <input type="text" id="message" placeholder="메시지를 입력 해보세요!" autocomplete="off" class="control" data-listener-added_1008ea1e="true">
+                    <button type="submit" class="primary">전송</button>
+                  </div>
+                  <div class="file-group">
+                    <div id="menu">
+                      <label for="file">
+                        <div class="btn-upload">
+                          <img src="/images/picture.png" style="cursor:pointer;">
+                        </div>
+                      </label>
+                      <input type="file" name="file" id="file" onchange="uploadFile(this)">
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="chat-right">
+              <div class="chat-menu">
+                <img src="/images/bell.png">
+                <img src="/images/icon/map.png" id="map_button" onclick="map_btn()">
+                <img src="/images/icon/Budget.png">
+                <img src="/images/icon/basket.png">
+                <img src="/images/icon/setting.png">
+              </div>
+              <img src="/images/icon/log-out_5565735.png" class="out-img">
+            </div>
+          </div>
         </div>
         <div class="dock-group">
           <div class="user-list">
             <div id="list" class="user-menu">
             </div>
           </div>
+          <div class="map" id="map"></div>
         </div>
+
+
+
       </div>
     </div>
   </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="/static/js/chatroom/chat.js"></script>
+<script src="/js/chatroom/chat2.js"></script>
 <!-- Add Bootstrap JavaScript and its dependencies -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE" crossorigin="anonymous"></script>

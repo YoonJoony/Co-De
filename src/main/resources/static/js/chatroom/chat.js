@@ -14,6 +14,7 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message'); //입력한 메시지 가져오기
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('connecting');
+var body = document.querySelector('body');
 
 var stompClient = null;
 var nickname = null;
@@ -42,6 +43,7 @@ function connect(event) {
       main.classList.add('visible');
       join.classList.remove('chat-join');
       join.classList.add('hidden');
+      body.classList.add('body-chat');
     }, 550);
 
     //연결하고자 하는 socket의 endpoint
@@ -87,8 +89,8 @@ function onConnected() {
            세 번째 인자는 전송할 메시지의 본문.
            여기서는 JSON.stringify() 함수를 사용하여 객체를 JSON 문자열로 변환한 뒤, 이를 메시지 본문으로 사용한다.
        */
-//    connectingElement.classList.add('hidden');
-
+    connectingElement.innerText = 'Online';
+    connectingElement.style.color = 'green';
 }
 
 function onError(error) {

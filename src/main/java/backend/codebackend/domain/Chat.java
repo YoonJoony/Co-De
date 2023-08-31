@@ -25,7 +25,7 @@ public class Chat {
         ENTER, LEAVE, TALK,
     }
 
-    private backend.codebackend.dto.ChatDTO.MessageTYpe type; //메시지 타입
+    private String type; //메시지 타입
 
     @Id
     private Long id; //방 번호
