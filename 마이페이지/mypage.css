@@ -268,7 +268,7 @@ a {
   margin: 0 auto;
   padding: 10px 15px;
   border-radius: 10px;
-  border: solid 1px #ff8c16;
+  border: solid 2px #ff8c16;
 }
 .board {
   position: relative;
@@ -286,7 +286,7 @@ a {
   position: relative;
   padding: 10px 15px;
   border-radius: 10px;
-  border: solid 1px #ff8c16;
+  border: solid 2px #ff8c16;
 }
 .form-list li {
   position: relative;
@@ -301,13 +301,13 @@ a {
   top: 0;
   left: 0;
   display: inline-block;
-  width: 90px;
+  width: 130px;
   padding: 6px 0;
 }
 .form-list input[type="text"],
 .form-list input[type="password"] {
-  display: inline-block;
-  width: 80%;
+  width: 90%;
+  margin-left: 8px;
 }
 input[type="text"],
 input[type="password"] {
@@ -326,7 +326,7 @@ input[type="password"] {
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 .form-control:focus {
-  border-color: #ff8c16;
+  border-color: #58b26c;
   outline: none;
 }
 .input-sm {
@@ -349,6 +349,7 @@ input[type="password"] {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s;
+  margin-left: 8px;
 }
 .modify-btn:hover {
   opacity: 1;
@@ -358,6 +359,9 @@ input[type="password"] {
   transition: -webkit-transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02),
     opacity 0.4s;
   transition: transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity;
+}
+.hide-modify-password {
+  position: relative;
 }
 .button-align {
   position: relative;
@@ -399,4 +403,40 @@ input[type="password"] {
   transition: -webkit-transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02),
     opacity 0.4s;
   transition: transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity;
+}
+
+/* 변경 버튼 클릭 시 나오는 수정 칸 */
+.modify-form-round {
+  position: relative;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: solid 2px #58b26c;
+  margin: 10px 0 10px 0;
+
+  /* 수정 버튼 클릭시 변경 사항 */
+  display: none;
+}
+/* 변경 버튼 클릭 시 나오는 수정 칸 (취소, 확인)버튼 폼 */
+.modify_form {
+  text-align: center;
+  margin-top: 8px;
+}
+/* 변경 버튼 클릭 시 나오는 수정 칸 (취소, 확인)버튼 */
+.modify_btn_btn {
+  position: relative;
+  display: inline-block;
+  color: white;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+  text-align: center;
+  border: 0;
+  border-radius: 5px;
+  background-color: #cecdd4;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.commit-btn {
+  background-color: #58b26c;
 }

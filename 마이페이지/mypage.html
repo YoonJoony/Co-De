@@ -91,13 +91,38 @@
                         </li>
                         <li>
                             <span class="subject">ㆍ 비밀번호</span>
-                            <input type="text" name="mb_nick" value="********" id="reg_mb_nick"
-                                class="form-control input-sm" readonly="" required="" placeholder="비밀번호"
-                                onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'" size="10" maxlength="20">
-                            <button type="button" class="modify-btn">
+                            <button type="button" class="modify-btn" id="modify_pw_btn" onclick="modify_pw_btn()">
                                 비밀번호 변경
                             </button>
                         </li>
+                        <div class="modify-form-round" id="modify_password_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 현재 비밀번호</span>
+                                    <input type="password" value="" id="previous_pw" class="form-control input-sm"
+                                        required="" placeholder="현재 비밀번호" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='현재 비밀번호'" size="10" maxlength="20">
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 신규 비밀번호</span>
+                                    <input type="password" value="" id="modified_pw_1" class="form-control input-sm"
+                                        required="" placeholder="신규 비밀번호" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='신규 비밀번호'" size="10" maxlength="20">
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 신규 비밀번호 재 입력</span>
+                                    <input type="password" value="" id="modified_pw-2" class="form-control input-sm"
+                                        required="" placeholder="신규 비밀번호 재 입력" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='신규 비밀번호 재 입력'" size="10" maxlength="20">
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="pw_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="pw_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
                 <div class="h3">내 정보</div>
@@ -105,13 +130,27 @@
                     <ul class="form-list">
                         <li>
                             <span class="subject">ㆍ 닉네임</span>
-                            <input type="text" name="mb_nick" value="(현재 닉네임 값)" id="reg_mb_nick" readonly=""
-                                class="form-control input-sm" required="" placeholder="닉네임"
-                                onfocus="this.placeholder=''" onblur="this.placeholder='닉네임'" size="10" maxlength="20">
-                            <button type="button" class="modify-btn">
+                            <button type="button" class="modify-btn" id="modify_nickname_btn"
+                                onclick="modify_nickname_btn()">
                                 닉네임 변경
                             </button>
                         </li>
+                        <div class="modify-form-round" id="modify_nickname_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 닉네임 수정</span>
+                                    <input type="text" value="" id="new_nickname" class="form-control input-sm"
+                                        required="" placeholder="닉네임" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='닉네임'" size="10" maxlength="20">
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="nickname_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="nickname_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
                         <li>
                             <span class="subject">ㆍ 휴대폰 번호</span>
                             <input type="text" name="mb_hp" value="(현재 휴대폰 번호 값)" id="reg_mb_hp" readonly="" required=""
@@ -135,6 +174,7 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="mypage.js"></script>
+    <script src="modify.js"></script>
 </body>
 
 </html>
