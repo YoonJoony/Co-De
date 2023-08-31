@@ -363,7 +363,7 @@ input[type="password"] {
 .hide-modify-password {
   position: relative;
 }
-.button-align {
+/* .button-align {
   position: relative;
   min-height: 53px;
 }
@@ -391,7 +391,7 @@ input[type="password"] {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s;
-}
+} */
 .button.button-color {
   background-color: #ff8c16;
 }
@@ -404,7 +404,7 @@ input[type="password"] {
     opacity 0.4s;
   transition: transform 0.6s cubic-bezier(0.08, 0.35, 0.13, 1.02), opacity;
 }
-
+/*--------------------------------------------------*/
 /* 변경 버튼 클릭 시 나오는 수정 칸 */
 .modify-form-round {
   position: relative;
@@ -440,3 +440,7 @@ input[type="password"] {
 .commit-btn {
   background-color: #58b26c;
 }
+.commit-btn:hover {
+  opacity: 0.7;
+}
+/*--------------------------------------------------*/

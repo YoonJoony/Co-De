@@ -158,16 +158,31 @@
                         </li>
                         <li>
                             <span class="subject">ㆍ 프로필 사진</span>
-                            <button type="button" class="modify-btn">
+                            <button type="button" class="modify-btn" id="modify_profile_image_btn"
+                                onclick="modify_profile_image_btn()">
                                 프로필 사진 변경
                             </button>
                         </li>
+                        <div class="modify-form-round" id="modify_profile_image_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 프로필 사진 변경</span>
+                                    <input type="file">
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="profile_image_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="profile_image_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
                     </ul>
                 </div>
-                <div class="button-align center">
+                <!-- <div class="button-align center">
                     <a href="메인페이지 이동 링크" class="button">취소</a>
                     <button type="submit" id="btn_submit" class="button button-color">완료</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
