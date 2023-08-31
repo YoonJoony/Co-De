@@ -176,12 +176,36 @@
         <div class="chat">
           <div class="chat-group">
             <div class="chat-header">
-              <h2 th:text="${room.title}"></h2>
-              <img src="../Icon(아이콘)/menu_5259008.png" width="30px" height="30px" class="header-img">
+              <div class="chat-header-right">
+                <div class="title-proflie">
+                  <img src="../images/gom.PNG">
+                </div>
+
+                <div class="title-proflie">
+                  <img src="../images/gom.PNG">
+                </div>
+
+                <div class="title-proflie">
+                  <img src="../images/gom.PNG">
+                </div>
+                
+                <div class="title-proflie">
+                  <img src="../images/gom.PNG">
+                </div>
+              </div>
+
+              <div class="chat-header-center">
+                <!-- <h2 th:text="${room.title}"></h2> -->
+                <h2>오늘은 치킨이닭</h2>
+              </div>
+
+              <div class="chat-header-left">
+                <img src="../Icon(아이콘)/menu_5259008.png" width="30px" height="30px" class="header-img">
+              </div>
             </div>
-            <div class="connecting">
+            <!-- <div class="connecting">
               Connecting...
-            </div>
+            </div> -->
             <div class="chat-left">
               <ul id="messageArea">
                 <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
@@ -224,7 +248,6 @@
               </div>
             </div>
             <div class="map" id="map"></div>
-
           </div>
         </div>
       </div>

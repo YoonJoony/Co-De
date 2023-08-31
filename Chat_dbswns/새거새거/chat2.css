@@ -818,8 +818,7 @@ a {
 
 .chat-header-left .user-picture2 {
     top: 5px;
-    position: relative;
-    display: inline-block;
+    position: absolute;
     width: 40px;
     height: 40px;
     margin-right: 5px;
@@ -830,6 +829,19 @@ a {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.title-proflie{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 10px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 5px;
 }
 
 .chat-right {

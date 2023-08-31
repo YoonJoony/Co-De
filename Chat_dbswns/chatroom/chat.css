@@ -848,12 +848,41 @@ a {
     text-align: center;
     padding: 15px;
     border-bottom: 1px solid #ececec;
-    height: 60px;
+    height: 80px;
+    width: 100%;
+}
+
+.chat-header-right{
+    width: 30%;
+    position: absolute;
+}
+
+.chat-header-center{
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    margin-left: 15px;
+}
+
+.chat-header-left{
+    width: 20%;
+    left: 380px;
+    z-index: 5;
+    position: absolute;
 }
 
 .chat-header h2 {
     margin: 0;
-    font-weight: 500;
+    font-weight: 300;
+}
+
+.title-proflie{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #58b26c;
+    position: absolute;
+    overflow: hidden;
 }
 
 .connecting {
