@@ -74,6 +74,12 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
         return new JpaChatUserRepository(em);
     }
 
+    @Bean
+    public ChatRepository chatRepository() {
+        return new JpaChatRepository(em);
+    }
+
+
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
