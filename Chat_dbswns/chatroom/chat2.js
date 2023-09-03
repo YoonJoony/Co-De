@@ -378,3 +378,25 @@ function initMap2() {
 }
 
 // -------------------------------------------------------------------------------------------------------------
+const elements = document.querySelectorAll('.title-proflie');
+const header_title = document.querySelector('.chat-header-center');
+var i = 0;
+elements.forEach((element, index) => {
+    const row = Math.floor(index/4); //현재 요소가 속한 행 번호
+
+    var left = parseFloat(element.style.left); //left값을 받아온다.
+    var profile_space = parseFloat(element.style.width);
+
+    if(i % 4 == 0) {
+        i = 0;
+    }
+
+    const newLeft = i * 20;
+    const title_move = profile_space * (i+1)
+
+    element.style.left = `${newLeft}%`;
+    i++;
+    if(i > 1){
+        header_title.style.left = `${title_move}px`;
+    }
+});
