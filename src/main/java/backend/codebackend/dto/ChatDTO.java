@@ -24,6 +24,7 @@ public class ChatDTO {
     private Long id; //방 번호
     private String sender; //채팅을 보낸 사람
     private String message; //메시지
+    private LocalDateTime createdAt; //채팅 생성 시간
 
     /* 파일 업로드 관련 변수 */
     private String s3DataUrl; // 파일 업로드 url

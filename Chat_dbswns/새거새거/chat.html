@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="chatroom/chat.css">
+  <link rel="stylesheet" href="chat2.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -24,18 +24,17 @@
   <!-- 다음 주소 찾기 API -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
     crossorigin="anonymous"></script>
+
 
   <!-- 네이버 지도 API 추가 -->
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=99by68keh8"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -44,12 +43,12 @@
     <div class="header">
       <div class="join-back">
         <div id="back-button" class="back-button">
-          <img src="images/back.png" height="80px" width="80px">
+          <img src="../../Chat_dbswns/images/back.png" height="80px" width="80px">
         </div>
       </div>
       <div class="join-user">
         <span class="user-picture">
-          <img class="picture" src="images/profile.png" height="300px" width="300px">
+          <img class="picture" src="/images/profile.png" height="300px" width="300px">
         </span>
         <span id="user-name" class="user-name" th:text="${nickname}">
           김윤준
@@ -58,7 +57,7 @@
       <form id="main-join" class="main-join">
         <div class="user-join">
           <button type="submit" class="join-button">입장</button>
-          <img class="join-button-picture" src="images/join.png">
+          <img class="join-button-picture" src="/images/join.png">
         </div>
       </form>
     </div>
@@ -101,17 +100,17 @@
       <div class="width-container">
         <div class="logo-img">
           <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-          <img class="logo" src="images/COOR2.png">
+          <img class="logo" src="/images/COOR2.png">
         </div>
         <div id="header-bell" class="header-bell">
           <span class="bell">
-            <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
+            <img src="../../Chat_dbswns/images/bell.png" style="width : 25px; height : 25px;" alt="">
           </span>
         </div>
         <div id="header-profile" class="header-profile">
           <a class="header-user">
             <span class="user-picture2">
-              <img src="images/profile.png" height="50px" width="50px">
+              <img src="/images/profile.png" height="50px" width="50px">
             </span>
             <span class="user-name2" th:text="${nickname}"> 야왕이네
             </span>
@@ -142,7 +141,7 @@
       <div class="search-container">
         <div class="search">
           <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-            <img class="gps" src="images/search.png">
+            <img class="gps" src="../../Chat_dbswns/images/search.png">
           </button>
           <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
           <div class="tag-container">
@@ -176,75 +175,106 @@
         <div class="chat">
           <div class="chat-group">
             <div class="chat-header">
-              <div class="chat-header-right">
-                <div class="title-proflie">
-                  <img src="../images/gom.PNG">
-                </div>
-
-                <div class="title-proflie">
-                  <img src="../images/gom.PNG">
-                </div>
-
-                <div class="title-proflie">
-                  <img src="../images/gom.PNG">
-                </div>
-                
-                <div class="title-proflie">
-                  <img src="../images/gom.PNG">
-                </div>
-              </div>
-
-              <div class="chat-header-center">
-                <!-- <h2 th:text="${room.title}"></h2> -->
-                <h2>오늘은 치킨이닭</h2>
-              </div>
-
               <div class="chat-header-left">
-                <img src="../Icon(아이콘)/menu_5259008.png" width="30px" height="30px" class="header-img">
+                <div class="title-proflie">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </div>
+                <div class="title-proflie">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </div>
+                <div class="title-proflie">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </div>
+                <div class="title-proflie">
+                  <img src="/images/profile.png" height="40px" width="40px">
+                </div>
+              </div>
+              <div class="chat-header-center">
+                <div class="chat-header-center-group">
+                  <h2 th:text="${room.title}">이거슨 제목이여</h2>
+                  <div class="connecting">offline</div>
+                </div>
+              </div>
+              <div class="chat-header-right">
+                <img src="/Icon(아이콘)/menu_5259008.png" width="23px" height="23px" class="header-img" onclick="list_open()">
               </div>
             </div>
-            <!-- <div class="connecting">
-              Connecting...
-            </div> -->
-            <div class="chat-left">
-              <ul id="messageArea">
-                <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
-              </ul>
-              <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
-                  <div class="input-group clearfix">
-                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off"
-                      class="form-control" />
-                    <button type="submit" class="primary">Send</button>
+            <div class="chat-left-right">
+              <div class="chat-left">
+                <ul id="messageArea">
+                  <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
+                </ul>
+                <form id="messageForm" name="messageForm" nameForm="messageForm">
+                  <div class="form-group">
+                    <div class="input-group clearfix">
+                      <input type="text" id="message" placeholder="메시지를 입력 해보세요!" autocomplete="off" class="control"
+                        data-listener-added_1008ea1e="true">
+                      <button type="submit" class="primary">전송</button>
+                    </div>
+                    <div class="file-group">
+                      <div id="menu">
+                        <label for="file">
+                          <div class="btn-upload">
+                            <img src="/images/picture.png" style="cursor:pointer;">
+                          </div>
+                        </label>
+                        <input type="file" name="file" id="file" onchange="uploadFile(this)">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </form>
-
-              <div class="file-group">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="showMenu" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  파일 업로드
-                </button>
-                <div id="menu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <input type="file" id="file"> <!--  파일 선택하는 태그 -->
-                  <button type="button" class="btn btn-primary" id="uploadFile" onclick="uploadFile()">저장</button>
-                </div>
+                </form>
               </div>
-            </div>
-            <div class="chat-right">
-              <div class="chat-menu">
-                <img src="images/bell.png">
-                <img src="../Icon(아이콘)/map.png" id="map_button" onclick="map_btn()">
-                <img src="../Icon(아이콘)/Budget.png">
-                <img src="../Icon(아이콘)/basket.png">
-                <img src="../Icon(아이콘)/setting.png">
+              <div class="chat-right">
+                <div class="chat-menu">
+                  <img src="/Icon(아이콘)/bell.png">
+                  <img src="/Icon(아이콘)/map.png" id="map_button" onclick="map_btn()">
+                  <img src="/Icon(아이콘)/Budget.png">
+                  <img src="/Icon(아이콘)/basket.png">
+                  <img src="/Icon(아이콘)/setting.png">
+                </div>
+                <img src="/Icon(아이콘)/log-out_5565735.png" class="out-img">
               </div>
-              <img src="../Icon(아이콘)/log-out_5565735.png" class="out-img">
             </div>
           </div>
           <div class="dock-group">
             <div class="user-list">
               <div id="list" class="user-menu">
+                <button type="button" class="list_box button--antiman invite_btn" id="invite_btn"
+                  onclick="invite_btn()">
+                  <div>
+                    <span class="invite_content"> ＋ 사용자 초대</span>
+                  </div>
+                </button>               
+              </div>
+              <!-- 초대 모달 -->
+              <div class="invite_modal" id="invite_modal">
+                <div class="popup" id="popup">
+                  <div class="m_head">
+                    <img class="m_logo" src="/images/COOR.png">
+                  </div>
+                  <div class="m_body">
+                    <div class="input-area">
+                      <div class="body-titlebox">
+                        <h2>초대</h2>
+                      </div>
+
+                      <div class="body-contentbox">
+                        <div class="input-area">
+                          <input type="number" name="range" id="ragne" autocomplete="off" required max="500"
+                            required>
+                          <label for="ragne">초대 할 사용자 닉네임</label>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="m_footer">
+                    <span class="pop-btn invite" id="invite">초대</span>
+                    <span class="pop-btn close" id="close">창 닫기</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="map" id="map"></div>
@@ -254,8 +284,17 @@
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-  <script src="chatroom/chat2.js"></script>
-
+  <script src="chat2.js"></script>
+  <!-- Add Bootstrap JavaScript and its dependencies -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+    crossorigin="anonymous"></script>
   <!--WebSocket 스크립트-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
