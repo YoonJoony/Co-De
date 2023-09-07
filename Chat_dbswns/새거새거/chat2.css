@@ -1238,13 +1238,15 @@ div#menu {
 }
 
 .invite_content {
-    font-size: 20px;
-    align: center;
-    margin-left: 50px;
+    font-size: 17px;
+    margin-left: 25px;
 }
 
 /* 초대 창 */
 /* 초대 창 */
+.invite_btn{
+    border-radius: 15px;
+}
 
 .m_logo{
     width: 190px;
@@ -1457,6 +1459,10 @@ input::-webkit-inner-spin-button {
     background-position: center;
 }
 
+.host_name{
+    margin-left: -5px;
+}
+
 /* 추방투표 버튼 */
 .vote {
     position: absolute;
@@ -1499,4 +1505,12 @@ input::-webkit-inner-spin-button {
     justify-content: center;
     padding-bottom: 10px;
     border-radius: 15px;
+}
+
+.condition{
+    font-size: 10px;
+    position: absolute;
+    margin-left: 48px;
+    margin-top: -7px;
+    color: red;
 }
