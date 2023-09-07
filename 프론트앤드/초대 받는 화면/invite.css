@@ -1,0 +1,146 @@
+@font-face {
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+body {
+  padding: 199px 0; /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
+  font-family: "NanumSquareNeo-Variable";
+  background-color: #f0f0f0;
+  line-height: 1.6;
+  display: block;
+}
+h3 {
+  padding: 10px 0 10px 0;
+}
+/* 모달창 css*/
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  /* 숨기기
+  z-index: -1;
+  opacity: 0; */
+}
+.show-modal {
+  opacity: 1;
+  z-index: 20;
+  transition: all 0.5s;
+}
+.modal-window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.modal-popup {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+  width: 30%;
+  height: 200px;
+
+  transform: translate(-50%, -40%);
+}
+.modal-popup {
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+  display: inline-block;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ffe3c8;
+  border-radius: 6px;
+  text-align: center;
+}
+.modal-popup .modal-popup-close {
+  position: absolute;
+  width: 100%;
+  height: 13%;
+}
+.modal-popup-close-name {
+  position: absolute;
+  width: 5%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: 0px;
+  cursor: pointer;
+  z-index: 1;
+}
+.modal-popup .modal-popup-title {
+  position: relative;
+  width: 100%;
+  height: 13%;
+  background-color: #ff8c16;
+  border-radius: 6px 6px 0 0;
+}
+.modal-popup-title-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.modal-invite {
+  position: relative;
+  width: 100%;
+  height: 74%;
+  color: #505050;
+  text-align: center;
+}
+.modal-commit {
+  position: relative;
+  width: 100%;
+  height: 13%;
+}
+.modal-commit #modal_commit {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  font-size: 14px;
+  border: none;
+  color: #ffffff;
+  background-color: #ff8c16;
+  display: inline-block;
+  border-radius: 0 0 0px 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  float: left;
+}
+.modal-commit #modal_cancel {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  font-size: 14px;
+  border: none;
+  color: #ffffff;
+  background-color: #9b9a9a;
+  display: inline-block;
+  border-radius: 0 0 6px 0px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  float: left;
+}
+.modal-commit #modal_commit:hover {
+  opacity: 0.7;
+}
+.nickname {
+  color: #7cab75;
+}
