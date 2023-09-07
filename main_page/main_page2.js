@@ -17,39 +17,6 @@ $(function () {
     });
 });
 
-// 마이페이지로 버튼 클릭시 마이페이지로 이동
-function myPage() {}
-
-// // 현재 위치 가져오기
-// navigator.geolocation.getCurrentPosition(getSuccess, getError);
-
-// // 가져오기 성공
-// function getSuccess(position) {
-//   // 위도
-//     const lat = position.coords.latitude;
-//   // 경도
-//     const lng = position.coords.logitude;
-
-//     document.getElementById("address_input").value = lat;
-// }
-
-// // 가지오기 실패(거부)
-// function getError() {
-//     alert('Geolocation Error');
-// }
-
-//let el = document.querySelectorAll(".board-button");
-//el.forEach((target) => target.addEventListener("click", show));
-//
-//function show() {
-//  document.querySelector(".modal-background").className =
-//    "modal-background show";
-//}
-//
-//function close() {
-//  document.querySelector(".modal-background").className = "modal-background";
-//}
-
 document.querySelector("#modal_close_btn").addEventListener("click", close);
 
 // 모집글 생성 버튼 클릭시

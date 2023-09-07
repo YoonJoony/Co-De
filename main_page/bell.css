@@ -1,0 +1,95 @@
+/*알림창 bell*/
+.header-bell {
+  position: absolute;
+  top: 35px;
+  right: 166px;
+  text-align: center;
+  white-space: nowrap;
+  /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+  z-index: 3;
+}
+/*모달 창 */
+
+.bell-modal {
+  font-family: "NanumSquareNeo-Variable";
+  position: absolute;
+  top: 21%;
+  right: 55px;
+  width: 300px;
+  height: 150px;
+  font-size: 15px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  background-color: #dcdcdc;
+  font-size: 14px;
+  transform: translate3d(-50%, 0, 0);
+  border-radius: 10px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: none;
+}
+.bell-list {
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+}
+.bell-nickname {
+  flex: 1.8;
+}
+.bell-modal .bell-btn-div {
+  display: flex;
+  width: 21%;
+  justify-content: space-between;
+  flex: 1;
+}
+.bell-yes {
+  position: relative;
+  display: flex;
+  height: 30px;
+  padding: 0 8px;
+  font-size: 13px;
+  line-height: 42px;
+  text-align: center;
+  align-items: center;
+  border: 0;
+  border-radius: 5px;
+  background-color: #ffd18b;
+  color: black;
+  overflow: hidden;
+  cursor: pointer;
+}
+.bell-yes:hover {
+  opacity: 0.7;
+}
+.bell-no {
+  position: relative;
+  display: flex;
+  height: 30px;
+  padding: 0 8px;
+  font-size: 13px;
+  line-height: 42px;
+  text-align: center;
+  align-items: center;
+  border: 0;
+  border-radius: 5px;
+  background-color: #ff8863;
+  color: black;
+  overflow: hidden;
+  cursor: pointer;
+}
+.bell-no:hover {
+  opacity: 0.7;
+}
+/*---------------------------------*/
+/* 스크롤바 숨기기 */
+.bell-modal {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.bell-modal::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}

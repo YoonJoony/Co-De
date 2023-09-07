@@ -281,17 +281,6 @@ ul {
     line-height: 100px;
 }
 
-
-.header-bell {
-  position: absolute;
-  top : 35px;
-  right: 166px;
-  text-align: center;
-  white-space: nowrap;
-  /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-  z-index: 3;
-}
-
 .header-profile {
   position: absolute;
   top: 0;
