@@ -244,68 +244,70 @@
               <img src="/images/profile.png" height="35px" width="35px">
               <span class="profile_name" id="me">야왕이네</span> <!-- 본인을 최상단에 고정, 본인에게는 me 아이디 지급 -->
               <button type="button" id="vote1" class="vote">추 방</button>
+              <br><span class="condition"> 미정산 </span>
             </div>
 
             <div class="list_box button--antiman">
               <img src="/images/gom.PNG" height="35px" width="35px">
               <i class="fa-solid fa-crown" style="color: #000000;"></i>
-              <span class="profile_name" id="host">콜라곰</span> <!-- 호스트에게는 host 아이디 지급 해야함. -->
+              <span class="profile_name host_name" id="host">콜라곰</span> <!-- 호스트에게는 host 아이디 지급 해야함. -->
+              <br><span class="condition"> 미정산 </span>
             </div>
 
             <div class="list_box button--antiman">
               <img src="/images/gom.PNG" height="35px" width="35px">
               <span class="profile_name">북극곰</span>
               <button type="button" id="vote2" class="vote">추 방</button>
+              <br><span class="condition"> 미정산 </span>
             </div>
 
             <div class="list_box button--antiman">
               <img src="/images/gom.PNG" height="35px" width="35px">
               <span class="profile_name">농담곰</span>
               <button type="button" id="vote3" class="vote">추 방</button>
+              <br><span class="condition"> 미정산 </span>
             </div>
 
-            <button class="list_box button--antiman cal">정  산</button>
+            <button type="button" class="list_box button--antiman invite_btn" id="invite_btn">
+              <div>
+                <span class="invite_content"> ＋ 사용자 초대</span>
+              </div>
+            </button>
+            <!-- 초대 모달 -->
+            <div class="invite_modal" id="invite_modal">
+              <div class="popup" id="popup">
+                <div class="m_head">
+                  <img class="m_logo" src="/images/COOR.png">
+                </div>
+                <div class="m_body">
+                  <div class="input-area">
+                    <div class="body-titlebox">
+                      <h2>초대</h2>
+                    </div>
+
+                    <div class="body-contentbox">
+                      <div class="input-area">
+                        <input type="number" name="range" id="ragne" autocomplete="off" required max="500" required>
+                        <label for="ragne">초대 할 사용자 닉네임</label>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m_footer">
+                  <span class="pop-btn invite" id="invite">초대</span>
+                  <span class="pop-btn close" id="close">창 닫기</span>
+                </div>
+              </div>
+            </div>
 
           </div>
 
           <div class="dock-group">
             <div class="user-list">
               <div id="list" class="user-menu">
-                <button type="button" class="list_box button--antiman invite_btn" id="invite_btn"
-                  onclick="invite_btn()">
-                  <div>
-                    <span class="invite_content"> ＋ 사용자 초대</span>
-                  </div>
-                </button>
-              </div>
-              <!-- 초대 모달 -->
-              <div class="invite_modal" id="invite_modal">
-                <div class="popup" id="popup">
-                  <div class="m_head">
-                    <img class="m_logo" src="/images/COOR.png">
-                  </div>
-                  <div class="m_body">
-                    <div class="input-area">
-                      <div class="body-titlebox">
-                        <h2>초대</h2>
-                      </div>
-
-                      <div class="body-contentbox">
-                        <div class="input-area">
-                          <input type="number" name="range" id="ragne" autocomplete="off" required max="500" required>
-                          <label for="ragne">초대 할 사용자 닉네임</label>
-                        </div>
-
-
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="m_footer">
-                    <span class="pop-btn invite" id="invite">초대</span>
-                    <span class="pop-btn close" id="close">창 닫기</span>
-                  </div>
-                </div>
               </div>
             </div>
             <div class="map" id="map"></div>

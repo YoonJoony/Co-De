@@ -416,31 +416,31 @@ function list_open() {
 }
 
 
-// 사용자 추방
+// // 사용자 추방
 
-const host = $('#host').text(); // 호스트 닉네임
-const me = $('#me').text(); // 본인 닉네임
+// const host = $('#host').text(); // 호스트 닉네임
+// const me = $('#me').text(); // 본인 닉네임
 
-function getOut() {
-    $.ajax({
-        type: "POST", // Post가 리소스 업데이트 할때 쓰는거라고 하던데
-        url: "", // 경로는 제가 지정 할 수는 없으니께
-        data: {
-            "id": id // 추방 할 사람 닉네임 div id
-        },
-        success: function (id) {
-            const outSector = id.parentNode; // 닉네임의 부모노드 검색
-            outSector.remove(); // 해당 닉네임의 리스트 째로 삭제
+// function getOut() {
+//     $.ajax({
+//         type: "POST", // Post가 리소스 업데이트 할때 쓰는거라고 하던데
+//         url: "", // 경로는 제가 지정 할 수는 없으니께
+//         data: {
+//             "id": id // 추방 할 사람 닉네임 div id
+//         },
+//         success: function (id) {
+//             const outSector = id.parentNode; // 닉네임의 부모노드 검색
+//             outSector.remove(); // 해당 닉네임의 리스트 째로 삭제
 
-            // 실제로 해당 사용자를 채팅방 서버에서 퇴출시키는 동작
+//             // 실제로 해당 사용자를 채팅방 서버에서 퇴출시키는 동작
 
 
-        },
-        error: function () {
-            console.log("요청 실패 : ");
-        }
-    })
-}
+//         },
+//         error: function () {
+//             console.log("요청 실패 : ");
+//         }
+//     })
+// }
 
 const out_button = document.querySelectorAll('.vote');
 
@@ -492,3 +492,4 @@ function out_open() {
         }
     })
 }
+
