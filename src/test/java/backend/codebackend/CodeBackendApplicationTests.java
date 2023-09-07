@@ -1,8 +1,11 @@
 package backend.codebackend;
 
+import backend.codebackend.domain.Chat;
+import backend.codebackend.dto.ChatDTO;
 import backend.codebackend.dto.MemberForm;
 import backend.codebackend.domain.Member;
 import backend.codebackend.repository.MemberRepository;
+import backend.codebackend.service.ChatService;
 import backend.codebackend.service.ChatUserService;
 import backend.codebackend.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CodeBackendApplicationTests {
 	@Autowired MemberService memberService;
 	@Autowired MemberRepository MemberRepository;
+	@Autowired
+	ChatService chatService;
 	@Autowired
 	ChatUserService chatUserService;
 
@@ -45,6 +52,19 @@ class CodeBackendApplicationTests {
 			System.out.println("저장 안됨!");
 	}
 
+	@Test
+	@DisplayName("채팅 친 시간 조회")
+	void 채팅시간조회() {
+		ChatDTO chatDTO = ChatDTO.builder()
+						.id(13L)
+				        .type(ChatDTO.MessageTYpe.valueOf("ENTER"))
+						.sender("야왕")
+						.message("테스트테스트테스트테스트테스트테스트테스트테스트테스트")
+				        .build();
+
+		Chat chat = chatService.save(chatDTO);
+		chatService.timestamp(chat);
+	}
 
 
 }

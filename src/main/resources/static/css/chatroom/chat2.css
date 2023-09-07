@@ -982,6 +982,15 @@ a {
     border: none;
 }
 
+#chat-page .chat-message-last {
+    padding-left: 68px;
+    position: relative;
+    text-align: left;
+    border: none;
+    height: 40px;
+    bottom: 9px;
+}
+
 #chat-page .chat-message i {
     position: absolute;
     width: 42px;
@@ -1009,7 +1018,7 @@ a {
 
 .cloud {
     background-color: #FFFFFF;
-    margin-top: 2%;
+    margin-right: 10px;
     position: relative;
     max-width: 92%;
     display: inline-block;
@@ -1019,6 +1028,18 @@ a {
     border-radius: 6px;
     font-size: 14px;
     padding: 5px 10px 5px 10px;
+}
+
+.chat-wrapper {
+    position : relative;
+}
+
+.chat-wrapper .time-text {
+    position: relative;
+    color: #9f9f9f !important;
+    font-size: 11px;
+    display: inline-block;
+    top: 7px;
 }
 
 #chat-page .chat-message p {

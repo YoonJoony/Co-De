@@ -15,6 +15,9 @@ var messageInput = document.querySelector('#message'); //입력한 메시지 가
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var body = document.querySelector('body');
+var time;
+
+
 
 var stompClient = null;
 var nickname = null;
@@ -28,6 +31,8 @@ var colors = [
 const url = new URL(location.href).searchParams;
 const id = url.get('id');
 
+//메시지를 객체에 담음
+let messages;
 
 
 /* 입장 버튼 누르면 입장 페이지 사라지고 채팅방 페이지가 뜬다. */
@@ -76,7 +81,8 @@ function onConnected() {
         JSON.stringify({
             "id": id,
             sender: nickname,
-            type: 'ENTER'
+            type: 'ENTER',
+           "createdAt" : new Date()
         })
     )
        /*  stompClient.send() 메서드는 Stomp 클라이언트 객체를 사용하여 서버로 메시지를 전송한다.
@@ -132,15 +138,22 @@ function sendMessage(event) {
             "id" : id,
             sender : nickname,
             message : messageInput.value,
+            "createdAt" : new Date(), //채팅친 시간 추가.
             type : 'TALK'
         };
 
+        messages = chatMessage;
         stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
 }
 
+let lastMessageTimeMinutes = 99;
+let lastMessageTimeHour = 99;
+let timeDifference = 1;
+let lastMessageSender = "";
+let sum = 1;
 
 function onMessageReceived(payload) {
     console.log("onMessage");
@@ -148,6 +161,8 @@ function onMessageReceived(payload) {
     // payload는 클라이언트에서 수신한 메시지를 나타냄.
     // 하지만 클라이언트가 수신한건지 서버로 송신한 메시지인지 모르니 payload.body로 수신한 메시지를 확인하는 로직을 써줌
     var messageElement = document.createElement('li'); //li 타입의 [메시지 요소]를 만든다.
+
+    const currentTime = new Date();
 
     if (chat.type === 'ENTER') {
         messageElement.classList.add('event-message');
@@ -178,7 +193,9 @@ function onMessageReceived(payload) {
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
     } else {
+
         messageElement.classList.add('chat-message');
+        messageElement.classList.add(sum);
 
         var avatarElement = document.createElement('i'); //[아바타 요소 생성]
         var avatarText = document.createTextNode(chat.sender[0]);
@@ -192,6 +209,10 @@ function onMessageReceived(payload) {
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
 
+
+        var chatWrapper = document.createElement('div');
+        chatWrapper.classList.add('chat-wrapper');
+
         var cloudElement = document.createElement('div');
         cloudElement.classList.add('cloud');
 
@@ -200,13 +221,54 @@ function onMessageReceived(payload) {
         contentElement.appendChild(messageText);
         cloudElement.appendChild(contentElement);
 
-        messageElement.appendChild(cloudElement);
+        const hours = currentTime.getHours();
+        const minutes = currentTime.getMinutes();
+        const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
+        var createdAt = document.createElement('p');
+        createdAt.classList.add('time-text');
+        var timeText = document.createTextNode(timeString);
+        createdAt.appendChild(timeText);
+
+        const visibleTimeText = document.querySelector('.time-text');
+        const bool = 1;
+
+        if(timeDifference < 1) { //1분 이내로 채팅 친 경우
+            time = document.querySelectorAll('.time-text');
+            if (lastMessageTimeMinutes == currentTime.getMinutes() && chat.sender == lastMessageSender) {
+                if (lastMessageTimeHour == currentTime.getHours()) {
+                    createdAt.classList.add('hidden');
+                    usernameElement.classList.add('hidden');
+                    avatarElement.classList.add('hidden');
+                    messageElement.classList.remove('chat-message');
+                    messageElement.classList.add('chat-message-last');
+                }
+             }
+             else {
+                timeDifference = 1;
+             }
+         }
+
+        chatWrapper.appendChild(cloudElement);
+        chatWrapper.appendChild(createdAt);
+
+        messageElement.appendChild(chatWrapper);
 
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
+
+        //채팅 같은 사람이 1분 이내로 칠 경우 전에 친 채팅 시간이랑 비교하기 위해 선언
+        lastMessageTimeMinutes = currentTime.getMinutes();
+        lastMessageTimeHour = currentTime.getHours();
+        lastMessageSender = chat.sender;
+        timeDifference = 0; //채팅시간차이인데 일단 다른 사람 채팅 치고 내가 처음 채팅칠 경우에만 조건 주기위해 생성함.
+                            //나중에 진짜 시간 차이를 밀리초로 계산해서 비교해 주는 값을 넣어 줘야함.
+        sum++;
     }
+//    timeDifference = Math.abs(currentTime.getTime() - lastMessage.createdAt.getTime())/1000/60;
+//    console.log("현재 시간(밀리초) : " + currentTime.getTime() + " - " + "직전 채팅 시간(밀리초) : " + lastMessage.createdAt.getTime() + " = " + timeDifference);
 }
+
 
 function getAvatarColor(messageSender) {
     var hash = 0;
