@@ -66,5 +66,13 @@ class CodeBackendApplicationTests {
 		chatService.timestamp(chat);
 	}
 
+	@Test
+	@DisplayName("방장 조회 테스트")
+	void 방장조회() {
+
+		if (chatService.isCurrentUserHost(64L, "김윤준")){
+			System.out.println("방장 맞음 ");
+		}
+	}
 
 }

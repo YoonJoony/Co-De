@@ -3,6 +3,7 @@ package backend.codebackend.service;
 import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.dto.MozipForm;
+import backend.codebackend.repository.JpaChatUserRepository;
 import backend.codebackend.repository.MemberRepository;
 import backend.codebackend.repository.MozipRepository;
 import jakarta.transaction.Transactional;
@@ -15,6 +16,7 @@ import java.util.*;
 public class MozipService {
     private final MozipRepository mozipRepository; //final을 해줘야 config에서 생성자 주입이 됨.
     private final MemberRepository memberRepository;
+
 
     public Mozip savePost(MozipForm mozipForm) {
         Mozip mozip = mozipForm.toEntity();
@@ -66,5 +68,9 @@ public class MozipService {
     public void minusUserCnt(Long id) {
         mozipRepository.minusUserCnt(id);
     }
+
+
+
+
 
 }
