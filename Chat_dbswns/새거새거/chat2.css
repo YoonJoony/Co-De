@@ -733,6 +733,7 @@ a {
     height: 100%;
     max-height: 650px;
     max-width : 500px;
+    min-width: 400px;
     position: relative;
     display: inline-block;
     border-radius : 15px;
@@ -756,6 +757,7 @@ a {
     text-align : left;
     position: relative;
     display: inline-block;
+    cursor: pointer;
 }
 
 .chat-header-center {
@@ -1126,7 +1128,6 @@ div#menu {
     height: 40px;
     background-color: #8d8d8d;
     text-align: left;
-    cursor: pointer;
     display: block;
     border: none;
     background: none;
@@ -1134,6 +1135,9 @@ div#menu {
     vertical-align: middle;
     position: relative;
     z-index: 1;
+    justify-content: center;
+    padding-top: 6px;
+    padding-left: 5px;
 }
 /* Antiman */
 .button--antiman {
@@ -1427,4 +1431,72 @@ input::-webkit-inner-spin-button {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+}
+
+/* 추방모달 */
+.getout{
+    width: 22%;
+    height: 37%;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    min-height: 300px;
+    min-width: 220px;
+    position: absolute;
+    display: block;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    left: 9%;
+    top: 17%;
+}
+
+.list_profile{
+    position: relative;
+    overflow: hidden;
+    border-radius: 15%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 추방투표 버튼 */
+.vote {
+    position: absolute;
+    margin-left: 15%;
+    width: 30%;
+    height: 30px;
+    background: #fff;
+    color: #000;
+    z-index: 2;
+    cursor: pointer;
+    margin-top: 3px;
+    font-size: 17px;
+    border: none;
+}
+
+.vote:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    background: #a71a1a;
+    transition: all 0.3s ease;
+}
+
+.vote:hover {
+    color: #fff;
+}
+
+.vote:hover:after {
+    left: 0;
+    width: 100%;
+}
+
+/* 정산 버튼 */
+.cal{
+    text-align: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    border-radius: 15px;
 }
