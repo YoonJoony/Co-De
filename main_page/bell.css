@@ -15,8 +15,8 @@
   position: absolute;
   top: 21%;
   right: 55px;
-  width: 300px;
-  height: 150px;
+  width: 330px;
+  height: 190px;
   font-size: 15px;
   overflow-y: scroll;
   box-sizing: border-box;
@@ -38,7 +38,7 @@
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
 }
 .bell-nickname {
-  flex: 1.8;
+  flex: 2.3;
 }
 .bell-modal .bell-btn-div {
   display: flex;

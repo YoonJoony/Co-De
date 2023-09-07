@@ -1,14 +1,16 @@
+// 벨 이미지 클릭시 알림 창 보여주기, 숨기기
 function Bell_display() {
   var con = document.querySelector(".bell-modal");
   if (con.style.display == "none") {
     con.style.display = "block";
   } else {
     con.style.display = "none";
-    console.log("오류");
   }
 }
 
 var bellArea = document.querySelector(".bell-modal");
+
+let sum = 1;
 
 function onBellReceived() {
   console.log("onbell");
@@ -18,6 +20,8 @@ function onBellReceived() {
 
   var bell_no = document.createElement("button");
   bell_no.classList.add("bell-no"); // 클래스 이름 bell_no로 설정
+  bell_no.setAttribute("id", "btn_" + sum);
+
   var bell_no_text = document.createTextNode("거절");
   bell_no.appendChild(bell_no_text); // bell_no 자식으로 bell_no_text 텍스트
 
@@ -41,8 +45,19 @@ function onBellReceived() {
 
   var bell_list = document.createElement("div");
   bell_list.classList.add("bell-list"); // 클래스 이름 bell_list으로 설정
+  bell_list.setAttribute("id", "bell_btn_" + sum);
   bell_list.appendChild(bell_nickname); // bell_list의 자식으로 bell_nickname
   bell_list.appendChild(bell_btn_div); // bell_list의 자식으로 bell_btn
 
   bellArea.appendChild(bell_list);
+
+  // 초대 거절 버튼 클릭 시 해당 id div 삭제 이벤트
+  $("#btn_" + sum).on("click", function (e) {
+    console.log(e.target.id);
+    console.log("#bell_" + e.target.id);
+    const noo = document.querySelector("#bell_" + e.target.id);
+    noo.remove();
+  });
+
+  sum++;
 }
