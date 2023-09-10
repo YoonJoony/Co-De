@@ -16,6 +16,8 @@ var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var body = document.querySelector('body');
 var time;
+var userList = document.querySelector('.user-list');
+var userListContent = document.querySelector('.user-list-content');
 
 
 
@@ -107,8 +109,6 @@ function onError(error) {
 
 // 유저 리스트 받기
 function getUserList() {
-    const $list = $('#list');
-
     $.ajax({
         type : "GET",
         url : "/mozip/chat/userList",
@@ -116,18 +116,61 @@ function getUserList() {
             "id" : id
         },
         success: function(data) {
+            const $user_list = $('#user-list');
+            var invite = "";
             console.log("데이터 받기 성공 : " + data[0]);
-            var users = "";
             for (let i = 0; i < data.length; i++) {
+
+                var chatUserList = document.createElement('div');
+                chatUserList.classList.add('user');
+
+                var chatUserPicture = document.createElement('span');
+                chatUserPicture.classList.add('chat-user-picture');
+                var chatUserPictureImg = document.createElement('img');
+                chatUserPictureImg.src = '/images/profile.png';
+                chatUserPicture.appendChild(chatUserPictureImg);
+
+
                 console.log("data[" + i + "] : " + data[i]);
-                users += "<li class='dropdown-item'>" + data[i] + "</li>";
+
+                var chatUser = document.createElement('span');
+                chatUser.classList.add('chat-user-name');
+                var users = document.createTextNode(data[i])
+                chatUser.appendChild(users);
+
+
+                var exileButton = document.createElement('img');
+                exileButton.src = '/images/out.png';
+                exileButton.classList.add('exile-button');
+
+                chatUserList.appendChild(chatUserPicture);
+                chatUserList.appendChild(chatUser);
+                chatUserList.appendChild(exileButton);
+
+                userListContent.appendChild(chatUserList);
             }
-            $list.html(users);
+
+            invite = "<div class='invite'><span class='invite-content'>사용자 초대</span></div>"
+
+//
+//            var invite = document.createElement('div');
+//            invite.classList.add("invite");
+//
+//            var inviteContent = document.createElement('span');
+//            inviteContent.classList.add("invite-content");
+//            var inviteContentText = document.createTextNode('사용자 초대');
+//            inviteContent.appendChild(inviteContentText);
+//
+//            invite.appendChild(inviteContent);
+//
+//            userList.appendChild(invite);
+            $user_list.html(invite);
         },
         error: function() {
             console.log("리스트 요청 실패 : ");
         }
     })
+
 }
 
 function sendMessage(event) {
@@ -148,6 +191,25 @@ function sendMessage(event) {
     }
     event.preventDefault();
 }
+
+////유저 초대 버튼 클릭 시
+//function sendInvite(event) {
+//    var inviteNickname = inviteNicknameInput.value.trim(); //초대할 유저 이름 값
+//
+//    if (userContent && stompClient) {
+//        var chatMessage = {
+//            "id" : id,
+//            sender : inviteNickname.value,
+//            message : inviteNickname.value + " 님의 초대",
+//            "createdAt" : new Date(), //채팅친 시간 추가.
+//            type : 'INVITE'
+//        };
+//
+//        stompClient.send("/pub/mozip/chat/sendInvite", {}, JSON.stringify(chatMessage));
+//        messageInput.value = '';
+//    }
+//    event.preventDefault();
+//}
 
 let lastMessageTimeMinutes = 99;
 let lastMessageTimeHour = 99;
@@ -231,6 +293,7 @@ function onMessageReceived(payload) {
         createdAt.appendChild(timeText);
 
         const visibleTimeText = document.querySelector('.time-text');
+        visibleTimeText.classList.add(sum);
         const bool = 1;
 
         if(timeDifference < 1) { //1분 이내로 채팅 친 경우
@@ -242,9 +305,12 @@ function onMessageReceived(payload) {
                     avatarElement.classList.add('hidden');
                     messageElement.classList.remove('chat-message');
                     messageElement.classList.add('chat-message-last');
+
+                    sum++;
                 }
              }
-             else {
+             else if(lastMessageTimeMinutes != currentTime.getMinutes() && chat.sender != lastMessageSender){
+
                 timeDifference = 1;
              }
          }
@@ -307,6 +373,20 @@ $(function () {
     .on('mouseleave', function (e) {
         e.preventDefault();
         $layerProfile.css({ left : 'auto'}).fadeOut(100);
+    });
+
+   // 채팅방 프로필 클릭시
+    var $chatProfile = $(".chat-header-left");
+    var $userList = $(".user-list");
+
+    $chatProfile
+    .on('mouseenter', function (e) {
+        e.preventDefault();
+        $userList.css({ left : 'auto'}).fadeIn(100);
+    })
+    .on('mouseleave', function (e) {
+        e.preventDefault();
+        $userList.css({ left : 'auto'}).fadeOut(100);
     });
 });
 

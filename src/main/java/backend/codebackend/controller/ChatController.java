@@ -91,6 +91,13 @@ public class ChatController {
         template.convertAndSend("/sub/mozip/chat/room/"+chat.getId(),chat);
         chatService.save(chat);
     }
+    
+    //초대 전송
+    @MessageMapping("/mozip/chat/sendInvite")
+    public void invite(@Payload ChatDTO chat) {
+        log.info("sendInvite {}", chat);
+        template.convertAndSend("/sub/mozip/chat/sendInvite", chat);
+    }
 
     @GetMapping("/mozip/chat/userList")
     @ResponseBody

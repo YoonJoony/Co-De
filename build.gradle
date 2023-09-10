@@ -55,6 +55,11 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 
 	implementation 'com.amazonaws:aws-java-sdk-s3'
+
+	//FCM(교차 플랫폼 메시징 솔루션)
+	implementation 'com.google.firebase:firebase-admin:7.1.1'
+	implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
+
 }
 
 tasks.named('test') {

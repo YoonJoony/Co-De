@@ -38,7 +38,6 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
         this.em = em;
         this.amazonS3 = amazonS3;
     }
-
     @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository());
@@ -84,8 +83,6 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public ChatRepository chatRepository() {
         return new JpaChatRepository(em);
     }
-
-
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {

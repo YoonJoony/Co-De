@@ -19,10 +19,9 @@ var time;
 var userList = document.querySelector('.user-list');
 var userListContent = document.querySelector('.user-list-content');
 
-
-
 var stompClient = null;
 var nickname = null;
+//var profileImage = null; //자기 프사
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -41,6 +40,8 @@ let messages;
 function connect(event) {
 
     nickname = document.querySelector("#user-name").textContent;
+    //var profileImage = findProfileImage(); 자기 프로필 이미지 경로 찾기
+
 
 //    입장 버튼 클릭 시 입장 페이지 사라지고 채팅방 페이지가 뜬다
     join.style.opacity = '1';
@@ -109,6 +110,13 @@ function onError(error) {
 
 // 유저 리스트 받기
 function getUserList() {
+    const imagePaths = [
+        "/images/profile/profile2.png",
+        "/images/profile/profile3.png",
+        "/images/profile/profile4.png",
+        "/images/profile/profile5.png"
+    ];
+
     $.ajax({
         type : "GET",
         url : "/mozip/chat/userList",
@@ -117,7 +125,7 @@ function getUserList() {
         },
         success: function(data) {
             const $user_list = $('#user-list');
-            var invite = "";
+            var inviteTag = "";
             console.log("데이터 받기 성공 : " + data[0]);
             for (let i = 0; i < data.length; i++) {
 
@@ -127,7 +135,7 @@ function getUserList() {
                 var chatUserPicture = document.createElement('span');
                 chatUserPicture.classList.add('chat-user-picture');
                 var chatUserPictureImg = document.createElement('img');
-                chatUserPictureImg.src = '/images/profile.png';
+                chatUserPictureImg.src = imagePaths[i];
                 chatUserPicture.appendChild(chatUserPictureImg);
 
 
@@ -138,6 +146,10 @@ function getUserList() {
                 var users = document.createTextNode(data[i])
                 chatUser.appendChild(users);
 
+                //니가 호스트일 경우
+//                if (findHost(id, nickname)){
+//                    chatUser.id = "host";
+//                }
 
                 var exileButton = document.createElement('img');
                 exileButton.src = '/images/out.png';
@@ -150,21 +162,15 @@ function getUserList() {
                 userListContent.appendChild(chatUserList);
             }
 
-            invite = "<div class='invite'><span class='invite-content'>사용자 초대</span></div>"
+            // ****** 중요! 다른사람 들어 올 때마다 프로필 계속 만들어지니 밑에처럼 문자열로 생성해서 html에 붙이지
+            inviteTag = "<div class='invite' href='#enterRoomModal' data-bs-toggle='modal' data-target='#enterRoomModal'><span class='invite-content'>사용자 초대</span></div>";
 
-//
-//            var invite = document.createElement('div');
-//            invite.classList.add("invite");
-//
-//            var inviteContent = document.createElement('span');
-//            inviteContent.classList.add("invite-content");
-//            var inviteContentText = document.createTextNode('사용자 초대');
-//            inviteContent.appendChild(inviteContentText);
-//
-//            invite.appendChild(inviteContent);
-//
-//            userList.appendChild(invite);
-            $user_list.html(invite);
+            var invite = $(inviteTag)[0]; //위 var inviteTag를 jquery 객체로 변환한다.
+            userList.appendChild(invite);
+
+            //밑에 사용자가 호스트일 경우 자기 버튼 지우고 다른 유저 버튼 보이게 하기.
+            //사용자가 아닐경우는 버튼이 아얘 안보이게 설정.
+
         },
         error: function() {
             console.log("리스트 요청 실패 : ");
@@ -172,6 +178,29 @@ function getUserList() {
     })
 
 }
+
+//사용자가 호스트인지 아닌지 구분한다.
+//function findHost(id, nickname) {
+//    $.ajax({
+//        type : "GET",
+//        url : "/mozip/chat/findHost",
+//        data : {
+//            "id" : id,
+//            "nickname" : nickname //보안을 위해서 세션에 적힌 아이디의 닉네임을 찾도록 백엔드에서 수정,
+//        },
+//        success: function(data) {
+//            if(data)
+//                return true;
+//            else
+//                return false;
+//        },
+//        error: function() {
+//            console.log("findHost 요청 실패");
+//        }
+//    })
+//}
+
+
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
@@ -215,7 +244,6 @@ let lastMessageTimeMinutes = 99;
 let lastMessageTimeHour = 99;
 let timeDifference = 1;
 let lastMessageSender = "";
-let sum = 1;
 
 function onMessageReceived(payload) {
     console.log("onMessage");
@@ -257,7 +285,6 @@ function onMessageReceived(payload) {
     } else {
 
         messageElement.classList.add('chat-message');
-        messageElement.classList.add(sum);
 
         var avatarElement = document.createElement('i'); //[아바타 요소 생성]
         var avatarText = document.createTextNode(chat.sender[0]);
@@ -293,7 +320,6 @@ function onMessageReceived(payload) {
         createdAt.appendChild(timeText);
 
         const visibleTimeText = document.querySelector('.time-text');
-        visibleTimeText.classList.add(sum);
         const bool = 1;
 
         if(timeDifference < 1) { //1분 이내로 채팅 친 경우
@@ -306,7 +332,6 @@ function onMessageReceived(payload) {
                     messageElement.classList.remove('chat-message');
                     messageElement.classList.add('chat-message-last');
 
-                    sum++;
                 }
              }
              else if(lastMessageTimeMinutes != currentTime.getMinutes() && chat.sender != lastMessageSender){
@@ -329,7 +354,6 @@ function onMessageReceived(payload) {
         lastMessageSender = chat.sender;
         timeDifference = 0; //채팅시간차이인데 일단 다른 사람 채팅 치고 내가 처음 채팅칠 경우에만 조건 주기위해 생성함.
                             //나중에 진짜 시간 차이를 밀리초로 계산해서 비교해 주는 값을 넣어 줘야함.
-        sum++;
     }
 //    timeDifference = Math.abs(currentTime.getTime() - lastMessage.createdAt.getTime())/1000/60;
 //    console.log("현재 시간(밀리초) : " + currentTime.getTime() + " - " + "직전 채팅 시간(밀리초) : " + lastMessage.createdAt.getTime() + " = " + timeDifference);
@@ -388,10 +412,30 @@ $(function () {
         e.preventDefault();
         $userList.css({ left : 'auto'}).fadeOut(100);
     });
+
+    //페이지 이동 .. 잡 처리
+    var $mozipPage = $('.mozipPage');
+    var $myChat = $('.myChat');
+
+    $mozipPage.click(function() {
+      location.href = "/main_page.html"
+    });
+
+    //헤더부분 '내 채팅' 에서 자기 방 들어가게 하기.
+//    $mozipPage.click(function() {
+//      location.href = "/mozip/chat/room?id="+findRoomId(nickname);
+//    });
+
 });
 
 
-
+//자기 입장한 방 번호 찾기 함수
+//function findRoomId(nickname) {
+//    $.ajax({
+//        ...
+//    })
+//  return RoomId;
+//}
 
 
 
