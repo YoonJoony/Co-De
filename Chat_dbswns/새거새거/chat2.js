@@ -414,3 +414,81 @@ function list_open() {
         list_content.style.display = "none";
     }
 }
+
+
+// 사용자 추방
+
+const host = $('#host').text(); // 호스트 닉네임
+const me = $('#me').text(); // 본인 닉네임
+
+function getOut() {
+    $.ajax({
+        type: "POST", // Post가 리소스 업데이트 할때 쓰는거라고 하던데
+        url: "", // 경로는 제가 지정 할 수는 없으니께
+        data: {
+            "id": id // 추방 할 사람 닉네임 div id
+        },
+        success: function (id) {
+            const outSector = id.parentNode; // 닉네임의 부모노드 검색
+            outSector.remove(); // 해당 닉네임의 리스트 째로 삭제
+
+            // 실제로 해당 사용자를 채팅방 서버에서 퇴출시키는 동작
+
+
+        },
+        error: function () {
+            console.log("요청 실패 : ");
+        }
+    })
+}
+
+const out_button = document.querySelectorAll('.vote');
+
+if (host == me) { // 접속자가 호스트면 추방 js가 활성화
+    out_button.classList.add('vote');
+    out_button.disabled = false; // 버튼 활성화
+    getOut();
+    getOut();
+} else if (host != me) { // 호스트가 아니면 버튼 비활성화
+    out_button.forEach((out_button) => {
+        out_button.classList.remove('vote'); // 클래스 삭제
+        out_button.disabled = true; // 버튼 비활성화
+    });
+}
+
+function out_open() {
+    const out_content = document.querySelector(".getout");
+
+    // 숨기기 (display: none)
+    if (out_content.style.display !== "block") {
+        out_content.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        out_content.style.display = "none";
+    }
+
+    $.ajax({ // 추방버튼 활성화, 방장 기능 확인
+        type: "GET",
+        url: "/mozip/chat/findHost",
+        data: {
+            "id": id,
+            'nickname': nickname
+        },
+        success: function (data) {
+            if (data) { //true = 방장
+                out_button.classList.add('vote');
+                out_button.disabled = false; // 버튼 활성화
+                getOut();
+            }else{
+                out_button.forEach((out_button) => {
+                    out_button.classList.remove('vote'); // 클래스 삭제
+                    out_button.disabled = true; // 버튼 비활성화
+                });
+            }
+        },
+        error: function () {
+            alter('추방버튼 활성화 실패');
+        }
+    })
+}

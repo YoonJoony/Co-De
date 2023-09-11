@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초대 받는 화면</title>
+    <link rel="stylesheet" href="invite.css">
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+
+<body>
+    <div class="modal-background">
+        <div class="modal-window">
+            <div class="modal-popup">
+                <div class="modal-popup-close">
+                    <div class="modal-popup-close-name">X</div>
+                </div>
+                <div class="modal-popup-title">
+                    <div class="modal-popup-title-name">초대 메시지</div>
+                </div>
+                <div class="modal-invite">
+                    <h3>
+                        <a class="nickname">???<a>님이 초대했습니다.
+                    </h3>
+                </div>
+                <div class="modal-commit">
+                    <input id="modal_commit" type="button" value="수락">
+                    <input id="modal_cancel" type="button" value="거절">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="invite.js"></script>
+</body>
+
+</html>
