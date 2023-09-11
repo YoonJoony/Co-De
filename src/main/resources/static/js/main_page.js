@@ -1,21 +1,47 @@
 // 주소 설정 완료 버튼 클릭시
 function Address_commit() { }
 
-// 프로필 클릭시
-function profile_btn() {
-  const box = document.getElementById("layer-header-profile");
 
-  // btn1 숨기기 (display: none)
-  if (box.style.display !== "block") {
-    box.style.display = "block";
-  }
-  // btn` 보이기 (display: block)
-  else {
-    box.style.display = "none";
-  }
+var stompClient = null;
+
+function onConnected() {
+    console.log("연결 성공!");
+    stompClient.subscribe("/sub/mozip/chat/invite", onMessageReceived);
+}
+
+
+function onMessageReceived(payload) {
+    console.log("onMessage");
+    var invite = JSON.parse(payload.body);
+
+}
+
+function onError() {
+    console.log("연결 실패ㅜㅜ");
 }
 
 $(function () {
+
+    //소켓 설정. 채팅 방에서 누군가가 초대를 보낼 때 알림 받기 위해 소켓 연결
+    var socket = new SockJS('/ws-stomp');
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, onConnected, onError);
+
+   // 프로필 클릭시
+    var $profile = $(".header-profile");
+    var $layerProfile = $(".layer-header-profile");
+
+    $profile
+    .on('mouseenter', function (e) {
+        e.preventDefault();
+        $layerProfile.css({ left : 'auto'}).fadeIn(100);
+    })
+    .on('mouseleave', function (e) {
+        e.preventDefault();
+        $layerProfile.css({ left : 'auto'}).fadeOut(100);
+    });
+
+
   $(".board-list").slice(0, 5).css("display", "block"); // 초기갯수
   $(".load-btn").click(function (e) {
     // 클릭시 more
@@ -136,17 +162,20 @@ $('.sel__box__options').click(function () {
 
 //위에 header를 스크롤 할 시 header fixed로 바뀌며가 자동으로 고정되게 하기
 const header = document.querySelector('.header');
+var $topper = $('.topper');
+var $window = $(window);
 
 // 컨텐츠 영역부터 브라우저 최상단까지의 길이 구하기
 const contentTop = header.getBoundingClientRect().top + window.scrollY;
 
 window.addEventListener('scroll', function(){
-  if(window.scrollY >= contentTop){
+  if($window.scrollTop() > $topper.height()){
     header.classList.add('fixed');
   }else{
     header.classList.remove('fixed');
   }
 });
+
 // ----------------------------------------
 
 //모집글 board 영역 설정
@@ -166,7 +195,7 @@ elements.forEach((element, index) => {
     }
 
     const newLeft = i * 25;
-    const newTop = row * rowHeight; //해당 해의 top 값이 223씩 증가
+    const newTop = row * rowHeight; //해당 해의 top 값이 615 증가
 
     // 새로운 left와 top 값을 설정
     element.style.left = `${newLeft}%`;

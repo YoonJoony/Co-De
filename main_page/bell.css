@@ -25,7 +25,7 @@
   transform: translate3d(-50%, 0, 0);
   border-radius: 10px;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  z-index: 101;
   display: none;
 }
 .bell-list {

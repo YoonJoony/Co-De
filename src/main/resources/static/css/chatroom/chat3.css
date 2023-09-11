@@ -969,7 +969,7 @@ a {
 }
 
 .user-list-content {
-    padding: 10px 13px 10px 20px;
+    padding: 10px 13px 10px 14px;
 }
 
 .user {
@@ -1033,8 +1033,26 @@ span.chat-user-name {
 /* 초대하기 버튼 클릭 시 모달.*/
 /* 초대하기 버튼 클릭 시 모달.*/
 /* 초대하기 버튼 클릭 시 모달.*/
+
+.modal-backdrop {
+    background: none !important;
+}
+
 .modal-dialog {
-    max-width : 387px !important;
+    font-family: "NanumSquareNeo-Variable";
+    position: relative;
+    width: auto;
+    top: 33%;
+    right: 0.5%;
+    margin: .5rem;
+    pointer-events: none;
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 405px !important;
+        margin: 1.75rem auto;
+    }
 }
 
 .modal-dialog .modal-header {
@@ -1058,11 +1076,46 @@ span.chat-user-name {
     /* box-sizing: border-box; */
     position: relative;
     display: block;
+    text-align: center;
+    width: 100%;
 }
 
+.modal-invite-input {
+    border: 1px solid;
+    border-radius: 20px;
+    position: relative;
+    width: 100%;
+    height: 28px;
+}
 
+img.user-search {
+    width: 17px;
+    height: 17px;
+    top: 4px;
+    left: 8px;
+    position: absolute;
+}
 
+.modal-invite-input input {
+    border: none;
+    position: relative;
+    width : 80%;
+    font-size: 14px;
+}
 
+.modal-btn {
+    width: 17%;
+    border: none;
+    background-color: #FFB649;
+    color: #FFFFFF;
+    height: 33px;
+    border-radius: 5px;
+}
+
+.btn-back {
+    background-color: #f1f1f1;
+    color: #000000;
+}
 
 
 /* 사진 전송 라인 */
@@ -1121,7 +1174,7 @@ span.chat-user-name {
     left : 0%;
     padding: 8px 10px;
     position : relative;
-    top : 1.5%;
+    top : 0.5%;
 }
 
 #chat-page ul li {

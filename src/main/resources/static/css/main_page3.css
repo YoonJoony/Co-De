@@ -970,15 +970,16 @@ body {
 }
 
 .m_body {
-  position: absolute;
-  border-radius: 4px;
-  width: 98%;
-  top: 15%;
-  height: 70%;
-  margin-left: 6px;
-  /* margin: unset; */
-  box-shadow: inset 0px 1px 13px 3px rgb(77, 71, 71);
-  background-color: #ffffff;
+    position: absolute;
+    border-radius: 4px;
+    width: 54%;
+    left: 23%;
+    top: 15%;
+    height: 34%;
+    margin-left: 6px;
+    /* margin: unset; */
+    box-shadow: inset 0px 1px 13px 3px rgb(77, 71, 71);
+    background-color: #ffffff;
 }
 
 .body-content {
@@ -1010,11 +1011,13 @@ body {
 
 /* í‘¸í„° ì˜ì—­ */
 .m_footer {
-  position: absolute;
-  width: 100%;
-  height: 20%;
-  margin-top: 15px;
-  top: 83%;
+    /* color: red; */
+    position: absolute;
+    width: 52%;
+    left: 25%;
+    height: 7%;
+    margin-top: 15px;
+    top: 42%;
 }
 
 .pop-btn {
@@ -1038,7 +1041,6 @@ body {
 .pop-btn.create {
   border: none;
   background-color: transparent;
-  border-right: 1px solid #393e4e;
   /* ì˜¤ë¥¸ìª½ ì¤„ */
 }
 
