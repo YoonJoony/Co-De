@@ -41,14 +41,6 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	// WebSocket
-	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	// sockjs
-	implementation 'org.webjars:sockjs-client:1.5.1'
-	// stomp
-	implementation 'org.webjars:stomp-websocket:2.3.4'
-	// gson
-	implementation 'com.google.code.gson:gson:2.9.0'
 
 	//채팅방 생성을 위한 라이브러리 import
 	// WebSocket
@@ -64,11 +56,10 @@ dependencies {
 
 	implementation 'com.amazonaws:aws-java-sdk-s3'
 
-	//Jsoup
-	implementation 'org.jsoup:jsoup:1.13.1'
+	//FCM(교차 플랫폼 메시징 솔루션)
+	implementation 'com.google.firebase:firebase-admin:7.1.1'
+	implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
 
-	//selenium
-	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 }
 
 tasks.named('test') {

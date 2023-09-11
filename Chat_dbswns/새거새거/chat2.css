@@ -1,59 +1,59 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 @font-face {
-  /* 나눔스퀘어 폰트 지리네 */
-  font-family: "NanumSquareNeo-Variable";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
-    format("woff2");
-  font-weight: normal;
-  font-style: normal;
+    /* 나눔스퀘어 폰트 지리네 */
+    font-family: "NanumSquareNeo-Variable";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
 }
 
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color : #dfdfdf8a !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #dfdfdf8a !important;
 }
 
-body{
-  font-family: "NanumSquareNeo-Variable";
-  background-color: #ffffff;
-  line-height: 1.6;
-  display: block;
+body {
+    font-family: "NanumSquareNeo-Variable";
+    background-color: #ffffff;
+    line-height: 1.6;
+    display: block;
 }
 
 .body-chat {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 /* 태그 css*/
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 
 /* 클래스 이름css*/
 /* 여기 부터 채팅 입장 버튼 페이지 영역 */
 .chat-join {
-    position : relative;
-    overflow : hidden;
-    min-height : 100%;
-    background-color : #dfdfdf8a;
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+    background-color: #dfdfdf8a;
     overflow-y: auto;
     transition: all 0.5s ease-out;
 }
+
 .hidden {
     opacity: 0;
     transform: translateY(-50px);
-    display : none;
+    display: none;
 }
 
 .header {
@@ -66,7 +66,7 @@ img {
     border-radius: 350px;
     width: 35%;
     height: 165%;
-    margin : 0 auto;
+    margin: 0 auto;
     overflow: visible;
     transition: all 0.3s ease-in-out;
     box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.3);
@@ -74,38 +74,38 @@ img {
 }
 
 .header .join-back {
-    position :relative;
-    top : 51%;
-    left : 1%;
-    height : 10%;
-    width : 100%;
+    position: relative;
+    top: 51%;
+    left: 1%;
+    height: 10%;
+    width: 100%;
 }
 
 
 .back-button {
-    position : absolute;
-    left : 3%;
-    top : 15%;
-    cursor : pointer;
+    position: absolute;
+    left: 3%;
+    top: 15%;
+    cursor: pointer;
 }
 
 
 .join-user {
-    position :relative;
-    text-align : center;
-    top : 50%;
-    height : 25%;
-    width : 100%;
-    display : block;
+    position: relative;
+    text-align: center;
+    top: 50%;
+    height: 25%;
+    width: 100%;
+    display: block;
 }
 
 
 .user-picture {
-    position :absolute;
+    position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display : block;
+    display: block;
     overflow: hidden;
     border-radius: 10px;
     border-radius: 50%;
@@ -115,46 +115,44 @@ img {
 }
 
 
-.picture {
-
-}
+.picture {}
 
 
 .user-name {
     font-family: "NanumSquareNeo-Variable";
-    position :relative;
+    position: relative;
     top: 80%;
-    font-size : 30px;
-    color : #606060;
+    font-size: 30px;
+    color: #606060;
     transform: translate(-50%, -50%);
 }
 
 .main-join {
-    position :relative;
-    text-align : center;
-    top : 50%;
-    height : 15%;
-    width : 100%;
-    display : block;
+    position: relative;
+    text-align: center;
+    top: 50%;
+    height: 15%;
+    width: 100%;
+    display: block;
 }
 
-.user-join{
-    position :relative;
-    max-width : 1280px;
-    height : 100%;
-    left : 0%;
-    top : 50%;
-    margin : 0 auto;
-    display : inline-block;
+.user-join {
+    position: relative;
+    max-width: 1280px;
+    height: 100%;
+    left: 0%;
+    top: 50%;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 .join-button {
     font-family: "NanumSquareNeo-Variable";
-    position : relative;
-    display :inline-block;
+    position: relative;
+    display: inline-block;
     width: 200px;
     height: 60px;
-    left : 21%;
+    left: 21%;
     font-size: 22px;
     font-weight: bold;
     background-color: #FF9A32;
@@ -166,115 +164,116 @@ img {
 }
 
 .join-button-picture {
-    position : relative;
-    width : 130px;
-    right : 20px;
-    bottom : 1.5%;
-    display :inline-block;
+    position: relative;
+    width: 130px;
+    right: 20px;
+    bottom: 1.5%;
+    display: inline-block;
 
 }
 
 .body-main {
-    position :absolute;
-    display : block;
-    text-align : center;
-    top : 98%;
-    height : 100%;
-    width : 100%;
+    position: absolute;
+    display: block;
+    text-align: center;
+    top: 98%;
+    height: 100%;
+    width: 100%;
 }
 
-.body-main .li-1{
+.body-main .li-1 {
     font-family: "NanumSquareNeo-Variable";
-    font-size : 30px;
-    font-weight : 700;
-    position : relative;
-    text-align : left;
-    left : 5%;
-    top : -9%;
+    font-size: 30px;
+    font-weight: 700;
+    position: relative;
+    text-align: left;
+    left: 5%;
+    top: -9%;
 }
+
 .board {
-    position :relative;
-    width : 40%;
-    height : 60%;
-    text-align : center;
-    margin : 0 auto;
+    position: relative;
+    width: 40%;
+    height: 60%;
+    text-align: center;
+    margin: 0 auto;
     left: 20%;
     top: -80%;
 }
 
 .boards {
     font-family: "NanumSquareNeo-Variable";
-    position :relative;
-    height : 70%;
-    width : 90%;
-    background-color : #FF9162;
-    border-radius : 30px;
+    position: relative;
+    height: 70%;
+    width: 90%;
+    background-color: #FF9162;
+    border-radius: 30px;
     padding: 30px 30px;
 }
 
 
-.boards-left{
-    position : absolute;
-    width : 40%;
-    left : 4%;
-    display : inline-block;
+.boards-left {
+    position: absolute;
+    width: 40%;
+    left: 4%;
+    display: inline-block;
 }
 
-.board-title{
-  font-size: 25px;
-  width : 100%;
-  text-align: left;
-  line-height: 23px;
-  color: #333333;
-  overflow: hidden;
+.board-title {
+    font-size: 25px;
+    width: 100%;
+    text-align: left;
+    line-height: 23px;
+    color: #333333;
+    overflow: hidden;
 }
 
-.board-peoples{
-  font-size: 15px;
-  text-align: left;
-  line-height: 23px;
-  color: #FFFFFF;
-  overflow: hidden;
+.board-peoples {
+    font-size: 15px;
+    text-align: left;
+    line-height: 23px;
+    color: #FFFFFF;
+    overflow: hidden;
 }
 
-.boards-right{
-    position : relative;
-    left : 27.3%;
-    bottom : 10%;
-    height : 120%;
-    width : 52%;
-    display : inline-block;
+.boards-right {
+    position: relative;
+    left: 27.3%;
+    bottom: 10%;
+    height: 120%;
+    width: 52%;
+    display: inline-block;
 }
 
 
-.boards-map{
-    float : right;
-    position : relative;
-    height : 100%;
-    width : 80%;
+.boards-map {
+    float: right;
+    position: relative;
+    height: 100%;
+    width: 80%;
     padding: 5px 5px;
 }
 
 .map_wrap {
-    float : right;
-    position : relative;
-    height : 90%;
-    width : 150%;
+    float: right;
+    position: relative;
+    height: 90%;
+    width: 150%;
     margin-top: 7%;
 }
 
 .map_wrap .map_div {
-    float : right;
-    position : absolute;
+    float: right;
+    position: absolute;
     border-radius: 25px;
-    margin-right : 10px;
-    width : 80%;
-    height : 100%;
+    margin-right: 10px;
+    width: 80%;
+    height: 100%;
 }
 
 
-.board-title p{
-    color : #FFFFFF;
+.board-title p {
+    color: #FFFFFF;
 }
 
 /* 여기 부터 채팅 페이지 영역 */
@@ -282,25 +281,25 @@ img {
 /* 여기 부터 채팅 페이지 영역 */
 
 a {
-  font-size: 10px;
-  color: inherit;
-  /* ê¸€ìž ìƒ‰ìƒì€ ë¶€ëª¨ë¡œë¶€í„° ìƒì† */
-  text-decoration: none !important;
+    font-size: 10px;
+    color: inherit;
+    /* ê¸€ìž ìƒ‰ìƒì€ ë¶€ëª¨ë¡œë¶€í„° ìƒì† */
+    text-decoration: none !important;
 }
 
 input:focus {
-  outline: none;
+    outline: none;
 }
 
 #main {
-  opacity: 0;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  transform: translateY(-50px);
-  transition: all 0.5s ease-out;
+    opacity: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateY(-50px);
+    transition: all 0.5s ease-out;
 }
 
 .visible {
@@ -308,12 +307,12 @@ input:focus {
 }
 
 .topper {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  height: 37px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #b0cbba6b;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 37px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #b0cbba6b;
 }
 
 .header2 {
@@ -331,66 +330,66 @@ input:focus {
     transition: all 0.3s ease-in-out;
 }
 
-.
-header2.fixed {
-  position: fixed;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+. header2.fixed {
+    position: fixed;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
 .logo {
-  width: 190px;
+    width: 190px;
 }
 
 .logo-img {
-  position: absolute;
-  top: 26px;
-  left: 14px;
-  width: 50%%;
-  text-align: left;
-  font-size: 50px;
-  font-weight: bold;
+    position: absolute;
+    top: 26px;
+    left: 14px;
+    width: 50%%;
+    text-align: left;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 .header2 p {
-  display: inline;
-  position: absolute;
-  top: 30%;
-  left: 46%;
-  font-size: 20px;
-  font-family: "Play", sans-serif;
-  /* height: 33%; */
-  /* margin: auto; */
-  /* justify-content: center; */
+    display: inline;
+    position: absolute;
+    top: 30%;
+    left: 46%;
+    font-size: 20px;
+    font-family: "Play", sans-serif;
+    /* height: 33%; */
+    /* margin: auto; */
+    /* justify-content: center; */
 }
 
 .fixed {
-  /* 스크롤 할 시 header를 top0으로 최상단에 고정하기 위해 */
-  position: fixed;
-  top: 0;
-  width: 100%;
+    /* 스크롤 할 시 header를 top0으로 최상단에 고정하기 위해 */
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .login {
-  font-family: "NanumSquareNeo-Variable";
-  word-spacing: 21px;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  width: 100%;
-  text-align: right;
-  font-size: 13px;
-  font-weight: bold;
-  white-space: nowrap;
-  z-index: 1;
+    font-family: "NanumSquareNeo-Variable";
+    word-spacing: 21px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 100%;
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: 1;
 }
 
 .v-bar::after {
-  content: "";
-  position: relative;
-  top: 50%;
-  right: -13px;
-  height: 12px;
-  margin-top: -6px;
-  border-left: 1px solid #c0c0c06b;
+    content: "";
+    position: relative;
+    top: 50%;
+    right: -13px;
+    height: 12px;
+    margin-top: -6px;
+    border-left: 1px solid #c0c0c06b;
 }
 
 /* 헤더 바 검색 바 */
@@ -403,73 +402,73 @@ header2.fixed {
 }
 
 .search-container {
-    text-align : center;
+    text-align: center;
     position: absolute;
     top: -13px;
     left: 0;
-    height : 100%;
+    height: 100%;
     width: 100%;
     font-size: 0;
 }
 
-.search-container .search{
-}
+.search-container .search {}
 
 .search {
-  display : inline-block;
-  position: relative;
-  top: 35%;
-  width: 100%;
-  height : 67%;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-  max-width: 600px;
-  margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    top: 35%;
+    width: 100%;
+    height: 67%;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .gps {
-  width: 19px;
-  height: 19px;
-  top: 15.3px;
-  left: 15.3px;
-  position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 15.3px;
+    left: 15.3px;
+    position: absolute;
 }
 
 
 .search #loc_btn {
-  position: relative;
-  top: -4px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
-  font-size: 14px;
-  border: none;
-  background-color: #FFB649;
-  display: inline-block;
-  border-radius: 12px;
-  cursor: pointer;
-  z-index : 100;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: -4px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+    border: none;
+    background-color: #FFB649;
+    display: inline-block;
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
+
 .search #loc_btn:hover {
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
 }
 
 .search #search_input {
-  font-family: "NanumSquareNeo-Variable";
-  position: relative;
-  height: 50px;
-  font-size: 13px;
-  padding : 10px 10px 10px 24px;
-  width: 65%;
-  border: none;
-  border-radius: 0 12px 12px 0;
-  background-color: #FFD18B;
-  color: black;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+    font-family: "NanumSquareNeo-Variable";
+    position: relative;
+    height: 50px;
+    font-size: 13px;
+    padding: 10px 10px 10px 24px;
+    width: 65%;
+    border: none;
+    border-radius: 0 12px 12px 0;
+    background-color: #FFD18B;
+    color: black;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
 
 /*실시간 검색 태그 */
@@ -485,8 +484,8 @@ header2.fixed {
 
 .tag {
     position: absolute;
-    left : 1%;
-    height : 100%;
+    left: 1%;
+    height: 100%;
     font-size: 14px;
     cursor: pointer;
     z-index: 100;
@@ -494,43 +493,43 @@ header2.fixed {
 }
 
 .real-time-text {
-    left : 5px;
+    left: 5px;
 }
 
-.tag .search-tag-text{
-    top : 0;
-    width : 100px;
-    text-align : left;
-    font-weight : 900;
+.tag .search-tag-text {
+    top: 0;
+    width: 100px;
+    text-align: left;
+    font-weight: 900;
     font-family: "NanumSquareNeo-Variable";
-    font-size : 14px;
+    font-size: 14px;
 }
 
 .real-time {
     font-family: "NanumSquareNeo-Variable";
     position: absolute;
-    top : 22px;
+    top: 22px;
     font-size: 13px;
     cursor: pointer;
-    color : #8E8E8E;
+    color: #8E8E8E;
 }
 
 
 .search-container ul {
     position: absolute;
-    display : inline-block;
+    display: inline-block;
     top: 60%;
-    right : 14px;
-    max-width : 800px;
+    right: 14px;
+    max-width: 800px;
 }
 
 
 
 .search-container .menu-li {
     font-family: "NanumSquareNeo-Variable";
-    display : inline-block;
-    text-align : right;
-    cursor : pointer;
+    display: inline-block;
+    text-align: right;
+    cursor: pointer;
 }
 
 .search-container .menu-a {
@@ -545,39 +544,39 @@ header2.fixed {
 }
 
 /* 페이지 이동 버튼 클릭 시 밑줄*/
-.menu-li.on .menu-a{
+.menu-li.on .menu-a {
     /*border-bottom: 3px solid #7e69fe;*/
 }
 
 .header-bell {
-  position: absolute;
-  top : 35px;
-  right: 166px;
-  text-align: center;
-  white-space: nowrap;
-  /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-  z-index: 3;
+    position: absolute;
+    top: 35px;
+    right: 166px;
+    text-align: center;
+    white-space: nowrap;
+    /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+    z-index: 3;
 }
 
 .header-profile {
-  position: absolute;
-  top: 0;
-  right: 20px;
-  text-align: center;
-  white-space: nowrap;
-  /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-  z-index: 3;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    text-align: center;
+    white-space: nowrap;
+    /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+    z-index: 3;
 }
 
 a {
-    background : 0 0;
+    background: 0 0;
 }
 
 .header-user {
     position: relative;
     display: inline-block;
     padding: 25px 0;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 .user-picture2 {
@@ -585,7 +584,7 @@ a {
     display: inline-block;
     width: 45px;
     height: 45px;
-    margin-right : 5px;
+    margin-right: 5px;
     vertical-align: middle;
     overflow: hidden;
     border-radius: 10px;
@@ -599,16 +598,16 @@ a {
     font-family: "NanumSquareNeo-Variable";
     position: relative;
     display: inline-block;
-    top : 3px;
-    font-size : 14px;
-    color : gray;
+    top: 3px;
+    font-size: 14px;
+    color: gray;
 }
 
 
-.header-user .header-arrow{
-  position: relative;
-  display: inline-block;
-  padding : 0 4px 0 8px;
+.header-user .header-arrow {
+    position: relative;
+    display: inline-block;
+    padding: 0 4px 0 8px;
 
 }
 
@@ -617,14 +616,14 @@ a {
     top: 90px;
     right: 0;
     width: 210px;
-    height : 100%;
+    height: 100%;
     background-color: white;
     border-top: 1px solid #cdccd6;
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.layer-header-profile .block:first-child{
+.layer-header-profile .block:first-child {
     border-top: 0;
     padding: 20px 20px 10px 20px;
     background-color: #faf9fe;
@@ -634,11 +633,12 @@ a {
     position: relative;
     padding: 0 20px;
     border: 1px solid #cdccd6;
-    height : 200px;
+    height: 200px;
 }
 
 
-.layer-header-profile::before { /* 프로필 커서 이벤트 정보 창*/
+.layer-header-profile::before {
+    /* 프로필 커서 이벤트 정보 창*/
     content: '';
     position: absolute;
     top: -8px;
@@ -654,10 +654,10 @@ a {
 
 .layer-header-profile .profile-name {
     font-family: "NanumSquareNeo-Variable";
-    font-size : 17px;
-    text-align : center;
-    margin-bottom : 15px;
-    color : #58b26c;
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #58b26c;
 }
 
 .layer-header-profile .buttons {
@@ -666,7 +666,7 @@ a {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width : 50%;
+    width: 50%;
     margin: 0 auto;
     border-radius: 215px;
     overflow: hidden;
@@ -675,7 +675,7 @@ a {
 }
 
 
-.layer-header-profile .buttons a{
+.layer-header-profile .buttons a {
     display: inline-block;
     width: 100%;
     height: 30px;
@@ -698,22 +698,22 @@ a {
 
 
 #chat-page {
-  background-image : url('https://core-order-bucket.s3.ap-northeast-2.amazonaws.com/cloud.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity : 10;
+    background-image: url('https://core-order-bucket.s3.ap-northeast-2.amazonaws.com/cloud.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 10;
     position: relative;
     height: 100%;
     padding: 199px 0px 0px;
     font-family: "NanumSquareNeo-Variable";
 }
 
-.chat-container{
+.chat-container {
     position: relative;
     max-width: 1200px;
     height: 100%;
     margin: 0 auto;
-    left : 3%;
+    left: 3%;
 }
 
 .chat {
@@ -724,7 +724,7 @@ a {
     display: flex;
     text-align: center;
     justify-content: center;
-    align-items : center;
+    align-items: center;
 }
 
 .chat-group {
@@ -732,11 +732,11 @@ a {
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     height: 100%;
     max-height: 650px;
-    max-width : 500px;
+    max-width: 500px;
     min-width: 400px;
     position: relative;
     display: inline-block;
-    border-radius : 15px;
+    border-radius: 15px;
 }
 
 
@@ -753,15 +753,15 @@ a {
 }
 
 .chat-header-left {
-    width : 18%;
-    text-align : left;
+    width: 18%;
+    text-align: left;
     position: relative;
     display: inline-block;
     cursor: pointer;
 }
 
 .chat-header-center {
-    width : 100%;
+    width: 100%;
     position: relative;
     display: inline-block;
     text-align: left;
@@ -769,8 +769,8 @@ a {
 }
 
 .chat-header-center-group {
-    width : 76%;
-    height : 100%;
+    width: 76%;
+    height: 100%;
     position: relative;
     text-align: left;
 }
@@ -780,10 +780,10 @@ a {
     display: inline-block;
 }
 
-.header-img{
+.header-img {
     float: right;
     top: 9%;
-    position : relative;
+    position: relative;
     cursor: pointer;
 }
 
@@ -798,16 +798,16 @@ a {
     color: #ff4a4a;
     position: absolute;
     width: 100%;
-    font-size : 14px;
+    font-size: 14px;
 }
 
 .chat-left-right {
     position: relative;
     width: 100%;
     height: 89.3%;
-    display : flex;
+    display: flex;
     background-color: #FFFFFF;
-    border-radius : 0px 0px 15px 15px;
+    border-radius: 0px 0px 15px 15px;
 }
 
 .chat-left {
@@ -835,7 +835,7 @@ a {
     background-position: center;
 }
 
-.title-proflie{
+.title-proflie {
     position: absolute;
     width: 40px;
     height: 40px;
@@ -854,8 +854,8 @@ a {
     position: relative;
     display: inline-block;
     background-color: #FFFFFF;
-    margin : 0 auto;
-    border-radius : 15px;
+    margin: 0 auto;
+    border-radius: 15px;
 }
 
 .chat-menu {
@@ -889,14 +889,14 @@ a {
 }
 
 .btn-group {
-    top : 22% !important;
+    top: 22% !important;
 }
 
 .dock-group {
     position: relative;
     margin-left: 3%;
     height: 100%;
-    max-height : 600px;
+    max-height: 600px;
     width: 300px;
     display: inline-block;
     z-index: 5;
@@ -921,9 +921,7 @@ a {
 }
 
 
-.file-group{
-
-}
+.file-group {}
 
 .control {
     display: block;
@@ -939,18 +937,18 @@ a {
     -moz-appearance: none;
     appearance: none;
     border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .btn-upload {
-  width: 27px;
-  height: 27px;
-  position:relative;
-  left : 33%;
+    width: 27px;
+    height: 27px;
+    position: relative;
+    left: 33%;
 }
 
 #file {
-  display: none;
+    display: none;
 }
 
 
@@ -964,10 +962,10 @@ a {
 }
 
 #chat-page #messageForm {
-    left : 0%;
+    left: 0%;
     padding: 8px 10px;
-    position : relative;
-    top : 1.5%;
+    position: relative;
+    top: 1.5%;
 }
 
 #chat-page ul li {
@@ -996,7 +994,7 @@ a {
 #chat-page .chat-message {
     padding-left: 68px;
     position: relative;
-    text-align : left;
+    text-align: left;
     border: none;
 }
 
@@ -1058,22 +1056,22 @@ a {
     float: left;
     width: 70px;
     height: 38px;
-    left : 3%;
-    position : relative;
-    top : 30px;
-    background-color : #FFB649;
-    color : #FFFFFF;
-    font-size : 16px;
-    border : none;
-    border-radius : 6px;
-    z-index : 100;
+    left: 3%;
+    position: relative;
+    top: 30px;
+    background-color: #FFB649;
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    z-index: 100;
 }
 
 div#menu {
     position: relative;
     display: flex;
     align-items: center;
-    z-index : 0;
+    z-index: 0;
 }
 
 @media screen and (max-width: 730px) {
@@ -1139,6 +1137,7 @@ div#menu {
     padding-top: 6px;
     padding-left: 5px;
 }
+
 /* Antiman */
 .button--antiman {
     background: none;
@@ -1238,15 +1237,17 @@ div#menu {
 }
 
 .invite_content {
-    font-size: 20px;
-    align: center;
-    margin-left: 50px;
+    font-size: 17px;
+    margin-left: 25px;
 }
 
 /* 초대 창 */
 /* 초대 창 */
+.invite_btn {
+    border-radius: 15px;
+}
 
-.m_logo{
+.m_logo {
     width: 190px;
     position: relative;
     left: 10px;
@@ -1295,7 +1296,7 @@ div#menu {
 }
 
 /* 로고 영역 css */
-.m_head{
+.m_head {
     height: 70px;
     border-bottom: solid 5px #ff8c16;
     border-radius: 5px;
@@ -1434,27 +1435,31 @@ input::-webkit-inner-spin-button {
 }
 
 /* 추방모달 */
-.getout{
+.getout {
     width: 22%;
     height: 37%;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     min-height: 300px;
     min-width: 220px;
     position: absolute;
-    display: block;
+    display: none;
     border-radius: 15px;
     background-color: #FFFFFF;
     left: 9%;
     top: 17%;
 }
 
-.list_profile{
+.list_profile {
     position: relative;
     overflow: hidden;
     border-radius: 15%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.host_name {
+    margin-left: -5px;
 }
 
 /* 추방투표 버튼 */
@@ -1494,9 +1499,284 @@ input::-webkit-inner-spin-button {
 }
 
 /* 정산 버튼 */
-.cal{
+.cal {
     text-align: center;
     justify-content: center;
     padding-bottom: 10px;
     border-radius: 15px;
+}
+
+.condition {
+    font-size: 10px;
+    position: absolute;
+    margin-left: 48px;
+    margin-top: -7px;
+    color: red;
+}
+
+/* 장바구니 모달 */
+.basket-view {
+    position: absolute;
+    right: 16%;
+    width: 80%;
+    height: 480px;
+    font-weight: bold;
+    background-color: #dfdfdf;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.basket-view .basket-title {
+    position: relative;
+    height: 10%;
+    background-color: #7cab75;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    border-radius: 6px 6px 0 0;
+}
+
+.basket-view .basket-title .basket-title-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.basket-view .menu-view {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* 장바구니에 담긴 메뉴 리스트 보여주기 */
+.menu-view .menu-list {
+    position: relative;
+    width: 100%;
+    height: 24%;
+    border: 1px;
+    padding-top: 8px;
+    border: 1px solid #000;
+}
+
+.menu-view .menu-list div {
+    position: relative;
+    /* padding: 5px; */
+    border: none;
+    /* color: #757575; */
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.menu-view .menu-list .food-name {
+    width: 65%;
+    padding-bottom: 5px;
+}
+
+.menu-list-close {
+    padding-top: 10px;
+    float: left;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.menu-view .menu-list .food-count {
+    width: 15%;
+}
+
+.modify-menu {
+    position: relative;
+}
+
+#modify_menu_btn {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    font-size: 19px;
+    border: none;
+    color: #ffffff;
+    background-color: #7cab75;
+    display: inline-block;
+    border-radius: 0 0 6px 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 12px;
+}
+
+.cancle {
+    float: left;
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+.price {
+    float: left;
+    padding-left: 20px;
+}
+
+.plus {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #aa3f3f;
+    border-radius: 0;
+}
+
+.mius {
+    width: 24px;
+    height: 24px;
+    border: 1px solid #aa3f3f;
+    border-radius: 0;
+}
+
+.totalPrice {
+    height: 7%;
+    padding-top: 8px;
+}
+
+.priceText {
+    margin-top: 50px;
+    position: relative;
+}
+
+/* 전체메뉴 리스트 */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    /*숨기기*/
+    z-index: -1;
+    opacity: 0;
+}
+
+.show-modal {
+    opacity: 1;
+    z-index: 20;
+    transition: all 0.5s;
+}
+
+.modal-window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+    width: 70%;
+    height: 70%;
+
+    transform: translate(-50%, -40%);
+}
+
+.show-modal .modal-popup {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+    display: inline-block;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #e6e6e6;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.modal-popup .modal-popup-close {
+    position: absolute;
+    width: 100%;
+    height: 7%;
+}
+
+.modal-popup-close-name {
+    position: absolute;
+    width: 5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: -10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.modal-popup .modal-popup-title {
+    position: relative;
+    width: 100%;
+    height: 7%;
+    background-color: #7cab75;
+    border-radius: 6px 6px 0 0;
+}
+
+.modal-popup-title-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-window .modal-menu {
+    position: relative;
+    width: 100%;
+    height: 85%;
+}
+
+.modal-menu .modal-menu-text {
+    position: relative;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.modal-menu-text .modal-menu-text-space {
+    position: relative;
+    width: 30%;
+    height: 30px;
+    left: 7px;
+    border: none;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+    padding: 5px;
+}
+
+#modal_menu_amount {
+    width: 7%;
+}
+
+#modal_menu_add_btn {
+    position: relative;
+    width: 7%;
+    height: 30px;
+    border: none;
+    color: #ffffff;
+    background-color: #7cab75;
+    display: inline-block;
+    border-radius: 6px 6px 6px 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 5px;
+    padding: 5px;
+}
+
+.modal-menu-commit #menu_commit {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    border: none;
+    color: #ffffff;
+    background-color: #7cab75;
+    display: inline-block;
+    border-radius: 0 0 6px 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }

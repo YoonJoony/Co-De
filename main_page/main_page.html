@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="stylesheet" href="main_page3.css">
+    <link rel="stylesheet" href="bell.css">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -49,11 +51,16 @@
                     <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
                     <img class="logo" src="images/COOR2.png">
                 </div>
+                <!-- 알림 벨 -->
                 <div id="header-bell" class="header-bell">
-                    <span class="bell">
+                    <span class="bell" onclick="Bell_display()">
                         <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
                     </span>
                 </div>
+                <!-- 모달 창 -->
+                <div class="bell-modal">
+                </div>
+                <!---->
                 <div id="header-profile" class="header-profile">
                     <a class="header-user">
                         <span class="user-picture">
@@ -518,6 +525,7 @@
     </div>
 
     <script src="main_page2.js"></script>
+    <script src="bell.js"></script>
     <script th:inline="javascript">
 
 

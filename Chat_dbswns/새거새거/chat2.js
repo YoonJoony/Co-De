@@ -416,31 +416,31 @@ function list_open() {
 }
 
 
-// 사용자 추방
+// // 사용자 추방
 
-const host = $('#host').text(); // 호스트 닉네임
-const me = $('#me').text(); // 본인 닉네임
+// const host = $('#host').text(); // 호스트 닉네임
+// const me = $('#me').text(); // 본인 닉네임
 
-function getOut() {
-    $.ajax({
-        type: "POST", // Post가 리소스 업데이트 할때 쓰는거라고 하던데
-        url: "", // 경로는 제가 지정 할 수는 없으니께
-        data: {
-            "id": id // 추방 할 사람 닉네임 div id
-        },
-        success: function (id) {
-            const outSector = id.parentNode; // 닉네임의 부모노드 검색
-            outSector.remove(); // 해당 닉네임의 리스트 째로 삭제
+// function getOut() {
+//     $.ajax({
+//         type: "POST", // Post가 리소스 업데이트 할때 쓰는거라고 하던데
+//         url: "", // 경로는 제가 지정 할 수는 없으니께
+//         data: {
+//             "id": id // 추방 할 사람 닉네임 div id
+//         },
+//         success: function (id) {
+//             const outSector = id.parentNode; // 닉네임의 부모노드 검색
+//             outSector.remove(); // 해당 닉네임의 리스트 째로 삭제
 
-            // 실제로 해당 사용자를 채팅방 서버에서 퇴출시키는 동작
+//             // 실제로 해당 사용자를 채팅방 서버에서 퇴출시키는 동작
 
 
-        },
-        error: function () {
-            console.log("요청 실패 : ");
-        }
-    })
-}
+//         },
+//         error: function () {
+//             console.log("요청 실패 : ");
+//         }
+//     })
+// }
 
 const out_button = document.querySelectorAll('.vote');
 
@@ -480,7 +480,7 @@ function out_open() {
                 out_button.classList.add('vote');
                 out_button.disabled = false; // 버튼 활성화
                 getOut();
-            }else{
+            } else {
                 out_button.forEach((out_button) => {
                     out_button.classList.remove('vote'); // 클래스 삭제
                     out_button.disabled = true; // 버튼 비활성화
@@ -492,3 +492,61 @@ function out_open() {
         }
     })
 }
+
+function basket() {
+    const basket_content = document.querySelector(".basket-view");
+
+    // 숨기기 (display: none)
+    if (basket_content.style.display !== "block") {
+        basket_content.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        basket_content.style.display = "none";
+    }
+}
+
+// 장바구니 수량변경
+// function count(type) {
+//     const foodCount = document.querySelector(".food-count")
+//     const price = document.querySelector(".price")
+
+//     let number = foodCount.innerText;
+//     let meunPrice = price.innerText;
+
+//     // 더하기/빼기
+//     if (type === 'plus') {
+//         number = parseInt(number) + 1;
+//         meunPrice = parseInt(meunPrice) + (parseInt(meunPrice) * number)
+//     } else if (type === 'minus') {
+//         number = parseInt(number) - 1;
+//         meunPrice = parseInt(meunPrice) - (parseInt(meunPrice) * number)
+//         if (number < 1) {
+//             number = 1;
+//             meunPrice = parseInt(meunPrice)
+//         }
+//     }
+
+//     // 결과 출력
+//     foodCount.innerText = number;
+// }
+// 새로운 방식으로 접근 예정
+
+// 모달창 보여주는 함수
+function show_meun() {
+    document.querySelector(".modal-background").className =
+        "modal-background show-modal";
+}
+// 메뉴 수정 버튼 클릭 시 show_modal함수 호출
+document
+    .querySelector("#modify_menu_btn")
+    .addEventListener("click", show_meun);
+
+// 모달 창 닫기
+function close_modal() {
+    document.querySelector(".modal-background").className = "modal-background";
+}
+// x클릭 시 close_modal 함수 호출
+document
+    .querySelector(".modal-popup-close")
+    .addEventListener("click", close_modal);

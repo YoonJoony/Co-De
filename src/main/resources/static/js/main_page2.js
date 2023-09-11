@@ -3,7 +3,29 @@ function Address_commit() { }
 
 
 
+
+function onConnected() {
+    alert("연결 성공!");
+}
+
+function onError() {
+    alert("연결 실패!");
+}
+
+
+
 $(function () {
+    //소켓 설정
+    var socket = new SockJS('/ws-stomp');
+    stompClient = Stomp.over(socket);
+    StompClient.connect({}, onConnected, onError);
+
+
+
+
+
+
+
    // 프로필 클릭시
     var $profile = $(".header-profile");
     var $layerProfile = $(".layer-header-profile");
