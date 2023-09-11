@@ -1443,7 +1443,7 @@ input::-webkit-inner-spin-button {
     min-height: 300px;
     min-width: 220px;
     position: absolute;
-    display: block;
+    display: none;
     border-radius: 15px;
     background-color: #FFFFFF;
     left: 9%;
