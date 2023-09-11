@@ -1577,6 +1577,13 @@ input::-webkit-inner-spin-button {
     padding-bottom: 5px;
 }
 
+.menu-list-close {
+    padding-top: 10px;
+    float: left;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
 .menu-view .menu-list .food-count {
     width: 15%;
 }

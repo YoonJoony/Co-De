@@ -508,42 +508,44 @@ function basket() {
 
 // 장바구니 수량변경
 function count(type) {
-    // 결과를 표시할 element
-    const resultElement = document.querySelectorAll(".food-count")
-    const meunPrice = document.querySelectorAll(".price")
+    const foodCount = document.querySelector(".food-count")
+    const price = document.querySelector(".price")
 
-    // 현재 화면에 표시된 값
-    let number = resultElement.innerText;
+    let number = foodCount.innerText;
+    let meunPrice = price.innerText;
 
     // 더하기/빼기
     if (type === 'plus') {
         number = parseInt(number) + 1;
+        meunPrice = parseInt(meunPrice) + (parseInt(meunPrice) * number)
     } else if (type === 'minus') {
         number = parseInt(number) - 1;
+        meunPrice = parseInt(meunPrice) - (parseInt(meunPrice) * number)
         if (number < 1) {
             number = 1;
+            meunPrice = parseInt(meunPrice)
         }
     }
 
     // 결과 출력
-    resultElement.innerText = number;
+    foodCount.innerText = number;
 }
 
 // 모달창 보여주는 함수
 function show_meun() {
     document.querySelector(".modal-background").className =
-      "modal-background show-modal";
-  }
-  // 메뉴 수정 버튼 클릭 시 show_modal함수 호출
-  document
+        "modal-background show-modal";
+}
+// 메뉴 수정 버튼 클릭 시 show_modal함수 호출
+document
     .querySelector("#modify_menu_btn")
     .addEventListener("click", show_meun);
-  
-  // 모달 창 닫기
-  function close_modal() {
+
+// 모달 창 닫기
+function close_modal() {
     document.querySelector(".modal-background").className = "modal-background";
-  }
-  // x클릭 시 close_modal 함수 호출
-  document
+}
+// x클릭 시 close_modal 함수 호출
+document
     .querySelector(".modal-popup-close")
     .addEventListener("click", close_modal);
