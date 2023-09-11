@@ -480,7 +480,7 @@ function out_open() {
                 out_button.classList.add('vote');
                 out_button.disabled = false; // 버튼 활성화
                 getOut();
-            }else{
+            } else {
                 out_button.forEach((out_button) => {
                     out_button.classList.remove('vote'); // 클래스 삭제
                     out_button.disabled = true; // 버튼 비활성화
@@ -493,3 +493,57 @@ function out_open() {
     })
 }
 
+function basket() {
+    const basket_content = document.querySelector(".basket-view");
+
+    // 숨기기 (display: none)
+    if (basket_content.style.display !== "block") {
+        basket_content.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        basket_content.style.display = "none";
+    }
+}
+
+// 장바구니 수량변경
+function count(type) {
+    // 결과를 표시할 element
+    const resultElement = document.querySelectorAll(".food-count")
+    const meunPrice = document.querySelectorAll(".price")
+
+    // 현재 화면에 표시된 값
+    let number = resultElement.innerText;
+
+    // 더하기/빼기
+    if (type === 'plus') {
+        number = parseInt(number) + 1;
+    } else if (type === 'minus') {
+        number = parseInt(number) - 1;
+        if (number < 1) {
+            number = 1;
+        }
+    }
+
+    // 결과 출력
+    resultElement.innerText = number;
+}
+
+// 모달창 보여주는 함수
+function show_meun() {
+    document.querySelector(".modal-background").className =
+      "modal-background show-modal";
+  }
+  // 메뉴 수정 버튼 클릭 시 show_modal함수 호출
+  document
+    .querySelector("#modify_menu_btn")
+    .addEventListener("click", show_meun);
+  
+  // 모달 창 닫기
+  function close_modal() {
+    document.querySelector(".modal-background").className = "modal-background";
+  }
+  // x클릭 시 close_modal 함수 호출
+  document
+    .querySelector(".modal-popup-close")
+    .addEventListener("click", close_modal);
