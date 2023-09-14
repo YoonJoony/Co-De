@@ -144,6 +144,51 @@
             </th:block>
 
         </div>
+
+        <div class="board-list">
+            <th:block th:each="post : ${postList}">
+                <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                    <img class="board-img" src="images\chicken.png">
+                    <div class="boards">
+                        <div class="board-header">
+                            <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
+                            <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}" onclick="backdropDelete()">
+                        </div>
+                        <div class="board-nickname" th:text="${post.nickname}"></div>
+                        <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
+                        <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}" onclick="backdropDelete()"></a>
+                            <button class="join">Go GO~</button>
+                        </div>
+                        <div class="board-categories" th:text="${post.categories}"></div>
+                        <div class="board-peoples" th:text="${post.usercount} + '/' +${post.peoples}"></div>
+                        <!--            <div class="food" th:text="${post.categories}"></div>-->
+                    </div>
+                </div>
+            </th:block>
+
+        </div>
+
+        <div class="board-list">
+            <th:block th:each="post : ${postList}">
+                <div class="board" style="position: absolute; left: 0%; top: 0px;">
+                    <img class="board-img" src="images\chicken.png">
+                    <div class="boards">
+                        <div class="board-header">
+                            <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
+                            <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}" onclick="backdropDelete()">
+                        </div>
+                        <div class="board-nickname" th:text="${post.nickname}"></div>
+                        <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
+                        <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}" onclick="backdropDelete()"></a>
+                            <button class="join">Go GO~</button>
+                        </div>
+                        <div class="board-categories" th:text="${post.categories}"></div>
+                        <div class="board-peoples" th:text="${post.usercount} + '/' +${post.peoples}"></div>
+                        <!--            <div class="food" th:text="${post.categories}"></div>-->
+                    </div>
+                </div>
+            </th:block>
+        </div>
     </div>
 
 
