@@ -187,6 +187,9 @@
                                         required max="500">
                                     <label for="distance_limit">글 노출 거리 제한</label>
                                 </div>
+                                <div class="input-area">
+                                    <button class="add_store" id="add_store" type="button">가게추가</button>
+                                </div>
 
                                 <div class="input-area">
                                     <div class="sel">
@@ -250,7 +253,32 @@
             </div>
         </div>
     </div>
+    <!-- 가게선택 버튼 클릭시 가게 리스트 모달창 보여줌 -->
+    <div class="storeModal">
+        <div class="storeModal_content">
+            <div class="storeModal_header">
+                <input id="search_store" type="text">
+                </input>
+                <button id="search_store_btn" type="button">검색
+                </button>
+            </div>
+            <!-- ---------------------------------------- -->
+            <div class="storeModal_body">
+                <div class="store_list">
+                    <div class="store_image_div">
+                        <img class="store_image" src="images/profile.png">
+                    </div>
+                    <div class="store_info_div">
+                        <div class="store_name">bbq호원점</div>
+                        <div class="store_minimum_order_amount">최소주문금액 : 10000원</div>
+                    </div>
+                </div>
+            </div>
+            <!-- -------------------------------------------- -->
+        </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script th:inline="javascript">
@@ -337,6 +365,7 @@
         }
     </script>
     <script src="main_page.js"></script>
+    <script src="addStore.js"></script>
 
 </body>
 
