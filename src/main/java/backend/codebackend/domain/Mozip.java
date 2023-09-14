@@ -33,6 +33,16 @@ public class Mozip {
     private int usercount; //채팅방 인원 수, 방 만들때마다 방장 인원도 추가해야 하므로 + 1
     private int peoples; //채팅방 최대 인원 제한
 
+
+//    //모집글 생성 시 호스트 지정: 모집글을 생성할 때, 모집글을 생성한 사용자를 호스트로 지정, 이 정보를 모집글 엔티티에 저장
+//    //모집글을 생성한 사용자를 호스트로 지정
+//    //@ManyToOne(다대일)로 쓰는 이유는 한명의 사용자(ChatUser)가 여러 개의 모집글(Mozip)을 생성할 수 있으며, 각 모집글은 해당 사용자를 참조함. 따라서 'Mozip'엔티티 -> 'ChatUser'엔티티 참조
+//    //@Column(updatable = false)
+//    @Transient
+//    @ManyToOne  //다대일 (N : 1) 관계
+//    private ChatUser host;
+
+
     //스프리에서 제공하는 시간관련 변수
     @CreatedDate
     @Column(updatable = false)
@@ -50,4 +60,5 @@ public class Mozip {
         this.create_Date = create_Date;
         this.nickname = nickname;
     }
+
 }

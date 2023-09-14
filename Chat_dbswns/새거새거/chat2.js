@@ -470,7 +470,7 @@ function out_open() {
 
     $.ajax({ // 추방버튼 활성화, 방장 기능 확인
         type: "GET",
-        url: "민성쿤 화이팅",
+        url: "/mozip/chat/findHost",
         data: {
             "id": id,
             'nickname': nickname
