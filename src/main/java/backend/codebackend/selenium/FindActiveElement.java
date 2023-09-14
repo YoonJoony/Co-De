@@ -40,15 +40,13 @@ public class FindActiveElement {
 
         // 각 요소의 제목을 확인하여 '두마리치킨'이라는 이름이 포함된 가게를 찾습니다.
         for (WebElement restaurant : restaurants) {
-            if (restaurant.getAttribute("title").contains("치킨")) {
-                // 원하는 가게를 찾았습니다. 이 가게의 조부모 요소 중 'item' 클래스를 가진 요소를 찾습니다.
-//                restaurant.click();
-                System.out.println(restaurant.getAttribute("title"));
+            if (restaurant.getAttribute("title").contains("롯데리아-의정부호원점")) {
+                restaurant.click();
             }
         }
 
         // 검색을 수행합니다. 이를 위해 엔터 키를 입력합니다.
-        //searchBox.sendKeys(Keys.RETURN);
+        searchBox.sendKeys(Keys.RETURN);
 
         // WebDriver를 종료합니다.
         // driver.quit();
