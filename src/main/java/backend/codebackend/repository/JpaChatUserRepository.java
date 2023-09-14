@@ -56,5 +56,18 @@ public class JpaChatUserRepository implements ChatUserRepository{
 
         return (ArrayList<String>) typedQuery.getResultList();
     }
+
+    @Override
+    public boolean findHost(Long id, String nickname) {
+        List<String> result = em.createQuery("select m.nickname from Mozip m where m.nickname = :nickname and m.id = :id ", String.class)
+                .setParameter("nickname", nickname)
+                .setParameter("id", id)
+                .getResultList();
+
+        if (result.isEmpty()){
+            return false;
+        }
+        return true;
+    }
 }
 

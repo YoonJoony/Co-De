@@ -60,7 +60,12 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
 
     @Bean
     public ChatService chatService() {
-        return new ChatService(chatRepository());
+        return new ChatService(chatRepository(), chatUserRepository());
+    }
+
+    @Bean
+    public RestaurantService restaurantService() {
+        return new RestaurantService();
     }
 
 

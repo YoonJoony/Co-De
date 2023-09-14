@@ -1,6 +1,7 @@
 package backend.codebackend;
 
 import backend.codebackend.domain.Chat;
+import backend.codebackend.domain.Restuarant;
 import backend.codebackend.dto.ChatDTO;
 import backend.codebackend.dto.MemberForm;
 import backend.codebackend.domain.Member;
@@ -8,6 +9,7 @@ import backend.codebackend.repository.MemberRepository;
 import backend.codebackend.service.ChatService;
 import backend.codebackend.service.ChatUserService;
 import backend.codebackend.service.MemberService;
+import backend.codebackend.service.RestaurantService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,10 @@ class CodeBackendApplicationTests {
 	ChatService chatService;
 	@Autowired
 	ChatUserService chatUserService;
+
+	@Autowired
+	RestaurantService restaurantService;
+
 
 
 	@Test
@@ -66,5 +72,18 @@ class CodeBackendApplicationTests {
 		chatService.timestamp(chat);
 	}
 
+	@Test
+	@DisplayName("방장 조회 테스트")
+	void 방장조회() {
 
+		if (chatService.isCurrentUserHost(64L, "김윤준")){
+			System.out.println("방장 맞음 ");
+		}
+	}
+
+	@Test
+	@DisplayName("가게 정보 조회 테스트")
+	void 가게정보조회() {
+		restaurantService.RsData("서울특별시 강남구 역삼동 610-3");
+	}
 }
