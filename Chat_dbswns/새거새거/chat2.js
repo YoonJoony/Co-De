@@ -506,32 +506,6 @@ function basket() {
     }
 }
 
-// 장바구니 수량변경
-// function count(type) {
-//     const foodCount = document.querySelector(".food-count")
-//     const price = document.querySelector(".price")
-
-//     let number = foodCount.innerText;
-//     let meunPrice = price.innerText;
-
-//     // 더하기/빼기
-//     if (type === 'plus') {
-//         number = parseInt(number) + 1;
-//         meunPrice = parseInt(meunPrice) + (parseInt(meunPrice) * number)
-//     } else if (type === 'minus') {
-//         number = parseInt(number) - 1;
-//         meunPrice = parseInt(meunPrice) - (parseInt(meunPrice) * number)
-//         if (number < 1) {
-//             number = 1;
-//             meunPrice = parseInt(meunPrice)
-//         }
-//     }
-
-//     // 결과 출력
-//     foodCount.innerText = number;
-// }
-// 새로운 방식으로 접근 예정
-
 // 모달창 보여주는 함수
 function show_meun() {
     document.querySelector(".modal-background").className =
@@ -550,3 +524,13 @@ function close_modal() {
 document
     .querySelector(".modal-popup-close")
     .addEventListener("click", close_modal);
+
+// 장바구니 수량변경
+// 숫자 3자리 콤마찍기
+Number.prototype.formatNumber = function () {
+    if (this == 0) return 0;
+    let regex = /(^[+-]?\d+)(\d{3})/;
+    let nstr = (this + '');
+    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
+    return nstr;
+};

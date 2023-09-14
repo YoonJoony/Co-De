@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Main</title>
+  <title>vscode 채팅방</title>
   <link rel="stylesheet" href="chat2.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
@@ -252,8 +252,8 @@
                 <div class="menu-view">
                   <div class="menu-list">
                     <div class="food-name">슈프림양념치킨 블랙라벨</div> <br>
-                    <div class="cancle"> X </div>
-                    <div class="price" id="p_num1" name="p_num1"> 17,800원</div>
+                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();"> X </div>
+                    <div class="price" name="p_price" id="p_price1" value="17800"> 17,800원</div>
                     <button class="mius" onclick='count("minus")' value='-'> - </button>
                     <div class="food-count">1</div>
                     <button class="plus" onclick='count("plus")' value='+'> + </button>
@@ -261,7 +261,7 @@
                   <div class="menu-list">
                     <div class="food-name">짱닭치킨</div> <br>
                     <div class="cancle"> X </div>
-                    <div class="price"> 27,800원</div>
+                    <div class="price" name="p_price" id="p_price2" value="19000"> 27,800원</div>
                     <button class="mius" onclick='count("minus")' value='-'> - </button>
                     <div class="food-count">1</div>
                     <button class="plus" onclick='count("plus")' value='+'> + </button>
@@ -269,22 +269,6 @@
                   <div class="menu-list">
                     <div class="food-name">치킨</div>
                     <div class="food-count">2</div>
-                  </div>
-                  <div class="menu-list">
-                    <div class="food-name">치킨</div>
-                    <div class="food-count">3</div>
-                  </div>
-                  <div class="menu-list">
-                    <div class="food-name">치킨</div>
-                    <div class="food-count">4</div>
-                  </div>
-                  <div class="menu-list">
-                    <div class="food-name">치킨</div>
-                    <div class="food-count">5</div>
-                  </div>
-                  <div class="menu-list">
-                    <div class="food-name">치킨</div>
-                    <div class="food-count">6</div>
                   </div>
                 </div>
                 <div class="totalPrice">
