@@ -112,4 +112,12 @@ public class ChatController {
 
         return nickname;
     }
+
+    //모집글에서 사용자가 현재 모집글의 호스트인지 아닌지 판별
+    @GetMapping("/mozip/chat/findHost")
+    @ResponseBody
+    public boolean chatPage(Long id, String nickname){   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
+
+        return chatService.isCurrentUserHost(id, nickname);
+    }
 }
