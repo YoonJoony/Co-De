@@ -1064,7 +1064,7 @@ a {
     font-size: 16px;
     border: none;
     border-radius: 6px;
-    z-index: 100;
+    z-index: 5;
 }
 
 div#menu {
@@ -1616,6 +1616,9 @@ input::-webkit-inner-spin-button {
 .price {
     float: left;
     padding-left: 20px;
+    background: transparent;
+    border: none;
+    width: 150px;
 }
 
 .plus {
@@ -1973,19 +1976,22 @@ input::-webkit-inner-spin-button {
     width: 460px;
     height: 650px;
     background: #fff;
-    margin: auto;
-    position: relative;
+    position: absolute;
     display: none;
-    z-index: 10;
+    z-index: 20;
+    left: 206px;
+    top: -50px;
+
 }
 
 .detail_header {
     background: #fff;
     position: relative;
     border-bottom: 1px solid #e5e5e5;
-    height: 40px;
+    height: 60px;
     padding: 20px 0 0 0;
     z-index: 2;
+
 }
 
 .detail_header .title {
@@ -1993,11 +1999,11 @@ input::-webkit-inner-spin-button {
     text-align: center;
 }
 
-.detail_imageArea{
+.detail_imageArea {
     text-align: center;
 }
 
-.detail_content{
+.detail_content {
     height: 560px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -2025,31 +2031,33 @@ input::-webkit-inner-spin-button {
     text-align: center;
     padding-left: 0;
 }
-.detail-exp{
+
+.detail-exp {
     color: #999;
     font-size: 12px;
     text-align: center;
     padding-top: 5px;
     padding-bottom: 3px;
 }
-.detail_price{
+
+.detail_price {
     background: #fff;
     font-size: 15px;
     font-weight: bold;
     padding: 20px 15px 15px 15px;
     overflow: hidden;
-    height: 25px;
+    height: 62px;
 }
 
-.detail_price > strong{
+.detail_price>strong {
     float: left;
 }
 
-.detail_price .price{
+.detail_price .price {
     float: right;
 }
 
-.detail_quantity{
+.detail_quantity {
     background: #fff;
     position: relative;
     border-top: 1px solid #f0f0f0;
@@ -2058,7 +2066,7 @@ input::-webkit-inner-spin-button {
     height: 25px;
 }
 
-.minus{
+.minus {
     position: absolute;
     right: 95px;
     top: 15px;
@@ -2071,20 +2079,7 @@ input::-webkit-inner-spin-button {
     font-size: 20px;
 }
 
-.plus{
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 30px;
-    height: 30px;
-    border: 1px solid #ccc;
-    opacity: 1;
-    cursor: pointer;
-    text-align: center;
-    font-size: 20px;
-}
-
-.quantity{
+.quantity {
     position: absolute;
     right: 45px;
     top: 15px;
@@ -2097,11 +2092,11 @@ input::-webkit-inner-spin-button {
     text-align: center;
 }
 
-.detail_quantity > strong{
+.detail_quantity>strong {
     float: left;
 }
 
-.detail_total_wrap{
+.detail_total_wrap {
     border-top: 1px solid #f0f0f0;
     overflow: hidden;
     height: 60px;
@@ -2112,35 +2107,36 @@ input::-webkit-inner-spin-button {
     padding: 18px 15px;
 }
 
-.detail_total_wrap > strong{
+.detail_total_wrap>strong {
     float: left;
 }
 
-.total{
+.total {
     float: right;
     text-align: right;
 }
 
-.total_price{
+.total_price {
     color: #fa0050;
     font-size: 24px;
     font-weight: bold;
     line-height: 1.1;
 }
-.min_price{
+
+.min_price {
     color: #333;
     font-size: 12px;
 }
 
-.detail_button_bar{
+.detail_button_bar {
     position: absolute;
 }
 
-.add_cart{
+.add_cart {
     background: #555;
     color: #fff;
     float: left;
-    width: 177%;
+    width: 208%;
     height: 48px;
     border: none;
     font-size: 16px;
@@ -2149,12 +2145,13 @@ input::-webkit-inner-spin-button {
     margin: 0;
     cursor: pointer;
 }
-.close_detail{
+
+.close_detail {
     position: absolute;
     background: #fa0050;
     color: #fff;
     float: left;
-    width: 177%;
+    width: 210%;
     height: 48px;
     border: none;
     font-size: 16px;
@@ -2164,4 +2161,9 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-input[type=text]{border:0;width:50px;}
+.count_css{
+    width:50px;
+    background: transparent;
+    border: none;
+    text-align: center;
+}

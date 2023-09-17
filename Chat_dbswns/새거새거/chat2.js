@@ -525,16 +525,7 @@ document
     .querySelector(".modal-popup-close")
     .addEventListener("click", close_modal);
 
-// 장바구니 수량변경
-// 숫자 3자리 콤마찍기
-Number.prototype.formatNumber = function () {
-    if (this == 0) return 0;
-    let regex = /(^[+-]?\d+)(\d{3})/;
-    let nstr = (this + '');
-    while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
-    return nstr;
-};
-
+    
 function detail_close() {
     const detail_content = document.querySelector(".detail_meun_wrap");
 
