@@ -279,7 +279,7 @@
                   <input id="modify_menu_btn" type="button" value="메뉴 수정">
                 </div>
               </div>
-
+              
               <!-- 전체메뉴 리스트 모달 -->
               <div class="modal-background">
                 <div class="modal-window">
@@ -292,16 +292,163 @@
                     </div>
                     <div class="modal-menu">
                       <div class="modal-menu-text">
-                        <input class="modal-menu-text-space" id="modal_menu_name" type="text" placeholder="메뉴 이름">
-                        <input class="modal-menu-text-space" id="modal_menu_price" type="text" placeholder="가격">
-                        <input class="modal-menu-text-space" id="modal_menu_amount" type="text" placeholder="수량">
-                        <input id="modal_menu_add_btn" type="button" value="+">
+                        <ul class="meunTotal">
+                          <li class="meun" onclick="detail_open()">
+                            <table>
+                              <tr>
+                                <td class="meun-text">
+                                  <div class="meun-name">
+                                    빅맥 세트
+                                  </div>
+                                  <div class="meun-exp">
+                                    빅맥버거＋후렌치후라이(M)＋음료<br>
+                                    * 음료는 매장 상황에 따라 16oz 또는 캔 음료로 제공됩니다
+                                  </div>
+                                  <div class="meun-price">
+                                    <span>23,500원</span>
+                                  </div>
+                                </td>
+                                <td class="photo-area">
+                                  <img class="photo" src="햄버거1.jpg">
+                                </td>
+                              </tr>
+                            </table>
+                          </li>
+
+                          <li class="meun">
+                            <table>
+                              <tr>
+                                <td class="meun-text">
+                                  <div class="meun-name">
+                                    후라이드치킨버거세트（치즈볼）
+                                  </div>
+                                  <div class="meun-exp">
+                                    후라이드치킨반마리＋싸이버거2＋바삭크림치즈볼4조각＋콜라2<br>
+                                    * 음료는 매장 상황에 따라 16oz 또는 캔／PET 음료로 제공됩니다
+                                  </div>
+                                  <div class="meun-price">
+                                    <span>23,500원</span>
+                                  </div>
+                                </td>
+                                <td class="photo-area">
+                                  <img class="photo" src="햄버거2.jpg">
+                                </td>
+                              </tr>
+                            </table>
+                          </li>
+
+                          <li class="meun">
+                            <table>
+                              <tr>
+                                <td class="meun-text">
+                                  <div class="meun-name">
+                                    후라이드치킨버거세트（치즈볼）
+                                  </div>
+                                  <div class="meun-exp">
+                                    후라이드치킨반마리＋싸이버거2＋바삭크림치즈볼4조각＋콜라2<br>
+                                    * 음료는 매장 상황에 따라 16oz 또는 캔／PET 음료로 제공됩니다
+                                  </div>
+                                  <div class="meun-price">
+                                    <span>23,500원</span>
+                                  </div>
+                                </td>
+                                <td class="photo-area">
+                                  <img class="photo" src="햄버거2.jpg">
+                                </td>
+                              </tr>
+                            </table>
+                          </li>
+
+                          <li class="meun">
+                            <table>
+                              <tr>
+                                <td class="meun-text">
+                                  <div class="meun-name">
+                                    후라이드치킨버거세트（치즈볼）
+                                  </div>
+                                  <div class="meun-exp">
+                                    후라이드치킨반마리＋싸이버거2＋바삭크림치즈볼4조각＋콜라2<br>
+                                    * 음료는 매장 상황에 따라 16oz 또는 캔／PET 음료로 제공됩니다
+                                  </div>
+                                  <div class="meun-price">
+                                    <span>23,500원</span>
+                                  </div>
+                                </td>
+                                <td class="photo-area">
+                                  <img class="photo" src="햄버거2.jpg">
+                                </td>
+                              </tr>
+                            </table>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                     <div class="modal-menu-commit">
                       <input id="menu_commit" type="button" value="확인">
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <!-- 상세메뉴 모달 -->
+              <div class="detail_meun_wrap">
+                <div class="detail_header">
+                  <div class="title"> 메뉴 상세 </div>
+                </div>
+
+                <div class="detail_content">
+                  <div class="detail_imageArea">
+                    <img src="햄버거1.jpg" class="detail_image">
+                  </div>
+
+                  <div class="detail_text">
+                    <div class="detail-head">
+                      <div class="meun-name">
+                        빅맥 세트
+                      </div>
+                    </div>
+                    <div class="detail-exp">
+                      빅맥버거＋후렌치후라이(M)＋음료<br>
+                      * 음료는 매장 상황에 따라 16oz 또는 캔 음료로 제공됩니다
+                    </div>
+                  </div>
+
+                  <div class="detail_price">
+                    <strong>가격</strong>
+                    <div class="price" value="9600">9,600원</div>
+                  </div>
+
+                  <div class="detail_quantity">
+                    <strong>수량</strong>
+                    <div>
+                      <div class="minus" onclick="minus()">-</div>
+                      <div class="quantity" id="quantity">1</div>
+                      <div class="plus" onclick="plus()">+</div>
+
+                      <div id="input_div">
+                        수량 :
+                        <input type="text" size="25" value="1" id="count">
+                        <input type="button" value="-" id="moins" onclick="minus()">
+                        <input type="button" value="+" id="plus" onclick="plus()">
+                      </div>
+                      가격 : <input type="text" value="500" id="total_count" hidden=hidden />
+                      <input type="text" value="500" id="total_count_view" />
+                    </div>
+                  </div>
+
+                  <div class="detail_total_wrap">
+                    <strong>총 주문금액</strong>
+                    <div class="total">
+                      <strong class="total_price" value="9600" hidden>9,600원</strong>
+                      <strong class="total_price_view" value="9600">9,600원</strong><br>
+                      <span class="min_price">(최소주문금액 8,000원)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="detail_button_bar">
+                  <button class="add_cart"> 장바구니에 추가 </button>
+                  <button class="close_detail" onclick="detail_close()"> 닫기 </button>
                 </div>
               </div>
             </div>
@@ -385,46 +532,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <div class="modal fade" id="enterRoomModal" tabindex="-1" aria-labelledby="enterRoomModalLabel"
-    data-backdrop="static" aria-hidden="true">
-    <div class="basket-title">
-      <div class="basket-title-name">메뉴리스트</div>
-    </div>
-    <div class="menu-view">
-      <div class="menu-list">
-        <div class="food-name">슈프림양념치킨 블랙라벨 111</div>
-        <div class="food-count">1</div>
-      </div>
-      <div class="menu-list">
-        <div class="food-name">치킨 치즈볼 골드(9개)</div>
-        <div class="food-count">1</div>
-      </div>
-      <div class="menu-list">
-        <div class="food-name">치킨</div>
-        <div class="food-count">2</div>
-      </div>
-      <div class="menu-list">
-        <div class="food-name">치킨</div>
-        <div class="food-count">3</div>
-      </div>
-      <div class="menu-list">
-        <div class="food-name">치킨</div>
-        <div class="food-count">4</div>
-      </div>
-      <div class="menu-list">
-        <div class="food-name">치킨</div>
-        <div class="food-count">5</div>
-      </div>
-      <div class="menu-list">
-        <div class="food-name">치킨</div>
-        <div class="food-count">6</div>
-      </div>
-    </div>
-    <div class="modify-menu">
-      <input id="modify_menu_btn" type="button" value="메뉴 수정">
-    </div>
-  </div> -->
 
   <!-- 모달 bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."

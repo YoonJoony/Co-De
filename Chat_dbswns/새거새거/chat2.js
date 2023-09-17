@@ -534,3 +534,53 @@ Number.prototype.formatNumber = function () {
     while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
     return nstr;
 };
+
+function detail_close() {
+    const detail_content = document.querySelector(".detail_meun_wrap");
+
+    detail_content.style.display = "none";
+}
+
+function detail_open() {
+    const detail_content = document.querySelector(".detail_meun_wrap");
+
+    detail_content.style.display = "block";
+}
+
+// 메뉴상세 수량변경
+var count = 1;
+var countV = document.querySelector("quantity");
+var total_count = document.querySelector("total_price");
+var total_count_view = document.querySelector("total_price_view");
+
+function plus() {
+    count++;
+    countV.value = count;
+    total_count_view.value = total_count.value * countV.value;
+}
+
+function minus() {
+    if (count > 1) {
+        count--;
+        countV.value = count;
+        total_count_view.value = total_count_view.value - total_count.value;
+    }
+}
+
+var count = 1;
+var countEl = document.getElementById("count");
+var total_count = document.getElementById("total_count"); //추가
+var total_count_view = document.getElementById("total_count_view"); //추가
+function plus() {
+    count++;
+    countEl.value = count;
+    total_count_view.value = total_count.value * countEl.value; //추가
+}
+function minus() {
+
+    if (count > 1) {
+        count--;
+        countEl.value = count;
+        total_count_view.value = total_count_view.value - total_count.value; //추가  
+    }
+}
