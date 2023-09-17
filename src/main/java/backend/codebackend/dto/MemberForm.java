@@ -9,7 +9,7 @@ import lombok.Builder;
 public class MemberForm {
 
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
-    private String Login;
+    private String login;
 
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
     @Pattern(regexp = "(?=.*[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣])(?=.*[0-9])(?=.*[^\\w\\s]).{4,20}",
@@ -24,6 +24,9 @@ public class MemberForm {
     private String nickname;
 
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
+    private String address;
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
     @Pattern(regexp = "^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$",
             message = "01로 시작하는 10-11자리 숫자여야 합니다.")
     private String pnum;
@@ -31,21 +34,23 @@ public class MemberForm {
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
     private String certified;
 
-    public MemberForm(String Login, String pw, String pwcheck, String nickname, String pnum, String certified) {
-        this.Login = Login;
+    public MemberForm(String login, String pw, String pwcheck, String nickname, String address, String pnum, String certified) {
+        this.login = login;
         this.pw = pw;
         this.pwcheck = pwcheck;
         this.nickname = nickname;
+        this.address = address;
         this.pnum = pnum;
         this.certified = certified;
     }
 
     public Member toEntity(){
         Member member = Member.builder()
-                .Login(Login)
+                .login(login)
                 .pw(pw)
                 .pwcheck(pwcheck)
                 .nickname(nickname)
+                .address(address)
                 .pnum(pnum)
                 .certified(certified)
                 .build();

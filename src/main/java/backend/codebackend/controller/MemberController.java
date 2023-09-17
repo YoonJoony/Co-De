@@ -63,7 +63,7 @@ public class MemberController {
         HttpSession session = httpServletRequest.getSession(true); //세션 없으면 생성.
 
         //세션에 아이디 넣어줌
-        session.setAttribute("memberId", member.getLoginId());
+        session.setAttribute("memberId", member.getLogin());
         session.setMaxInactiveInterval(1800); //session이 30분동안 유지
 
         //세션리스트에 저장

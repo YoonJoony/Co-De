@@ -54,27 +54,19 @@ public class RestaurantService {
         int prevSize = 0;
         int currentSize = restaurants.size();
 
-        while(prevSize < currentSize) {
-            js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-            try {
-                Thread.sleep(300);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            prevSize = restaurants.size();
-
-            restaurants = driver.findElements(By.className("restaurant-name"));
-
-            currentSize = restaurants.size();
-        }
-
         //restaurants 리스트에 있는 모든 요소를 순회하면서 '치킨'이 포함된 가게를 찾음
         for (WebElement restaurant : restaurants) {
             WebElement parentElement = restaurant.findElement(By.xpath(".."));
+            WebElement logoElement = restaurant.findElement(By.xpath("../../..")); //restaurant-name 요소의 부모 부모
+
+            //background-image의 url이 두 개 나오므로 url을 컴마가 붙은 라인부터 지운다(뒤에 url을 지우게 됨)
+            String restaurantAddress = logoElement.findElement(By.className("logo")).getCssValue("background-image").replace("url(\"", "").replace("\")","");
+            int commaIndex = restaurantAddress.indexOf(",");
 
             rs = Restuarant.builder()
                     .title(restaurant.getAttribute("title"))
                     .minPrice(parentElement.findElement(By.className("min-price")).getText())
+                    .imageUrl(restaurantAddress.substring(0, commaIndex))
                     .build();
 
             rsList.add(rs);

@@ -84,6 +84,20 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("가게 정보 조회 테스트")
 	void 가게정보조회() {
-		restaurantService.RsData("서울특별시 강남구 역삼동 610-3");
+		Member member = memberService.findLoginId("dbswns1101").get();
+		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+		List<Restuarant> rs = restaurantService.RsData(member.getAddress());
+
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		for(int i = 0; i < rs.size(); i++) {
+			System.out.println("가게 이름 : " + rs.get(i).getTitle());
+			System.out.println("최소 주문 금액 : " + rs.get(i).getMinPrice());
+			System.out.println("이미지 url : " + rs.get(i).getImageUrl());
+		}
 	}
 }
