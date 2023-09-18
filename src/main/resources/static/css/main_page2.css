@@ -1273,6 +1273,7 @@ select::-ms-expand {
   background-color: #fff;
   box-shadow: 0 4px 4px 0 gray;
   border-radius: 5px;
+  max-width: 660px;
   min-width: 320px;
 }
 .storeModal_header {

@@ -1,24 +1,27 @@
 package backend.codebackend.service;
 
+import backend.codebackend.domain.Menu;
 import backend.codebackend.domain.Restuarant;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Transactional
 @RequiredArgsConstructor
 public class RestaurantService {
     public List<Restuarant> RsData(String address) {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless");
 
         // WebDriver 객체를 생성합니다.
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver();
 
         // Google 웹 페이지를 엽니다.
         driver.get("https://www.yogiyo.co.kr/mobile/#/");
@@ -57,7 +60,6 @@ public class RestaurantService {
         int prevSize = 0;
         int currentSize = restaurants.size();
 
-        //restaurants 리스트에 있는 모든 요소를 순회하면서 '치킨'이 포함된 가게를 찾음
         for (WebElement restaurant : restaurants) {
             WebElement parentElement = restaurant.findElement(By.xpath(".."));
             WebElement logoElement = restaurant.findElement(By.xpath("../../..")); //restaurant-name 요소의 부모 부모
@@ -74,10 +76,54 @@ public class RestaurantService {
 
             rsList.add(rs);
         }
-
+        driver.quit();
         return rsList;
     }
-        // 검색을 수행합니다. 이를 위해 엔터 키를 입력합니다.
-        // WebDriver를 종료합니다.
-        //driver.quit();
+
+
+    //모집글 생성 후 선택한 가게 메뉴를 스레드로 크롤링
+    @Async
+    public CompletableFuture<List<Menu>> menuList(String restaurantTitle, String address){
+//        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("--headless");
+
+        WebDriver driver = new ChromeDriver();
+
+        // Google 웹 페이지를 엽니다.
+        driver.get("https://www.yogiyo.co.kr/mobile/#/");
+
+
+        // 검색창을 찾습니다. Google의 검색창은 'name' 속성이 'q'인 input 요소입니다.
+        WebElement searchBox = driver.findElement(By.name("address_input"));
+
+        searchBox.clear();
+
+        searchBox.click();
+
+        searchBox.sendKeys(address);
+
+        WebElement clickSearch = driver.findElement(By.className("ico-pick"));
+        clickSearch.click();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        List<Menu> menuList = new ArrayList<Menu>();
+        List<WebElement> restaurants = driver.findElements(By.className("restaurant-name"));
+
+        // 각 요소의 제목을 확인하여 '두마리치킨'이라는 이름이 포함된 가게를 찾습니다.
+        for (WebElement restaurant : restaurants) {
+            //restaurant title이 선택한 가게 title 이였을 경우
+            if (restaurant.getAttribute("title").equals(restaurantTitle)) {
+                restaurant.click();
+
+                System.out.println(restaurant.getAttribute("title"));
+            }
+        }
+
+        return CompletableFuture.completedFuture(menuList);
+    }
 }
