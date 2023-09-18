@@ -1,52 +1,50 @@
 package backend.codebackend.domain;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor //기본 생성자를 추가해주는 어노테이션
 @Builder
 @Getter
+@Setter
 public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 ID를 자동으로 생성해 주는 전략 : IDENTITY
     private Long id;
 
-    private String Login;
+    @Column(length = 20, nullable = false)
+    private String login;
+    @Column(length = 20, nullable = false)
     private String pw;
+
+    @Column(length = 20, nullable = false)
     private String pwcheck;
+
+    @Column(length = 10, nullable = false)
     private String nickname;
+
+    @Column(length = 100, nullable = false)
+    private String address;
+    @Column(length = 15, nullable = false)
     private String pnum;
 
+    @Column(length = 17, nullable = false)
     private String certified;
 
-    public Member(Long id, String Login, String pw, String pwcheck, String nickname, String pnum, String certified) {
+    public Member(Long id, String login, String pw, String pwcheck, String nickname, String address, String pnum, String certified) {
         this.id = id;
-        this.Login = Login;
+        this.login = login;
         this.pw = pw;
         this.pwcheck = pwcheck;
         this.nickname = nickname;
+        this.address = address;
         this.pnum = pnum;
         this.certified = certified;
     }
-
-    public String getLoginId() {
-        return Login;
-    }
-
-    public void setId(Long id) {
-       this.id = id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
 }

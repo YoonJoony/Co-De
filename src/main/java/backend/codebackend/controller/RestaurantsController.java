@@ -19,8 +19,10 @@ public class RestaurantsController {
 
     private final RestaurantService restaurantService;
     private final MemberService memberService;
-
-    @GetMapping()
+    
+    
+    //사용자의 세션에 저장된 id를 통해 주소를 받아서 주소 출력
+    @GetMapping("/restaurantsList")
     public List<Restuarant> restaurantsList(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 
@@ -28,6 +30,7 @@ public class RestaurantsController {
             log.info("세션이 없습니다.");
         }
 
-        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).getAdderss());
+//        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
+        return null;
     }
 }

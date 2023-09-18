@@ -5,7 +5,7 @@
 
 
         // input 및 button 변수화
-        let id = $('login');
+        let id = $('#login');
         let pw = $('#pw');
         let pwcheck = $('#pwcheck');
         let nickname = $('#nickname');
@@ -99,8 +99,8 @@
                      alert("인증번호를 입력해주십시오.");
                      return false;
                 }
-                else
-                    return true;
+
+                return true;
             }
         }
 

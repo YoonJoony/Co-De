@@ -48,6 +48,12 @@ input {
   z-index : 0;
 }
 
+input#address {
+    position : relative;
+    left : 11px;
+}
+
+
 input.pw, .pwcheck { /* 비밀번호와 비밀번호 확인 조정해서 비율 맞추기 */
     position : relative;
     left : 12px;
@@ -174,7 +180,7 @@ button:focus { /* 외곽 뭉뚝하게 */
 
 .btnRegister {
     position : relative;
-    top : 150px;
+    top : 107px;
     height : 10%;
     width : 80%;
     z-index: 100;
@@ -182,7 +188,7 @@ button:focus { /* 외곽 뭉뚝하게 */
 }
 
 .RegisterUp .btnRegister{
-   top : 100px;
+   top : 53px;
 }
 
 .RegisterUp .btn-Certified{

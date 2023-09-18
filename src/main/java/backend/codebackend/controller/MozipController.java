@@ -1,11 +1,13 @@
 package backend.codebackend.controller;
 
 import backend.codebackend.domain.Mozip;
+import backend.codebackend.domain.Restuarant;
 import backend.codebackend.domain.SelectedValue;
 import backend.codebackend.dto.MozipForm;
 import backend.codebackend.service.ChatUserService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MozipService;
+import backend.codebackend.service.RestaurantService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,8 @@ public class MozipController {
     private final MozipService mozipService;
     private final MemberService memberService;
     private final ChatUserService chatUserService;
+    private final RestaurantService restaurantService;
+
 
     private SelectedValue sv = SelectedValue.getInstance(); //싱글톤으로 객체 인스턴스 1개만 생성되도록 함
 //    private String selectedValue1;
@@ -40,6 +44,8 @@ public class MozipController {
         List<Mozip> mozipFormList = mozipService.getMozipList();
         model.addAttribute("postList", mozipFormList);
 
+
+
         HttpSession session = request.getSession(false);
         if (session == null) {
             return "세션이 없습니다.";
@@ -51,6 +57,16 @@ public class MozipController {
 
         return "main_page"; //글 생성 시 다시 초기화면으로
     }
+
+    @GetMapping("/mozip/storeList")
+    @ResponseBody
+    public List<Restuarant> storeList(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
+    }
+
+
     @GetMapping("/session-info")
     public String sessionInfo(HttpServletRequest request) {
         return "세션 출력";
