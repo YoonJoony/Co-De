@@ -111,6 +111,7 @@ public class RestaurantService {
             throw new RuntimeException(e);
         }
 
+        Menu menu;
         List<Menu> menuList = new ArrayList<Menu>();
         List<WebElement> restaurants = driver.findElements(By.className("restaurant-name"));
 
@@ -120,10 +121,18 @@ public class RestaurantService {
             if (restaurant.getAttribute("title").equals(restaurantTitle)) {
                 restaurant.click();
 
-                System.out.println(restaurant.getAttribute("title"));
+                menu = Menu.builder()
+                        .menuName()
+                        .menuDesc()
+                        .menuPrice()
+                        .menuPhoto()
+                        .build();
+                
+                menuList.add(menu);
             }
         }
 
+        driver.quit();
         return CompletableFuture.completedFuture(menuList);
     }
 }

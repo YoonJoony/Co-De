@@ -111,11 +111,11 @@ class CodeBackendApplicationTests {
 		CompletableFuture<List<Menu>> menu = restaurantService.menuList("BHC-신한대점", member.getAddress());
 
 		List<Menu> menuList = menu.get();
-		for(Menu m : menuList) {
-			System.out.println("메뉴 이름 : " + m.getMenuName());
-			System.out.println("메뉴 가격 : " + m.getMenuPrice());
-			System.out.println("메뉴 상세 : " + m.getMenuDesc());
-			System.out.println("메뉴 포토 : " + m.getMenuPhoto());
-		}
+//		for(Menu m : menuList) {
+//			System.out.println("메뉴 이름 : " + m.getMenuName());
+//			System.out.println("메뉴 가격 : " + m.getMenuPrice());
+//			System.out.println("메뉴 상세 : " + m.getMenuDesc());
+//			System.out.println("메뉴 포토 : " + m.getMenuPhoto());
+//		}
 	}
 }
