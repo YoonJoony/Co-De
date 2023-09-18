@@ -1,0 +1,687 @@
+@font-face {
+    /* 나눔스퀘어 폰트 지리네 */
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    padding: 199px 0;
+    /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
+    font-family: 'NanumSquareNeo-Variable';
+    background-color: #ffffff;
+    line-height: 1.6;
+    display: block;
+}
+
+/* 헤더 */
+a {
+    font-size: 15px;
+    color: inherit;
+    /* ê¸€ìž ìƒ‰ìƒì€ ë¶€ëª¨ë¡œë¶€í„° ìƒì† */
+    text-decoration: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.topper {
+    position: absolute;
+    z-index: 2;
+    top: -201px;
+    width: 100%;
+    height: 37px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #b0cbba6b;
+}
+
+.header {
+    position: absolute;
+    z-index: 2;
+    top: 35px;
+    border-bottom: solid 1px #ff8c16;
+    background-color: #ffffff;
+    position: fixed;
+    width: 100%;
+    height: 167px;
+    overflow: visible;
+    /*div ë°•ìŠ¤ ë°”ê¹¥ìœ¼ë¡œ ì‚ì ¸ë‚˜ì™€ë„ í‘œì‹œ*/
+}
+
+.logo {
+    width: 190px;
+}
+
+.logo-img {
+    position: absolute;
+    top: 26px;
+    left: 14px;
+    width: 100%;
+    text-align: left;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+p {
+    display: inline;
+    position: absolute;
+    top: 30%;
+    left: 46%;
+    font-size: 20px;
+    font-family: 'Play', sans-serif;
+    /* height: 33%; */
+    /* margin: auto; */
+    /* justify-content: center; */
+}
+
+.gps {
+    width: 19px;
+    height: 19px;
+    top: 7.8px;
+    left: 6px;
+    position: absolute;
+}
+
+.fixed {
+    /* 스크롤 할 시 header를 top0으로 최상단에 고정하기 위해 */
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.login {
+    font-family: 'NanumSquareNeo-Variable';
+    word-spacing: 21px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 100%;
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.v-bar::after {
+    content: '';
+    position: relative;
+    top: 50%;
+    right: -13px;
+    height: 12px;
+    margin-top: -6px;
+    border-left: 1px solid #c0c0c06b;
+}
+
+
+
+.address {
+    position: relative;
+    top: 118px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.address #loc_btn {
+    position: relative;
+    top: -3.1px;
+    left: 5px;
+    width: 30px;
+    height: 34px;
+    font-size: 14px;
+    border: none;
+    background-color: #d9d9d9;
+    display: inline-block;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+    /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+}
+
+.address #loc_btn:hover {
+    box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.address #address_input {
+    font-family: 'NanumSquareNeo-Variable';
+    position: relative;
+    height: 34px;
+    font-size: 11px;
+    width: 40%;
+    border: none;
+    background-color: #d9d9d9;
+    color: black;
+    /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+}
+
+.address #find_address {
+    font-family: 'NanumSquareNeo-Variable';
+    position: relative;
+    /*top: 1px;*/
+    right: 6px;
+    width: 12%;
+    height: 34px;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #FE9F47;
+    color: white;
+    border: none;
+    display: inline-block;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+}
+
+.address #find_address:hover {
+    box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.address #address_input_commit {
+    font-family: 'NanumSquareNeo-Variable';
+    position: relative;
+    top: 1px;
+    right: 5px;
+    width: 6%;
+    height: 34px;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #FE9F47;
+    color: white;
+    border: none;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.address #address_input_commit:hover {
+    box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+.profile {
+    position: absolute;
+    top: 99px;
+    right: 20px;
+    text-align: center;
+    white-space: nowrap;
+    /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+    z-index: 3;
+}
+
+/*í”„ë¡œí•„ ë²„íŠ¼*/
+#profile_btn {
+    position: relative;
+    top: 11px;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+    border: none;
+    background-color: #f0f0f0;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+/*í”„ë¡œí•„ í´ë¦­ì‹œ í‘œì‹œë˜ëŠ” ì°½*/
+#layer-header-profile {
+    display: none;
+    position: absolute;
+    top: 130%;
+    left: -35px;
+    box-sizing: border-box;
+    background-color: #bfbfbf;
+    font-size: 14px;
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 10px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.header-profile-direct {
+    z-index: 1;
+    width: 150px;
+    padding: 15px;
+    font-size: 15px;
+}
+
+#profile_btn_btn {
+    top: 2px;
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #d9d9d9;
+    color: #656565;
+    border: none;
+    display: inline-block;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+}
+
+#profile_btn_btn:hover {
+    box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.main-content {
+    position: relative;
+    width: 1000px;
+    height: 1000px;
+    margin-left: 100px;
+}
+
+.thumbnail {
+    position: relative;
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 20vh;
+    height: 20vh;
+    display: block;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.thumbnail img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.category-title {
+    position: absolute;
+    margin-top: 0.5vw;
+    margin-left: 0.5vw;
+    color: #333;
+    font-size: 110%;
+    font-weight: bold;
+    z-index: 1;
+    color: #fff;
+}
+
+.total,
+.chicken,
+.pizza,
+.china,
+.korea,
+.japan,
+.pighocks,
+.meet,
+.schoolfood,
+.coffee,
+.asian,
+.sandwich,
+.salad,
+.boxlunch {
+    float: left;
+}
+
+/* ---------------------------------- */
+
+/* 1번 광고판 */
+
+#wrap {
+    position: absolute;
+    width: 250px;
+    height: 400px;
+    border-radius: 20px;
+    cursor: pointer;
+    left: 1500px;
+    top: 60px;
+}
+
+#wrap .card {
+    width: 100%;
+    height: 100%;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+#wrap .num2 {
+    width: 100%;
+    height: 100%;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+#wrap:hover .card {
+    transform: rotateY(180deg);
+}
+
+#wrap .card>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    border-radius: 20px;
+    backface-visibility: hidden;
+}
+
+#wrap .card .card-front {
+    background-color: rgb(129, 27, 18);
+    z-index: 10;
+}
+
+#wrap .card .card-back {
+    background-color: #ccc;
+    z-index: 5;
+    transform: rotateY(180deg);
+}
+
+/* ---------------------------------- */
+
+/* 2번 광고판 */
+
+#wrap_2 {
+    position: absolute;
+    width: 250px;
+    height: 400px;
+    border-radius: 20px;
+    cursor: pointer;
+    left: 1200px;
+    top: 60px;
+}
+
+#wrap_2 .card {
+    width: 100%;
+    height: 100%;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+#wrap_2 .num2 {
+    width: 100%;
+    height: 100%;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+#wrap_2:hover .card {
+    transform: rotateY(180deg);
+}
+
+#wrap_2 .card>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    border-radius: 20px;
+    backface-visibility: hidden;
+}
+
+#wrap_2 .card .card-front {
+    background-color: rgb(33, 102, 16);
+    z-index: 10;
+}
+
+#wrap_2 .card .card-back {
+    background-color: #ccc;
+    z-index: 5;
+    transform: rotateY(180deg);
+}
+
+/* ---------------------------------- */
+
+/* footer 슬라이드 */
+
+.section input[id*="slide"] {
+    display: none;
+}
+
+.section .slidewrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section .slidelist {
+    white-space: nowrap;
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.section .slidelist>li {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all .5s;
+}
+
+.section .slidelist>li>a {
+    display: block;
+    position: relative;
+}
+
+.section .slidelist>li>a img {
+    width: 100%;
+}
+
+.section .slidelist label {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 50px;
+    cursor: pointer;
+}
+
+.section .slidelist .textbox {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.section .slidelist .textbox h3 {
+    font-size: 36px;
+    color: #fff;
+    ;
+    transform: translateY(30px);
+    transition: all .5s;
+}
+
+.section .slidelist .textbox p {
+    font-size: 16px;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .5s;
+}
+
+/* input에 체크되면 슬라이드 효과 */
+.section input[id="slide01"]:checked~.slidewrap .slidelist>li {
+    transform: translateX(0%);
+}
+
+.section input[id="slide02"]:checked~.slidewrap .slidelist>li {
+    transform: translateX(-100%);
+}
+
+.section input[id="slide03"]:checked~.slidewrap .slidelist>li {
+    transform: translateX(-200%);
+}
+
+/* input에 체크되면 텍스트 효과 */
+.section input[id="slide01"]:checked~.slidewrap li:nth-child(1) .textbox h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .2s;
+}
+
+.section input[id="slide01"]:checked~.slidewrap li:nth-child(1) .textbox p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .4s;
+}
+
+.section input[id="slide02"]:checked~.slidewrap li:nth-child(2) .textbox h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .2s;
+}
+
+.section input[id="slide02"]:checked~.slidewrap li:nth-child(2) .textbox p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .4s;
+}
+
+.section input[id="slide03"]:checked~.slidewrap li:nth-child(3) .textbox h3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .2s;
+}
+
+.section input[id="slide03"]:checked~.slidewrap li:nth-child(3) .textbox p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: .4s;
+}
+
+/* 좌,우 슬라이드 버튼 */
+.slide-control>div {
+    display: none;
+}
+
+.section .left {
+    left: 30px;
+    background: url('images/left.png') center center / 100% no-repeat;
+}
+
+.section .right {
+    right: 30px;
+    background: url('images/right.png') center center / 100% no-repeat;
+}
+
+.section input[id="slide01"]:checked~.slidewrap .slide-control>div:nth-child(1) {
+    display: block;
+}
+
+.section input[id="slide02"]:checked~.slidewrap .slide-control>div:nth-child(2) {
+    display: block;
+}
+
+.section input[id="slide03"]:checked~.slidewrap .slide-control>div:nth-child(3) {
+    display: block;
+}
+
+/* 페이징 */
+.slide-pagelist {
+    text-align: center;
+    padding: 20px;
+}
+
+.slide-pagelist>li {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.slide-pagelist>li>label {
+    display: block;
+    padding: 8px 30px;
+    border-radius: 30px;
+    background: #ccc;
+    margin: 20px 10px;
+    cursor: pointer;
+}
+
+.section input[id="slide01"]:checked~.slidewrap .slide-pagelist>li:nth-child(1)>label {
+    background: #999;
+}
+
+.section input[id="slide02"]:checked~.slidewrap .slide-pagelist>li:nth-child(2)>label {
+    background: #999;
+}
+
+.section input[id="slide03"]:checked~.slidewrap .slide-pagelist>li:nth-child(3)>label {
+    background: #999;
+}
+
+/* ---------------------------------- */
+
+/* 윤준 요청 광고판 */
+
+.newad {
+    width: 300px;
+    height: 200px;
+    background-color: #fc9c3c;
+    left: 1200px;
+    top: 500px;
+    position: absolute;
+    color: #333;
+}
+
+.newad .popup {
+    background-color: #fff;
+    width: 250px;
+    height: 150px;
+    left: 10px;
+    position: absolute;
+    opacity: 0;
+}
+
+.newad:hover .darkness {
+    transition: 2s;
+    opacity: 0.4;
+    width: 300px;
+    height: 200px;
+    background-color: #000;
+    position: absolute;
+    top: 3px;
+}
+
+.newad:hover .popup {
+    opacity: 1;
+    z-index: 1;
+    top: 20px;
+}
+
+/* ---------------------------------- */

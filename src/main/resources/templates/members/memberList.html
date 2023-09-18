@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>a | </th>
+                <th>아이디 | </th>
+                <th>비밀번호 | </th>
+                <th>비밀번호 확인 | </th>
+                <th>닉네임 | </th>
+                <th>핸드폰 번호 | </th>
+                <th>인증번호</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="member : ${members}"> <!-- member 객체 안에 model로 넘어온 members 넣어줌-->
+                <td th:text="${member.id}"></td> <!-- each로 list에 저장된 멤버들을 member에 순서대로 대입 반복 처리 -->
+                <td th:text="${member.Login}"></td> <!-- each로 list에 저장된 멤버들을 member에 순서대로 대입 반복 처리 -->
+                <td th:text="${member.pw}"></td>
+                <td th:text="${member.pwcheck}"></td>
+                <td th:text="${member.nickname}"></td>
+                <td th:text="${member.pnum}"></td>
+                <td th:text="${member.certified}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>

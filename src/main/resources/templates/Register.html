@@ -1,146 +1,69 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="/css/Register_style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/eb076808b8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <section class="Register">
-        <h1>CO-ORDER</h1>
-        <form action="">
-            <div class="input-area">
-                <input type="text" name="id" id="id"
-                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                autocomplete="off" required>
-                <label for="id">ID</label>
-            </div>
-            <div class="input-area">
-                <input type="password" name="pw" id="pw"
-                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                autocomplete="off" required>
-                <label for="pw">PW</label>
-            </div>
-            <div class="input-area">
-                <input type="password" name="pw_check" id="pw_check"
-                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                autocomplete="off" required>
-                <label for="pw_check">PW check</label>
-            </div>
-            <div class="input-area">
-                <input type="text" name="nickname" id="nickname"
-                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                autocomplete="off" required>
-                <label for="nickname">Nick Name</label>
-            </div>
-            <div class="phone-input-area">
-                <input type="text" name="phone" id="phone" oninput="autoHyphen(this)" maxlength="13"
-                oninvalid="this.setCustomValidity('올바르지 않은 정보가 입력되었습니다.')";
-                autocomplete="off" required>
-                <label for="phone">Phone Number</label>
-            </div>
-            <div class="btn-Certified">
-                <button id='btnsend' type="button">인증번호 받기</button>
-            </div>
-            <div class="Certified">
-                <input id='certified' type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                name="authNum" autocomplete="off">
-                <label for="certified">인증번호를 입력하세요</label>
-            </div>
-            <div class="btn-register">
-                <button id='btnRegister' type="submit">가입하기</button>
-            </div>
-        </form>
-    </section>
+    <div class="container" id="container">
+        <div class="form-container">
+            <form name="AccountForm" action="/members/new" method="post" onsubmit="return jbSubmit();">
+                <h1 class="Register">Sign Up</h1>
+                <h3 class="Register">회원가입을 위해</br> 정보를 입력해주세요.</h3>
+                <label for="login"><p>* ID</p>
+                    <input type="text" name="login" id="login"
+                               autocomplete="off" required>
+                </label>
+                <label for="pw"><p class="pw_text">* PW</p>
+                    <input class="pw" type="password" name="pw" id="pw"
+                           autocomplete="off"  required>
+                    <i class="fa-regular fa-eye-slash fa1"></i>
+                </label>
+                <label for="pwcheck"><p>* PW CHECK</p>
+                    <input class="pwcheck" type="password" name="pwcheck" id="pwcheck"
+                           autocomplete="off" required>
+                    <i class="fa-regular fa-eye-slash fa2"></i>
+                </label>
+                <label for="nickname"><p>* Nick Name</p>
+                    <input type="text" name="nickname" id="nickname"
+                           autocomplete="off" required>
+                </label>
+                <label for="address"><p>* Address</p>
+                    <input type="text" name="address" id="address" autocomplete="off" required="" wfd-id="id3">
+                    <image src="images/search.png" style="    width: 18px; height: 18px; position: relative; top: 5px; right: 15px; cursor : pointer"></image>
+                </label>
+                <label for="pnum"><p>* Phone Number</p>
+                    <input type="text" class="phone" name="pnum" id="pnum" oninput="autoHyphen(this)" maxlength="13"
+                           autocomplete="off"  required>
+                    <button class="btn-Certified" name="btnsend" id='btnsend' type="submit">인증번호 받기</button>
+                </label>
+                <label for="certified">
+                    <input class="certified" id='certified' type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                           name="certified" placeholder="인증번호를 입력해주세요." autocomplete="off">
+                    <button class = "btnRegister" id='btnRegister' type="submit">가입하기</button>
+                </label>
+            </form>
+        </div>
+    </div>
 
+    <script src="/js/Register.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-        // 인증번호 입력칸은 디폴트로 숨겨 놓음
-        $("#certified").hide();
-
-        // input 및 button 변수화
-        let id = $('#id');
-        let pw = $('#pw');
-        let pw_check = $('#pw_check');
-        let nickname = $('#nickname');
-        let phone = $('#phone');
-        let btnsend = $('#btnsend');
-        let btnRegister = $('#btnRegister');
-
-        // 입력칸을 모두 입력하고 인증번호 받기 버튼을 누르면 인증번호 입력 칸이 나타남
-        btnsend.on('click', function() {
-            if($(id).val() == ""){
-                id.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }else if(pw.val() == ""){
-                pw.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }else if(pw_check.val() == ""){
-                pw_check.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }
-            else if(nickname.val() == ""){
-                nickname.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }
-            else if(phone.val() == ""){
-                phone.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }else {
-                $("#certified").show();
-            }
+    window.onload = function(){
+        document.getElementById("address").addEventListener("click", function(){ //주소입력칸을 클릭하면
+            //카카오 지도 발생
+            new daum.Postcode({
+                oncomplete: function(data) { //선택시 입력값 세팅
+                    document.getElementById("address").value = data.address; // 주소 넣기
+                }
+            }).open();
         });
-
-        // 입력칸에 모두 빈칸이 없어야 가입하기 버튼이 정상동작함
-        btnRegister.on('click', function() {
-            if(id.val() == ""){
-                id.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }else if(pw.val() == ""){
-                pw.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }else if(pw_check.val() == ""){
-                pw_check.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }
-            else if(nickname.val() == ""){
-                nickname.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }
-            else if(phone.val() == ""){
-                phone.next('label').addClass('warning');
-                setTimeout(function() {
-                    $('label').removeClass('warning')
-                }, 1500);
-            }
-        });
-
-        const autoHyphen = (target) => {
-            target.value = target.value
-            .replace(/[^0-9]/g, '')
-            .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
-        }
-
-    </script>
+    }
+</script>
 
 
 </body>
