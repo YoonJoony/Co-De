@@ -5,7 +5,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ public class RestaurantService {
     public List<Restuarant> RsData(String address) {
 
         // WebDriver 객체를 생성합니다.
-        WebDriver driver = new SafariDriver();
+        WebDriver driver = new ChromeDriver();
 
         // Google 웹 페이지를 엽니다.
         driver.get("https://www.yogiyo.co.kr/mobile/#/");
