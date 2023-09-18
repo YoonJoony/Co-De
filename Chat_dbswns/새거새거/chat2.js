@@ -508,8 +508,7 @@ function basket() {
 
 // 모달창 보여주는 함수
 function show_meun() {
-    document.querySelector(".modal-background").className =
-        "modal-background show-modal";
+    document.querySelector(".modal-background").className = "modal-background show-modal";
 }
 // 메뉴 수정 버튼 클릭 시 show_modal함수 호출
 document
@@ -519,22 +518,20 @@ document
 // 모달 창 닫기
 function close_modal() {
     document.querySelector(".modal-background").className = "modal-background";
+    detail_open();
 }
 // x클릭 시 close_modal 함수 호출
 document
     .querySelector(".modal-popup-close")
     .addEventListener("click", close_modal);
 
-    
-function detail_close() {
-    const detail_content = document.querySelector(".detail_meun_wrap");
 
+const detail_content = document.querySelector(".detail_meun_wrap");
+function detail_close() {
     detail_content.style.display = "none";
 }
 
 function detail_open() {
-    const detail_content = document.querySelector(".detail_meun_wrap");
-
     detail_content.style.display = "block";
 }
 
