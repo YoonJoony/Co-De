@@ -980,7 +980,7 @@ body {
   left: 48.4%;
   height: 7%;
   margin-top: 30px;
-  top: 54%;
+  top: 59%;
 }
 
 .pop-btn {
@@ -1353,6 +1353,7 @@ select::-ms-expand {
 }
 .store_image {
   width: 100%;
+  height : 81px;
 }
 .store_list .store_name {
   font-size: 18px;
