@@ -21,5 +21,5 @@ public class ChatRoomDto {
     private String roomPwd; //채팅방 삭제시 필요한 pwd
     private boolean secretChk; //채팅방 잠금 여부
 
-    private HashMap<String, String> userlist = new HashMap<String, String>();
+    //@Builder.Default
 }
