@@ -739,6 +739,20 @@ a {
     border-radius: 15px;
 }
 
+@media (max-width: 639px) {
+    .chat-group {
+        width: 40%;
+        box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+        height: 100%;
+        max-height: 650px;
+        max-width: 500px;
+        min-width: 400px;
+        position: relative;
+        display: inline-block;
+        border-radius: 15px;
+        left: -47px;
+    }
+}
 
 .chat-header {
     text-align: center;
@@ -1681,10 +1695,26 @@ input::-webkit-inner-spin-button {
     background-color: #ffffff;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 
-    width: 80%;
+    width: 50%;
     height: 75%;
 
     transform: translate(-50%, -40%);
+}
+
+@media (max-width:639px) {
+    .modal-popup {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+        width: 160%;
+        height: 75%;
+
+        transform: translate(-50%, -40%);
+    }
 }
 
 .show-modal .modal-popup {
@@ -1840,7 +1870,7 @@ input::-webkit-inner-spin-button {
 
 /* 옵션선택 창 */
 .detail_meun_wrap {
-    width: 460px;
+    width: 38%;
     height: 650px;
     background: #fff;
     position: absolute;
@@ -1849,6 +1879,20 @@ input::-webkit-inner-spin-button {
     left: 206px;
     top: -50px;
     display: none;
+}
+
+@media (max-width: 639px) {
+    .detail_meun_wrap {
+        width: 92%;
+        height: 650px;
+        background: #fff;
+        position: absolute;
+        display: none;
+        z-index: 20;
+        left: -30px;
+        top: -80px;
+        display: none;
+    }
 }
 
 .detail_header {
@@ -1997,13 +2041,14 @@ input::-webkit-inner-spin-button {
 
 .detail_button_bar {
     position: absolute;
+    width: 100%;
 }
 
 .add_cart {
     background: #555;
     color: #fff;
     float: left;
-    width: 208%;
+    width: 50%;
     height: 48px;
     border: none;
     font-size: 16px;
@@ -2014,11 +2059,11 @@ input::-webkit-inner-spin-button {
 }
 
 .close_detail {
-    position: absolute;
+    position: relative;
     background: #fa0050;
     color: #fff;
     float: left;
-    width: 210%;
+    width: 50%;
     height: 48px;
     border: none;
     font-size: 16px;
@@ -2035,7 +2080,7 @@ input::-webkit-inner-spin-button {
     text-align: center;
 }
 
-.meun-text{
+.meun-text {
     float: left;
     width: 80%;
 }
