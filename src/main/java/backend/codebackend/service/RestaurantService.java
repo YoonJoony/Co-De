@@ -65,7 +65,10 @@ public class RestaurantService {
             WebElement logoElement = restaurant.findElement(By.xpath("../../..")); //restaurant-name 요소의 부모 부모
 
             //background-image의 url이 두 개 나오므로 url을 컴마가 붙은 라인부터 지운다(뒤에 url을 지우게 됨)
-            String restaurantAddress = logoElement.findElement(By.className("logo")).getCssValue("background-image").replace("url(\"", "").replace("\")","");
+            String restaurantAddress = logoElement.findElement(By.className("logo"))
+                    .getCssValue("background-image")
+                    .replace("url(\"", "")
+                    .replace("\")","");
             int commaIndex = restaurantAddress.indexOf(",");
 
             rs = Restuarant.builder()
@@ -111,7 +114,6 @@ public class RestaurantService {
             throw new RuntimeException(e);
         }
 
-        Menu menu;
         List<Menu> menuList = new ArrayList<Menu>();
         List<WebElement> restaurants = driver.findElements(By.className("restaurant-name"));
 
@@ -120,18 +122,33 @@ public class RestaurantService {
             //restaurant title이 선택한 가게 title 이였을 경우
             if (restaurant.getAttribute("title").equals(restaurantTitle)) {
                 restaurant.click();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Menu menu;
+                List<WebElement> menuPanel = driver.findElements(By.className("panel"));
+                for (WebElement  m : menuPanel) {
+//            WebElement parentElement = menuItem.findElement(By.xpath(".."));
+//            WebElement logoElement = menuItem.findElement(By.xpath("../../.."));
+//            //각 메뉴 요소에서 메뉴 정보를 가져옴
+                String menuName = m.findElement(By.className("menu-name")).getText();
+                String menuDesc = m.findElement(By.className("menu-info")).getText();
+                String menuPrice = m.findElement(By.className("menu-price")).getText();
+                String menuPhoto = m.findElement(By.className("menu-photo")).getAttribute("src");
 
                 menu = Menu.builder()
-                        .menuName()
-                        .menuDesc()
-                        .menuPrice()
-                        .menuPhoto()
+                        .menuName(menuName)
+                        .menuDesc(menuDesc)
+                        .menuPrice(menuPrice)
+                        .menuPhoto(menuPhoto)
                         .build();
-                
                 menuList.add(menu);
             }
         }
-
+        }
         driver.quit();
         return CompletableFuture.completedFuture(menuList);
     }
