@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.scheduling.annotation.Async;
 
 import java.util.ArrayList;
@@ -16,9 +17,11 @@ import java.util.concurrent.CompletableFuture;
 @Transactional
 @RequiredArgsConstructor
 public class RestaurantService {
-    public List<Restuarant> RsData(String address) {
+    public List<Restuarant> RsData(String address, String categorys) {
 //        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
+//        options.addArguments("-headless");
+//
+//
 
         // WebDriver 객체를 생성합니다.
         WebDriver driver = new ChromeDriver();
@@ -46,6 +49,18 @@ public class RestaurantService {
             throw new RuntimeException(e);
         }
 
+        //카테고리를 클릭하지 않았을 경우
+        if(!categorys.isEmpty()) {
+            WebElement clickCategory = driver.findElement(By.xpath("//span[contains(@class, 'category-name') and text()='" + categorys + "']"));
+            System.out.println(clickCategory.getText());
+            clickCategory.click();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         // 가게 이름과 최소주문금액을 저장할 리스트 생성
         Restuarant rs;
         List<Restuarant> rsList = new ArrayList<Restuarant>();
@@ -60,10 +75,10 @@ public class RestaurantService {
         int prevSize = 0;
         int currentSize = restaurants.size();
 
+        //선택한 식당 이름을 기준으로 찾을거니 식당 이름을 기준으로 요소를 찾음
         for (WebElement restaurant : restaurants) {
-            WebElement parentElement = restaurant.findElement(By.xpath(".."));
+            WebElement parentElement = restaurant.findElement(By.xpath("..")); //restaurant의 바로 부모 요소 선택
             WebElement logoElement = restaurant.findElement(By.xpath("../../..")); //restaurant-name 요소의 부모 부모
-
             //background-image의 url이 두 개 나오므로 url을 컴마가 붙은 라인부터 지운다(뒤에 url을 지우게 됨)
             String restaurantAddress = logoElement.findElement(By.className("logo")).getCssValue("background-image").replace("url(\"", "").replace("\")","");
             int commaIndex = restaurantAddress.indexOf(",");
@@ -72,6 +87,9 @@ public class RestaurantService {
                     .title(restaurant.getAttribute("title"))
                     .minPrice(parentElement.findElement(By.className("min-price")).getText())
                     .imageUrl(restaurantAddress.substring(0, commaIndex))
+                    .icoStar(parentElement.findElement(By.className("ico-star1")).getText())
+                    .review_num(parentElement.findElement(By.className("review_num")).getText())
+                    .deliveryTime(parentElement.findElement(By.className("delivery-time")).getText())
                     .build();
 
             rsList.add(rs);
@@ -79,6 +97,8 @@ public class RestaurantService {
         driver.quit();
         return rsList;
     }
+
+
 
 
     //모집글 생성 후 선택한 가게 메뉴를 스레드로 크롤링
@@ -121,14 +141,26 @@ public class RestaurantService {
             if (restaurant.getAttribute("title").equals(restaurantTitle)) {
                 restaurant.click();
 
-                menu = Menu.builder()
-                        .menuName()
-                        .menuDesc()
-                        .menuPrice()
-                        .menuPhoto()
-                        .build();
-                
-                menuList.add(menu);
+
+
+
+
+
+
+
+
+
+
+
+
+//                menu = Menu.builder()
+//                        .menuName()
+//                        .menuDesc()
+//                        .menuPrice()
+//                        .menuPhoto()
+//                        .build();
+//
+//                menuList.add(menu);
             }
         }
 

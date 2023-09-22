@@ -99,6 +99,10 @@ class CodeBackendApplicationTests {
 			System.out.println("가게 이름 : " + rs.get(i).getTitle());
 			System.out.println("최소 주문 금액 : " + rs.get(i).getMinPrice());
 			System.out.println("이미지 url : " + rs.get(i).getImageUrl());
+			System.out.println("별점 : " + rs.get(i).getIcoStar());
+			System.out.println("리뷰 개수 : " + rs.get(i).getReview_num());
+			System.out.println("배달예정시각 : " + rs.get(i).getDeliveryTime());
+
 		}
 	}
 

@@ -264,17 +264,15 @@
             </div>
             <!-- ---------------------------------------- -->
             <div class="storeModal_body">
-                <th:block th:each="store : ${storeList}">
                 <div class="store_list">
                     <div class="store_image_div">
                         <img class="store_image" src="images/profile.png">
                     </div>
                     <div class="store_info_div">
-                        <div class="store_name" th:text="${store.title}"></div>
-                        <div class="store_minimum_order_amount" th:text="${store.minPrice}"></div>
+                        <div class="store_name">bbq호원점</div>
+                        <div class="store_minimum_order_amount">최소주문금액 : 10000원</div>
                     </div>
                 </div>
-                </th:block>
                 <button type="button" class="storeModal_close">닫기</button>
             </div>
             <!-- -------------------------------------------- -->

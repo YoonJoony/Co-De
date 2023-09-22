@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -22,15 +23,10 @@ public class RestaurantsController {
     
     
     //사용자의 세션에 저장된 id를 통해 주소를 받아서 주소 출력
-    @GetMapping("/restaurantsList")
-    public List<Restuarant> restaurantsList(HttpServletRequest request) {
+    @GetMapping("/mozip/storeList")
+    @ResponseBody
+    public List<Restuarant> storeList(String category, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-
-        if (session == null) {
-            log.info("세션이 없습니다.");
-        }
-
-//        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
-        return null;
+        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress(), category);
     }
 }
