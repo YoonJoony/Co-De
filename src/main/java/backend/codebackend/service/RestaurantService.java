@@ -164,7 +164,7 @@ public class RestaurantService {
                 //메뉴 타이틀(판넬) 별로 요소 저장함(인기메뉴, 한마리치킨, 세트메뉴)
                 List<WebElement> panel = popMenu.findElements(By.className("sub-list"));
 
-                //메뉴 타이틀을 전부 열어야 메뉴를 담을 수 있어서 전부 열음
+                //메뉴 타이틀을 전부 열어야 메뉴를 담을 수 있어서 전부열음
                 for(int i = 2; i < panel.size()-1; i++) {
                     WebElement title = panel.get(i).findElement(By.xpath("../../..")).findElement(By.className("panel-title"));
                     menu2.getMenuList_Title_Name().add(title.findElement(By.className("menu-name")).getText());
