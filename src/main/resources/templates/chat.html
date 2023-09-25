@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat3.css">
+  <link rel="stylesheet" href="/static/css/chatroom/chat3.css">
+  <link rel="stylesheet" href="/static/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -92,42 +93,43 @@
   <div class="header2">
     <!-- CO-ORDER 제목 부분 -->
     <div class="width-container">
-      <div class="logo-img">
-        <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-        <img class="logo" src="/images/COOR2.png">
-      </div>
-      <div id="header-bell" class="header-bell">
-                    <span class="bell">
-                            <img src="/images/bell.png" style="width : 25px; height : 25px;" alt="">
-                    </span>
-      </div>
-      <div id="header-profile" class="header-profile">
-        <a class="header-user">
-                        <span class="user-picture2">
-                            <img src="/images/profile/profile5.png" height="50px" width="50px">
-                        </span>
-          <span class="user-name2" th:text="${nickname}"> 야왕이네
-                        </span>
-          <span class="header-arrow">
-                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
-                        </span>
-        </a>
-        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
-          <div class="block block-name">
-            <div class="profile-name" th:text="${nickname}"> 야왕이네
+      <div class="user-info">
+        <div class="logo-img">
+          <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+          <img class="logo" src="/images/COOR2.png">
+        </div>
+
+        <div id="header-profile" class="header-profile">
+          <a class="header-user">
+                          <span class="user-picture2">
+                              <img src="images/profile/profile5.png" height="50px" width="50px">
+                          </span>
+                      <span class="bell">
+                              <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
+                      </span>
+            <span class="user-name2" th:text="${nickname}"> 야왕이네
+                          </span>
+            <span class="header-arrow">
+                              <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+                          </span>
+          </a>
+          <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+            <div class="block block-name">
+              <div class="profile-name" th:text="${nickname}"> 야왕이네
+              </div>
+              <div class="buttons">
+                <a href="#">파티관리</a>
+              </div>
             </div>
-            <div class="buttons">
-              <a href="#">파티관리</a>
-            </div>
+            <!--                    <div class="header-profile-direct">-->
+            <!--                        <dl class="header-member-direct__information">-->
+            <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
+            <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
+            <!--                            <dd>ㅇㅇ</dd>-->
+            <!--                            <dd>ㅇㅇ</dd>-->
+            <!--                        </dl>-->
+            <!--                    </div>-->
           </div>
-          <!--                    <div class="header-profile-direct">-->
-          <!--                        <dl class="header-member-direct__information">-->
-          <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
-          <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
-          <!--                            <dd>ㅇㅇ</dd>-->
-          <!--                            <dd>ㅇㅇ</dd>-->
-          <!--                        </dl>-->
-          <!--                    </div>-->
         </div>
       </div>
     </div>
@@ -135,12 +137,12 @@
     <div class="search-container">
       <div class="search">
         <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-          <img class="gps" src="/images/search.png">
+          <img class="gps" src="images/search.png">
         </button>
         <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
         <div class="tag-container">
           <div class="tag real-time-text">
-            <p class="search-tag-text">실시간 검색 태그</p>
+            <p class="tag search-tag-text">실시간 검색 태그</p>
           </div>
           <div class="tag real-time">
             #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
@@ -171,7 +173,7 @@
           <div class="chat-header">
             <div class="chat-header-left">
               <span class="user-picture2">
-                <img src="/images/profile/profile5.png" height="40px" width="40px">
+                <img src="images/profile/profile5.png" height="40px" width="40px">
               </span>
               <div id="user-list" class="user-list" style="display : none">
                 <div class="user-list-content">
@@ -185,7 +187,7 @@
                 <div class="connecting">offline</div>
               </div>
             </div>
-            <div class="chat-header-right"><img src="/images/Icon/menu_5259008.png" width="23px" height="23px" class="header-img">
+            <div class="chat-header-right"><img src="images/Icon/menu_5259008.png" width="23px" height="23px" class="header-img">
             </div>
           </div>
           <div class="chat-left-right">
@@ -214,22 +216,100 @@
             </div>
             <div class="chat-right">
               <div class="chat-menu">
-                <img src="/images/bell.png">
-                <img src="/images/icon/map.png" id="map_button" onclick="map_btn()">
-                <img src="/images/icon/Budget.png">
-                <img src="/images/icon/basket.png">
-                <img src="/images/icon/setting.png">
+                <img src="images/bell.png">
+                <img src="images/icon/map.png" id="map_button" onclick="map_btn()">
+                <img src="images/icon/Budget.png">
+                <img src="images/icon/basket.png" onclick="basket()">
+                <img src="images/icon/setting.png">
               </div>
-              <img src="/images/icon/log-out_5565735.png" class="out-img">
+              <img src="images/icon/log-out_5565735.png" class="out-img">
+            </div>
+            <div class="basket-view" style="display: none;"> <!-- 장바구니 -->
+              <div class="basket-title">
+                  <div class="basket-title_topper">
+                    <div class="basket-title_topper_back">
+                      <img class="basket-title_topper_back_img" src="images/back.png" onClick="basket()" style="cursor:pointer;">
+                    </div>
+                    <div class="basket-title_topper_text">
+                      <p>메뉴를 추가해 보세요!</p>
+                    </div>
+                  </div>
+                  <div class="basket-title_topper_text2">
+                   <p>주문표</p>
+                  </div>
+              </div>
+              <div class="menu-view">
+                <div class="menu-list">
+                  <div class="food-name">슈프림양념치킨 블랙라벨</div> <br>
+                  <div class="food-info">
+
+                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
+                      <img src="images/close.png">
+                    </div>
+                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
+                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
+                    <div class="food-info-update">
+                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
+                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
+                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
+                    </div>
+                  </div>
+                </div>
+                <div class="menu-list">
+                  <div class="food-name">간장게장 꽃게장</div> <br>
+                  <div class="food-info">
+                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
+                      <img src="images/close.png">
+                    </div>
+                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
+                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
+                    <div class="food-info-update">
+                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
+                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
+                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
+                    </div>
+                  </div>
+                </div>
+                <div class="menu-list">
+                  <div class="food-name">눈꽃뿌링클 치킨</div> <br>
+                  <div class="food-info">
+                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
+                      <img src="images/close.png">
+                    </div>
+                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
+                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
+                    <div class="food-info-update">
+                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
+                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
+                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
+                    </div>
+                  </div>
+                </div>
+                <div class="menu-list">
+                  <div class="food-name">휘발류로 튀긴 치킨</div> <br>
+                  <div class="food-info">
+                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
+                      <img src="images/close.png">
+                    </div>
+                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
+                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
+                    <div class="food-info-update">
+                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
+                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
+                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <div class="menu-bottom">
+            <div class="totalPrice">
+              <span class="priceText"> 합계 :</span>
+                <span class="priceText" id="totalPrice">22,550원</span>
+              </div>
+            <div class="modify-menu">
+                <input id="modify_menu_btn" type="button" value="메뉴 수정" wfd-id="id11">
             </div>
           </div>
-        </div>
-        <div class="dock-group">
-<!--          <div class="user-list">-->
-<!--            <div id="list" class="user-menu">-->
-<!--            </div>-->
-<!--          </div>-->
-          <div class="map" id="map"></div>
         </div>
       </div>
     </div>
@@ -262,7 +342,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="/js/chatroom/chat3.js"></script>
+<script src="/static/js/chatroom/chat3.js"></script>
 <!-- Add Bootstrap JavaScript and its dependencies -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE" crossorigin="anonymous"></script>

@@ -58,13 +58,13 @@ public class MozipController {
         return "main_page"; //글 생성 시 다시 초기화면으로
     }
 
-    @GetMapping("/mozip/storeList")
-    @ResponseBody
-    public List<Restuarant> storeList(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-
-        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
-    }
+//    @GetMapping("/mozip/storeList")
+//    @ResponseBody
+//    public List<Restuarant> storeList(HttpServletRequest request) {
+//        HttpSession session = request.getSession(false);
+//
+//        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
+//    }
 
 
     @GetMapping("/session-info")
