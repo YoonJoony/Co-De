@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 //import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -95,10 +96,10 @@ class CodeBackendApplicationTests {
 			throw new RuntimeException(e);
 		}
 
-		for(int i = 0; i < rs.size(); i++) {
-			System.out.println("가게 이름 : " + rs.get(i).getTitle());
-			System.out.println("최소 주문 금액 : " + rs.get(i).getMinPrice());
-			System.out.println("이미지 url : " + rs.get(i).getImageUrl());
+		for (Restuarant r : rs) {
+			System.out.println("가게 이름 : " + r.getTitle());
+			System.out.println("최소 주문 금액 : " + r.getMinPrice());
+			System.out.println("이미지 url : " + r.getImageUrl());
 		}
 	}
 
@@ -108,14 +109,14 @@ class CodeBackendApplicationTests {
 	void 메뉴리스트조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		CompletableFuture<List<Menu>> menu = restaurantService.menuList("BHC-신한대점", member.getAddress());
+		List<Menu> menu = restaurantService.menuList("버거킹-의정부서부역점", member.getAddress());
 
-		List<Menu> menuList = menu.get();
-//		for(Menu m : menuList) {
-//			System.out.println("메뉴 이름 : " + m.getMenuName());
-//			System.out.println("메뉴 가격 : " + m.getMenuPrice());
-//			System.out.println("메뉴 상세 : " + m.getMenuDesc());
-//			System.out.println("메뉴 포토 : " + m.getMenuPhoto());
-//		}
+			for(Menu m : menu) {
+				System.out.println("메뉴 이름 : " + m.getMenuName());
+				System.out.println("메뉴 가격 : " + m.getMenuPrice());
+				System.out.println("메뉴 상세 : " + m.getMenuDesc());
+//				System.out.println("메뉴 포토 : " + m.getMenuPhoto());
+			}
+
 	}
 }

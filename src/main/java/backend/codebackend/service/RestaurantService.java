@@ -65,7 +65,10 @@ public class RestaurantService {
             WebElement logoElement = restaurant.findElement(By.xpath("../../..")); //restaurant-name 요소의 부모 부모
 
             //background-image의 url이 두 개 나오므로 url을 컴마가 붙은 라인부터 지운다(뒤에 url을 지우게 됨)
-            String restaurantAddress = logoElement.findElement(By.className("logo")).getCssValue("background-image").replace("url(\"", "").replace("\")","");
+            String restaurantAddress = logoElement.findElement(By.className("logo"))
+                    .getCssValue("background-image")
+                    .replace("url(\"", "")
+                    .replace("\")","");
             int commaIndex = restaurantAddress.indexOf(",");
 
             rs = Restuarant.builder()
@@ -82,8 +85,7 @@ public class RestaurantService {
 
 
     //모집글 생성 후 선택한 가게 메뉴를 스레드로 크롤링
-    @Async
-    public CompletableFuture<List<Menu>> menuList(String restaurantTitle, String address){
+    public List<Menu> menuList(String restaurantTitle, String address){
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
 
@@ -111,7 +113,6 @@ public class RestaurantService {
             throw new RuntimeException(e);
         }
 
-        Menu menu;
         List<Menu> menuList = new ArrayList<Menu>();
         List<WebElement> restaurants = driver.findElements(By.className("restaurant-name"));
 
@@ -120,19 +121,41 @@ public class RestaurantService {
             //restaurant title이 선택한 가게 title 이였을 경우
             if (restaurant.getAttribute("title").equals(restaurantTitle)) {
                 restaurant.click();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
 
-                menu = Menu.builder()
-                        .menuName()
-                        .menuDesc()
-                        .menuPrice()
-                        .menuPhoto()
-                        .build();
-                
-                menuList.add(menu);
+                Menu menu;
+                List<WebElement> menuPanel = driver.findElements(By.className("panel-title"));
+                if(menuPanel == null) {
+                    System.out.println("\n\n\n\n null");
+                }
+                System.out.println("\n\n\n" + menuPanel);
+                for (WebElement  m : menuPanel) {
+//            WebElement parentElement = menuItem.findElement(By.xpath(".."));
+//            WebElement logoElement = menuItem.findElement(By.xpath("../../.."));
+//            //각 메뉴 요소에서 메뉴 정보를 가져옴
+                    //try {
+
+//                        String menuPhoto = m.findElement(By.className("menu-photo")).getAttribute("src");
+                        WebElement asd = m.findElement(By.xpath("../../.."));
+                        menu = Menu.builder()
+                                .menuName(asd.findElement(By.className("menu-name")).getText())
+                                .menuDesc(asd.findElement(By.className("menu-desc")).getText())
+                                .menuPrice(asd.findElement(By.className("menu-price")).getText())
+//                                .menuPhoto(menuPhoto)
+                                .build();
+                        menuList.add(menu);
+//                    }catch (NoSuchElementException e){
+//                        e.printStackTrace();
+//                    }
+
+                }
             }
         }
-
         driver.quit();
-        return CompletableFuture.completedFuture(menuList);
+        return menuList;
     }
 }
