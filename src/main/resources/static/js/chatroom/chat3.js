@@ -438,12 +438,46 @@ $(function () {
 //}
 
 
+//장바구니 div
+function basket() {
+    const basket_content = document.querySelector(".basket-view");
 
+    // 숨기기 (display: none)
+    if (basket_content.style.display !== "block") {
+        basket_content.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        basket_content.style.display = "none";
+    }
+}
 
+// 메뉴상세 수량변경
+let count = 1;
+let total_price_count = 0;
+var countEl = document.getElementById("count");
+var total_price = document.getElementById("totalPrice");
 
+var total_count = document.getElementById("total_count"); //추가
+var total_count_view = document.getElementById("total_count_view"); //추가
 
+function plus() {
+    count++;
+    countEl.value = count;
+    total_count_view.value = total_count.value * countEl.value; //추가
+    total_price_count = total_price_count + parseInt(total_count_view.value);
+    total_price.textContent = total_price_count;
+}
+function minus() {
 
-
+    if (count > 1) {
+        count--;
+        countEl.value = count;
+        total_count_view.value = total_count_view.value - total_count.value; //추가
+        total_price_count = total_price_count - parseInt(total_count_view.value);
+        total_price.textContent = total_price_count;
+    }
+}
 
 
 

@@ -713,12 +713,10 @@ a {
     max-width: 1200px;
     height: 100%;
     margin: 0 auto;
-    left: 3%;
 }
 
 .chat {
     position: relative;
-    left: 10%;
     width: 100%;
     height: 100%;
     display: flex;
@@ -732,13 +730,28 @@ a {
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     height: 100%;
     max-height: 650px;
-    max-width: 500px;
+    /* max-width: 500px; */
     min-width: 400px;
     position: relative;
     display: inline-block;
     border-radius: 15px;
+    left: 15%;
 }
 
+@media (max-width: 639px) {
+    .chat-group {
+        width: 40%;
+        box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+        height: 100%;
+        max-height: 650px;
+        max-width: 500px;
+        min-width: 400px;
+        position: relative;
+        display: inline-block;
+        border-radius: 15px;
+        left: -47px;
+    }
+}
 
 .chat-header {
     text-align: center;
@@ -1661,153 +1674,15 @@ input::-webkit-inner-spin-button {
 
 .show-modal {
     opacity: 1;
-    z-index: 20;
-    transition: all 0.5s;
-}
-
-.modal-window {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.modal-popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-
-    width: 70%;
-    height: 70%;
-
-    transform: translate(-50%, -40%);
-}
-
-.show-modal .modal-popup {
-    transform: translate(-50%, -50%);
-    transition: all 0.5s;
-    display: inline-block;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #e6e6e6;
-    border-radius: 6px;
-    text-align: center;
-}
-
-.modal-popup .modal-popup-close {
-    position: absolute;
-    width: 100%;
-    height: 7%;
-}
-
-.modal-popup-close-name {
-    position: absolute;
-    width: 5%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    right: -10px;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.modal-popup .modal-popup-title {
-    position: relative;
-    width: 100%;
-    height: 7%;
-    background-color: #7cab75;
-    border-radius: 6px 6px 0 0;
-}
-
-.modal-popup-title-name {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.modal-window .modal-menu {
-    position: relative;
-    width: 100%;
-    height: 85%;
-}
-
-.modal-menu .modal-menu-text {
-    position: relative;
-    margin-top: 10px;
-    text-align: left;
-}
-
-.modal-menu-text .modal-menu-text-space {
-    position: relative;
-    width: 30%;
-    height: 30px;
-    left: 7px;
-    border: none;
-    border-radius: 6px 6px 6px 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 5px;
-    padding: 5px;
-}
-
-#modal_menu_amount {
-    width: 7%;
-}
-
-#modal_menu_add_btn {
-    position: relative;
-    width: 7%;
-    height: 30px;
-    border: none;
-    color: #ffffff;
-    background-color: #7cab75;
-    display: inline-block;
-    border-radius: 6px 6px 6px 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    margin: 5px;
-    padding: 5px;
-}
-
-.modal-menu-commit #menu_commit {
-    position: relative;
-    width: 100%;
-    height: 30px;
-    font-size: 14px;
-    border: none;
-    color: #ffffff;
-    background-color: #7cab75;
-    display: inline-block;
-    border-radius: 0 0 6px 6px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* 전체메뉴 리스트 */
-.modal-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3);
-
-    /*숨기기*/
-    z-index: -1;
-    opacity: 0;
-}
-
-.show-modal {
-    opacity: 1;
     z-index: 5;
     transition: all 0.5s;
 }
 
 .modal-window {
     position: relative;
-    width: 800px;
-    height: 100%;
+    width: 60%;
+    height: 90%;
+    min-width: 60%;
     margin: auto;
 }
 
@@ -1819,10 +1694,26 @@ input::-webkit-inner-spin-button {
     background-color: #ffffff;
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 
-    width: 80%;
+    width: 50%;
     height: 75%;
 
     transform: translate(-50%, -40%);
+}
+
+@media (max-width:639px) {
+    .modal-popup {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+        width: 160%;
+        height: 75%;
+
+        transform: translate(-50%, -40%);
+    }
 }
 
 .show-modal .modal-popup {
@@ -1847,7 +1738,7 @@ input::-webkit-inner-spin-button {
     width: 5%;
     top: 50%;
     transform: translate(-50%, -50%);
-    right: -10px;
+    right: 15px;
     cursor: pointer;
     z-index: 1;
 }
@@ -1855,7 +1746,7 @@ input::-webkit-inner-spin-button {
 .modal-popup .modal-popup-title {
     position: relative;
     width: 100%;
-    height: 7%;
+    height: 50px;
     background-color: #7cab75;
     border-radius: 6px 6px 0 0;
 }
@@ -1871,6 +1762,7 @@ input::-webkit-inner-spin-button {
     position: relative;
     width: 100%;
     height: 85%;
+    overflow-y: scroll;
 }
 
 .modal-menu .modal-menu-text {
@@ -1913,7 +1805,7 @@ input::-webkit-inner-spin-button {
 .modal-menu-commit #menu_commit {
     position: relative;
     width: 100%;
-    height: 30px;
+    height: 40px;
     font-size: 14px;
     border: none;
     color: #ffffff;
@@ -1922,10 +1814,11 @@ input::-webkit-inner-spin-button {
     border-radius: 0 0 6px 6px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    top: 8px;
 }
 
 /* 메뉴 리스트 css */
-.meunTotal {
+#meunTotal {
     margin: 0;
 }
 
@@ -1935,7 +1828,7 @@ input::-webkit-inner-spin-button {
     list-style: none;
     border: 1px solid #d9d9d9;
     border-top: none;
-    height: 110px;
+    height: 100%;
     left: -20px;
     width: 100%;
     padding-left: 10px;
@@ -1954,6 +1847,7 @@ input::-webkit-inner-spin-button {
     font-size: 90%;
     color: #999;
     overflow: hidden;
+    width: 95%;
 }
 
 .meun-price {
@@ -1961,19 +1855,21 @@ input::-webkit-inner-spin-button {
 }
 
 .photo-area {
-    width: 120px;
+    width: 20%;
+    float: right;
 }
 
 .photo-area .photo {
     width: 112px;
-    height: 80px;
+    height: 100%;
     background-size: cover;
     margin-left: 25px;
+    float: right;
 }
 
 /* 옵션선택 창 */
 .detail_meun_wrap {
-    width: 460px;
+    width: 38%;
     height: 650px;
     background: #fff;
     position: absolute;
@@ -1981,7 +1877,21 @@ input::-webkit-inner-spin-button {
     z-index: 20;
     left: 206px;
     top: -50px;
+    display: none;
+}
 
+@media (max-width: 639px) {
+    .detail_meun_wrap {
+        width: 92%;
+        height: 650px;
+        background: #fff;
+        position: absolute;
+        display: none;
+        z-index: 20;
+        left: -30px;
+        top: -80px;
+        display: none;
+    }
 }
 
 .detail_header {
@@ -2130,13 +2040,14 @@ input::-webkit-inner-spin-button {
 
 .detail_button_bar {
     position: absolute;
+    width: 100%;
 }
 
 .add_cart {
     background: #555;
     color: #fff;
     float: left;
-    width: 208%;
+    width: 50%;
     height: 48px;
     border: none;
     font-size: 16px;
@@ -2147,11 +2058,11 @@ input::-webkit-inner-spin-button {
 }
 
 .close_detail {
-    position: absolute;
+    position: relative;
     background: #fa0050;
     color: #fff;
     float: left;
-    width: 210%;
+    width: 50%;
     height: 48px;
     border: none;
     font-size: 16px;
@@ -2161,9 +2072,14 @@ input::-webkit-inner-spin-button {
     cursor: pointer;
 }
 
-.count_css{
-    width:50px;
+.count_css {
+    width: 50px;
     background: transparent;
     border: none;
     text-align: center;
+}
+
+.meun-text {
+    float: left;
+    width: 80%;
 }
