@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 //import java.sql.Timestamp;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -87,7 +88,7 @@ class CodeBackendApplicationTests {
 	void 가게정보조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		List<Restuarant> rs = restaurantService.RsData(member.getAddress());
+		List<Restuarant> rs = restaurantService.RsData(member.getAddress(), "전체보기");
 
 		try {
 			Thread.sleep(100);
@@ -99,6 +100,10 @@ class CodeBackendApplicationTests {
 			System.out.println("가게 이름 : " + rs.get(i).getTitle());
 			System.out.println("최소 주문 금액 : " + rs.get(i).getMinPrice());
 			System.out.println("이미지 url : " + rs.get(i).getImageUrl());
+			System.out.println("별점 : " + rs.get(i).getIcoStar());
+			System.out.println("리뷰 개수 : " + rs.get(i).getReview_num());
+			System.out.println("배달예정시각 : " + rs.get(i).getDeliveryTime());
+
 		}
 	}
 
@@ -108,14 +113,16 @@ class CodeBackendApplicationTests {
 	void 메뉴리스트조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		CompletableFuture<List<Menu>> menu = restaurantService.menuList("BHC-신한대점", member.getAddress());
+		Future<Menu> m = restaurantService.menuList("순살만공격-민락점", member.getAddress());
+		Menu menu = m.get();
 
-		List<Menu> menuList = menu.get();
-//		for(Menu m : menuList) {
-//			System.out.println("메뉴 이름 : " + m.getMenuName());
-//			System.out.println("메뉴 가격 : " + m.getMenuPrice());
-//			System.out.println("메뉴 상세 : " + m.getMenuDesc());
-//			System.out.println("메뉴 포토 : " + m.getMenuPhoto());
-//		}
+		for(int i = 0; i < menu.getMenuList_Title().size(); i++) {
+			System.out.println("\n\n[" + menu.getMenuList_Title_Name().get(i) + "]");
+			for(int j = 0; j < menu.getMenuList_Title().get(i).size(); j++) {
+				System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
+				System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
+				System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
+			}
+		}
 	}
 }

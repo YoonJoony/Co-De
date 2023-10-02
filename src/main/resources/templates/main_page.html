@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
+    <script src="https://kit.fontawesome.com/eb076808b8.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
@@ -257,20 +258,68 @@
 <div class="storeModal">
     <div class="storeModal_content">
         <div class="storeModal_header">
-            <input id="search_store" type="text">
-            </input>
-            <button id="search_store_btn" type="button">검색
-            </button>
+            <div class="storeModal_header_topper">
+                <div class="storeModal_header_topper_back">
+                    <img class="storeModal_header_topper_back_img" src="images/back.png" onClick="closeStoreList()" style="cursor:pointer;">
+                </div>
+                <div class="storeModal_header_topper_text">
+                    <p>가게를 선택해주세요!</p>
+                </div>
+            </div>
+            <div class="storeModal_header_search">
+                <div class="search-box">
+                    <input type="text" class="search-txt" name="search-txt" placeholder="가게 이름을 입력해 주세요!">
+                    <a class="search-btn" href="#">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="storeModal_header_categories">
+                <div class="scroll-content">
+                    <div class="content-item" onclick="category_store_list('전체')">전체</div>
+                    <div class="content-item" onclick="category_store_list('1인분 주문')">1인분 주문</div>
+                    <div class="content-item" onclick="category_store_list('프랜차이즈')">프랜차이즈</div>
+                    <div class="content-item" onclick="category_store_list('치킨')">치킨</div>
+                    <div class="content-item" onclick="category_store_list('피자/양식')">피자/양식</div>
+                    <div class="content-item" onclick="category_store_list('중국집')">중국집</div>
+                    <div class="content-item" onclick="category_store_list('한식')">한식</div>
+                    <div class="content-item" onclick="category_store_list('일식/돈까스')">일식/돈까스</div>
+                    <div class="content-item" onclick="category_store_list('족발/보쌈')">족발/보쌈</div>
+                    <div class="content-item" onclick="category_store_list('야식')">야식</div>
+                    <div class="content-item" onclick="category_store_list('분식')">분식</div>
+                    <div class="content-item" onclick="category_store_list('카페/디저트')">카페/디저트</div>
+                </div>
+            </div>
         </div>
         <!-- ---------------------------------------- -->
         <div class="storeModal_body">
-
-        </div>
+<!--            <div class="store_list">-->
+<!--                <div class="store_image_div">-->
+<!--                    <img class="store_image" src="https://rev-static.yogiyo.co.kr/franchise_logos/BHC_20210329_Franchise_crop_200x200.jpg">-->
+<!--                </div>-->
+<!--                <div class="store_info_div">-->
+<!--                    <div class="store_info_div_top">-->
+<!--                        <div class="store_name">bbq호원점</div>-->
+<!--                    </div>-->
+<!--                    <div class="store_info_div_bottom">-->
+<!--                        <span>-->
+<!--                        <span class="ico-star">★ 4.8</span>-->
+<!--                      </span>-->
+<!--                        <div class="review_num">리뷰 412</div>-->
+<!--                        <div class="store_minimum_order_amount">10000원 이상 배달</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="store_time_div">-->
+<!--                    <div class="store_time">50~55분</div>-->
+<!--                </div>-->
+<!--            </div>-->
         <!-- -------------------------------------------- -->
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script th:inline="javascript">
@@ -356,8 +405,8 @@
             }
         }
     </script>
-<script src="/js/main_page.js"></script>
-<script src="/js/addStore.js"></script>
+<script src="/js/main_page/main_page.js"></script>
+<script src="/js/main_page/addStore2.js"></script>
 
 </body>
 
