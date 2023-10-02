@@ -20,12 +20,15 @@ function requestPay() {
 
         jQuery
           .ajax({
-            url: "{서버의 결제 정보를 받는 endpoint}",
+            // url: "{서버의 결제 정보를 받는 가맹점 endpoint}",
+            url: "https://233.requestcatcher.com/test",
             method: "POST",
             headers: { "Content-Type": "application/json" },
             data: {
               imp_uid: rsp.imp_uid, // 결제 고유번호
               merchant_uid: rsp.merchant_uid, // 주문번호
+              amount: rsp.paid_amount,
+              pay_date: rsp.paid_at,
             },
           })
           .done(function (data) {
