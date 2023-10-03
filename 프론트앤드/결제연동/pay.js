@@ -1,34 +1,42 @@
+// 결제 창 호출
 var IMP = window.IMP;
 IMP.init("imp38136157");
-
-// 결제 창 호출
 
 function requestPay() {
   IMP.request_pay(
     {
-      pg: "html5_inicis",
-      pay_method: "vbank",
-      merchant_uid: "ex" + new Date().getTime(), // 주문번호
-      name: "뿌링클 치킨",
-      amount: 64900, // 숫자 타입
-      buyer_email: "gildong@gmail.com",
-      buyer_name: "홍길동",
-      buyer_tel: "010-4242-4242",
-      buyer_addr: "서울특별시 강남구 신사동",
-      buyer_postcode: "01181",
+      pg: "uplus",
+      pay_method: "card",
+      merchant_uid: "test_" + new Date().getTime(),
+      name: "테스트 결제",
+      amount: 100,
+      buyer_tel: "010-0000-0000",
     },
     function (rsp) {
-      console.log(rsp);
       if (rsp.success) {
-        var msg = "결제가 완료되었습니다.";
-        alert(msg);
+        // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+        // jQuery로 HTTP 요청
+        alert("결제 성공");
+
+        jQuery
+          .ajax({
+            // url: "{서버의 결제 정보를 받는 가맹점 endpoint}",
+            url: "https://233.requestcatcher.com/test",
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            data: {
+              imp_uid: rsp.imp_uid, // 결제 고유번호
+              merchant_uid: rsp.merchant_uid, // 주문번호
+              amount: rsp.paid_amount,
+              pay_date: rsp.paid_at,
+            },
+          })
+          .done(function (data) {
+            // 가맹점 서버 결제 API 성공시 로직
+          });
       } else {
-        var msg = "결제에 실패하였습니다.";
-        msg += "에러내용 : " + rsp.error_msg;
-        alert(msg);
+        alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
       }
     }
-    // callback
-    //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다
   );
 }
