@@ -113,7 +113,7 @@ class CodeBackendApplicationTests {
 	void 메뉴리스트조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("순살만공격-민락점", member.getAddress());
+		Future<Menu> m = restaurantService.menuList("호식이두마리치킨-의정부역점", member.getAddress());
 		Menu menu = m.get();
 
 		for(int i = 0; i < menu.getMenuList_Title().size(); i++) {
