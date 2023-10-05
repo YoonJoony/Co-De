@@ -42,8 +42,6 @@ import java.util.List;
 public class ChatController {
 
     private final SimpMessageSendingOperations template;
-    private final MozipRepository mozipRepository;
-    private final MozipService mozipService;
     private final ChatService chatService;
     private final ChatUserService chatUserService;
 

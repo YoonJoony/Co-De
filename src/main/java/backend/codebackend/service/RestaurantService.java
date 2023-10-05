@@ -66,10 +66,7 @@ public class RestaurantService {
             WebElement parentElement = restaurant.findElement(By.xpath("..")); //restaurant의 바로 부모 요소 선택
             WebElement logoElement = restaurant.findElement(By.xpath("../../..")); //restaurant-name 요소의 부모 부모
             //background-image의 url이 두 개 나오므로 url을 컴마가 붙은 라인부터 지운다(뒤에 url을 지우게 됨)
-            String restaurantAddress = logoElement.findElement(By.className("logo"))
-                    .getCssValue("background-image")
-                    .replace("url(\"", "")
-                    .replace("\")","");
+            String restaurantAddress = logoElement.findElement(By.className("logo")).getCssValue("background-image").replace("url(\"", "").replace("\")","");
             int commaIndex = restaurantAddress.indexOf(",");
 
             rs = Restuarant.builder()
@@ -163,18 +160,14 @@ public class RestaurantService {
                     //저장된 판낼 안의 각각의 메뉴의 부모 요소가 되는 photo-menu를 리스트에 저장(메뉴가 여러개니까 리스트로)
                     List<WebElement> item = panel.get(i).findElements(By.className("photo-menu"));
                     for (WebElement m : item) {
-
-                        String menuImageStyle = m.findElement(By.className("photo")).getAttribute("style");
-                        int commaIndex = menuImageStyle.indexOf(",");
-                        String menuImageUrl = menuImageStyle.substring(commaIndex + 1).replace("')", "").trim();
-
+                        String menuPhoto = m.findElement(By.className("photo")).getCssValue("background-image").replace("url(\"", "").replace("\")","");
+                        int commaIndex = menuPhoto.indexOf(",");
                         menu = Menu.builder()
                                 .menuName(m.findElement(By.className("menu-name")).getText())
                                 .menuDesc(m.findElement(By.className("menu-desc")).getText())
                                 .menuPrice(m.findElement(By.className("menu-price")).findElement(By.className("ng-binding")).getText())
-                                .menuPhoto(menuImageUrl)
+                                .menuPhoto(menuPhoto.substring(0,commaIndex))
                                 .build();
-
                         menuList.add(menu);
                     }
                     menu2.getMenuList_Title().add(menuList);
@@ -182,7 +175,7 @@ public class RestaurantService {
                 break;
             }
         }
-        //driver.quit();
+        driver.quit();
         return new AsyncResult<>(menu2) ;
     }
 }

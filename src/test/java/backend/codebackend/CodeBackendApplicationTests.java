@@ -91,6 +91,7 @@ class CodeBackendApplicationTests {
 		String category = "";
 
 		RestaurantService restaurantService = new RestaurantService();
+		restaurantService.driver();
 		restaurantService.loadPage();
 		restaurantService.searchAddress(member.getAddress());
 		if(category != "")
@@ -125,7 +126,7 @@ class CodeBackendApplicationTests {
 	void 메뉴리스트조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
+		Future<Menu> m = restaurantService.menuList("청년피자-의정부점", member.getAddress());
 		Menu menu = m.get();
 
 		for(int i = 0; i < menu.getMenuList_Title().size(); i++) {
@@ -134,7 +135,7 @@ class CodeBackendApplicationTests {
 				System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
 				System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
 				System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
-				System.out.println("이미지 url : " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
+				System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
 			}
 		}
 	}
