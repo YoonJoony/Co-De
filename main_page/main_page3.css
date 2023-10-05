@@ -440,7 +440,7 @@ a {
     width: 100%;
     position: absolute;
     display: block;
-    top: -30%;
+    top: -55%;
   }
 }
 
@@ -1402,7 +1402,7 @@ select::-ms-expand {
     position: relative;
     width: 100%;
     min-width: 300px;
-    height: 540px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     /* border: 1px solid #ff8c16; */
@@ -1448,16 +1448,28 @@ select::-ms-expand {
 
 .chat-img-area {
   display: none;
+  cursor: pointer;
 }
 
 @media(max-width: 700px) {
   .chat-img-area {
     display: block;
+    z-index: 10;
+    position: fixed;
+    top: 90%;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 80%;
   }
 
-  .chat-img{
-    width: 30px;
-    height: 30px;
+  .chat-img {
+    width: 80px;
+    height: 80px;
   }
 
 }

@@ -285,4 +285,18 @@ $(async function () {
 });
 
 
+function chatbot_open() {
+    const chatbot_content = document.querySelector(".main-right");
+
+    // 숨기기 (display: none)
+    if (chatbot_content.style.display !== "block") {
+        $('html').scrollTop(0);
+        chatbot_content.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        chatbot_content.style.display = "none";
+    }
+}
+
 // -------------------------------------------------------------------------------------------------------
