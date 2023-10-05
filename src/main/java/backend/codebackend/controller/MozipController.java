@@ -2,7 +2,6 @@ package backend.codebackend.controller;
 
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.Restuarant;
-import backend.codebackend.domain.SelectedValue;
 import backend.codebackend.dto.MozipForm;
 import backend.codebackend.service.ChatUserService;
 import backend.codebackend.service.MemberService;
@@ -27,17 +26,6 @@ public class MozipController {
     private final MozipService mozipService;
     private final MemberService memberService;
     private final ChatUserService chatUserService;
-    private final RestaurantService restaurantService;
-
-
-    private SelectedValue sv = SelectedValue.getInstance(); //싱글톤으로 객체 인스턴스 1개만 생성되도록 함
-//    private String selectedValue1;
-//    private String selectedValue2;
-
-//    @GetMapping("/")
-//    public String test1(Model model) {
-//        return "main_page";
-//    }
 
     @GetMapping("/main_page.html")
     public String list(Model model, HttpServletRequest request) {
