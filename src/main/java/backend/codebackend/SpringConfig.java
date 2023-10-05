@@ -66,12 +66,6 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     }
 
     @Bean
-    public RestaurantService restaurantService() {
-        return new RestaurantService();
-    }
-
-
-    @Bean
     public MemberRepository memberRepository() {
         return new JpaMemberRepository(em);
     }

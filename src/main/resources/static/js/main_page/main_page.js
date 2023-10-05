@@ -51,7 +51,7 @@ $(function () {
 
 document.querySelector("#modal_close_btn").addEventListener("click", close);
 
-// 모집글 생성 버튼 클릭시
+//모집글 생성 버튼 클릭시
 $(function () {
   function modalClose() {
     $("#modal").fadeOut();
@@ -64,7 +64,7 @@ $(function () {
 
     modalClose(); // 모달 닫기 함수 호출
   });
-  $("#createOpen").click(function () {
+  $(".v-bar").click(function () {
     $("#modal").css("display", "flex").hide().fadeIn(); // 속성 변경 후 hide로 숨기고 fadeIn으로 효과 나타내기
   });
   $("#close").click(function () {
@@ -203,4 +203,4 @@ boardElements.forEach((boardElement) => {
   imgElement.src = imagePath; //img 클래스의 src 경로를 해당하는 categories로 설정해줌
 });
 
-// ----------------------------------------
+

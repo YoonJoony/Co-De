@@ -35,7 +35,8 @@ public class MozipForm {
         this.nickname = nickname;
     }
     private String categories;
-    
+    private String store;
+
     private int usercount; //현재 유저 인원 수
     private int peoples; //최대 인원 수
     private LocalDateTime create_Date;
@@ -47,6 +48,7 @@ public class MozipForm {
                 .title(title)
                 .distance_limit(distance_limit)
                 .categories(categories)
+                .store(store)
                 .peoples(peoples)
                 .nickname(nickname)
                 .usercount(1)
@@ -54,16 +56,18 @@ public class MozipForm {
         return build;
     }
 
-    public MozipForm(String title, Long distance_limit, String categories, int usercount, int peoples, LocalDateTime create_Date, String nickname) {
+    public MozipForm(String title, Long distance_limit, String categories, String store, int usercount, int peoples, LocalDateTime create_Date, String nickname) {
         this.title = title;
         this.distance_limit = distance_limit;
         this.categories = categories;
+        this.store = store;
         this.usercount = usercount;
         this.peoples = peoples;
         this.create_Date = create_Date;
         this.nickname = nickname;
     }
-    //    private static class TIME_MAXIMUM {
+
+//    private static class TIME_MAXIMUM {
 //        public static final int SEC = 60;
 //        public static final int MIN = 60;
 //        public static final int HOUR = 24;
