@@ -160,7 +160,10 @@ public class RestaurantService {
                     //저장된 판낼 안의 각각의 메뉴의 부모 요소가 되는 photo-menu를 리스트에 저장(메뉴가 여러개니까 리스트로)
                     List<WebElement> item = panel.get(i).findElements(By.className("photo-menu"));
                     for (WebElement m : item) {
-                        String menuPhoto = m.findElement(By.className("photo")).getCssValue("background-image").replace("url(\"", "").replace("\")","");
+                        String menuPhoto = m.findElement(By.className("photo"))
+                                .getCssValue("background-image")
+                                .replace("url(\"", "")
+                                .replace("\")","");
                         int commaIndex = menuPhoto.indexOf(",");
                         menu = Menu.builder()
                                 .menuName(m.findElement(By.className("menu-name")).getText())

@@ -22,7 +22,7 @@ import java.util.concurrent.Future;
 public class RestaurantsController {
     private final MemberService memberService;
     private RestaurantService restaurantService;
-    
+
     //사용자의 세션에 저장된 id를 통해 주소를 받아서 주소 출력
     @GetMapping("/mozip/storeList")
     @ResponseBody
@@ -61,4 +61,17 @@ public class RestaurantsController {
             throw new RuntimeException(e);
         }
     }
+
+    @GetMapping("/mozip/menuList")
+    @ResponseBody
+    public Future<Menu> menuList(String restaurantTitle, String address) {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return restaurantService.menuList(restaurantTitle, address);
+    }
+
+
 }
