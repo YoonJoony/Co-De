@@ -140,6 +140,8 @@ public class RestaurantService {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+
+
                 //메뉴 전체 div
                 WebElement popMenu = driver.findElement(By.className("panel-group"));
                 //메뉴 타이틀(판넬) 별로 요소 저장함(인기메뉴, 한마리치킨, 세트메뉴)
