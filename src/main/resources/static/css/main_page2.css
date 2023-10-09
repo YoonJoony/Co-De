@@ -421,17 +421,19 @@ a {
     margin-left : auto;
     margin-right : auto;
     margin-top : 20px;
-    max-width: 80rem;
+    max-width: 86rem;
 }
 
 .main-flex {
     display : flex;
     position : relative;
+    padding: 0 20px;
 }
 
 .width-container-margin {
     position : relative;
-    width : 100%;
+    /* width : 100%; */
+    min-width: 450px;
     height : 100%;
     --tw-space-x-reverse: 0;
     margin-left: calc(2.5rem * var(--tw-space-x-reverse));
