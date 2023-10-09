@@ -11,6 +11,8 @@ function requestPay() {
       name: "테스트 결제",
       amount: 100,
       buyer_tel: "010-0000-0000",
+      buyer_name: "엄준식",
+      buyer_email: "111",
     },
     function (rsp) {
       console.log(rsp);
