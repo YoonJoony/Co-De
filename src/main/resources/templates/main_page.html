@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/css/main_page2.css">
+    <link rel="stylesheet" href="/static/css/main_page2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -114,37 +114,7 @@
             </ul>
 
         </div>
-        <!-- 프로필 -->
-
     </div>
-
-<!--    &lt;!&ndash; 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력&ndash;&gt;-->
-<!--    <div class="board-list">-->
-<!--        <th:block th:each="post : ${postList}">-->
-<!--            <div class="board" style="position: absolute; left: 0%; top: 0px;">-->
-<!--                <img class="board-img" src="images\chicken.png">-->
-<!--                <div class="boards">-->
-<!--                    <div class="board-header">-->
-<!--                        <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>-->
-<!--                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"-->
-<!--                             data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}"-->
-<!--                             onclick="backdropDelete()">-->
-<!--                    </div>-->
-<!--                    <div class="board-nickname" th:text="${post.nickname}"></div>-->
-<!--                    <div class="board-title" th:text="${post.title}"><a href="#"></a></div>-->
-<!--                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"-->
-<!--                         data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}"-->
-<!--                         onclick="backdropDelete()"></a>-->
-<!--                        <button class="join">Go GO~</button>-->
-<!--                    </div>-->
-<!--                    <div class="board-categories" th:text="${post.categories}"></div>-->
-<!--                    <div class="board-peoples" th:text="${post.usercount} + '/' +${post.peoples}"></div>-->
-<!--                    &lt;!&ndash;            <div class="food" th:text="${post.categories}"></div>&ndash;&gt;-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </th:block>-->
-
-<!--    </div>-->
 
     <div class="width-main">
         <div class="main-flex">
@@ -246,6 +216,13 @@
     </div>
 </div>
 
+
+
+<!-- 모집글 생성 -->
+<div class="make-content" href="#CreateMozipModal" data-bs-toggle="modal"
+     data-target="#CreateMozipModal" style="display:none">
+    <button type="button" class="createOpen" id="createOpen">AI 채팅📣</button>
+</div>
 
 <!-- 모집글 클릭시 모달창 보여줌 -->
 <div class="modal fade" id="enterRoomModal" tabindex="-1" aria-labelledby="enterRoomModalLabel" aria-hidden="true">
@@ -457,8 +434,8 @@
             }
         }
     </script>
-<script src="/js/main_page/main_page.js"></script>
-<script src="/js/main_page/addStore2.js"></script>
+<script src="/static/js/main_page/main_page.js"></script>
+<script src="/static/js/main_page/addStore2.js"></script>
 
 </body>
 
