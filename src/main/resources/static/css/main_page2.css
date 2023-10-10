@@ -23,7 +23,7 @@ body {
 }
 
 body {
-  padding: 199px 0; /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
+  padding: 199px 0 0 0; /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
   font-family: "NanumSquareNeo-Variable";
   background-color: #ffffff;
   line-height: 1.6;
@@ -253,7 +253,7 @@ p {
   color: #8e8e8e;
 }
 
-ul {
+.search-container ul {
   position: absolute;
   display: inline-block;
   top: 60%;
@@ -413,152 +413,348 @@ a {
   line-height: 30px;
 }
 
-.board-list {
-  margin: auto;
-  position: relative;
-  height: 1117.5px;
-  width: calc(80%); /*top: 20%;*/
-  left: 35px;
-  /* height: 500px; */
-  /* border: 1px solid #d9d9d9; */
-  border-radius: 10px;
-  /*overflow: auto;        ê²Œì‹œê¸€ íƒ€ìž„ë¦¬í”„ë¡œ ë°›ì•„ì™€ì„œ ì§€ì›Œì¤Œ*/
-  z-index: 0;
-  /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
+/* ---------- 게시판 ---------*/
+.width-main {
+    font-family: "NanumSquareNeo-Variable";
+    width : 100%;
+    height : 100%;
+    margin-left : auto;
+    margin-right : auto;
+    margin-top : 20px;
+    max-width: 86rem;
 }
 
-.board {
-  font-family: "NanumSquareNeo-Variable";
-  position: relative;
-  width: calc(23% - 42px);
-  display: inline-block;
-  /* top: 20%; */
-  height: 49%;
-  border: 4px solid #7c7c7c;
-  background-color: #f0f0f0;
-  border-radius: 20px;
-  z-index: 0;
-  overflow: hidden;
+.main-flex {
+    display : flex;
+    position : relative;
+    padding: 0 20px;
 }
 
-.boards {
-  z-index: 2;
-  position: relative;
-  /* width: 90%; */
-  width: calc(100% - 20px);
-  margin: 10px;
-  padding: 21px 25px;
-  display: inline-block;
-  /* top: 20%; */
-  height: 100%;
-  /*border: 1px solid #d9d9d9;*/
-  background-color: transparent;
-  border-radius: 20px;
-  z-index: 0;
-  overflow: hidden;
+.width-container-margin {
+    position : relative;
+    /* width : 100%; */
+    min-width: 450px;
+    height : 100%;
+    --tw-space-x-reverse: 0;
+    margin-left: calc(2.5rem * var(--tw-space-x-reverse));
+    margin-right: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
-.board-img {
-  opacity: 0.5;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: overlay;
-  z-index: 0;
-  /* height: auto; */
-  background-size: cover;
+.width-container {
+    margin-bottom: 4rem;
 }
 
+.width-header {
+    position : relative;
+    display : flex;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+}
+
+.width-header-left {
+    position : relative;
+    flex : none;
+}
+
+.board-create-button {
+    border : none;
+    border-radius : 5px;
+    background-color : #FB993F;
+    color : #FFF;
+    padding : 0 10px;
+    height : 32px;
+    font-size: .875rem;
+}
+
+.width-header-center {
+    position : relative;
+    display : flex;
+    flex-grow : 1;
+}
+
+.width-header-right {
+    position : relative;
+    flex : none;
+}
+
+.board-range {
+    border : 1px solid #959595;
+    border-radius : 5px;
+    background-color : #FFF;
+    color : black;
+    padding : 0 10px;
+    height : 32px;
+    font-size: .875rem;
+}
+
+/* ------------게시판 카테고리 ------------*/
+.swiper-container {
+    position:relative;
+    width : 100%;
+    display : flex;
+    padding : 0 10px;
+    column-gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top : 1px solid hsla(220,9%,46%,.3);
+    border-bottom : 1px solid hsla(220,9%,46%,.3);
+}
+
+.category-container {
+    overflow-x: scroll;
+    position: relative;
+    height: max-content;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin : 0 auto;
+
+}
+
+.scroll-arrow {
+    position : relative;
+    flex : none;
+    top : 5px;
+}
+
+.scroll-content {
+    width: max-content;
+    position :relative;
+    padding : 0px 5px 0px 5px;
+    outline: none;
+    line-height: 30px;
+    margin-left : 7px;
+}
+
+
+.board-category {
+    min-width : 40px;
+    height: 37px; /* Adjust as needed */
+    background-color: #fff;
+    border: 1px solid #ff8c16;
+    border-radius: 17px;
+    font-size : 13px;
+    transition: 0.4s;
+    margin-right : 8px;
+    padding : 2px 8px 0px 8px;
+}
+
+.scroll-arrow {
+
+}
+.scroll-arrow img{
+    width : 23px;
+    height : 23px;
+}
+
+/* ------------ 게시글 영역 ------------------- */
+.board-main {
+
+}
+
+.main-content ul {
+    padding : 0;
+    margin : 0;
+}
+.main-content li {
+    display : flex;
+    flex-direction : column;
+    padding-left: 0.825rem;
+    padding-right: 0.825rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid hsla(220,9%,46%,.3);
+}
+
+/* 모집글 header */
 .board-header {
-  font-family: "Play", sans-serif;
-  text-align: center;
-  top: -18px;
-  position: relative;
+    display : flex;
+    align-items : center;
+    column-gap : 0.25rem;
 }
 
-.board-time {
-  font-family: "Play", sans-serif;
-  display: inline-block;
-  text-align: center;
-  font-size: 20px;
-  color: #333333;
-  overflow: hidden;
+.board-header img {
+    width : 12px;
+    height : 12px;
+    margin-right: 0.235rem;
+    margin-bottom: 0.125rem;
 }
 
-.board-link {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  right: -24px;
-  cursor: pointer;
+
+.board-profile img {
+    border-radius: 50px;
+    width : 23px;
+    height : 22px;
+    margin-right: 0.235rem;
+    margin-bottom: 0.125rem;
 }
 
 .board-nickname {
-  font-weight: 900;
-  text-align: center;
-  margin-top: 44px;
-  font-size: 30px;
-  color: #333333;
-  overflow: hidden;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    color: rgb(55 65 81/var(--tw-text-opacity));
 }
 
-.board-title {
-  font-weight: 900;
-  font-size: 17px;
-  text-align: center;
-  line-height: 23px;
-  margin-top: 60px;
-  color: #333333;
-  overflow: hidden;
+.board-time-div {
+    display : inline-flex;
+    align-items : center;
+}
+
+.board-time-div span{
+    margin-left: 0.125rem;
+    margin-right: 0.225rem;
+}
+
+.board-time {
+    font-size : .875rem;
+}
+
+/* 모집글 title */
+.board-body {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight : 600;
+    line-height: 1.5rem;
+}
+
+/* 모집글 footer*/
+.board-footer {
+    display : flex;
+}
+
+.board-footer-left {
+    align-items : center;
+    column-gap: 0.55rem;
+    flex: 1 1 0%;
+    display : flex;
+}
+
+.board-footer-left a{
+    color : #ff7a00;
 }
 
 .board-categories {
-  font-family: "Black Han Sans", sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  margin: 0;
-  left: 4px;
-  position: absolute;
-  bottom: 16px;
-  color: #333333;
-  overflow: hidden;
-  margin-top: 30px;
+    border : 1px solid;
+    border-radius : 5px;
+    padding : 0 5px;
 }
 
-.board-peoples {
-  font-size: 20px;
-  margin: 0;
-  /* text-align: right; */
-  right: 6px;
-  position: absolute;
-  bottom: 21px;
-  color: #333333;
-  overflow: hidden;
-  margin-top: 30px;
+
+.board-address {
+    font-size: .775rem;
+    color: rgb(75 85 99);
 }
 
-.board-button {
-  overflow: hidden;
-  text-align: center;
-  /* margin: auto; */
-  width: 53%;
-  height: 50px;
-  left: 24%;
-  /* margin-top: 10px; */
-  position: absolute;
-  top: 65%;
+.board-footer-right {
+    display : flex;
+    font-size: .81rem;
+    line-height: 1.25rem;
 }
 
-.join {
-  font-family: "Play", sans-serif;
-  width: 100%;
-  height: 100%;
-  background-color: #ff9a61;
-  color: #ffffff;
+.board-peoples-img img {
+    width : 18px;
+    height : 18px;
+    margin-right: 0.175rem;
+}
+
+
+/* ------챗봇 컨테이너 --------*/
+.width-right {
+    width : 330px;
+}
+
+.chat-container {
+    position: relative;
+    min-width: 300px;
+    margin-top: 24px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    background-color: #fff;
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.message {
+    margin-top: .3rem;
+    margin-bottom: .3rem;
+    border : 1px solid #ff9d36;
+    padding : 4px 0px 4px 7px;
+    border-radius : 5px;
+    font-size : 14px;
+}
+
+#user-input {
+  display: flex;
+  padding: 10px;
+}
+
+#user-input input {
+  flex: 1;
+  padding: 10px;
+  outline: none;
+  border: 1px solid white;
+  border-radius: 5px 0px 0px 5px;
+  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+}
+
+#user-input button {
   border: none;
-  border-radius: 20px;
+  border-radius: 0px 5px 5px 0px;
+  background-color: #ff8c16;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+  width: 100%;
+  font-size: 14px;
+}
+
+.chat-img-area {
+  display: none;
   cursor: pointer;
 }
+
+@media(max-width: 700px) {
+  .chat-img-area {
+    display: block;
+    z-index: 10;
+    position: fixed;
+    top: 90%;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 80%;
+  }
+
+  .chat-img {
+    width: 80px;
+    height: 80px;
+  }
+
+}
+
+/* ------------------------------------------------------------- */
+
+
+
+
+
+
+
 
 .ad {
   text-align: center;
@@ -656,34 +852,6 @@ a {
   width: 10%;
 }
 
-.make-content {
-  position: fixed; /* í™”ë©´ ì˜¤ë¥¸ìª½ ì•„ëž˜ì— ê³ ì • divì—ë§Œ ê°€ëŠ¥ , ë¶€ëª¨ divê°€ relativeì—¬ì•¼ í•¨*/
-  bottom: 0;
-  right: 0;
-  width: 15%;
-  text-align: right;
-  white-space: nowrap;
-  /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-}
-
-.make-content #createOpen {
-  width: 60%;
-  height: 45px;
-  margin: 23px 23px;
-  font-size: 15px;
-  font-weight: bold;
-  background-color: #7cab75;
-  color: #f0f0f0;
-  border: none;
-  display: inline-block;
-  border-radius: 35px;
-  cursor: pointer;
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-}
-.make-content #createOpen:hover {
-  box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
-}
 
 .board .load-btn {
   text-align: center;

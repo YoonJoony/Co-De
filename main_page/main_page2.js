@@ -170,18 +170,133 @@ const swiper = new Swiper('.swiper-container', {
     //방향 셋팅 vertical 수직, horizontal 수평 설정이 없으면 수평
     direction: 'horizontal',
     //한번에 보여지는 페이지 숫자
-    slidesPerView: 5,
+    slidesPerView: 'auto',
+
     //페이지와 페이지 사이의 간격
     spaceBetween: 10,
+
     //드레그 기능 true 사용가능 false 사용불가
     debugger: true,
+
     //마우스 휠기능 true 사용가능 false 사용불가
     mousewheel: true,
+
     //반복 기능 true 사용가능 false 사용불가
     loop: false,
+
     //선택된 슬라이드를 중심으로 true 사용가능 false 사용불가 djqt
     centeredSlides: false,
+
+    threshold:100, //마우스 스와이프 민감도
+
+    slidesOffsetAfter : 0
+
     // 페이지 전환효과 slidesPerView효과와 같이 사용 불가
     // effect: 'fade',
 
 });
+
+// 챗봇-----------------------------------------------
+
+// 채팅 메시지를 표시할 DOM
+const chatMessages = document.querySelector("#chat-messages");
+// 사용자 입력 필드
+const userInput = document.querySelector("#user-input input");
+// 전송 버튼
+const sendButton = document.querySelector("#user-input button");
+// 발급받은 OpenAI API 키를 변수로 저장
+const apiKey = "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";
+// OpenAI API 엔드포인트 주소를 변수로 저장
+const apiEndpoint = "https://api.openai.com/v1/chat/completions";
+function addMessage(sender, message) {
+    // 새로운 div 생성
+    const messageElement = document.createElement("div");
+    // 생성된 요소에 클래스 추가
+    messageElement.className = "message";
+    // 채팅 메시지 목록에 새로운 메시지 추가
+    messageElement.textContent = `${sender}: ${message}`;
+    chatMessages.prepend(messageElement);
+}
+// ChatGPT API 요청
+async function fetchAIResponse(prompt) {
+    // API 요청에 사용할 옵션을 정의
+    const requestOptions = {
+        method: "POST",
+        // API 요청의 헤더를 설정
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+            model: "gpt-3.5-turbo", // 사용할 AI 모델
+            // prompt: "배달음식을 시킬껀데 음식 추천해줘",
+            messages: [
+                {
+                    role: "user", // 메시지 역할을 user로 설정
+                    content: prompt, // 사용자가 입력한 메시지
+                },
+            ],
+            temperature: 0.2, // 모델의 출력 다양성
+            max_tokens: 300, // 응답받을 메시지 최대 토큰(단어) 수 설정
+            top_p: 1, // 토큰 샘플링 확률을 설정
+            frequency_penalty: 0.5, // 일반적으로 나오지 않는 단어를 억제하는 정도
+            presence_penalty: 0.5, // 동일한 단어나 구문이 반복되는 것을 억제하는 정도
+            stop: ["Human"], // 생성된 텍스트에서 종료 구문을 설정
+        }),
+    };
+    // API 요청후 응답 처리
+    try {
+        const response = await fetch(apiEndpoint, requestOptions);
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
+        return aiResponse;
+    } catch (error) {
+        console.error("OpenAI API 호출 중 오류 발생:", error);
+        return "OpenAI API 호출 중 오류 발생";
+    }
+}
+
+// 전송 버튼 클릭 이벤트 처리
+sendButton.addEventListener("click", async () => {
+    // 사용자가 입력한 메시지
+    const message = userInput.value.trim();
+    // 메시지가 비어있으면 리턴
+    if (message.length === 0) return;
+    // 사용자 메시지 화면에 추가
+    addMessage("나", message);
+    userInput.value = "";
+    //ChatGPT API 요청후 답변을 화면에 추가
+    const aiResponse = await fetchAIResponse(message);
+    addMessage("챗봇", aiResponse);
+});
+// 사용자 입력 필드에서 Enter 키 이벤트를 처리
+userInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        sendButton.click();
+    }
+});
+
+$(async function () {
+    const message =
+        "한국에서 배달 음식을 시킬껀데 나한테 질문 한 다음에 음식을 200자 이내로 추천해주고 음식에 대한 정보는 필요없어";
+
+    const aiResponse = await fetchAIResponse(message);
+    addMessage("챗봇", aiResponse);
+});
+
+
+function chatbot_open() {
+    const chatbot_content = document.querySelector(".main-right");
+
+    // 숨기기 (display: none)
+    if (chatbot_content.style.display !== "block") {
+        $('html').scrollTop(0);
+        chatbot_content.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        chatbot_content.style.display = "none";
+    }
+}
+
+// -------------------------------------------------------------------------------------------------------

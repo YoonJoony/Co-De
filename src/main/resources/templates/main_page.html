@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/css/main_page2.css">
+    <link rel="stylesheet" href="/static/css/main_page2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -114,45 +114,105 @@
             </ul>
 
         </div>
-        <!-- 프로필 -->
-
     </div>
 
-    <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
-    <div class="ad">
-        <a href="#">
-            <img img="" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/guide_main_banner.png" alt="" title=""
-                 class="ad-img">
-        </a>
-    </div>
-    <div class="search-list">
-        <input id="search_btn" type="button" value="태그 들어가야함."></input>
-    </div>
-    <div class="board-list">
-        <th:block th:each="post : ${postList}">
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="images\chicken.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time" th:text="${#temporals.format(post.create_Date, 'HH:mm')}"></div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                             data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}"
-                             onclick="backdropDelete()">
+    <div class="width-main">
+        <div class="main-flex">
+            <div class="width-container-margin">
+                <div class="width-container">
+                    <div class="width-header">
+                        <div class="width-header-left" href="#CreateMozipModal" data-bs-toggle="modal"
+                             data-target="#CreateMozipModal">
+                            <button class="board-create-button">작성하기</button>
+                        </div>
+                        <div class="width-header-center">
+                        </div>
+                        <div class="width-header-right">
+                            <button class="board-range">노출거리</button>
+                        </div>
                     </div>
-                    <div class="board-nickname" th:text="${post.nickname}"></div>
-                    <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                         data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}"
-                         onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
+                    <div class="swiper-container">
+                        <div class="scroll-arrow">
+                            <img src="images/arrow2.png">
+                        </div>
+                        <div class="category-container">
+                            <div class="scroll-content">
+                                <div class="board-category" onclick="category_store_list('전체보기')">전체</div>
+                                <div class="board-category" onclick="category_store_list('1인분 주문')">1인분 주문</div>
+                                <div class="board-category" onclick="category_store_list('프랜차이즈')">프랜차이즈</div>
+                                <div class="board-category" onclick="category_store_list('치킨')">치킨</div>
+                                <div class="board-category" onclick="category_store_list('피자/양식')">피자/양식</div>
+                                <div class="board-category" onclick="category_store_list('중국집')">중국집</div>
+                                <div class="board-category" onclick="category_store_list('한식')">한식</div>
+                                <div class="board-category" onclick="category_store_list('일식/돈까스')">일식/돈까스</div>
+                                <div class="board-category" onclick="category_store_list('족발/보쌈')">족발/보쌈</div>
+                                <div class="board-category" onclick="category_store_list('야식')">야식</div>
+                                <div class="board-category" onclick="category_store_list('분식')">분식</div>
+                                <div class="board-category" onclick="category_store_list('카페/디저트')">카페/디저트</div>
+                            </div>
+                        </div>
+                        <div class="scroll-arrow">
+                            <img src="images/arrow.png">
+                        </div>
                     </div>
-                    <div class="board-categories" th:text="${post.categories}"></div>
-                    <div class="board-peoples" th:text="${post.usercount} + '/' +${post.peoples}"></div>
-                    <!--            <div class="food" th:text="${post.categories}"></div>-->
+                    <div class="board-main">
+                        <div class="main-content">
+                            <ul class="board-list">
+                                <th:block th:each="post : ${postList}">
+                                    <li class="board" href="#enterRoomModal" data-bs-toggle="modal"
+                                        data-target="#enterRoomModal" th:data-id="${post.id}" th:data-nickname="${nickname}"
+                                        onclick="backdropDelete()">
+                                        <div class="board-header">
+                                            <div class="board-profile">
+                                                <img src="images/profile/profile4.png">
+                                            </div>
+                                            <div class="board-nickname" th:text="${post.nickname}"></div>
+                                            <div class="board-time-div">
+                                                <span>·</span>
+                                                <div>
+                                                    <img src="images/clock.png">
+                                                </div>
+                                                <div class="board-time"  th:text="${#temporals.format(post.create_Date, 'HH:mm')}"> </div>
+                                            </div>
+                                        </div>
+                                        <div class="board-body">
+                                            <div class="board-title" th:text="${post.title}"><a href="#"></a></div>
+                                        </div>
+                                        <div class="board-footer">
+                                                <div class="board-footer-left">
+                                                    <a class="board-categories" th:text="${post.categories}"></a>
+                                                    <div class="board-address" th:text="${post.store}">꾸브라꼬-의정부점</div>
+                                                </div>
+                                                <div class="board-footer-right">
+                                                    <div class="board-peoples-img">
+                                                        <img src="images/people2.png">
+                                                    </div>
+                                                    <div class="board-peoples" th:text="${post.usercount} + '/' +${post.peoples}"></div>
+                                                </div>
+                                        </div>
+                                    </li>
+                                </th:block>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </th:block>
+            <div class="width-right">
+                <div class="chat-container">
+                    <div id="chat-messages"></div>
+                    <div id="user-input">
+                        <input type="text" placeholder="메시지를 입력하세요" onfocus="this.placeholder=''"
+                               onblur="this.placeholder='메시지를 입력하세요'" />
+                        <button>전송</button>
+                    </div>
+                </div>
 
+                <div class="chat-img-area" onclick="chatbot_open()">
+                    <img  class="chat-img" src="images/chatbot.jpg">
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -160,70 +220,9 @@
 
 <!-- 모집글 생성 -->
 <div class="make-content" href="#CreateMozipModal" data-bs-toggle="modal"
-     data-target="#CreateMozipModal">
-    <button type="button" class="createOpen" id="createOpen">모집글 생성 📣</button>
+     data-target="#CreateMozipModal" style="display:none">
+    <button type="button" class="createOpen" id="createOpen">AI 채팅📣</button>
 </div>
-
-<!--<section class="Register">-->
-<!--    <div class="modal" id="modal">-->
-<!--        <div class="popup" id="popup">-->
-<!--            <form action="/mozip" method="post">-->
-<!--                <div class="m_head">-->
-<!--                    <div class="modal_title">-->
-<!--                        <h1></h1>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="m_body">-->
-<!--                    <div class="mozip-create-div">-->
-<!--                        <div class="body-titlebox">-->
-<!--                            <h2 class="mozip-h2">배고픈 사람 모여라!</h2>-->
-<!--                        </div>-->
-<!--                        <div class="body-contentbox">-->
-<!--                            <div class="input-area">-->
-<!--                                <input type="text" name="title" id="title" autocomplete="off" required>-->
-<!--                                <label for="title">제목</label>-->
-<!--                            </div>-->
-
-<!--                            <div class="input-area">-->
-<!--                            </div>-->
-
-<!--                            <div class="input-area">-->
-<!--                                <div class="sel">-->
-<!--                                    <select id="category" required>-->
-<!--                                        <option value="" disabled>카테고리</option>-->
-<!--                                        <option value="치킨">치킨</option>-->
-<!--                                        <option value="피자/양식">피자/양식</option>-->
-<!--                                        <option value="중식">중식</option>-->
-<!--                                        <option value="한식">한식</option>-->
-<!--                                        <option value="일식/돈까스">일식/돈까스</option>-->
-<!--                                        <option value="족발/보쌈">족발/보쌈</option>-->
-<!--                                        <option value="고기">고기</option>-->
-<!--                                        <option value="분식">분식</option>-->
-<!--                                        <option value="카페/디저트">카페/디저트</option>-->
-<!--                                        <option value="아시안">아시안</option>-->
-<!--                                        <option value="샌드위치">샌드위치</option>-->
-<!--                                        <option value="셀러드">셀러드</option>-->
-<!--                                        <option value="도시락/죽">도시락/죽</option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="input-area">-->
-
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="m_footer">-->
-<!--                    <button class="pop-btn create" id="create" type="submit">글 생성</button>-->
-<!--                    <span class="pop-btn close" id="close">창 닫기</span>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
 
 <!-- 모집글 클릭시 모달창 보여줌 -->
 <div class="modal fade" id="enterRoomModal" tabindex="-1" aria-labelledby="enterRoomModalLabel" aria-hidden="true">
@@ -435,8 +434,8 @@
             }
         }
     </script>
-<script src="/js/main_page/main_page.js"></script>
-<script src="/js/main_page/addStore2.js"></script>
+<script src="/static/js/main_page/main_page.js"></script>
+<script src="/static/js/main_page/addStore2.js"></script>
 
 </body>
 

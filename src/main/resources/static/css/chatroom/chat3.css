@@ -1292,7 +1292,7 @@ span.chat-user-name {
 }
 /* 초대하기 버튼 클릭 시 모달.*/
 /* 초대하기 버튼 클릭 시 모달.*/
-/* 초대하기 버튼 클릭 시 모달.*/
+/* 초대하기 버튼 클릭 시 모달.
 
 .modal-backdrop {
     background: none !important;
@@ -1320,7 +1320,6 @@ span.chat-user-name {
 }
 
 .modal-invite-text {
-    /* box-sizing: border-box; */
     position: relative;
     display: block;
     position: relative;
@@ -1333,7 +1332,6 @@ span.chat-user-name {
 }
 
 .modal-invite-content {
-    /* box-sizing: border-box; */
     position: relative;
     display: block;
     text-align: center;
@@ -1377,6 +1375,7 @@ img.user-search {
     color: #000000;
 }
 
+*/
 
 /* 사진 전송 라인 */
 .form-group {
@@ -1609,3 +1608,81 @@ div#menu {
         font-size: 1.1em;
     }
 }
+
+/* ---------- 메뉴 선택 모달 ------------- */
+/* 모집글 생성 제목 설정*/
+.mozipCreate .modal-dialog {
+    font-family: "NanumSquareNeo-Variable";
+    height: 660px;
+    width : 400px;
+    top: 13%;
+}
+@media screen and (max-width: 580px) {
+    .mozipCreate .modal-dialog {
+        width : auto;
+    }
+}
+
+.modal-dialog .modal-content{
+    height : 100%;
+}
+
+.mozipCreate .modal-content {
+    position: relative;
+    height: 94%;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    max-width: 530px;
+    min-width: 370px;
+}
+
+.mozipCreate .storeModal_header_topper {
+    border : none !important;
+}
+/* 메뉴 선택 header */
+.storeModal_header_topper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    padding: 4px 20px 5px 17px;
+    margin-bottom : 4px;
+}
+
+.storeModal_header_topper_back {
+  position : relative;
+  right : 4px;
+  flex : 0.7;
+}
+
+.storeModal_header_topper_back_img {
+  position : relative;
+  width : 90%;
+  header : 90%;
+}
+
+.storeModal_header_topper_text {
+  flex : 7;
+  position : relative;
+  text-align : left;
+  margin-left : 9px;
+}
+
+.storeModal_header_topper p{
+  font-family: "NanumSquareNeo-Variable";
+  position : absolute;
+  left : 0;
+  top: 11%;
+  font-size : 20px;
+}
+
+.mozipCreate-body {
+    position: relative;
+    width: 100%;
+    padding: 16px 10px 0px 8px;
+}
+

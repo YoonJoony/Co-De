@@ -141,20 +141,6 @@ public class RestaurantService {
                     throw new RuntimeException(e);
                 }
 
-                // * 배달요금 OOO원 별도 *
-//                WebElement deliveryFeeElement = driver.findElement(By.cssSelector(".list-group-item.clearfix.text-right.ng-binding"));
-//                String deliveryFee = deliveryFeeElement.getText();
-
-                WebElement deliveryFee = driver.findElement(By.cssSelector(".list-group-item.clearfix.text-right.ng-binding"));
-                String deliveryFeeText = deliveryFee.getText();
-                menu2.setDelivery_fee(deliveryFeeText); // 배달요금 문자열 전체를 저장
-
-//                menu = Menu.builder()
-//                        .delivery_fee(deliveryFee
-//                        .build();
-//                menuList.add(menu);
-
-
 
                 //메뉴 전체 div
                 WebElement popMenu = driver.findElement(By.className("panel-group"));
@@ -194,7 +180,7 @@ public class RestaurantService {
                 break;
             }
         }
-        //driver.quit();
-        return new AsyncResult<>(menu2);
+        driver.quit();
+        return new AsyncResult<>(menu2) ;
     }
 }
