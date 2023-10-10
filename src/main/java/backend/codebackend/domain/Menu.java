@@ -14,8 +14,8 @@ public class Menu {
     private String menuPrice;
     private String menuDesc;
     private String menuPhoto;
-    private final String delivery_fee;
-    private final String minPrice;
+    private String delivery_fee;
+    private String minPrice;
     private List<List<Menu>> menuList_Title;
     private List<String> menuList_Title_Name;
 
