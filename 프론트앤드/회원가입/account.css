@@ -132,12 +132,12 @@ button:focus {
     display: block;
 }
 
-.bankbox{
+.bankbox {
     position: relative;
     margin: 10px;
 }
 
-select{
+select {
     width: 250px;
     padding: 5px;
     border: 1px solid #999;
@@ -147,11 +147,11 @@ select{
     appearance: none;
 }
 
-.label_title{
+.label_title {
     margin-top: 10px;
 }
 
-.account_number{
+.account_number {
     left: 12px !important;
 }
 
