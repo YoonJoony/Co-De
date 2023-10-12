@@ -1,50 +1,43 @@
 package backend.codebackend.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import backend.codebackend.domain.Account;
-import backend.codebackend.domain.Member;
-import backend.codebackend.dto.AccountDto.AccountResponseDto;
+import backend.codebackend.dto.AccountDto;
 import backend.codebackend.repository.AccountRepository;
-import backend.codebackend.repository.MemberRepository;
-import backend.codebackend.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-
+@Transactional
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
-@Service
 public class AccountService {
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
-    public boolean isNonghyupAccount(String accountNumber) {
-        Account account = accountRepository.findByAccountNumber(accountNumber);
+    public boolean save(AccountDto accountDto) {
+        Account account = Account.builder()
+                .number(accountDto.getNumber())
+                .password(accountDto.getPassword())
+                .username(accountDto.getUsername())
+                .nickname(accountDto.getNickname())
+                .balance(accountDto.getBalance())
+                .accountNumber(accountDto.getAccountNumber())
+                .build();
 
-        if (account != null){
+        if(!duplicateAccount(account))
+            return false;
 
-            return isNonghyupAccount(account);  // 계좌가 존재 O
-        }
-        return false;   // 계좌가 존재 x
+        return true;
     }
 
-    private boolean isNonghyup(Account account) {
-        String accountNumber = account.getAccountNumber();
+    //계좌 중복 여부 (농
+    public boolean duplicateAccount(Account account) {
+        if (accountRepository.findAccount(account.getUsername(), account.getNickname()).get() == null)
+            return false;
 
-        // 농협(중앙회) 계좌 패턴
-        if (accountNumber.startsWith("301") || accountNumber.startsWith("302") || accountNumber.startsWith("312")) {
-            return true; // 농협(중앙회) 계좌
-        }
+        return true;
+    }
 
-        // 농협(단위농협) 계좌 패턴
-        if (accountNumber.startsWith("351") || accountNumber.startsWith("352") || accountNumber.startsWith("356")) {
-            return true; // 농협(단위농협) 계좌
-        }
-        return false;
+    public Account findAccount(String username, String nickname) {
+        Account account = accountRepository.findAccount(username, nickname).get();
+
+        return account;
     }
 }

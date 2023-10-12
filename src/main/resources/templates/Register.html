@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="/css/Register_style.css">
+    <link rel="stylesheet" href="/static/css/Register_style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://kit.fontawesome.com/eb076808b8.js" crossorigin="anonymous"></script>
 </head>
@@ -14,29 +14,33 @@
             <form name="AccountForm" action="/members/new" method="post" onsubmit="return jbSubmit();">
                 <h1 class="Register">Sign Up</h1>
                 <h3 class="Register">회원가입을 위해</br> 정보를 입력해주세요.</h3>
-                <label for="login"><p>* ID</p>
+                <label for="login"><p>* 아이디</p>
                     <input type="text" name="login" id="login"
                                autocomplete="off" required>
                 </label>
-                <label for="pw"><p class="pw_text">* PW</p>
+                <label for="pw"><p class="pw_text">* 비밀번호</p>
                     <input class="pw" type="password" name="pw" id="pw"
                            autocomplete="off"  required>
                     <i class="fa-regular fa-eye-slash fa1"></i>
                 </label>
-                <label for="pwcheck"><p>* PW CHECK</p>
+                <label for="pwcheck"><p>* 비밀번호 확인</p>
                     <input class="pwcheck" type="password" name="pwcheck" id="pwcheck"
                            autocomplete="off" required>
                     <i class="fa-regular fa-eye-slash fa2"></i>
                 </label>
-                <label for="nickname"><p>* Nick Name</p>
+                <label for="username"><p>* 이름</p>
+                    <input type="text" name="username" id="username"
+                           autocomplete="off" required>
+                </label>
+                <label for="nickname"><p>* 닉네임</p>
                     <input type="text" name="nickname" id="nickname"
                            autocomplete="off" required>
                 </label>
-                <label for="address"><p>* Address</p>
-                    <input type="text" name="address" id="address" autocomplete="off" required="" wfd-id="id3">
+                <label for="address"><p>* 주소</p>
+                    <input type="text" name="address" id="address" autocomplete="off" required="" wfd-id="id3" readonly>
                     <image src="images/search.png" style="    width: 18px; height: 18px; position: relative; top: 5px; right: 15px; cursor : pointer"></image>
                 </label>
-                <label for="pnum"><p>* Phone Number</p>
+                <label for="pnum"><p>* 핸드폰 번호</p>
                     <input type="text" class="phone" name="pnum" id="pnum" oninput="autoHyphen(this)" maxlength="13"
                            autocomplete="off"  required>
                     <button class="btn-Certified" name="btnsend" id='btnsend' type="submit">인증번호 받기</button>
@@ -50,7 +54,7 @@
         </div>
     </div>
 
-    <script src="/js/Register.js"></script>
+    <script src="/static/js/Register.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
     window.onload = function(){

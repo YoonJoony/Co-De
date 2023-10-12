@@ -64,6 +64,10 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public ChatService chatService() {
         return new ChatService(chatRepository(), chatUserRepository());
     }
+    @Bean
+    public AccountService accountService() {
+        return new AccountService(accountRepository());
+    }
 
     @Bean
     public MemberRepository memberRepository() {
@@ -83,6 +87,10 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     @Bean
     public ChatRepository chatRepository() {
         return new JpaChatRepository(em);
+    }
+    @Bean
+    public AccountRepository accountRepository() {
+        return new JpaAccountRepository(em);
     }
 
     @Override

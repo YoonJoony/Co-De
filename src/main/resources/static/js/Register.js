@@ -8,6 +8,7 @@
         let id = $('#login');
         let pw = $('#pw');
         let pwcheck = $('#pwcheck');
+        let username = $('#username');
         let nickname = $('#nickname');
         let address = $('#address');
         let phone = $('#phone');
@@ -24,8 +25,9 @@
         // 입력칸에 모두 빈칸과 공백이 모두 없어야 가입하기 버튼이 정상동작함
         // + 인증번호 받기 버튼 클릭 안할 시 가입하기 동작 안함
         // + 입력칸에 모두 빈칸과 공백이 모두 없어야 인증번호 받기 버튼이 동작함. -> form 요청 이벤트를 하나로 묶음(가입하기, 인증번호 받기)
-         function jbSubmit() {
-            var string = [id.val(), pw.val(), pwcheck.val(), nickname.val(), address.val()];
+         function jbSubmit(event) {
+
+            var string = [id.val(), pw.val(), pwcheck.val(), username.val(), nickname.val(), address.val()];
 
             if(string[0] == "" || string[0].match(pattern)){
                 if(string[0] != ""){
@@ -61,6 +63,18 @@
             }
             else if(string[3] == "" || string[3].match(pattern)){
                 if(string[3] != ""){
+                    alert("이름은 띄어쓰기가 입력될 수 없습니다.");
+                }
+                username.value = null;
+                username.next('label').addClass('warning');
+                setTimeout(function() {
+                    $('label').removeClass('warning')
+                }, 1500);
+                username.focus();
+                return false;
+            }
+            else if(string[4] == "" || string[4].match(pattern)){
+                if(string[4] != ""){
                     alert("닉네임은 띄어쓰기가 입력될 수 없습니다.");
                 }
                 nickname.value = null;
