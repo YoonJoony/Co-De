@@ -277,6 +277,13 @@ a {
   max-width: 800px;
   margin: 0 auto;
 }
+.h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+  color: #333333;
+}
 .h3 {
   margin-top: 20px;
   margin-bottom: 12px;
@@ -287,6 +294,23 @@ a {
   padding: 10px 15px;
   border-radius: 10px;
   border: solid 2px #ff8c16;
+}
+.balance {
+  width: auto;
+  height: auto;
+  padding: 10px;
+  /* border: solid 2px #ff8c16; */
+  background-color: #ff8c16;
+  text-align: center;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 2px 2px 2px #be6409;
+}
+#a_balance {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
 }
 .form-list li {
   position: relative;
@@ -363,35 +387,6 @@ input[type="password"] {
 .hide-modify-password {
   position: relative;
 }
-/* .button-align {
-  position: relative;
-  min-height: 53px;
-}
-.button-align.center {
-  text-align: center;
-  margin-top: 30px;
-}
-.button-align .button {
-  vertical-align: top;
-}
-.button {
-  position: relative;
-  display: inline-block;
-  margin: 1px 0;
-  color: white;
-  min-width: 110px;
-  height: 42px;
-  padding: 0 10px;
-  font-size: 13px;
-  line-height: 42px;
-  text-align: center;
-  border: 0;
-  border-radius: 5px;
-  background-color: #cecdd4;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s;
-} */
 .button.button-color {
   background-color: #ff8c16;
 }

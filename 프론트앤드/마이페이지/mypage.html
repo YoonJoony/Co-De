@@ -81,6 +81,49 @@
         </div>
         <div class="body">
             <div class="board">
+                <div class="h2">계좌 잔액</div>
+                <div class="form-round balance">
+                    <a id="a_balance">24858239</a>
+                </div>
+                <div class="h3">계좌 정보</div>
+                <div class="form-round signup">
+                    <ul class="form-list">
+                        <li>
+                            <span class="subject">ㆍ 계좌</span>
+                            <input type="text" value="(현재 계좌 번호)" id="div_account" readonly="" placeholder="계좌"
+                                minlength="3" maxlength="20">
+                        </li>
+                        <li>
+                            <span class="subject"></span>
+                            <button type="button" class="modify-btn" id="modify_ac_btn" onclick="modify_account_btn()">
+                                계좌 변경
+                            </button>
+                        </li>
+                        <div class="modify-form-round" id="modify_account_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 신규 계좌</span>
+                                    <input type="text" value="" id="modified_ac_1" class="form-control input-sm"
+                                        required="" placeholder="신규 계좌" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='신규 계좌'" size="10" maxlength="20">
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 신규 계좌 재 입력</span>
+                                    <input type="text" value="" id="modified_pw-2" class="form-control input-sm"
+                                        required="" placeholder="신규 계좌 재 입력" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='신규 계좌 재 입력'" size="10" maxlength="20">
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="ac_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="ac_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+
                 <div class="h3">아이디/비밀번호</div>
                 <div class="form-round signup">
                     <ul class="form-list">
@@ -179,10 +222,6 @@
                         </div>
                     </ul>
                 </div>
-                <!-- <div class="button-align center">
-                    <a href="메인페이지 이동 링크" class="button">취소</a>
-                    <button type="submit" id="btn_submit" class="button button-color">완료</button>
-                </div> -->
             </div>
         </div>
     </div>

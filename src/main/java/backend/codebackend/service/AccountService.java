@@ -5,20 +5,21 @@ import backend.codebackend.dto.AccountDto;
 import backend.codebackend.repository.AccountRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 
 @Transactional
 @RequiredArgsConstructor
 public class AccountService {
     private final AccountRepository accountRepository;
 
-    public boolean save(AccountDto accountDto) {
+    public boolean save(AccountDto accountDto, Long id) {
         Account account = Account.builder()
+                .id(id)
                 .number(accountDto.getNumber())
                 .password(accountDto.getPassword())
                 .username(accountDto.getUsername())
-                .nickname(accountDto.getNickname())
                 .balance(accountDto.getBalance())
-                .accountNumber(accountDto.getAccountNumber())
+                .accountName(accountDto.getAccountName())
                 .build();
 
         if(!duplicateAccount(account))
@@ -29,15 +30,19 @@ public class AccountService {
 
     //계좌 중복 여부 (농
     public boolean duplicateAccount(Account account) {
-        if (accountRepository.findAccount(account.getUsername(), account.getNickname()).get() == null)
+        if (accountRepository.findAccount(account.getId()).get() == null)
             return false;
 
         return true;
     }
 
-    public Account findAccount(String username, String nickname) {
-        Account account = accountRepository.findAccount(username, nickname).get();
+    public Account findAccount(Long id) {
+        Account account = accountRepository.findAccount(id).get();
 
         return account;
+    }
+
+    public void deleteAccount(Long id) {
+        accountRepository.deleteAccount(id);
     }
 }

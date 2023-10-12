@@ -1,3 +1,17 @@
+// 계좌 변경 버튼 클릭 시 수정 form 보이게 함
+function modify_account_btn() {
+  const box = document.getElementById("modify_account_form");
+
+  // btn1 숨기기 (display: none)
+  if (box.style.display !== "block") {
+    box.style.display = "block";
+  }
+  // btn` 보이기 (display: block)
+  else {
+    box.style.display = "none";
+  }
+}
+
 // 비밀번호 변경 버튼 클릭 시 수정 form 보이게 함
 function modify_pw_btn() {
   const box = document.getElementById("modify_password_form");

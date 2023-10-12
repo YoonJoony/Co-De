@@ -32,10 +32,9 @@ public class Account {
 
     @Column(nullable = false)
     private String username;
+
     @Column(nullable = false)
-    private String nickname;
-    @Column(nullable = false)
-    private String accountNumber;       // 계좌 넘버
+    private String accountName;       // 계좌 넘버
     @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createAt;
@@ -43,14 +42,13 @@ public class Account {
     @Column(nullable = false)
     private LocalDateTime updateAt;
 
-    public Account(Long id, Long number, Long password, Long balance, String username, String nickname, String accountNumber, LocalDateTime createAt, LocalDateTime updateAt) {
+    public Account(Long id, Long number, Long password, Long balance, String username, String accountName, LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.number = number;
         this.password = password;
         this.balance = balance;
         this.username = username;
-        this.nickname = nickname;
-        this.accountNumber = accountNumber;
+        this.accountName = accountName;
         this.createAt = createAt;
         this.updateAt = updateAt;
     }

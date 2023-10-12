@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface AccountRepository {
     Account save(Account account);
-    Optional<Account> findAccount(String number, String nickname);
-
+    Optional<Account> findAccount(Long id);
+    void deleteAccount(Long id);
 }

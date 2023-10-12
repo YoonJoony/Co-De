@@ -2,6 +2,7 @@ package backend.codebackend.repository;
 
 import backend.codebackend.domain.Account;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -19,12 +20,18 @@ public class JpaAccountRepository implements AccountRepository{
     }
 
     @Override
-    public Optional<Account> findAccount(String username, String nickname) {
-        List<Account> result = em.createQuery("select m from Account m where m.username = :username and m.nickname = :nickname", Account.class)
-                .setParameter("username", username)
-                .setParameter("nickname", nickname)
+    public Optional<Account> findAccount(Long id) {
+        List<Account> result = em.createQuery("select m from Account m where m.id = :id", Account.class)
+                .setParameter("id", id)
                 .getResultList();
 
         return result.stream().findAny();
+    }
+
+    @Override
+    public void deleteAccount(Long id) {
+        Query query = em.createQuery("delete m from Account m where m.id = :id", Account.class);
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 }
