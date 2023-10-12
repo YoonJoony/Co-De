@@ -911,7 +911,7 @@ a {
     height: 100%;
     max-height: 600px;
     width: 300px;
-    display: inline-block;
+    display: none; /* 장바구니 클릭이 안되서 일단 none으로 지워버림 */
     z-index: 5;
 }
 
