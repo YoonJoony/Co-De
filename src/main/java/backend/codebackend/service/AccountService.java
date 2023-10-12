@@ -19,7 +19,7 @@ public class AccountService {
                 .password(accountDto.getPassword())
                 .username(accountDto.getUsername())
                 .balance(accountDto.getBalance())
-                .accountNumber(accountDto.getAccountNumber())
+                .accountName(accountDto.getAccountName())
                 .build();
 
         if(!duplicateAccount(account))
@@ -40,5 +40,9 @@ public class AccountService {
         Account account = accountRepository.findAccount(id).get();
 
         return account;
+    }
+
+    public void deleteAccount(Long id) {
+        accountRepository.deleteAccount(id);
     }
 }

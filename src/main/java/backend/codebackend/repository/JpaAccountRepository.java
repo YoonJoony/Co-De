@@ -2,6 +2,7 @@ package backend.codebackend.repository;
 
 import backend.codebackend.domain.Account;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -25,5 +26,12 @@ public class JpaAccountRepository implements AccountRepository{
                 .getResultList();
 
         return result.stream().findAny();
+    }
+
+    @Override
+    public void deleteAccount(Long id) {
+        Query query = em.createQuery("delete m from Account m where m.id = :id", Account.class);
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 }
