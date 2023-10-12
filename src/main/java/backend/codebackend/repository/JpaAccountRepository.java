@@ -19,10 +19,9 @@ public class JpaAccountRepository implements AccountRepository{
     }
 
     @Override
-    public Optional<Account> findAccount(String username, String nickname) {
-        List<Account> result = em.createQuery("select m from Account m where m.username = :username and m.nickname = :nickname", Account.class)
-                .setParameter("username", username)
-                .setParameter("nickname", nickname)
+    public Optional<Account> findAccount(Long id) {
+        List<Account> result = em.createQuery("select m from Account m where m.id = :id", Account.class)
+                .setParameter("id", id)
                 .getResultList();
 
         return result.stream().findAny();
