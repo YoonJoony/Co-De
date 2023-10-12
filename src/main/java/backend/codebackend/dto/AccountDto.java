@@ -21,7 +21,6 @@ public class AccountDto {
     private Long balance;       // 잔액
 
     private String username;
-    private String nickname;
 
     private String accountNumber;       // 계좌 넘버
     @CreatedDate
@@ -29,13 +28,12 @@ public class AccountDto {
     @LastModifiedDate
     private LocalDateTime updateAt;
 
-    public AccountDto(Long id, Long number, Long password, Long balance, String username, String nickname, String accountNumber, LocalDateTime createAt, LocalDateTime updateAt) {
+    public AccountDto(Long id, Long number, Long password, Long balance, String username, String accountNumber, LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.number = number;
         this.password = password;
         this.balance = balance;
         this.username = username;
-        this.nickname = nickname;
         this.accountNumber = accountNumber;
         this.createAt = createAt;
         this.updateAt = updateAt;
