@@ -305,7 +305,7 @@ a {
   display: inline-block;
   left: 50%;
   transform: translateX(-50%);
-  box-shadow: 2px 2px 2px #be6409;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 #a_balance {
   color: white;
