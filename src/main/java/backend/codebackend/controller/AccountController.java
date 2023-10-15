@@ -20,7 +20,7 @@ public class AccountController {
     private final MemberService memberService;
 
     //계좌추가
-    @PostMapping("")
+    @PostMapping("/account")
     public boolean accountRegister(AccountDto accountDto, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -34,7 +34,7 @@ public class AccountController {
     }
 
     //계좌조회
-    @PostMapping("")
+    @PostMapping("/account/login-user")
     public Account findAccount(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -47,5 +47,9 @@ public class AccountController {
         return account;
     }
 
-    //
+    //계좌삭제
+
+    //송금
+
+    //정산(방장한테)
 }

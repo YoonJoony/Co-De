@@ -34,7 +34,7 @@ public class Account {
     private String username;
 
     @Column(nullable = false)
-    private String accountName;       // 계좌 넘버
+    private String accountName;       // 어디 은행
     @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createAt;
