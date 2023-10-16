@@ -573,7 +573,7 @@ function minus() {
     }
 }
 
-// 정산
+// 정산(결제)
 function cal() {
     const cal_content = document.querySelector(".cal_page");
 
