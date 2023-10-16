@@ -277,13 +277,6 @@ a {
   max-width: 800px;
   margin: 0 auto;
 }
-.h2 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  text-align: center;
-  color: #333333;
-}
 .h3 {
   margin-top: 20px;
   margin-bottom: 12px;
@@ -294,23 +287,6 @@ a {
   padding: 10px 15px;
   border-radius: 10px;
   border: solid 2px #ff8c16;
-}
-.balance {
-  width: auto;
-  height: auto;
-  padding: 10px;
-  /* border: solid 2px #ff8c16; */
-  background-color: #ff8c16;
-  text-align: center;
-  display: inline-block;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 2px 2px 2px #be6409;
-}
-#a_balance {
-  color: white;
-  font-size: 20px;
-  font-weight: 500;
 }
 .form-list li {
   position: relative;
@@ -437,5 +413,60 @@ input[type="password"] {
 }
 .commit-btn:hover {
   opacity: 0.7;
+}
+.address_div {
+  display: flex;
+}
+#modified_ad {
+  flex: 6;
+  margin-right: 10px;
+}
+#find_address {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  font-size: 13px;
+  text-align: center;
+  border: solid 1px #dddddd;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#modified_ad_detail {
+  flex: 6;
+  margin-right: 12px;
+}
+#ex1 {
+  flex: 1;
+}
+.account_show_div {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+#bank_name {
+  float: left;
+  margin-right: 5px;
+  font-weight: bold;
+  padding: 6px 0;
+}
+#account_num {
+  float: left;
+  padding: 6px 0;
+}
+#account_holder {
+  position: absolute;
+  top: 0;
+  font-weight: bold;
+  display: inline-block;
+  padding: 6px 0;
+}
+#a_balance {
+  position: absolute;
+  top: 0;
+  color: #58b26c;
+  font-weight: bold;
+  padding: 6px 0;
 }
 /*--------------------------------------------------*/

@@ -24,7 +24,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false, length = 4)
-    private Long number;        // 계좌번호
+    private String number;        // 계좌번호
     @Column(nullable = false, length = 4)
     private Long password;      // 계좌비번
     @Column(nullable = false)
@@ -34,7 +34,7 @@ public class Account {
     private String username;
 
     @Column(nullable = false)
-    private String accountName;       // 계좌 넘버
+    private String accountName;       // 어디 은행
     @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createAt;
@@ -42,7 +42,7 @@ public class Account {
     @Column(nullable = false)
     private LocalDateTime updateAt;
 
-    public Account(Long id, Long number, Long password, Long balance, String username, String accountName, LocalDateTime createAt, LocalDateTime updateAt) {
+    public Account(Long id, String number, Long password, Long balance, String username, String accountName, LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.number = number;
         this.password = password;

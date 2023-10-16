@@ -244,46 +244,34 @@
                                 <img src="images/log-out_5565735.png" class="out-img">
                             </div>
 
-                            <!-- 정산(결제) 확인창 -->
-                            <div class="cal_page">
-                                <div class="storeModal_header_topper">
-                                    <div class="storeModal_header_topper_back" id="modal_close_beck"
-                                        data-bs-dismiss="modal">
-                                        <img class="storeModal_header_topper_back_img" src="images/back.png"
-                                            onclick="cal()" style="cursor:pointer;">
-                                    </div>
-                                    <h2>결제 하기</h2>
-                                    <button class="pay_done" id="pay_done" onclick="discount_apply(); this.onclick='';">
-                                        금액 확인 </button>
-                                </div>
-                                <p id="delivery"></p>
-                                <div class="calualtor">
-                                    <div>
-                                        <h3>농담곰</h3>
-                                        <p id="host"></p>
-                                        <!-- 
-                                            방장일때는 p태그에 id를 호스트로 생성
-                                            결제 창에 금액확인 버튼을 누르면 id를 인식해서 방장은 배달비 할인된 금액으로 출력이 되고
+              <!-- 정산 확인창 -->
+              <div class="cal_page">
+                <h2>결제 하기</h2>
+                <button  class="pay_done" id="pay_done" onclick="discount_apply(); this.onclick='';"> 클릭 </button>
+                <p id="delivery"></p>
+                <div class="calualtor">
+                  <div>
+                    <h3>농담곰</h3>
+                    <p id="host"></p>
+                  </div>
 
-                                            아래 주석 처리된 div 보면 customer1이라고 되어 있는데 
-                                            방장을 제외한 나머지 인원에게는 name = customer n(숫자 1~3) 라는 태그 부여
+                  <div>
+                    <h3>북극곰</h3>
+                    <p id="costomer1" name="costomer1"></p>
+                  </div>
 
-                                            금액 확인 버튼을 누르면 방장에게 할인된 금액을 더하여 배달비가 출력
+                  <div>
+                    <h3>콜라곰</h3>
+                    <p id="costomer2" name="costomer2"></p>
+                  </div>
 
-                                            본인이 장바구니에서 선택한 메뉴값 + 배달비
-                                         -->
-                                    </div>
-
-
-                                    <div>
-                                        <h3>망담곰</h3>
-                                        <p name="costomer1"></p>
-                                    </div>
-
-                                </div>
-
-                                <button class="calbtn" onclick="cal()">닫기</button>
-                            </div>
+                  <div>
+                    <h3>망그곰</h3>
+                    <p id="costomer3" name="costomer3"></p>
+                  </div>
+                </div>
+                <button class="calbtn" onclick="cal()">닫기</button>
+              </div>
 
                             <!-- 장바구니 모달 -->
                             <div class="basket-view">
