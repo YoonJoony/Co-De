@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -89,9 +89,16 @@
                 <div class="form-round signup">
                     <ul class="form-list">
                         <li>
-                            <span class="subject">ㆍ 계좌</span>
-                            <input type="text" value="(현재 계좌 번호)" id="div_account" readonly="" placeholder="계좌"
-                                minlength="3" maxlength="20">
+                            <span class="subject">ㆍ 계좌 번호</span>
+                            <div class="account_show_div">
+                                <div class="bank_name">
+                                    농협
+                                </div>
+                                <div class="account_num">
+                                    132124124124
+                                </div>
+                            </div>
+                            
                         </li>
                         <li>
                             <span class="subject"></span>
@@ -222,11 +229,56 @@
                         </div>
                     </ul>
                 </div>
+                <div class="h3">주소</div>
+                <div class="form-round signup">
+                    <ul class="form-list">
+                        <li>
+                            <span class="subject">ㆍ 주소</span>
+                            <input type="text" value="(현재 주소)" id="div_account" readonly="" placeholder="계좌"
+                                minlength="3" maxlength="20">
+                        </li>
+                        <li>
+                            <span class="subject"></span>
+                            <button type="button" class="modify-btn" id="modify_ac_btn" onclick="modify_address_btn()">
+                                주소 변경
+                            </button>
+                        </li>
+                        <div class="modify-form-round" id="modify_address_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 신규 주소</span>
+                                    <div class="address_div">
+                                        <input type="text" value="" id="modified_ad" class="form-control input-sm"
+                                        required="" placeholder="주소" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='주소'" maxlength="20" readonly=""> 
+                                        <button type="button" id="find_address">주소 찾기</button>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="address_div">
+                                        <input type="text" value="" id="modified_ad_detail" class="form-control input-sm"
+                                        required="" placeholder="상세 주소" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='상세 주소'" maxlength="20">
+                                        <div id="ex1"></div>
+                                    </div>
+                                </li>
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="ad_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="ad_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="mypage.js"></script>
     <script src="modify.js"></script>
 </body>

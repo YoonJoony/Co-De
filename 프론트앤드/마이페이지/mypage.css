@@ -438,4 +438,42 @@ input[type="password"] {
 .commit-btn:hover {
   opacity: 0.7;
 }
+.address_div{
+  display: flex;
+}
+#modified_ad{
+  flex: 6;
+  margin-right: 10px;
+}
+#find_address{
+  flex: 1;
+  position: relative;
+    display: inline-block;
+    font-size: 13px;
+    text-align: center;
+    border: solid 1px #dddddd;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+#modified_ad_detail{
+  flex: 6;
+  margin-right: 12px;
+}
+#ex1{
+  flex: 1;
+}
+.account_show_div{
+  display: inline-block;
+  padding: 6px 0;
+}
+.bank_name{
+  float:left;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.account_num{
+  float: left;
+}
 /*--------------------------------------------------*/
