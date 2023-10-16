@@ -683,7 +683,7 @@ a {
 /* 모바일 화면에 띄우는거 */
 @media (max-width: 830px) {
   .make-content {
-    display: block;
+    display: none;
     z-index: 10;
     position: fixed;
     top: 90%;
