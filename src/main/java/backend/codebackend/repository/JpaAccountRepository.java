@@ -29,7 +29,7 @@ public class JpaAccountRepository implements AccountRepository{
 
     @Override
     public void deleteAccount(Long id) {
-        Query query = em.createQuery("delete from Account m where m.id = :id", Account.class);
+        Query query = em.createQuery("delete from Account m where m.id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
     }
