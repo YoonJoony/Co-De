@@ -20,14 +20,23 @@ public class AccountController {
     private final MemberService memberService;
 
     //계좌추가
-    @PostMapping("/account")
-    public boolean accountRegister(AccountDto accountDto, HttpServletRequest request) {
+    @PostMapping("/account/save")
+    public boolean accountRegister(String username, String number, Long password, String accountName, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return false;
         }
 
-        if(accountService.save(accountDto, memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getId()))
+        AccountDto accountDto = AccountDto.builder()
+                .id(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getId())
+                .number(number)
+                .password(password)
+                .balance(100000l)
+                .username(username)
+                .accountName(accountName)
+                .build();
+
+        if(accountService.save(accountDto))
             return true;
 
         return false;
