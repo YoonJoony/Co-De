@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/static/css/chatroom/chat3.css">
-  <link rel="stylesheet" href="/static/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
+  <link rel="stylesheet" href="/css/chatroom/chat3.css">
+  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -104,7 +104,7 @@
                           <span class="user-picture2">
                               <img src="images/profile/profile5.png" height="50px" width="50px">
                           </span>
-                      <span class="bell">
+            <span class="bell">
                               <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
                       </span>
             <span class="user-name2" th:text="${nickname}"> 야왕이네
@@ -219,24 +219,25 @@
                 <img src="images/bell.png">
                 <img src="images/icon/map.png" id="map_button" onclick="map_btn()">
                 <img src="images/icon/Budget.png">
-                <img src="images/icon/basket.png" onclick="basket()">
+                <img src="images/icon/basket.png" href="#CreateMozipModal" data-bs-toggle="modal"
+                     data-target="#CreateMozipModal" onclick="basket()">
                 <img src="images/icon/setting.png">
               </div>
               <img src="images/icon/log-out_5565735.png" class="out-img">
             </div>
             <div class="basket-view" style="display: none;"> <!-- 장바구니 -->
               <div class="basket-title">
-                  <div class="basket-title_topper">
-                    <div class="basket-title_topper_back">
-                      <img class="basket-title_topper_back_img" src="images/back.png" onClick="basket()" style="cursor:pointer;">
-                    </div>
-                    <div class="basket-title_topper_text">
-                      <p>메뉴를 추가해 보세요!</p>
-                    </div>
+                <div class="basket-title_topper">
+                  <div class="basket-title_topper_back">
+                    <img class="basket-title_topper_back_img" src="images/back.png" onClick="basket()" style="cursor:pointer;">
                   </div>
-                  <div class="basket-title_topper_text2">
-                   <p>주문표</p>
+                  <div class="basket-title_topper_text">
+                    <p>메뉴를 추가해 보세요!</p>
                   </div>
+                </div>
+                <div class="basket-title_topper_text2">
+                  <p>주문표</p>
+                </div>
               </div>
               <div class="menu-view">
                 <div class="menu-list">
@@ -300,14 +301,16 @@
                     </div>
                   </div>
                 </div>
-          </div>
-          <div class="menu-bottom">
-            <div class="totalPrice">
-              <span class="priceText"> 합계 :</span>
-                <span class="priceText" id="totalPrice">22,550원</span>
               </div>
-            <div class="modify-menu">
-                <input id="modify_menu_btn" type="button" value="메뉴 수정" wfd-id="id11">
+              <div class="menu-bottom">
+                <div class="totalPrice">
+                  <span class="priceText"> 합계 :</span>
+                  <span class="priceText" id="totalPrice">22,550원</span>
+                </div>
+                <div class="modify-menu">
+                  <input id="modify_menu_btn" type="button" value="메뉴 수정" wfd-id="id11">
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -316,49 +319,81 @@
   </div>
 </div>
 
-<!-- 모집글 클릭시 모달창 보여줌 -->
-<div class="modal fade" id="enterRoomModal" tabindex="-1" aria-labelledby="enterRoomModalLabel"  data-backdrop="static" aria-hidden="true">
+    <!-- 모집글 클릭시 모달창 보여줌 -->
+<!--    메뉴 선택을 모달로 할거라 이거랑 css 겹쳐서 보류-->
+<!--    <div class="modal fade" id="enterRoomModal" tabindex="-1" aria-labelledby="enterRoomModalLabel"  data-backdrop="static" aria-hidden="true">-->
+<!--      <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--          <div class="modal-header">-->
+<!--            <div class="modal-invite-text">-->
+<!--              <p>채팅방에 초대하기</p>-->
+<!--            </div>-->
+<!--            <div class="modal-invite-content">-->
+<!--              <div class="modal-invite-input">-->
+<!--                <img class="user-search" src="/images/search.png">-->
+<!--                <input type="text" placeholder="닉네임 검색">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="modal-footer">-->
+<!--            <input class="modal-btn btn-access" id="join_btn"-->
+<!--                   type="button" value="확인" data-bs-dismiss="modal">-->
+<!--            <input class="modal-btn btn-back" id="modal_close_btn" type="button" data-bs-dismiss="modal" value="취소">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!-- 메뉴 선택 모달창 -->
+<div class="modal fade mozipCreate" id="CreateMozipModal" tabindex="-1" aria-labelledby="enterRoomModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <div class="modal-invite-text">
-          <p>채팅방에 초대하기</p>
+      <div class="storeModal_header_topper">
+        <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal" >
+          <img class="storeModal_header_topper_back_img" src="images/back.png" onClick="closeStoreList()" style="cursor:pointer;">
         </div>
-        <div class="modal-invite-content">
-          <div class="modal-invite-input">
-            <img class="user-search" src="/images/search.png">
-            <input type="text" placeholder="닉네임 검색">
+        <div class="storeModal_header_topper_text">
+          <p>모집글을 만들어 보세요!</p>
+        </div>
+      </div>
+      <div class="menu-header">
+        <div class="min_delivery">
+          <div class="min_price_div">
+            <div> 최소주문 </div>
+            <div class="min_price"> 8000원</div>
+          </div>
+          <div class="delivery_fee_div">
+            <div> 배달비</div>
+            <div class="delivery_fee"> 2500원</div>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <input class="modal-btn btn-access" id="join_btn"
-               type="button" value="확인" data-bs-dismiss="modal">
-        <input class="modal-btn btn-back" id="modal_close_btn" type="button" data-bs-dismiss="modal" value="취소">
+      <div class="mozipCreate-body">
+
       </div>
     </div>
   </div>
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="/static/js/chatroom/chat3.js"></script>
-<!-- Add Bootstrap JavaScript and its dependencies -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-<!--WebSocket 스크립트-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<!-- 예제 시작 -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- http://localhost 에서 테스트 하시려면 cpw9RMOfkmb0qIa7Vz23 키를 사용해 보세요 -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/js/chatroom/chat3.js"></script>
+    <!-- Add Bootstrap JavaScript and its dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <!--WebSocket 스크립트-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <!-- 예제 시작 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- http://localhost 에서 테스트 하시려면 cpw9RMOfkmb0qIa7Vz23 키를 사용해 보세요 -->
 
-<!-- 맵 v3 스크립트 -->
-<script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mn7cwsrvym"></script>
+    <!-- 맵 v3 스크립트 -->
+    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mn7cwsrvym"></script>
 
-<!-- 네이버 지도 API 관련 -->
-<style type="text/css">
+    <!-- 네이버 지도 API 관련 -->
+    <style type="text/css">
 
 
 	.map_wrap .map_div {
@@ -369,12 +404,12 @@
 	}
 
 </style>
-<script>
+    <script>
 
 
-</script>
+    </script>
 
-<!-- 예제 종료 -->
+    <!-- 예제 종료 -->
 
 
 </body>

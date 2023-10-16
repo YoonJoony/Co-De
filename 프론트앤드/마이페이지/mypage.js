@@ -59,3 +59,31 @@ elements.forEach((element, index) => {
 
 //새로고침시 스크롤 위치 초기화
 history.scrollRestoration = "manual";
+
+//금액에 콤마(,) 표시
+function comma(str) {
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+}
+
+function uncomma(str) {
+  str = String(str);
+  return str.replace(/[^\d]+/g, "");
+}
+
+function inputNumberFormat(obj) {
+  obj.value = comma(uncomma(obj.value));
+}
+
+function inputOnlyNumberFormat(obj) {
+  obj.value = onlynumber(uncomma(obj.value));
+}
+
+function onlynumber(str) {
+  str = String(str);
+  return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1");
+}
+// #a_balance 적용
+var balance = $("#a_balance").text();
+var balance2 = balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+$("#a_balance").text(balance2 + "원");

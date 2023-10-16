@@ -20,6 +20,9 @@ public class MemberForm {
     private String pwcheck;
 
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
+    private  String username;
+
+    @NotEmpty(message = "공백을 포함해선 안됩니다.")
     @Pattern(regexp = "^[ㄱ-ㅎ가-힣a-z0-9_-]{3,20}$", message = "길이가 3~20의 알파벳, 숫자, 한글만 허용 됩니다.")
     private String nickname;
 
@@ -34,10 +37,11 @@ public class MemberForm {
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
     private String certified;
 
-    public MemberForm(String login, String pw, String pwcheck, String nickname, String address, String pnum, String certified) {
+    public MemberForm(String login, String pw, String pwcheck, String username, String nickname, String address, String pnum, String certified) {
         this.login = login;
         this.pw = pw;
         this.pwcheck = pwcheck;
+        this.username = username;
         this.nickname = nickname;
         this.address = address;
         this.pnum = pnum;
@@ -49,6 +53,7 @@ public class MemberForm {
                 .login(login)
                 .pw(pw)
                 .pwcheck(pwcheck)
+                .username(username)
                 .nickname(nickname)
                 .address(address)
                 .pnum(pnum)

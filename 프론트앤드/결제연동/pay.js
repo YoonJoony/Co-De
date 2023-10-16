@@ -1,34 +1,35 @@
+// 결제 창 호출
 var IMP = window.IMP;
 IMP.init("imp38136157");
-
-// 결제 창 호출
 
 function requestPay() {
   IMP.request_pay(
     {
-      pg: "html5_inicis",
-      pay_method: "vbank",
-      merchant_uid: "ex" + new Date().getTime(), // 주문번호
-      name: "뿌링클 치킨",
-      amount: 64900, // 숫자 타입
-      buyer_email: "gildong@gmail.com",
-      buyer_name: "홍길동",
-      buyer_tel: "010-4242-4242",
-      buyer_addr: "서울특별시 강남구 신사동",
-      buyer_postcode: "01181",
+      pg: "uplus",
+      pay_method: "card",
+      merchant_uid: "test_" + new Date().getTime(),
+      name: "테스트 결제",
+      amount: 100,
+      buyer_tel: "010-0000-0000",
+      buyer_name: "엄준식",
+      buyer_email: "111",
     },
     function (rsp) {
       console.log(rsp);
-      if (rsp.success) {
-        var msg = "결제가 완료되었습니다.";
-        alert(msg);
-      } else {
-        var msg = "결제에 실패하였습니다.";
-        msg += "에러내용 : " + rsp.error_msg;
-        alert(msg);
-      }
+      // 결제검증
+      $.ajax({
+        type: "POST",
+        url: "/verifyIamport/" + rsp.imp_uid,
+      }).done(function (data) {
+        console.log(data);
+
+        // 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+        if (rsp.paid_amount == data.response.amount) {
+          alert("결제 및 결제검증완료");
+        } else {
+          alert("결제 실패");
+        }
+      });
     }
-    // callback
-    //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다
   );
 }

@@ -234,13 +234,42 @@
                 <div class="chat-menu">
                   <img src="/Icon(아이콘)/bell.png">
                   <img src="/Icon(아이콘)/map.png" id="map_button" onclick="map_btn()">
-                  <img src="/Icon(아이콘)/Budget.png">
+                  <img src="/Icon(아이콘)/Budget.png" onclick="cal()">
                   <!-- <img src="/Icon(아이콘)/basket.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"> -->
                   <img src="/Icon(아이콘)/basket.png" onclick="basket()">
 
                   <img src="/Icon(아이콘)/setting.png">
                 </div>
                 <img src="/Icon(아이콘)/log-out_5565735.png" class="out-img">
+              </div>
+
+              <!-- 정산 확인창 -->
+              <div class="cal_page">
+                <h2>결제 하기</h2>
+                <button  class="pay_done" id="pay_done" onclick="discount_apply(); this.onclick='';"> 클릭 </button>
+                <p id="delivery"></p>
+                <div class="calualtor">
+                  <div>
+                    <h3>농담곰</h3>
+                    <p id="host"></p>
+                  </div>
+
+                  <div>
+                    <h3>북극곰</h3>
+                    <p id="costomer1" name="costomer1"></p>
+                  </div>
+
+                  <div>
+                    <h3>콜라곰</h3>
+                    <p id="costomer2" name="costomer2"></p>
+                  </div>
+
+                  <div>
+                    <h3>망그곰</h3>
+                    <p id="costomer3" name="costomer3"></p>
+                  </div>
+                </div>
+                <button class="calbtn" onclick="cal()">닫기</button>
               </div>
 
               <!-- 장바구니 모달 -->

@@ -88,7 +88,20 @@ class CodeBackendApplicationTests {
 	void 가게정보조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		List<Restuarant> rs = restaurantService.RsData(member.getAddress(), "전체보기");
+		String category = "";
+
+		RestaurantService restaurantService = new RestaurantService();
+		restaurantService.driver();
+		restaurantService.loadPage();
+		restaurantService.searchAddress(member.getAddress());
+		if(category != "")
+			restaurantService.selectCategory(category);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+		List<Restuarant> rs =restaurantService.RsData();
 
 		try {
 			Thread.sleep(100);
@@ -113,7 +126,7 @@ class CodeBackendApplicationTests {
 	void 메뉴리스트조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("순살만공격-민락점", member.getAddress());
+		Future<Menu> m = restaurantService.menuList("짱닭치킨-의정부점", member.getAddress());
 		Menu menu = m.get();
 
 		for(int i = 0; i < menu.getMenuList_Title().size(); i++) {
@@ -122,6 +135,10 @@ class CodeBackendApplicationTests {
 				System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
 				System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
 				System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
+				System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
+				System.out.println("배달 요금 별도 :  " + menu.getMenuList_Title().get(i).get(j).getDelivery_fee());
+
+
 			}
 		}
 	}

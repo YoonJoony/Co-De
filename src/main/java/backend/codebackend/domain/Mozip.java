@@ -27,8 +27,10 @@ public class Mozip {
     private String title;
     @Column(length = 10, nullable = false)
     private Long distance_limit;
-
+    @Column(length = 10, nullable = false)
     private String categories;
+    @Column(length = 20, nullable = false)
+    private String store;
 
     private int usercount; //채팅방 인원 수, 방 만들때마다 방장 인원도 추가해야 하므로 + 1
     private int peoples; //채팅방 최대 인원 제한
@@ -50,15 +52,15 @@ public class Mozip {
 
     private String nickname;
 
-    public Mozip(Long id, String title, Long distance_limit, String categories, int usercount, int peoples, LocalDateTime create_Date, String nickname) {
+    public Mozip(Long id, String title, Long distance_limit, String categories, String store, int usercount, int peoples, LocalDateTime create_Date, String nickname) {
         this.id = id;
         this.title = title;
         this.distance_limit = distance_limit;
         this.categories = categories;
+        this.store = store;
         this.usercount = usercount;
         this.peoples = peoples;
         this.create_Date = create_Date;
         this.nickname = nickname;
     }
-
 }

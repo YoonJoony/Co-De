@@ -31,6 +31,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -126,315 +129,428 @@
 
         </div>
 
-        <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
-        <div class="ad">
-            <a href="#">
-                <img img="" src="https://buts.co.kr/thema/Buts/colorset/Basic/img/guide_main_banner.png" alt="" title=""
-                    class="ad-img">
-            </a>
-        </div>
         <div class="search-list">
-            <input id="search_btn" type="button" value="태그 들어가야함."></input>
+            <button type="button" class="createOpen" id="createOpen">생성하기</button>
         </div>
-        <div class="board-list">
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
+        <hr>
+
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <a class="board-Category-item swiper-slide"> 전체 </a>
+                <a class="board-Category-item swiper-slide"> 1인분 주문 </a>
+                <a class="board-Category-item swiper-slide"> 치킨 </a>
+                <a class="board-Category-item swiper-slide"> 피자/양식 </a>
+                <a class="board-Category-item swiper-slide"> 중국집 </a>
+                <a class="board-Category-item swiper-slide"> 한식 </a>
+                <a class="board-Category-item swiper-slide"> 일식/돈까스 </a>
+                <a class="board-Category-item swiper-slide"> 족발/보쌈 </a>
+                <a class="board-Category-item swiper-slide"> 고기 </a>
+                <a class="board-Category-item swiper-slide"> 분식 </a>
+                <a class="board-Category-item swiper-slide"> 카페/디저트 </a>
+                <a class="board-Category-item swiper-slide"> 아시안 </a>
+                <a class="board-Category-item swiper-slide"> 샌드위치 </a>
+                <a class="board-Category-item swiper-slide"> 셀러드 </a>
+                <a class="board-Category-item swiper-slide"> 도시락/죽 </a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="main-left">
+                <!-- 게시판 틀 DB에 있는 모집글 데이터를 조회해서 모집글 출력-->
+                <div class="board-list">
+                    <ui>
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="board" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"
+                            th:data-id="${post.id}" onclick="backdropDelete()">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-nickname">김윤준</div>
+                                    <div class="board-time"> 11:00 </div>
+                                </div>
+                                <div class="board-body">
+                                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                </div>
+                                <div class="board-footer">
+                                    <a class="board-categories">#치킨</a>
+                                    <div class="board-address">경기도 서울시 종로구 오르막길 229-1 꾸브라꼬</div>
+                                    <div class="board-peoples">2/4</div>
+                                </div>
+                            </div>
+                        </li>
+
+
+
+                        <li class="board">
+                            <div class="boards">
+                                <div class="board-header">
+                                    <div class="board-time">11:00</div>
+                                    <img class="board-link" src="images\link.png" href="#enterRoomModal"
+                                        data-bs-toggle="modal" data-target="#enterRoomModal" th:data-id="${post.id}"
+                                        onclick="backdropDelete()">
+                                </div>
+                                <div class="board-nickname">김윤준</div>
+                                <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
+                                <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
+                                    data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+                                    </a>
+                                    <button class="join">Go GO~</button>
+                                </div>
+                                <div class="board-categories">#치킨</div>
+                                <div class="board-peoples">2/4</div>
+                            </div>
+                        </li>
+                    </ui>
                 </div>
             </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/chicken.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
+
+            <div class="main-right">
+                <div class="body_title">
+                    Chat Bot
+                </div>
+                <!-- 채팅 -->
+                <div id="chat-container">
+                    <div id="chat-messages"></div>
+                    <div id="user-input">
+                        <input type="text" placeholder="메시지를 입력하세요" onfocus="this.placeholder=''"
+                            onblur="this.placeholder='메시지를 입력하세요'" />
+                        <button>전송</button>
                     </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
                 </div>
             </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/japan-food.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
+
+            <div class="chat-img-area" onclick="chatbot_open()">
+                <img  class="chat-img" src="images/chatbot.jpg">
             </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/korean-food.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/redbead.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/Sandwich.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/Vietnamese-food.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/pizza.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
-            <div class="board" style="position: absolute; left: 0%; top: 0px;">
-                <img class="board-img" src="categories/meet.png">
-                <div class="boards">
-                    <div class="board-header">
-                        <div class="board-time">11:00</div>
-                        <img class="board-link" src="images\link.png" href="#enterRoomModal" data-bs-toggle="modal"
-                            data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()">
-                    </div>
-                    <div class="board-nickname">김윤준</div>
-                    <div class="board-title">BHC 각인데요 진짜 시벌<a href="#"></a></div>
-                    <div class="board-button" href="#enterRoomModal" data-bs-toggle="modal"
-                        data-target="#enterRoomModal" th:data-id="${post.id}" onclick="backdropDelete()"></a>
-                        <button class="join">Go GO~</button>
-                    </div>
-                    <div class="board-categories">치킨</div>
-                    <div class="board-peoples">2/4</div>
-                </div>
-            </div>
+            
         </div>
     </div>
 
 
 
     <!-- 모집글 생성 -->
-    <div class="make-content">
-        <button type="button" class="createOpen" id="createOpen">모집글 생성 📣</button>
-    </div>
-
     <section class="Register">
         <div class="modal" id="modal">
             <div class="popup" id="popup">
@@ -606,5 +722,7 @@
         }
     </script>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </html>

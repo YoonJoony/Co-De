@@ -6,6 +6,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor //기본 생성자를 추가해주는 어노테이션
@@ -27,6 +31,8 @@ public class Member {
     private String pwcheck;
 
     @Column(length = 10, nullable = false)
+    private String username;
+    @Column(length = 10, nullable = false)
     private String nickname;
 
     @Column(length = 100, nullable = false)
@@ -37,11 +43,12 @@ public class Member {
     @Column(length = 17, nullable = false)
     private String certified;
 
-    public Member(Long id, String login, String pw, String pwcheck, String nickname, String address, String pnum, String certified) {
+    public Member(Long id, String login, String pw, String pwcheck, String username, String nickname, String address, String pnum, String certified) {
         this.id = id;
         this.login = login;
         this.pw = pw;
         this.pwcheck = pwcheck;
+        this.username = username;
         this.nickname = nickname;
         this.address = address;
         this.pnum = pnum;
