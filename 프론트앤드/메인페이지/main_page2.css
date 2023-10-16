@@ -685,13 +685,27 @@ a {
   flex-direction: column-reverse;
 }
 
-.message {
+.message_user {
     margin-top: .3rem;
     margin-bottom: .3rem;
     border : 1px solid #ff9d36;
-    padding : 4px 0px 4px 7px;
+    min-width: 53px;
+    width: fit-content;
+    padding : 4px 7px 4px 7px;
     border-radius : 5px;
     font-size : 14px;
+    margin-left:auto;
+}
+
+.message_gpt {
+  margin-top: .3rem;
+  margin-bottom: .3rem;
+  border : 1px solid #7cab75;
+  min-width: 53px;
+  width: fit-content;
+  padding : 4px 7px 4px 7px;
+  border-radius : 5px;
+  font-size : 14px;
 }
 
 #user-input {

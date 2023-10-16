@@ -186,15 +186,29 @@ const sendButton = document.querySelector("#user-input button");
 const apiKey = "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";
 // OpenAI API 엔드포인트 주소를 변수로 저장
 const apiEndpoint = "https://api.openai.com/v1/chat/completions";
-function addMessage(sender, message) {
+
+//user 메시지
+function addMessage_user(sender, message) {
     // 새로운 div 생성
     const messageElement = document.createElement("div");
     // 생성된 요소에 클래스 추가
-    messageElement.className = "message";
+    messageElement.className = "message_user";
     // 채팅 메시지 목록에 새로운 메시지 추가
     messageElement.textContent = `${sender}: ${message}`;
     chatMessages.prepend(messageElement);
 }
+
+// gpt 메시지
+function addMessage_gpt(sender, message) {
+  // 새로운 div 생성
+  const messageElement = document.createElement("div");
+  // 생성된 요소에 클래스 추가
+  messageElement.className = "message_gpt";
+  // 채팅 메시지 목록에 새로운 메시지 추가
+  messageElement.textContent = `${sender}: ${message}`;
+  chatMessages.prepend(messageElement);
+}
+
 // ChatGPT API 요청
 async function fetchAIResponse(prompt) {
     // API 요청에 사용할 옵션을 정의
@@ -203,7 +217,7 @@ async function fetchAIResponse(prompt) {
         // API 요청의 헤더를 설정
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
+            Authorization: `Bearer ${gpt_apiKey}`,
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo", // 사용할 AI 모델
@@ -241,11 +255,11 @@ sendButton.addEventListener("click", async () => {
     // 메시지가 비어있으면 리턴
     if (message.length === 0) return;
     // 사용자 메시지 화면에 추가
-    addMessage("나", message);
+    addMessage_user("나", message);
     userInput.value = "";
     //ChatGPT API 요청후 답변을 화면에 추가
     const aiResponse = await fetchAIResponse(message);
-    addMessage("챗봇", aiResponse);
+    addMessage_gpt("챗봇", aiResponse);
 });
 // 사용자 입력 필드에서 Enter 키 이벤트를 처리
 userInput.addEventListener("keydown", (event) => {

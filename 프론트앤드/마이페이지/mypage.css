@@ -464,4 +464,16 @@ input[type="password"] {
 #ex1{
   flex: 1;
 }
+.account_show_div{
+  display: inline-block;
+  padding: 6px 0;
+}
+.bank_name{
+  float:left;
+  margin-right: 5px;
+  font-weight: bold;
+}
+.account_num{
+  float: left;
+}
 /*--------------------------------------------------*/
