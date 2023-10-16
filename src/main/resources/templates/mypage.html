@@ -81,17 +81,24 @@
         </div>
         <div class="body">
             <div class="board">
-                <div class="h2">계좌 잔액</div>
-                <div class="form-round balance">
-                    <a id="a_balance">24858239</a>
-                </div>
                 <div class="h3">계좌 정보</div>
                 <div class="form-round signup">
                     <ul class="form-list">
                         <li>
-                            <span class="subject">ㆍ 계좌</span>
-                            <input type="text" value="(현재 계좌 번호)" id="div_account" readonly="" placeholder="계좌"
-                                minlength="3" maxlength="20">
+                            <span class="subject">ㆍ 계좌 번호</span>
+                            <div class="account_show_div">
+                                <span id="bank_name"th:text="${account.account_name}"> </span>
+                                <span id="account_num" th:text="${account.number}"> </span>
+                            </div>
+                        <li>
+                            <span class="subject">ㆍ 예금주
+                            </span>
+                            <span id="account_holder" th:text="${account.username}"></span>
+                        </li>
+                        <li>
+                            <span class="subject">ㆍ 계좌 잔액
+                            </span>
+                            <span id="a_balance" th:text="${account.balance}"></span>
                         </li>
                         <li>
                             <span class="subject"></span>
@@ -143,8 +150,8 @@
                                 <li>
                                     <span class="subject">ㆍ 계좌번호</span>
                                     <input type="text" value="" id="modified_ac_number" class="form-control input-sm"
-                                        required="" placeholder="계좌번호를 입력해 주세요" onfocus="this.placeholder=''"
-                                        onblur="this.placeholder='계좌번호를 입력해 주세요'" size="10" maxlength="20"
+                                        required="" placeholder="계좌번호를 입력해 주세요"  oninput="autoHyphen(this)"  onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='계좌번호를 입력해 주세요'" size="10" maxlength="16"
                                        onkeypress='return checkNumber(event)'>
                                 </li>
                                 <li>

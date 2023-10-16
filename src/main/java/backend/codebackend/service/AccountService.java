@@ -30,17 +30,27 @@ public class AccountService {
     }
 
     //계좌 중복 여부 (농
-    public boolean duplicateAccount(Account accountTb) {
-        if (accountRepository.findAccount(accountTb.getId()).isPresent())
-            return false;
-
+    public boolean duplicateAccount(Account account) {
+        if (accountRepository.findAccount(account.getId()).isPresent()) {
+            System.out.println("추가한 계좌가 있습니다.");
+            deleteAccount(account.getId()); //본인 계좌 삭제
+            return true;
+        }
         return true;
     }
 
     public Account findAccount(Long id) {
-        Account accountTb = accountRepository.findAccount(id).get();
+        Account findAccount = new Account();
+        if (accountRepository.findAccount(id).isPresent()) {
+            findAccount = accountRepository.findAccount(id).get();
+            return findAccount;
+        }
+        findAccount.setAccount_name("계좌를 추가 해주세요");
+        findAccount.setNumber("");
+        findAccount.setUsername("");
+        findAccount.setBalance(0l);
 
-        return accountTb;
+        return findAccount;
     }
 
     public void deleteAccount(Long id) {
