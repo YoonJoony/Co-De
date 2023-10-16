@@ -14,9 +14,8 @@ public class JpaAccountRepository implements AccountRepository{
     private final EntityManager em;
 
     @Override
-    public Account save(Account account) {
-//        em.persist(account);
-        return null;
+    public void save(Account account) {
+        em.persist(account);
     }
 
     @Override
