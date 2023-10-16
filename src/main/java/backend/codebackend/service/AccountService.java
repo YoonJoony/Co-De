@@ -12,9 +12,9 @@ import lombok.extern.java.Log;
 public class AccountService {
     private final AccountRepository accountRepository;
 
-    public boolean save(AccountDto accountDto, Long id) {
+    public boolean save(AccountDto accountDto) {
         Account account = Account.builder()
-                .id(id)
+                .id(accountDto.getId())
                 .number(accountDto.getNumber())
                 .password(accountDto.getPassword())
                 .username(accountDto.getUsername())
