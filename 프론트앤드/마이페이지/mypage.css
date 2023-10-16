@@ -307,7 +307,6 @@ a {
 .form-list input[type="text"],
 .form-list input[type="password"] {
   width: 90%;
-  margin-left: 8px;
 }
 input[type="text"],
 input[type="password"] {
@@ -349,7 +348,6 @@ input[type="password"] {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s;
-  margin-left: 8px;
 }
 .modify-btn:hover {
   opacity: 1;
