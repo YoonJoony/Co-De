@@ -1,5 +1,6 @@
 package backend.codebackend;
 
+import backend.codebackend.controller.AccountController;
 import backend.codebackend.domain.Chat;
 import backend.codebackend.repository.*;
 import backend.codebackend.service.*;
@@ -16,6 +17,7 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
@@ -63,7 +65,7 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     }
     @Bean
     public AccountService accountService() {
-        return new AccountService(accountRepository());
+        return new AccountService(accountRepository(), encoder());
     }
 
     @Bean
@@ -85,9 +87,15 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public ChatRepository chatRepository() {
         return new JpaChatRepository(em);
     }
+
     @Bean
     public AccountRepository accountRepository() {
         return new JpaAccountRepository(em);
+    }
+
+    @Bean
+    public BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override

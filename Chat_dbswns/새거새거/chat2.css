@@ -1298,12 +1298,10 @@ div#menu {
 /* 몸체 css */
 .popup {
     margin-top: 100px;
-    width: 100%;
-    height: 35%;
-    min-height: 280px;
-    max-width: 600px;
+    width: 30%;
+    min-width: 400px;
+    height: 25%;
     overflow: visible;
-
     padding: 8px 3px;
     margin: 0 auto;
     border: none;
@@ -1311,8 +1309,25 @@ div#menu {
     box-shadow: 0 4px 4px 0 gray;
     border-radius: 5px 5px 20px 20px;
     border-bottom: solid 9px #ff8c16;
-    max-width: 530px;
-    min-width: 370px;
+    top: 30%;
+    position: relative;
+}
+@media (max-width: 639px) {
+    .popup {
+        margin-top: 100px;
+        width: 100%;
+        height: 25%;
+        overflow: visible;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        top: 30%;
+        position: relative;
+    }
 }
 
 /* 로고 영역 css */
@@ -1326,7 +1341,7 @@ div#menu {
 .m_body {
     /* 몸통 */
     width: 100%;
-    height: 55%;
+    height: 68%;
     background-color: #ffffff;
     /* 컨텐츠 영역의 배경색 */
 }
@@ -1406,6 +1421,21 @@ div#menu {
     outline: none;
     border-radius: 6px;
 }
+@media (max-width: 639px) {
+    .input-area input {
+        width: 100%;
+        padding: 20px 10px 10px;
+        background-color: #d9d9d9;
+        border: none;
+        font-size: 16px;
+        color: #000000;
+        outline: none;
+        border-radius: 6px;
+        height: 40px;
+        position: relative;
+        top: 8px;
+    }
+}
 
 .input-area label {
     position: absolute;
@@ -1442,8 +1472,8 @@ div#menu {
 
 .input-area input:focus+label,
 .input-area input:valid+label {
-    top: -2px;
-    font-size: 13px;
+    top: 2px;
+    font-size: 12px;
     color: #7cab75;
 }
 
@@ -2329,8 +2359,22 @@ input::-webkit-inner-spin-button {
     left: 3%;
 }
 
+.storeModal_header_topper_back_img_invite{
+    position: absolute;
+    width: 40px;
+    top: -10%;
+    left: 3%;
+}
+
 @media (max-width: 639px) {
     .storeModal_header_topper_back_img_detail {
+        position: absolute;
+        width: 11%;
+        top: 0%;
+        left: 3%;
+    }
+
+    .storeModal_header_topper_back_img_invite {
         position: absolute;
         width: 11%;
         top: 0%;
