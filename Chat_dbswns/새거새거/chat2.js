@@ -518,7 +518,7 @@ document
 // 모달 창 닫기
 function close_modal() {
     document.querySelector(".modal-background").className = "modal-background";
-    detail_open();
+    detail_close();
 }
 // x클릭 시 close_modal 함수 호출
 document
@@ -573,7 +573,7 @@ function minus() {
     }
 }
 
-// 정산
+// 정산(결제)
 function cal() {
     const cal_content = document.querySelector(".cal_page");
 
@@ -622,10 +622,9 @@ const userList = [1, 2, 3, 4];
 
 // const $list = $('#list'); // 참가자 명단
 
-const pay_amount = 19000; // 음식가격
-// 개별로 음식을 선택 했을때는 상관없음
-// 음식을 n/1 할때 필요
-const pay_amount_each = pay_amount / userList.length; // 각자 내야하는 음식가격
+// 개별로 선택한 음식 가격
+const pay_amount = 19000;
+
 
 // 각자 내야 하는 배달비
 const delivery_fee = 4000; // 배달비
@@ -643,44 +642,41 @@ $('#pay_done').one('click', function () {
         let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1))); // 할인 된 금액만큼 나머지 사람들이 납부 
         // 전체참가자 - 호스트
 
-        host_pay.innerHTML += `<p>금액:  ${host_fee.toLocaleString()}원</p>`;
+        const total_pay_host = pay_amount + host_fee;
+        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`; // 호스트가 내야 하는 비용
+
+        const total_pay_coutomer = pay_amount + costomer_fee;
 
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>금액:  ${costomer_fee.toLocaleString()}원</p>`;
+            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`; // 참가자가 지불해야 하는 비용
         }
-
-        document.getElementById("check_pay").innerHTML += `<p>금액:  ${((costomer_fee * 3) + host_fee).toLocaleString()}원</p>`;
     }
     else if (userList.length == 3) { // 참가자가 3인 일 때
         let rate = Math.ceil(delivery_fee_each * 0.3);
-        let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
-        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1))); // 할인 된 금액만큼 나머지 사람들이 납부 
-        // 전체참가자 - 호스트
+        let host_fee = Math.ceil(delivery_fee_each - rate);
+        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
 
-        host_pay.innerHTML += `<p>금액:  ${host_fee.toLocaleString()}원</p>`;
+        const total_pay_host = pay_amount + host_fee;
+        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
 
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>금액:  ${costomer_fee.toLocaleString()}원</p>`;
+            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
         }
-
-        document.getElementById("check_pay").innerHTML += `<p>금액:  ${((costomer_fee * 2) + host_fee).toLocaleString()}원</p>`;
     }
     else if (userList.length == 2) { // 참가자가 2인 일 때
         let rate = Math.ceil(delivery_fee_each * 0.2);
-        let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
-        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1))); // 할인 된 금액만큼 나머지 사람들이 납부 
-        // 전체참가자 - 호스트
+        let host_fee = Math.ceil(delivery_fee_each - rate);
+        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
 
-        host_pay.innerHTML += `<p>금액:  ${host_fee.toLocaleString()}원</p>`;
+        const total_pay_host = pay_amount + host_fee;
+        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
 
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>금액:  ${costomer_fee.toLocaleString()}원</p>`;
+            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
         }
-
-        document.getElementById("check_pay").innerHTML += `<p>금액:  ${((costomer_fee) + host_fee).toLocaleString()}원</p>`;
     }
 });
 // ------------------------------------------------------------------------------------------
