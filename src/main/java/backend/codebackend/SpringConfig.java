@@ -24,13 +24,10 @@ import java.time.LocalDateTime;
 
 //빈을 직접 찾아서 등록하는거라 따로 서비스나 저장소에서 @service... @repo.. 안해줘도 됨
 
-
 @Configuration
 @EnableWebSocketMessageBroker
 @EnableAsync
 public class SpringConfig implements WebSocketMessageBrokerConfigurer {
-
-
     private final EntityManager em;
 
     private final AmazonS3 amazonS3;
