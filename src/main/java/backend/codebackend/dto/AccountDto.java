@@ -19,7 +19,7 @@ public class AccountDto {
 
     private Long id;
     private String number;        // 계좌번호
-    private Long password;      // 계좌비번
+    private String password;      // 계좌비번
     private Long balance;       // 잔액
 
     private String username;
@@ -30,7 +30,7 @@ public class AccountDto {
     @LastModifiedDate
     private LocalDateTime updateAt;
 
-    public AccountDto(Long id, String number, Long password, Long balance, String username, String accountName, LocalDateTime createAt, LocalDateTime updateAt) {
+    public AccountDto(Long id, String number, String password, Long balance, String username, String accountName, LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.number = number;
         this.password = password;

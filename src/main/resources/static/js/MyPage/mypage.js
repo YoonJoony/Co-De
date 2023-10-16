@@ -25,26 +25,22 @@ $(function () {
             alert("모든 필드를 채워주세요.");
             return; // 경고 메시지 후, 함수 실행 중지
         }
-//        .ajax({
-//            type : "POST",
-//            url : "/account/save",
-//            data : {
-//                "username" : modified_ac_user.val(),
-//                "number" : modified_ac_number.val(),
-//                "password" : modified_ac_pw.val(),
-//                "accountName" : selectedBank,
-//            },
-//            success : function() {
-//                console.log("계좌 저장에 성공 하였습니다.");
-//            },
-//            error : function() {
-//                console.log("계좌 저장에 실패.");
-//            }
-//        })
-        console.log(modified_ac_user.val());
-        console.log(modified_ac_number.val());
-        console.log(modified_ac_pw.val());
-        console.log(selectedBank);
+        $.ajax({
+            type : "POST",
+            url : "/myPage/account/save",
+            data : {
+                "username" : modified_ac_user.val(),
+                "number" : modified_ac_number.val(),
+                "password" : modified_ac_pw.val(),
+                "accountName" : selectedBank,
+            },
+            success : function() {
+                console.log("계좌 저장에 성공 하였습니다.");
+            },
+            error : function() {
+                console.log("계좌 저장에 실패.");
+            }
+        })
     });
 
 });

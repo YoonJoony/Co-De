@@ -64,6 +64,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
 	implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.2.2'
 //	implementation 'org.seleniumhq.selenium:selenium-devtools-v86:4.8.2'
+
+	//스프링 시큐리티 (BCryptPasswordEncoder)
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {

@@ -1,12 +1,10 @@
 package backend.codebackend.controller;
 
 import backend.codebackend.domain.Mozip;
-import backend.codebackend.domain.Restuarant;
 import backend.codebackend.dto.MozipForm;
 import backend.codebackend.service.ChatUserService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MozipService;
-import backend.codebackend.service.RestaurantService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-public class MozipController {
+public class MainController {
 
     private final MozipService mozipService;
     private final MemberService memberService;
@@ -114,5 +111,11 @@ public class MozipController {
         }
         System.out.println("\n\n\n입장 실패 ㅜㅜ");
         return false;
+    }
+
+    //마이페이지로 이동
+    @GetMapping("/myPage")
+    public String myPage() {
+        return "myPage";
     }
 }
