@@ -140,8 +140,9 @@ p {
 .width-container {
   position: relative;
   /*max-width: 1880px;*/
+  width: 90%;
   height: 100%;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .search-container {
@@ -423,11 +424,20 @@ a {
   margin-top: 20px;
   max-width: 86rem;
 }
+@media (max-width: 830px) {
+  .width-main {
+    font-family: "NanumSquareNeo-Variable";
+    width: 100%;
+    height: 100%;
+    margin-left: -15px;
+    margin-top: 20px;
+    max-width: 86rem;
+  }
+}
 
 .main-flex {
   display: flex;
   position: relative;
-  padding: 0 20px;
 }
 
 .width-container-margin {
@@ -680,6 +690,30 @@ a {
 
 /* ------챗봇 컨테이너 --------*/
 
+.chat_header {
+  position: relative;
+  height: 50px;
+}
+
+@media (max-width: 830px) {
+  .storeModal_header_topper_back_img_chatbot {
+    position: absolute;
+    width: 41px;
+    top: 19%;
+    left: 3%;
+  }
+
+  .storeModal_header_topper_text_chat {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    margin-top: 15px;
+    margin-right: 65px;
+  }
+}
+
 /* 모바일 화면에 띄우는거 */
 @media (max-width: 830px) {
   .make-content {
@@ -693,6 +727,29 @@ a {
 
 .width-right {
   width: 330px;
+}
+
+@media (max-width: 830px) {
+  .width-right {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 10;
+
+    /* 숨기기 */
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .chatbot_show {
+    opacity: 1;
+    z-index: 10;
+    transition: all .5s;
+  }
 }
 
 .chat-container {
@@ -711,13 +768,32 @@ a {
   .chat-container {
     position: relative;
     min-width: 300px;
-    margin-top: 24px;
-    height: 450px;
-    display: none;
+    /* margin-top: 20px; */
+    height: 85%;
+    display: flex;
     flex-direction: column;
     border-radius: 15px;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     background-color: #fff;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
+  }
+
+  .chatbot_show .chat-container {
+    transform: translate(-50%, -50%);
+    transition: all .5s;
+  }
+
+  .chat_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
   }
 }
 
@@ -1007,6 +1083,54 @@ a {
   text-align: center;
 }
 */
+
+/* ---------------------------------------------------- */
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  /* 숨기기 */
+  z-index: -1;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+  z-index: 1000;
+  transition: all .5s;
+}
+
+.window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -30%);
+}
+
+.show .popup {
+  transform: translate(-50%, -50%);
+  transition: all .9s;
+  animation: 600ms cubic-bezier(0.2, 1, 0.4, 1) 0s 1 normal both running fqxGIV;
+}
+
+/* ---------------------------------------------------- */
 
 .modal-dialog {
   position: relative;
