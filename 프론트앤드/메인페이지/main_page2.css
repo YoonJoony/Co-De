@@ -424,14 +424,15 @@ a {
   margin-top: 20px;
   max-width: 86rem;
 }
+
 @media (max-width: 830px) {
   .width-main {
     font-family: "NanumSquareNeo-Variable";
-    width: 100%;
+    width: 90%;
     height: 100%;
-    margin-left: -15px;
+    margin-left: -10px;
     margin-top: 20px;
-    max-width: 86rem;
+    /* max-width: 86rem; */
   }
 }
 
@@ -442,12 +443,24 @@ a {
 
 .width-container-margin {
   position: relative;
-  /* width : 100%; */
+  width: 100%;
   min-width: 450px;
   height: 100%;
   --tw-space-x-reverse: 0;
   margin-left: calc(2.5rem * var(--tw-space-x-reverse));
   margin-right: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+@media (max-width: 830px) {
+  .width-container-margin {
+    position: relative;
+    /* width : 100%; */
+    /* min-width: 450px; */
+    height: 100%;
+    --tw-space-x-reverse: 0;
+    margin-left: calc(2.5rem * var(--tw-space-x-reverse));
+    margin-right: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
 }
 
 .width-container {
@@ -543,6 +556,15 @@ a {
   position: relative;
   flex: none;
   top: 5px;
+}
+
+@media (max-width: 830px) {
+  .scroll-arrow {
+    position: relative;
+    flex: none;
+    top: 5px;
+    display: none;
+  }
 }
 
 .scroll-content {
@@ -695,6 +717,21 @@ a {
   height: 50px;
 }
 
+.storeModal_header_topper_back_img_chatbot {
+  position: absolute;
+  width: 41px;
+  top: 19%;
+  left: 3%;
+}
+.storeModal_header_topper_text_chat {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  margin-top: 15px;
+  margin-right: 65px;
+}
 @media (max-width: 830px) {
   .storeModal_header_topper_back_img_chatbot {
     position: absolute;
@@ -1604,9 +1641,10 @@ select::-ms-expand {
 
 .storeModal_content {
   position: relative;
-  left: 0.2%;
-  width: 50%;
-  height: 92%;
+  top: -30px;
+  left: 1px;
+  width: 95%;
+  height: 100%;
   padding: 8px 3px;
   margin: 0 auto;
   border: none;
@@ -1614,8 +1652,8 @@ select::-ms-expand {
   box-shadow: 0 4px 4px 0 gray;
   border-radius: 5px 5px 20px 20px;
   border-bottom: solid 9px #ff8c16;
-  max-width: 430px;
-  min-width: 370px;
+  /* max-width: 430px; */
+  /* min-width: 370px; */
 }
 
 .storeModal_header {
@@ -2010,6 +2048,13 @@ input[type="radio"] {
 }
 
 /* -------- 모집글 생성 모달 -------- */
+@media (max-width: 830px) {
+  .modal-backdrop {
+    left: 0px !important;
+    width: 100% !important;
+  }
+}
+
 .mozipCreate .modal-dialog {
   font-family: "NanumSquareNeo-Variable";
   height: 660px;
@@ -2028,6 +2073,8 @@ input[type="radio"] {
   border-bottom: solid 9px #ff8c16;
   max-width: 530px;
   min-width: 370px;
+  left: 3px;
+  top: -5%;
 }
 
 .mozipCreate .storeModal_header_topper {
