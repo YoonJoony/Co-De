@@ -15,9 +15,13 @@ var messageInput = document.querySelector('#message'); //입력한 메시지 가
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 var body = document.querySelector('body');
+var time;
+var userList = document.querySelector('.user-list');
+var userListContent = document.querySelector('.user-list-content');
 
 var stompClient = null;
 var nickname = null;
+//var profileImage = null; //자기 프사
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
@@ -28,12 +32,16 @@ var colors = [
 const url = new URL(location.href).searchParams;
 const id = url.get('id');
 
+//메시지를 객체에 담음
+let messages;
 
 
 /* 입장 버튼 누르면 입장 페이지 사라지고 채팅방 페이지가 뜬다. */
 function connect(event) {
 
     nickname = document.querySelector("#user-name").textContent;
+    //var profileImage = findProfileImage(); 자기 프로필 이미지 경로 찾기
+
 
     //    입장 버튼 클릭 시 입장 페이지 사라지고 채팅방 페이지가 뜬다
     join.style.opacity = '1';
@@ -76,7 +84,8 @@ function onConnected() {
         JSON.stringify({
             "id": id,
             sender: nickname,
-            type: 'ENTER'
+            type: 'ENTER',
+            "createdAt": new Date()
         })
     )
     /*  stompClient.send() 메서드는 Stomp 클라이언트 객체를 사용하여 서버로 메시지를 전송한다.
@@ -101,7 +110,12 @@ function onError(error) {
 
 // 유저 리스트 받기
 function getUserList() {
-    const $list = $('#list');
+    const imagePaths = [
+        "/images/profile/profile2.png",
+        "/images/profile/profile3.png",
+        "/images/profile/profile4.png",
+        "/images/profile/profile5.png"
+    ];
 
     $.ajax({
         type: "GET",
@@ -110,19 +124,83 @@ function getUserList() {
             "id": id
         },
         success: function (data) {
+            const $user_list = $('#user-list');
+            var inviteTag = "";
             console.log("데이터 받기 성공 : " + data[0]);
-            var users = "";
             for (let i = 0; i < data.length; i++) {
+
+                var chatUserList = document.createElement('div');
+                chatUserList.classList.add('user');
+
+                var chatUserPicture = document.createElement('span');
+                chatUserPicture.classList.add('chat-user-picture');
+                var chatUserPictureImg = document.createElement('img');
+                chatUserPictureImg.src = imagePaths[i];
+                chatUserPicture.appendChild(chatUserPictureImg);
+
+
                 console.log("data[" + i + "] : " + data[i]);
-                users += "<li class='dropdown-item'>" + data[i] + "</li>";
+
+                var chatUser = document.createElement('span');
+                chatUser.classList.add('chat-user-name');
+                var users = document.createTextNode(data[i])
+                chatUser.appendChild(users);
+
+                //니가 호스트일 경우
+                //                if (findHost(id, nickname)){
+                //                    chatUser.id = "host";
+                //                }
+
+                var exileButton = document.createElement('img');
+                exileButton.src = '/images/out.png';
+                exileButton.classList.add('exile-button');
+
+                chatUserList.appendChild(chatUserPicture);
+                chatUserList.appendChild(chatUser);
+                chatUserList.appendChild(exileButton);
+
+                userListContent.appendChild(chatUserList);
             }
-            $list.html(users);
+
+            // ****** 중요! 다른사람 들어 올 때마다 프로필 계속 만들어지니 밑에처럼 문자열로 생성해서 html에 붙이지
+            inviteTag = "<div class='invite' href='#enterRoomModal' data-bs-toggle='modal' data-target='#enterRoomModal'><span class='invite-content'>사용자 초대</span></div>";
+
+            var invite = $(inviteTag)[0]; //위 var inviteTag를 jquery 객체로 변환한다.
+            userList.appendChild(invite);
+
+            //밑에 사용자가 호스트일 경우 자기 버튼 지우고 다른 유저 버튼 보이게 하기.
+            //사용자가 아닐경우는 버튼이 아얘 안보이게 설정.
+
         },
         error: function () {
             console.log("리스트 요청 실패 : ");
         }
     })
+
 }
+
+//사용자가 호스트인지 아닌지 구분한다.
+//function findHost(id, nickname) {
+//    $.ajax({
+//        type : "GET",
+//        url : "/mozip/chat/findHost",
+//        data : {
+//            "id" : id,
+//            "nickname" : nickname //보안을 위해서 세션에 적힌 아이디의 닉네임을 찾도록 백엔드에서 수정,
+//        },
+//        success: function(data) {
+//            if(data)
+//                return true;
+//            else
+//                return false;
+//        },
+//        error: function() {
+//            console.log("findHost 요청 실패");
+//        }
+//    })
+//}
+
+
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
@@ -132,15 +210,40 @@ function sendMessage(event) {
             "id": id,
             sender: nickname,
             message: messageInput.value,
+            "createdAt": new Date(), //채팅친 시간 추가.
             type: 'TALK'
         };
 
+        messages = chatMessage;
         stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
 }
 
+////유저 초대 버튼 클릭 시
+//function sendInvite(event) {
+//    var inviteNickname = inviteNicknameInput.value.trim(); //초대할 유저 이름 값
+//
+//    if (userContent && stompClient) {
+//        var chatMessage = {
+//            "id" : id,
+//            sender : inviteNickname.value,
+//            message : inviteNickname.value + " 님의 초대",
+//            "createdAt" : new Date(), //채팅친 시간 추가.
+//            type : 'INVITE'
+//        };
+//
+//        stompClient.send("/pub/mozip/chat/sendInvite", {}, JSON.stringify(chatMessage));
+//        messageInput.value = '';
+//    }
+//    event.preventDefault();
+//}
+
+let lastMessageTimeMinutes = 99;
+let lastMessageTimeHour = 99;
+let timeDifference = 1;
+let lastMessageSender = "";
 
 function onMessageReceived(payload) {
     console.log("onMessage");
@@ -148,6 +251,8 @@ function onMessageReceived(payload) {
     // payload는 클라이언트에서 수신한 메시지를 나타냄.
     // 하지만 클라이언트가 수신한건지 서버로 송신한 메시지인지 모르니 payload.body로 수신한 메시지를 확인하는 로직을 써줌
     var messageElement = document.createElement('li'); //li 타입의 [메시지 요소]를 만든다.
+
+    const currentTime = new Date();
 
     if (chat.type === 'ENTER') {
         messageElement.classList.add('event-message');
@@ -178,6 +283,7 @@ function onMessageReceived(payload) {
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
     } else {
+
         messageElement.classList.add('chat-message');
 
         var avatarElement = document.createElement('i'); //[아바타 요소 생성]
@@ -192,6 +298,10 @@ function onMessageReceived(payload) {
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
 
+
+        var chatWrapper = document.createElement('div');
+        chatWrapper.classList.add('chat-wrapper');
+
         var cloudElement = document.createElement('div');
         cloudElement.classList.add('cloud');
 
@@ -200,13 +310,55 @@ function onMessageReceived(payload) {
         contentElement.appendChild(messageText);
         cloudElement.appendChild(contentElement);
 
-        messageElement.appendChild(cloudElement);
+        const hours = currentTime.getHours();
+        const minutes = currentTime.getMinutes();
+        const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
+        var createdAt = document.createElement('p');
+        createdAt.classList.add('time-text');
+        var timeText = document.createTextNode(timeString);
+        createdAt.appendChild(timeText);
+
+        const visibleTimeText = document.querySelector('.time-text');
+        const bool = 1;
+
+        if (timeDifference < 1) { //1분 이내로 채팅 친 경우
+            time = document.querySelectorAll('.time-text');
+            if (lastMessageTimeMinutes == currentTime.getMinutes() && chat.sender == lastMessageSender) {
+                if (lastMessageTimeHour == currentTime.getHours()) {
+                    createdAt.classList.add('hidden');
+                    usernameElement.classList.add('hidden');
+                    avatarElement.classList.add('hidden');
+                    messageElement.classList.remove('chat-message');
+                    messageElement.classList.add('chat-message-last');
+
+                }
+            }
+            else if (lastMessageTimeMinutes != currentTime.getMinutes() && chat.sender != lastMessageSender) {
+
+                timeDifference = 1;
+            }
+        }
+
+        chatWrapper.appendChild(cloudElement);
+        chatWrapper.appendChild(createdAt);
+
+        messageElement.appendChild(chatWrapper);
 
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
+
+        //채팅 같은 사람이 1분 이내로 칠 경우 전에 친 채팅 시간이랑 비교하기 위해 선언
+        lastMessageTimeMinutes = currentTime.getMinutes();
+        lastMessageTimeHour = currentTime.getHours();
+        lastMessageSender = chat.sender;
+        timeDifference = 0; //채팅시간차이인데 일단 다른 사람 채팅 치고 내가 처음 채팅칠 경우에만 조건 주기위해 생성함.
+        //나중에 진짜 시간 차이를 밀리초로 계산해서 비교해 주는 값을 넣어 줘야함.
     }
+    //    timeDifference = Math.abs(currentTime.getTime() - lastMessage.createdAt.getTime())/1000/60;
+    //    console.log("현재 시간(밀리초) : " + currentTime.getTime() + " - " + "직전 채팅 시간(밀리초) : " + lastMessage.createdAt.getTime() + " = " + timeDifference);
 }
+
 
 function getAvatarColor(messageSender) {
     var hash = 0;
@@ -246,18 +398,86 @@ $(function () {
             e.preventDefault();
             $layerProfile.css({ left: 'auto' }).fadeOut(100);
         });
+
+    // 채팅방 프로필 클릭시
+    var $chatProfile = $(".chat-header-left");
+    var $userList = $(".user-list");
+
+    $chatProfile
+        .on('mouseenter', function (e) {
+            e.preventDefault();
+            $userList.css({ left: 'auto' }).fadeIn(100);
+        })
+        .on('mouseleave', function (e) {
+            e.preventDefault();
+            $userList.css({ left: 'auto' }).fadeOut(100);
+        });
+
+    //페이지 이동 .. 잡 처리
+    var $mozipPage = $('.mozipPage');
+    var $myChat = $('.myChat');
+
+    $mozipPage.click(function () {
+        location.href = "/main_page.html"
+    });
+
+    //헤더부분 '내 채팅' 에서 자기 방 들어가게 하기.
+    //    $mozipPage.click(function() {
+    //      location.href = "/mozip/chat/room?id="+findRoomId(nickname);
+    //    });
+
 });
 
 
+//자기 입장한 방 번호 찾기 함수
+//function findRoomId(nickname) {
+//    $.ajax({
+//        ...
+//    })
+//  return RoomId;
+//}
 
 
+//장바구니 div
+function basket() {
+    const basket_content = document.querySelector(".basket-view");
 
+    // 숨기기 (display: none)
+    if (basket_content.style.display !== "block") {
+        basket_content.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        basket_content.style.display = "none";
+    }
+}
 
+// 메뉴상세 수량변경
+let count = 1;
+let total_price_count = 0;
+var countEl = document.getElementById("count");
+var total_price = document.getElementById("totalPrice");
 
+var total_count = document.getElementById("total_count"); //추가
+var total_count_view = document.getElementById("total_count_view"); //추가
 
+function plus() {
+    count++;
+    countEl.value = count;
+    total_count_view.value = total_count.value * countEl.value; //추가
+    total_price_count = total_price_count + parseInt(total_count_view.value);
+    total_price.textContent = total_price_count;
+}
+function minus() {
 
-
-
+    if (count > 1) {
+        count--;
+        countEl.value = count;
+        total_count_view.value = total_count_view.value - total_count.value; //추가
+        total_price_count = total_price_count - parseInt(total_count_view.value);
+        total_price.textContent = total_price_count;
+    }
+}
 
 
 
@@ -358,325 +578,13 @@ function initMap() {
 
 }
 
-// -------------------------------------------------------------------------------------------------------------
-const elements = document.querySelectorAll('.title-proflie');
-const header_title = document.querySelector('.chat-header-center');
-var i = 0;
-elements.forEach((element, index) => {
-    const row = Math.floor(index / 4); //현재 요소가 속한 행 번호
-
-    var left = parseFloat(element.style.left); //left값을 받아온다.
-    var profile_space = parseFloat(element.style.width);
-
-    if (i % 4 == 0) {
-        i = 0;
-    }
-
-    const newLeft = i * 30;
-    const title_move = profile_space * (i + 1)
-
-    element.style.left = `${newLeft}%`;
-    header_title.style.left = `${newLeft - 25}px`;
-    i++;
-});
-
-// 사용자 초대
-
-$(function () {
-    function invitemodalClose() {
-        $("#invite_modal").fadeOut();
-    }
-
-    $("#invite").click(function () {
-        // 초대 하기
-
-        // 백앤드 화이팅
-
-        invitemodalClose(); // 모달 닫기 함수 호출
-    });
-    $("#invite_btn").click(function () {
-        $("#invite_modal").css('display', 'flex').hide().fadeIn(); // 속성 변경 후 hide로 숨기고 fadeIn으로 효과 나타내기
-    });
-    $("#close").click(function () {
-        invitemodalClose(); // 모달 닫기 함수 호출
-    });
-});
-
-function list_open() {
-    const list_content = document.querySelector(".user-list");
-
-    // 숨기기 (display: none)
-    if (list_content.style.display !== "block") {
-        list_content.style.display = "block";
-    }
-    // 보이기 (display: block)
-    else {
-        list_content.style.display = "none";
-    }
+function show() {
+    document.querySelector(".header2").className = "header2 header2_show";
 }
 
-
-// // 사용자 추방
-
-// const host = $('#host').text(); // 호스트 닉네임
-// const me = $('#me').text(); // 본인 닉네임
-
-// function getOut() {
-//     $.ajax({
-//         type: "POST", // Post가 리소스 업데이트 할때 쓰는거라고 하던데
-//         url: "", // 경로는 제가 지정 할 수는 없으니께
-//         data: {
-//             "id": id // 추방 할 사람 닉네임 div id
-//         },
-//         success: function (id) {
-//             const outSector = id.parentNode; // 닉네임의 부모노드 검색
-//             outSector.remove(); // 해당 닉네임의 리스트 째로 삭제
-
-//             // 실제로 해당 사용자를 채팅방 서버에서 퇴출시키는 동작
-
-
-//         },
-//         error: function () {
-//             console.log("요청 실패 : ");
-//         }
-//     })
-// }
-
-const out_button = document.querySelectorAll('.vote');
-
-if (host == me) { // 접속자가 호스트면 추방 js가 활성화
-    out_button.classList.add('vote');
-    out_button.disabled = false; // 버튼 활성화
-    getOut();
-    getOut();
-} else if (host != me) { // 호스트가 아니면 버튼 비활성화
-    out_button.forEach((out_button) => {
-        out_button.classList.remove('vote'); // 클래스 삭제
-        out_button.disabled = true; // 버튼 비활성화
-    });
+function close() {
+    document.querySelector(".header2").className = "header2";
 }
 
-function out_open() {
-    const out_content = document.querySelector(".getout");
-
-    // 숨기기 (display: none)
-    if (out_content.style.display !== "block") {
-        out_content.style.display = "block";
-    }
-    // 보이기 (display: block)
-    else {
-        out_content.style.display = "none";
-    }
-
-    $.ajax({ // 추방버튼 활성화, 방장 기능 확인
-        type: "GET",
-        url: "/mozip/chat/findHost",
-        data: {
-            "id": id,
-            'nickname': nickname
-        },
-        success: function (data) {
-            if (data) { //true = 방장
-                out_button.classList.add('vote');
-                out_button.disabled = false; // 버튼 활성화
-                getOut();
-            } else {
-                out_button.forEach((out_button) => {
-                    out_button.classList.remove('vote'); // 클래스 삭제
-                    out_button.disabled = true; // 버튼 비활성화
-                });
-            }
-        },
-        error: function () {
-            alter('추방버튼 활성화 실패');
-        }
-    })
-}
-
-function basket() {
-    const basket_content = document.querySelector(".basket-view");
-
-    // 숨기기 (display: none)
-    if (basket_content.style.display !== "block") {
-        basket_content.style.display = "block";
-    }
-    // 보이기 (display: block)
-    else {
-        basket_content.style.display = "none";
-    }
-}
-
-// 모달창 보여주는 함수
-function show_meun() {
-    document.querySelector(".modal-background").className = "modal-background show-modal";
-}
-// 메뉴 수정 버튼 클릭 시 show_modal함수 호출
-document
-    .querySelector("#modify_menu_btn")
-    .addEventListener("click", show_meun);
-
-// 모달 창 닫기
-function close_modal() {
-    document.querySelector(".modal-background").className = "modal-background";
-    detail_close();
-}
-// x클릭 시 close_modal 함수 호출
-document
-    .querySelector(".modal-popup-close")
-    .addEventListener("click", close_modal);
-
-
-const detail_content = document.querySelector(".detail_meun_wrap");
-function detail_close() {
-    detail_content.style.display = "none";
-}
-
-function detail_open() {
-    detail_content.style.display = "block";
-}
-
-// 메뉴상세 수량변경
-var count = 1;
-var countV = document.querySelector("quantity");
-var total_count = document.querySelector("total_price");
-var total_count_view = document.querySelector("total_price_view");
-
-function plus() {
-    count++;
-    countV.value = count;
-    total_count_view.value = total_count.value * countV.value;
-}
-
-function minus() {
-    if (count > 1) {
-        count--;
-        countV.value = count;
-        total_count_view.value = total_count_view.value - total_count.value;
-    }
-}
-
-var count = 1;
-var countEl = document.getElementById("count");
-var total_count = document.getElementById("total_count"); //추가
-var total_count_view = document.getElementById("total_count_view"); //추가
-function plus() {
-    count++;
-    countEl.value = count;
-    total_count_view.value = total_count.value * countEl.value; //추가
-}
-function minus() {
-
-    if (count > 1) {
-        count--;
-        countEl.value = count;
-        total_count_view.value = total_count_view.value - total_count.value; //추가  
-    }
-}
-
-// 정산(결제)
-function cal() {
-    const cal_content = document.querySelector(".cal_page");
-
-    if (cal_content.style.display != "block") {
-        cal_content.style.display = "block";
-    }
-    else {
-        cal_content.style.display = "none";
-    }
-}
-
-// 유저 리스트 받기
-// function getUserList() {
-//     const $list = $('#list');
-
-//     $.ajax({
-//         type: "GET",
-//         url: "/mozip/chat/userList",
-//         data: {
-//             "id": id
-//         },
-//         success: function (data) {
-//             console.log("데이터 받기 성공 : " + data[0]);
-//             var users = "";
-//             for (let i = 0; i < data.length; i++) {
-//                 console.log("data[" + i + "] : " + data[i]);
-//                 users += "<li class='dropdown-item'>" + data[i] + "</li>";
-//             }
-//             $list.html(users);
-//         },
-//         error: function () {
-//             console.log("리스트 요청 실패 : ");
-//         }
-//     })
-// }
-
-// 계산용 임시 리스트
-// const userList = [
-//     { id: 1, name: '농담곰', pay:0},
-//     { id: 2, name: '북극곰', pay:0},
-//     { id: 3, name: '망그곰', pay:0},
-//     { id: 4, name: '콜라곰', pay:0}
-// ];
-
-const userList = [1, 2, 3, 4];
-
-// const $list = $('#list'); // 참가자 명단
-
-// 개별로 선택한 음식 가격
-const pay_amount = 19000;
-
-
-// 각자 내야 하는 배달비
-const delivery_fee = 4000; // 배달비
-let html_deli_fee = document.getElementById("delivery"); // 홈페이지 확인용 임시 변수
-const delivery_fee_each = delivery_fee / userList.length;
-
-const host_pay = document.getElementById("host");
-
-
-$('#pay_done').one('click', function () {
-    html_deli_fee.innerHTML += `<p> 배달비:  ${delivery_fee.toLocaleString()}원</p>`; // 홈페이지 확인용 임시 변수
-    if (userList.length == 4) { // 참가자가 4인 일 때
-        let rate = Math.ceil(delivery_fee_each * 0.4);
-        let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
-        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1))); // 할인 된 금액만큼 나머지 사람들이 납부 
-        // 전체참가자 - 호스트
-
-        const total_pay_host = pay_amount + host_fee;
-        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`; // 호스트가 내야 하는 비용
-
-        const total_pay_coutomer = pay_amount + costomer_fee;
-
-        for (var i = 1; i <= (userList.length - 1); i++) {
-            var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`; // 참가자가 지불해야 하는 비용
-        }
-    }
-    else if (userList.length == 3) { // 참가자가 3인 일 때
-        let rate = Math.ceil(delivery_fee_each * 0.3);
-        let host_fee = Math.ceil(delivery_fee_each - rate);
-        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
-
-        const total_pay_host = pay_amount + host_fee;
-        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
-
-        for (var i = 1; i <= (userList.length - 1); i++) {
-            var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
-        }
-    }
-    else if (userList.length == 2) { // 참가자가 2인 일 때
-        let rate = Math.ceil(delivery_fee_each * 0.2);
-        let host_fee = Math.ceil(delivery_fee_each - rate);
-        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
-
-        const total_pay_host = pay_amount + host_fee;
-        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
-
-        for (var i = 1; i <= (userList.length - 1); i++) {
-            var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
-        }
-    }
-});
-// ------------------------------------------------------------------------------------------
+document.querySelector("#chat_show").addEventListener('click', show);
+document.querySelector("#chat-page").addEventListener('click', close);
