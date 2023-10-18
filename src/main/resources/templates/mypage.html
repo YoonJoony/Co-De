@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지</title>
-    <link rel="stylesheet" href="/css/mypage.css">
+    <!-- <link rel="stylesheet" href="/css/mypage.css"> 원래 css 경로 파일 -->
+    <link rel="stylesheet" href="../static/css/mypage.css">
+    <link rel="stylesheet" href="../static/css/mypage_mobile_header.css">
 </head>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
@@ -31,49 +33,93 @@
             </div>
         </div>
         <!-- 헤더 부분 -->
-        <div class="header">
+        <!-- 모바일 화면 로고 -->
+        <div class="moblie_logo">
+            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+            <img class="logo" src="images/COOR.png">
+        </div>
+        <div class="topper">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+            </div>
+        </div>
+        <!-- 헤더 부분 -->
+        <div class="header2">
             <!-- CO-ORDER 제목 부분 -->
-            <div class="logo-img">
-                <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-                <img class="logo" src="images/COOR2.png">
-                <p>ALL 📒 POST </p>
-            </div>
-            <div id="header-bell" class="header-bell">
-                <span class="bell">
-                    <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
-                </span>
-            </div>
-            <div id="header-profile" class="header-profile">
-                <a class="header-user">
-                    <span class="user-picture">
-                        <img src="images/profile.png" height="50px" width="50px">
-                    </span>
-                    <span class="user-name" th:text="${nickname}">
-                        김윤준
-                    </span>
-                    <span class="header-arrow">
-                        <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
-                    </span>
-                </a>
-                <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
-                    <div class="block block-name">
-                        <div class="profile-name" th:text="${nickname}">
-                            김윤준
-                        </div>
-                        <div class="buttons">
-                            <a href="#">파티관리</a>
+            <div class="width-container">
+                <div class="user-info">
+                    <div class="logo-img">
+                        <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                        <img class="logo" src="images/COOR2.png">
+                    </div>
+
+                    <div id="header-profile" class="header-profile">
+                        <a class="header-user">
+                            <span class="user-picture2">
+                                <img src="/Chat_dbswns/images/profile5.png" height="50px" width="50px" class="">
+                            </span>
+                            <span class="bell">
+                                <img src="images/bell.png" style="width : 25px; height : 25px;" alt="" class="header-bell">
+                            </span>
+                            <span class="user-name2" th:text="${nickname}"> 야왕이네
+                            </span>
+                            <span class="header-arrow">
+                                <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+                            </span>
+                        </a>
+                        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+                            <div class="block block-name">
+                                <div class="profile-name" th:text="${nickname}"> 야왕이네
+                                </div>
+                                <div class="buttons">
+                                    <a href="#">파티관리</a>
+                                </div>
+                            </div>
+                            <!--                    <div class="header-profile-direct">-->
+                            <!--                        <dl class="header-member-direct__information">-->
+                            <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
+                            <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
+                            <!--                            <dd>ㅇㅇ</dd>-->
+                            <!--                            <dd>ㅇㅇ</dd>-->
+                            <!--                        </dl>-->
+                            <!--                    </div>-->
                         </div>
                     </div>
-                    <!--                    <div class="header-profile-direct">-->
-                    <!--                        <dl class="header-member-direct__information">-->
-                    <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
-                    <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
-                    <!--                            <dd>ㅇㅇ</dd>-->
-                    <!--                            <dd>ㅇㅇ</dd>-->
-                    <!--                        </dl>-->
-                    <!--                    </div>-->
                 </div>
             </div>
+            <!-- 주소 입력 부분 -->
+            <div class="search-container">
+                <div class="search">
+                    <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                        <img class="gps" src="images/search.png">
+                    </button>
+                    <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
+                    <div class="tag-container">
+                        <div class="tag real-time-text">
+                            <p class="tag search-tag-text">실시간 검색 태그</p>
+                        </div>
+                        <div class="tag real-time">
+                            #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li class="menu-li mozipPage">
+                        <a class="menu-a">전체 글</a>
+                    </li>
+                    <li class="menu-li categories">
+                        <a class="menu-a">카테고리</a>
+                    </li>
+                    <li class="menu-li myChat">
+                        <a class="menu-a">내 채팅</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- 프로필 -->
         </div>
         <!-- 개인정보 수정 칸 -->
         <div class="body_title">
@@ -87,7 +133,7 @@
                         <li>
                             <span class="subject">ㆍ 계좌 번호</span>
                             <div class="account_show_div">
-                                <span id="bank_name"th:text="${account.account_name}"> </span>
+                                <span id="bank_name" th:text="${account.account_name}"> </span>
                                 <span id="account_num" th:text="${account.number}"> </span>
                             </div>
                         <li>
@@ -150,16 +196,16 @@
                                 <li>
                                     <span class="subject">ㆍ 계좌번호</span>
                                     <input type="text" value="" id="modified_ac_number" class="form-control input-sm"
-                                        required="" placeholder="계좌번호를 입력해 주세요"  oninput="autoHyphen(this)"  onfocus="this.placeholder=''"
-                                        onblur="this.placeholder='계좌번호를 입력해 주세요'" size="10" maxlength="16"
-                                       onkeypress='return checkNumber(event)'>
+                                        required="" placeholder="계좌번호를 입력해 주세요" oninput="autoHyphen(this)"
+                                        onfocus="this.placeholder=''" onblur="this.placeholder='계좌번호를 입력해 주세요'"
+                                        size="10" maxlength="16" onkeypress='return checkNumber(event)'>
                                 </li>
                                 <li>
                                     <span class="subject">ㆍ 계좌 비밀번호</span>
                                     <input type="text" value="" id="modified_ac_pw" class="form-control input-sm"
-                                           required="" placeholder="계좌 비밀번호 4글자를 입력해 주세요" onfocus="this.placeholder=''"
-                                           onblur="this.placeholder='계좌 비밀번호 4글자를 입력해 주세요'" size="4" maxlength="4"
-                                            onkeypress='return checkNumber(event)'>
+                                        required="" placeholder="계좌 비밀번호 4글자를 입력해 주세요" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='계좌 비밀번호 4글자를 입력해 주세요'" size="4" maxlength="4"
+                                        onkeypress='return checkNumber(event)'>
                                 </li>
                                 <div class="modify_form">
                                     <button class="modify_btn_btn cancel-btn" id="ac_modify_cancel_btn"
@@ -275,8 +321,12 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="/js/MyPage/mypage.js"></script>
-    <script src="/js/MyPage/modify.js"></script>
+
+    <!-- <script src="/js/MyPage/mypage.js"></script> -->
+    <script src="../static/js/MyPage/mypage.js"></script>
+
+    <!-- <script src="/js/MyPage/modify.js"></script> -->
+    <script src="../static/js/MyPage/modify.js"></script>
 </body>
 
 </html>
