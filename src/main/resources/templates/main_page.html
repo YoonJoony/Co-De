@@ -219,8 +219,17 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 챗봇 div -->
                 <div class="width-right">
                     <div class="chat-container">
+                        <div class="chat_header">
+                            <div class="storeModal_header_topper_text_chat">
+                                <p style="font-size: 20px;">Chat bot</p>
+                            </div>
+                            <img class="storeModal_header_topper_back_img_chatbot" src="images/back.png" id="chat_close"
+                                style="cursor:pointer;">
+                        </div>
                         <div id="chat-messages"></div>
                         <div id="user-input">
                             <input type="text" placeholder="메시지를 입력하세요" onfocus="this.placeholder=''"
@@ -228,21 +237,14 @@
                             <button>전송</button>
                         </div>
                     </div>
+                </div>
 
-                    <div class="chat-img-area" onclick="chatbot_open()">
-                        <img class="chat-img" src="images/chatbot.jpg">
-                    </div>
+                <div class="chat-img-area">
+                    <img class="chat-img" src="/프론트앤드/메인페이지/chatbot.jpg" id="chat_show">
                 </div>
 
             </div>
         </div>
-    </div>
-
-
-
-    <!-- 모바일 화면 시 AI 채팅-->
-    <div class="make-content">
-        <button type="button" class="aiChat" id="aiChat">AI 채팅📣s</button>
     </div>
 
     <!-- 모집글 클릭시 모달창 보여줌 -->

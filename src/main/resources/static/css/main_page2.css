@@ -22,7 +22,8 @@ body {
 }
 
 body {
-  padding: 199px 0 0 0; /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
+  padding: 199px 0 0 0;
+  /*header가 스크롤 해도 고정되게 하고 바디를 맞출려면 이거 써줘야 함. */
   font-family: "NanumSquareNeo-Variable";
   background-color: #ffffff;
   line-height: 1.6;
@@ -77,6 +78,7 @@ input:focus {
   position: fixed;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
+
 .logo {
   width: 190px;
 }
@@ -139,8 +141,9 @@ p {
 .width-container {
   position: relative;
   /*max-width: 1880px;*/
+  width: 90%;
   height: 100%;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .search-container {
@@ -190,6 +193,7 @@ p {
   z-index: 100;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
+
 .search #loc_btn:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
@@ -423,20 +427,42 @@ a {
   max-width: 86rem;
 }
 
+@media (max-width: 830px) {
+  .width-main {
+    font-family: "NanumSquareNeo-Variable";
+    width: 90%;
+    height: 100%;
+    margin-left: -10px;
+    margin-top: 20px;
+    /* max-width: 86rem; */
+  }
+}
+
 .main-flex {
   display: flex;
   position: relative;
-  padding: 0 20px;
 }
 
 .width-container-margin {
   position: relative;
-  /* width : 100%; */
+  width: 100%;
   min-width: 450px;
   height: 100%;
   --tw-space-x-reverse: 0;
   margin-left: calc(2.5rem * var(--tw-space-x-reverse));
   margin-right: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+@media (max-width: 830px) {
+  .width-container-margin {
+    position: relative;
+    /* width : 100%; */
+    /* min-width: 450px; */
+    height: 100%;
+    --tw-space-x-reverse: 0;
+    margin-left: calc(2.5rem * var(--tw-space-x-reverse));
+    margin-right: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
 }
 
 .width-container {
@@ -447,7 +473,7 @@ a {
   position: relative;
   display: flex;
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .width-header-left {
@@ -469,7 +495,6 @@ a {
   position: relative;
   flex-grow: 1;
 }
-
 .header_rangeInput_div {
   display: flex;
   visibility: hidden;
@@ -523,6 +548,7 @@ a {
   bottom: 0;
   margin: 0 auto;
 }
+
 /* 스크롤바 설정*/
 .category-container::-webkit-scrollbar {
   height: 10px;
@@ -548,6 +574,15 @@ a {
   top: 5px;
 }
 
+@media (max-width: 830px) {
+  .scroll-arrow {
+    position: relative;
+    flex: none;
+    top: 5px;
+    display: none;
+  }
+}
+
 .scroll-content {
   width: max-content;
   position: relative;
@@ -570,6 +605,7 @@ a {
   padding: 2px 8px 0px 8px;
   cursor: pointer;
 }
+
 .board-category:hover {
   background-color: #ff8c16;
   color: white;
@@ -577,6 +613,7 @@ a {
 
 .scroll-arrow {
 }
+
 .scroll-arrow img {
   width: 23px;
   height: 23px;
@@ -590,6 +627,7 @@ a {
   padding: 0;
   margin: 0;
 }
+
 .main-content li {
   display: flex;
   flex-direction: column;
@@ -691,8 +729,82 @@ a {
 }
 
 /* ------챗봇 컨테이너 --------*/
+
+.chat_header {
+  position: relative;
+  height: 50px;
+}
+
+.storeModal_header_topper_back_img_chatbot {
+  position: absolute;
+  width: 41px;
+  top: 19%;
+  left: 3%;
+}
+.storeModal_header_topper_text_chat {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
+  position: relative;
+  margin-top: 15px;
+  margin-right: 65px;
+}
+@media (max-width: 830px) {
+  .storeModal_header_topper_back_img_chatbot {
+    position: absolute;
+    width: 41px;
+    top: 8%;
+    left: 3%;
+  }
+
+  .storeModal_header_topper_text_chat {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    margin-top: 15px;
+    margin-right: 65px;
+  }
+}
+
+/* 모바일 화면에 띄우는거 */
+@media (max-width: 830px) {
+  .make-content {
+    display: none;
+    z-index: 10;
+    position: fixed;
+    top: 90%;
+    left: 80%;
+  }
+}
+
 .width-right {
   width: 330px;
+}
+
+@media (max-width: 830px) {
+  .width-right {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 10;
+
+    /* 숨기기 */
+    z-index: -1;
+    opacity: 0;
+  }
+
+  .chatbot_show {
+    opacity: 1;
+    z-index: 10;
+    transition: all 0.5s;
+  }
 }
 
 .chat-container {
@@ -707,6 +819,39 @@ a {
   background-color: #fff;
 }
 
+@media (max-width: 830px) {
+  .chat-container {
+    position: relative;
+    min-width: 300px;
+    /* margin-top: 20px; */
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    background-color: #fff;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
+  }
+
+  .chatbot_show .chat-container {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+  }
+
+  .chat_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+}
+
 #chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -715,11 +860,25 @@ a {
   flex-direction: column-reverse;
 }
 
-.message {
+.message_user {
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
   border: 1px solid #ff9d36;
-  padding: 4px 0px 4px 7px;
+  min-width: 53px;
+  width: fit-content;
+  padding: 4px 7px 4px 7px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: auto;
+}
+
+.message_gpt {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border: 1px solid #7cab75;
+  min-width: 53px;
+  width: fit-content;
+  padding: 4px 7px 4px 7px;
   border-radius: 5px;
   font-size: 14px;
 }
@@ -827,6 +986,7 @@ a {
   cursor: pointer;
   /* box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3); */
 }
+
 .search-list #search_btn:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
@@ -842,6 +1002,7 @@ a {
   border-radius: 4px;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
+
 .board .content-list:hover {
   opacity: 0.7;
 }
@@ -892,6 +1053,7 @@ a {
   cursor: pointer;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
+
 .board .load-btn #load_btn:hover {
   box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
@@ -976,6 +1138,54 @@ a {
   text-align: center;
 }
 */
+
+/* ---------------------------------------------------- */
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  /* 숨기기 */
+  z-index: -1;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+  z-index: 1000;
+  transition: all 0.5s;
+}
+
+.window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -30%);
+}
+
+.show .popup {
+  transform: translate(-50%, -50%);
+  transition: all 0.9s;
+  animation: 600ms cubic-bezier(0.2, 1, 0.4, 1) 0s 1 normal both running fqxGIV;
+}
+
+/* ---------------------------------------------------- */
 
 .modal-dialog {
   position: relative;
@@ -1428,22 +1638,31 @@ select::-ms-expand {
 /* 가게 모달창 */
 .storeModal {
   font-family: "NanumSquareNeo-Variable";
-  position: fixed; /* Stay in place */
-  z-index: 1980; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1980;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
   display: none;
 }
+
 .storeModal_content {
   position: relative;
-  left: 0.2%;
-  width: 50%;
-  height: 92%;
+  top: -30px;
+  left: 1px;
+  width: 95%;
+  height: 100%;
   padding: 8px 3px;
   margin: 0 auto;
   border: none;
@@ -1451,8 +1670,8 @@ select::-ms-expand {
   box-shadow: 0 4px 4px 0 gray;
   border-radius: 5px 5px 20px 20px;
   border-bottom: solid 9px #ff8c16;
-  max-width: 430px;
-  min-width: 370px;
+  /* max-width: 430px; */
+  /* min-width: 370px; */
 }
 
 .storeModal_header {
@@ -1587,7 +1806,8 @@ select::-ms-expand {
 
 .content-item {
   min-width: 40px;
-  height: 37px; /* Adjust as needed */
+  height: 37px;
+  /* Adjust as needed */
   background-color: #fff;
   border: 1px solid #ff8c16;
   border-radius: 17px;
@@ -1611,6 +1831,7 @@ select::-ms-expand {
   color: black;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 }
+
 .storeModal_header #search_store_btn {
   width: 13%;
   height: 40px;
@@ -1622,9 +1843,11 @@ select::-ms-expand {
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
+
 #search_store_btn:hover {
   opacity: 0.7;
 }
+
 .storeModal_body {
   width: 100%;
   position: relative;
@@ -1633,13 +1856,17 @@ select::-ms-expand {
   padding: 10px 6px;
   overflow-y: scroll;
 }
+
 .storeModal_body::-webkit-scrollbar {
-  width: 4px; /* 스크롤바의 너비 */
+  width: 4px;
+  /* 스크롤바의 너비 */
 }
 
 .storeModal_body::-webkit-scrollbar-thumb {
-  height: 30%; /* 스크롤바의 길이 */
-  background: #cfcfcf; /* 스크롤바의 색상 */
+  height: 30%;
+  /* 스크롤바의 길이 */
+  background: #cfcfcf;
+  /* 스크롤바의 색상 */
 
   border-radius: 10px;
 }
@@ -1729,11 +1956,13 @@ select::-ms-expand {
   width: 100%;
   height: 100%;
 }
+
 .store_list .store_name {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 3px;
 }
+
 .store_list .store_minimum_order_amount {
   font-size: 12px;
   display: inline-block;
@@ -1767,6 +1996,7 @@ select::-ms-expand {
   margin-right: 5px;
   margin-left: 5px;
 }
+
 /* -------- 애니메이션 -------- */
 /* 로딩창 */
 
@@ -1795,6 +2025,7 @@ select::-ms-expand {
     -webkit-transform: rotate(360deg);
   }
 }
+
 @-webkit-keyframes spin {
   to {
     -webkit-transform: rotate(360deg);
@@ -1804,8 +2035,10 @@ select::-ms-expand {
 /* -------- 거리 슬라이더 -------- */
 
 :root {
-  --form-color: #a00; /* CSS 변수로 색상 지정 */
+  --form-color: #a00;
+  /* CSS 변수로 색상 지정 */
 }
+
 fieldset {
   min-width: 0;
   width: 100%;
@@ -1813,15 +2046,19 @@ fieldset {
   margin: 0;
   border: 0;
 }
+
 fieldset legend {
   padding: 5px;
   background-color: #555;
   color: #fff;
 }
+
 .range {
   width: 100%;
-  accent-color: #6c6f8c; /* 폼 요소에 변수 색상 지정 */
+  accent-color: #6c6f8c;
+  /* 폼 요소에 변수 색상 지정 */
 }
+
 input[type="checkbox"],
 input[type="radio"] {
   width: 1.25em;
@@ -1829,6 +2066,13 @@ input[type="radio"] {
 }
 
 /* -------- 모집글 생성 모달 -------- */
+@media (max-width: 830px) {
+  .modal-backdrop {
+    left: 0px !important;
+    width: 100% !important;
+  }
+}
+
 .mozipCreate .modal-dialog {
   font-family: "NanumSquareNeo-Variable";
   height: 660px;
@@ -1847,6 +2091,8 @@ input[type="radio"] {
   border-bottom: solid 9px #ff8c16;
   max-width: 530px;
   min-width: 370px;
+  left: 3px;
+  top: -5%;
 }
 
 .mozipCreate .storeModal_header_topper {
@@ -1957,6 +2203,7 @@ input[type="radio"] {
   width: 100%;
   top: 10px;
 }
+
 .categoty-content {
   margin: 0 auto;
   flex-wrap: wrap;
@@ -1971,7 +2218,8 @@ input[type="radio"] {
 
 .category-item {
   min-width: 40px;
-  height: 37px; /* Adjust as needed */
+  height: 37px;
+  /* Adjust as needed */
   background-color: #fff;
   border: 1px solid #ff8c16;
   border-radius: 17px;
@@ -2037,6 +2285,7 @@ input[type="radio"] {
   background-color: #ffffff;
   border-radius: 5px;
 }
+
 .storeName-select .add_store:hover {
   opacity: 0.7;
 }
@@ -2095,6 +2344,7 @@ input[type="radio"] {
   background-color: #ff9e4e;
   border-radius: 5px;
 }
+
 .storeName-select .createMozip:hover {
   opacity: 0.7;
 }
