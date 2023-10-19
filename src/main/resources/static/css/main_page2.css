@@ -472,7 +472,7 @@ a {
 
 .header_rangeInput_div {
   display: flex;
-  visibility: visible;
+  visibility: hidden;
   padding: 0 20px 0 20px;
 }
 .header_rangeInput_div fieldset {
