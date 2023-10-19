@@ -35,7 +35,7 @@
         <!-- 헤더 부분 -->
         <!-- 모바일 화면 로고 -->
         <div class="moblie_logo">
-            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="header_show">
             <img class="logo" src="images/COOR.png">
         </div>
         <div class="topper">
@@ -126,7 +126,7 @@
         <div class="body_title">
             MyPage
         </div>
-        <div class="body" id="chat_close">
+        <div class="body" id="header_close">
             <div class="board">
                 <div class="h3">계좌 정보</div>
                 <div class="form-round signup">
@@ -343,8 +343,8 @@
         document.querySelector(".header2").className = "header2";
     }
 
-    document.querySelector("#chat_show").addEventListener('click', show);
-    document.querySelector("#chat_close").addEventListener('click', close);
+    document.querySelector("#header_show").addEventListener('click', show);
+    document.querySelector("#header_close").addEventListener('click', close);
 </script>
 
 </html>

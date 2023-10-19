@@ -130,7 +130,7 @@ $(".sel__box__options").click(function () {
 });
 
 //위에 header를 스크롤 할 시 header fixed로 바뀌며가 자동으로 고정되게 하기
-const header = document.querySelector(".header");
+const header = document.querySelector(".header2");
 var $topper = $(".topper");
 var $window = $(window);
 
@@ -300,14 +300,14 @@ function chatbot_open() {
 }
 
 // 모바일 채팅창 표시
-function show() {
+function chat_show() {
   document.querySelector(".width-right").className =
     "width-right chatbot_show chat_background";
 }
 
-function close() {
+function chat_close() {
   document.querySelector(".width-right").className = "width-right";
 }
 
-document.querySelector("#chat_show").addEventListener("click", show);
-document.querySelector("#chat_close").addEventListener("click", close);
+document.querySelector("#chat_show").addEventListener("click", chat_show);
+document.querySelector("#chat_close").addEventListener("click", chat_close);
