@@ -16,8 +16,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BasketService {
     private final BasketRepository basketRepository;
-    private final ChatRepository chatRepository;
-    private final MozipRepository mozipRepository;
 
     // 채팅방 번호로 각 채팅방의 장바구니 조회
     public List<Basket> findAll(Long id) {

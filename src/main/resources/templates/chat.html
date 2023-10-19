@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat3.css">
-  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
+  <link rel="stylesheet" href="/static/css/chatroom/chat3.css">
+  <link rel="stylesheet" href="/static/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -205,7 +205,7 @@
                     <div id="menu">
                       <label for="file">
                         <div class="btn-upload">
-                          <img src="/images/picture.png" style="cursor:pointer;">
+                          <img src="images/picture.png" style="cursor:pointer;">
                         </div>
                       </label>
                       <input type="file" name="file" id="file" onchange="uploadFile(this)">
@@ -219,8 +219,7 @@
                 <img src="images/bell.png">
                 <img src="images/icon/map.png" id="map_button" onclick="map_btn()">
                 <img src="images/icon/Budget.png">
-                <img src="images/icon/basket.png" href="#CreateMozipModal" data-bs-toggle="modal"
-                     data-target="#CreateMozipModal" onclick="basket()">
+                <img src="images/icon/basket.png" onclick="basket()">
                 <img src="images/icon/setting.png">
               </div>
               <img src="images/icon/log-out_5565735.png" class="out-img">
@@ -308,7 +307,8 @@
                   <span class="priceText" id="totalPrice">22,550원</span>
                 </div>
                 <div class="modify-menu">
-                  <input id="modify_menu_btn" type="button" value="메뉴 수정" wfd-id="id11">
+                  <input id="modify_menu_btn" type="button" value="메뉴 수정" wfd-id="id11"  href="#CreateMozipModal" data-bs-toggle="modal"
+                         data-target="#CreateMozipModal" >
                 </div>
               </div>
             </div>
@@ -377,7 +377,7 @@
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="/js/chatroom/chat3.js"></script>
+    <script src="/static/js/chatroom/chat3.js"></script>
     <!-- Add Bootstrap JavaScript and its dependencies -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE" crossorigin="anonymous"></script>

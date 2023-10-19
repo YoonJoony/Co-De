@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BasketRepository {
     List<Basket> findAll(Long id);
-    Basket save(Basket basket);
+    void save(Basket basket);
 
     void deleteBasket(Long nickname);
 

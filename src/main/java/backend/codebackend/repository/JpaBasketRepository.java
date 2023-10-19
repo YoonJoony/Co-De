@@ -20,9 +20,8 @@ public class JpaBasketRepository implements BasketRepository {
     }
 
     @Override
-    public Basket save(Basket basket) {
-        //em.persist(basketItem);
-        return null;
+    public void save(Basket basket) {
+        em.persist(basket);
     }
 
     //장바구니에 있는 항목 전체를 한꺼번에 삭제(모두 지우기)
