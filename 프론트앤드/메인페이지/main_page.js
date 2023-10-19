@@ -1,5 +1,5 @@
 // 주소 설정 완료 버튼 클릭시
-function Address_commit() { }
+function Address_commit() {}
 
 var stompClient = null;
 
@@ -145,7 +145,31 @@ window.addEventListener("scroll", function () {
   }
 });
 
-// ----------------------------------------
+// ----------------------------------------------------------------------
+
+// 노출 거리 설정
+$("#header_board_range_btn").click(function () {
+  if ($(".header_rangeInput_div").css("visibility") == "hidden") {
+    $(".header_rangeInput_div").css("visibility", "visible");
+  } else {
+    $(".header_rangeInput_div").css("visibility", "hidden");
+  }
+});
+
+$(function () {
+  // -------------글 노출 거리 검색 슬라이더------------
+  let rangeInput = document.getElementById("header_rangeInput");
+
+  let distances = [0, 100, 300, 500];
+  let selectedDistance;
+
+  rangeInput.addEventListener("input", function (e) {
+    selectedDistance = distances[e.target.value];
+    mozipRange = selectedDistance;
+    console.log(`Selected distance: ${selectedDistance}m`);
+  });
+});
+//------------------------------------------------------------------------
 
 //모집글 board 영역 설정
 const elements = document.querySelectorAll(".board");
@@ -173,7 +197,7 @@ elements.forEach((element, index) => {
 });
 // ----------------------------------------
 
-// 챗봇-----------------------------------------------
+// 챗봇------------------------------------------------------------------------
 
 // 채팅 메시지를 표시할 DOM
 const chatMessages = document.querySelector("#chat-messages");
@@ -218,7 +242,7 @@ async function fetchAIResponse(prompt) {
       // apikey.js 파일의 gpt_apikey 변수 사용
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo", // 사용할 AI 모델
+      model: "gpt-3.5-turbo", // 사용할 AI 모델1
       //prompt: "배달음식을 시킬껀데 음식 추천해줘",
       messages: [
         {
@@ -274,14 +298,15 @@ $(async function () {
   addMessage("챗봇", aiResponse);
 });
 
-
 function show() {
-  document.querySelector(".width-right").className = "width-right chatbot_show chat_background";
+  document.querySelector(".width-right").className =
+    "width-right chatbot_show chat_background";
 }
 
 function close() {
   document.querySelector(".width-right").className = "width-right";
 }
 
-document.querySelector("#chat_show").addEventListener('click', show);
-document.querySelector("#chat_close").addEventListener('click', close);
+document.querySelector("#chat_show").addEventListener("click", show);
+document.querySelector("#chat_close").addEventListener("click", close);
+//------------------------------------------------------------------------------

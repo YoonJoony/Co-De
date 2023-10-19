@@ -35,7 +35,7 @@
         <!-- 헤더 부분 -->
         <!-- 모바일 화면 로고 -->
         <div class="moblie_logo">
-            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="header_show">
             <img class="logo" src="images/COOR.png">
         </div>
         <div class="topper">
@@ -62,7 +62,8 @@
                                 <img src="/Chat_dbswns/images/profile5.png" height="50px" width="50px" class="">
                             </span>
                             <span class="bell">
-                                <img src="images/bell.png" style="width : 25px; height : 25px;" alt="" class="header-bell">
+                                <img src="images/bell.png" style="width : 25px; height : 25px;" alt=""
+                                    class="header-bell">
                             </span>
                             <span class="user-name2" th:text="${nickname}"> 야왕이네
                             </span>
@@ -125,7 +126,7 @@
         <div class="body_title">
             MyPage
         </div>
-        <div class="body">
+        <div class="body" id="header_close">
             <div class="board">
                 <div class="h3">계좌 정보</div>
                 <div class="form-round signup">
@@ -330,6 +331,20 @@
 
     <!-- <script src="/js/MyPage/modify.js"></script> -->
     <script src="../static/js/MyPage/modify.js"></script>
+
 </body>
+
+<script>
+    function show() {
+        document.querySelector(".header2").className = "header2 header2_show";
+    }
+
+    function close() {
+        document.querySelector(".header2").className = "header2";
+    }
+
+    document.querySelector("#header_show").addEventListener('click', show);
+    document.querySelector("#header_close").addEventListener('click', close);
+</script>
 
 </html>
