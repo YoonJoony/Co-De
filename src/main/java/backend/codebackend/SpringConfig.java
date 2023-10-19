@@ -67,6 +67,10 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public AccountService accountService() {
         return new AccountService(accountRepository(), encoder());
     }
+    @Bean
+    public BasketService basketService() {
+        return new BasketService(basketRepository());
+    }
 
     @Bean
     public MemberRepository memberRepository() {
@@ -96,6 +100,9 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     @Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
+    }
+    @Bean
+    public BasketRepository basketRepository() {  return new JpaBasketRepository(em);
     }
 
     @Override
