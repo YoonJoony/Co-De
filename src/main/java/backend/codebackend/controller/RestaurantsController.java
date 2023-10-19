@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 @Controller
@@ -62,16 +63,16 @@ public class RestaurantsController {
         }
     }
 
-    @GetMapping("/mozip/menuList")
+    @GetMapping("/chat/menuList")
     @ResponseBody
-    public Future<Menu> menuList(String restaurantTitle, String address) {
+    public Menu menuList(String restaurantTitle, String address) throws ExecutionException, InterruptedException {
         try {
             Thread.sleep(300);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return restaurantService.menuList(restaurantTitle, address);
+        Future<Menu> m = restaurantService.menuList(restaurantTitle, address);
+        Menu menu = m.get();
+        return menu;
     }
-
-
 }
