@@ -481,34 +481,34 @@ function minus() {
 
 
 /* 메뉴 리스트 */
-var menu_body = document.querySelector(".menu-body");
-
-function menuList() {
-  while(menu_body.firstChild) {
-    menu_body.removeChild(storeModal_body.firstChild);
-  }
-
-  $.ajax({
-    type : "GET,
-    url : "/chat/menuList",
-    data : {
-
-    },
-    success : function(data) {
-        for(let i - 0; i < data.getMenuList_Title().size(); i++) {
-            //메뉴 그룹(인기메뉴)
-            var menu_group =  document.createElement("div");
-            menu_group.classList.add("menu-group");
-            var menu_group_topper = document.createElement("div");
-            menu_group_topper.classList.add("menu-group-topper");
-            var popular_img = document.createElement("div");
-            popular_img.classList.add("popular-img");
-            var popular_img_img = document.createElement("img");
-            popular_img_img.setAttribute("src", data[i].imageUrl);
-
-    }
-  })
-}
+//var menu_body = document.querySelector(".menu-body");
+//
+//function menuList() {
+//  while(menu_body.firstChild) {
+//    menu_body.removeChild(storeModal_body.firstChild);
+//  }
+//
+//  $.ajax({
+//    type : "GET,
+//    url : "/chat/menuList",
+//    data : {
+//
+//    },
+//    success : function(data) {
+//        for(let i - 0; i < data.getMenuList_Title().size(); i++) {
+//            //메뉴 그룹(인기메뉴)
+//            var menu_group =  document.createElement("div");
+//            menu_group.classList.add("menu-group");
+//            var menu_group_topper = document.createElement("div");
+//            menu_group_topper.classList.add("menu-group-topper");
+//            var popular_img = document.createElement("div");
+//            popular_img.classList.add("popular-img");
+//            var popular_img_img = document.createElement("img");
+//            popular_img_img.setAttribute("src", data[i].imageUrl);
+//
+//    }
+//  })
+//}
 
 
 
