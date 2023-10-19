@@ -126,11 +126,28 @@
                                 <button class="board-create-button">작성하기</button>
                             </div>
                             <div class="width-header-center">
+                                <div class="header_rangeInput_div">
+                                    <fieldset>
+                                        <input id="header_rangeInput" class="range" type="range" min=0 max=3>
+                                        <div class="rageInput-handle">
+                                            <div class="handle"></div>
+                                            <div class="handle"></div>
+                                            <div class="handle handle-last"></div>
+                                        </div>
+                                        <div class="rageInput-handle-distinct">
+                                            <div class="distinct">0m</div>
+                                            <div class="distinct">100m</div>
+                                            <div class="distinct">300m</div>
+                                            <div class="distinct">500m</div>
+                                        </div>
+                                    </fieldset>
+                                </div>
                             </div>
                             <div class="width-header-right">
-                                <button class="board-range">노출거리</button>
+                                <button class="board-range" id="header_board_range_btn">노출거리</button>
                             </div>
                         </div>
+
                         <div class="swiper-container">
                             <div class="scroll-arrow">
                                 <img src="images/arrow2.png">
@@ -207,7 +224,8 @@
                             <div class="storeModal_header_topper_text_chat">
                                 <p style="font-size: 20px;">Chat bot</p>
                             </div>
-                            <img class="storeModal_header_topper_back_img_chatbot" src="images/back.png" id="chat_close" style="cursor:pointer;">
+                            <img class="storeModal_header_topper_back_img_chatbot" src="images/back.png" id="chat_close"
+                                style="cursor:pointer;">
                         </div>
                         <div id="chat-messages"></div>
                         <div id="user-input">
