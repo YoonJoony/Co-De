@@ -213,7 +213,7 @@ function addMessage(sender, message) {
   // 새로운 div 생성
   const messageElement = document.createElement("div");
   // 생성된 요소에 클래스 추가
-  messageElement.className = "message";
+  messageElement.className = "message_user";
   // 채팅 메시지 목록에 새로운 메시지 추가
   messageElement.textContent = `${sender}: ${message}`;
   chatMessages.prepend(messageElement);
@@ -298,3 +298,16 @@ function chatbot_open() {
     chatbot_content.style.display = "none";
   }
 }
+
+// 모바일 채팅창 표시
+function show() {
+  document.querySelector(".width-right").className =
+    "width-right chatbot_show chat_background";
+}
+
+function close() {
+  document.querySelector(".width-right").className = "width-right";
+}
+
+document.querySelector("#chat_show").addEventListener("click", show);
+document.querySelector("#chat_close").addEventListener("click", close);
