@@ -14,7 +14,6 @@
     }
 
     .header2 {
-        display : none;
         z-index: 1000;
         top: 35px;
         border-bottom: solid 9px #ff8c16;

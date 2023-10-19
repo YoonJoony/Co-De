@@ -103,7 +103,7 @@
                         <li>
                             <span class="subject"></span>
                             <button type="button" class="modify-btn" id="modify_ac_btn" onclick="modify_account_btn()">
-                                계좌 변경
+                                계좌 추가 및 변경
                             </button>
                         </li>
                         <div class="modify-form-round" id="modify_account_form">
@@ -160,6 +160,9 @@
                                            required="" placeholder="계좌 비밀번호 4글자를 입력해 주세요" onfocus="this.placeholder=''"
                                            onblur="this.placeholder='계좌 비밀번호 4글자를 입력해 주세요'" size="4" maxlength="4"
                                             onkeypress='return checkNumber(event)'>
+                                </li>
+                                <li>
+                                    <span class="subject subject-info">ㆍ 기존 계좌가 있을 경우 삭제되고 다시 추가됩니다.</span>
                                 </li>
                                 <div class="modify_form">
                                     <button class="modify_btn_btn cancel-btn" id="ac_modify_cancel_btn"
