@@ -242,7 +242,7 @@ async function fetchAIResponse(prompt) {
       // apikey.js 파일의 gpt_apikey 변수 사용
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo", // 사용할 AI 모델
+      model: "gpt-3.5-turbo", // 사용할 AI 모델1
       //prompt: "배달음식을 시킬껀데 음식 추천해줘",
       messages: [
         {

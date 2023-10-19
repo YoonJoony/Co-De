@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link rel="stylesheet" href="/css/main_page2.css">
+    <!-- 프론트앤드 수정 -->
+    <link rel="stylesheet" href="../static/css/main_page2.css">
+    <!-- ----------------------- -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -126,6 +129,22 @@
                                 <button class="board-create-button">작성하기</button>
                             </div>
                             <div class="width-header-center">
+                                <div class="header_rangeInput_div">
+                                    <fieldset>
+                                        <input id="header_rangeInput" class="range" type="range" min=0 max=3>
+                                        <div class="rageInput-handle">
+                                            <div class="handle"></div>
+                                            <div class="handle"></div>
+                                            <div class="handle handle-last"></div>
+                                        </div>
+                                        <div class="rageInput-handle-distinct">
+                                            <div class="distinct">0m</div>
+                                            <div class="distinct">100m</div>
+                                            <div class="distinct">300m</div>
+                                            <div class="distinct">500m</div>
+                                        </div>
+                                    </fieldset>
+                                </div>
                             </div>
                             <div class="width-header-right">
                                 <button class="board-range">노출거리</button>
@@ -441,6 +460,10 @@
     </script>
     <script src="/js/main_page/main_page.js"></script>
     <script src="/js/main_page/addStore2.js"></script>
+    <!-- 프론트앤드 -->
+    <script src="../static/js/main_page/main_page.js"></script>
+    <script src="../static/js/main_page/addStore2.js"></script>
+    <!-- -------------------- -->
 
 </body>
 

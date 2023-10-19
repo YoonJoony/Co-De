@@ -15,7 +15,6 @@
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:100);
 
-
 html,
 body {
   height: 100%;
@@ -415,266 +414,298 @@ a {
 
 /* ---------- 게시판 ---------*/
 .width-main {
-    font-family: "NanumSquareNeo-Variable";
-    width : 100%;
-    height : 100%;
-    margin-left : auto;
-    margin-right : auto;
-    margin-top : 20px;
-    max-width: 86rem;
+  font-family: "NanumSquareNeo-Variable";
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  max-width: 86rem;
 }
 
 .main-flex {
-    display : flex;
-    position : relative;
-    padding: 0 20px;
+  display: flex;
+  position: relative;
+  padding: 0 20px;
 }
 
 .width-container-margin {
-    position : relative;
-    /* width : 100%; */
-    min-width: 450px;
-    height : 100%;
-    --tw-space-x-reverse: 0;
-    margin-left: calc(2.5rem * var(--tw-space-x-reverse));
-    margin-right: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
+  position: relative;
+  /* width : 100%; */
+  min-width: 450px;
+  height: 100%;
+  --tw-space-x-reverse: 0;
+  margin-left: calc(2.5rem * var(--tw-space-x-reverse));
+  margin-right: calc(2.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .width-container {
-    margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
 .width-header {
-    position : relative;
-    display : flex;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-
+  position: relative;
+  display: flex;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .width-header-left {
-    position : relative;
-    flex : none;
+  position: relative;
+  flex: none;
 }
 
 .board-create-button {
-    border : none;
-    border-radius : 5px;
-    background-color : #FB993F;
-    color : #FFF;
-    padding : 0 10px;
-    height : 32px;
-    font-size: .875rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #fb993f;
+  color: #fff;
+  padding: 0 10px;
+  height: 32px;
+  font-size: 0.875rem;
 }
 
 .width-header-center {
-    position : relative;
-    display : flex;
-    flex-grow : 1;
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+.header_rangeInput_div {
+  display: flex;
+  visibility: hidden;
+  padding: 0 20px 0 20px;
+}
+.header_rangeInput_div fieldset {
+  flex-basis: 50%;
+  margin-left: auto;
 }
 
 .width-header-right {
-    position : relative;
-    flex : none;
+  position: relative;
+  flex: none;
 }
 
 .board-range {
-    border : 1px solid #959595;
-    border-radius : 5px;
-    background-color : #FFF;
-    color : black;
-    padding : 0 10px;
-    height : 32px;
-    font-size: .875rem;
+  border: 1px solid #959595;
+  border-radius: 5px;
+  background-color: #fff;
+  color: black;
+  padding: 0 10px;
+  height: 32px;
+  font-size: 0.875rem;
+  transition: 0.4s;
+}
+.board-range:hover {
+  background-color: #7cab75;
+  color: white;
+  border: 1px solid #7cab75;
 }
 
 /* ------------게시판 카테고리 ------------*/
 .swiper-container {
-    position:relative;
-    width : 100%;
-    display : flex;
-    padding : 0 10px;
-    column-gap: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-top : 1px solid hsla(220,9%,46%,.3);
-    border-bottom : 1px solid hsla(220,9%,46%,.3);
+  position: relative;
+  width: 100%;
+  display: flex;
+  padding: 0 10px;
+  column-gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid hsla(220, 9%, 46%, 0.3);
+  border-bottom: 1px solid hsla(220, 9%, 46%, 0.3);
 }
 
 .category-container {
-    overflow-x: scroll;
-    position: relative;
-    height: max-content;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin : 0 auto;
+  overflow-x: scroll;
+  position: relative;
+  height: max-content;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+}
+/* 스크롤바 설정*/
+.category-container::-webkit-scrollbar {
+  height: 10px;
+}
 
+/* 스크롤바 막대 설정*/
+.category-container::-webkit-scrollbar-thumb {
+  background-color: #fb993f;
+  /* 스크롤바 둥글게 설정    */
+  border-radius: 10px;
+  background-clip: padding box;
+  border: 2px solid white;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.category-container::-webkit-scrollbar-track {
+  background-color: white;
 }
 
 .scroll-arrow {
-    position : relative;
-    flex : none;
-    top : 5px;
+  position: relative;
+  flex: none;
+  top: 5px;
 }
 
 .scroll-content {
-    width: max-content;
-    position :relative;
-    padding : 0px 5px 0px 5px;
-    outline: none;
-    line-height: 30px;
-    margin-left : 7px;
+  width: max-content;
+  position: relative;
+  padding: 0px 5px 0px 5px;
+  outline: none;
+  line-height: 30px;
+  margin-left: 7px;
 }
 
-
 .board-category {
-    min-width : 40px;
-    height: 37px; /* Adjust as needed */
-    background-color: #fff;
-    border: 1px solid #ff8c16;
-    border-radius: 17px;
-    font-size : 13px;
-    transition: 0.4s;
-    margin-right : 8px;
-    padding : 2px 8px 0px 8px;
+  min-width: 40px;
+  height: 37px;
+  /* Adjust as needed */
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 17px;
+  font-size: 13px;
+  transition: 0.4s;
+  margin-right: 8px;
+  padding: 2px 8px 0px 8px;
+  cursor: pointer;
+}
+.board-category:hover {
+  background-color: #ff8c16;
+  color: white;
 }
 
 .scroll-arrow {
-
 }
-.scroll-arrow img{
-    width : 23px;
-    height : 23px;
+.scroll-arrow img {
+  width: 23px;
+  height: 23px;
 }
 
 /* ------------ 게시글 영역 ------------------- */
 .board-main {
-
 }
 
 .main-content ul {
-    padding : 0;
-    margin : 0;
+  padding: 0;
+  margin: 0;
 }
 .main-content li {
-    display : flex;
-    flex-direction : column;
-    padding-left: 0.825rem;
-    padding-right: 0.825rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid hsla(220,9%,46%,.3);
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.825rem;
+  padding-right: 0.825rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsla(220, 9%, 46%, 0.3);
 }
 
 /* 모집글 header */
 .board-header {
-    display : flex;
-    align-items : center;
-    column-gap : 0.25rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.25rem;
 }
 
 .board-header img {
-    width : 12px;
-    height : 12px;
-    margin-right: 0.235rem;
-    margin-bottom: 0.125rem;
+  width: 12px;
+  height: 12px;
+  margin-right: 0.235rem;
+  margin-bottom: 0.125rem;
 }
 
-
 .board-profile img {
-    border-radius: 50px;
-    width : 23px;
-    height : 22px;
-    margin-right: 0.235rem;
-    margin-bottom: 0.125rem;
+  border-radius: 50px;
+  width: 23px;
+  height: 22px;
+  margin-right: 0.235rem;
+  margin-bottom: 0.125rem;
 }
 
 .board-nickname {
-    font-size: .875rem;
-    line-height: 1.25rem;
-    color: rgb(55 65 81/var(--tw-text-opacity));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
 .board-time-div {
-    display : inline-flex;
-    align-items : center;
+  display: inline-flex;
+  align-items: center;
 }
 
-.board-time-div span{
-    margin-left: 0.125rem;
-    margin-right: 0.225rem;
+.board-time-div span {
+  margin-left: 0.125rem;
+  margin-right: 0.225rem;
 }
 
 .board-time {
-    font-size : .875rem;
+  font-size: 0.875rem;
 }
 
 /* 모집글 title */
 .board-body {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight : 600;
-    line-height: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
 }
 
 /* 모집글 footer*/
 .board-footer {
-    display : flex;
+  display: flex;
 }
 
 .board-footer-left {
-    align-items : center;
-    column-gap: 0.55rem;
-    flex: 1 1 0%;
-    display : flex;
+  align-items: center;
+  column-gap: 0.55rem;
+  flex: 1 1 0%;
+  display: flex;
 }
 
-.board-footer-left a{
-    color : #ff7a00;
+.board-footer-left a {
+  color: #ff7a00;
 }
 
 .board-categories {
-    border : 1px solid;
-    border-radius : 5px;
-    padding : 0 5px;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 0 5px;
 }
 
-
 .board-address {
-    font-size: .775rem;
-    color: rgb(75 85 99);
+  font-size: 0.775rem;
+  color: rgb(75 85 99);
 }
 
 .board-footer-right {
-    display : flex;
-    font-size: .81rem;
-    line-height: 1.25rem;
+  display: flex;
+  font-size: 0.81rem;
+  line-height: 1.25rem;
 }
 
 .board-peoples-img img {
-    width : 18px;
-    height : 18px;
-    margin-right: 0.175rem;
+  width: 18px;
+  height: 18px;
+  margin-right: 0.175rem;
 }
-
 
 /* ------챗봇 컨테이너 --------*/
 .width-right {
-    width : 330px;
+  width: 330px;
 }
 
 .chat-container {
-    position: relative;
-    min-width: 300px;
-    margin-top: 24px;
-    height: 450px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    background-color: #fff;
+  position: relative;
+  min-width: 300px;
+  margin-top: 24px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+  background-color: #fff;
 }
 
 #chat-messages {
@@ -686,12 +717,12 @@ a {
 }
 
 .message {
-    margin-top: .3rem;
-    margin-bottom: .3rem;
-    border : 1px solid #ff9d36;
-    padding : 4px 0px 4px 7px;
-    border-radius : 5px;
-    font-size : 14px;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border: 1px solid #ff9d36;
+  padding: 4px 0px 4px 7px;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 #user-input {
@@ -724,7 +755,7 @@ a {
   cursor: pointer;
 }
 
-@media(max-width: 700px) {
+@media (max-width: 700px) {
   .chat-img-area {
     display: block;
     z-index: 10;
@@ -744,17 +775,9 @@ a {
     width: 80px;
     height: 80px;
   }
-
 }
 
 /* ------------------------------------------------------------- */
-
-
-
-
-
-
-
 
 .ad {
   text-align: center;
@@ -851,7 +874,6 @@ a {
 .board .content-list .time {
   width: 10%;
 }
-
 
 .board .load-btn {
   text-align: center;
@@ -1404,7 +1426,6 @@ select::-ms-expand {
 
 /* ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ */
 
-
 /* 가게 모달창 */
 .storeModal {
   font-family: "NanumSquareNeo-Variable";
@@ -1420,8 +1441,8 @@ select::-ms-expand {
   display: none;
 }
 .storeModal_content {
-  position : relative;
-  left : 0.2%;
+  position: relative;
+  left: 0.2%;
   width: 50%;
   height: 92%;
   padding: 8px 3px;
@@ -1437,55 +1458,55 @@ select::-ms-expand {
 
 .storeModal_header {
   display: block;
-  position : relative;
+  position: relative;
   width: 100%;
   height: 17%;
   /*padding: 10px 6px;*/
   white-space: nowrap;
-  text-align : center;
+  text-align: center;
 }
 
 .storeModal_header_topper {
-    position: relative;
-    display: flex;
-    width: 100%;
-    padding: 4px 20px 5px 17px;
-    margin-bottom : 4px;
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 4px 20px 5px 17px;
+  margin-bottom: 4px;
 }
 
 .storeModal_header_topper_back {
-  position : relative;
-  right : 4px;
-  flex : 0.7;
+  position: relative;
+  right: 4px;
+  flex: 0.7;
 }
 
 .storeModal_header_topper_back_img {
-  position : relative;
-  width : 90%;
-  header : 90%;
+  position: relative;
+  width: 90%;
+  header: 90%;
 }
 
 .storeModal_header_topper_text {
-  flex : 7;
-  position : relative;
-  text-align : left;
-  margin-left : 9px;
+  flex: 7;
+  position: relative;
+  text-align: left;
+  margin-left: 9px;
 }
 
-.storeModal_header_topper p{
+.storeModal_header_topper p {
   font-family: "NanumSquareNeo-Variable";
-  position : absolute;
-  left : 0;
+  position: absolute;
+  left: 0;
   top: 11%;
-  font-size : 20px;
+  font-size: 20px;
 }
 
 /* 가게 검색 div */
 .storeModal_header_search {
-  position : relative;
-  text-align : center;
+  position: relative;
+  text-align: center;
   width: 100%;
-  padding : 5px 18px 5px 21px;
+  padding: 5px 18px 5px 21px;
 }
 
 .storeModal_header_search .search-box {
@@ -1496,31 +1517,31 @@ select::-ms-expand {
   border: 1px solid #ff8c16;
   border-radius: 11px;
   transition: 0.4s;
-  }
+}
 
-.search-txt{
-    position : relative;
-    left : 4%;
-    text-align : center;
-    width : 80%;
-    border: none;
-    background: none;
-    outline: none;
-    line-height: 30px;
-    font-size : 12px;
+.search-txt {
+  position: relative;
+  left: 4%;
+  text-align: center;
+  width: 80%;
+  border: none;
+  background: none;
+  outline: none;
+  line-height: 30px;
+  font-size: 12px;
 }
 
 .search-btn:before {
-    content: "|";
-    font-size : 13px;
-    color: #f7c999;
-    right : 12px;
-    position : relative;
+  content: "|";
+  font-size: 13px;
+  color: #f7c999;
+  right: 12px;
+  position: relative;
 }
 
-.search-btn{
+.search-btn {
   text-decoration: none;
-  position : relative;
+  position: relative;
   float: right;
   width: 30px;
   height: 30px;
@@ -1530,57 +1551,53 @@ select::-ms-expand {
   color: #51e3d4;
 }
 
-.search-btn .fas{
-  right : 15%;
-  position : relative;
-  font-size : 13.5px;
+.search-btn .fas {
+  right: 15%;
+  position: relative;
+  font-size: 13.5px;
   color: #ff8b4e;
 }
 
 /* 가게 카테고리 div */
 .storeModal_header_categories {
-    overflow-x: scroll;
-    position: absolute;
-    width: 92%;
-    height: max-content;
-    left: 0;
-    top: 121px;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    -webkit-overflow-scrolling: touch;
-    z-index : 6;
-
+  overflow-x: scroll;
+  position: absolute;
+  width: 92%;
+  height: max-content;
+  left: 0;
+  top: 121px;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 6;
 }
 
 /* 이거 해주니까 스크롤 바 사라짐 ㄷㄷ 개이득*/
 .storeModal_header_categories::-webkit-scrollbar {
-    width : 1%;
+  width: 1%;
 }
 
-
-
 .scroll-content {
-    width: max-content;
-    display: flex;
-    padding : 0px 5px 0px 5px;
-    outline: none;
-    line-height: 30px;
+  width: max-content;
+  display: flex;
+  padding: 0px 5px 0px 5px;
+  outline: none;
+  line-height: 30px;
 }
 
 .content-item {
-    min-width : 40px;
-    height: 37px; /* Adjust as needed */
-    background-color: #fff;
-    border: 1px solid #ff8c16;
-    border-radius: 17px;
-    font-size : 13px;
-    transition: 0.4s;
-    margin-right : 8px;
-    padding : 2px 8px 0px 8px;
-    z-index : 5;
+  min-width: 40px;
+  height: 37px; /* Adjust as needed */
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 17px;
+  font-size: 13px;
+  transition: 0.4s;
+  margin-right: 8px;
+  padding: 2px 8px 0px 8px;
+  z-index: 5;
 }
-
 
 .storeModal_header #search_store {
   font-family: "NanumSquareNeo-Variable";
@@ -1610,12 +1627,12 @@ select::-ms-expand {
   opacity: 0.7;
 }
 .storeModal_body {
-    width: 100%;
-    position: relative;
-    top: 3.3%;
-    height: 79%;
-    padding: 10px 6px;
-    overflow-y: scroll;
+  width: 100%;
+  position: relative;
+  top: 3.3%;
+  height: 79%;
+  padding: 10px 6px;
+  overflow-y: scroll;
 }
 .storeModal_body::-webkit-scrollbar {
   width: 4px; /* 스크롤바의 너비 */
@@ -1628,372 +1645,375 @@ select::-ms-expand {
   border-radius: 10px;
 }
 
-@media (max-width:500px){
-    .store_list {
-        position: relative;
-        width: 100%;
-        height: 20%;
-        padding: 5px 10px;
-        border-bottom: 0.1px solid;
-        border-color: #dfdfdf;
-        margin-bottom: 10px;
-        background-color: #fbfbfb;
-        border-radius: 6px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-    }
+@media (max-width: 500px) {
+  .store_list {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    padding: 5px 10px;
+    border-bottom: 0.1px solid;
+    border-color: #dfdfdf;
+    margin-bottom: 10px;
+    background-color: #fbfbfb;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
 
-    .store_list .store_info_div {
-       padding: 0 0 0 15px;
-       top : 0%;
-       left : 3%;
-       position : relative;
-       flex: 5;
-     }
+  .store_list .store_info_div {
+    padding: 0 0 0 15px;
+    top: 0%;
+    left: 3%;
+    position: relative;
+    flex: 5;
+  }
 
-     .store_time {
-         position : relative;
-         color : #818181;
-         font-size : 11px;
-     }
+  .store_time {
+    position: relative;
+    color: #818181;
+    font-size: 11px;
+  }
 }
 
-@media (min-width:500px){
-    .store_list {
-        position: relative;
-        width: 100%;
-        height: 20%;
-        padding: 5px 12px 9px 12px;
-        border-bottom: 0.1px solid;
-        border-color: #dfdfdf;
-        margin-bottom: 10px;
-        background-color: #fbfbfb;
-        border-radius: 6px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-    }
+@media (min-width: 500px) {
+  .store_list {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    padding: 5px 12px 9px 12px;
+    border-bottom: 0.1px solid;
+    border-color: #dfdfdf;
+    margin-bottom: 10px;
+    background-color: #fbfbfb;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
 
-    .store_list .store_info_div {
-       padding: 0 0 0 15px;
-       top : -15%;
-       left : 3%;
-       position : relative;
-       flex: 5;
-     }
+  .store_list .store_info_div {
+    padding: 0 0 0 15px;
+    top: -15%;
+    left: 3%;
+    position: relative;
+    flex: 5;
+  }
 
-     .store_time {
-         position : relative;
-         top : 3%;
-         color : #818181;
-         font-size : 11px;
-     }
+  .store_time {
+    position: relative;
+    top: 3%;
+    color: #818181;
+    font-size: 11px;
+  }
 
-     .store_image {
-       width: 95% !important;
-       height : 95% !important;
-     }
+  .store_image {
+    width: 95% !important;
+    height: 95% !important;
+  }
 }
 
 .store_list .store_image_div {
   flex: 2;
 }
 
-
 .store_list .store_time_div {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
 }
-
 
 .store_image {
   width: 100%;
-  height : 100%;
+  height: 100%;
 }
 .store_list .store_name {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 3px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 3px;
 }
 .store_list .store_minimum_order_amount {
-    font-size: 12px;
-    display: inline-block;
-    white-space: nowrap;
-    /* overflow: hidden; */
-    text-overflow: ellipsis;
-    width: auto;
-    position: relative;
+  font-size: 12px;
+  display: inline-block;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+  width: auto;
+  position: relative;
 }
 
 .store_info_div_bottom .ico-star {
-    font-size : 12px;
-    color : #ff8c16;
+  font-size: 12px;
+  color: #ff8c16;
 }
 
 .store_info_div_bottom .review_num {
-  font-size : 12px;
+  font-size: 12px;
   display: inline;
 }
 
 .review_num:before {
-    content: "|";
-    color: #d9d9d9;
-    margin-right : 5px;
-    margin-left : 5px;
+  content: "|";
+  color: #d9d9d9;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .store_minimum_order_amount:before {
-    content: "|";
-    color: #d9d9d9;
-    margin-right : 5px;
-    margin-left : 5px;
+  content: "|";
+  color: #d9d9d9;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 /* -------- 애니메이션 -------- */
 /* 로딩창 */
 
 .loading-div {
-    position : relative;
-    width : 100%;
-    top: 25%;
-    height: 100%;
-    display : block;
-    text-align : center;
+  position: relative;
+  width: 100%;
+  top: 25%;
+  height: 100%;
+  display: block;
+  text-align: center;
 }
 
 .loading {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgb(185 185 185 / 30%);
-    border-radius: 50%;
-    border-top-color: #ff8100f0;
-    animation: spin 1s ease-in-out infinite;
-    -webkit-animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgb(185 185 185 / 30%);
+  border-radius: 50%;
+  border-top-color: #ff8100f0;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 @-webkit-keyframes spin {
-  to { -webkit-transform: rotate(360deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 /* -------- 거리 슬라이더 -------- */
 
-:root{
-    --form-color: #a00; /* CSS 변수로 색상 지정 */
+:root {
+  --form-color: #a00; /* CSS 변수로 색상 지정 */
 }
-fieldset{
-    min-width: 0;
-    width: 100%;
-    padding: 0 17px;
-    margin: 0;
-    border: 0;
+fieldset {
+  min-width: 0;
+  width: 100%;
+  padding: 0 17px;
+  margin: 0;
+  border: 0;
 }
-fieldset legend{
-    padding: 5px;
-    background-color: #555;
-    color: #fff;
+fieldset legend {
+  padding: 5px;
+  background-color: #555;
+  color: #fff;
 }
-.range{
-    width : 100%;
-    accent-color: #6c6f8c; /* 폼 요소에 변수 색상 지정 */
+.range {
+  width: 100%;
+  accent-color: #6c6f8c; /* 폼 요소에 변수 색상 지정 */
 }
-input[type=checkbox], input[type=radio]{
-    width: 1.25em;
-    height: 1.25em;
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.25em;
+  height: 1.25em;
 }
 
 /* -------- 모집글 생성 모달 -------- */
 .mozipCreate .modal-dialog {
-    font-family: "NanumSquareNeo-Variable";
-    height : 660px;
-    top : 13%;
+  font-family: "NanumSquareNeo-Variable";
+  height: 660px;
+  top: 13%;
 }
 
 .mozipCreate .modal-content {
-    position: relative;
-    height: 94%;
-    padding: 8px 3px;
-    margin: 0 auto;
-    border: none;
-    background-color: #fff;
-    box-shadow: 0 4px 4px 0 gray;
-    border-radius: 5px 5px 20px 20px;
-    border-bottom: solid 9px #ff8c16;
-    max-width: 530px;
-    min-width: 370px;
+  position: relative;
+  height: 94%;
+  padding: 8px 3px;
+  margin: 0 auto;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 4px 4px 0 gray;
+  border-radius: 5px 5px 20px 20px;
+  border-bottom: solid 9px #ff8c16;
+  max-width: 530px;
+  min-width: 370px;
 }
 
 .mozipCreate .storeModal_header_topper {
-    border : none !important;
+  border: none !important;
 }
 
 .mozipCreate-body {
-    position: relative;
-    width: 100%;
-    padding: 16px 10px 0px 8px;
+  position: relative;
+  width: 100%;
+  padding: 16px 10px 0px 8px;
 }
 
 /* 모집글 생성 제목 설정*/
 .mozipCreate-body .mozipCreate-title {
-    position: relative;
-    text-align: left;
-    width: 100%;
-    padding: 5px 18px 17px 14px;
-    display: inline-block;
-    border-bottom: 1px solid #F1F1F1;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 5px 18px 17px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
 }
 
-.mozipCreate-title div{
-    position: relative;
-    width: 10%;
-    min-width: 40px;
-    display: inline-block;
-    font-size: 17px;
+.mozipCreate-title div {
+  position: relative;
+  width: 10%;
+  min-width: 40px;
+  display: inline-block;
+  font-size: 17px;
 }
 
-.mozipCreate-title .search-box{
-    position: relative;
-    height: 31px;
-    width: 80%;
-    background-color: #fff;
-    border: 1px solid #ff8c16;
-    border-radius: 5px;
-    transition: 0.4s;
-    display: inline-block;
+.mozipCreate-title .search-box {
+  position: relative;
+  height: 31px;
+  width: 80%;
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 5px;
+  transition: 0.4s;
+  display: inline-block;
 }
 
 /* 모집글 생성 노출거리 설정*/
-.mozipCreate-info{
-    position: relative;
-    width: 100%;
-    display: inline-block;
-    font-size: 17px;
+.mozipCreate-info {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  font-size: 17px;
 }
 
 .mozipCreate-body .mozipCreate-range {
-    position: relative;
-    text-align: left;
-    width: 100%;
-    padding: 15px 18px 17px 14px;
-    display: inline-block;
-    border-bottom: 1px solid #F1F1F1;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 18px 17px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .mozipCreate-range .input-area-range {
-    padding : 20px 40px 0px 40px;
+  padding: 20px 40px 0px 40px;
 }
 
 .rageInput-handle {
-    width : 100%;
-    height : 5px;
-    display : flex;
-    padding : 0px 1px;
+  width: 100%;
+  height: 5px;
+  display: flex;
+  padding: 0px 1px;
 }
 
 .handle {
-    position : relative;
-    flex : 1;
-    border-left : 1px solid #a4a4a4;
+  position: relative;
+  flex: 1;
+  border-left: 1px solid #a4a4a4;
 }
 
 .handle-last {
-    border-right : 1px solid #a4a4a4;
+  border-right: 1px solid #a4a4a4;
 }
 
 .rageInput-handle-distinct {
-    position : relative;
-    font-size : 10px;
-    width : 134%;
-    right: 14px;
-    height : 20px;
-    display : flex;
-    padding : 5px 3px 0px 8px;
+  position: relative;
+  font-size: 10px;
+  width: 134%;
+  right: 14px;
+  height: 20px;
+  display: flex;
+  padding: 5px 3px 0px 8px;
 }
 
 .distinct {
-    position : relative;
-    flex : 1;
+  position: relative;
+  flex: 1;
 }
 
 /* 모집글 생성 카테고리 설정*/
 /* 가게 카테고리 div */
 .mozipCreate-body .mozipCreate-category {
-    position: relative;
-    text-align: left;
-    width: 100%;
-    padding: 15px 18px 30px 14px;
-    display: inline-block;
-    border-bottom: 1px solid #F1F1F1;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 18px 30px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .category {
-    position: relative;
-    width: 100%;
-    top : 10px;
+  position: relative;
+  width: 100%;
+  top: 10px;
 }
 .categoty-content {
-    margin: 0 auto;
-    flex-wrap: wrap;
-    width: 70%;
-    min-width: 330px;
-    display: flex;
-    padding: 0px 5px 0px 5px;
-    outline: none;
-    line-height: 30px;
-    justify-content: center;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  width: 70%;
+  min-width: 330px;
+  display: flex;
+  padding: 0px 5px 0px 5px;
+  outline: none;
+  line-height: 30px;
+  justify-content: center;
 }
 
 .category-item {
-    min-width : 40px;
-    height: 37px; /* Adjust as needed */
-    background-color: #fff;
-    border: 1px solid #ff8c16;
-    border-radius: 17px;
-    font-size : 13px;
-    transition: 0.4s;
-    padding : 2px 8px 0px 8px;
-    z-index : 5;
-    margin : 0px 5px 7px 0px;
-    cursor : pointer;
+  min-width: 40px;
+  height: 37px; /* Adjust as needed */
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 17px;
+  font-size: 13px;
+  transition: 0.4s;
+  padding: 2px 8px 0px 8px;
+  z-index: 5;
+  margin: 0px 5px 7px 0px;
+  cursor: pointer;
 }
 
 /* 모집글 가게 선택 카테고리*/
 .mozipCreate-body .mozipCreate-storeName {
-    position: relative;
-    text-align: left;
-    width: 100%;
-    padding: 15px 0px 30px 14px;
-    display: inline-block;
-    border-bottom: 1px solid #F1F1F1;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 0px 30px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .mozipCreate-storeName .mozipCreate-info {
-    width : max-content;
-    display : inline-block;
-    position : relative;
-    margin-right : 25px;
+  width: max-content;
+  display: inline-block;
+  position: relative;
+  margin-right: 25px;
 }
 
 /* 가게 선택 input*/
 .storeName {
-    position : relative;
-    display : inline-block;
-    width: 264px;
-    margin-right : 15px;
-    bottom : 3px;
-    cursor : pointer;
+  position: relative;
+  display: inline-block;
+  width: 264px;
+  margin-right: 15px;
+  bottom: 3px;
+  cursor: pointer;
 }
 
 .storeName .storeName-input {
-  width : 100%;
-  min-width : 200px;
+  width: 100%;
+  min-width: 200px;
   font-size: 15px;
   color: #222222;
   border: none;
@@ -2004,20 +2024,19 @@ input[type=checkbox], input[type=radio]{
 }
 
 .storeName-select {
-    position : relative;
-    display : inline;
-    bottom : 3px;
-
+  position: relative;
+  display: inline;
+  bottom: 3px;
 }
 
 .storeName-select .add_store {
-    width: 13%;
-    height: 26px;
-    font-size: 14px;
-    border: 1px solid black;
-    /* color: #ffffff; */
-    background-color: #ffffff;
-    border-radius: 5px;
+  width: 13%;
+  height: 26px;
+  font-size: 14px;
+  border: 1px solid black;
+  /* color: #ffffff; */
+  background-color: #ffffff;
+  border-radius: 5px;
 }
 .storeName-select .add_store:hover {
   opacity: 0.7;
@@ -2025,33 +2044,33 @@ input[type=checkbox], input[type=radio]{
 
 /* 모집글 인원 선택 카테고리*/
 .mozipCreate-body .mozipCreate-people {
-    position: relative;
-    text-align: left;
-    width: 100%;
-    padding: 15px 0px 0px 14px;
-    display: flex;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 0px 0px 14px;
+  display: flex;
 }
 
 .mozipCreate-people .mozipCreate-info {
-    width : max-content;
-    display : inline-block;
-    position : relative;
-    margin-right: 45px;
-    left: 10px;
+  width: max-content;
+  display: inline-block;
+  position: relative;
+  margin-right: 45px;
+  left: 10px;
 }
 
 /* 인원 선택 input*/
 .people-range {
-    position : relative;
-    display : inline-block;
-    width: 122px;
-    margin-right : 15px;
-    bottom : 3px;
-    flex : 3;
+  position: relative;
+  display: inline-block;
+  width: 122px;
+  margin-right: 15px;
+  bottom: 3px;
+  flex: 3;
 }
 
 .people-range .people-range-input {
-  width : 100%;
+  width: 100%;
   font-size: 15px;
   color: #222222;
   border: none;
@@ -2061,11 +2080,11 @@ input[type=checkbox], input[type=radio]{
 }
 
 .people-range-select {
-    position : relaative;
-    display : inline-block;
-    bottom : 3px;
-    right : 0;
-    flex : 1;
+  position: relaative;
+  display: inline-block;
+  bottom: 3px;
+  right: 0;
+  flex: 1;
 }
 
 .people-range-select .createMozip {
