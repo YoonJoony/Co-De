@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="accountTb.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/eb076808b8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container">
+            <form name="AccountForm" action="/members/new" method="post" onsubmit="return jbSubmit();">
+                <h1 class="Register">Sign Up</h1>
+                <h3 class="Register">회원가입을 위해</br> 정보를 입력해주세요.</h3>
+
+                <label for="account_holder">
+                    <p class="label_title">* 예금주</p>
+                    <input type="text" name="account_holdername" id="account_holdername" autocomplete="off" required>
+                </label>
+
+                <label for="bank">
+                    <p class="label_title">* 은행명</p>
+                    <div class="bankbox">
+                        <select name="bank" id="bank" required>
+                            <option value=''>-선택-</option>
+                            <option value='SC제일은행'>SC제일은행</option>
+                            <option value='경남은행'>경남은행</option>
+                            <option value='광주은행'>광주은행</option>
+                            <option value='국민은행'>국민은행</option>
+                            <option value='기업은행'>기업은행</option>
+                            <option value='농협중앙회'>농협중앙회</option>
+                            <option value='대구은행'>대구은행</option>
+                            <option value='부산은행'>부산은행</option>
+                            <option value='산업은행'>산업은행</option>
+                            <option value='상호신용금고'>상호신용금고</option>
+                            <option value='새마을금고'>새마을금고</option>
+                            <option value='수협중앙회'>수협중앙회</option>
+                            <option value='신한은행'>신한은행</option>
+                            <option value='신협중앙회'>신협중앙회</option>
+                            <option value='외환은행'>외환은행</option>
+                            <option value='우리은행'>우리은행</option>
+                            <option value='우체국'>우체국</option>
+                            <option value='전북은행'>전북은행</option>
+                            <option value='제주은행'>제주은행</option>
+                            <option value='하나은행'>하나은행</option>
+                            <option value='한국씨티은행'>한국씨티은행</option>
+                            <option value='홍콩상하이은행'>홍콩상하이은행</option>
+                        </select>
+                    </div>
+                </label>
+
+                <label for="accountTb">
+                    <p class="label_title">* 계좌번호</p>
+                    <input type="text" name="accountTb" id="accountTb" autocomplete="off" required
+                        placeholder="   '-'없이 숫자만 입력해 주세요.">
+                </label>
+
+                <label for="pw">
+                    <p class="label_title">* 계좌 비밀번호</p>
+                    <input class="pw" type="password" name="pw" id="pw" autocomplete="off" required maxlength='4'>
+                </label>
+
+                <label for="certified">
+                    <button class="btnRegister" id='btnRegister' type="submit">가입하기</button>
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <script src="accountTb.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById("address").addEventListener("click", function () { //주소입력칸을 클릭하면
+                //카카오 지도 발생
+                new daum.Postcode({
+                    oncomplete: function (data) { //선택시 입력값 세팅
+                        document.getElementById("address").value = data.address; // 주소 넣기
+                    }
+                }).open();
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vscode 채팅방</title>
   <link rel="stylesheet" href="chat2.css">
+  <link rel="stylesheet" href="moblie_chat.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
-  <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+  <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+  <!--  <p> 폰트 적용 -->
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
     rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,7 +50,7 @@
     <div class="header">
       <div class="join-back">
         <div id="back-button" class="back-button">
-          <img src="../../Chat_dbswns/images/back.png" height="80px" width="80px">
+          <img src="../images/back.png" height="80px" width="80px">
         </div>
       </div>
       <div class="join-user">
@@ -91,6 +93,10 @@
   </div>
   <!--채팅 페이지 영역-->
   <div id="main">
+    <div class="moblie_logo">
+      <img src="../images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+      <img class="logo" src="../images/COOR.png">
+    </div>
     <div class="topper">
       <!-- 로그인 부분 -->
       <div class="login">
@@ -109,7 +115,7 @@
         </div>
         <div id="header-bell" class="header-bell">
           <span class="bell">
-            <img src="../../Chat_dbswns/images/bell.png" style="width : 25px; height : 25px;" alt="">
+            <img src="../images/bell.png" style="width : 25px; height : 25px;" alt="">
           </span>
         </div>
         <div id="header-profile" class="header-profile">
@@ -146,7 +152,7 @@
       <div class="search-container">
         <div class="search">
           <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-            <img class="gps" src="../../Chat_dbswns/images/search.png">
+            <img class="gps" src="../images/search.png">
           </button>
           <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
           <div class="tag-container">
@@ -201,7 +207,7 @@
                 </div>
               </div>
               <div class="chat-header-right">
-                <img src="/Icon(아이콘)/menu_5259008.png" width="23px" height="23px" class="header-img"
+                <img src="../../Icon(아이콘)/menu_5259008.png" width="23px" height="23px" class="header-img"
                   onclick="list_open()">
               </div>
             </div>
@@ -221,7 +227,7 @@
                       <div id="menu">
                         <label for="file">
                           <div class="btn-upload">
-                            <img src="/images/picture.png" style="cursor:pointer;">
+                            <img src="../images/picture.png" style="cursor:pointer;">
                           </div>
                         </label>
                         <input type="file" name="file" id="file" onchange="uploadFile(this)">
@@ -232,22 +238,64 @@
               </div>
               <div class="chat-right">
                 <div class="chat-menu">
-                  <img src="/Icon(아이콘)/bell.png">
-                  <img src="/Icon(아이콘)/map.png" id="map_button" onclick="map_btn()">
-                  <img src="/Icon(아이콘)/Budget.png">
+                  <img src="../images/bell.png">
+                  <img src="../../Icon(아이콘)/map.png" id="map_button" onclick="map_btn()">
+                  <img src="../../Icon(아이콘)/Budget.png" onclick="cal()">
                   <!-- <img src="/Icon(아이콘)/basket.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"> -->
-                  <img src="/Icon(아이콘)/basket.png" onclick="basket()">
+                  <img src="../../Icon(아이콘)/basket.png" onclick="basket()">
 
-                  <img src="/Icon(아이콘)/setting.png">
+                  <img src="../../Icon(아이콘)/setting.png">
                 </div>
-                <img src="/Icon(아이콘)/log-out_5565735.png" class="out-img">
+                <img src="../../Icon(아이콘)/log-out_5565735.png" class="out-img">
+              </div>
+
+              <!-- 정산(결제) 확인창 -->
+              <div class="cal_page">
+                <div class="storeModal_header_topper">
+                  <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
+                    <img class="storeModal_header_topper_back_img" src="../images/back.png" onclick="cal()"
+                      style="cursor:pointer;">
+                  </div>
+                  <h2>결제 하기</h2>
+                  <button class="pay_done" id="pay_done" onclick="discount_apply(); this.onclick='';">
+                    금액 확인 </button>
+                </div>
+                <div class="calualtor">
+                  <div>
+                    <h3>농담곰</h3>
+                    <p id="host"></p>
+                    <!-- 
+                            방장일때는 p태그에 id를 호스트로 생성
+                            결제 창에 금액확인 버튼을 누르면 id를 인식해서 방장은 배달비 할인된 금액으로 출력이 되고
+
+                            아래 주석 처리된 div 보면 customer1이라고 되어 있는데 
+                            방장을 제외한 나머지 인원에게는 name = customer n(숫자 1~3) 라는 태그 부여
+
+                            금액 확인 버튼을 누르면 방장에게 할인된 금액을 더하여 배달비가 출력
+
+                            본인이 장바구니에서 선택한 메뉴값 + 배달비
+                         -->
+                  </div>
+
+
+                  <div>
+                    <h3>망담곰</h3>
+                    <p name="costomer1"></p>
+                  </div>
+
+                </div>
+
+                <button class="calbtn" onclick="cal()">닫기</button>
               </div>
 
               <!-- 장바구니 모달 -->
               <div class="basket-view">
                 <div class="basket-title">
                   <div class="basket-title-name">장바구니</div>
-                  <div class="menu-list-close" onclick="basket()"> X </div>
+                  <div class="storeModal_header_topper_back">
+                    <img class="storeModal_header_topper_back_img_basket" src="../images/back.png" onclick="basket()"
+                      style="cursor:pointer;">
+                  </div>
                 </div>
                 <div class="menu-view">
                   <div class="menu-list">
@@ -285,7 +333,7 @@
 
           <div class="getout">
             <div class="list_box button--antiman">
-              <img src="/images/profile.png" height="35px" width="35px">
+              <img src="../images/profile.png" height="35px" width="35px">
               <span class="profile_name" id="me">야왕이네</span> <!-- 본인을 최상단에 고정, 본인에게는 me 아이디 지급 -->
               <button type="button" id="vote1" class="vote">추 방</button>
               <br><span class="condition"> 미정산 </span>
@@ -320,13 +368,12 @@
             <!-- 초대 모달 -->
             <div class="invite_modal" id="invite_modal">
               <div class="popup" id="popup">
-                <div class="m_head">
-                  <img class="m_logo" src="/images/COOR.png">
-                </div>
                 <div class="m_body">
                   <div class="input-area">
                     <div class="body-titlebox">
                       <h2>초대</h2>
+                      <img class="storeModal_header_topper_back_img_invite" src="../images/back.png"
+                        onclick="invitemodalClose()" style="cursor:pointer;">
                     </div>
 
                     <div class="body-contentbox">
@@ -353,6 +400,12 @@
           <div class="detail_meun_wrap">
             <div class="detail_header">
               <div class="title"> 메뉴 상세 </div>
+              <img class="storeModal_header_topper_back_img_detail" src="../images/back.png" onclick="detail_close()"
+                style="cursor:pointer;">
+              <!-- <div class="storeModal_header_topper_back">
+                                <img class="storeModal_header_topper_back_img" src="images/back.png"
+                                    onclick="detail_close()" style="cursor:pointer;">
+                            </div> -->
             </div>
 
             <div class="detail_content">
@@ -389,7 +442,6 @@
 
             <div class="detail_button_bar">
               <button class="add_cart"> 장바구니에 추가 </button>
-              <button class="close_detail" onclick="detail_close()"> 닫기 </button>
             </div>
           </div>
 
@@ -409,7 +461,10 @@
       <div class="modal-window">
         <div class="modal-popup">
           <div class="modal-popup-close">
-            <div class="modal-popup-close-name" onclick="detail_open()">X</div>
+            <div class="storeModal_header_topper_back modal-popup-close">
+              <img class="storeModal_header_topper_back_img_basket" src="../images/back.png" onclick="close_modal()"
+                style="cursor:pointer;">
+            </div>
           </div>
           <div class="modal-popup-title">
             <div class="modal-popup-title-name">메뉴 선택</div>
@@ -596,7 +651,7 @@
             </div>
           </div>
           <div class="modal-menu-commit">
-            <input id="menu_commit" type="button" value="확인">
+            <input id="menu_commit" type="button" value="확 인">
           </div>
         </div>
       </div>
@@ -610,6 +665,7 @@
 
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="chat2.js"></script>
+  <script src="addStore2.js"></script>
   <script src="https://kit.fontawesome.com/c36bc0e85c.js" crossorigin="anonymous"></script>
   <!-- Add Bootstrap JavaScript and its dependencies -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"

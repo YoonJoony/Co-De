@@ -1,5 +1,6 @@
 package backend.codebackend;
 
+import backend.codebackend.controller.AccountController;
 import backend.codebackend.domain.Chat;
 import backend.codebackend.repository.*;
 import backend.codebackend.service.*;
@@ -16,6 +17,7 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
@@ -24,13 +26,10 @@ import java.time.LocalDateTime;
 
 //빈을 직접 찾아서 등록하는거라 따로 서비스나 저장소에서 @service... @repo.. 안해줘도 됨
 
-
 @Configuration
 @EnableWebSocketMessageBroker
 @EnableAsync
 public class SpringConfig implements WebSocketMessageBrokerConfigurer {
-
-
     private final EntityManager em;
 
     private final AmazonS3 amazonS3;
@@ -66,7 +65,7 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     }
     @Bean
     public AccountService accountService() {
-        return new AccountService(accountRepository());
+        return new AccountService(accountRepository(), encoder());
     }
 
     @Bean
@@ -88,9 +87,15 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public ChatRepository chatRepository() {
         return new JpaChatRepository(em);
     }
+
     @Bean
     public AccountRepository accountRepository() {
         return new JpaAccountRepository(em);
+    }
+
+    @Bean
+    public BCryptPasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override

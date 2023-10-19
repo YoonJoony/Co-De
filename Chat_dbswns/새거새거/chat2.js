@@ -518,7 +518,7 @@ document
 // 모달 창 닫기
 function close_modal() {
     document.querySelector(".modal-background").className = "modal-background";
-    detail_open();
+    detail_close();
 }
 // x클릭 시 close_modal 함수 호출
 document
@@ -572,3 +572,122 @@ function minus() {
         total_count_view.value = total_count_view.value - total_count.value; //추가  
     }
 }
+
+// 정산(결제)
+function cal() {
+    const cal_content = document.querySelector(".cal_page");
+
+    if (cal_content.style.display != "block") {
+        cal_content.style.display = "block";
+    }
+    else {
+        cal_content.style.display = "none";
+    }
+}
+
+// 유저 리스트 받기
+// function getUserList() {
+//     const $list = $('#list');
+
+//     $.ajax({
+//         type: "GET",
+//         url: "/mozip/chat/userList",
+//         data: {
+//             "id": id
+//         },
+//         success: function (data) {
+//             console.log("데이터 받기 성공 : " + data[0]);
+//             var users = "";
+//             for (let i = 0; i < data.length; i++) {
+//                 console.log("data[" + i + "] : " + data[i]);
+//                 users += "<li class='dropdown-item'>" + data[i] + "</li>";
+//             }
+//             $list.html(users);
+//         },
+//         error: function () {
+//             console.log("리스트 요청 실패 : ");
+//         }
+//     })
+// }
+
+// 계산용 임시 리스트
+// const userList = [
+//     { id: 1, name: '농담곰', pay:0},
+//     { id: 2, name: '북극곰', pay:0},
+//     { id: 3, name: '망그곰', pay:0},
+//     { id: 4, name: '콜라곰', pay:0}
+// ];
+
+const userList = [1, 2, 3, 4];
+
+// const $list = $('#list'); // 참가자 명단
+
+// 개별로 선택한 음식 가격
+const pay_amount = 19000;
+
+
+// 각자 내야 하는 배달비
+const delivery_fee = 4000; // 배달비
+let html_deli_fee = document.getElementById("delivery"); // 홈페이지 확인용 임시 변수
+const delivery_fee_each = delivery_fee / userList.length;
+
+const host_pay = document.getElementById("host");
+
+
+$('#pay_done').one('click', function () {
+    html_deli_fee.innerHTML += `<p> 배달비:  ${delivery_fee.toLocaleString()}원</p>`; // 홈페이지 확인용 임시 변수
+    if (userList.length == 4) { // 참가자가 4인 일 때
+        let rate = Math.ceil(delivery_fee_each * 0.4);
+        let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
+        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1))); // 할인 된 금액만큼 나머지 사람들이 납부 
+        // 전체참가자 - 호스트
+
+        const total_pay_host = pay_amount + host_fee;
+        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`; // 호스트가 내야 하는 비용
+
+        const total_pay_coutomer = pay_amount + costomer_fee;
+
+        for (var i = 1; i <= (userList.length - 1); i++) {
+            var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
+            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`; // 참가자가 지불해야 하는 비용
+        }
+    }
+    else if (userList.length == 3) { // 참가자가 3인 일 때
+        let rate = Math.ceil(delivery_fee_each * 0.3);
+        let host_fee = Math.ceil(delivery_fee_each - rate);
+        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
+
+        const total_pay_host = pay_amount + host_fee;
+        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
+
+        for (var i = 1; i <= (userList.length - 1); i++) {
+            var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
+            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
+        }
+    }
+    else if (userList.length == 2) { // 참가자가 2인 일 때
+        let rate = Math.ceil(delivery_fee_each * 0.2);
+        let host_fee = Math.ceil(delivery_fee_each - rate);
+        let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
+
+        const total_pay_host = pay_amount + host_fee;
+        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
+
+        for (var i = 1; i <= (userList.length - 1); i++) {
+            var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
+            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
+        }
+    }
+});
+// ------------------------------------------------------------------------------------------
+
+function show() {
+    document.querySelector(".header2").className = "header2 header2_show";
+}
+
+function close() {
+    document.querySelector(".header2").className = "header2";
+}
+
+document.querySelector("#chat_show").addEventListener('click', show);
+document.querySelector("#chat-page").addEventListener('click', close);

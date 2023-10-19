@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <!-- <link rel="stylesheet" href="/css/mypage.css"> 원래 css 경로 파일 -->
+    <link rel="stylesheet" href="../static/css/mypage.css">
+    <link rel="stylesheet" href="../static/css/mypage_mobile_header.css">
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap" rel="stylesheet">
+
+<body>
+    <div class="main">
+        <!-- 헤더 부분 -->
+        <div class="topper">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+            </div>
+        </div>
+        <!-- 헤더 부분 -->
+        <!-- 모바일 화면 로고 -->
+        <div class="moblie_logo">
+            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+            <img class="logo" src="images/COOR.png">
+        </div>
+        <div class="topper">
+            <!-- 로그인 부분 -->
+            <div class="login">
+                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+            </div>
+        </div>
+        <!-- 헤더 부분 -->
+        <div class="header2">
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="width-container">
+                <div class="user-info">
+                    <div class="logo-img">
+                        <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                        <img class="logo" src="images/COOR2.png">
+                    </div>
+
+                    <div id="header-profile" class="header-profile">
+                        <a class="header-user">
+                            <span class="user-picture2">
+                                <img src="/Chat_dbswns/images/profile5.png" height="50px" width="50px" class="">
+                            </span>
+                            <span class="bell">
+                                <img src="images/bell.png" style="width : 25px; height : 25px;" alt="" class="header-bell">
+                            </span>
+                            <span class="user-name2" th:text="${nickname}"> 야왕이네
+                            </span>
+                            <span class="header-arrow">
+                                <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+                            </span>
+                        </a>
+                        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+                            <div class="block block-name">
+                                <div class="profile-name" th:text="${nickname}"> 야왕이네
+                                </div>
+                                <div class="buttons">
+                                    <a href="#">파티관리</a>
+                                </div>
+                            </div>
+                            <!--                    <div class="header-profile-direct">-->
+                            <!--                        <dl class="header-member-direct__information">-->
+                            <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
+                            <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
+                            <!--                            <dd>ㅇㅇ</dd>-->
+                            <!--                            <dd>ㅇㅇ</dd>-->
+                            <!--                        </dl>-->
+                            <!--                    </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 주소 입력 부분 -->
+            <div class="search-container">
+                <div class="search">
+                    <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                        <img class="gps" src="images/search.png">
+                    </button>
+                    <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
+                    <div class="tag-container">
+                        <div class="tag real-time-text">
+                            <p class="tag search-tag-text">실시간 검색 태그</p>
+                        </div>
+                        <div class="tag real-time">
+                            #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li class="menu-li mozipPage">
+                        <a class="menu-a">전체 글</a>
+                    </li>
+                    <li class="menu-li categories">
+                        <a class="menu-a">카테고리</a>
+                    </li>
+                    <li class="menu-li myChat">
+                        <a class="menu-a">내 채팅</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- 프로필 -->
+        </div>
+        <!-- 개인정보 수정 칸 -->
+        <div class="body_title">
+            MyPage
+        </div>
+        <div class="body">
+            <div class="board">
+                <div class="h3">계좌 정보</div>
+                <div class="form-round signup">
+                    <ul class="form-list">
+                        <li>
+                            <span class="subject">ㆍ 계좌 번호</span>
+                            <div class="account_show_div">
+                                <span id="bank_name" th:text="${account.account_name}"> </span>
+                                <span id="account_num" th:text="${account.number}"> </span>
+                            </div>
+                        <li>
+                            <span class="subject">ㆍ 예금주
+                            </span>
+                            <span id="account_holder" th:text="${account.username}"></span>
+                        </li>
+                        <li>
+                            <span class="subject">ㆍ 계좌 잔액
+                            </span>
+                            <span id="a_balance" th:text="${account.balance}"></span>
+                        </li>
+                        <li>
+                            <span class="subject"></span>
+                            <button type="button" class="modify-btn" id="modify_ac_btn" onclick="modify_account_btn()">
+                                계좌 변경
+                            </button>
+                        </li>
+                        <div class="modify-form-round" id="modify_account_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 예금주</span>
+                                    <input type="text" value="" id="modified_ac_user" class="form-control input-sm"
+                                        required="" placeholder="예금주" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='예금주'" size="5" maxlength="5">
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 은행</span>
+
+                                    <label for="bank">
+                                        <div class="bankbox">
+                                            <select name="bank" id="bank" required>
+                                                <option value=''>-선택-</option>
+                                                <option value='SC제일은행'>SC제일은행</option>
+                                                <option value='경남은행'>경남은행</option>
+                                                <option value='광주은행'>광주은행</option>
+                                                <option value='국민은행'>국민은행</option>
+                                                <option value='기업은행'>기업은행</option>
+                                                <option value='농협중앙회'>농협중앙회</option>
+                                                <option value='대구은행'>대구은행</option>
+                                                <option value='부산은행'>부산은행</option>
+                                                <option value='산업은행'>산업은행</option>
+                                                <option value='상호신용금고'>상호신용금고</option>
+                                                <option value='새마을금고'>새마을금고</option>
+                                                <option value='수협중앙회'>수협중앙회</option>
+                                                <option value='신한은행'>신한은행</option>
+                                                <option value='신협중앙회'>신협중앙회</option>
+                                                <option value='외환은행'>외환은행</option>
+                                                <option value='우리은행'>우리은행</option>
+                                                <option value='우체국'>우체국</option>
+                                                <option value='전북은행'>전북은행</option>
+                                                <option value='제주은행'>제주은행</option>
+                                                <option value='하나은행'>하나은행</option>
+                                                <option value='한국씨티은행'>한국씨티은행</option>
+                                                <option value='홍콩상하이은행'>홍콩상하이은행</option>
+                                            </select>
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 계좌번호</span>
+                                    <input type="text" value="" id="modified_ac_number" class="form-control input-sm"
+                                        required="" placeholder="계좌번호를 입력해 주세요" oninput="autoHyphen(this)"
+                                        onfocus="this.placeholder=''" onblur="this.placeholder='계좌번호를 입력해 주세요'"
+                                        size="10" maxlength="16" onkeypress='return checkNumber(event)'>
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 계좌 비밀번호</span>
+                                    <input type="text" value="" id="modified_ac_pw" class="form-control input-sm"
+                                        required="" placeholder="계좌 비밀번호 4글자를 입력해 주세요" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='계좌 비밀번호 4글자를 입력해 주세요'" size="4" maxlength="4"
+                                        onkeypress='return checkNumber(event)'>
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="ac_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="ac_modify_submit"
+                                        type="button">완료</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+
+                <div class="h3">아이디/비밀번호</div>
+                <div class="form-round signup">
+                    <ul class="form-list">
+                        <li>
+                            <span class="subject">ㆍ 아이디</span>
+                            <input type="text" name="mb_id" value="(현재 아이디 값)" id="reg_mb_id" readonly=""
+                                placeholder="아이디" minlength="3" maxlength="20">
+                        </li>
+                        <li>
+                            <span class="subject">ㆍ 비밀번호</span>
+                            <button type="button" class="modify-btn" id="modify_pw_btn" onclick="modify_pw_btn()">
+                                비밀번호 변경
+                            </button>
+                        </li>
+                        <div class="modify-form-round" id="modify_password_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 현재 비밀번호</span>
+                                    <input type="password" value="" id="previous_pw" class="form-control input-sm"
+                                        required="" placeholder="현재 비밀번호" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='현재 비밀번호'" size="10" maxlength="20">
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 신규 비밀번호</span>
+                                    <input type="password" value="" id="modified_pw_1" class="form-control input-sm"
+                                        required="" placeholder="신규 비밀번호" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='신규 비밀번호'" size="10" maxlength="20">
+                                </li>
+                                <li>
+                                    <span class="subject">ㆍ 신규 비밀번호 재 입력</span>
+                                    <input type="password" value="" id="modified_pw-2" class="form-control input-sm"
+                                        required="" placeholder="신규 비밀번호 재 입력" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='신규 비밀번호 재 입력'" size="10" maxlength="20">
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="pw_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="pw_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+                <div class="h3">내 정보</div>
+                <div class="form-round signup">
+                    <ul class="form-list">
+                        <li>
+                            <span class="subject">ㆍ 닉네임</span>
+                            <button type="button" class="modify-btn" id="modify_nickname_btn"
+                                onclick="modify_nickname_btn()">
+                                닉네임 변경
+                            </button>
+                        </li>
+                        <div class="modify-form-round" id="modify_nickname_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 닉네임 수정</span>
+                                    <input type="text" value="" id="new_nickname" class="form-control input-sm"
+                                        required="" placeholder="닉네임" onfocus="this.placeholder=''"
+                                        onblur="this.placeholder='닉네임'" size="10" maxlength="20">
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="nickname_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="nickname_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
+                        <li>
+                            <span class="subject">ㆍ 휴대폰 번호</span>
+                            <input type="text" name="mb_hp" value="(현재 휴대폰 번호 값)" id="reg_mb_hp" readonly="" required=""
+                                placeholder="휴대폰 번호" maxlength="20">
+                        </li>
+                        <li>
+                            <span class="subject">ㆍ 프로필 사진</span>
+                            <button type="button" class="modify-btn" id="modify_profile_image_btn"
+                                onclick="modify_profile_image_btn()">
+                                프로필 사진 변경
+                            </button>
+                        </li>
+                        <div class="modify-form-round" id="modify_profile_image_form">
+                            <ul class="form-list">
+                                <li>
+                                    <span class="subject">ㆍ 프로필 사진 변경</span>
+                                    <input type="file">
+                                </li>
+                                <div class="modify_form">
+                                    <button class="modify_btn_btn cancel-btn" id="profile_image_modify_cancel_btn"
+                                        type="button">취소</button>
+                                    <button class="modify_btn_btn commit-btn" id="profile_image_modify_submit"
+                                        type="submit">완료</button>
+                                </div>
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+    <!-- <script src="/js/MyPage/mypage.js"></script> -->
+    <script src="../static/js/MyPage/mypage.js"></script>
+
+    <!-- <script src="/js/MyPage/modify.js"></script> -->
+    <script src="../static/js/MyPage/modify.js"></script>
+</body>
+
+</html>

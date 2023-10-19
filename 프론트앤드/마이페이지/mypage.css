@@ -307,7 +307,6 @@ a {
 .form-list input[type="text"],
 .form-list input[type="password"] {
   width: 90%;
-  margin-left: 8px;
 }
 input[type="text"],
 input[type="password"] {
@@ -349,7 +348,6 @@ input[type="password"] {
   overflow: hidden;
   cursor: pointer;
   transition: all 0.3s;
-  margin-left: 8px;
 }
 .modify-btn:hover {
   opacity: 1;
@@ -363,35 +361,6 @@ input[type="password"] {
 .hide-modify-password {
   position: relative;
 }
-/* .button-align {
-  position: relative;
-  min-height: 53px;
-}
-.button-align.center {
-  text-align: center;
-  margin-top: 30px;
-}
-.button-align .button {
-  vertical-align: top;
-}
-.button {
-  position: relative;
-  display: inline-block;
-  margin: 1px 0;
-  color: white;
-  min-width: 110px;
-  height: 42px;
-  padding: 0 10px;
-  font-size: 13px;
-  line-height: 42px;
-  text-align: center;
-  border: 0;
-  border-radius: 5px;
-  background-color: #cecdd4;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s;
-} */
 .button.button-color {
   background-color: #ff8c16;
 }
@@ -442,5 +411,60 @@ input[type="password"] {
 }
 .commit-btn:hover {
   opacity: 0.7;
+}
+.address_div {
+  display: flex;
+}
+#modified_ad {
+  flex: 6;
+  margin-right: 10px;
+}
+#find_address {
+  flex: 1;
+  position: relative;
+  display: inline-block;
+  font-size: 13px;
+  text-align: center;
+  border: solid 1px #dddddd;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+#modified_ad_detail {
+  flex: 6;
+  margin-right: 12px;
+}
+#ex1 {
+  flex: 1;
+}
+.account_show_div {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+#bank_name {
+  float: left;
+  margin-right: 5px;
+  font-weight: bold;
+  padding: 6px 0;
+}
+#account_num {
+  float: left;
+  padding: 6px 0;
+}
+#account_holder {
+  position: absolute;
+  top: 0;
+  font-weight: bold;
+  display: inline-block;
+  padding: 6px 0;
+}
+#a_balance {
+  position: absolute;
+  top: 0;
+  color: #58b26c;
+  font-weight: bold;
+  padding: 6px 0;
 }
 /*--------------------------------------------------*/
