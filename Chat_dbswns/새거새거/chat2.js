@@ -680,3 +680,14 @@ $('#pay_done').one('click', function () {
     }
 });
 // ------------------------------------------------------------------------------------------
+
+function show() {
+    document.querySelector(".header2").className = "header2 header2_show";
+}
+
+function close() {
+    document.querySelector(".header2").className = "header2";
+}
+
+document.querySelector("#chat_show").addEventListener('click', show);
+document.querySelector("#chat-page").addEventListener('click', close);

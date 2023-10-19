@@ -1,64 +1,111 @@
+/* 모바일 화면 로고 및 햄버거 버튼 부분 */
+.moblie_logo {
+    display: none;
+}
 
-/* PCí—¤ë” ë°” ê²€ìƒ‰ ë°” */
+/* 모바일 헤더 css */
 @media screen and (max-width: 900px) {
+    .moblie_logo {
+        display: block;
+        position: relative;
+        height: 8%;
+        background-color: #FFF;
+    }
+
+    .logo {
+        width: 150px !important;
+        position: absolute;
+        left: 32%;
+        top: -7px;
+    }
+
+    .mobile_header-img {
+        float: left;
+        position: relative;
+        left: 3%;
+        top: 34%;
+        width: 6%;
+    }
+
     .topper {
-      display : none;
-      position: fixed;
-      z-index: 2;
-      width : 70%;
-      min-width: 200px;
-      max-width: 400px;
-      height: 37px;
-      background-color: #ffffff;
-      border-bottom: 1px solid #b0cbba6b;
+        display: none;
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+        min-width: 200px;
+        max-width: 400px;
+        height: 37px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #b0cbba6b;
+    }
+
+    .chat-container {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        top: -20%;
     }
 
     .header2 {
+        display: block;
         z-index: 1000;
-        top: 35px;
+        top: 10px;
         border-bottom: solid 9px #ff8c16;
         background-color: #ffffff;
         position: fixed;
         border-radius: 0px 0px 20px 20px;
-        width : 70%;
+        width: 70%;
         min-width: 200px;
         max-width: 400px;
-        height: 100%;
+        height: 90%;
         overflow: visible;
         transition: all 0.3s ease-in-out;
+
+        transform: translate(-50%, 0%);
+
+        /* 숨기기 */
+        z-index: -1;
+        opacity: 0;
     }
 
-    .
-    header2.fixed {
-      position: fixed;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    .header2.fixed {
+        position: fixed;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 왼쪽으로 슬라이드 */
+    .header2_show {
+        transform: translate(0%, 0%);
+        opacity: 1;
+        z-index: 101;
+        transition: .5s;
     }
 
     .logo {
-      width: 190px;
+        width: 190px;
     }
 
     .logo-img {
-      display : none
+        display: none
     }
 
     .header2 p {
-      display: inline;
-      position: absolute;
-      top: 30%;
-      left: 46%;
-      font-size: 20px;
-      font-family: "Play", sans-serif;
-      /* height: 33%; */
-      /* margin: auto; */
-      /* justify-content: center; */
+        display: inline;
+        position: absolute;
+        top: 30%;
+        left: 46%;
+        font-size: 20px;
+        font-family: "Play", sans-serif;
+        /* height: 33%; */
+        /* margin: auto; */
+        /* justify-content: center; */
     }
 
     .user-info {
         position: relative;
         width: 100%;
         height: 100%;
-        background-color : #F5F5F5;
+        background-color: #F5F5F5;
     }
 
     .width-container {
@@ -75,7 +122,7 @@
         flex-direction: column;
         position: relative;
         /* top: -13px; */
-        padding : 10px; 0;
+        padding: 10px;
         left: 0;
         height: 100%;
         width: 100%;
@@ -87,7 +134,7 @@
         position: relative;
         width: 100%;
         height: 14%;
-        padding : 5px 0;
+        padding: 5px 0;
         text-align: center;
         vertical-align: middle;
         white-space: nowrap;
@@ -96,46 +143,47 @@
     }
 
     .gps {
-      width: 19px;
-      height: 19px;
-      top: 15.3px;
-      left: 15.3px;
-      position: absolute;
+        width: 19px;
+        height: 19px;
+        top: 15.3px;
+        left: 15.3px;
+        position: absolute;
     }
 
 
     .search #loc_btn {
-      position: relative;
-      top: -4px;
-      width: 50px;
-      height: 50px;
-      font-size: 14px;
-      border: none;
-      background-color: #FFB649;
-      display: inline-block;
-      border-radius: 12px;
-      cursor: pointer;
-      z-index : 100;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        position: relative;
+        top: -4px;
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+        border: none;
+        background-color: #FFB649;
+        display: inline-block;
+        border-radius: 12px;
+        cursor: pointer;
+        z-index: 100;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     }
+
     .search #loc_btn:hover {
-      box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
-        inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+        box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+            inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
     }
 
     .search #search_input {
-      font-family: "NanumSquareNeo-Variable";
-      position: relative;
-      height: 50px;
-      font-size: 13px;
-      padding : 10px 10px 10px 24px;
-      right: 10px;
-      width: 84%;
-      border: none;
-      border-radius: 0 12px 12px 0;
-      background-color: #FFD18B;
-      color: black;
-      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+        font-family: "NanumSquareNeo-Variable";
+        position: relative;
+        height: 50px;
+        font-size: 13px;
+        padding: 10px 10px 10px 24px;
+        right: 10px;
+        width: 84%;
+        border: none;
+        border-radius: 0 12px 12px 0;
+        background-color: #FFD18B;
+        color: black;
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
     }
 
     /*ì‹¤ì‹œê°„ ê²€ìƒ‰ íƒœê·¸ */
@@ -143,17 +191,17 @@
     .tag-container {
         position: relative;
         border-bottom: 1px solid #a4a4a473;
-        display : block;
-        width : 100%;
+        display: block;
+        width: 100%;
         height: 58%;
-        padding : 7px 0px 0px 19px;
+        padding: 7px 0px 0px 19px;
         /* margin: 0 auto; */
     }
 
     .tag {
         position: absolute;
-        left : 6%;
-        height : 100%;
+        left: 6%;
+        height: 100%;
         font-size: 14px;
         cursor: pointer;
         z-index: 100;
@@ -161,12 +209,12 @@
     }
 
     .real-time-text {
-        left : 5px;
+        left: 5px;
     }
 
-    .tag .search-tag-text{
+    .tag .search-tag-text {
         top: 3px;
-        left : 10px;
+        left: 10px;
         position: absolute;
         font-weight: 900;
         font-family: "NanumSquareNeo-Variable";
@@ -176,10 +224,10 @@
     .real-time {
         font-family: "NanumSquareNeo-Variable";
         position: absolute;
-        top : 33px;
+        top: 33px;
         font-size: 13px;
         cursor: pointer;
-        color : #8E8E8E;
+        color: #8E8E8E;
     }
 
 
@@ -194,9 +242,9 @@
 
     .search-container .menu-li {
         font-family: "NanumSquareNeo-Variable";
-        display : inline-block;
-        text-align : left;
-        cursor : pointer;
+        display: inline-block;
+        text-align: left;
+        cursor: pointer;
     }
 
     .search-container .menu-a {
@@ -210,23 +258,23 @@
     }
 
     /* íŽ˜ì´ì§€ ì´ë™ ë²„íŠ¼ í´ë¦­ ì‹œ ë°‘ì¤„*/
-    .menu-li.on .menu-a{
+    .menu-li.on .menu-a {
         /*border-bottom: 3px solid #7e69fe;*/
     }
 
     .header-bell {
-      position: absolute;
-      top : 171px;
-      right: 166px;
-      text-align: center;
-      white-space: nowrap;
-      /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
-      z-index: 3;
+        position: absolute;
+        top: 171px;
+        right: 166px;
+        text-align: center;
+        white-space: nowrap;
+        /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
+        z-index: 3;
     }
 
     .bell img {
-        width : 22px !important;
-        height : 22px !important;
+        width: 22px !important;
+        height: 22px !important;
     }
 
 
@@ -239,16 +287,16 @@
     }
 
     .header-profile {
-      position: relative;
-      text-align: center;
-      height: 100%;
-      white-space: nowrap;
-      /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
-      z-index: 3;
+        position: relative;
+        text-align: center;
+        height: 100%;
+        white-space: nowrap;
+        /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
+        z-index: 3;
     }
 
     a {
-        background : 0 0;
+        background: 0 0;
     }
 
     .header-user {
@@ -266,7 +314,7 @@
         position: relative;
         display: table;
         height: 162px;
-        margin-right : 5px;
+        margin-right: 5px;
         vertical-align: middle;
         overflow: hidden;
         border-radius: 10px;
@@ -274,10 +322,10 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        cursor : pointer;
+        cursor: pointer;
     }
 
-    .user-picture2 img{
+    .user-picture2 img {
         position: a;
         width: 158px;
         height: 156px;
@@ -285,18 +333,18 @@
 
     .user-name2 {
         font-family: "NanumSquareNeo-Variable";
-        font-weight : 700;
+        font-weight: 700;
         position: relative;
         display: block;
         bottom: 10px;
-        left : 8px;
+        left: 8px;
         font-size: 17px;
         color: gray;
     }
 
 
-    .header-user .header-arrow{
-      display : none;
+    .header-user .header-arrow {
+        display: none;
 
     }
 
@@ -305,14 +353,14 @@
         top: 90px;
         right: 0;
         width: 210px;
-        height : 100%;
+        height: 100%;
         background-color: white;
         border-top: 1px solid #cdccd6;
         -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    .layer-header-profile .block:first-child{
+    .layer-header-profile .block:first-child {
         border-top: 0;
         padding: 20px 20px 10px 20px;
         background-color: #faf9fe;
@@ -322,11 +370,12 @@
         position: relative;
         padding: 0 20px;
         border: 1px solid #cdccd6;
-        height : 200px;
+        height: 200px;
     }
 
 
-    .layer-header-profile::before { /* í”„ë¡œí•„ ì»¤ì„œ ì´ë²¤íŠ¸ ì •ë³´ ì°½*/
+    .layer-header-profile::before {
+        /* í”„ë¡œí•„ ì»¤ì„œ ì´ë²¤íŠ¸ ì •ë³´ ì°½*/
         content: '';
         position: absolute;
         top: -8px;
@@ -342,10 +391,10 @@
 
     .layer-header-profile .profile-name {
         font-family: "NanumSquareNeo-Variable";
-        font-size : 17px;
-        text-align : center;
-        margin-bottom : 15px;
-        color : #58b26c;
+        font-size: 17px;
+        text-align: center;
+        margin-bottom: 15px;
+        color: #58b26c;
     }
 
     .layer-header-profile .buttons {
@@ -354,7 +403,7 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        width : 50%;
+        width: 50%;
         margin: 0 auto;
         border-radius: 215px;
         overflow: hidden;
@@ -363,7 +412,7 @@
     }
 
 
-    .layer-header-profile .buttons a{
+    .layer-header-profile .buttons a {
         display: inline-block;
         width: 100%;
         height: 30px;

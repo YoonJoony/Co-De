@@ -135,3 +135,14 @@ const autoHyphen = (target) => {
    .replace(/[^0-9]/g, '')
   .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})(\d{0,2})$/g, "$1-$2-$3-$4").replace(/(\-{1,2})$/g, "");
 }
+
+function show() {
+  document.querySelector(".header2").className = "header2 header2_show";
+}
+
+function close() {
+  document.querySelector(".header2").className = "header2";
+}
+
+document.querySelector("#chat_show").addEventListener('click', show);
+document.querySelector("#vsc-initialized").addEventListener('click', close);

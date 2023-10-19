@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>vscode 채팅방</title>
   <link rel="stylesheet" href="chat2.css">
+  <link rel="stylesheet" href="moblie_chat.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -92,6 +93,10 @@
   </div>
   <!--채팅 페이지 영역-->
   <div id="main">
+    <div class="moblie_logo">
+      <img src="../images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+      <img class="logo" src="../images/COOR.png">
+    </div>
     <div class="topper">
       <!-- 로그인 부분 -->
       <div class="login">
@@ -367,8 +372,8 @@
                   <div class="input-area">
                     <div class="body-titlebox">
                       <h2>초대</h2>
-                      <img class="storeModal_header_topper_back_img_invite" src="../images/back.png" onclick="invitemodalClose()" 
-                      style="cursor:pointer;">
+                      <img class="storeModal_header_topper_back_img_invite" src="../images/back.png"
+                        onclick="invitemodalClose()" style="cursor:pointer;">
                     </div>
 
                     <div class="body-contentbox">
@@ -395,7 +400,8 @@
           <div class="detail_meun_wrap">
             <div class="detail_header">
               <div class="title"> 메뉴 상세 </div>
-              <img class="storeModal_header_topper_back_img_detail" src="../images/back.png" onclick="detail_close()" style="cursor:pointer;">
+              <img class="storeModal_header_topper_back_img_detail" src="../images/back.png" onclick="detail_close()"
+                style="cursor:pointer;">
               <!-- <div class="storeModal_header_topper_back">
                                 <img class="storeModal_header_topper_back_img" src="images/back.png"
                                     onclick="detail_close()" style="cursor:pointer;">
