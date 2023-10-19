@@ -467,13 +467,12 @@ a {
 
 .width-header-center {
   position: relative;
-  display: flex;
   flex-grow: 1;
 }
 
 .header_rangeInput_div {
   display: flex;
-  visibility: hidden;
+  visibility: visible;
   padding: 0 20px 0 20px;
 }
 .header_rangeInput_div fieldset {
