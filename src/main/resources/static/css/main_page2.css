@@ -63,7 +63,7 @@ input:focus {
   position: absolute;
   z-index: 1;
   top: 35px;
-  border-bottom: solid 9px #ff8c16;
+  /* border-bottom: solid 9px #ff8c16; */
   background-color: #ffffff;
   position: fixed;
   border-radius: 20px;
