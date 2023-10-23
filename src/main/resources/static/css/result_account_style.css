@@ -6,15 +6,21 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "NanumSquareNeo-Variable";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:100);
+
+html,
 body {
-  font-family: "Noto Sans KR", sans-serif;
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-  align-items: center;
-  background-color: #f0f0f0;
-  background-size: cover;
-  font-size: 1.5vw;
+  height: 100%;
+  width: 100%;
+  font-family: "NanumSquareNeo-Variable";
 }
 
 table {
