@@ -635,7 +635,7 @@ const host_pay = document.getElementById("host");
 
 
 $('#pay_done').one('click', function () {
-    html_deli_fee.innerHTML += `<p> 배달비:  ${delivery_fee.toLocaleString()}원</p>`; // 홈페이지 확인용 임시 변수
+    // html_deli_fee.innerHTML += `<p> 배달비:  ${delivery_fee.toLocaleString()}원</p>`; // 홈페이지 확인용 임시 변수
     if (userList.length == 4) { // 참가자가 4인 일 때
         let rate = Math.ceil(delivery_fee_each * 0.4);
         let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
@@ -660,6 +660,8 @@ $('#pay_done').one('click', function () {
         const total_pay_host = pay_amount + host_fee;
         host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
 
+        const total_pay_coutomer = pay_amount + costomer_fee;
+
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
             costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
@@ -672,6 +674,8 @@ $('#pay_done').one('click', function () {
 
         const total_pay_host = pay_amount + host_fee;
         host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
+
+        const total_pay_coutomer = pay_amount + costomer_fee;
 
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
