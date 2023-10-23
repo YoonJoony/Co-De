@@ -23,34 +23,6 @@ body {
   font-family: "NanumSquareNeo-Variable";
 }
 
-table {
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: collapse;
-  margin-top: 30px;
-  font-size: 1.5vw;
-} /*이중선 제거*/
-th {
-  width: 4vw;
-  height: 4vw;
-  text-align: center;
-  border: 1px solid #000;
-
-  vertical-align: top; /* 위 */
-  vertical-align: bottom; /* 아래 */
-  vertical-align: middle; /* 가운데 */
-}
-td {
-  width: 15vw;
-  height: 4vw;
-  text-align: center;
-  border: 1px solid #000;
-
-  vertical-align: top; /* 위 */
-  vertical-align: bottom; /* 아래 */
-  vertical-align: middle; /* 가운데 */
-}
-
 h1 {
   display: block;
   font-size: 2em;
@@ -58,6 +30,7 @@ h1 {
   margin-inline-end: 0px;
   font-weight: bold;
 }
+
 .container {
   background-color: #fff;
   border-radius: 10px;
@@ -67,8 +40,8 @@ h1 {
   width: 500px; /* 박스 크기 */
   max-width: 100%;
   min-height: 300px;
-  -webkit-transition: width 1s, height 2s, background-color 2s;
-  transition: width 1s, height 2s, background-color 2s;
+  /* -webkit-transition: width 1s, height 2s, background-color 2s;
+  transition: width 1s, height 2s, background-color 2s; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -87,21 +60,41 @@ h1 {
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
 }
-.result-account-form {
-  position: relative;
-  z-index: 2;
-  text-align: center;
+.form-container-header {
+  margin: 0 0 15px 0;
 }
-.result-account-form h1 {
-  font-size: 7vw;
-  color: #7cab75;
-  font-weight: 900;
+.form-container h1 {
+  padding: 10px 0 10px 0;
+}
+.result_div {
+  width: auto;
+  height: auto;
+}
+.result_div_div {
+  /* width: 200px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 0 10px 0;
+}
+.result_1 {
+  flex-basis: 40px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 40px;
+  padding: 5px;
+}
+.result_2 {
+  flex-basis: 70px;
+  white-space: nowrap;
+  background-color: #d9d9d9;
+  border-radius: 3px;
+  padding: 5px;
 }
 
 .mainPage {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .mainPage button {
   height: 33px;
