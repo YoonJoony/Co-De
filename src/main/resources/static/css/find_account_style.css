@@ -23,6 +23,14 @@ body {
   font-family: "NanumSquareNeo-Variable";
 }
 
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
 .container {
   background-color: #fff;
   border-radius: 10px;
@@ -32,8 +40,8 @@ body {
   width: 500px; /* 박스 크기 */
   max-width: 100%;
   min-height: 300px;
-  -webkit-transition: width 1s, height 2s, background-color 2s;
-  transition: width 1s, height 2s, background-color 2s;
+  /* -webkit-transition: width 1s, height 2s, background-color 2s;
+  transition: width 1s, height 2s, background-color 2s; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -61,16 +69,14 @@ body {
   transition: transform 0.6s ease-in-out;
 }
 
-.find-account-form {
+.find-accountTb-form {
   position: relative;
   z-index: 2;
 }
-.find-account-form h1 {
-  font-size: 60px;
-  color: #fff;
-  text-align: center;
-  margin-bottom: 10px;
+.find-accountTb-form h1 {
+  padding: 10px 0 10px 0;
 }
+
 .phone {
   width: 300px;
   position: relative;
