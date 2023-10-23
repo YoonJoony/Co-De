@@ -623,7 +623,7 @@ const userList = [1, 2, 3, 4];
 // const $list = $('#list'); // 참가자 명단
 
 // 개별로 선택한 음식 가격
-const pay_amount = 19000;
+const pay_amount = 10000;
 
 
 // 각자 내야 하는 배달비
