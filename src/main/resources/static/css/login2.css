@@ -137,7 +137,34 @@ button.ghost {
   justify-content: center;
 }
 
-.Welcome_arrow{
+.arrow-next {
+  position: relative;
+  border: 1px solid #000;
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+}
+
+.arrow-next::after {
+  position: absolute;
+  left: 110px;
+  top: 10px;
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-top: 3px solid #FFF;
+  border-right: 3px solid #FFF;
+  transform: rotate(45deg);
+}
+
+.ghost {
+  top: 50px;
+  width: 140px;
+  height: 40px;
+  white-space: nowrap;
+}
+
+.Welcome_arrow {
   background-color: #FFFFFF;
 }
 
