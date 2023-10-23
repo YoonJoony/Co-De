@@ -8,7 +8,14 @@
     <link rel="stylesheet" href="/css/login2.css">
     <!-- vscode 전용 경로 ---------------------------------------------------->
     <link rel="stylesheet" href="../static/css/login2.css">
+    <link rel="stylesheet" href="../static/css/login_mobile.css">
     <!-- ---------------------------------------------------------------------->
+
+    <!-- 로컬 전용 경로 ---------------------------------------------------->
+    <link rel="stylesheet" href="login2.css">
+    <link rel="stylesheet" href="login_mobile.css">
+    <!-- ---------------------------------------------------------------------->
+
     <style>
         .list {
             font-size: 20px;
@@ -18,10 +25,13 @@
 
 <body>
     <div class="container" id="container">
+
+        <!-- 약관 페이지 -->
         <div class="form-container sign-up-container">
             <form action="#" class="term">
                 <h1 class="login">Privacy Notice</h1>
                 <span>or use your email for registration</span>
+                <button class="ghost_mobile" id="signIn">돌아가기</button>
                 <ul class="terms_list">
                     <li class="term_item">
                         <div class="check_terms">
@@ -118,11 +128,16 @@
                 <button type="button" class="next" id="next">Next</button>
             </form>
         </div>
+
+        <!-- 로그인 페이지 -->
         <div class="form-container sign-in-container">
-            <form action="/login" method="post">
+            <form action="/login" method="post" class="login_main" id="login_main">
                 <div class="name">
                     <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
                     <img class="logo" src="images/COOR.png">
+
+                    <!-- 로컬 작업 -->
+                    <!-- <img class="logo" src="COOR.png"> -->
                 </div>
                 <h1 class="login">Login</h1>
                 <span>or use your accountTb</span>
@@ -132,20 +147,25 @@
                 <button id="login-form-submit" type="submit">Login</button>
             </form>
         </div>
+
+        <!-- 슬라이드 화면 -->
         <div class="overlay-container">
             <div class="overlay">
+
                 <div class="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
                     <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
                 </div>
+
                 <div class="overlay-panel overlay-right">
-                    <h1>Welcome!</h1>
+                    <h2>Welcome!</h2>
                     <p>Enter your personal details and start journey with us</p>
+                    <img src="../templates/images/arrow.png" width="50px" height="50px" class="Welcome_arrow">
                     <button class="ghost" id="signUp">Sign Up</button>
                 </div>
             </div>
         </div>
+
     </div>
     <script src="/js/login2.js"></script>
     <!-- vscode 전용 경로 ---------------------------------------------------->
