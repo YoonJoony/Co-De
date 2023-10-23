@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
+    <script src="https://kit.fontawesome.com/eb076808b8.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -9,6 +10,20 @@
     <!-- vscode 전용 경로 ---------------------------------------------------->
     <link rel="stylesheet" href="../static/css/find_account_style.css">
     <!-- ---------------------------------------------------------------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <!--  <p> 폰트 적용 -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -27,7 +42,7 @@
                 </div>
                 <div class="auth-check">
                     <input id="auth-number" maxlength="6" type="text">
-                    <button id="completion" onclick="checkCompletion()">인증확인</button>
+                    <button type="button" id="completion" onclick="checkCompletion()">인증확인</button>
                 </div>
             </form>
         </div>

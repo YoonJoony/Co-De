@@ -1,63 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
-* {margin: 0; padding: 0; box-sizing: border-box;}
-
-body{
-    font-family: 'Noto Sans KR', sans-serif;
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    align-items: center;
-    background-color: #F0F0F0;
-    background-size: cover;
-    font-size: 1.5vw;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-table{
-    margin-left:auto;
-    margin-right:auto;
-    border-collapse : collapse;
-    margin-top: 30px;
-    font-size: 1.5vw;
-}  /*이중선 제거*/
-th{
-    width: 4vw;
-    height: 4vw;
-    text-align: center;
-    border: 1px solid #000;
-
-     vertical-align: top;	/* 위 */
-     vertical-align: bottom;   /* 아래 */
-     vertical-align: middle;   /* 가운데 */
-}
-td{
-    width: 15vw;
-    height: 4vw;
-    text-align: center;
-    border: 1px solid #000;
-
-     vertical-align: top;	/* 위 */
-     vertical-align: bottom;   /* 아래 */
-     vertical-align: middle;   /* 가운데 */
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  background-color: #f0f0f0;
+  background-size: cover;
+  font-size: 1.5vw;
 }
 
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  margin-top: 30px;
+  font-size: 1.5vw;
+} /*이중선 제거*/
+th {
+  width: 4vw;
+  height: 4vw;
+  text-align: center;
+  border: 1px solid #000;
 
-.result-account-form {position: relative; z-index: 2; text-align: center;}
+  vertical-align: top; /* 위 */
+  vertical-align: bottom; /* 아래 */
+  vertical-align: middle; /* 가운데 */
+}
+td {
+  width: 15vw;
+  height: 4vw;
+  text-align: center;
+  border: 1px solid #000;
+
+  vertical-align: top; /* 위 */
+  vertical-align: bottom; /* 아래 */
+  vertical-align: middle; /* 가운데 */
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: absolute;
+  overflow: hidden;
+  width: 500px; /* 박스 크기 */
+  max-width: 100%;
+  min-height: 300px;
+  -webkit-transition: width 1s, height 2s, background-color 2s;
+  transition: width 1s, height 2s, background-color 2s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.form-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: top;
+  flex-direction: column;
+  padding-top: 53px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+.result-account-form {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
 .result-account-form h1 {
-    font-size: 7vw; color: #7CAB75; font-weight: 900;
-    text-align: center;
-    margin-bottom: 40px;
+  font-size: 7vw;
+  color: #7cab75;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-
-.mainPage {margin-top: 30px;}
-.mainPage button{
-    width: 100%; height: 5%;
-    font-size: 2vw;
-    font-weight: bold;
-    color: #D9D9D9;
-    border: none;
-    background: #7CAB75;
-    border-radius: 6px;
-    cursor: pointer;
+.mainPage {
+  margin-top: 30px;
+}
+.mainPage button {
+  height: 33px;
+  padding: 0 10px 0 10px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  background: #7cab75;
+  border-radius: 3px;
+  cursor: pointer;
 }
