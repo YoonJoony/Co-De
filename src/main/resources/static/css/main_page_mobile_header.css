@@ -57,6 +57,10 @@
         top: 0px;
     }
 
+    .pc_topper {
+        display: none;
+    }
+
     .header2 {
         display: block;
         z-index: 1000;

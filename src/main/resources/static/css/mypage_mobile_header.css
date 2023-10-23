@@ -1,3 +1,28 @@
+@media (max-width: 900px) {
+
+    .body_title {
+        position: relative;
+        text-align: center;
+        align-items: center;
+        font-size: 20px;
+        color: #ff8c16;
+        margin-top: -180px;
+        margin-bottom: 10px;
+    }
+
+    .body {
+        position: relative;
+        width: 100%;
+        overflow: auto;
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 10px 15px;
+        border-radius: 10px;
+        border: solid 2px #ff8c16;
+        top: -60px;
+    }
+}
+
 /* 모바일 화면 로고 및 햄버거 버튼 부분 */
 .moblie_logo {
     display: none;
@@ -8,9 +33,9 @@
     .moblie_logo {
         display: block;
         position: relative;
-        height: 25%;
+        height: 75px;
         background-color: #FFF;
-        top: -10%;
+        top: -200px;
     }
 
     .logo {
@@ -29,15 +54,20 @@
     }
 
     .topper {
-        display: none;
+        display: block;
         position: fixed;
         z-index: 2;
         width: 100%;
         min-width: 200px;
         max-width: 400px;
-        height: 37px;
+        height: 35px;
         background-color: #ffffff;
         border-bottom: 1px solid #b0cbba6b;
+        top: 0px;
+    }
+
+    .pc_topper {
+        display: none;
     }
 
     .chat-container {
@@ -50,21 +80,19 @@
     .header2 {
         display: block;
         z-index: 1000;
-        top: 10px;
-        border-bottom: solid 9px #ff8c16;
+        top: 0px;
+        /* border-bottom: solid 9px #ff8c16; */
         background-color: #ffffff;
         position: fixed;
         border-radius: 0px 0px 20px 20px;
-        width: 70%;
+        width: 68%;
         min-width: 200px;
         max-width: 400px;
-        height: 95%;
+        height: 100%;
         overflow: visible;
         transition: all 0.3s ease-in-out;
-        transform: translate(-100%, 0%);
-
-        /* 숨기기 */
-        z-index: 100;
+        transform: translate(-50%, 0%);
+        z-index: -1;
         opacity: 0;
     }
 
@@ -106,8 +134,8 @@
 
     .width-container {
         position: relative;
-        /*max-width: 1880px;*/
-        height: 23%;
+        /* max-width: 1880px; */
+        height: 260px;
         min-height: 230px;
         margin: 0 auto;
     }
@@ -189,9 +217,11 @@
         border-bottom: 1px solid #a4a4a473;
         display: block;
         width: 100%;
-        height: 70%;
-        padding: 5px 0px 10px 5px;
+        height: 70px;
+        padding: 5px 0px 0px 5px;
         /* margin: 0 auto; */
+        top: 0;
+        left: 0;
     }
 
     .tag {
@@ -231,8 +261,10 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        padding: 18px 0px 0px 0px;
-        margin-top: 15px;
+        padding: 15px 0px 0px 0px;
+        top: 15px;
+        right: 0;
+        line-height: 35px;
     }
 
 
@@ -261,12 +293,12 @@
 
     .header-bell {
         position: absolute;
-        top: 171px;
-        right: 166px;
+        top: 207px;
+        /* right: 0px; */
         text-align: center;
         white-space: nowrap;
-        /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
         z-index: 3;
+        left: 75px;
     }
 
     .bell img {
@@ -274,21 +306,14 @@
         height: 22px !important;
     }
 
-
-    .bell {
-        position: relative;
-        width: 30px;
-        top: 11px;
-        height: 30px;
-        right: 41px;
-    }
-
     .header-profile {
         position: relative;
         text-align: center;
-        height: 100%;
+        height: 90%;
         white-space: nowrap;
-        /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
+        z-index: 3;
+        top: 15px;
+        right: 0px;
         z-index: 3;
     }
 
@@ -310,7 +335,7 @@
     .user-picture2 {
         position: relative;
         display: table;
-        height: 162px;
+        height: 170px;
         margin-right: 5px;
         vertical-align: middle;
         overflow: hidden;
@@ -323,9 +348,8 @@
     }
 
     .user-picture2 img {
-        position: a;
-        width: 158px;
-        height: 156px;
+        width: 170px;
+        height: 170px;
     }
 
     .user-name2 {
@@ -337,6 +361,7 @@
         left: 8px;
         font-size: 17px;
         color: gray;
+        top: 10px;
     }
 
 
