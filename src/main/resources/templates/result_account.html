@@ -1,37 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
+    <script src="https://kit.fontawesome.com/eb076808b8.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Account</title>
     <link rel="stylesheet" href="/static/css/result_account_style.css">
+    <!-- vscode 전용 경로 ---------------------------------------------------->
+    <link rel="stylesheet" href="../static/css/result_account_style.css">
+    <!-- ---------------------------------------------------------------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet">
+    <!--  <p> 폰트 적용 -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-<section class="result-accountTb-form">
-    <div>
-        <h1 style="color: #7CAB75">CO-ORDER</h1>
+    <section class="result-accountTb-form">
+        <div class="container" id="container">
+            <div class="form-container">
+                <div class="form-container-header">
+                    <h1 style="color: #7CAB75">CO-ORDER</h1>
+                    <!-- 사용자이름을 변수로 해야함. -->
+                    <h>"000" 님이 가입한 계정 정보입니다.</h>
+                </div>
+                <!-- 마찬가지로 계정정보를 변수로 불러와야함. -->
+                <div class="result_div">
+                    <div class="result_div_div">
+                        <div class="result_1">ID:</div>
+                        <div class="result_2" id="result_ID">아이디 변수</div>
 
-        <!-- 사용자이름을 변수로 해야함. -->
-        <h>"000" 님이 가입한 계정 정보입니다.</h>
-    </div>
+                    </div>
+                    <div class="result_div_div">
+                        <div class="result_1">PW:</div>
+                        <div class="result_2" id="result_PW">비밀번호 변수</div>
+                    </div>
+                </div>
 
-    <!-- 마찬가지로 계정정보를 변수로 불러와야함. -->
-    <table>
-        <tr>
-            <th>ID</th>
-            <td>아이디 변수</td>
-        </tr>
 
-        <tr>
-            <th>PW</th>
-            <td>비밀번호 변수</td>
-        </tr>
-    </table>
+                <div class=" mainPage">
+                    <button type="button" id="mainPage">로그인 페이지로 이동</button>
+                </div>
+                </form>
+            </div>
+        </div>
 
-    <div class="mainPage">
-        <button id="mainPage">로그인 페이지로 이동</button>
-    </div>
-</section>
-<script src="find_account.js"></script>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="../static/js/result_account.js"></script>
 </body>
+
 </html>

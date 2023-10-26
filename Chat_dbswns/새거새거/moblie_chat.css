@@ -1,8 +1,260 @@
+/* chat2.css에 있던 모바일 css 옮겨 온것 */
+@media (max-width: 639px) {
+    .chat-group {
+        /* width: 40%; */
+        box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+        height: 100%;
+        max-height: 650px;
+        max-width: 500px;
+        /* min-width: 400px; */
+        position: relative;
+        display: inline-block;
+        border-radius: 15px;
+        /* left: -47px; */
+    }
+
+    .popup {
+        margin-top: 100px;
+        width: 100%;
+        height: 25%;
+        overflow: visible;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        top: 30%;
+        position: relative;
+    }
+
+    .input-area input {
+        width: 100%;
+        padding: 20px 10px 10px;
+        background-color: #d9d9d9;
+        border: none;
+        font-size: 16px;
+        color: #000000;
+        outline: none;
+        border-radius: 6px;
+        height: 40px;
+        position: relative;
+        top: 8px;
+    }
+
+    .getout {
+        width: 22%;
+        height: 44%;
+        min-height: 320px;
+        min-width: 220px;
+        position: absolute;
+        display: none;
+        left: 0%;
+        top: 12%;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        max-width: 530px;
+    }
+
+    .modal-window {
+        position: relative;
+        width: 97%;
+        height: 80%;
+        /* min-width: 60%; */
+        margin: auto;
+        padding: 8px 3px;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        top: 5%;
+    }
+
+    .modal-popup {
+        position: absolute;
+        top: 49%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ffffff;
+        width: 100%;
+        height: 97%;
+        transform: translate(-50%, -40%);
+        /* margin: auto; */
+    }
+
+    .modal-menu-commit #menu_commit {
+        position: relative;
+        width: 90%;
+        height: 40px;
+        border: none;
+        color: #ffffff;
+        display: inline-block;
+        cursor: pointer;
+        top: 8px;
+
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #ff9e4e;
+        border-radius: 5px;
+    }
+
+    .detail_meun_wrap {
+        width: 102%;
+        height: 667px;
+        background: #fff;
+        position: absolute;
+        display: none;
+        z-index: 20;
+        left: -4px;
+        top: -26%;
+        display: none;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+    }
+
+    .cal_page {
+        position: absolute;
+        left: 50%;
+        top: 32%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        height: 100%;
+        /* min-height: 320px; */
+        /* min-width: 220px; */
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        /* max-width: 530px; */
+        overflow: scroll;
+    }
+
+    .pay_done {
+        top: 3%;
+        left: 70%;
+        width: 85px;
+        height: 28px;
+        font-size: 15px;
+        border: none;
+        color: #ffffff;
+        background-color: #ff9e4e;
+        border-radius: 5px;
+        margin-left: 25px;
+        /* float: right; */
+    }
+
+    .calbtn {
+        width: 150px;
+        height: 35px;
+        font-size: 20px;
+        border: none;
+        color: #ffffff;
+        background-color: #ff9e4e;
+        border-radius: 5px;
+        /* bottom: 0px; */
+        margin-top: 40px;
+    }
+
+    .pay_username {
+        width: 150px;
+        height: 65px;
+        white-space: nowrap;
+        font-size: 20px;
+        margin-left: -15px;
+        margin-top: 10px;
+    }
+
+    .pay_result {
+        width: 250px;
+        margin-left: 54px;
+        font-size: 17px;
+        margin-top: 12px;
+    }
+
+    .arrow-down {
+        width: 0;
+        height: 0;
+        border-top: 10px solid #ff8c16;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        position: relative;
+        top: -35px;
+        left: 266px;
+        cursor: pointer;
+    }
+
+    .storeModal_header_topper_back {
+        position: relative;
+        /* left: 4px; */
+        flex: 0.7;
+        right: 0px;
+        /* width: 0px; */
+        /* height: 50px; */
+    }
+    .storeModal_header_topper_back_img{
+        position: relative;
+        width: 100%;
+    }
+
+    .storeModal_header_topper_back_img_detail {
+        position: absolute;
+        width: 11%;
+        top: 0%;
+        left: 3%;
+    }
+
+    .storeModal_header_topper_back_img_invite {
+        position: absolute;
+        width: 11%;
+        top: 0%;
+        left: 3%;
+    }
+
+    .storeModal_header_topper h2 {
+        margin-left: 42px;
+        position: relative;
+    }
+
+    /* 상세 결제금액 */
+    .pay_detail{
+        display: none;
+        position: absolute;
+        z-index: 15;
+        width: 271px;
+        height: 267px;
+        background: #FFF;
+        left: 15px;
+        border: 1px solid;
+    }
+    /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+}
+
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 .moblie_logo {
     display: none;
 }
 
-/* PCí—¤ë” ë°” ê²€ìƒ‰ ë°” */
+/* 헤더부분 */
 @media screen and (max-width: 900px) {
     .moblie_logo {
         display: block;
@@ -421,3 +673,5 @@
     }
 
 }
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */

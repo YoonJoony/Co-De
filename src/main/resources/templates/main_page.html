@@ -8,10 +8,10 @@
     <title>Main</title>
     <link rel="stylesheet" href="/css/main_page3.css">
     <link rel="stylesheet" href="/css/main_page_mobile_header.css">
-    <!-- 프론트앤드 수정 -->
+    <!-- vscode 전용 경로 ---------------------------------------------------->
     <link rel="stylesheet" href="../static/css/main_page2.css">
-    <link rel="stylesheet" href="/css/main_page_mobile_header.css">
-    <!-- ----------------------- -->
+    <link rel="stylesheet" href="../static/css/main_page_mobile_header.css">
+    <!-- ---------------------------------------------------------------------->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com"> <!--  <p> 폰트 적용 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
@@ -39,12 +39,7 @@
 
 <body>
     <div class="main">
-        <!-- 모바일 화면 로고 -->
-        <div class="moblie_logo">
-            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="header_show">
-            <img class="logo" src="images/COOR.png">
-        </div>
-        <div class="topper">
+        <div class="topper pc_topper" id="pc_topper">
             <!-- 로그인 부분 -->
             <div class="login">
                 <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
@@ -52,8 +47,21 @@
                 <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
             </div>
         </div>
+        <!-- 모바일 화면 로고 -->
+        <div class="moblie_logo">
+            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="header_show">
+            <img class="logo" src="images/COOR.png">
+        </div>
         <!-- 헤더 부분 -->
         <div class="header2">
+            <div class="topper">
+                <!-- 로그인 부분 -->
+                <div class="login">
+                    <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                    <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                    <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+                </div>
+            </div>
             <!-- CO-ORDER 제목 부분 -->
             <div class="width-container">
                 <div class="user-info">
@@ -76,7 +84,8 @@
                                 <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
                             </span>
                         </a>
-                        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+
+                        <!-- <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
                             <div class="block block-name">
                                 <div class="profile-name" th:text="${nickname}"> 야왕이네
                                 </div>
@@ -84,15 +93,8 @@
                                     <a href="#">파티관리</a>
                                 </div>
                             </div>
-                            <!--                    <div class="header-profile-direct">-->
-                            <!--                        <dl class="header-member-direct__information">-->
-                            <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
-                            <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
-                            <!--                            <dd>ㅇㅇ</dd>-->
-                            <!--                            <dd>ㅇㅇ</dd>-->
-                            <!--                        </dl>-->
-                            <!--                    </div>-->
-                        </div>
+                        </div> -->
+
                     </div>
                 </div>
             </div>
@@ -471,17 +473,17 @@
     </script>
     <script src="/js/main_page/main_page2.js"></script>
     <script src="/js/main_page/addStore2.js"></script>
-    <!-- 프론트앤드 -->
+    <!-- vscode 전용 경로 -------------------------------------------->
     <script src="../../../../apikey.js"></script>
     <script src="../static/js/main_page/main_page.js"></script>
     <script src="../static/js/main_page/addStore2.js"></script>
-    <!-- -------------------- -->
+    <!------------------------------------------------------------------>
 
 </body>
 
 <script>
     // 모바일 헤더 js
-    function show() {
+    function header_show() {
         document.querySelector(".header2").className = "header2 header2_show";
     }
 
@@ -489,7 +491,7 @@
         document.querySelector(".header2").className = "header2";
     }
 
-    document.querySelector("#header_show").addEventListener('click', show);
+    document.querySelector("#header_show").addEventListener('click', header_show);
     document.querySelector("#header_close").addEventListener('click', close);
 </script>
 
