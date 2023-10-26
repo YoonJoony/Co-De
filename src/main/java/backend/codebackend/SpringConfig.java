@@ -102,7 +102,8 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
         return new BCryptPasswordEncoder();
     }
     @Bean
-    public BasketRepository basketRepository() {  return new JpaBasketRepository(em);
+    public BasketRepository basketRepository() {
+        return new JpaBasketRepository(em);
     }
 
     @Override

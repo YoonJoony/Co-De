@@ -17,10 +17,10 @@ import java.util.List;
 public class BasketController {
     private final BasketService basketService;
 
-    @GetMapping("")
-    public String listBasketItems(@PathVariable Long id, Model model) {
-        List<Basket> basketItems = basketService.findAll(id);
-        model.addAttribute("basketItems", basketItems);
-        return "basket/list";
-    }
+//    @GetMapping("")
+//    public String listBasketItems(@PathVariable Long id, Model model) {
+//        List<Basket> basketItems = basketService.findAll(id);
+//        model.addAttribute("basketItems", basketItems);
+//        return "basket/list";
+//    }
 }
