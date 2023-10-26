@@ -574,16 +574,27 @@ function minus() {
 }
 
 // 정산(결제)
-function cal() {
-    const cal_content = document.querySelector(".cal_page");
+// function cal() {
+//     const cal_content = document.querySelector(".cal_page");
 
-    if (cal_content.style.display != "block") {
-        cal_content.style.display = "block";
-    }
-    else {
-        cal_content.style.display = "none";
-    }
+//     if (cal_content.style.display != "block") {
+//         cal_content.style.display = "block";
+//     }
+//     else {
+//         cal_content.style.display = "none";
+//     }
+// }
+
+function calShow() {
+    document.querySelector(".cal_page").className = "cal_page cal_page_show";
 }
+
+function calclose() {
+    document.querySelector(".cal_page").className = "cal_page";
+}
+
+document.getElementById("cal_open").addEventListener('click', calShow);
+document.querySelector("#chat-page").addEventListener('click', calclose);
 
 // 유저 리스트 받기
 // function getUserList() {
@@ -726,18 +737,32 @@ function close() {
 document.querySelector("#chat_show").addEventListener('click', show);
 document.querySelector("#chat-page").addEventListener('click', close);
 
+
+
 // 호스트 상세 결제창 출력
 
-function detailShow() {
-    const pay_detail_content = document.querySelector(".pay_detail_host");
+// function detailShow() {
+//     const pay_detail_content = document.querySelector(".pay_detail_host");
 
-    if (pay_detail_content.style.display != "block") {
-        pay_detail_content.style.display = "block";
-    }
-    else {
-        pay_detail_content.style.display = "none";
-    }
+//     if (pay_detail_content.style.display != "block") {
+//         pay_detail_content.style.display = "block";
+//     }
+//     else {
+//         pay_detail_content.style.display = "none";
+//     }
+// }
+
+// 호스트 상세 결제창 출력 + 애니메이션 효과
+function detailShow() {
+    document.querySelector("#pay_detail_host").className = "pay_detail_host pay_detail_show";
 }
+
+function detailClose() {
+    document.querySelector("#pay_detail_host").className = "pay_detail_host";
+}
+
+document.querySelector("#detail_show").addEventListener('click', detailShow);
+document.querySelector("#pay_detail_host_close").addEventListener('click', detailClose);
 
 function detailShow_cos1() {
     const pay_detail_cos_content = document.querySelector(".pay_detail1");

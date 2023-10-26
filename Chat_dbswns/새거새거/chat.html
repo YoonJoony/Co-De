@@ -240,7 +240,7 @@
                 <div class="chat-menu">
                   <img src="../images/bell.png">
                   <img src="../../Icon(아이콘)/map.png" id="map_button" onclick="map_btn()">
-                  <img src="../../Icon(아이콘)/Budget.png" onclick="cal()">
+                  <img src="../../Icon(아이콘)/Budget.png" id="cal_open">
                   <!-- <img src="/Icon(아이콘)/basket.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"> -->
                   <img src="../../Icon(아이콘)/basket.png" onclick="basket()">
 
@@ -276,37 +276,46 @@
                     <p class="pay_username" id="host">농담곰</p>
                   </div>
 
-                  <div class="pay_detail_host">
-                    호스트 농담곰
-                  </div>
-
                   <div>
                     <p class="pay_username" name="costomer1">망담곰</p>
-                  </div>
-
-                  <div class="pay_detail1" name="pay_detail1">
-                    손님1 망담곰
                   </div>
 
                   <div>
                     <p class="pay_username" name="costomer2">엄준식</p>
                   </div>
 
-                  <div class="pay_detail2" name="pay_detail2">
-                    참가자2 엄준식
-                  </div>
-
                   <div>
                     <p class="pay_username" name="costomer3">볼링장</p>
-                  </div>
-
-                  <div class="pay_detail3" name="pay_detail3">
-                    참가자3 볼링장
                   </div>
 
                 </div>
 
                 <button class="calbtn" onclick="cal()">닫기</button>
+              </div>
+
+              <!-- 결제내역 상세보기 모달 -->
+              <div class="pay_detail_host" id="pay_detail_host">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose()"
+                  style="cursor:pointer;">
+                <p>호스트 농담곰</p>
+                <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+                <div style="margin-top: 15px;">
+                  <li class="detail_meun"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                  <p> 25,900원</p>
+                </div>
+                <hr class="detail_hr">
+              </div>
+
+              <div class="pay_detail1" name="pay_detail1">
+                손님1 망담곰
+              </div>
+
+              <div class="pay_detail2" name="pay_detail2">
+                참가자2 엄준식
+              </div>
+
+              <div class="pay_detail3" name="pay_detail3">
+                참가자3 볼링장
               </div>
 
               <!-- 장바구니 모달 -->
