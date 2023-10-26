@@ -11,14 +11,15 @@ package backend.codebackend.controller;
 //이를 통해서 도착 지점 즉 sub가 되는 지점으로 인자로 들어온 객체를 Message객체로 변환해서
 //해당 도착지점을 sub하고 있는 모든 사용자에게 메시지를 보내주게 된다.
 
+import backend.codebackend.domain.Basket;
 import backend.codebackend.domain.ChatUser;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.dto.ChatDTO;
 import backend.codebackend.repository.ChatRepository;
 import backend.codebackend.repository.MozipRepository;
-import backend.codebackend.service.ChatService;
-import backend.codebackend.service.ChatUserService;
-import backend.codebackend.service.MozipService;
+import backend.codebackend.service.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -27,6 +28,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +46,8 @@ public class ChatController {
     private final SimpMessageSendingOperations template;
     private final ChatService chatService;
     private final ChatUserService chatUserService;
-
+    private final BasketService basketService;
+    private final MemberService memberService;
     @MessageMapping("/mozip/chat/enterUser") //해당 주소로 메시지가 도착시 메소드 실행
     public void enterUser(@Payload ChatDTO chat, SimpMessageHeaderAccessor headerAccessor) {//Payload : Message전송할 데이터가 담긴 Wrapper Class로 메시지 요청 시 instance화 된 Message를 생성한다. 그것을 ChatDTO 와 매핑시켜줌
     /*  @Payload : 메시지 핸들러에서 메시지를 처리할 때, 메시지의 payload를 추출하여 메서드 인자로 전달하는 기능
@@ -117,5 +120,19 @@ public class ChatController {
     public boolean chatPage(Long id, String nickname){   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
 
         return chatService.isCurrentUserHost(id, nickname);
+    }
+
+    //채팅방 장바구니 조회
+    @GetMapping("/chat/basket")
+    @ResponseBody
+    public List<Basket> basket(Long roomId, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        List<Basket> basket = basketService.findAll(roomId);
+
+        if(basket == null)
+            log.info("장바구니가 조회되지 않음. ");
+
+        return basket;
     }
 }

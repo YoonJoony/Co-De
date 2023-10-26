@@ -1,12 +1,10 @@
 package backend.codebackend.controller;
 
 import backend.codebackend.domain.Account;
+import backend.codebackend.domain.Basket;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.dto.MozipForm;
-import backend.codebackend.service.AccountService;
-import backend.codebackend.service.ChatUserService;
-import backend.codebackend.service.MemberService;
-import backend.codebackend.service.MozipService;
+import backend.codebackend.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +24,7 @@ public class MainController {
     private final MemberService memberService;
     private final ChatUserService chatUserService;
     private final AccountService accountService;
+    private final BasketService basketService;
     @GetMapping("/main_page.html")
     public String list(Model model, HttpServletRequest request) {
         List<Mozip> mozipFormList = mozipService.getMozipList();
@@ -66,11 +65,14 @@ public class MainController {
         if (session == null) {
             return "세션이 없습니다.";
         }
+        String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
+
         System.out.println("입장 성공!!" + id);
 
+        //채팅방 객체 넘겨줌
         model.addAttribute("room", mozipService.findRoomById(id).get());
-        model.addAttribute("nickname",
-                memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname());
+        //닉네임 넘겨줌
+        model.addAttribute("nickname", nickname);
         return "chat";
     }
 
