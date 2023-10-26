@@ -25,8 +25,17 @@ import java.util.concurrent.Future;
 
 @Service
 public class RestaurantService {
+    // TODO 수정사항 : By.xpath("//span[contains.. 처럼 크롤링하는 코드는 셀레니움 백그라운드로 변경 시 안될 가능성 있음.
+    private static RestaurantService restaurantService;
     private WebDriver driver;
     private WebDriverWait wait;
+
+    public static RestaurantService getInstance() {
+        if(restaurantService == null) {
+            restaurantService = new RestaurantService();
+        }
+        return restaurantService;
+    }
 
     public void driver() {
 //        ChromeOptions options = new ChromeOptions();
@@ -37,6 +46,11 @@ public class RestaurantService {
 
     public void loadPage() {
         driver.get("https://www.yogiyo.co.kr/mobile/#/");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void searchAddress(String address) {
@@ -55,6 +69,7 @@ public class RestaurantService {
 
 
     public List<Restuarant> RsData() {
+
         // 가게 이름과 최소주문금액을 저장할 리스트 생성
         Restuarant rs;
         List<Restuarant> rsList = new ArrayList<Restuarant>();
@@ -87,21 +102,39 @@ public class RestaurantService {
         driver.quit();
     }
 
-    //모집글 생성 후 선택한 가게 메뉴를 스레드로 크롤링
+
+    public Menu deliveryInfo() {
+        Menu menu;
+
+        menu = Menu.builder()
+                .minPrice(driver.findElement(By.xpath("//li[contains(text(), '최소주문금액')]/span[@class='ng-binding']")).getText())
+                .delivery_fee(driver.findElement(By.xpath("//span[contains(text(), '배달요금')]")).getText())
+                .build();
+
+        if(menu.getMinPrice() == null) {
+            System.out.println("가게의 배달 정보가 조회되지 않습니다.");
+            return null;
+        }
+
+        return menu;
+    }
+
+
 
     @Async
-    public Future<Menu> menuList(String restaurantTitle, String address){
+    public Future<Menu> menuList(String restaurantTitle, String address) throws InterruptedException {
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
 
         WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Google 웹 페이지를 엽니다.
         driver.get("https://www.yogiyo.co.kr/mobile/#/");
 
 
         // 검색창을 찾습니다. Google의 검색창은 'name' 속성이 'q'인 input 요소입니다.
-        WebElement searchBox = driver.findElement(By.name("address_input"));
+        WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("address_input")));
 
         searchBox.clear();
 
@@ -109,41 +142,33 @@ public class RestaurantService {
 
         searchBox.sendKeys(address);
 
-        WebElement clickSearch = driver.findElement(By.className("ico-pick"));
+        WebElement clickSearch = wait.until(ExpectedConditions.elementToBeClickable(By.className("ico-pick")));
         clickSearch.click();
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
 
         Menu menu; //메뉴 정보 저장시 선언한 Menu 클래스 객체
         Menu menu2; //타이틀 별로 메뉴를 저장하기 위해 선언한 객체
         List<Menu> menuList; //메뉴 저장용 리스트
-        List<WebElement> restaurants = driver.findElements(By.className("restaurant-name"));
+        List<WebElement> restaurants = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("restaurant-name")));
 
         menu2 = Menu.builder()
                 .menuList_Title(new ArrayList<List<Menu>>())
                 .menuList_Title_Name(new ArrayList<String>())
                 .build();
-        menu2.getMenuList_Title_Name().add("인기메뉴");
+        menu2.getMenuList_Title_Name().add("🔥 인기메뉴");
 
         // 각 요소의 제목을 확인하여 사용자가 선택한 가게를 찾아서 클릭함.
         for (WebElement restaurant : restaurants) {
             //restaurant title이 선택한 가게 title 이였을 경우
             if (restaurant.getAttribute("title").equals(restaurantTitle)) {
                 restaurant.click();
+                Thread.sleep(500);
 
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-
+                // 최소주문금액 요소 검색 후 값을 가져오기까지 기다립니다.
+                menu2.setMinPrice(wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(text(), '최소주문금액')]/span[@class='ng-binding']"))).getText());
+                menu2.setDelivery_fee(wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(), '배달요금')]"))).getText().replace("배달요금 ", ""));
 
                 //메뉴 전체 div
-                WebElement popMenu = driver.findElement(By.className("panel-group"));
+                WebElement popMenu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("panel-group")));
                 //메뉴 타이틀(판넬) 별로 요소 저장함(인기메뉴, 한마리치킨, 세트메뉴)
                 List<WebElement> panel = popMenu.findElements(By.className("sub-list"));
 

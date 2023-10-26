@@ -23,22 +23,14 @@ public class BasketService {
     }
 
     //장바구니에 항목 추가
-    public void addItemToBasket(Long id, String productName, int price, String nickname) {
-        List<Basket> existingBasket = basketRepository.findAll(id);  //장바구니(id)를 찾음
-
+    public void addItemToBasket(Long chatroom_id, String product_name, int price, String nickname) {
         //이미 장바구니에 존재하는 항목인지 확인
-        if (!existingBasket.isEmpty()) {      //항목(음식)이 비어있지 않다면 -> 이미 담아서 존재함.
-            for (Basket item : existingBasket) { // 메뉴이름 & 가격을 비교하여 이미 존재하는 항목인지 확인
-                if (item.getProductName().equals(productName) && item.getNickname().equals(nickname)
-                        && item.getPrice() == price) {
-                    item.setQuantity(item.getQuantity() + 1);   // 존재하면 개수를 증가시킴
-                    break;
-                }
-            }
+        if (basketRepository.duplicateBasketItem(chatroom_id, product_name, price, nickname).isPresent()) {      //항목(음식)이 비어있지 않다면 -> 이미 담아서 존재함.
+            System.out.println("기존 메뉴 수량 추가");
         } else {  //장바구니에 존재하지 않는 항목이면 추가
             Basket newItem = Basket.builder()
-                    .id(id)
-                    .productName(productName)
+                    .chatroom_id(chatroom_id)
+                    .product_name(product_name)
                     .price(price)
                     .quantity(1)
                     .nickname(nickname)

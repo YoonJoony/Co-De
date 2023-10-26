@@ -1732,6 +1732,10 @@ div#menu {
     border-radius: 8px 8px 0px 0px;
 }
 
+.menu-group-title::before {
+    content: "🔥";
+}
+
 .menu-group-topper {
     display : flex;
     align-items : center;
@@ -1767,7 +1771,7 @@ div#menu {
     font-size : 14px;
     padding-top: 1rem;
     padding-bottom: 0.3rem;
-    font-weight: 600;
+    font-weight: 100;
 }
 
 .group-div-left .menu-into{
@@ -1779,7 +1783,7 @@ div#menu {
 
 .group-div-left .menu-price{
     font-size : 11px;
-    font-weight : 900;
+    font-weight : 100;
 }
 
 .menu-group-list .group-div-right {

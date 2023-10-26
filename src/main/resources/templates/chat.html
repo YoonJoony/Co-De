@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/static/css/chatroom/chat3.css">
-  <link rel="stylesheet" href="/static/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
+  <link rel="stylesheet" href="/css/chatroom/chat4.css">
+  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
   <!-- vscode용 ------------------------------------------------------------------>
-  <link rel="stylesheet" href="../static/css/chatroom/chat3.css">
+  <link rel="stylesheet" href="../static/css/chatroom/chat4.css">
   <link rel="stylesheet" href="../static/css/chatroom/mobile_chat.css">
   <!-- --------------------------------------------------------------------- -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -64,7 +64,7 @@
     </div>
     <form id="main-join" class="main-join">
       <div class="user-join">
-        <button type="submit" class="join-button">입장</button>
+        <button type="submit" class="join-button"  onclick="menuList()">입장</button>
         <img class="join-button-picture" src="/images/join.png">
       </div>
     </form>
@@ -234,7 +234,7 @@
                 <img src="images/bell.png">
                 <img src="images/icon/map.png" id="map_button" onclick="map_btn()">
                 <img src="images/icon/Budget.png">
-                <img src="images/icon/basket.png" onclick="basket()">
+                <img id="basket" src="/images/icon/basket.png" onclick="basket()">
                 <img src="images/icon/setting.png">
               </div>
               <img src="images/icon/log-out_5565735.png" class="out-img">
@@ -254,69 +254,31 @@
                   <p>주문표</p>
                 </div>
               </div>
-              <div class="menu-view">
-                <div class="menu-list">
-                  <div class="food-name">슈프림양념치킨 블랙라벨</div> <br>
-                  <div class="food-info">
+                <div class="basket-list">
 
-                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
-                      <img src="images/close.png">
-                    </div>
-                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
-                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
-                    <div class="food-info-update">
-                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
-                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
-                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
-                    </div>
-                  </div>
+<!--                  <div class="basket-list-item">-->
+<!--                    <div class="basket-list-header">-->
+<!--                      <div class="food-name" th:text="${basket.product_name}"></div>-->
+<!--                      <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">-->
+<!--                        <img src="images/close.png">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="food-info">-->
+<!--                      <div class="price" id="total_count_view" wfd-id="id4" th:text="${basket.price}"></div>-->
+<!--                    </div>-->
+<!--                    <div class="food-order-div">-->
+<!--                      <a class="food-order">주문자 : </a>-->
+<!--                      <div class="food-order-name" th:text="${basket.nickname}">야왕이네</div>-->
+<!--                      <div class="food-info-update">-->
+<!--                        <input type="button" value="-" id="moins" class="update-button" onclick="minus()">-->
+<!--                        <input class="count_css" type="text" size="25" value="1" id="count" readonly="">-->
+<!--                        <input type="button" value="+" id="plus" class="update-button" onclick="plus()">-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
                 </div>
-                <div class="menu-list">
-                  <div class="food-name">간장게장 꽃게장</div> <br>
-                  <div class="food-info">
-                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
-                      <img src="images/close.png">
-                    </div>
-                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
-                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
-                    <div class="food-info-update">
-                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
-                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
-                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
-                    </div>
-                  </div>
-                </div>
-                <div class="menu-list">
-                  <div class="food-name">눈꽃뿌링클 치킨</div> <br>
-                  <div class="food-info">
-                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
-                      <img src="images/close.png">
-                    </div>
-                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
-                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
-                    <div class="food-info-update">
-                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
-                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
-                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
-                    </div>
-                  </div>
-                </div>
-                <div class="menu-list">
-                  <div class="food-name">휘발류로 튀긴 치킨</div> <br>
-                  <div class="food-info">
-                    <div class="cancle" href="javascript:void(0)" onclick="javascript:basket.delItem();">
-                      <img src="images/close.png">
-                    </div>
-                    <input class="price" type="text" value="17800" id="total_count" hidden="hidden" wfd-id="id3">
-                    <input class="price" type="text" value="17800" id="total_count_view" wfd-id="id4">
-                    <div class="food-info-update">
-                      <input type="button" value="-" id="moins" class="update-button" onclick="minus()" wfd-id="id5">
-                      <input class="count_css" type="text" size="25" value="1" id="count" readonly="" wfd-id="id6">
-                      <input type="button" value="+" id="plus" class="update-button" onclick="plus()" wfd-id="id7">
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <div class="menu-bottom">
                 <div class="totalPrice">
                   <span class="priceText"> 합계 :</span>
@@ -360,162 +322,50 @@
 <!--      </div>-->
 <!--    </div>-->
 
-<<<<<<< HEAD
+
 <!-- 메뉴 선택 모달창 -->
 <div class="modal fade mozipCreate" id="CreateMozipModal" tabindex="-1" aria-labelledby="enterRoomModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="storeModal_header_topper">
         <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal" >
-          <img class="storeModal_header_topper_back_img" src="images/back.png" onClick="closeStoreList()" style="cursor:pointer;">
+          <img class="storeModal_header_topper_back_img" src="images/back.png" style="cursor:pointer;">
         </div>
         <div class="storeModal_header_topper_text">
-          <p>바로덮밥-의정부점</p>
+          <p th:text="${room.store}"></p>
         </div>
       </div>
       <div class="menu-header">
         <div class="min_delivery">
           <div class="deliver_info">
             <div> 최소주문 </div>
-            <div class="min_price"> 8000원</div>
+            <div class="min_price"> 조회 중입니다. </div>
           </div>
           <div class="deliver_info">
             <div> 배달요금</div>
-            <div class="delivery_fee"> 2500원</div>
+            <div class="delivery_fee"> 조회 중입니다. </div>
           </div>
         </div>
       </div>
       <div class="menu-body">
-        <div class="menu-group">
-          <dic class="menu-group-topper">
-            <div class="popular-img">
-              <img src="images/popular.png">
-            </div>
-            <div class="menu-group-title">인기메뉴</div>
-          </dic>
-          <div class="menu-group-list">
-            <div class="group-div-left">
-              <div class="menu-name"> 몬스터와퍼세트 </div>
-              <div class="menu-into"> 디아블로 소스의 매콤함, 불에 직접 구운
-                100% 순쇠고기 패티와 치킨패티까
-                지 압도적 크기의 몬스터와퍼! </div>
-              <div class="menu-price"> 2,500원 </div>
-            </div>
-            <div class="group-div-right">
-              <img src="https://images.yogiyo.co.kr/image/yogiyo/PARTNER_FR_IMG/%EB%B2%84%EA%B1%B0%ED%82%B9/2019-02-14/%EC%A0%9C%ED%9C%B4fr_20190214_%EB%B2%84%EA%B1%B0%ED%82%B9_%EB%AA%AC%EC%8A%A4%ED%84%B0%EC%99%80%ED%8D%BC%EC%84%B8%ED%8A%B8_1080x640.jpg?width=384&height=273&quality=100">
-            </div>
+        <div class="loading-div">
+          <div id="loading" class="loading">
           </div>
-          <div class="menu-group-list">
-            <div class="group-div-left">
-              <div class="menu-name"> 몬스터와퍼세트 </div>
-              <div class="menu-into"> 디아블로 소스의 매콤함, 불에 직접 구운
-                100% 순쇠고기 패티와 치킨패티까
-                지 압도적 크기의 몬스터와퍼! </div>
-              <div class="menu-price"> 2,500원 </div>
-            </div>
-            <div class="group-div-right">
-              <img src="https://images.yogiyo.co.kr/image/yogiyo/PARTNER_FR_IMG/%EB%B2%84%EA%B1%B0%ED%82%B9/2019-02-14/%EC%A0%9C%ED%9C%B4fr_20190214_%EB%B2%84%EA%B1%B0%ED%82%B9_%EB%AA%AC%EC%8A%A4%ED%84%B0%EC%99%80%ED%8D%BC%EC%84%B8%ED%8A%B8_1080x640.jpg?width=384&height=273&quality=100">
-            </div>
-          </div>
-          <div class="menu-group-list">
-            <div class="group-div-left">
-              <div class="menu-name"> 몬스터와퍼세트 </div>
-              <div class="menu-into"> 디아블로 소스의 매콤함, 불에 직접 구운
-                100% 순쇠고기 패티와 치킨패티까
-                지 압도적 크기의 몬스터와퍼! </div>
-              <div class="menu-price"> 2,500원 </div>
-            </div>
-            <div class="group-div-right">
-              <img src="https://images.yogiyo.co.kr/image/yogiyo/PARTNER_FR_IMG/%EB%B2%84%EA%B1%B0%ED%82%B9/2019-02-14/%EC%A0%9C%ED%9C%B4fr_20190214_%EB%B2%84%EA%B1%B0%ED%82%B9_%EB%AA%AC%EC%8A%A4%ED%84%B0%EC%99%80%ED%8D%BC%EC%84%B8%ED%8A%B8_1080x640.jpg?width=384&height=273&quality=100">
-            </div>
-          </div>
+          <div> 로딩중 입니다. 잠시만 기다려 주세요!</div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-        <div class="menu-group">
-          <dic class="menu-group-topper">
-            <div class="popular-img">
-              <img src="images/popular.png">
-            </div>
-            <div class="menu-group-title">인기메뉴</div>
-          </dic>
-          <div class="menu-group-list">
-            <div class="group-div-left">
-              <div class="menu-name"> 몬스터와퍼세트 </div>
-              <div class="menu-into"> 디아블로 소스의 매콤함, 불에 직접 구운
-                100% 순쇠고기 패티와 치킨패티까
-                지 압도적 크기의 몬스터와퍼! </div>
-              <div class="menu-price"> 2,500원 </div>
-            </div>
-            <div class="group-div-right">
-              <img src="https://images.yogiyo.co.kr/image/yogiyo/PARTNER_FR_IMG/%EB%B2%84%EA%B1%B0%ED%82%B9/2019-02-14/%EC%A0%9C%ED%9C%B4fr_20190214_%EB%B2%84%EA%B1%B0%ED%82%B9_%EB%AA%AC%EC%8A%A4%ED%84%B0%EC%99%80%ED%8D%BC%EC%84%B8%ED%8A%B8_1080x640.jpg?width=384&height=273&quality=100">
-            </div>
-          </div>
-          <div class="menu-group-list">
-            <div class="group-div-left">
-              <div class="menu-name"> 몬스터와퍼세트 </div>
-              <div class="menu-into"> 디아블로 소스의 매콤함, 불에 직접 구운
-                100% 순쇠고기 패티와 치킨패티까
-                지 압도적 크기의 몬스터와퍼! </div>
-              <div class="menu-price"> 2,500원 </div>
-            </div>
-            <div class="group-div-right">
-              <img src="https://images.yogiyo.co.kr/image/yogiyo/PARTNER_FR_IMG/%EB%B2%84%EA%B1%B0%ED%82%B9/2019-02-14/%EC%A0%9C%ED%9C%B4fr_20190214_%EB%B2%84%EA%B1%B0%ED%82%B9_%EB%AA%AC%EC%8A%A4%ED%84%B0%EC%99%80%ED%8D%BC%EC%84%B8%ED%8A%B8_1080x640.jpg?width=384&height=273&quality=100">
-            </div>
-          </div>
-          <div class="menu-group-list">
-            <div class="group-div-left">
-              <div class="menu-name"> 몬스터와퍼세트 </div>
-              <div class="menu-into"> 디아블로 소스의 매콤함, 불에 직접 구운
-                100% 순쇠고기 패티와 치킨패티까
-                지 압도적 크기의 몬스터와퍼! </div>
-              <div class="menu-price"> 2,500원 </div>
-            </div>
-            <div class="group-div-right">
-              <img src="https://images.yogiyo.co.kr/image/yogiyo/PARTNER_FR_IMG/%EB%B2%84%EA%B1%B0%ED%82%B9/2019-02-14/%EC%A0%9C%ED%9C%B4fr_20190214_%EB%B2%84%EA%B1%B0%ED%82%B9_%EB%AA%AC%EC%8A%A4%ED%84%B0%EC%99%80%ED%8D%BC%EC%84%B8%ED%8A%B8_1080x640.jpg?width=384&height=273&quality=100">
-            </div>
-          </div>
-          =======
-          <!-- 메뉴 선택 모달창 -->
-          <div class="modal fade mozipCreate" id="CreateMozipModal" tabindex="-1" aria-labelledby="enterRoomModalLabel"
-               aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="storeModal_header_topper">
-                  <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
-                    <img class="storeModal_header_topper_back_img" src="images/back.png" onClick="closeStoreList()"
-                         style="cursor:pointer;">
-                  </div>
-                  <div class="storeModal_header_topper_text">
-                    <p>모집글을 만들어 보세요!</p>
-                  </div>
-                </div>
-                <div class="menu-header">
-                  <div class="min_delivery">
-                    <div class="min_price_div">
-                      <div> 최소주문 </div>
-                      <div class="min_price"> 8000원</div>
-                    </div>
-                    <div class="delivery_fee_div">
-                      <div> 배달비</div>
-                      <div class="delivery_fee"> 2500원</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mozipCreate-body">
-
-                  >>>>>>> c3d4c99b04e9e8f3b107a9277c3b6e6544f01297
-                </div>
-              </div>
-            </div>
-          </div>
 
 
           <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-          <script src="/static/js/chatroom/chat3.js"></script>
+          <script src="/js/chatroom/chat3.js?v=<%=System.currentTimeMillis()"></script>
+          <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
           <!-- vscode용 ------------------------------------------------------------------>
-          <script src="../static/js/chatroom/chat3.js"></script>
+          <script src="/static/js/chatroom/chat3.js"></script>
           <!-- --------------------------------------------------------------------- -->
 
           <!-- Add Bootstrap JavaScript and its dependencies -->

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @RequiredArgsConstructor //생성자 주입. 번거롭게 생성자를 생성해서 객체를 주입받지 않아도 됨.
@@ -41,5 +42,12 @@ public class ChatUserService {
         return result;
     }
 
+    public Long findMemberRoomId(String nickname) {
+        Optional<Long> roomId = chatUserRepository.findRoomId(nickname);
+        if (roomId.isEmpty())
+            return null;
+
+        return roomId.get();
+    }
 
 }
