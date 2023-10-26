@@ -441,15 +441,30 @@ $(function () {
 //장바구니 div
 function basket() {
     const basket_content = document.querySelector(".basket-view");
+//    $.ajax({
+//      type : "POST",
+//      url : "/basket",
+//      data : {
+//        "chatroom_id" : chatroom_id
+//      },
+//      success : function(data) {
+        // 숨기기 (display: none)
+        if (basket_content.style.display !== "block") {
+            basket_content.style.display = "block";
+        }
+        // 보이기 (display: block)
+        else {
+            basket_content.style.display = "none";
+        }
 
-    // 숨기기 (display: none)
-    if (basket_content.style.display !== "block") {
-        basket_content.style.display = "block";
-    }
-    // 보이기 (display: block)
-    else {
-        basket_content.style.display = "none";
-    }
+//
+//
+//
+//      },
+//      error : function() {
+//        console.log("장바구니 리스트 요청 실패");
+//      }
+//    })
 }
 
 // 메뉴상세 수량변경
@@ -480,22 +495,234 @@ function minus() {
 }
 
 
+/* 메뉴 리스트 */
+var menu_body = document.querySelector(".menu-body");
+var loading_div = document.querySelector(".loading-div");
+var min_price = document.querySelector(".min_price");
+var delivery_fee = document.querySelector(".delivery_fee");
+
+
+function menuList() {
+  loading_div.style.display = "block";
+
+  $.ajax({
+    type : "GET",
+    url : "/chat/menuList",
+    data : {
+        "roomId" : id
+    },
+    success : function(data) {
+        min_price.textContent = data.minPrice; //최소 주문금액
+        delivery_fee.textContent = data.delivery_fee; //배달비
+
+        for(let i = 0; i < data.menuList_Title.length; i++) {
+            //메뉴 그룹(인기메뉴)
+            var menu_group =  document.createElement("div");
+            menu_group.classList.add("menu-group");
+
+            var menu_group_topper = document.createElement("div");
+            menu_group_topper.classList.add("menu-group-topper");
+            var menu_group_title = document.createElement("div");
+            menu_group_title.classList.add("menu-group-title");
+            var menu_group_title_text = document.createTextNode(data.menuList_Title_Name[i]);
+
+            menu_group_title.appendChild(menu_group_title_text);
+            menu_group_topper.appendChild(menu_group_title);
+            menu_group.appendChild(menu_group_topper);
+
+            //메뉴 타이틀별로(인기메뉴, 등등) 메뉴 리스트가 저장된 리스트 저장.
+            var menuList = data.menuList_Title[i];
+            for(let j = 0; j < menuList.length; j++) {
+                //메뉴가 저장된 리스트 저장.
+                var menuItem = menuList[j];
+
+                //메뉴판
+                var menu_group_list = document.createElement("div");
+                menu_group_list.classList.add("menu-group-list");
+                menu_group_list.setAttribute("data-bs-dismiss", "modal");
+                //메뉴판 왼쪽(이름, 정보, 가격)
+                var group_div_left = document.createElement("div");
+                group_div_left.classList.add("group-div-left");
+                //메뉴이름
+                var menu_name = document.createElement("div");
+                menu_name.classList.add("menu-name");
+                var menu_name_text = document.createTextNode(menuItem.menuName);
+                menu_name.appendChild(menu_name_text);
+                //메뉴상세
+                var menu_into = document.createElement("div");
+                menu_into.classList.add("menu-into");
+                var menu_into_text = document.createTextNode(menuItem.menuDesc);
+                menu_into.appendChild(menu_into_text);
+                //메뉴가격
+                var menu_price = document.createElement("div");
+                menu_price.classList.add("menu-price");
+                var menu_price_text = document.createTextNode(menuItem.menuPrice);
+                menu_price.appendChild(menu_price_text);
+
+                group_div_left.appendChild(menu_name);
+                group_div_left.appendChild(menu_into);
+                group_div_left.appendChild(menu_price);
+
+                //메뉴판 오른쪽(메뉴사진)
+                var group_div_right = document.createElement("div");
+                group_div_right.classList.add("group-div-right");
+
+                var menu_photo = document.createElement("img");
+                menu_photo.setAttribute("src", menuItem.menuPhoto);
+                group_div_right.appendChild(menu_photo);
+
+                //메뉴 리스트에 메뉴판 추가
+                menu_group_list.appendChild(group_div_left);
+                menu_group_list.appendChild(group_div_right);
+
+                //메뉴 그룹에 메뉴 추가
+                menu_group.appendChild(menu_group_list);
+            }
+
+            menu_body.appendChild(menu_group);
+            loading_div.style.display = "none";
+        }
+        document.getElementById('modify_menu_btn').onclick = null;
+    },
+    error: function() {
+        console.log("리스트 요청 실패 : ");
+    }
+    })
+}
 
 
 
-
-
-
-
-
-
-
-
-/* 지도 JS */
+//선택한 메뉴 장바구니에 담기
+var menuName;
+var menuPrice;
+var basketList = document.querySelector('.basket-list');
 $(function () {
+    $(document).on('click', '.menu-group-list', function() { //메뉴판 선택
+        menuName = $(this).find('.menu-name').text(); //내가 선택한 메뉴 이름
+        menuPrice = $(this).find('.menu-price').text(); //내가 선택한 메뉴 가격
+
+        //메뉴 정보 전송
+        $.ajax({
+            type : "POST",
+            url : "/basket/add",
+            data : {
+                "chatroom_id" : id,
+                "menuName" : menuName,
+                "menuPrice" : menuPrice
+            },
+            success : function(data) {
+                console.log("메뉴저장 성공");
+            },
+            error: function() {
+                console.log("리스트 요청 실패 : ");
+            }
+            })
+
+        console.log(menuName);
+        console.log(menuPrice);
+    });
+
+
+    //장바구니 조회
+    $(document).on('click', '#basket', function() { //메뉴판 선택
+        $.ajax({
+            type : "GET",
+            url : "/chat/basket",
+            data : {
+                "roomId" : id,
+            },
+            success : function(data) {
+                while(basketList.firstChild) {
+                  basketList.removeChild(basketList.firstChild);
+                }
+
+                for(let i = 0; i < data.length; i++) {
+                    var basketListItem = document.createElement('div');
+                    basketListItem.className = 'basket-list-item';
+
+                    var basketListHeader = document.createElement('div');
+                    basketListHeader.className = 'basket-list-header';
+                    var foodName = document.createElement('div');
+                    foodName.className = 'food-name';
+                    foodName.innerText = data[i].product_name;
+                    var cancel = document.createElement('div');
+                    cancel.className = 'cancle';
+                    cancel.setAttribute('href', 'javascript:void(0)');
+                    cancel.setAttribute('onclick', 'javascript:basket.delItem();');
+                    var img = document.createElement('img');
+                    img.setAttribute('src', '/images/close.png');
+                    cancel.appendChild(img);
+                    basketListHeader.appendChild(foodName);
+                    basketListHeader.appendChild(cancel);
+
+                    var foodInfo = document.createElement('div');
+                    foodInfo.className = 'food-info';
+                    var price = document.createElement('div');
+                    price.className = 'price';
+                    price.setAttribute('id', 'total_count_view');
+                    price.setAttribute('wfd-id', 'id4');
+                    price.innerText = data[i].price;
+                    foodInfo.appendChild(price);
+
+                    var foodOrderDiv = document.createElement('div');
+                    foodOrderDiv.className = 'food-order-div';
+                    var foodOrder = document.createElement('a');
+                    foodOrder.className = 'food-order';
+                    foodOrder.innerText = '주문자 : ';
+                    var foodOrderName = document.createElement('div');
+                    foodOrderName.className = 'food-order-name';
+                    foodOrderName.innerText = data[i].nickname;
+
+                    var foodInfoUpdate = document.createElement('div');
+                    foodInfoUpdate.className = 'food-info-update';
+
+                    var minusButton = document.createElement('input');
+                    minusButton.setAttribute('type', 'button');
+                    minusButton.setAttribute('value', '-');
+                    minusButton.setAttribute('id', 'moins');
+                    minusButton.setAttribute('class', 'update-button');
+                    minusButton.setAttribute('onclick', 'minus()');
+
+                    var countInput = document.createElement('input');
+                    countInput.setAttribute('class', 'count_css');
+                    countInput.setAttribute('type', 'text');
+                    countInput.setAttribute('size', '25');
+                    countInput.setAttribute('value', '1');
+                    countInput.setAttribute('id', 'count');
+                    countInput.setAttribute('readonly', '');
+
+                    var plusButton = document.createElement('input');
+                    plusButton.setAttribute('type', 'button');
+                    plusButton.setAttribute('value', '+');
+                    plusButton.setAttribute('id', 'plus');
+                    plusButton.setAttribute('class', 'update-button');
+                    plusButton.setAttribute('onclick', 'plus()');
+
+                    foodInfoUpdate.appendChild(minusButton);
+                    foodInfoUpdate.appendChild(countInput);
+                    foodInfoUpdate.appendChild(plusButton);
+
+                    foodOrderDiv.appendChild(foodOrder);
+                    foodOrderDiv.appendChild(foodOrderName);
+                    foodOrderDiv.appendChild(foodInfoUpdate);
+
+                    basketListItem.appendChild(basketListHeader);
+                    basketListItem.appendChild(foodInfo);
+                    basketListItem.appendChild(foodOrderDiv);
+
+                    document.querySelector('.basket-list').appendChild(basketListItem);
+                }
+            },
+            error: function() {
+                console.log("리스트 요청 실패 : ");
+            }
+            })
+        });
 
     initMap();
 });
+
+
 
 
 

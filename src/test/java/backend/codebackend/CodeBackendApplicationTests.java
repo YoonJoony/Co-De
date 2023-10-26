@@ -1,15 +1,10 @@
 package backend.codebackend;
 
-import backend.codebackend.domain.Chat;
-import backend.codebackend.domain.Menu;
-import backend.codebackend.domain.Restuarant;
+import backend.codebackend.domain.*;
 import backend.codebackend.dto.ChatDTO;
-import backend.codebackend.domain.Member;
+import backend.codebackend.repository.BasketRepository;
 import backend.codebackend.repository.MemberRepository;
-import backend.codebackend.service.ChatService;
-import backend.codebackend.service.ChatUserService;
-import backend.codebackend.service.MemberService;
-import backend.codebackend.service.RestaurantService;
+import backend.codebackend.service.*;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,6 +34,8 @@ class CodeBackendApplicationTests {
 	@Autowired
 	RestaurantService restaurantService;
 
+	@Autowired
+	BasketService basketService;
 
 
 	@Test
@@ -120,13 +117,14 @@ class CodeBackendApplicationTests {
 		}
 	}
 
+
 	@SneakyThrows
 	@Test
 	@DisplayName("메뉴 리스트 조회 테스트")
 	void 메뉴리스트조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("짱닭치킨-의정부점", member.getAddress());
+		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
 		Menu menu = m.get();
 
 		for(int i = 0; i < menu.getMenuList_Title().size(); i++) {
@@ -136,10 +134,57 @@ class CodeBackendApplicationTests {
 				System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
 				System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
 				System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
-				System.out.println("배달 요금 별도 :  " + menu.getMenuList_Title().get(i).get(j).getDelivery_fee());
-
-
 			}
 		}
+	}
+
+	@SneakyThrows
+	@Test
+	@DisplayName("최소 주문 금액 및 배달 금액 크롤링 테스트")
+	void 배달정보조회() {
+		Member member = memberService.findLoginId("dbswns1101").get();
+		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
+		Menu menu = m.get();
+
+		System.out.println("최소 주문 금액 : " + menu.getMinPrice());
+		System.out.println("배달 요금 : " + menu.getDelivery_fee());
+
+	}
+
+	@Test
+	@DisplayName("장바구니 담은 메뉴 조회")
+	void 장바구니담은메뉴조회() {
+		List<Basket> findAll = basketService.findAll(103l);
+		System.out.println("\n\n");
+		for(int i = 0; i < findAll.size(); i++) {
+			System.out.println("채팅방번호 " + findAll.get(i).getChatroom_id() + "메뉴이름 " + findAll.get(i).getProduct_name()
+					+ "메뉴가격 " + findAll.get(i).getProduct_name()
+					+ "메뉴수량 " + findAll.get(i).getQuantity());
+		}
+	}
+	
+	@Test
+	@DisplayName("장바구니 메뉴 추가 테스트")
+	void 메뉴추가() {
+		basketService.addItemToBasket(32l, "허니콤보", 2000, "김윤준");
+
+		List<Basket> findAll = basketService.findAll(32l);
+		System.out.println(findAll.get(0).getProduct_name());
+	}
+
+	@Autowired
+	BasketRepository basketRepository;
+	@Test
+	@DisplayName("장바구니 메뉴 중복 테스트")
+	void 메뉴중복() {
+		if(basketRepository.duplicateBasketItem(103l, "포테이토 L", 27900, "야왕이네").isPresent()){
+			System.out.println("메뉴 중복");
+			Basket basket = basketRepository.duplicateBasketItem(103l, "포테이토 L", 27900, "야왕이네").get();
+			System.out.println(basket.getQuantity());
+		} else {
+			System.out.println("메뉴 없음");
+		}
+
 	}
 }

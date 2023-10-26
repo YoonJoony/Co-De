@@ -1629,8 +1629,9 @@ div#menu {
 
 .mozipCreate .modal-content {
     position: relative;
-    height: 94%;
-    padding: 8px 3px;
+    height: 100%;
+    bottom: 5%;
+    padding: 8px 0.7px 0px 0.7px;
     margin: 0 auto;
     border: none;
     background-color: #fff;
@@ -1680,9 +1681,128 @@ div#menu {
   font-size : 20px;
 }
 
-.mozipCreate-body {
+/*================메뉴 선택 header =====================*/
+.menu-header {
     position: relative;
-    width: 100%;
-    padding: 16px 10px 0px 8px;
+    padding: 10px 20px;
 }
 
+.menu-header .min_delivery {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-header .deliver_info {
+    position: relative;
+    display: flex;
+    font-size : 13px;
+    font-weight : 900;
+}
+
+.deliver_info .min_price{
+    margin-left : 7px;
+    font-weight : 100;
+}
+
+.deliver_info .delivery_fee{
+    margin-left : 7px;
+    font-weight : 100;
+}
+
+/*================메뉴 선택 body =====================*/
+.menu-body {
+    width: 100%;
+    position: relative;
+    height: 100%;
+    /* padding: 10px 13px; */
+    overflow-y: scroll;
+    background-color: black;
+    border-radius: 8px 8px 12px 12px;
+}
+
+/*================메뉴 그룹=====================*/
+.menu-group {
+    width: 100%;
+    position: relative;
+    background-color: #333030;
+    color: #FFF;
+    padding: 10px 9px 10px 9px;
+    margin-bottom: 5px;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.menu-group-title::before {
+    content: "🔥";
+}
+
+.menu-group-topper {
+    display : flex;
+    align-items : center;
+    padding: 0px 5px;
+}
+
+.popular-img img {
+    position : relative;
+    width : 25px;
+    height : 25px;
+    margin-right : 10px;
+    bottom : 4px;
+}
+
+/*================메뉴리스트 - 메뉴 =====================*/
+.menu-group-list {
+    position : relative;
+    width : 100%;
+    display : flex;
+    align-items : center;
+    padding: 3px 5px 10px 5px;
+    border-bottom: 0.1px solid;
+    border-color: #757575;
+}
+
+.menu-group-list .group-div-left {
+    flex : 6;
+    position : relative;
+    display : block;
+}
+
+.group-div-left .menu-name{
+    font-size : 14px;
+    padding-top: 1rem;
+    padding-bottom: 0.3rem;
+    font-weight: 100;
+}
+
+.group-div-left .menu-into{
+    font-size : 10px;
+    padding-bottom: 0.3rem;
+    padding-right: 2rem;
+    color: #b6b6b6;
+}
+
+.group-div-left .menu-price{
+    font-size : 11px;
+    font-weight : 100;
+}
+
+.menu-group-list .group-div-right {
+    flex: 3;
+    position: relative;
+    top: 0.4rem;
+    /* border-radius: 1px; */
+    border-radius: 5px;
+    overflow: hidden;
+    /* max-height: 123px; */
+    /* min-height: 81px; */
+}
+
+.group-div-right img{
+    position: relative;
+    /* top: 0.7rem; */
+    /* border-radius: 1px; */
+    border-radius: 5px;
+    /* overflow: hidden; */
+    max-height: 120px;
+    min-height: 91px;
+}

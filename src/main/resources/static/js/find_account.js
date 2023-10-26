@@ -16,12 +16,13 @@ function changePhone3(){
     if(phone3.length === 4){
         document.getElementById("auth-button").focus();
         document.getElementById("auth-button").disabled = false;
+        $("#auth-button").css("opacity", "1");
     }
 }
 // display: none으로 숨겨놨던 인증번호 입력 창을 보이게 설정
 function getToken(){
-    alert("인증번호가 전송 되었습니다")
-    document.querySelectorAll(".auth-check").forEach(a=>a.style.display = "block");
+    alert("인증번호가 전송 되었습니다");
+    $(".auth-check").css("display", "block");
 }
 
 // 인증확인을 눌렀을 때 인증번호가 맞는지 확인하는 메소드

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor //생성자 주입으로 생성자 생략
 public class JpaChatUserRepository implements ChatUserRepository{
@@ -68,6 +69,18 @@ public class JpaChatUserRepository implements ChatUserRepository{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public Optional<Long> findRoomId(String nickname) {
+        List<Long> result = em.createQuery("select m.id from ChatUser m where m.nickname = :nickname", Long.class)
+                .setParameter("nickname", nickname)
+                .getResultList();
+
+        if (result.isEmpty()){
+            return null;
+        }
+        return result.stream().findAny();
     }
 }
 
