@@ -643,13 +643,18 @@ $('#pay_done').one('click', function () {
         // 전체참가자 - 호스트
 
         const total_pay_host = pay_amount + host_fee;
-        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`; // 호스트가 내야 하는 비용
+        host_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_host.toLocaleString()}원</p> <p class="arrow-down" id="detail_show"
+        onclick="detailShow()"></p>`; // 호스트가 내야 하는 비용
 
         const total_pay_coutomer = pay_amount + costomer_fee;
 
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`; // 참가자가 지불해야 하는 비용
+            var detail_content = document.querySelector('p[class=arrow-down' + i + ']');
+            costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
+            onclick="detailShow_cos()"></p>`; // 참가자가 지불해야 하는 비용
+
+            costomer_pay.innerHTML += detail_content; // 참가자가 지불해야 하는 비용
         }
     }
     else if (userList.length == 3) { // 참가자가 3인 일 때
@@ -658,13 +663,15 @@ $('#pay_done').one('click', function () {
         let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
 
         const total_pay_host = pay_amount + host_fee;
-        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
+        host_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_host.toLocaleString()}원</p> <p class="arrow-down"
+        onclick="detailShow()"></p>`;
 
         const total_pay_coutomer = pay_amount + costomer_fee;
 
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
+            costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p> <p class="arrow-down"
+            onclick="detailShow()"></p>`;
         }
     }
     else if (userList.length == 2) { // 참가자가 2인 일 때
@@ -673,13 +680,15 @@ $('#pay_done').one('click', function () {
         let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1)));
 
         const total_pay_host = pay_amount + host_fee;
-        host_pay.innerHTML += `<p>결제금액:  ${total_pay_host.toLocaleString()}원</p>`;
+        host_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_host.toLocaleString()}원</p> <p class="arrow-down"
+        onclick="detailShow()"></p>`;
 
         const total_pay_coutomer = pay_amount + costomer_fee;
 
         for (var i = 1; i <= (userList.length - 1); i++) {
             var costomer_pay = document.querySelector('p[name=costomer' + i + ']');
-            costomer_pay.innerHTML += `<p>결제금액:  ${total_pay_coutomer.toLocaleString()}원</p>`;
+            costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p> <p class="arrow-down"
+            onclick="detailShow()"></p>`;
         }
     }
 });
@@ -695,3 +704,40 @@ function close() {
 
 document.querySelector("#chat_show").addEventListener('click', show);
 document.querySelector("#chat-page").addEventListener('click', close);
+
+// 호스트 상세 결제창 출력
+
+function detailShow() {
+    const pay_detail_content = document.querySelector(".pay_detail_host");
+
+    if (pay_detail_content.style.display != "block") {
+        pay_detail_content.style.display = "block";
+    }
+    else {
+        pay_detail_content.style.display = "none";
+    }
+}
+
+function detailShow_cos() {
+    const pay_detail_cos_content = document.querySelector(".pay_detail");
+
+    if (pay_detail_cos_content.style.display != "block") {
+        pay_detail_cos_content.style.display = "block";
+    }
+    else {
+        pay_detail_cos_content.style.display = "none";
+    }
+}
+
+$(function () {
+    for (var i = 1; i <= (userList.length - 1); i++) {
+        var costomer_pay_detail = document.querySelector('p[name=pay_detail' + i + ']');
+
+        if (costomer_pay_detail.style.display != "block") {
+            costomer_pay_detail.style.display = "block";
+        }
+        else {
+            costomer_pay_detail.style.display = "none";
+        }
+    }
+});
