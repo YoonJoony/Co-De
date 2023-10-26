@@ -593,9 +593,6 @@ function calclose() {
     document.querySelector(".cal_page").className = "cal_page";
 }
 
-document.getElementById("cal_open").addEventListener('click', calShow);
-document.querySelector("#chat-page").addEventListener('click', calclose);
-
 // 유저 리스트 받기
 // function getUserList() {
 //     const $list = $('#list');
@@ -635,12 +632,14 @@ const userList = [1, 2, 3, 4];
 
 // 개별로 선택한 음식 가격
 const pay_amount = 10000;
-
+document.getElementById("meun_fee").innerHTML = pay_amount.toLocaleString() + " 원";
 
 // 각자 내야 하는 배달비
 const delivery_fee = 4000; // 배달비
-let html_deli_fee = document.getElementById("delivery"); // 홈페이지 확인용 임시 변수
+
 const delivery_fee_each = delivery_fee / userList.length;
+document.getElementById("each_delifee").innerHTML = delivery_fee_each.toLocaleString() + " 원"; // 상세창에 개별 배달비 출력
+                                                                        // toLocaleString() = 숫자에 콤마 찍어주는 함수
 
 const host_pay = document.getElementById("host");
 
@@ -649,13 +648,20 @@ $('#pay_done').one('click', function () {
     // html_deli_fee.innerHTML += `<p> 배달비:  ${delivery_fee.toLocaleString()}원</p>`; // 홈페이지 확인용 임시 변수
     if (userList.length == 4) { // 참가자가 4인 일 때
         let rate = Math.ceil(delivery_fee_each * 0.4);
+
         let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
+        // 모달창에 결과 출력
+        document.getElementById("host_discount").innerHTML = "-" + rate.toLocaleString() + " 원";
+        document.getElementById("host_delifee").innerHTML = host_fee.toLocaleString() + " 원";
+
         let costomer_fee = Math.ceil(delivery_fee_each + (rate / (userList.length - 1))); // 할인 된 금액만큼 나머지 사람들이 납부 
         // 전체참가자 - 호스트
 
         const total_pay_host = pay_amount + host_fee;
         host_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_host.toLocaleString()}원</p> <p class="arrow-down" id="detail_show"
         onclick="detailShow()"></p>`; // 호스트가 내야 하는 비용
+        // 모달창에 결과 출력
+        document.getElementById("host_totalfee").innerHTML = total_pay_host.toLocaleString() + " 원";
 
         const total_pay_coutomer = pay_amount + costomer_fee;
 

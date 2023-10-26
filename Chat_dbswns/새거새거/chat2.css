@@ -2458,14 +2458,14 @@ input::-webkit-inner-spin-button {
     opacity: 0;
 
     transform: translate(-50%, -40%);
+    transition: all 0.3s ease-in-out;
 }
 
 .cal_page_show{
     opacity: 1;
     z-index: 10;
-
     transform: translate(-50%, -50%);
-    transition: all 0.5s;
+    transition: .8s;
 }
 
 .pay_done {
@@ -2529,7 +2529,7 @@ input::-webkit-inner-spin-button {
     display: block;
     position: absolute;
     width: 460px;
-    height: 267px;
+    height: 470px;
     background: #FFF;
     left: 11px;
     opacity: 0;
@@ -2607,10 +2607,20 @@ input::-webkit-inner-spin-button {
     left: 5%;
 }
 
-.detail_meun{
-    list-style-type: circle !important;
+.detail_text{
+    list-style-type: small middle dot !important;
     float: left;
     margin-left: 22px;
+}
+
+.fee{
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 25px;
+}
+
+#host_discount{
+    color: #ff0000;
 }
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */

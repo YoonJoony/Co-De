@@ -240,7 +240,7 @@
                 <div class="chat-menu">
                   <img src="../images/bell.png">
                   <img src="../../Icon(아이콘)/map.png" id="map_button" onclick="map_btn()">
-                  <img src="../../Icon(아이콘)/Budget.png" id="cal_open">
+                  <img src="../../Icon(아이콘)/Budget.png" onclick="calShow()">
                   <!-- <img src="/Icon(아이콘)/basket.png" href="#enterRoomModal" data-bs-toggle="modal" data-target="#enterRoomModal"> -->
                   <img src="../../Icon(아이콘)/basket.png" onclick="basket()">
 
@@ -252,7 +252,7 @@
               <div class="cal_page">
                 <div class="storeModal_header_topper">
                   <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
-                    <img class="storeModal_header_topper_back_img" src="/images/back.png" onclick="cal()"
+                    <img class="storeModal_header_topper_back_img" src="/images/back.png" onclick="calclose()"
                       style="cursor:pointer;">
                   </div>
                   <h2>결제 하기</h2>
@@ -290,7 +290,7 @@
 
                 </div>
 
-                <button class="calbtn" onclick="cal()">닫기</button>
+                <button class="calbtn" onclick="calclose()">닫기</button>
               </div>
 
               <!-- 결제내역 상세보기 모달 -->
@@ -299,11 +299,40 @@
                   style="cursor:pointer;">
                 <p>호스트 농담곰</p>
                 <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
                 <div style="margin-top: 15px;">
-                  <li class="detail_meun"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
-                  <p> 25,900원</p>
+                  <li class="detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                  <p class="fee" id="meun_fee"> 25,900원</p>
                 </div>
                 <hr class="detail_hr">
+
+                <div style="margin-top: 15px;">
+                  <li class="detail_text"> 배달요금 </li>
+                  <p class="fee"> 4,000원</p>
+                </div>
+                <br>
+                <div style="margin-top: 15px;">
+                  <li class="detail_text"> 인당요금 </li>
+                  <p class="fee" id="each_delifee"></p>
+                </div>
+                <br>
+                <div style="margin-top: 15px;">
+                  <li class="detail_text"> 방장할인 </li>
+                  <p class="fee" id="host_discount"></p>
+                </div>
+                <br><br>
+
+                <div style="margin-top: 15px;">
+                  <li class="detail_text"> 지불 배달요금 </li>
+                  <p class="fee" id="host_delifee"></p>
+                </div>
+                <hr class="detail_hr">
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="detail_text"> 결제 금액 </li>
+                  <p class="fee" id="host_totalfee"></p>
+                </div>
               </div>
 
               <div class="pay_detail1" name="pay_detail1">
