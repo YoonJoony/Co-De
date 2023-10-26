@@ -2607,7 +2607,7 @@ input::-webkit-inner-spin-button {
     left: 5%;
 }
 
-.detail_text{
+.pay_detail_text{
     list-style-type: small middle dot !important;
     float: left;
     margin-left: 22px;
@@ -2621,6 +2621,10 @@ input::-webkit-inner-spin-button {
 
 #host_discount{
     color: #ff0000;
+}
+
+.total_pay{
+    font-weight: bold;
 }
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
