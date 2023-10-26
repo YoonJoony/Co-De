@@ -2525,7 +2525,31 @@ input::-webkit-inner-spin-button {
     opacity: 1;
 }
 
-.pay_detail{
+.pay_detail1{
+    display: none;
+    position: absolute;
+    z-index: 15;
+    width: 271px;
+    height: 267px;
+    background: #FFF;
+    left: 44px;
+    border: 1px solid;
+    opacity: 1;
+}
+
+.pay_detail2{
+    display: none;
+    position: absolute;
+    z-index: 15;
+    width: 271px;
+    height: 267px;
+    background: #FFF;
+    left: 44px;
+    border: 1px solid;
+    opacity: 1;
+}
+
+.pay_detail3{
     display: none;
     position: absolute;
     z-index: 15;
