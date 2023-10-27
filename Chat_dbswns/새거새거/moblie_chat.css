@@ -1,16 +1,17 @@
 /* chat2.css에 있던 모바일 css 옮겨 온것 */
 @media (max-width: 639px) {
     .chat-group {
-        /* width: 40%; */
-        box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-        height: 100%;
-        max-height: 650px;
-        max-width: 500px;
-        /* min-width: 400px; */
-        position: relative;
-        display: inline-block;
-        border-radius: 15px;
-        /* left: -47px; */
+    /* width: 40%; */
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    height: 600px;
+    /* max-height: 650px; */
+    max-width: 500px;
+    /* min-width: 400px; */
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+    /* left: -47px; */
+    top: -25px;
     }
 
     .popup {
@@ -127,25 +128,25 @@
     .cal_page {
         position: absolute;
         left: 50%;
-        top: 32%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        display: none;
+        top: 215px;
+        width: 100%;
+        height: 90%;
+        min-height: 560px;
+        display: block;
         flex-direction: column;
         align-items: center;
         background: white;
-        height: 100%;
-        /* min-height: 320px; */
-        /* min-width: 220px; */
-        padding: 8px 3px;
+        padding: 6px 3px;
         margin: 0 auto;
         border: none;
         background-color: #fff;
         box-shadow: 0 4px 4px 0 gray;
         border-radius: 5px 5px 20px 20px;
         border-bottom: solid 9px #ff8c16;
-        /* max-width: 530px; */
-        overflow: scroll;
+        z-index: -1;
+        opacity: 0;
+        transform: translate(-50%, -40%);
+        transition: all 0.3s ease-in-out;
     }
 
     .pay_done {
@@ -185,9 +186,9 @@
 
     .pay_result {
         width: 250px;
-        margin-left: 54px;
-        font-size: 17px;
-        margin-top: 12px;
+        margin-left: 55px;
+        font-size: 19px;
+        margin-top: 10px;
     }
 
     .arrow-down {
@@ -210,9 +211,10 @@
         /* width: 0px; */
         /* height: 50px; */
     }
-    .storeModal_header_topper_back_img{
+
+    .storeModal_header_topper_back_img {
         position: relative;
-        width: 100%;
+        width: 60%;
     }
 
     .storeModal_header_topper_back_img_detail {
@@ -235,7 +237,7 @@
     }
 
     /* 상세 결제금액 */
-    .pay_detail{
+    .pay_detail {
         display: none;
         position: absolute;
         z-index: 15;
@@ -245,6 +247,7 @@
         left: 15px;
         border: 1px solid;
     }
+
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 }
 
@@ -675,3 +678,228 @@
 }
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+/* 결제내역 상세보기 모바일 작업 */
+
+@media (max-width: 639px) {
+    .cal_page {
+        position: absolute;
+        left: 50%;
+        top: 180px;
+        width: 100%;
+        height: 90%;
+        min-height: 560px;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 6px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        z-index: -1;
+        opacity: 0;
+        transform: translate(-50%, -40%);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .cal_page_show {
+        opacity: 1;
+        z-index: 10;
+        transform: translate(-50%, -45%);
+        transition: .8s;
+    }
+
+    .pay_done {
+        width: 80px;
+        height: 35px;
+        font-size: 16px;
+        border: none;
+        color: #ffffff;
+        background-color: #ff9e4e;
+        border-radius: 5px;
+        margin-left: 25px;
+    }
+
+    .calualtor {
+        font-size: 1.1rem;
+        margin-bottom: 1.6rem;
+        margin-top: 0;
+    }
+
+    .calbtn {
+        width: 150px;
+        height: 35px;
+        font-size: 20px;
+        border: none;
+        color: #ffffff;
+        background-color: #ff9e4e;
+        border-radius: 5px;
+        /* bottom: 0px; */
+        margin-top: 40px;
+    }
+
+    .pay_username {
+        width: 150px;
+        height: 72px;
+        white-space: nowrap;
+        font-size: 20px;
+        margin-left: -6px;
+    }
+
+    .pay_result {
+        width: 250px;
+        margin-left: 55px;
+        font-size: 17px;
+        margin-top: 10px;
+    }
+
+    .arrow-down {
+        width: 0;
+        height: 0;
+        border-top: 10px solid #ff8c16;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        position: relative;
+        top: -34px;
+        left: 272px;
+        cursor: pointer;
+    }
+
+    /* 상세 결제금액 */
+    .pay_detail_host {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 470px;
+        background: #FFF;
+        left: 0px;
+        opacity: 0;
+        top: -100px;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        transform: translate(-50%, 0%);
+        transition: all 0.6s ease-in-out;
+    }
+
+    .pay_detail1 {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 470px;
+        background: #FFF;
+        left: 0px;
+        opacity: 0;
+        top: -100px;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        transform: translate(-50%, 0%);
+        transition: all 0.6s ease-in-out;
+    }
+
+    .pay_detail2 {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 470px;
+        background: #FFF;
+        left: 0px;
+        opacity: 0;
+        top: -100px;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        transform: translate(-50%, 0%);
+        transition: all 0.6s ease-in-out;
+    }
+
+    .pay_detail3 {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 470px;
+        background: #FFF;
+        left: 0px;
+        opacity: 0;
+        top: -100px;
+        flex-direction: column;
+        align-items: center;
+        padding: 8px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        transform: translate(-50%, 0%);
+        transition: all 0.6s ease-in-out;
+    }
+
+    .pay_detail_show {
+        transform: translate(0%, 8%);
+        opacity: 1;
+        z-index: 15;
+        transition: .8s;
+    }
+
+    .storeModal_header_topper_back_img_pay_detail {
+        position: absolute;
+        width: 38px;
+        top: 0%;
+        left: 3%;
+    }
+
+    .detail_hr {
+        color: #a1a1a1;
+        width: 90%;
+        position: relative;
+        left: 5%;
+    }
+
+    .pay_detail_text {
+        list-style-type: small middle dot !important;
+        float: left;
+        margin-left: 22px;
+    }
+
+    .pay_text {
+        float: right;
+        margin-bottom: 10px;
+        margin-right: 25px;
+    }
+
+    #host_discount {
+        color: #ff0000;
+    }
+
+    .total_pay {
+        font-weight: bold;
+    }
+
+    .discount_plus {
+        color: #0026ff;
+    }
+}
