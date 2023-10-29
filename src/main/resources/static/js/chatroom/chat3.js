@@ -17,7 +17,6 @@ var connectingElement = document.querySelector('.connecting');
 var body = document.querySelector('body');
 var time;
 var userList = document.querySelector('.user-list');
-var userListContent = document.querySelector('.user-list-content');
 
 var stompClient = null;
 var nickname = null;
@@ -31,10 +30,6 @@ var colors = [
 // id 파라미터 가져오기
 const url = new URL(location.href).searchParams;
 const id = url.get('id');
-
-//메시지를 객체에 담음
-let messages;
-
 
 /* 입장 버튼 누르면 입장 페이지 사라지고 채팅방 페이지가 뜬다. */
 function connect(event) {
@@ -127,6 +122,13 @@ function getUserList() {
             const $user_list = $('#user-list');
             var inviteTag = "";
             console.log("데이터 받기 성공 : " + data[0]);
+
+            while(userList.firstChild) {
+              userList.removeChild(userList.firstChild);
+            }
+            var userListContent = document.createElement('div');
+            userListContent.classList.add('user-list-content');
+
             for (let i = 0; i < data.length; i++) {
 
                 var chatUserList = document.createElement('div');
@@ -166,6 +168,7 @@ function getUserList() {
             inviteTag = "<div class='invite' href='#enterRoomModal' data-bs-toggle='modal' data-target='#enterRoomModal'><span class='invite-content'>사용자 초대</span></div>";
 
             var invite = $(inviteTag)[0]; //위 var inviteTag를 jquery 객체로 변환한다.
+            userList.appendChild(userListContent);
             userList.appendChild(invite);
 
             //밑에 사용자가 호스트일 경우 자기 버튼 지우고 다른 유저 버튼 보이게 하기.
@@ -214,37 +217,64 @@ function sendMessage(event) {
             type : 'TALK'
         };
 
-        messages = chatMessage;
         stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
         messageInput.value = '';
     }
     event.preventDefault();
 }
 
-////유저 초대 버튼 클릭 시
-//function sendInvite(event) {
-//    var inviteNickname = inviteNicknameInput.value.trim(); //초대할 유저 이름 값
-//
-//    if (userContent && stompClient) {
-//        var chatMessage = {
-//            "id" : id,
-//            sender : inviteNickname.value,
-//            message : inviteNickname.value + " 님의 초대",
-//            "createdAt" : new Date(), //채팅친 시간 추가.
-//            type : 'INVITE'
-//        };
-//
-//        stompClient.send("/pub/mozip/chat/sendInvite", {}, JSON.stringify(chatMessage));
-//        messageInput.value = '';
-//    }
-//    event.preventDefault();
-//}
+//장바구니에 메뉴를 추가했을 경우
+function basketSendMessage() {
+    if (stompClient) {
+        var chatMessage = {
+            "id" : id,
+            sender : nickname,
+            message : nickname + "님이 장바구니에 메뉴를 추가하였습니다.",
+            "createdAt" : new Date(), //채팅친 시간 추가.
+            type : 'BASKET'
+        };
+
+        stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
+    }
+}
+
+//장바구니 수량을 변경했을 경우
+function basketUpdateSendMessage() {
+    if (stompClient) {
+        var chatMessage = {
+            "id" : id,
+            sender : nickname,
+            message : nickname + "님이 메뉴 수량을 변경하셨습니다.",
+            "createdAt" : new Date(), //채팅친 시간 추가.
+            type : 'UPDATE'
+        };
+
+        stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
+    }
+}
+
+//장바구니 메뉴를 삭제했을 경우
+function basketDeleteSendMessage(deleteMenuIdRecv) {
+
+    if (stompClient) {
+        var chatMessage = {
+            "id" : id,
+            sender : deleteMenuIdRecv,
+            message : nickname + "님이 메뉴를 삭제하셨습니다.",
+            "createdAt" : new Date(), //채팅친 시간 추가.
+            type : 'DELETE'
+        };
+
+        stompClient.send("/pub/mozip/chat/sendMessage", {}, JSON.stringify(chatMessage));
+    }
+}
 
 let lastMessageTimeMinutes = 99;
 let lastMessageTimeHour = 99;
 let timeDifference = 1;
 let lastMessageSender = "";
 
+var deleteMenuId; //삭제한 메뉴 아이디(누가 메뉴를 삭제했을 시 필요)
 function onMessageReceived(payload) {
     console.log("onMessage");
     var chat = JSON.parse(payload.body);
@@ -256,7 +286,6 @@ function onMessageReceived(payload) {
 
     if (chat.type === 'ENTER') {
         messageElement.classList.add('event-message');
-        chat.content = chat.sender + chat.message;
         getUserList();
 
         var contentElement = document.createElement('p');
@@ -270,7 +299,6 @@ function onMessageReceived(payload) {
         messageArea.scrollTop = messageArea.scrollHeight;
     } else if (chat.type === 'LEAVE') {
         massageElement.classList.add('event-message');
-        chat.content = chat.sender + chat.message;
         getUserList();
 
         var contentElement = document.createElement('p');
@@ -282,6 +310,54 @@ function onMessageReceived(payload) {
 
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
+    } else if (chat.type === 'BASKET') { //메뉴 수량 변경시 채팅으로 알림과 동시에 장바구니에 추가
+          //다른 사람이 추가한 최신 메뉴를 받음
+          $.ajax({
+              type : "POST",
+              url : "/basket/add/recv",
+              data : {
+                "nickname" : chat.sender
+              },
+              success : function(data) {
+                  createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
+                  console.log("메뉴저장 성공");
+              },
+              error: function() {
+                  console.log("리스트 요청 실패 : ");
+              }
+              })
+
+          messageElement.classList.add('event-message');
+
+          var contentElement = document.createElement('p');
+
+          var messageText = document.createTextNode(chat.message);
+          contentElement.appendChild(messageText);
+
+          messageElement.appendChild(contentElement);
+
+          messageArea.appendChild(messageElement);
+          messageArea.scrollTop = messageArea.scrollHeight;
+    } else if (chat.type === 'UPDATE') { //메뉴 수량 변경시 채팅으로 알림
+        messageElement.classList.add('event-message');
+
+        var contentElement = document.createElement('p');
+
+        var messageText = document.createTextNode(chat.message);
+        contentElement.appendChild(messageText);
+
+        messageElement.appendChild(contentElement);
+
+        messageArea.appendChild(messageElement);
+        messageArea.scrollTop = messageArea.scrollHeight;
+
+      } else if (chat.type === 'DELETE') { //메뉴 삭제 시 장바구니에서 삭제.
+        //chat.sender 안에 닉네임 대신 삭제를 선택한 메뉴의 기본키가 들어있다.
+        //삭제는 속도가 빠르게 반영되서 굳이 채팅으로 알리지 않는다
+        var element = document.querySelector('[data-room-id="' + chat.sender + '"]');
+        if (element) {
+          element.remove();
+        }
     } else {
 
         messageElement.classList.add('chat-message');
@@ -467,34 +543,6 @@ function basket() {
 //    })
 }
 
-// 메뉴상세 수량변경
-let count = 1;
-let total_price_count = 0;
-var countEl = document.getElementById("count");
-var total_price = document.getElementById("totalPrice");
-
-var total_count = document.getElementById("total_count"); //추가
-var total_count_view = document.getElementById("total_count_view"); //추가
-
-function plus() {
-    count++;
-    countEl.value = count;
-    total_count_view.value = total_count.value * countEl.value; //추가
-    total_price_count = total_price_count + parseInt(total_count_view.value);
-    total_price.textContent = total_price_count;
-}
-function minus() {
-
-    if (count > 1) {
-        count--;
-        countEl.value = count;
-        total_count_view.value = total_count_view.value - total_count.value; //추가
-        total_price_count = total_price_count - parseInt(total_count_view.value);
-        total_price.textContent = total_price_count;
-    }
-}
-
-
 /* 메뉴 리스트 */
 var menu_body = document.querySelector(".menu-body");
 var loading_div = document.querySelector(".loading-div");
@@ -591,6 +639,82 @@ function menuList() {
 }
 
 
+    //징비구니 추가시 div 생성
+    function createBasketMenu(data) {
+        var basketListItem = document.createElement('div');
+        basketListItem.className = 'basket-list-item';
+        basketListItem.setAttribute('data-room-id', data.id);
+
+        var basketListHeader = document.createElement('div');
+        basketListHeader.className = 'basket-list-header';
+        var foodName = document.createElement('div');
+        foodName.className = 'food-name';
+        foodName.innerText = data.product_name;
+        var cancel = document.createElement('div');
+        cancel.className = 'cancel';
+        var img = document.createElement('img');
+        img.setAttribute('src', '/images/close.png');
+        cancel.appendChild(img);
+        basketListHeader.appendChild(foodName);
+        basketListHeader.appendChild(cancel);
+
+        var foodInfo = document.createElement('div');
+        foodInfo.className = 'food-info';
+        var price = document.createElement('div');
+        price.className = 'price';
+        price.setAttribute('id', 'total_count_view');
+        price.setAttribute('wfd-id', 'id4');
+        price.innerText = data.price * data.quantity + "원";
+        foodInfo.appendChild(price);
+
+        var foodOrderDiv = document.createElement('div');
+        foodOrderDiv.className = 'food-order-div';
+        var foodOrder = document.createElement('a');
+        foodOrder.className = 'food-order';
+        foodOrder.innerText = '주문자 : ';
+        var foodOrderName = document.createElement('div');
+        foodOrderName.className = 'food-order-name';
+        foodOrderName.innerText = data.nickname;
+
+        var foodInfoUpdate = document.createElement('div');
+        foodInfoUpdate.className = 'food-info-update';
+
+        var minusButton = document.createElement('input');
+        minusButton.setAttribute('type', 'button');
+        minusButton.setAttribute('value', '-');
+        minusButton.setAttribute('id', 'minus');
+        minusButton.setAttribute('class', 'update-button');
+
+        var countInput = document.createElement('input');
+        countInput.setAttribute('class', 'count_css');
+        countInput.setAttribute('type', 'text');
+        countInput.setAttribute('size', '25');
+        countInput.setAttribute('value', data.quantity);
+        countInput.setAttribute('id', 'count');
+        countInput.setAttribute('readonly', '');
+
+        var plusButton = document.createElement('input');
+        plusButton.setAttribute('type', 'button');
+        plusButton.setAttribute('value', '+');
+        plusButton.setAttribute('id', 'plus');
+        plusButton.setAttribute('class', 'update-button');
+
+        foodInfoUpdate.appendChild(minusButton);
+        foodInfoUpdate.appendChild(countInput);
+        foodInfoUpdate.appendChild(plusButton);
+
+        foodOrderDiv.appendChild(foodOrder);
+        foodOrderDiv.appendChild(foodOrderName);
+        foodOrderDiv.appendChild(foodInfoUpdate);
+
+        basketListItem.appendChild(basketListHeader);
+        basketListItem.appendChild(foodInfo);
+        basketListItem.appendChild(foodOrderDiv);
+
+        document.querySelector('.basket-list').appendChild(basketListItem);
+    }
+
+
 
 //선택한 메뉴 장바구니에 담기
 var menuName;
@@ -611,6 +735,8 @@ $(function () {
                 "menuPrice" : menuPrice
             },
             success : function(data) {
+//              createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
+                basketSendMessage(); //채팅으로 장바구니에 메뉴를 추가했다고 알림
                 console.log("메뉴저장 성공");
             },
             error: function() {
@@ -637,80 +763,7 @@ $(function () {
                 }
 
                 for(let i = 0; i < data.length; i++) {
-                    var basketListItem = document.createElement('div');
-                    basketListItem.className = 'basket-list-item';
-
-                    var basketListHeader = document.createElement('div');
-                    basketListHeader.className = 'basket-list-header';
-                    var foodName = document.createElement('div');
-                    foodName.className = 'food-name';
-                    foodName.innerText = data[i].product_name;
-                    var cancel = document.createElement('div');
-                    cancel.className = 'cancle';
-                    cancel.setAttribute('href', 'javascript:void(0)');
-                    cancel.setAttribute('onclick', 'javascript:basket.delItem();');
-                    var img = document.createElement('img');
-                    img.setAttribute('src', '/images/close.png');
-                    cancel.appendChild(img);
-                    basketListHeader.appendChild(foodName);
-                    basketListHeader.appendChild(cancel);
-
-                    var foodInfo = document.createElement('div');
-                    foodInfo.className = 'food-info';
-                    var price = document.createElement('div');
-                    price.className = 'price';
-                    price.setAttribute('id', 'total_count_view');
-                    price.setAttribute('wfd-id', 'id4');
-                    price.innerText = data[i].price;
-                    foodInfo.appendChild(price);
-
-                    var foodOrderDiv = document.createElement('div');
-                    foodOrderDiv.className = 'food-order-div';
-                    var foodOrder = document.createElement('a');
-                    foodOrder.className = 'food-order';
-                    foodOrder.innerText = '주문자 : ';
-                    var foodOrderName = document.createElement('div');
-                    foodOrderName.className = 'food-order-name';
-                    foodOrderName.innerText = data[i].nickname;
-
-                    var foodInfoUpdate = document.createElement('div');
-                    foodInfoUpdate.className = 'food-info-update';
-
-                    var minusButton = document.createElement('input');
-                    minusButton.setAttribute('type', 'button');
-                    minusButton.setAttribute('value', '-');
-                    minusButton.setAttribute('id', 'moins');
-                    minusButton.setAttribute('class', 'update-button');
-                    minusButton.setAttribute('onclick', 'minus()');
-
-                    var countInput = document.createElement('input');
-                    countInput.setAttribute('class', 'count_css');
-                    countInput.setAttribute('type', 'text');
-                    countInput.setAttribute('size', '25');
-                    countInput.setAttribute('value', '1');
-                    countInput.setAttribute('id', 'count');
-                    countInput.setAttribute('readonly', '');
-
-                    var plusButton = document.createElement('input');
-                    plusButton.setAttribute('type', 'button');
-                    plusButton.setAttribute('value', '+');
-                    plusButton.setAttribute('id', 'plus');
-                    plusButton.setAttribute('class', 'update-button');
-                    plusButton.setAttribute('onclick', 'plus()');
-
-                    foodInfoUpdate.appendChild(minusButton);
-                    foodInfoUpdate.appendChild(countInput);
-                    foodInfoUpdate.appendChild(plusButton);
-
-                    foodOrderDiv.appendChild(foodOrder);
-                    foodOrderDiv.appendChild(foodOrderName);
-                    foodOrderDiv.appendChild(foodInfoUpdate);
-
-                    basketListItem.appendChild(basketListHeader);
-                    basketListItem.appendChild(foodInfo);
-                    basketListItem.appendChild(foodOrderDiv);
-
-                    document.querySelector('.basket-list').appendChild(basketListItem);
+                    createBasketMenu(data[i]); //장바구니에 추가한 메뉴 div 생성
                 }
             },
             error: function() {
@@ -718,6 +771,120 @@ $(function () {
             }
             })
         });
+
+    //장바구니 수량 변경
+    var countInput; //장바구니 수량 카운트
+    var updateQuantityMenu; //수량 수정할 메뉴 이름
+    var updateQuantityPrice; //수량 수정할 메뉴의 가격
+    var updateQuantityNickName //수량 수정할 메뉴의 주문자.
+    var menuId; //메뉴판 기본키
+
+    // + 버튼
+    $(document).on('click', '#plus', function() {
+      countInput = $(this).parent().find('.count_css'); //클릭한 메뉴의 수량
+      //장바구니에 추가한 메뉴 요소에 data-room-id 값(메뉴 기본키)을 가져와 메뉴를 구분해줌
+      menuId = $(this).parents('.basket-list-item').data('room-id');
+      updateQuantityPrice = $(this).parents('.basket-list-item').find('.price');
+      updateQuantityNickName = $(this).parents('.basket-list-item').find('.food-order-name').text();
+
+      //다른 사람의 장바구니를 수정하려 했을 경우.
+      if(updateQuantityNickName === nickname){
+          updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) + (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())));
+          countInput.val(parseInt(countInput.val()) + 1);
+      }
+
+      $.ajax({
+          type : "POST",
+          url : "/chat/basket/plusQuantity",
+          data : {
+              "menuId" : menuId
+          },
+          success : function(data) {
+            if(data === "") {
+                alert("본인의 메뉴만 수정할 수 있습니다!!");
+                return;
+            }
+            basketUpdateSendMessage();
+            console.log(data);
+          },
+          error : function() {
+            console.log("수량 수정 API 오류");
+          }
+       })
+
+    });
+
+    // - 버튼
+    $(document).on('click', '#minus', function() {
+      countInput = $(this).parent().find('.count_css'); //내가 선택한 메뉴 이름
+        updateQuantityPrice = $(this).parents('.basket-list-item').find('.price');
+        //메뉴판 요소에 추가된 data-room-id 데이터에 메뉴의 기본키를 넣어서 메뉴판을 구분해줌
+        menuId = $(this).parents('.basket-list-item').data('room-id');
+
+      //기존 수량이 1이면 감소 불가능.
+      if (parseInt(countInput.val()) > 1) {
+          updateQuantityNickName = $(this).parents('.basket-list-item').find('.food-order-name').text();
+
+          //다른 사람의 장바구니를 수정하려 했을 경우 방지
+          if(updateQuantityNickName === nickname){
+              updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) - (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())));
+              countInput.val(parseInt(countInput.val()) - 1);
+          }
+
+          $.ajax({
+              type : "POST",
+              url : "/chat/basket/minusQuantity",
+              data : {
+                  "menuId" : menuId
+              },
+              success : function(data) {
+                if(data == "") { //HTML로 닉네임을 조작해도 세션과 DB 테이블을 이용하여 타인 메뉴 수정을 방지할 수 있다.
+                    alert("본인의 메뉴만 수정할 수 있습니다!!");
+                    return;
+                }
+                basketUpdateSendMessage();
+                console.log(data);
+              },
+              error : function() {
+                console.log("수량 수정 API 오류");
+              }
+           })
+      }
+    });
+
+    //장바구니 1개 삭제
+    $(document).on('click', '.cancel', function() {
+      //장바구니에 추가한 메뉴 요소에 data-room-id 값(메뉴 기본키)을 가져와 메뉴를 구분해줌
+      menuId = $(this).parents('.basket-list-item').data('room-id');
+      updateQuantityNickName = $(this).parents('.basket-list-item').find('.food-order-name').text();
+
+      //다른 사람의 장바구니를 수정하려 했을 경우 방지
+      if(updateQuantityNickName == nickname){
+        //선택한 메뉴 삭제
+        basketDeleteSendMessage(menuId);
+
+      }
+
+      $.ajax({
+          type : "POST",
+          url : "/chat/basket/deleteByMenu",
+          data : {
+              "menuId" : menuId
+          },
+          success : function(data) {
+            if(data == "") {
+                alert("본인의 메뉴만 삭제할 수 있습니다!!");
+                return;
+            }
+
+            console.log(data);
+          },
+          error : function() {
+            console.log("장바구니 메뉴 삭제 API 오류");
+          }
+       })
+
+    });
 
     initMap();
 });

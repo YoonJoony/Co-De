@@ -29,10 +29,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import java.util.ArrayList;
@@ -89,15 +86,9 @@ public class ChatController {
     @MessageMapping("/mozip/chat/sendMessage")
     public void sendMessage(@Payload ChatDTO chat) {
         log.info("CHAT {}", chat);
+
         template.convertAndSend("/sub/mozip/chat/room/"+chat.getId(),chat);
         chatService.save(chat);
-    }
-    
-    //초대 전송
-    @MessageMapping("/mozip/chat/sendInvite")
-    public void invite(@Payload ChatDTO chat) {
-        log.info("sendInvite {}", chat);
-        template.convertAndSend("/sub/mozip/chat/sendInvite", chat);
     }
 
     @GetMapping("/mozip/chat/userList")
@@ -122,17 +113,5 @@ public class ChatController {
         return chatService.isCurrentUserHost(id, nickname);
     }
 
-    //채팅방 장바구니 조회
-    @GetMapping("/chat/basket")
-    @ResponseBody
-    public List<Basket> basket(Long roomId, HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
 
-        List<Basket> basket = basketService.findAll(roomId);
-
-        if(basket == null)
-            log.info("장바구니가 조회되지 않음. ");
-
-        return basket;
-    }
 }

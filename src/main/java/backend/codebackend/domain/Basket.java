@@ -30,13 +30,16 @@ public class Basket {
     private int quantity;        // 수량
     @Column(length = 10, nullable = false)
     private String nickname;     // 파티원(누가 어느 것을 시켰는지 알기위해 해당 사람을 추적하는데 필요)
+    @Column(length = 20, nullable = false)
+    private int total_price;
 
-    public Basket(Long id, Long chatroom_id, String product_name, int price, int quantity, String nickname) {
+    public Basket(Long id, Long chatroom_id, String product_name, int price, int quantity, String nickname, int total_price) {
         this.id = id;
         this.chatroom_id = chatroom_id;
         this.product_name = product_name;
         this.price = price;
         this.quantity = quantity;
         this.nickname = nickname;
+        this.total_price = total_price;
     }
 }

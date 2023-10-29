@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat4.css">
+  <link rel="stylesheet" href="/css/chatroom/chat4.css?v=<%=System.currentTimeMillis()">
   <link rel="stylesheet" href="/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
   <!-- vscode용 ------------------------------------------------------------------>
   <link rel="stylesheet" href="../static/css/chatroom/chat4.css">
@@ -189,9 +189,6 @@
                   <img src="images/profile/profile5.png" height="40px" width="40px">
                 </span>
               <div id="user-list" class="user-list" style="display : none">
-                <div class="user-list-content">
-
-                </div>
               </div>
             </div>
             <div class="chat-header-center">
@@ -282,7 +279,7 @@
               <div class="menu-bottom">
                 <div class="totalPrice">
                   <span class="priceText"> 합계 :</span>
-                  <span class="priceText" id="totalPrice">22,550원</span>
+                  <span class="priceText" id="totalPrice">0원</span>
                 </div>
                 <div class="modify-menu">
                   <input id="modify_menu_btn" type="button" value="메뉴 수정" wfd-id="id11" href="#CreateMozipModal"

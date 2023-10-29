@@ -10,14 +10,15 @@ public interface BasketRepository {
     List<Basket> findAll(Long id);
     Optional<Basket> duplicateBasketItem(Long idd, String product_name, int price, String nickname);
 
-    void save(Basket basket);
-    void deleteBasket(Long nickname);
+    Basket save(Basket basket);
+    void plusItemCnt(Long menuId, String updateQuantityNickName);
 
-    void deleteByItem(Long basketItemId);
+    void minusItemCnt(Long menuId, String updateQuantityNickName);
+    void deleteByAllMenu(Long menuId);
 
-    void plusItemCnt(Long basketItemId);
-
-    void minusItemCnt(Long basketItemId);
+    void deleteByMenu(Long menuId);
+    Basket findBasketMenu(Long menuId);
+    Basket addItemToBasketReceive(String nickname);
 }
 
 
