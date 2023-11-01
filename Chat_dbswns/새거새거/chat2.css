@@ -1878,7 +1878,6 @@ input::-webkit-inner-spin-button {
 /* 장바구니 모달 */
 .basket-view {
     position: absolute;
-    right: 16%;
     width: 80%;
     height: 480px;
     font-weight: bold;
@@ -1903,7 +1902,7 @@ input::-webkit-inner-spin-button {
 .basket-view .basket-title {
     position: relative;
     height: 10%;
-
+    cursor: pointer;
 }
 
 .basket-view .basket-title .basket-title-name {
@@ -2458,14 +2457,12 @@ input::-webkit-inner-spin-button {
     opacity: 0;
 
     transform: translate(-50%, -40%);
-    transition: all 0.3s ease-in-out;
 }
 
 .cal_page_show{
     opacity: 1;
     z-index: 10;
     transform: translate(-50%, -50%);
-    transition: .8s;
 }
 
 .pay_done {
@@ -2685,6 +2682,7 @@ input::-webkit-inner-spin-button {
     width: 100%;
     padding: 4px 20px 5px 17px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .storeModal_header_topper h2 {
@@ -2726,4 +2724,10 @@ input::-webkit-inner-spin-button {
 
 .storeModal_header_topper h2 {
     margin-left: 100px;
+}
+
+/* 결제창 이동 */
+
+.storeModal_header_topper.active{
+    cursor: move;
 }

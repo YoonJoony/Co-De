@@ -819,3 +819,90 @@ function detailShow_cos3() {
 function detailClose_cos3() {
     document.querySelector("#pay_detail3").className = "pay_detail3";
 }
+
+// 결제창 이동 
+
+const basket_wrap = document.querySelector(".basket-view");
+const basket_header = document.querySelector(".basket-title");
+
+const cal_wrap = document.querySelector(".cal_page");
+const cal_header = document.querySelector(".storeModal_header_topper");
+
+let BlastX = 0;
+let BlastY = 0;
+let BstartX = 0;
+let BstartY = 0;
+
+let ClastX = 0;
+let ClastY = 0;
+let CstartX = 0;
+let CstartY = 0;
+
+// 장바구니 이동
+basket_header.addEventListener('mousedown', function (e) {
+    e.preventDefault();
+    BstartX = e.clientX;
+    BstartY = e.clientY;
+
+    // 2.  
+    basket_header.classList.add('active');
+
+    // 3.
+    document.addEventListener('mouseup', onRemoveEvent);
+
+    // 4.
+    document.addEventListener('mousemove', onMove);
+});
+
+function onRemoveEvent() {
+    basket_header.classList.remove('active');
+    document.removeEventListener('mouseup', onRemoveEvent);
+    document.removeEventListener('mousemove', onMove);
+}
+
+function onMove(e) {
+    e.preventDefault();
+    BlastX = BstartX - e.clientX;
+    BlastY = BstartY - e.clientY;
+
+    BstartX = e.clientX;
+    BstartY = e.clientY;
+
+    basket_wrap.style.top = `${basket_wrap.offsetTop - BlastY}px`;
+    basket_wrap.style.left = `${basket_wrap.offsetLeft - BlastX}px`;
+}
+
+
+// 결제창
+cal_header.addEventListener('mousedown', function (e) {
+    e.preventDefault();
+    CstartX = e.clientX;
+    CstartY = e.clientY;
+
+    // 2.  
+    cal_header.classList.add('active');
+
+    // 3.
+    document.addEventListener('mouseup', onRemoveEvent);
+
+    // 4.
+    document.addEventListener('mousemove', onMove);
+});
+
+function onRemoveEvent() {
+    cal_header.classList.remove('active');
+    document.removeEventListener('mouseup', onRemoveEvent);
+    document.removeEventListener('mousemove', onMove);
+}
+
+function onMove(e) {
+    e.preventDefault();
+    ClastX = CstartX - e.clientX;
+    ClastY = CstartY - e.clientY;
+
+    CstartX = e.clientX;
+    CstartY = e.clientY;
+
+    cal_wrap.style.top = `${cal_wrap.offsetTop - ClastY}px`;
+    cal_wrap.style.left = `${cal_wrap.offsetLeft - ClastX}px`;
+}
