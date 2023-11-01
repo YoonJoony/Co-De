@@ -42,6 +42,10 @@
   <!-- 네이버 지도 API 추가 -->
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=99by68keh8"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -248,6 +252,7 @@
                 </div>
                 <img src="../../Icon(아이콘)/log-out_5565735.png" class="out-img">
               </div>
+
               <!-- 정산(결제) 확인창 -->
               <div class="cal_page">
                 <div class="storeModal_header_topper">
@@ -328,7 +333,7 @@
                 </div>
                 <hr class="detail_hr">
                 <br>
-                
+
                 <div class="total_pay" style="margin-top: 15px;">
                   <li class="pay_detail_text"> 결제 금액 </li>
                   <p class="pay_text" id="host_totalfee"></p>
@@ -336,8 +341,8 @@
               </div>
 
               <div class="pay_detail1" id="pay_detail1">
-                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose_cos1()"
-                  style="cursor:pointer;">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                  onclick="detailClose_cos1()" style="cursor:pointer;">
                 <p>참가자 망그곰</p>
                 <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
 
@@ -369,7 +374,7 @@
                 </div>
                 <hr class="detail_hr">
                 <br>
-                
+
                 <div class="total_pay" style="margin-top: 15px;">
                   <li class="pay_detail_text"> 결제 금액 </li>
                   <p class="pay_text" name="comtomer_totalfee"></p>
@@ -377,8 +382,8 @@
               </div>
 
               <div class="pay_detail2" id="pay_detail2">
-                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose_cos2()"
-                style="cursor:pointer;">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                  onclick="detailClose_cos2()" style="cursor:pointer;">
                 <p>참가자2 엄준식</p>
                 <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
 
@@ -410,7 +415,7 @@
                 </div>
                 <hr class="detail_hr">
                 <br>
-                
+
                 <div class="total_pay" style="margin-top: 15px;">
                   <li class="pay_detail_text"> 결제 금액 </li>
                   <p class="pay_text" name="comtomer_totalfee"></p>
@@ -418,8 +423,8 @@
               </div>
 
               <div class="pay_detail3" id="pay_detail3">
-                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose_cos3()"
-                style="cursor:pointer;">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                  onclick="detailClose_cos3()" style="cursor:pointer;">
                 <p>참가자3 볼링장</p>
                 <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
 
@@ -451,7 +456,7 @@
                 </div>
                 <hr class="detail_hr">
                 <br>
-                
+
                 <div class="total_pay" style="margin-top: 15px;">
                   <li class="pay_detail_text"> 결제 금액 </li>
                   <p class="pay_text" name="comtomer_totalfee"></p>
@@ -614,16 +619,17 @@
               <button class="add_cart"> 장바구니에 추가 </button>
             </div>
           </div>
-
-          <div class="dock-group">
-            <div class="user-list">
-              <div id="list" class="user-menu">
-              </div>
-            </div>
-            <div class="map" id="map"></div>
-          </div>
         </div>
       </div>
+    </div>
+
+    <!-- 지도창 -->
+    <div class="dock-group">
+      <div class="user-list">
+        <div id="list" class="user-menu">
+        </div>
+      </div>
+      <div class="map" id="map"></div>
     </div>
 
     <!-- 전체메뉴 리스트 모달 -->

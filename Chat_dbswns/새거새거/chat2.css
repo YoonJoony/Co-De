@@ -271,6 +271,15 @@ img {
     height: 100%;
 }
 
+.map {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    border-radius: 20px;
+    top: 190px;
+    display: none;
+}
+
 
 .board-title p {
     color: #FFFFFF;
@@ -1244,13 +1253,12 @@ a {
 }
 
 .dock-group {
-    position: relative;
-    margin-left: 3%;
+    position: absolute;
+    right: 70px;
+    top: 205px;
     height: 100%;
-    max-height: 600px;
     width: 300px;
-    display: none;
-    /* 장바구니 클릭이 안되서 none 처리*/
+    display: inline-block;
     z-index: 5;
 }
 
@@ -2729,6 +2737,6 @@ input::-webkit-inner-spin-button {
 
 /* 결제창 이동 */
 
-.storeModal_header_topper.active{
+.basket-title.active{
     cursor: move;
 }
