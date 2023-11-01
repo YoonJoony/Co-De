@@ -1088,6 +1088,7 @@ a {
     position: relative;
     display: inline-block;
     border-radius: 15px;
+    top: 20px;
 }
 
 .chat-header {
