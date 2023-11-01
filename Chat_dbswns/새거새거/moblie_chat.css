@@ -248,6 +248,35 @@
         border: 1px solid;
     }
 
+    .dock-group {
+        position: absolute;
+        right: 63px;
+        top: 90px;
+        height: 100%;
+        width: 300px;
+        display: inline-block;
+        z-index: 5;
+    }
+    
+    .user-list {
+        position: relative;
+        height: 20%;
+        padding: 10px 5px 10px 5px;
+        background-color: #fff;
+        box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+        border-radius: 7px;
+        display: none;
+    }
+    
+    .map {
+        position: absolute;
+        width: 300px;
+        height: 250px;
+        border-radius: 20px;
+        top: 190px;
+        display: none;
+    }
+
     /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 }
 

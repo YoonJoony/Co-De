@@ -271,16 +271,6 @@ img {
     height: 100%;
 }
 
-.map {
-    position: absolute;
-    width: 300px;
-    height: 250px;
-    border-radius: 20px;
-    top: 190px;
-    display: none;
-}
-
-
 .board-title p {
     color: #FFFFFF;
 }
@@ -1271,6 +1261,16 @@ a {
     border-radius: 7px;
     display: none;
 }
+
+.map {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    border-radius: 20px;
+    top: 190px;
+    display: none;
+}
+
 
 .form-group {
     padding: 10px;
