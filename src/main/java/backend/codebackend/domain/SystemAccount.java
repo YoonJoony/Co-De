@@ -14,8 +14,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class SystemAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long system_id;
 
     private String accountNumber;   // 시스템 계좌번호
     private Long balance;           // 시스템 잔고(잔액)
+
+    public SystemAccount(Long system_id, String accountNumber, Long balance) {
+        this.system_id = system_id;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
 }

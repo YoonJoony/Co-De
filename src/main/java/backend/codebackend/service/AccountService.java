@@ -19,7 +19,7 @@ public class AccountService {
                 .password(bCryptPasswordEncoder.encode(accountDto.getPassword())) //비밀번호 암호화
                 .username(accountDto.getUsername())
                 .balance(accountDto.getBalance())
-                .account_name(accountDto.getAccountName())
+                .account_name(accountDto.getAccount_name())
                 .build();
 
         if(!duplicateAccount(accountTb))

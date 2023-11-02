@@ -24,19 +24,19 @@ public class AccountDto {
 
     private String username;
 
-    private String accountName;       // 계좌 넘버
+    private String account_name;       // 계좌 넘버
     @CreatedDate
     private LocalDateTime createAt;
     @LastModifiedDate
     private LocalDateTime updateAt;
 
-    public AccountDto(Long id, String number, String password, Long balance, String username, String accountName, LocalDateTime createAt, LocalDateTime updateAt) {
+    public AccountDto(Long id, String number, String password, Long balance, String username, String account_name, LocalDateTime createAt, LocalDateTime updateAt) {
         this.id = id;
         this.number = number;
         this.password = password;
         this.balance = balance;
         this.username = username;
-        this.accountName = accountName;
+        this.account_name = account_name;
         this.createAt = createAt;
         this.updateAt = updateAt;
     }

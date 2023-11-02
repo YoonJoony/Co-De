@@ -21,6 +21,7 @@ public class ChatUser {
 
     @Column(length = 10, nullable = false)
     private String nickname;
+    private boolean host;    // 방장
 
 //    //일대다 매핑, mappedBy속성은 관계의 주인인 Mozip엔티티의 host필드를 참조
 //    // 이렇게 되면, ChatUser 엔티티는 여러 모집글을 호스팅할 수 있으며, Mozip 엔티티의 host필드와 연결됨
@@ -29,9 +30,10 @@ public class ChatUser {
 //    @OneToMany(mappedBy = "host")   // "host"는 Mozip 엔티티의 host 필드 이름과 일치해야함
 //    private List<String> hostedMozips;   //hostedMozip;은 이 필드가 List 타입의 Mozip엔티티 객체들을 담고 있다는 것을 의미
 
-    public ChatUser(Long id, String nickname) {
+    public ChatUser(Long id, String nickname, boolean host) {
         this.id = id;
         this.nickname = nickname;
+        this.host = host;
         //this.hostedMozips = hostedMozips;
     }
 }
