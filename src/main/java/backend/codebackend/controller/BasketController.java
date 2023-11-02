@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -106,6 +107,9 @@ public class BasketController {
     public String deleteByMenu(Long menuId, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 
+        if(session == null)
+            return null;
+
         //HTML의 menuId를 수정하여 접근하는 유저를 방지하기 위해 장바구니 실제로 담은 사람이랑 로그인 유저랑 비교한다.
         String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
         if(!basketService.findBasketMenu(menuId).getNickname().equals(nickname)) {
@@ -114,5 +118,13 @@ public class BasketController {
 
         basketService.deleteByMenu(menuId);
         return "장바구니 메뉴 삭제";
+    }
+
+    //장바구니 총 금액 뷰
+    @GetMapping("/chat/basket/totalPrice")
+    @ResponseBody
+    public Map<Integer, String> getTotalPrice(Long roomId) {
+
+        return basketService.getTotalPrice(roomId);
     }
 }

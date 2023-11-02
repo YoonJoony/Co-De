@@ -4,6 +4,7 @@ package backend.codebackend.repository;
 import backend.codebackend.domain.Basket;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface BasketRepository {
@@ -19,6 +20,7 @@ public interface BasketRepository {
     void deleteByMenu(Long menuId);
     Basket findBasketMenu(Long menuId);
     Basket addItemToBasketReceive(String nickname);
+    Map<Integer, String> getTotalPrice(Long roomId);
 }
 
 

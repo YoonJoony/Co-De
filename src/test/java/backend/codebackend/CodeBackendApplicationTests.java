@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 //import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
@@ -186,5 +187,21 @@ class CodeBackendApplicationTests {
 			System.out.println("메뉴 없음");
 		}
 
+	}
+
+	@Test
+	@DisplayName("장바구니 총 금액 조회")
+	void 총금액() {
+		long startTime = System.currentTimeMillis();
+
+		Map<Integer, String> result = basketRepository.getTotalPrice(103L);
+		for(Map.Entry<Integer, String> entry : result.entrySet()) {
+			System.out.println(entry.getValue());
+			System.out.println(entry.getKey());
+		}
+
+		long endTime = System.currentTimeMillis();
+		long executionTime = endTime - startTime;
+		System.out.println("테스트 실행 시간: " + executionTime + "ms");
 	}
 }

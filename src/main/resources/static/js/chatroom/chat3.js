@@ -311,21 +311,23 @@ function onMessageReceived(payload) {
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
     } else if (chat.type === 'BASKET') { //메뉴 수량 변경시 채팅으로 알림과 동시에 장바구니에 추가
-          //다른 사람이 추가한 최신 메뉴를 받음
-          $.ajax({
-              type : "POST",
-              url : "/basket/add/recv",
-              data : {
-                "nickname" : chat.sender
-              },
-              success : function(data) {
-                  createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
-                  console.log("메뉴저장 성공");
-              },
-              error: function() {
-                  console.log("리스트 요청 실패 : ");
-              }
-              })
+        //다른 사람이 추가한 최신 메뉴를 받음
+        $.ajax({
+            type: "POST",
+            url: "/basket/add/recv",
+            data: {
+                "nickname": chat.sender
+            },
+            success: function (data) {
+                createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
+                totalPrice();
+                console.log("메뉴저장 성공");
+            },
+            error: function () {
+                console.log("리스트 요청 실패 : ");
+            }
+        })
+
 
           messageElement.classList.add('event-message');
 
@@ -491,10 +493,14 @@ $(function () {
 
     //페이지 이동 .. 잡 처리
     var $mozipPage = $('.mozipPage');
-    var $myChat = $('.myChat');
+    var $out_img = $('.out-img');
 
     $mozipPage.click(function() {
       location.href = "/main_page.html"
+    });
+
+    $out_img.click(function() {
+        location.href = "/main_page.html"
     });
 
     //헤더부분 '내 채팅' 에서 자기 방 들어가게 하기.
@@ -641,6 +647,32 @@ function menuList() {
 
     //징비구니 추가시 div 생성
     function createBasketMenu(data) {
+        let foodNameElements = document.querySelectorAll(".food-name");
+        let foodDuplicateBool = 0;
+
+        // 각 요소에 대해 처리
+        foodNameElements.forEach(function(element) {
+            let text = element.textContent;
+
+            // 텍스트가 "스테이크"인 경우 처리
+            if (text === data.product_name) {
+                let parentElement = element.parentElement.parentElement;
+
+                let countElement = parentElement.querySelector(".count_css");
+                let priceElement = parentElement.querySelector(".price");
+
+                let count = parseInt(countElement.value);
+                let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
+
+                countElement.value = count + 1;
+                priceElement.textContent = (price + (price/count)) + "원";
+                foodDuplicateBool = 1;
+                return 0;
+            }
+        });
+        if(foodDuplicateBool === 1)
+            return 0;
+
         var basketListItem = document.createElement('div');
         basketListItem.className = 'basket-list-item';
         basketListItem.setAttribute('data-room-id', data.id);
@@ -712,6 +744,7 @@ function menuList() {
         basketListItem.appendChild(foodOrderDiv);
 
         document.querySelector('.basket-list').appendChild(basketListItem);
+        return 1;
     }
 
 
@@ -724,7 +757,6 @@ $(function () {
     $(document).on('click', '.menu-group-list', function() { //메뉴판 선택
         menuName = $(this).find('.menu-name').text(); //내가 선택한 메뉴 이름
         menuPrice = $(this).find('.menu-price').text(); //내가 선택한 메뉴 가격
-
         //메뉴 정보 전송
         $.ajax({
             type : "POST",
@@ -735,7 +767,6 @@ $(function () {
                 "menuPrice" : menuPrice
             },
             success : function(data) {
-//              createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
                 basketSendMessage(); //채팅으로 장바구니에 메뉴를 추가했다고 알림
                 console.log("메뉴저장 성공");
             },
@@ -789,8 +820,9 @@ $(function () {
 
       //다른 사람의 장바구니를 수정하려 했을 경우.
       if(updateQuantityNickName === nickname){
-          updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) + (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())));
+          updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) + (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())) + "원");
           countInput.val(parseInt(countInput.val()) + 1);
+          totalPrice();
       }
 
       $.ajax({
@@ -827,8 +859,9 @@ $(function () {
 
           //다른 사람의 장바구니를 수정하려 했을 경우 방지
           if(updateQuantityNickName === nickname){
-              updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) - (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())));
+              updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) - (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())) + "원");
               countInput.val(parseInt(countInput.val()) - 1);
+              totalPrice();
           }
 
           $.ajax({
@@ -838,7 +871,7 @@ $(function () {
                   "menuId" : menuId
               },
               success : function(data) {
-                if(data == "") { //HTML로 닉네임을 조작해도 세션과 DB 테이블을 이용하여 타인 메뉴 수정을 방지할 수 있다.
+                if(data === "") { //HTML로 닉네임을 조작해도 세션과 DB 테이블을 이용하여 타인 메뉴 수정을 방지할 수 있다.
                     alert("본인의 메뉴만 수정할 수 있습니다!!");
                     return;
                 }
@@ -860,9 +893,9 @@ $(function () {
 
       //다른 사람의 장바구니를 수정하려 했을 경우 방지
       if(updateQuantityNickName == nickname){
-        //선택한 메뉴 삭제
-        basketDeleteSendMessage(menuId);
-
+          totalPrice();
+          //선택한 메뉴 삭제
+          basketDeleteSendMessage(menuId);
       }
 
       $.ajax({
@@ -872,11 +905,10 @@ $(function () {
               "menuId" : menuId
           },
           success : function(data) {
-            if(data == "") {
+            if(data === "") {
                 alert("본인의 메뉴만 삭제할 수 있습니다!!");
                 return;
             }
-
             console.log(data);
           },
           error : function() {
@@ -886,12 +918,56 @@ $(function () {
 
     });
 
+
+
+
+
+
+
+
     initMap();
 });
 
+//총 금액 실시간으로 변동 보이게
+var totalPriceDiv = $('#totalPrice');
+function totalPrice() {
+    var totalPriceValues = 0;
+
+    // 클래스 이름이 "price"인 모든 요소 선택
+    let priceElements = document.querySelectorAll(".price");
+
+    // 각 요소에 대해 처리
+    priceElements.forEach(function(element) {
+        let text = element.textContent;
+
+        // 숫자 추출
+        totalPriceValues = totalPriceValues + parseInt(text.replace(/\D/g, ''));
+        totalPriceDiv.text(totalPriceValues);
+    });
+
+}
 
 
 
+function totalRealPrice() {
+    $.ajax({
+        type : "GET",
+        url : "/chat/basket/totalPrice",
+        data : {
+            "roomId" : id
+        },
+        success : function(resultMap) {
+            for (let totalPrice in resultMap) {
+                let nickname = resultMap[totalPrice];
+                console.log("결제자 : " + nickname + ", 금액 : " + totalPrce);
+            }
+            totalPriceDiv.text(totalPriceValues);
+        },
+        error : function() {
+            console.log("장바구니 메뉴 삭제 API 오류");
+        }
+    })
+}
 
 function initMap() {
     // 호스트 좌표 변수

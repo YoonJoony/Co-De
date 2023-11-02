@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Transactional
@@ -74,6 +75,12 @@ public class BasketService {
     //닉네임에 해당하는 장바구니 메뉴 투플 중 가장 최근 투플
     public Basket addItemToBasketReceive(String nickname) {
         return basketRepository.addItemToBasketReceive(nickname);
+    }
+
+    //총 장바구니 금액, 닉네임 리턴
+    public Map<Integer, String> getTotalPrice(Long roomId) {
+
+        return basketRepository.getTotalPrice(roomId);
     }
 
 }
