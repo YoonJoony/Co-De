@@ -22,7 +22,7 @@ public class AccountController {
 
     //계좌추가
     @PostMapping("/myPage/account/save")
-    public boolean accountRegister(String username, String number, Long password, String accountName, HttpServletRequest request) {
+    public boolean accountRegister(String username, String number, Long password, String account_name, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return false;
@@ -34,7 +34,7 @@ public class AccountController {
                 .password(String.valueOf(password))
                 .balance(100000l)
                 .username(username)
-                .accountName(accountName)
+                .account_name(account_name)
                 .build();
 
         if(accountService.save(accountDto))

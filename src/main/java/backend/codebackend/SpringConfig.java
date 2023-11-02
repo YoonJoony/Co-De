@@ -56,7 +56,7 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
 
     @Bean
     public ChatUserService chatUserService() {
-        return new ChatUserService(chatUserRepository(), mozipService());
+        return new ChatUserService(chatUserRepository(), mozipRepository(), mozipService());
     }
 
     @Bean
@@ -71,7 +71,10 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public BasketService basketService() {
         return new BasketService(basketRepository());
     }
-
+    @Bean
+    public SystemAccountService systemAccountService() {
+        return new SystemAccountService(em, systemAccountRepository(), chatUserRepository(), accountService(), encoder(), memberService());
+    }
     @Bean
     public MemberRepository memberRepository() {
         return new JpaMemberRepository(em);
@@ -105,7 +108,10 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public BasketRepository basketRepository() {
         return new JpaBasketRepository(em);
     }
-
+    @Bean
+    public SystemAccountRepository systemAccountRepository() {
+        return new JpaSystemAccountRepository(em);
+    }
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // stomp 접속 주소 url => /ws-stomp

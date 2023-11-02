@@ -14,6 +14,8 @@ public interface ChatUserRepository {
     void deleteUser(Long id, String nickname);
     ArrayList<String> getUserList(Long id);
 
-    boolean findHost(Long id, String nickname);
+    boolean is_host(Long id, String nickname);
+    String findHost(Long id);
+
     Optional<Long> findRoomId(String nickname);
 }

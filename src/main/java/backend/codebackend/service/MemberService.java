@@ -75,4 +75,8 @@ public class MemberService {
         return memberRepository.findById(login);
     }
 
+    public Optional<Member> findByName(String nickname) {
+        return memberRepository.findByName(nickname);
+    }
+
 }

@@ -43,6 +43,6 @@ public class ChatService {
     //이를 위해 채팅 참가 로직에서 현재 사용자가 해당 모집글의 호스트인지 여부를 확인하고, 이 정보를 사용하여 추방 버튼을 표시하거나 숨김
     public boolean isCurrentUserHost(Long id, String nickname){
 
-        return chatUserRepository.findHost(id, nickname);
+        return chatUserRepository.is_host(id, nickname);
     }
 }

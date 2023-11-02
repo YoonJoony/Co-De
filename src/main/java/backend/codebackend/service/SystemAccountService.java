@@ -1,6 +1,7 @@
 package backend.codebackend.service;
 
 import backend.codebackend.domain.Account;
+import backend.codebackend.domain.Member;
 import backend.codebackend.domain.SystemAccount;
 import backend.codebackend.dto.AccountDto;
 import backend.codebackend.repository.ChatUserRepository;
@@ -10,7 +11,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.List;
+import java.util.Optional;
 
 
 @Transactional
@@ -20,8 +21,8 @@ public class SystemAccountService {
     private final SystemAccountRepository systemAccountRepository;
     private final ChatUserRepository chatUserRepository;
     private final AccountService accountService;
-    private final SystemAccountService systemAccountService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final MemberService memberService;
 
     // 시스템 계좌 정보 조회
     public SystemAccount getSystemAccountInfo() {
@@ -29,15 +30,16 @@ public class SystemAccountService {
     }
 
     //송금 처리(시스템 계좌 -> 방장(호스트)에게 모인 돈 송금
-    public boolean sendMoneyToHost(Long id, Long price) {
+    public boolean sendMoneyToHost(Long id, Long price, String nickname) {
         SystemAccount systemAccount = getSystemAccountInfo();
         if (systemAccount.getBalance() >= price) {
             //방장 계좌 찾기
-            Long hostAccountId = chatUserRepository.findHost(id, nickname);
+            String hostNickname = chatUserRepository.findHost(id);
+            Optional<Member> member = memberService.findByName(hostNickname);
 
-            if (hostAccountId != null) {
+            if (member.isPresent()) {
                 // 방장에게 돈 송금
-                Account hostAccount = accountService.findAccount(hostAccountId);
+                Account hostAccount = accountService.findAccount(member.get().getId());
                 AccountDto hostAccountDto = AccountDto.builder()
                         .id(hostAccount.getId())
                         .number(hostAccount.getNumber())
@@ -51,7 +53,7 @@ public class SystemAccountService {
 
                 //시스템 계좌에서 돈 빼기
                 systemAccount.setBalance(systemAccount.getBalance() - price);
-                systemAccountService.updateSystemAccount(systemAccount);
+                updateSystemAccount(systemAccount);
 
                 return true;
             }

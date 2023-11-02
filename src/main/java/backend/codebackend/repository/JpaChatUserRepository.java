@@ -59,7 +59,7 @@ public class JpaChatUserRepository implements ChatUserRepository{
     }
 
     @Override
-    public boolean findHost(Long id, String nickname) {
+    public boolean is_host(Long id, String nickname) {
         List<String> result = em.createQuery("select m.nickname from Mozip m where m.nickname = :nickname and m.id = :id ", String.class)
                 .setParameter("nickname", nickname)
                 .setParameter("id", id)
@@ -70,6 +70,17 @@ public class JpaChatUserRepository implements ChatUserRepository{
         }
         return true;
     }
+
+    @Override
+    public String findHost(Long id) {
+        TypedQuery<String> query = em.createQuery(
+                "SELECT m.nickname FROM ChatUser m WHERE m.id = :id AND m.host = 1", String.class);
+        query.setParameter("id", id);
+
+        return query.getSingleResult();
+    }
+
+
 
     @Override
     public Optional<Long> findRoomId(String nickname) {
