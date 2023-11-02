@@ -84,18 +84,20 @@ public class MainController {
         if (session == null) {
             return "세션이 없습니다.";
         }
-
+        String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
         MozipForm mozipForm = MozipForm.builder()
                 .title(mozipTitle)
                 .distance_limit((long) mozipRange)
                 .categories(mozipCategory)
                 .store(mozipStore)
                 .peoples(mozipPeople)
-                .nickname(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname())
+                .nickname(nickname)
                 .build();
 
         //세션ID에 저장된 로그인 한 ID를 가져온 후 memberSerice에서 해당 로그인 ID에 해당하는 nickname 가져옴
-        mozipService.savePost(mozipForm);
+        Mozip mozip = mozipService.savePost(mozipForm);
+        //채팅방에 방 생성자 추가
+        chatUserService.addUser(mozip.getId(), nickname);
         return "redirect:/main_page.html"; //글 생성 시 다시 초기화면으로
     }
 
