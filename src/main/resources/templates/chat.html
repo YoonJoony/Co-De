@@ -94,6 +94,10 @@
 </div>
 <!--채팅 페이지 영역-->
 <div id="main">
+  <div class="moblie_logo">
+    <img src="../images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+    <img class="logo" src="../images/COOR.png">
+  </div>
   <div class="topper">
     <!-- 로그인 부분 -->
     <div class="login">
@@ -106,43 +110,42 @@
   <div class="header2">
     <!-- CO-ORDER 제목 부분 -->
     <div class="width-container">
-      <div class="user-info">
-        <div class="logo-img">
-          <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-          <img class="logo" src="/images/COOR2.png">
-        </div>
-
-        <div id="header-profile" class="header-profile">
-          <a class="header-user">
-              <span class="user-picture2">
-                <img src="/images/profile/profile5.png" height="50px" width="50px">
-              </span>
-            <span class="bell">
-                <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
-              </span>
-            <span class="user-name2" th:text="${nickname}"> 야왕이네
-              </span>
-            <span class="header-arrow">
-                <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
-              </span>
-          </a>
-          <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
-            <div class="block block-name">
-              <div class="profile-name" th:text="${nickname}"> 야왕이네
-              </div>
-              <div class="buttons">
-                <a href="#">파티관리</a>
-              </div>
+      <div class="logo-img">
+        <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+        <img class="logo" src="/images/COOR2.png">
+      </div>
+      <div id="header-bell" class="header-bell">
+          <span class="bell">
+            <img src="../images/bell.png" style="width : 25px; height : 25px;" alt="">
+          </span>
+      </div>
+      <div id="header-profile" class="header-profile">
+        <a class="header-user">
+            <span class="user-picture2">
+              <img src="/images/profile.png" height="50px" width="50px">
+            </span>
+          <span class="user-name2" th:text="${nickname}"> 야왕이네
+            </span>
+          <span class="header-arrow">
+              <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+            </span>
+        </a>
+        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+          <div class="block block-name">
+            <div class="profile-name" th:text="${nickname}"> 야왕이네
             </div>
-            <!--                    <div class="header-profile-direct">-->
-            <!--                        <dl class="header-member-direct__information">-->
-            <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
-            <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
-            <!--                            <dd>ㅇㅇ</dd>-->
-            <!--                            <dd>ㅇㅇ</dd>-->
-            <!--                        </dl>-->
-            <!--                    </div>-->
+            <div class="buttons">
+              <a href="#">파티관리</a>
+            </div>
           </div>
+          <!--                    <div class="header-profile-direct">-->
+          <!--                        <dl class="header-member-direct__information">-->
+          <!--                            <div class="profile-nickname" th:text="${nickname}"></div>-->
+          <!--                            <input type="button" id="profile_btn_btn" onclick="myPage()" value="마이페이지"></input>-->
+          <!--                            <dd>ㅇㅇ</dd>-->
+          <!--                            <dd>ㅇㅇ</dd>-->
+          <!--                        </dl>-->
+          <!--                    </div>-->
         </div>
       </div>
     </div>
@@ -229,14 +232,226 @@
             <div class="chat-right">
               <div class="chat-menu">
                 <img src="/images/bell.png">
-                <img src="//icon/map.png" id="map_button" onclick="map_btn()">
-                <img src="/images/icon/Budget.png">
+                <img src="/icon/map.png" id="map_button" onclick="map_btn()">
+                <img src="/images/icon/Budget.png" onclick="calShow()">
                 <img id="basket" src="/images/icon/basket.png" onclick="basket()">
                 <img src="/images/icon/setting.png">
               </div>
               <img src="/images/icon/log-out_5565735.png" style="cursor: pointer" class="out-img">
             </div>
-            <div class="basket-view" style="display: none;"> <!-- 장바구니 -->
+
+            <!-- 정산(결제) 확인창 -->
+            <div class="cal_page">
+              <div class="storeModal_header_topper">
+                <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
+                  <img class="storeModal_header_topper_back_img" src="/images/back.png" onclick="calclose()"
+                       style="cursor:pointer;">
+                </div>
+                <h2>결제 하기</h2>
+                <button class="pay_done" id="pay_done">
+                  금액 확인 </button>
+              </div>
+              <div class="calualtor">
+                <!--
+                                    방장일때는 p태그에 id를 호스트로 생성
+                                    결제 창에 금액확인 버튼을 누르면 id를 인식해서 방장은 배달비 할인된 금액으로 출력이 되고
+
+                                    아래 주석 처리된 div 보면 customer1이라고 되어 있는데
+                                    방장을 제외한 나머지 인원에게는 name = customer n(숫자 1~3) 라는 태그 부여
+
+                                    금액 확인 버튼을 누르면 방장에게 할인된 금액을 더하여 배달비가 출력
+
+                                    본인이 장바구니에서 선택한 메뉴값 + 배달비
+                                -->
+
+                <div>
+                  <p class="pay_username" id="host">농담곰</p>
+                </div>
+
+                <div>
+                  <p class="pay_username" name="costomer1">망담곰</p>
+                </div>
+
+                <div>
+                  <p class="pay_username" name="costomer2">엄준식</p>
+                </div>
+
+                <div>
+                  <p class="pay_username" name="costomer3">볼링장</p>
+                </div>
+
+              </div>
+
+              <button class="calbtn" onclick="calclose()">닫기</button>
+            </div>
+
+            <!-- 결제내역 상세보기 모달 -->
+            <div class="pay_detail_host" id="pay_detail_host">
+              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose()"
+                   style="cursor:pointer;">
+              <p>호스트 농담곰</p>
+              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                <p class="pay_text" id="meun_fee1"></p>
+              </div>
+              <hr class="detail_hr">
+
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 배달요금 </li>
+                <p class="pay_text fee" id="fee"></p>
+              </div>
+              <br><br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 인당요금 </li>
+                <p class="pay_text" name="each_delifee"></p>
+              </div>
+              <br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 방장할인 </li>
+                <p class="pay_text" id="host_discount"></p>
+              </div>
+              <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 지불 배달요금 </li>
+                <p class="pay_text" id="host_delifee"></p>
+              </div>
+              <hr class="detail_hr">
+              <br>
+
+              <div class="total_pay" style="margin-top: 15px;">
+                <li class="pay_detail_text"> 결제 금액 </li>
+                <p class="pay_text" id="host_totalfee"></p>
+              </div>
+            </div>
+
+            <div class="pay_detail1" id="pay_detail1">
+              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                   onclick="detailClose_cos1()" style="cursor:pointer;">
+              <p>참가자 망그곰</p>
+              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                <p class="pay_text" id="meun_fee2"></p>
+              </div>
+              <hr class="detail_hr">
+
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 배달요금 </li>
+                <p class="pay_text fee" id="fee"></p>
+              </div>
+              <br><br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 인당요금 </li>
+                <p class="pay_text" name="each_delifee"></p>
+              </div>
+              <br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 방장할인 가액 </li>
+                <p class="pay_text discount_plus" name="host_discount_add"></p>
+              </div>
+              <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 지불 배달요금 </li>
+                <p class="pay_text" name="costomer_delifee"></p>
+              </div>
+              <hr class="detail_hr">
+              <br>
+
+              <div class="total_pay" style="margin-top: 15px;">
+                <li class="pay_detail_text"> 결제 금액 </li>
+                <p class="pay_text" name="comtomer_totalfee"></p>
+              </div>
+            </div>
+
+            <div class="pay_detail2" id="pay_detail2">
+              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                   onclick="detailClose_cos2()" style="cursor:pointer;">
+              <p>참가자2 엄준식</p>
+              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                <p class="pay_text" id="meun_fee3"></p>
+              </div>
+              <hr class="detail_hr">
+
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 배달요금 </li>
+                <p class="pay_text fee" id="fee"></p>
+              </div>
+              <br><br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 인당요금 </li>
+                <p class="pay_text" name="each_delifee"></p>
+              </div>
+              <br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 방장할인 가액 </li>
+                <p class="pay_text discount_plus" name="host_discount_add"></p>
+              </div>
+              <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 지불 배달요금 </li>
+                <p class="pay_text" name="costomer_delifee"></p>
+              </div>
+              <hr class="detail_hr">
+              <br>
+
+              <div class="total_pay" style="margin-top: 15px;">
+                <li class="pay_detail_text"> 결제 금액 </li>
+                <p class="pay_text" name="comtomer_totalfee"></p>
+              </div>
+            </div>
+
+            <div class="pay_detail3" id="pay_detail3">
+              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                   onclick="detailClose_cos3()" style="cursor:pointer;">
+              <p>참가자3 볼링장</p>
+              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                <p class="pay_text" id="meun_fee4"></p>
+              </div>
+              <hr class="detail_hr">
+
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 배달요금 </li>
+                <p class="pay_text fee" id="fee"></p>
+              </div>
+              <br><br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 인당요금 </li>
+                <p class="pay_text" name="each_delifee"></p>
+              </div>
+              <br>
+              <div style="margin-top: 15px;">
+                <li class="pay_detail_text"> 방장할인 가액 </li>
+                <p class="pay_text discount_plus" name="host_discount_add"></p>
+              </div>
+              <br>
+
+              <div style="margin-top: 15px;" class="total_pay">
+                <li class="pay_detail_text"> 지불 배달요금 </li>
+                <p class="pay_text" name="costomer_delifee"></p>
+              </div>
+              <hr class="detail_hr">
+              <br>
+
+              <div class="total_pay" style="margin-top: 15px;">
+                <li class="pay_detail_text"> 결제 금액 </li>
+                <p class="pay_text" name="comtomer_totalfee"></p>
+              </div>
+            </div>
+
+            <!-- 장바구니 모달 -->
+            <div class="basket-view" style="display: none;">
               <div class="basket-title">
                 <div class="basket-title_topper">
                   <div class="basket-title_topper_back">
