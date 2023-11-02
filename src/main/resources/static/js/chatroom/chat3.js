@@ -1133,6 +1133,27 @@ function onMove(e) {
     basket_wrap.style.left = `${basket_wrap.offsetLeft - BlastX}px`;
 }
 // -------------------------------------------------------------------------------------------------------------------------------------------
+function map_btn() {
+    const map_content = document.getElementById("map");
+    const map_title = document.querySelector(".map_title")
+
+    // 숨기기 (display: none)
+    if (map_content.style.display !== "block") {
+        map_content.style.display = "block";
+        map_title.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        map_content.style.display = "none";
+        map_title.style.display = "none";
+    }
+}
+
+$(function () {
+
+    initMap2();
+});
+
 
 function initMap2() {
     // 호스트 좌표 변수
