@@ -271,7 +271,6 @@ img {
     height: 100%;
 }
 
-
 .board-title p {
     color: #FFFFFF;
 }
@@ -1088,6 +1087,7 @@ a {
     position: relative;
     display: inline-block;
     border-radius: 15px;
+    top: 20px;
 }
 
 .chat-header {
@@ -1243,13 +1243,12 @@ a {
 }
 
 .dock-group {
-    position: relative;
-    margin-left: 3%;
+    position: absolute;
+    right: 70px;
+    top: 205px;
     height: 100%;
-    max-height: 600px;
     width: 300px;
-    display: none;
-    /* 장바구니 클릭이 안되서 none 처리*/
+    display: inline-block;
     z-index: 5;
 }
 
@@ -1262,6 +1261,16 @@ a {
     border-radius: 7px;
     display: none;
 }
+
+.map {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    border-radius: 20px;
+    top: 190px;
+    display: none;
+}
+
 
 .form-group {
     padding: 10px;
@@ -1878,7 +1887,6 @@ input::-webkit-inner-spin-button {
 /* 장바구니 모달 */
 .basket-view {
     position: absolute;
-    right: 16%;
     width: 80%;
     height: 480px;
     font-weight: bold;
@@ -1903,7 +1911,7 @@ input::-webkit-inner-spin-button {
 .basket-view .basket-title {
     position: relative;
     height: 10%;
-
+    cursor: pointer;
 }
 
 .basket-view .basket-title .basket-title-name {
@@ -2439,14 +2447,13 @@ input::-webkit-inner-spin-button {
     position: absolute;
     left: 47%;
     top: 180px;
-    transform: translate(-50%, -50%);
     width: 90%;
     height: 100%;
-    display: none;
+    min-height: 560px;
+    display: block;
     flex-direction: column;
     align-items: center;
     background: white;
-    z-index: 5;
     padding: 8px 3px;
     margin: 0 auto;
     border: none;
@@ -2454,6 +2461,17 @@ input::-webkit-inner-spin-button {
     box-shadow: 0 4px 4px 0 gray;
     border-radius: 5px 5px 20px 20px;
     border-bottom: solid 9px #ff8c16;
+
+    z-index: -1;
+    opacity: 0;
+
+    transform: translate(-50%, -40%);
+}
+
+.cal_page_show{
+    opacity: 1;
+    z-index: 10;
+    transform: translate(-50%, -50%);
 }
 
 .pay_done {
@@ -2514,51 +2532,136 @@ input::-webkit-inner-spin-button {
 
 /* 상세 결제금액 */
 .pay_detail_host {
-    display: none;
+    display: block;
     position: absolute;
-    z-index: 15;
-    width: 271px;
-    height: 267px;
+    width: 460px;
+    height: 470px;
     background: #FFF;
-    left: 44px;
-    border: 1px solid;
-    opacity: 1;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.6s ease-in-out;
 }
 
 .pay_detail1{
-    display: none;
+    display: block;
     position: absolute;
-    z-index: 15;
-    width: 271px;
-    height: 267px;
+    width: 460px;
+    height: 470px;
     background: #FFF;
-    left: 44px;
-    border: 1px solid;
-    opacity: 1;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.3s ease-in-out;
 }
 
 .pay_detail2{
-    display: none;
+    display: block;
     position: absolute;
-    z-index: 15;
-    width: 271px;
-    height: 267px;
+    width: 460px;
+    height: 470px;
     background: #FFF;
-    left: 44px;
-    border: 1px solid;
-    opacity: 1;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.3s ease-in-out;
 }
 
 .pay_detail3{
-    display: none;
+    display: block;
     position: absolute;
-    z-index: 15;
-    width: 271px;
-    height: 267px;
+    width: 460px;
+    height: 470px;
     background: #FFF;
-    left: 44px;
-    border: 1px solid;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.3s ease-in-out;
+}
+
+.pay_detail_show{
+    transform: translate(0%, 0%);
     opacity: 1;
+    z-index: 15;
+    transition: .8s;
+}
+
+.storeModal_header_topper_back_img_pay_detail{
+    position: absolute;
+    width: 38px;
+    top: 0%;
+    left: 3%;
+}
+
+.detail_hr{
+    color: #a1a1a1;
+    width: 90%;
+    position: relative;
+    left: 5%;
+}
+
+.pay_detail_text{
+    list-style-type: small middle dot !important;
+    float: left;
+    margin-left: 22px;
+}
+
+.pay_text{
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 25px;
+}
+
+#host_discount{
+    color: #ff0000;
+}
+
+.total_pay{
+    font-weight: bold;
+}
+
+.discount_plus{
+    color: #0026ff;
 }
 
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -2588,6 +2691,7 @@ input::-webkit-inner-spin-button {
     width: 100%;
     padding: 4px 20px 5px 17px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .storeModal_header_topper h2 {
@@ -2629,4 +2733,10 @@ input::-webkit-inner-spin-button {
 
 .storeModal_header_topper h2 {
     margin-left: 100px;
+}
+
+/* 결제창 이동 */
+
+.basket-title.active{
+    cursor: move;
 }

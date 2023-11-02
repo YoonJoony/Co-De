@@ -58,7 +58,7 @@ img {
 
 .header {
     position: absolute;
-    top: 0x;
+    top: 0;
     left: 50%;
     transform: translate(-50%, -50%);
     border-bottom: solid 34px #ff8c16;
@@ -266,7 +266,7 @@ img {
     float : right;
     position : absolute;
     border-radius: 25px;
-    border-none;
+    border : none;
     margin-right : 10px;
     width : 80%;
     height : 100%;
@@ -379,7 +379,7 @@ input:focus {
       position: absolute;
       top: 26px;
       left: 14px;
-      width: 50%%;
+      width: 50%;
       text-align: left;
       font-size: 50px;
       font-weight: bold;
@@ -605,7 +605,7 @@ input:focus {
         display: inline-block;
         top : 3px;
         font-size : 14px;
-        color : gray;
+        color : rgb(128, 128, 128);
     }
 
 
@@ -1082,7 +1082,7 @@ span.chat-user-name {
     display: none;
     border: none;
     background-color: #fff;
-    box-shadow: 0 4px 4px 0 gray;
+    box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
     border-radius: 5px;
     z-index: 1000;
 }
@@ -1206,7 +1206,7 @@ span.chat-user-name {
     font-size: 15px;
 }
 
-.basket-list-header .cancle {
+.basket-list-header .cancel {
     position : relative;
     cursor: pointer;
     left: 2px;
@@ -1214,7 +1214,7 @@ span.chat-user-name {
     bottom: 3px;
 }
 
-.cancle img{
+.cancel img{
     width : 12px;
     height : 12px;
 }
@@ -1679,7 +1679,7 @@ div#menu {
     margin: 0 auto;
     border: none;
     background-color: #fff;
-    box-shadow: 0 4px 4px 0 gray;
+    box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
     border-radius: 5px 5px 20px 20px;
     border-bottom: solid 9px #ff8c16;
     max-width: 370px;

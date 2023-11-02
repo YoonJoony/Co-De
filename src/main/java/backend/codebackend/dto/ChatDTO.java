@@ -17,7 +17,7 @@ public class ChatDTO {
     //입장과 퇴장 ENTER과 LEAVE의 경우 입장/퇴장 이벤트 처리가 실행되고,
     //TALK는 말 그대로 내용이 해당하는 채팅방을 SUB 하고 있는 모든 클라이언트에게 전달된다.
     public enum MessageTYpe{
-        ENTER, LEAVE, TALK,
+        ENTER, LEAVE, TALK, BASKET, UPDATE, DELETE
     }
 
     private MessageTYpe type; //메시지 타입

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat4.css">
+  <link rel="stylesheet" href="/css/chatroom/chat4.css?v=<%=System.currentTimeMillis()">
   <link rel="stylesheet" href="/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
   <!-- vscode용 ------------------------------------------------------------------>
   <link rel="stylesheet" href="../static/css/chatroom/chat4.css">
@@ -189,9 +189,6 @@
                   <img src="images/profile/profile5.png" height="40px" width="40px">
                 </span>
               <div id="user-list" class="user-list" style="display : none">
-                <div class="user-list-content">
-
-                </div>
               </div>
             </div>
             <div class="chat-header-center">
@@ -231,13 +228,13 @@
             </div>
             <div class="chat-right">
               <div class="chat-menu">
-                <img src="images/bell.png">
-                <img src="images/icon/map.png" id="map_button" onclick="map_btn()">
-                <img src="images/icon/Budget.png">
+                <img src="/images/bell.png">
+                <img src="//icon/map.png" id="map_button" onclick="map_btn()">
+                <img src="/images/icon/Budget.png">
                 <img id="basket" src="/images/icon/basket.png" onclick="basket()">
-                <img src="images/icon/setting.png">
+                <img src="/images/icon/setting.png">
               </div>
-              <img src="images/icon/log-out_5565735.png" class="out-img">
+              <img src="/images/icon/log-out_5565735.png" style="cursor: pointer" class="out-img">
             </div>
             <div class="basket-view" style="display: none;"> <!-- 장바구니 -->
               <div class="basket-title">
@@ -282,7 +279,7 @@
               <div class="menu-bottom">
                 <div class="totalPrice">
                   <span class="priceText"> 합계 :</span>
-                  <span class="priceText" id="totalPrice">22,550원</span>
+                  <span class="priceText" id="totalPrice">0원</span>
                 </div>
                 <div class="modify-menu">
                   <input id="modify_menu_btn" type="button" value="메뉴 수정" wfd-id="id11" href="#CreateMozipModal"
@@ -361,7 +358,7 @@
 
 
           <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-          <script src="/js/chatroom/chat3.js?v=<%=System.currentTimeMillis()"></script>
+          <script src="/js/chatroom/chat3.js"></script>
           <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
           <!-- vscode용 ------------------------------------------------------------------>
