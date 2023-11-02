@@ -1243,13 +1243,14 @@ a {
 }
 
 .dock-group {
-    position: absolute;
+    position: relative;
     right: 70px;
-    top: 205px;
+    top: -650px;
     height: 100%;
     width: 300px;
     display: inline-block;
     z-index: 5;
+    left: 415px;
 }
 
 .user-list {
@@ -1268,6 +1269,12 @@ a {
     height: 250px;
     border-radius: 20px;
     top: 190px;
+    display: none;
+}
+.map_title{
+    position: relative;
+    height: 20px;
+    background-color: #FFF;
     display: none;
 }
 
