@@ -247,12 +247,18 @@ async function fetchAIResponse(prompt) {
       // prompt: "배달음식을 시킬껀데 음식 추천해줘",
       messages: [
         {
+          role: "system",
+          content:
+            "The user is trying to order delivery food and you have to recommend a food menu." +
+            " And we can only talk about menu recommendations.",
+        },
+        {
           role: "user", // 메시지 역할을 user로 설정
           content: prompt, // 사용자가 입력한 메시지
         },
       ],
       temperature: 0.2, // 모델의 출력 다양성
-      max_tokens: 300, // 응답받을 메시지 최대 토큰(단어) 수 설정
+      max_tokens: 100, // 응답받을 메시지 최대 토큰(단어) 수 설정
       top_p: 1, // 토큰 샘플링 확률을 설정
       frequency_penalty: 0.5, // 일반적으로 나오지 않는 단어를 억제하는 정도
       presence_penalty: 0.5, // 동일한 단어나 구문이 반복되는 것을 억제하는 정도
