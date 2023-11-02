@@ -384,63 +384,48 @@
                   <button class="calbtn" onclick="calclose()">닫기</button>
                 </div>
 
-                <!-- 결제내역 상세보기 모달 -->
-                <div class="pay_detail_host" id="pay_detail_host">
-                  <img
-                    class="storeModal_header_topper_back_img_pay_detail"
-                    src="/images/back.png"
-                    onclick="detailClose()"
-                    style="cursor: pointer"
-                  />
-                  <p>호스트 농담곰</p>
-                  <li
-                    style="
-                      font: 300;
-                      list-style-type: none;
-                      float: left;
-                      margin-left: 15px;
-                    "
-                  >
-                    주문 내역
-                  </li>
-                  <br />
+              <!-- 결제내역 상세보기 모달 -->
+              <div class="pay_detail_host" id="pay_detail_host">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose()"
+                  style="cursor:pointer;">
+                <p>호스트 농담곰</p>
+                <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
 
-                  <div style="margin-top: 15px" class="total_pay">
-                    <li class="pay_detail_text">
-                      황올 반 + BBQ 양념반(콤보) X 1
-                    </li>
-                    <p class="pay_text" id="meun_fee1"></p>
-                  </div>
-                  <hr class="detail_hr" />
-
-                  <div style="margin-top: 15px">
-                    <li class="pay_detail_text">배달요금</li>
-                    <p class="pay_text fee" id="fee"></p>
-                  </div>
-                  <br /><br />
-                  <div style="margin-top: 15px">
-                    <li class="pay_detail_text">인당요금</li>
-                    <p class="pay_text" name="each_delifee"></p>
-                  </div>
-                  <br />
-                  <div style="margin-top: 15px">
-                    <li class="pay_detail_text">방장할인</li>
-                    <p class="pay_text" id="host_discount"></p>
-                  </div>
-                  <br />
-
-                  <div style="margin-top: 15px" class="total_pay">
-                    <li class="pay_detail_text">지불 배달요금</li>
-                    <p class="pay_text" id="host_delifee"></p>
-                  </div>
-                  <hr class="detail_hr" />
-                  <br />
-
-                  <div class="total_pay" style="margin-top: 15px">
-                    <li class="pay_detail_text">결제 금액</li>
-                    <p class="pay_text" id="host_totalfee"></p>
-                  </div>
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 황올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반 + 념반(콤보) X 1 </li>
+                  <p class="pay_text" id="meun_fee1"></p>
                 </div>
+                <br>
+                <hr class="detail_hr">
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 배달요금 </li>
+                  <p class="pay_text fee" id="fee"></p>
+                </div>
+                <br><br>
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 인당요금 </li>
+                  <p class="pay_text" name="each_delifee"></p>
+                </div>
+                <br>
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 방장할인 </li>
+                  <p class="pay_text" id="host_discount"></p>
+                </div>
+                <br>
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 지불 배달요금 </li>
+                  <p class="pay_text" id="host_delifee"></p>
+                </div>
+                <br>
+                <hr class="detail_hr">
+
+                <div class="total_pay" style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 결제 금액 </li>
+                  <p class="pay_text" id="host_totalfee"></p>
+                </div>
+              </div>
 
                 <div class="pay_detail1" id="pay_detail1">
                   <img
@@ -798,9 +783,7 @@
     <!-- 예제 시작 -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- http://localhost 에서 테스트 하시려면 cpw9RMOfkmb0qIa7Vz23 키를 사용해 보세요 -->
-
-    <!-- 맵 v3 스크립트 -->
-    <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mn7cwsrvym"></script>
+    
 
     <!-- 네이버 지도 API 관련 -->
     <style type="text/css">
