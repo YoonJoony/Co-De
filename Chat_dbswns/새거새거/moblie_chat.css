@@ -249,9 +249,10 @@
     }
 
     .dock-group {
-        position: absolute;
-        right: 63px;
-        top: 90px;
+        position: relative;
+        right: 20px;
+        /* top: 90px; */
+        left: -20px;
         height: 100%;
         width: 300px;
         display: inline-block;
