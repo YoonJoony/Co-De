@@ -251,8 +251,8 @@ async function fetchAIResponse(prompt) {
           content:
             "The user is trying to order delivery food and you have to recommend a food menu." +
             " And we can only talk about menu recommendations." +
-            " You have to answer in Korean only" +
-            " You have to answer it concisely",
+            " You have to answer in Korean only." +
+            " You have to answer it concisely.",
         },
         {
           role: "user", // 메시지 역할을 user로 설정
