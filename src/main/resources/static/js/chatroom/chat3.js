@@ -1132,6 +1132,7 @@ function onMove(e) {
     basket_wrap.style.top = `${basket_wrap.offsetTop - BlastY}px`;
     basket_wrap.style.left = `${basket_wrap.offsetLeft - BlastX}px`;
 }
+// -------------------------------------------------------------------------------------------------------------------------------------------
 
 function initMap2() {
     // 호스트 좌표 변수

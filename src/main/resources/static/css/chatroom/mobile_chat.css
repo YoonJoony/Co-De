@@ -648,4 +648,35 @@
     .discount_plus {
         color: #0026ff;
     }
+
+    .basket-view{
+
+    }
+}
+
+/* 장바구니 모바일 배치 */
+@media (max-width: 639px) {
+    .basket-view{
+        position: absolute;
+        width: 80%;
+        height: 637px;
+        font-weight: bold;
+        display: none;
+        bottom: 23px;
+        margin-left: 8%;
+        min-width: 347px;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
+        border-radius: 5px;
+        left: 50%;
+        top: 36%;
+        transform: translate(-50%, -50%);
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        z-index: 5;
+        padding: 8px 3px;
+        margin: 0 auto;
+    }
 }

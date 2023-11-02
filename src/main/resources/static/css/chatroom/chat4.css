@@ -1073,18 +1073,29 @@ span.chat-user-name {
 /* 장바구니 모달 */
 .basket-view {
     position: absolute;
-    bottom: 23px;
-    margin-left: 8%;
     width: 80%;
-    min-width: 347px;
     height: 637px;
     font-weight: bold;
     display: none;
+
+    bottom: 23px;
+    margin-left: 8%;
+    min-width: 347px;
+    
     border: none;
     background-color: #fff;
     box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
     border-radius: 5px;
-    z-index: 1000;
+   
+    left: 47%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    z-index: 5;
+    padding: 8px 3px;
+    margin: 0 auto;
 }
 
 .basket-view .basket-title {
@@ -1695,13 +1706,14 @@ div#menu {
     display: flex;
     width: 100%;
     padding: 4px 20px 5px 17px;
-    margin-bottom : 4px;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .storeModal_header_topper_back {
   position : relative;
   right : 4px;
-  flex : 0.7;
+  flex : 0.4;
 }
 
 .storeModal_header_topper_back_img {
@@ -2076,6 +2088,11 @@ div#menu {
     color: #0026ff;
 }
 
+/* 결제창 이동 */
+
+.basket-title.active{
+    cursor: move;
+}
 
 
 /* -------- 애니메이션 -------- */
