@@ -1942,19 +1942,139 @@ div#menu {
     cursor: pointer;
 }
 
+/* 상세 결제금액 */
+.pay_detail_host {
+    display: block;
+    position: absolute;
+    width: 460px;
+    height: 470px;
+    background: #FFF;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.6s ease-in-out;
+}
 
+.pay_detail1{
+    display: block;
+    position: absolute;
+    width: 460px;
+    height: 470px;
+    background: #FFF;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.3s ease-in-out;
+}
 
+.pay_detail2{
+    display: block;
+    position: absolute;
+    width: 460px;
+    height: 470px;
+    background: #FFF;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.3s ease-in-out;
+}
 
+.pay_detail3{
+    display: block;
+    position: absolute;
+    width: 460px;
+    height: 470px;
+    background: #FFF;
+    left: 11px;
+    opacity: 0;
+    top: -100px;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    transform: translate(-50%, 0%);
+    transition: all 0.3s ease-in-out;
+}
 
+.pay_detail_show{
+    transform: translate(0%, 0%);
+    opacity: 1;
+    z-index: 15;
+    transition: .8s;
+}
 
+.storeModal_header_topper_back_img_pay_detail{
+    position: absolute;
+    width: 38px;
+    top: 0%;
+    left: 3%;
+}
 
+.detail_hr{
+    color: #a1a1a1;
+    width: 90%;
+    position: relative;
+    left: 5%;
+}
 
+.pay_detail_text{
+    list-style-type: small middle dot !important;
+    float: left;
+    margin-left: 22px;
+}
 
+.pay_text{
+    float: right;
+    margin-bottom: 10px;
+    margin-right: 25px;
+}
 
+#host_discount{
+    color: #ff0000;
+}
 
+.total_pay{
+    font-weight: bold;
+}
 
-
-
+.discount_plus{
+    color: #0026ff;
+}
 
 
 

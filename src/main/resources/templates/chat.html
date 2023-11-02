@@ -5,8 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat4.css?v=<%=System.currentTimeMillis()">
-  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css"> <!-- 모바일 시 채팅방 화면 css -->
+  <link rel="stylesheet" href="/css/chatroom/chat4.css">
+  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css?v=<%=System.currentTimeMillis()"> <!-- 모바일 시 채팅방 화면 css -->
+  <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
+
   <!-- vscode용 ------------------------------------------------------------------>
   <link rel="stylesheet" href="../static/css/chatroom/chat4.css">
   <link rel="stylesheet" href="../static/css/chatroom/mobile_chat.css">
@@ -95,8 +97,8 @@
 <!--채팅 페이지 영역-->
 <div id="main">
   <div class="moblie_logo">
-    <img src="../images/menu_reverse.png" class="mobile_header-img" id="chat_show">
-    <img class="logo" src="../images/COOR.png">
+    <img src="/images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+    <img class="logo" src="/images/COOR.png">
   </div>
   <div class="topper">
     <!-- 로그인 부분 -->
@@ -116,7 +118,7 @@
       </div>
       <div id="header-bell" class="header-bell">
           <span class="bell">
-            <img src="../images/bell.png" style="width : 25px; height : 25px;" alt="">
+            <img src="/images/bell.png" style="width : 25px; height : 25px;" alt="">
           </span>
       </div>
       <div id="header-profile" class="header-profile">
@@ -455,7 +457,7 @@
               <div class="basket-title">
                 <div class="basket-title_topper">
                   <div class="basket-title_topper_back">
-                    <img class="basket-title_topper_back_img" src="images/back.png" onClick="basket()"
+                    <img class="basket-title_topper_back_img" src="/images/back.png" onClick="basket()"
                          style="cursor:pointer;">
                   </div>
                   <div class="basket-title_topper_text">
@@ -502,6 +504,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -573,7 +576,7 @@
 
 
           <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-          <script src="/js/chatroom/chat3.js"></script>
+          <script src="/js/chatroom/chat3.js?v=<%=System.currentTimeMillis()"></script>
           <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
           <!-- vscode용 ------------------------------------------------------------------>
