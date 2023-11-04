@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main</title>
+    <title>vscode 채팅방</title>
     <link rel="stylesheet" href="/css/chatroom/chat4.css" />
     <link
       rel="stylesheet"
@@ -16,7 +16,10 @@
     <link rel="stylesheet" href="../static/css/chatroom/chat4.css" />
     <link rel="stylesheet" href="../static/css/chatroom/mobile_chat.css" />
     <!-- --------------------------------------------------------------------- -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 로컬용 -->
+    <link rel="stylesheet" href="src 원본.css" />
+    <link rel="stylesheet" href="src 원본_모바일.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <!--  <p> 폰트 적용 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,40 +45,32 @@
       href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
       rel="stylesheet"
     />
-
-    <!--  부트스트랩 보달 창 라이브러리-->
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
     />
 
-    <!-- 다음 주소 찾기 API -->
+    <!-- 모달 bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-
-    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z"
+      integrity="sha384-..."
       crossorigin="anonymous"
     />
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-      crossorigin="anonymous"
-    ></script>
 
     <!-- 네이버 지도 API 추가 -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=99by68keh8"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-      crossorigin="anonymous"></script>
+    <script
+      type="text/javascript"
+      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=99by68keh8"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
   <body>
@@ -108,20 +103,6 @@
             <img class="join-button-picture" src="/images/join.png" />
           </div>
         </form>
-      </div>
-      <div class="body-main">
-        <div class="board">
-          <p class="li-1">모집글 정보</p>
-          <div class="boards">
-            <div class="boards-left">
-              <div class="board-title" th:text="${room.title}"></div>
-              <div class="board-peoples">
-                <p1>참가 인원</p1>
-              </div>
-              <div class="board-peoples-ficture"></div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <!--채팅 페이지 영역-->
@@ -180,14 +161,14 @@
               </a>
 
               <!-- <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
-                  <div class="block block-name">
-                      <div class="profile-name" th:text="${nickname}"> 야왕이네
-                      </div>
-                      <div class="buttons">
-                          <a href="#">파티관리</a>
-                      </div>
-                  </div>
-              </div> -->
+                <div class="block block-name">
+                    <div class="profile-name" th:text="${nickname}"> 야왕이네
+                    </div>
+                    <div class="buttons">
+                        <a href="#">파티관리</a>
+                    </div>
+                </div>
+            </div> -->
             </div>
           </div>
         </div>
@@ -230,7 +211,6 @@
             </li>
           </ul>
         </div>
-        <!-- 프로필 -->
       </div>
 
       <div id="chat-page">
@@ -239,34 +219,21 @@
             <div class="chat-group">
               <div class="chat-header">
                 <div class="chat-header-left">
-                  <span class="user-picture2">
-                    <img
-                      src="images/profile/profile5.png"
-                      height="40px"
-                      width="40px"
-                    />
-                  </span>
-                  <div
-                    id="user-list"
-                    class="user-list"
-                    style="display: none"
-                  ></div>
+                    <span class="user-picture2">
+                        <img src="images/profile/profile5.png" height="40px" width="40px" />
+                    </span>
+                    <div id="user-list" class="user-list" style="display: none"></div>
                 </div>
                 <div class="chat-header-center">
-                  <div class="chat-header-center-group">
-                    <h2 th:text="${room.title}"></h2>
-                    <div class="connecting">offline</div>
-                  </div>
+                    <div class="chat-header-center-group">
+                        <h2 th:text="${room.title}"></h2>
+                        <div class="connecting">offline</div>
+                    </div>
                 </div>
                 <div class="chat-header-right">
-                  <img
-                    src="images/Icon/menu_5259008.png"
-                    width="23px"
-                    height="23px"
-                    class="header-img"
-                  />
+                    <img src="images/Icon/menu_5259008.png" width="23px" height="23px" class="header-img" />
                 </div>
-              </div>
+            </div>
               <div class="chat-left-right">
                 <div class="chat-left">
                   <ul id="messageArea">
@@ -353,16 +320,16 @@
                   </div>
                   <div class="calualtor">
                     <!--
-                                    방장일때는 p태그에 id를 호스트로 생성
-                                    결제 창에 금액확인 버튼을 누르면 id를 인식해서 방장은 배달비 할인된 금액으로 출력이 되고
+                            방장일때는 p태그에 id를 호스트로 생성
+                            결제 창에 금액확인 버튼을 누르면 id를 인식해서 방장은 배달비 할인된 금액으로 출력이 되고
 
-                                    아래 주석 처리된 div 보면 customer1이라고 되어 있는데
-                                    방장을 제외한 나머지 인원에게는 name = customer n(숫자 1~3) 라는 태그 부여
+                            아래 주석 처리된 div 보면 customer1이라고 되어 있는데
+                            방장을 제외한 나머지 인원에게는 name = customer n(숫자 1~3) 라는 태그 부여
 
-                                    금액 확인 버튼을 누르면 방장에게 할인된 금액을 더하여 배달비가 출력
+                            금액 확인 버튼을 누르면 방장에게 할인된 금액을 더하여 배달비가 출력
 
-                                    본인이 장바구니에서 선택한 메뉴값 + 배달비
-                                -->
+                            본인이 장바구니에서 선택한 메뉴값 + 배달비
+                        -->
 
                     <div>
                       <p class="pay_username" id="host">농담곰</p>
@@ -384,48 +351,65 @@
                   <button class="calbtn" onclick="calclose()">닫기</button>
                 </div>
 
-              <!-- 결제내역 상세보기 모달 -->
-              <div class="pay_detail_host" id="pay_detail_host">
-                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose()"
-                  style="cursor:pointer;">
-                <p>호스트 농담곰</p>
-                <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+                <!-- 결제내역 상세보기 모달 -->
+                <div class="pay_detail_host" id="pay_detail_host">
+                  <img
+                    class="storeModal_header_topper_back_img_pay_detail"
+                    src="/images/back.png"
+                    onclick="detailClose()"
+                    style="cursor: pointer"
+                  />
+                  <p>호스트 농담곰</p>
+                  <li
+                    style="
+                      font: 300;
+                      list-style-type: none;
+                      float: left;
+                      margin-left: 15px;
+                    "
+                  >
+                    주문 내역
+                  </li>
+                  <br />
 
-                <div style="margin-top: 15px;" class="total_pay">
-                  <li class="pay_detail_text"> 황올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반 + 념반(콤보) X 1 </li>
-                  <p class="pay_text" id="meun_fee1"></p>
-                </div>
-                <br>
-                <hr class="detail_hr">
+                  <div style="margin-top: 15px" class="total_pay">
+                    <li class="pay_detail_text">
+                      황올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반 + 념올 반
+                      + 념올 반 + 념반(콤보) X 1
+                    </li>
+                    <p class="pay_text" id="meun_fee1"></p>
+                  </div>
+                  <br />
+                  <hr class="detail_hr" />
 
-                <div style="margin-top: 15px;">
-                  <li class="pay_detail_text"> 배달요금 </li>
-                  <p class="pay_text fee" id="fee"></p>
-                </div>
-                <br><br>
-                <div style="margin-top: 15px;">
-                  <li class="pay_detail_text"> 인당요금 </li>
-                  <p class="pay_text" name="each_delifee"></p>
-                </div>
-                <br>
-                <div style="margin-top: 15px;">
-                  <li class="pay_detail_text"> 방장할인 </li>
-                  <p class="pay_text" id="host_discount"></p>
-                </div>
-                <br>
+                  <div style="margin-top: 15px">
+                    <li class="pay_detail_text">배달요금</li>
+                    <p class="pay_text fee" id="fee"></p>
+                  </div>
+                  <br /><br />
+                  <div style="margin-top: 15px">
+                    <li class="pay_detail_text">인당요금</li>
+                    <p class="pay_text" name="each_delifee"></p>
+                  </div>
+                  <br />
+                  <div style="margin-top: 15px">
+                    <li class="pay_detail_text">방장할인</li>
+                    <p class="pay_text" id="host_discount"></p>
+                  </div>
+                  <br />
 
-                <div style="margin-top: 15px;" class="total_pay">
-                  <li class="pay_detail_text"> 지불 배달요금 </li>
-                  <p class="pay_text" id="host_delifee"></p>
-                </div>
-                <br>
-                <hr class="detail_hr">
+                  <div style="margin-top: 15px" class="total_pay">
+                    <li class="pay_detail_text">지불 배달요금</li>
+                    <p class="pay_text" id="host_delifee"></p>
+                  </div>
+                  <br />
+                  <hr class="detail_hr" />
 
-                <div class="total_pay" style="margin-top: 15px;">
-                  <li class="pay_detail_text"> 결제 금액 </li>
-                  <p class="pay_text" id="host_totalfee"></p>
+                  <div class="total_pay" style="margin-top: 15px">
+                    <li class="pay_detail_text">결제 금액</li>
+                    <p class="pay_text" id="host_totalfee"></p>
+                  </div>
                 </div>
-              </div>
 
                 <div class="pay_detail1" id="pay_detail1">
                   <img
@@ -678,75 +662,205 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 모집글 클릭시 모달창 보여줌 -->
-    <!--    메뉴 선택을 모달로 할거라 이거랑 css 겹쳐서 보류-->
-    <!--    <div class="modal fade" id="enterRoomModal" tabindex="-1" aria-labelledby="enterRoomModalLabel"  data-backdrop="static" aria-hidden="true">-->
-    <!--      <div class="modal-dialog">-->
-    <!--        <div class="modal-content">-->
-    <!--          <div class="modal-header">-->
-    <!--            <div class="modal-invite-text">-->
-    <!--              <p>채팅방에 초대하기</p>-->
-    <!--            </div>-->
-    <!--            <div class="modal-invite-content">-->
-    <!--              <div class="modal-invite-input">-->
-    <!--                <img class="user-search" src="/images/search.png">-->
-    <!--                <input type="text" placeholder="닉네임 검색">-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--          <div class="modal-footer">-->
-    <!--            <input class="modal-btn btn-access" id="join_btn"-->
-    <!--                   type="button" value="확인" data-bs-dismiss="modal">-->
-    <!--            <input class="modal-btn btn-back" id="modal_close_btn" type="button" data-bs-dismiss="modal" value="취소">-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-
-    <!-- 메뉴 선택 모달창 -->
-    <div
-      class="modal fade mozipCreate"
-      id="CreateMozipModal"
-      tabindex="-1"
-      aria-labelledby="enterRoomModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="storeModal_header_topper">
-            <div
-              class="storeModal_header_topper_back"
-              id="modal_close_beck"
-              data-bs-dismiss="modal"
-            >
-              <img
-                class="storeModal_header_topper_back_img"
-                src="images/back.png"
-                style="cursor: pointer"
-              />
-            </div>
-            <div class="storeModal_header_topper_text">
-              <p th:text="${room.store}"></p>
-            </div>
-          </div>
-          <div class="menu-header">
-            <div class="min_delivery">
-              <div class="deliver_info">
-                <div>최소주문</div>
-                <div class="min_price">조회 중입니다.</div>
-              </div>
-              <div class="deliver_info">
-                <div>배달요금</div>
-                <div class="delivery_fee">조회 중입니다.</div>
+      <!-- 전체메뉴 리스트 모달 -->
+      <div class="modal-background">
+        <div class="modal-window">
+          <div class="modal-popup">
+            <div class="modal-popup-close">
+              <div class="storeModal_header_topper_back modal-popup-close">
+                <img
+                  class="storeModal_header_topper_back_img_basket"
+                  src="../images/back.png"
+                  onclick="close_modal()"
+                  style="cursor: pointer"
+                />
               </div>
             </div>
-          </div>
-          <div class="menu-body">
-            <div class="loading-div">
-              <div id="loading" class="loading"></div>
-              <div>로딩중 입니다. 잠시만 기다려 주세요!</div>
+            <div class="modal-popup-title">
+              <div class="modal-popup-title-name">메뉴 선택</div>
+            </div>
+            <div class="modal-menu">
+              <div class="modal-menu-text">
+                <ul class="meunTotal" id="meunTotal">
+                  <li class="meun" onclick="detail_open()">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">빅맥 세트</div>
+                          <div class="meun-exp">
+                            빅맥버거＋후렌치후라이(M)＋음료<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거1.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+
+                  <li class="meun" onclick="detail_open()">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">
+                            후라이드치킨버거세트（치즈볼）
+                          </div>
+                          <div class="meun-exp">
+                            후라이드치킨반마리＋싸이버거2＋바삭크림치즈볼4조각＋콜라2<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔／PET 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거2.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+
+                  <li class="meun" onclick="detail_open()">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">빅맥 세트</div>
+                          <div class="meun-exp">
+                            빅맥버거＋후렌치후라이(M)＋음료<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거1.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+
+                  <li class="meun" onclick="detail_open()">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">빅맥 세트</div>
+                          <div class="meun-exp">
+                            빅맥버거＋후렌치후라이(M)＋음료<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거1.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+
+                  <li class="meun" onclick="detail_open()">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">빅맥 세트</div>
+                          <div class="meun-exp">
+                            빅맥버거＋후렌치후라이(M)＋음료<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거1.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+
+                  <li class="meun" onclick="detail_open()">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">빅맥 세트</div>
+                          <div class="meun-exp">
+                            빅맥버거＋후렌치후라이(M)＋음료<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거1.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+
+                  <li class="meun">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">
+                            후라이드치킨버거세트（치즈볼）
+                          </div>
+                          <div class="meun-exp">
+                            후라이드치킨반마리＋싸이버거2＋바삭크림치즈볼4조각＋콜라2<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔／PET 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거2.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+
+                  <li class="meun">
+                    <table>
+                      <tr>
+                        <td class="meun-text">
+                          <div class="meun-name">
+                            후라이드치킨버거세트（치즈볼）
+                          </div>
+                          <div class="meun-exp">
+                            후라이드치킨반마리＋싸이버거2＋바삭크림치즈볼4조각＋콜라2<br />
+                            * 음료는 매장 상황에 따라 16oz 또는 캔／PET 음료로
+                            제공됩니다
+                          </div>
+                          <div class="meun-price">
+                            <span>23,500원</span>
+                          </div>
+                        </td>
+                        <td class="photo-area">
+                          <img class="photo" src="햄버거2.jpg" />
+                        </td>
+                      </tr>
+                    </table>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-menu-commit">
+              <input id="menu_commit" type="button" value="확 인" />
             </div>
           </div>
         </div>
@@ -759,6 +873,10 @@
 
     <!-- vscode용 ------------------------------------------------------------------>
     <script src="../static/js/chatroom/chat3.js"></script>
+    <!-- --------------------------------------------------------------------- -->
+
+    <!-- 로컬용 ------------------------------------------------------------------>
+    <script src="src 원본.js"></script>
     <!-- --------------------------------------------------------------------- -->
 
     <!-- Add Bootstrap JavaScript and its dependencies -->
@@ -783,7 +901,6 @@
     <!-- 예제 시작 -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- http://localhost 에서 테스트 하시려면 cpw9RMOfkmb0qIa7Vz23 키를 사용해 보세요 -->
-    
 
     <!-- 네이버 지도 API 관련 -->
     <style type="text/css">

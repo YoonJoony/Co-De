@@ -70,7 +70,6 @@ img {
     overflow: visible;
     transition: all 0.3s ease-in-out;
     box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .header .join-back {
@@ -112,7 +111,6 @@ img {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    cursor: pointer;
 }
 
 
@@ -188,16 +186,18 @@ img {
     font-weight: 700;
     position: relative;
     text-align: left;
-    left: -36%;
+    left: 5%;
     top: -9%;
 }
 
 .board {
     position: relative;
-    width: 60%;
-    height: 40%;
+    width: 40%;
+    height: 60%;
     text-align: center;
     margin: 0 auto;
+    left: 20%;
+    top: -80%;
 }
 
 .boards {
@@ -208,7 +208,6 @@ img {
     background-color: #FF9162;
     border-radius: 30px;
     padding: 30px 30px;
-    display: inline-block;
 }
 
 
@@ -257,20 +256,19 @@ img {
 .map_wrap {
     float: right;
     position: relative;
-    height: 100%;
-    width: 90%;
+    height: 90%;
+    width: 150%;
+    margin-top: 7%;
 }
 
 .map_wrap .map_div {
     float: right;
     position: absolute;
     border-radius: 25px;
-    border: none;
     margin-right: 10px;
     width: 80%;
     height: 100%;
 }
-
 
 .board-title p {
     color: #FFFFFF;
@@ -306,6 +304,60 @@ input:focus {
     transform: translateY(0) !important;
 }
 
+.topper {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 37px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #b0cbba6b;
+}
+
+.header2 {
+    position: absolute;
+    z-index: 1;
+    top: 35px;
+    border-bottom: solid 9px #ff8c16;
+    background-color: #ffffff;
+    position: fixed;
+    border-radius: 0px 0px 20px 20px;
+    width: 100%;
+    height: 167px;
+    overflow: visible;
+    overflow: visible;
+    transition: all 0.3s ease-in-out;
+}
+
+.header2.fixed {
+    position: fixed;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    width: 190px;
+}
+
+.logo-img {
+    position: absolute;
+    top: 26px;
+    left: 14px;
+    width: 50%;
+    text-align: left;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.header2 p {
+    display: inline;
+    position: absolute;
+    top: 30%;
+    left: 46%;
+    font-size: 20px;
+    font-family: "Play", sans-serif;
+    /* height: 33%; */
+    /* margin: auto; */
+    /* justify-content: center; */
+}
 
 .fixed {
     /* 스크롤 할 시 header를 top0으로 최상단에 고정하기 위해 */
@@ -690,6 +742,151 @@ input:focus {
     }
 }
 
+/* 페이지 이동 버튼 클릭 시 밑줄*/
+.menu-li.on .menu-a {
+    /*border-bottom: 3px solid #7e69fe;*/
+}
+
+.header-bell {
+    position: absolute;
+    top: 35px;
+    right: 166px;
+    text-align: center;
+    white-space: nowrap;
+    /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+    z-index: 3;
+}
+
+.header-profile {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    text-align: center;
+    white-space: nowrap;
+    /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+    z-index: 3;
+}
+
+a {
+    background: 0 0;
+}
+
+.header-user {
+    position: relative;
+    display: inline-block;
+    padding: 25px 0;
+    cursor: pointer;
+}
+
+.user-picture2 {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    left: 22px;
+    margin-right: 30px;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 10px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.user-name2 {
+    font-family: "NanumSquareNeo-Variable";
+    position: relative;
+    display: inline-block;
+    top: 3px;
+    font-size: 14px;
+    color: gray;
+}
+
+
+.header-user .header-arrow {
+    position: relative;
+    display: inline-block;
+    padding: 0 4px 0 8px;
+
+}
+
+.layer-header-profile {
+    position: absolute;
+    top: 90px;
+    right: 0;
+    width: 210px;
+    height: 100%;
+    background-color: white;
+    border-top: 1px solid #cdccd6;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.layer-header-profile .block:first-child {
+    border-top: 0;
+    padding: 20px 20px 10px 20px;
+    background-color: #faf9fe;
+}
+
+.layer-header-profile .block {
+    position: relative;
+    padding: 0 20px;
+    border: 1px solid #cdccd6;
+    height: 200px;
+}
+
+
+.layer-header-profile::before {
+    /* 프로필 커서 이벤트 정보 창*/
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAICAYAAAArzdW1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1MDM1MmZiMC0yZTU5LTBkNDgtYWJiZC0yZDBjYWY5OTViZTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NTBCNDA4NzI0QzBCMTFFQjgxREQ5NzY4QjA2QzcxMkIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTBCNDA4NzE0QzBCMTFFQjgxREQ5NzY4QjA2QzcxMkIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIxLjAgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ZTM3YTMxZGUtN2RhNi1hYjRkLWI1NWQtM2U1OGM1NjVmZGNhIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6ZTliYWQ0Y2QtYjZiZC03YTQ5LTgzMjUtMmMzMjhiM2VhZmNlIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+32Au0AAAAINJREFUeNpiPHvmGgMWYATEG5iYmGT//ftXxIRFgQoQ75CTl5TV1FIE8bNZ0BTIAPFeGRlxURERAZiYMrJJokC8TUpaVE5MXAhFJ0wRFxBvlpQU0ZWQEMGwH6SIDYg3iYsLmUtKiWLzBFjRYjExIWdpGXEGXIBJVEwwTEYWtwIQAAgwAGdVEWm4Iz9lAAAAAElFTkSuQmCC") no-repeat;
+    width: 9px;
+    height: 8px;
+}
+
+.block {
+    display: block;
+}
+
+.layer-header-profile .profile-name {
+    font-family: "NanumSquareNeo-Variable";
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #58b26c;
+}
+
+.layer-header-profile .buttons {
+    position: relative;
+    font-size: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 215px;
+    overflow: hidden;
+    border: 1px solid #58b26c;
+    background-color: white;
+}
+
+
+.layer-header-profile .buttons a {
+    display: inline-block;
+    width: 100%;
+    height: 30px;
+    font-size: 13px;
+    color: #58b26c;
+    text-align: center;
+    line-height: 30px;
+}
+
+
 /* 여기서부턴 채팅방 영역 */
 /* 여기서부턴 채팅방 영역 */
 /* 여기서부턴 채팅방 영역 */
@@ -708,7 +905,7 @@ input:focus {
     opacity: 10;
     position: relative;
     height: 100%;
-    padding: 199px 0px 0px;
+    padding: 160px 0px 0px;
     font-family: "NanumSquareNeo-Variable";
 }
 
@@ -774,6 +971,28 @@ input:focus {
     }
 }
 
+.chat {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-group {
+    /* width: 40%; */
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    height: 100%;
+    max-height: 650px;
+    /* max-width: 500px; */
+    /* min-width: 400px; */
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+    top: 20px;
+}
 
 .chat-header {
     text-align: center;
@@ -792,75 +1011,9 @@ input:focus {
     text-align: left;
     position: relative;
     display: inline-block;
-}
-
-
-/* 추방모달 */
-.getout {
-    width: 22%;
-    height: 37%;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    min-height: 300px;
-    min-width: 220px;
-    position: absolute;
-    display: block;
-    border-radius: 15px;
-    background-color: #FFFFFF;
-    left: 9%;
-    top: 17%;
-}
-
-.list_profile {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.host_name {
-    margin-left: -5px;
-}
-
-/* 추방투표 버튼 */
-.vote {
-    position: absolute;
-    margin-left: 15%;
-    width: 30%;
-    height: 30px;
-    background: #fff;
-    color: #000;
-    z-index: 2;
     cursor: pointer;
-    margin-top: 3px;
-    font-size: 17px;
-    border: none;
 }
 
-.vote:after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    background: #a71a1a;
-    transition: all 0.3s ease;
-}
-
-.vote:hover {
-    color: #fff;
-}
-
-.vote:hover:after {
-    left: 0;
-    width: 100%;
-}
-
-
-/* 채팅방 타이틀 */
 .chat-header-center {
     width: 100%;
     position: relative;
@@ -885,6 +1038,7 @@ input:focus {
     float: right;
     top: 9%;
     position: relative;
+    cursor: pointer;
 }
 
 .chat-header h2 {
@@ -936,6 +1090,19 @@ input:focus {
     background-position: center;
 }
 
+.title-proflie {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 10px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 5px;
+}
+
 .chat-right {
     width: 12%;
     height: 100%;
@@ -973,6 +1140,7 @@ input:focus {
     width: 18px;
     height: 22px;
     margin: 11px 10px 10px 4px;
+    cursor: pointer;
 }
 
 .btn-group {
@@ -981,93 +1149,605 @@ input:focus {
 
 .dock-group {
     position: relative;
-    margin-left: 3%;
+    right: 70px;
+    top: -650px;
     height: 100%;
-    max-height: 600px;
     width: 300px;
     display: inline-block;
     z-index: 5;
+    left: 415px;
 }
 
-/* 채팅방 내부 유저 리스트 */
 .user-list {
-    position: absolute;
-    width: 228px;
-    max-height: 300px;
-    top: 107%;
+    position: relative;
+    height: 20%;
+    padding: 10px 5px 10px 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 7px;
-    z-index: 30;
-    background-color: white;
-    border-top: 1px solid #cdccd6;
-    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;
 }
 
-.user-list-content {
-    padding: 10px 13px 10px 14px;
+.map {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    border-radius: 20px;
+    top: 190px;
+    display: none;
 }
-
-.user {
+.map_title{
     position: relative;
+    height: 20px;
+    background-color: #FFF;
+    display: none;
+}
+
+
+.form-group {
+    padding: 10px;
+    margin-top: 1.5%;
+    background-color: #FFFFFF;
+    height: 80%;
+    border-radius: 6px;
+}
+
+
+.file-group {}
+
+.control {
+    display: block;
     width: 100%;
-    height: 30%;
-    margin-top: 11px;
-    top: -9px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-clip: padding-box;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.chat-header-left .chat-user-picture {
-    top: 5px;
+.btn-upload {
+    width: 27px;
+    height: 27px;
     position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    margin-right: 5px;
-    vertical-align: middle;
+    left: 33%;
+}
+
+#file {
+    display: none;
+}
+
+
+#chat-page ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: auto;
+    overflow-y: scroll;
+    padding: 0 3px 0px 4px;
+    height: calc(100% - 116px);
+}
+
+#chat-page #messageForm {
+    left: 0%;
+    padding: 8px 10px;
+    position: relative;
+    top: 1.5%;
+}
+
+#chat-page ul li {
+    line-height: 1.5rem;
+    padding: 7px 20px;
+    margin: 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+#chat-page ul li p {
+    margin: 0;
+}
+
+#chat-page .event-message {
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+#chat-page .event-message p {
+    color: #777;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+
+#chat-page .chat-message {
+    padding-left: 68px;
+    position: relative;
+    text-align: left;
+    border: none;
+}
+
+#chat-page .chat-message i {
+    position: absolute;
+    width: 42px;
+    height: 42px;
     overflow: hidden;
-    border-radius: 10px;
-    border-radius: 40%;
+    left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+#chat-page .chat-message span {
+    color: #333;
+    font-weight: 600;
+    position: relative;
+    font-size: 13px;
+    display: block;
+}
+
+.cloud {
+    background-color: #FFFFFF;
+    margin-top: 2%;
+    position: relative;
+    max-width: 92%;
+    display: inline-block;
+    min-width: 8%;
+    max-height: 300px;
+    min-height: 29px;
+    border-radius: 6px;
+    font-size: 14px;
+    padding: 5px 10px 5px 10px;
+}
+
+#chat-page .chat-message p {
+    position: relative;
+    min-width: 20px;
+    max-width: 232px;
+    color: #43464b;
+    overflow-wrap: break-word;
+    height: 100%;
+    display: inline-block;
+}
+
+#messageForm .input-group input {
+    float: left;
+    width: calc(100% - 85px);
+}
+
+#messageForm .input-group button {
+    float: left;
+    width: 70px;
+    height: 38px;
+    left: 3%;
+    position: relative;
+    top: 30px;
+    background-color: #FFB649;
+    color: #FFFFFF;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    z-index: 5;
+}
+
+div#menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 0;
+}
+
+.list_box {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    background-color: #8d8d8d;
+    text-align: left;
+    display: block;
+    border: none;
+    background: none;
+    color: inherit;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+    padding-top: 6px;
+    padding-left: 5px;
+}
+
+/* Antiman */
+.button--antiman {
+    background: none;
+    border: none;
+    width: 100%;
+    height: 50px;
+}
+
+.button--antiman.button--inverted,
+.button--antiman.button--inverted-alt {
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+
+.button--antiman>span {
+    padding-left: 0.35em;
+}
+
+.button--antiman::before,
+.button--antiman::after {
+    content: '';
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+    background-color: #e9e9e9;
+}
+
+.button--antiman::before {
+    border: 2px solid #ffffff;
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1);
+    transform: scale3d(1.2, 1.2, 1);
+}
+
+.button--antiman.button--border-thin::before {
+    border-width: 1px;
+}
+
+.button--antiman.button--border-medium::before {
+    border-width: 2px;
+}
+
+.button--antiman.button--border-thick::before {
+    border-width: 3px;
+}
+
+.button--antiman.button--inverted::before {
+    border-color: #7986cb;
+}
+
+.button--antiman.button--inverted-alt::before {
+    border-color: #3f51b5;
+}
+
+.button--antiman::after {
+    background: #fff;
+}
+
+.button--antiman.button--inverted::after {
+    background: #7986cb;
+}
+
+.button--antiman.button--inverted-alt::after {
+    background: #3f51b5;
+}
+
+.button--antiman.button--inverted:hover {
+    color: #7986cb;
+}
+
+.button--antiman.button--inverted-alt:hover {
+    color: #3f51b5;
+}
+
+.button--antiman:hover::before {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+}
+
+.button--antiman:hover::after {
+    opacity: 0;
+    -webkit-transform: scale3d(0.8, 0.8, 1);
+    transform: scale3d(0.8, 0.8, 1);
+}
+
+.invite_content {
+    font-size: 17px;
+    margin-left: 25px;
+}
+
+/* 초대 창 */
+/* 초대 창 */
+.invite_btn {
+    border-radius: 15px;
+}
+
+.m_logo {
+    width: 190px;
+    position: relative;
+    left: 10px;
+    top: -20px;
+}
+
+.invite_modal {
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100%;
+    /* 배경색과 투명도로 살짝 어둡지만 투명한 배경
+    허공에 붕 떠있는 느낌을 주고 싶으면 안넣어도 무방 */
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    /* //이벤트가 발생할 때 띄우기 위해 숨김
+    //처음부터 보이게 하는 상황이라면 display:flex; */
+    z-index: 3;
+    padding: 15px;
+}
+
+.invite_modal h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+/* 몸체 css */
+.popup {
+    margin-top: 100px;
+    width: 30%;
+    min-width: 400px;
+    height: 25%;
+    overflow: visible;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    top: 30%;
+    position: relative;
+}
+
+/* 로고 영역 css */
+.m_head {
+    height: 70px;
+    border-bottom: solid 5px #ff8c16;
+    border-radius: 5px;
+}
+
+/* 본문 css */
+.m_body {
+    /* 몸통 */
+    width: 100%;
+    height: 68%;
+    background-color: #ffffff;
+    /* 컨텐츠 영역의 배경색 */
+}
+
+.body-content {
+    /* 몸통 내부 컨텐츠 영역*/
+    width: 100%;
+    height: 10%;
+    padding: 1px;
+    /* 좌우에 내용이 붙으면 보기 안좋기 때문에 간격 띄움*/
+}
+
+.body-titlebox {
+    /* 컨텐츠 타이틀 영역 */
+    text-align: center;
+    /* 제목 중앙정렬 */
+    width: 100%;
+    height: 10%;
+    margin-bottom: 10px;
+    /* 내용과 간격 조정 */
+}
+
+.body-contentbox {
+    /* 컨텐츠 내용 영역 */
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+
+/* 푸터 영역 */
+.m_footer {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.pop-btn {
+    display: inline-flex;
+    /* 한줄로 나열하기 위한 inline속성과 flex속성 혼합 */
+    width: 49%;
+    height: 50%;
+    justify-content: center;
+    /* 수평정렬 */
+    align-items: center;
+    /* 수직정렬 */
+    float: left;
+    /* 좌측배치 */
+    color: #000000;
+    /* 글자색 */
+    cursor: pointer;
+    /* 마우스 포인터 효과 */
+}
+
+.pop-btn.invite {
+    border-right: 1px solid #393e4e;
+    /* 오른쪽 줄 */
+}
+
+/* 내용에 대한 css */
+.input-area {
+    width: 98%;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.input-area:first-child {
+    margin-top: 0;
+}
+
+.input-area input {
+    width: 100%;
+    padding: 20px 10px 10px;
+    background-color: #d9d9d9;
+    border: none;
+    font-size: 18px;
+    color: #000000;
+    outline: none;
+    border-radius: 6px;
+}
+
+.input-area label {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    font-size: 18px;
+    color: #999;
+    transition: all 0.5s ease;
+}
+
+.input-area label.warning {
+    color: red !important;
+    animation: waring 0.3s ease;
+    animation-iteration-count: 3;
+}
+
+@keyframes warning {
+    0% {
+        transform: translateX(-8px);
+    }
+
+    25% {
+        transform: translateX(8px);
+    }
+
+    50% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+.input-area input:focus+label,
+.input-area input:valid+label {
+    top: 2px;
+    font-size: 12px;
+    color: #7cab75;
+}
+
+/* input창 거리에 화살표 없애기 */
+input::-webkit-inner-spin-button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+/* 추방모달 */
+.getout {
+    width: 22%;
+    height: 44%;
+    min-height: 320px;
+    min-width: 220px;
+    position: absolute;
+    display: none;
+    left: 30%;
+    top: 17%;
+    padding: 8px 3px;
+    margin: 0 auto;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    max-width: 530px;
+}
+
+.list_profile {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    cursor: pointer;
 }
 
-span.chat-user-name {
-    position: relative;
-    top: 3px;
-    margin-left: 4px;
-    font-size: 13px;
+.host_name {
+    margin-left: -5px;
 }
 
-.bell {
-    /* position: relative; */
-    top: 0px;
-    right: 42%
-}
-
-.exile-button {
-    width: 18px;
-    height: 18px;
+/* 추방투표 버튼 */
+.vote {
     position: absolute;
-    top: 16px;
+    margin-left: 15%;
+    width: 30%;
+    height: 30px;
+    background: #fff;
+    color: #000;
+    z-index: 2;
+    cursor: pointer;
+    margin-top: 3px;
+    font-size: 17px;
+    border: none;
+}
+
+.vote:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
     right: 0;
-    cursor: pointer;
+    z-index: -1;
+    background: #a71a1a;
+    transition: all 0.3s ease;
 }
 
-.invite {
-    border-top: 1px solid #dddddd;
-    height: 46px;
+.vote:hover {
+    color: #fff;
+}
+
+.vote:hover:after {
+    left: 0;
+    width: 100%;
+}
+
+/* 정산 버튼 */
+.cal {
     text-align: center;
-    line-height: 47px;
-    position: relative;
-    width: 100%;
-    cursor: pointer;
+    justify-content: center;
+    padding-bottom: 10px;
+    border-radius: 15px;
 }
 
-.invite-content {
-    position: relative;
-    font-size: 14px;
-    width: 100%;
+.condition {
+    font-size: 10px;
+    position: absolute;
+    margin-left: 48px;
+    margin-top: -7px;
+    color: red;
 }
 
 /* 장바구니 모달 */
@@ -1096,17 +1776,6 @@ span.chat-user-name {
     z-index: 5;
     padding: 8px 3px;
     margin: 0 auto;
-}
-
-.basket-view .basket-title {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 16%;
-    padding: 0px 0px 0px 11px;
-    FONT-VARIANT: JIS04;
-    text-align: center;
-    margin-bottom: -6px;
 }
 
 .basket-view .basket-title .basket-title-name {
@@ -1143,7 +1812,6 @@ span.chat-user-name {
     text-align: left;
     margin-left: 9px;
 }
-
 
 /* 메뉴를 추가 해보세요 */
 
@@ -1312,10 +1980,6 @@ span.chat-user-name {
 
 
 
-
-
-
-
 .modify-menu {
     position: relative;
 }
@@ -1345,525 +2009,423 @@ span.chat-user-name {
     position: relative;
 }
 
-/* 초대하기 버튼 클릭 시 모달.*/
-/* 초대하기 버튼 클릭 시 모달.*/
-/* 초대하기 버튼 클릭 시 모달.
 
-.modal-backdrop {
-    background: none !important;
-}
-
-.modal-dialog {
-    font-family: "NanumSquareNeo-Variable";
-    position: relative;
-    width: auto;
-    top: 33%;
-    right: 0.5%;
-    margin: .5rem;
-    pointer-events: none;
-}
-
-@media (min-width: 576px){
-    .modal-dialog {
-        max-width: 405px !important;
-        margin: 1.75rem auto;
-    }
-}
-
-.modal-dialog .modal-header {
-    display: block !important;
-}
-
-.modal-invite-text {
-    position: relative;
-    display: block;
-    position: relative;
+/* 전체메뉴 리스트 */
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin-bottom: 28px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    /*숨기기*/
+    z-index: -1;
+    opacity: 0;
 }
 
-.modal-invite-text p {
-    font-size: 19px;
-}
-
-.modal-invite-content {
-    position: relative;
-    display: block;
-    text-align: center;
-    width: 100%;
-}
-
-.modal-invite-input {
-    border: 1px solid;
-    border-radius: 20px;
-    position: relative;
-    width: 100%;
-    height: 28px;
-}
-
-img.user-search {
-    width: 17px;
-    height: 17px;
-    top: 4px;
-    left: 8px;
-    position: absolute;
-}
-
-.modal-invite-input input {
-    border: none;
-    position: relative;
-    width : 80%;
-    font-size: 14px;
-}
-
-.modal-btn {
-    width: 17%;
-    border: none;
-    background-color: #FFB649;
-    color: #FFFFFF;
-    height: 33px;
-    border-radius: 5px;
-}
-
-.btn-back {
-    background-color: #f1f1f1;
-    color: #000000;
-}
-
-*/
-
-/* 사진 전송 라인 */
-.form-group {
-    padding: 10px;
-    margin-top: 1.5%;
-    background-color: #FFFFFF;
-    height: 80%;
-    border-radius: 6px;
-}
-
-
-.file-group {}
-
-.control {
-    display: block;
-    width: 100%;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-clip: padding-box;
-    border: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-.btn-upload {
-    width: 27px;
-    height: 27px;
-    position: relative;
-    left: 33%;
-}
-
-#file {
-    display: none;
-}
-
-
-#chat-page ul {
-    list-style-type: none;
-    margin: 0;
-    overflow: auto;
-    overflow-y: scroll;
-    padding: 0 3px 0px 4px;
-    height: calc(100% - 116px);
-}
-
-#chat-page #messageForm {
-    left: 0%;
-    padding: 8px 10px;
-    position: relative;
-    top: 0.5%;
-}
-
-#chat-page ul li {
-    line-height: 1.5rem;
-    padding: 7px 20px;
-    margin: 0;
-    border-bottom: 1px solid #f4f4f4;
-}
-
-#chat-page ul li p {
-    margin: 0;
-}
-
-#chat-page .event-message {
-    width: 100%;
-    text-align: center;
-    clear: both;
-}
-
-#chat-page .event-message p {
-    color: #777;
-    font-size: 14px;
-    word-wrap: break-word;
-}
-
-#chat-page .chat-message {
-    padding-left: 68px;
-    position: relative;
-    text-align: left;
-    border: none;
-}
-
-#chat-page .chat-message-last {
-    padding-left: 68px;
-    position: relative;
-    text-align: left;
-    border: none;
-    height: 40px;
-    bottom: 9px;
-}
-
-#chat-page .chat-message i {
-    position: absolute;
-    width: 42px;
-    height: 42px;
-    overflow: hidden;
-    left: 10px;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
-    line-height: 42px;
-    color: #fff;
-    text-align: center;
-    border-radius: 50%;
-    font-style: normal;
-    text-transform: uppercase;
-}
-
-#chat-page .chat-message span {
-    color: #333;
-    font-weight: 600;
-    position: relative;
-    font-size: 13px;
-    display: block;
-}
-
-.cloud {
-    background-color: #FFFFFF;
-    margin-right: 10px;
-    position: relative;
-    max-width: 92%;
-    display: inline-block;
-    min-width: 8%;
-    max-height: 300px;
-    min-height: 29px;
-    border-radius: 6px;
-    font-size: 14px;
-    padding: 5px 10px 5px 10px;
-}
-
-.chat-wrapper {
-    position: relative;
-}
-
-.chat-wrapper .time-text {
-    position: relative;
-    color: #9f9f9f !important;
-    font-size: 11px;
-    display: inline-block;
-    top: 7px;
-}
-
-#chat-page .chat-message p {
-    position: relative;
-    min-width: 20px;
-    max-width: 232px;
-    color: #43464b;
-    overflow-wrap: break-word;
-    height: 100%;
-    display: inline-block;
-}
-
-#messageForm .input-group input {
-    float: left;
-    width: calc(100% - 85px);
-}
-
-#messageForm .input-group button {
-    float: left;
-    width: 70px;
-    height: 38px;
-    left: 3%;
-    position: relative;
-    top: 30px;
-    background-color: #FFB649;
-    color: #FFFFFF;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
+.show-modal {
+    opacity: 1;
     z-index: 5;
+    transition: all 0.5s;
 }
 
-div#menu {
+.modal-window {
     position: relative;
-    display: flex;
-    align-items: center;
-    z-index: 0;
+    /* width: 46%; */
+    height: 80%;
+    max-width: 580px;
+    margin: auto;
+    padding: 8px 3px;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 gray;
+    border-radius: 5px 5px 20px 20px;
+    border-bottom: solid 9px #ff8c16;
+    top: 5%;
 }
 
-@media screen and (max-width: 730px) {
-
-    .chat-container {
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 10px;
-    }
+.modal-popup {
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    width: 100%;
+    height: 97%;
+    transform: translate(-50%, -40%);
+    /* margin: auto; */
 }
 
-@media screen and (max-width: 480px) {
-    .chat-container {
-        height: calc(100% - 30px);
-    }
-
-    .username-page-container {
-        width: auto;
-        margin-left: 15px;
-        margin-right: 15px;
-        padding: 25px;
-    }
-
-    #chat-page ul {
-        height: calc(100% - 120px);
-    }
-
-    #messageForm .input-group button {
-        width: 65px;
-    }
-
-    #messageForm .input-group input {
-        width: calc(100% - 70px);
-    }
-
-    .chat-header {
-        padding: 10px;
-    }
-
-    .connecting {
-        top: 60px;
-    }
-
-    .chat-header h2 {
-        font-size: 1.1em;
-    }
+.show-modal .modal-popup {
+    transform: translate(-50%, -50%);
+    transition: all 0.5s;
+    display: inline-block;
+    font-weight: bold;
+    color: #000;
+    /* background-color: #e6e6e6; */
+    /* border-radius: 6px; */
+    text-align: center;
 }
 
-/* ---------- 메뉴 선택 모달 ------------- */
-/* 모집글 생성 제목 설정*/
-.mozipCreate .modal-dialog {
-    font-family: "NanumSquareNeo-Variable";
-    height: 660px;
-    width: 400px;
-    top: 13%;
+.modal-popup .modal-popup-close {
+    position: absolute;
+    width: 100%;
+    height: 7%;
 }
 
-@media screen and (max-width: 580px) {
-    .mozipCreate .modal-dialog {
-        width: auto;
-    }
+.modal-popup-close-name {
+    position: absolute;
+    width: 5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: 15px;
+    cursor: pointer;
+    z-index: 1;
 }
 
-.modal-dialog .modal-content {
-    height: 100%;
-}
-
-.mozipCreate .modal-content {
+.modal-popup .modal-popup-title {
     position: relative;
+    width: 40%;
+    height: 50px;
+    border-radius: 6px 6px 0 0;
+    margin: auto;
+}
+
+.modal-popup-title-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-window .modal-menu {
+    position: relative;
+    width: 100%;
+    height: 85%;
+    overflow-y: scroll;
+}
+
+.modal-menu .modal-menu-text {
+    position: relative;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.modal-menu-text .modal-menu-text-space {
+    position: relative;
+    width: 30%;
+    height: 30px;
+    left: 7px;
+    border: none;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 5px;
+    padding: 5px;
+}
+
+#modal_menu_amount {
+    width: 7%;
+}
+
+#modal_menu_add_btn {
+    position: relative;
+    width: 7%;
+    height: 30px;
+    border: none;
+    color: #ffffff;
+    background-color: #7cab75;
+    display: inline-block;
+    border-radius: 6px 6px 6px 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 5px;
+    padding: 5px;
+}
+
+.modal-menu-commit #menu_commit {
+    position: relative;
+    width: 93%;
+    height: 41px;
+    border: none;
+    color: #ffffff;
+    display: inline-block;
+    cursor: pointer;
+    top: 8px;
+    font-size: 19px;
+    color: #ffffff;
+    background-color: #ff9e4e;
+    border-radius: 5px;
+    top: 20px;
+}
+
+/* 메뉴 리스트 css */
+#meunTotal {
+    margin: 0;
+}
+
+.meun {
+    cursor: pointer;
+    position: relative;
+    list-style: none;
+    border: 1px solid #d9d9d9;
+    border-top: none;
     height: 100%;
-    bottom: 5%;
-    padding: 8px 0.7px 0px 0.7px;
+    left: -20px;
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.meun-name {
+    color: #333;
+    font-size: 110%;
+    font-weight: bold;
+    line-height: 1.4;
+    padding-top: 5px;
+}
+
+.meun-exp {
+    font-size: 90%;
+    color: #999;
+    overflow: hidden;
+    width: 95%;
+}
+
+.meun-price {
+    color: #fa0050;
+}
+
+.photo-area {
+    width: 20%;
+    float: right;
+}
+
+.photo-area .photo {
+    width: 112px;
+    height: 100%;
+    background-size: cover;
+    margin-left: 25px;
+    float: right;
+}
+
+/* 옵션선택 창 */
+.detail_meun_wrap {
+    width: 47%;
+    height: 667px;
+    background: #fff;
+    position: absolute;
+    display: none;
+    z-index: 20;
+    /* left: -4px; */
+    top: -20%;
+    display: none;
+    padding: 8px 3px;
     margin: 0 auto;
     border: none;
     background-color: #fff;
-    box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
+    box-shadow: 0 4px 4px 0 gray;
     border-radius: 5px 5px 20px 20px;
     border-bottom: solid 9px #ff8c16;
-    max-width: 370px;
-    min-width: 370px;
 }
 
-.mozipCreate .storeModal_header_topper {
-    border: none !important;
-}
-
-/* 메뉴 선택 header */
-.storeModal_header_topper {
+.detail_header {
+    background: #fff;
     position: relative;
-    display: flex;
-    width: 100%;
-    padding: 4px 20px 5px 17px;
-    margin-bottom: 15px;
-    cursor: pointer;
+    border-bottom: 1px solid #e5e5e5;
+    height: 44px;
+    padding: 20px 0 0 0;
+    z-index: 2;
 }
 
-.storeModal_header_topper_back {
+.detail_header .title {
+    font-size: 18px;
+    /* text-align: center; */
+    top: -15px;
+    /* margin-bottom: 39px; */
     position: relative;
-    right: 4px;
-    flex: 0.4;
 }
 
-.storeModal_header_topper_back_img {
+.detail_imageArea {
+    text-align: center;
+}
+
+.detail_content {
+    height: 548px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.detail_content::-webkit-scrollbar {
+    display: none;
+}
+
+.detail_image {
+    background: #fff;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.detail_text {
+    border-bottom: 1px solid #f0f0f0;
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.detail-head .meun-name {
+    font-size: 22px;
+    line-height: 1.2;
+    text-align: center;
+    padding-left: 0;
+}
+
+.detail-exp {
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+
+.detail_price {
+    background: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px 15px 15px 15px;
+    overflow: hidden;
+    height: 62px;
+}
+
+.detail_price>strong {
+    float: left;
+}
+
+.detail_price .price {
+    float: right;
+}
+
+.detail_quantity {
+    background: #fff;
     position: relative;
-    width: 90%;
-    header: 90%;
+    border-top: 1px solid #f0f0f0;
+    font-size: 15px;
+    padding: 18px 15px;
+    height: 25px;
 }
 
-.storeModal_header_topper_text {
-    flex: 7;
-    position: relative;
-    text-align: left;
-    margin-left: 9px;
-}
-
-.storeModal_header_topper p {
-    font-family: "NanumSquareNeo-Variable";
+.minus {
     position: absolute;
-    left: 0;
-    top: 11%;
+    right: 95px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    opacity: 1;
+    cursor: pointer;
+    text-align: center;
     font-size: 20px;
 }
 
-/*================메뉴 선택 header =====================*/
-.menu-header {
+.quantity {
+    position: absolute;
+    right: 45px;
+    top: 15px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 50px;
+    height: 30px;
+    font-weight: bold;
+    line-height: 2;
+    text-align: center;
+}
+
+.detail_quantity>strong {
+    float: left;
+}
+
+.detail_total_wrap {
+    border-top: 1px solid #f0f0f0;
+    overflow: hidden;
+    height: 60px;
+    background: #fff;
     position: relative;
-    padding: 10px 20px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 15px;
+    padding: 18px 15px;
 }
 
-.menu-header .min_delivery {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+.detail_total_wrap>strong {
+    float: left;
 }
 
-.menu-header .deliver_info {
-    position: relative;
-    display: flex;
-    font-size: 13px;
-    font-weight: 900;
+.total {
+    float: right;
+    text-align: right;
 }
 
-.deliver_info .min_price {
-    margin-left: 7px;
-    font-weight: 100;
+.total_price {
+    color: #fa0050;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.1;
 }
 
-.deliver_info .delivery_fee {
-    margin-left: 7px;
-    font-weight: 100;
+.min_price {
+    color: #333;
+    font-size: 12px;
 }
 
-/*================메뉴 선택 body =====================*/
-.menu-body {
+.detail_button_bar {
+    position: absolute;
     width: 100%;
-    position: relative;
-    height: 100%;
-    /* padding: 10px 13px; */
-    overflow-y: scroll;
-    background-color: black;
-    border-radius: 8px 8px 12px 12px;
 }
 
-/*================메뉴 그룹=====================*/
-.menu-group {
-    width: 100%;
+.add_cart {
+    background: #555;
+    color: #fff;
+    width: 50%;
+    height: 38px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin: 0;
+    cursor: pointer;
+    background-color: #ff9e4e;
+    border-radius: 5px;
+    top: 5px;
     position: relative;
-    background-color: #333030;
-    color: #FFF;
-    padding: 10px 9px 10px 9px;
-    margin-bottom: 5px;
-    border-radius: 8px 8px 0px 0px;
 }
 
-
-
-.menu-group-topper {
-    display: flex;
-    align-items: center;
-    font-weight: 900;
-    padding: 4px 4px;
-    padding-bottom: 0.7rem;
-    border-bottom: 1px solid rgb(124 124 124 / 27%);
-    /* border-color: #757575; */
-}
-
-.popular-img img {
+.close_detail {
     position: relative;
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
-    bottom: 4px;
-}
-
-/*================메뉴리스트 - 메뉴 =====================*/
-.menu-group-list {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0px 5px 10px 5px;
-    border-color: #757575;
-    border-bottom: 1px solid rgb(124 124 124 / 27%);
+    background: #fa0050;
+    color: #fff;
+    float: left;
+    width: 50%;
+    height: 48px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 4px;
+    margin: 0;
     cursor: pointer;
 }
 
-.menu-group-list .group-div-left {
-    flex: 6;
-    position: relative;
-    display: block;
+.count_css {
+    width: 50px;
+    background: transparent;
+    border: none;
+    text-align: center;
 }
 
-.group-div-left .menu-name {
-    font-size: 14px;
-    padding-top: 1rem;
-    padding-bottom: 0.3rem;
-    font-weight: 100;
-}
-
-.group-div-left .menu-into {
-    font-size: 10px;
-    padding-bottom: 0.3rem;
-    padding-right: 2rem;
-    color: #b6b6b6;
-}
-
-.group-div-left .menu-price {
-    font-size: 11px;
-    font-weight: 100;
-}
-
-.menu-group-list .group-div-right {
-    flex: 3;
-    position: relative;
-    top: 0.4rem;
-    /* border-radius: 1px; */
-    border-radius: 5px;
-    overflow: hidden;
-    /* max-height: 123px; */
-    /* min-height: 81px; */
-}
-
-.group-div-right img {
-    position: relative;
-    /* top: 0.7rem; */
-    /* border-radius: 1px; */
-    border-radius: 5px;
-    /* overflow: hidden; */
-    max-height: 120px;
-    min-height: 91px;
+.meun-text {
+    float: left;
+    width: 80%;
 }
 
 /* 정산페이지 */
@@ -1958,7 +2520,7 @@ div#menu {
 .pay_detail_host {
     display: block;
     position: absolute;
-    width: 425px;
+    width: 460px;
     height: 470px;
     background: #FFF;
     left: 11px;
@@ -1980,7 +2542,7 @@ div#menu {
 .pay_detail1{
     display: block;
     position: absolute;
-    width: 425px;
+    width: 460px;
     height: 470px;
     background: #FFF;
     left: 11px;
@@ -2002,7 +2564,7 @@ div#menu {
 .pay_detail2{
     display: block;
     position: absolute;
-    width: 425px;
+    width: 460px;
     height: 470px;
     background: #FFF;
     left: 11px;
@@ -2024,7 +2586,7 @@ div#menu {
 .pay_detail3{
     display: block;
     position: absolute;
-    width: 425px;
+    width: 460px;
     height: 470px;
     background: #FFF;
     left: 11px;
@@ -2121,13 +2683,13 @@ div#menu {
 .storeModal_header_topper h2 {
     margin-left: 42px;
     position: relative;
-    margin-left: 80px;
+    margin-left: 100px;
 }
 
 .storeModal_header_topper_back {
     position: relative;
     right: 4px;
-    flex: 0.6;
+    flex: 0.4;
 }
 
 .storeModal_header_topper_back_img {
@@ -2156,43 +2718,10 @@ div#menu {
     margin-left: 20px;
 }
 
+/* 결제창 이동 */
 
-/* -------- 애니메이션 -------- */
-/* 로딩창 */
-
-.loading-div {
-    position: relative;
-    width: 100%;
-    top: 35%;
-    /* height: 100%; */
-    display: block;
-    text-align: center;
-    color: #FFF;
-    font-size: 13px;
-}
-
-.loading {
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgb(255 255 255 / 76%);
-    border-radius: 50%;
-    border-top-color: #ff8100f0;
-    animation: spin 1s ease-in-out infinite;
-    -webkit-animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-@-webkit-keyframes spin {
-    to {
-        -webkit-transform: rotate(360deg);
-    }
+.basket-title.active{
+    cursor: move;
 }
 
 /* 지도 */
