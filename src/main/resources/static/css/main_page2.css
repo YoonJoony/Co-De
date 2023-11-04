@@ -723,10 +723,22 @@ a {
   line-height: 1.25rem;
 }
 
-.board-peoples-img img {
+.board-footer-right .board-peoples-img img {
   width: 18px;
   height: 18px;
   margin-right: 0.175rem;
+}
+
+/* 정산 상태 */
+
+.board-footer-right .status {
+  position: relative;
+  background-color: #a89393;
+  margin-right: 5px;
+  color: #fff;
+  font-size: 12px;
+  padding: 1px 7px 0px 7px;
+  border-radius: 4px;
 }
 
 /* ------챗봇 컨테이너 --------*/
