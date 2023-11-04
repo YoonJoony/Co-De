@@ -1086,11 +1086,22 @@ function detailClose_cos3() {
 // 장바구니 이동
 
 
+// 지도 모달
+function map_btn() {
+    const map_content = document.getElementById("map");
+    const map_title = document.querySelector(".map_title")
 
-
-
-
-
+    // 숨기기 (display: none)
+    if (map_content.style.display !== "block") {
+        map_content.style.display = "block";
+        map_title.style.display = "block";
+    }
+    // 보이기 (display: block)
+    else {
+        map_content.style.display = "none";
+        map_title.style.display = "none";
+    }
+}
 
 
 function initMap2() {

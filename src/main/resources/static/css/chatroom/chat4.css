@@ -1,7 +1,7 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
@@ -30,23 +30,23 @@ body{
 }
 
 .body-chat {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 /* 태그 css*/
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* 채팅 페이지 영역 */
 
 a {
-    font-size: 10px;
-    color: inherit;
-    /* ê¸€ìž ìƒ‰ìƒì€ ë¶€ëª¨ë¡œë¶€í„° ìƒì† */
-    text-decoration: none !important;
+  font-size: 10px;
+  color: inherit;
+  /* ê¸€ìž ìƒ‰ìƒì€ ë¶€ëª¨ë¡œë¶€í„° ìƒì† */
+  text-decoration: none !important;
 }
 
 input:focus {
@@ -107,6 +107,7 @@ input:focus {
         height: 37px;
         background-color: #ffffff;
         border-bottom: 1px solid #b0cbba6b;
+        top: -35px;
     }
 
     .header2 {
@@ -124,35 +125,34 @@ input:focus {
         transition: all 0.3s ease-in-out;
     }
 
-    .
-    header2.fixed {
+    .header2.fixed {
         position: fixed;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     }
     .logo {
-        width: 190px;
+      width: 190px;
     }
 
     .logo-img {
-        position: absolute;
-        top: 26px;
-        left: 14px;
-        width: 50%;
-        text-align: left;
-        font-size: 50px;
-        font-weight: bold;
+      position: absolute;
+      top: 26px;
+      left: 14px;
+      width: 50%;
+      text-align: left;
+      font-size: 50px;
+      font-weight: bold;
     }
 
     .header2 p {
-        display: inline;
-        position: absolute;
-        top: 30%;
-        left: 46%;
-        font-size: 20px;
-        font-family: "Play", sans-serif;
-        /* height: 33%; */
-        /* margin: auto; */
-        /* justify-content: center; */
+      display: inline;
+      position: absolute;
+      top: 30%;
+      left: 46%;
+      font-size: 20px;
+      font-family: "Play", sans-serif;
+      /* height: 33%; */
+      /* margin: auto; */
+      /* justify-content: center; */
     }
 
     .width-container {
@@ -176,60 +176,60 @@ input:focus {
     }
 
     .search {
-        display : inline-block;
-        position: relative;
-        top: 35%;
-        width: 100%;
-        height : 67%;
-        text-align: center;
-        vertical-align: middle;
-        white-space: nowrap;
-        /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-        max-width: 600px;
-        margin: 0 auto;
+      display : inline-block;
+      position: relative;
+      top: 35%;
+      width: 100%;
+      height : 67%;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+      /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .gps {
-        width: 19px;
-        height: 19px;
-        top: 15.3px;
-        left: 15.3px;
-        position: absolute;
+      width: 19px;
+      height: 19px;
+      top: 15.3px;
+      left: 15.3px;
+      position: absolute;
     }
 
 
     .search #loc_btn {
-        position: relative;
-        top: -4px;
-        left: 10px;
-        width: 50px;
-        height: 50px;
-        font-size: 14px;
-        border: none;
-        background-color: #FFB649;
-        display: inline-block;
-        border-radius: 12px;
-        cursor: pointer;
-        z-index : 100;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+      position: relative;
+      top: -4px;
+      left: 10px;
+      width: 50px;
+      height: 50px;
+      font-size: 14px;
+      border: none;
+      background-color: #FFB649;
+      display: inline-block;
+      border-radius: 12px;
+      cursor: pointer;
+      z-index : 100;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     }
     .search #loc_btn:hover {
-        box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+      box-shadow: inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
         inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
     }
 
     .search #search_input {
-        font-family: "NanumSquareNeo-Variable";
-        position: relative;
-        height: 50px;
-        font-size: 13px;
-        padding : 10px 10px 10px 24px;
-        width: 65%;
-        border: none;
-        border-radius: 0 12px 12px 0;
-        background-color: #FFD18B;
-        color: black;
-        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+      font-family: "NanumSquareNeo-Variable";
+      position: relative;
+      height: 50px;
+      font-size: 13px;
+      padding : 10px 10px 10px 24px;
+      width: 65%;
+      border: none;
+      border-radius: 0 12px 12px 0;
+      background-color: #FFD18B;
+      color: black;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
     }
 
     /*실시간 검색 태그 */
@@ -310,23 +310,23 @@ input:focus {
     }
 
     .header-bell {
-        position: absolute;
-        top : 35px;
-        right: 166px;
-        text-align: center;
-        white-space: nowrap;
-        /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-        z-index: 3;
+      position: absolute;
+      top : 35px;
+      right: 166px;
+      text-align: center;
+      white-space: nowrap;
+      /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+      z-index: 3;
     }
 
     .header-profile {
-        position: absolute;
-        top: 0;
-        right: 20px;
-        text-align: center;
-        white-space: nowrap;
-        /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
-        z-index: 3;
+      position: absolute;
+      top: 0;
+      right: 20px;
+      text-align: center;
+      white-space: nowrap;
+      /*ì¤„ë°”ê¿ˆ ë°©ì§€*/
+      z-index: 3;
     }
 
     a {
@@ -354,7 +354,7 @@ input:focus {
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        cursor: pointer;;
+        cursor: pointer;
     }
 
     .user-name {
@@ -368,9 +368,9 @@ input:focus {
 
 
     .header-user .header-arrow{
-        position: relative;
-        display: inline-block;
-        padding : 0 4px 0 8px;
+      position: relative;
+      display: inline-block;
+      padding : 0 4px 0 8px;
 
     }
 
@@ -460,9 +460,10 @@ input:focus {
 
 
 #chat-page {
+    background-image: url('https://core-order-bucket.s3.ap-northeast-2.amazonaws.com/cloud.jpg');
     background-size: cover;
     background-position: center;
-    opacity : 10;
+    opacity: 10;
     position: relative;
     height: 100%;
     padding: 199px 0px 0px;
@@ -796,11 +797,11 @@ span.chat-user-name {
     font-size: 13px;
 }
 
-.bell {
-    position : relative;
-    top: 0px;
-    right : 42%
-}
+    .bell {
+        position : relative;
+        top: 0px;
+        right : 42%
+    }
 
 .exile-button {
     width: 18px;
@@ -1057,42 +1058,33 @@ span.chat-user-name {
 
 
 
-.menu-bottom {
-    position: relative;
-    display: block;
-    height: 14%;
-}
+
 
 
 
 
 .modify-menu {
     position: relative;
-    top: 9px;
-    display: flex;
-    left: 3px;
-    padding: 0px 5px 0px 8px;
 }
 
-.modify_menu_btn {
+#modify_menu_btn {
     position: relative;
-    flex: 10;
+    width: 100%;
     height: 45px;
     font-size: 19px;
     border: none;
     color: #ffffff;
-    margin-right: 8px;
     background-color: #ffac58;
-    border-radius: 3px;
+    display: inline-block;
+    border-radius: 0 0 6px 6px;
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 12px;
 }
 
 .totalPrice {
-    position: relative;
-    /* height: 7%; */
-    display: inline-block;
-    /* padding-top: 8px; */
+    height: 7%;
+    padding-top: 8px;
 }
 
 .priceText {
@@ -1100,10 +1092,92 @@ span.chat-user-name {
     position: relative;
 }
 
-#start-settlement {
-    background-color: #7de689 !important;
+/* 초대하기 버튼 클릭 시 모달.*/
+/* 초대하기 버튼 클릭 시 모달.*/
+/* 초대하기 버튼 클릭 시 모달.
+
+.modal-backdrop {
+    background: none !important;
 }
-/* */
+
+.modal-dialog {
+    font-family: "NanumSquareNeo-Variable";
+    position: relative;
+    width: auto;
+    top: 33%;
+    right: 0.5%;
+    margin: .5rem;
+    pointer-events: none;
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 405px !important;
+        margin: 1.75rem auto;
+    }
+}
+
+.modal-dialog .modal-header {
+    display: block !important;
+}
+
+.modal-invite-text {
+    position: relative;
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.modal-invite-text p {
+    font-size: 19px;
+}
+
+.modal-invite-content {
+    position: relative;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.modal-invite-input {
+    border: 1px solid;
+    border-radius: 20px;
+    position: relative;
+    width: 100%;
+    height: 28px;
+}
+
+img.user-search {
+    width: 17px;
+    height: 17px;
+    top: 4px;
+    left: 8px;
+    position: absolute;
+}
+
+.modal-invite-input input {
+    border: none;
+    position: relative;
+    width : 80%;
+    font-size: 14px;
+}
+
+.modal-btn {
+    width: 17%;
+    border: none;
+    background-color: #FFB649;
+    color: #FFFFFF;
+    height: 33px;
+    border-radius: 5px;
+}
+
+.btn-back {
+    background-color: #f1f1f1;
+    color: #000000;
+}
+
+*/
 
 /* 사진 전송 라인 */
 .form-group {
@@ -1137,14 +1211,14 @@ span.chat-user-name {
 }
 
 .btn-upload {
-    width: 27px;
-    height: 27px;
-    position:relative;
-    left : 33%;
+  width: 27px;
+  height: 27px;
+  position:relative;
+  left : 33%;
 }
 
 #file {
-    display: none;
+  display: none;
 }
 
 
@@ -1383,30 +1457,30 @@ div#menu {
 }
 
 .storeModal_header_topper_back {
-    position : relative;
-    right : 4px;
-    flex : 0.7;
+  position : relative;
+  right : 4px;
+  flex : 0.7;
 }
 
 .storeModal_header_topper_back_img {
-    position : relative;
-    width : 90%;
-    header : 90%;
+  position : relative;
+  width : 90%;
+  header : 90%;
 }
 
 .storeModal_header_topper_text {
-    flex : 7;
-    position : relative;
-    text-align : left;
-    margin-left : 9px;
+  flex : 7;
+  position : relative;
+  text-align : left;
+  margin-left : 9px;
 }
 
 .storeModal_header_topper p{
-    font-family: "NanumSquareNeo-Variable";
-    position : absolute;
-    left : 0;
-    top: 11%;
-    font-size : 20px;
+  font-family: "NanumSquareNeo-Variable";
+  position : absolute;
+  left : 0;
+  top: 11%;
+  font-size : 20px;
 }
 
 /*================메뉴 선택 header =====================*/
@@ -1760,42 +1834,143 @@ div#menu {
     color: #0026ff;
 }
 
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+/* -------------------------------------------------------- */
+
+.options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* 모달 헤더 */
+.storeModal_header {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 17%;
+    /*padding: 10px 6px;*/
+    white-space: nowrap;
+    text-align: center;
+}
+
+.storeModal_header_topper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    padding: 4px 20px 5px 17px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.storeModal_header_topper h2 {
+    margin-left: 42px;
+    position: relative;
+    margin-left: 80px;
+}
+
+.storeModal_header_topper_back {
+    position: relative;
+    right: 4px;
+    flex: 0.6;
+}
+
+.storeModal_header_topper_back_img {
+    position: relative;
+    width: 90%;
+}
+
+.storeModal_header_topper_back_img_detail {
+    position: absolute;
+    width: 40px;
+    top: 0%;
+    left: 3%;
+}
+
+.storeModal_header_topper_back_img_invite {
+    position: absolute;
+    width: 40px;
+    top: -10%;
+    left: 3%;
+}
+
+.storeModal_header_topper_back_img_basket {
+    position: relative;
+    width: 10%;
+    float: left;
+    margin-left: 20px;
+}
 
 
 /* -------- 애니메이션 -------- */
 /* 로딩창 */
 
 .loading-div {
-    position: relative;
-    width: 100%;
-    top: 35%;
-    /* height: 100%; */
-    display: block;
-    text-align: center;
-    color : #FFF;
-    font-size : 13px;
+  position: relative;
+  width: 100%;
+  top: 35%;
+  /* height: 100%; */
+  display: block;
+  text-align: center;
+  color : #FFF;
+  font-size : 13px;
 }
 
 .loading {
-    display: inline-block;
-    margin-bottom : 0.5rem;
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgb(255 255 255 / 76%);
-    border-radius: 50%;
-    border-top-color: #ff8100f0;
-    animation: spin 1s ease-in-out infinite;
-    -webkit-animation: spin 1s ease-in-out infinite;
+  display: inline-block;
+  margin-bottom : 0.5rem;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgb(255 255 255 / 76%);
+  border-radius: 50%;
+  border-top-color: #ff8100f0;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-    to {
-        -webkit-transform: rotate(360deg);
-    }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @-webkit-keyframes spin {
-    to {
-        -webkit-transform: rotate(360deg);
-    }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+/* 지도 */
+
+.map_area{
+    position: absolute;
+    right: 40px;
+    top: 190px;
+    height: 100%;
+    width: 300px;
+    display: inline-block;
+    z-index: 5;
+    /* left: 0px; */
+}
+
+.map {
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    border-radius: 20px;
+    top: 0px;
+    display: none;
+}
+.map_title{
+    position: absolute;
+    height: 308px;
+    background-color: #FFF;
+    display: none;
+    width: 301px;
+    margin: auto;
+    border-radius: 9px;
+    text-align: center;
+    padding-top: 8px;
+    top: -36px;
 }

@@ -2704,6 +2704,7 @@ input::-webkit-inner-spin-button {
 .storeModal_header_topper h2 {
     margin-left: 42px;
     position: relative;
+    margin-left: 100px;
 }
 
 .storeModal_header_topper_back {
@@ -2736,10 +2737,6 @@ input::-webkit-inner-spin-button {
     width: 10%;
     float: left;
     margin-left: 20px;
-}
-
-.storeModal_header_topper h2 {
-    margin-left: 100px;
 }
 
 /* 결제창 이동 */

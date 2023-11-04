@@ -1,3 +1,29 @@
+@media (max-width: 639px) {
+    .cal_page {
+        position: absolute;
+        left: 50%;
+        top: 215px;
+        width: 100%;
+        height: 90%;
+        min-height: 560px;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        padding: 6px 3px;
+        margin: 0 auto;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 gray;
+        border-radius: 5px 5px 20px 20px;
+        border-bottom: solid 9px #ff8c16;
+        z-index: -1;
+        opacity: 0;
+        transform: translate(-50%, -40%);
+        transition: all 0.3s ease-in-out;
+    }
+}
+
 /* 모바일 화면 로고 및 햄버거 버튼 부분 */
 .moblie_logo {
     display: none;
@@ -28,15 +54,16 @@
     }
 
     .topper {
-        display: none;
+        display: block;
         position: fixed;
         z-index: 2;
         width: 100%;
         min-width: 200px;
         max-width: 400px;
-        height: 37px;
+        height: 35px;
         background-color: #ffffff;
         border-bottom: 1px solid #b0cbba6b;
+        top: 0px;
     }
 
     .chat-container {
@@ -49,21 +76,18 @@
     .header2 {
         display: block;
         z-index: 1000;
-        top: 10px;
-        border-bottom: solid 9px #ff8c16;
+        top: 0px;
+        /* border-bottom: solid 9px #ff8c16; */
         background-color: #ffffff;
         position: fixed;
         border-radius: 0px 0px 20px 20px;
-        width: 70%;
+        width: 68%;
         min-width: 200px;
         max-width: 400px;
-        height: 90%;
+        height: 100%;
         overflow: visible;
         transition: all 0.3s ease-in-out;
-
         transform: translate(-50%, 0%);
-
-        /* 숨기기 */
         z-index: -1;
         opacity: 0;
     }
@@ -110,8 +134,8 @@
 
     .width-container {
         position: relative;
-        /*max-width: 1880px;*/
-        height: 23%;
+        /* max-width: 1880px; */
+        height: 260px;
         min-height: 230px;
         margin: 0 auto;
     }
@@ -193,9 +217,11 @@
         border-bottom: 1px solid #a4a4a473;
         display: block;
         width: 100%;
-        height: 58%;
-        padding: 7px 0px 0px 19px;
+        height: 70px;
+        padding: 5px 0px 0px 5px;
         /* margin: 0 auto; */
+        top: 0;
+        left: 0;
     }
 
     .tag {
@@ -235,7 +261,10 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        padding: 18px 0px 0px 0px;
+        padding: 15px 0px 0px 0px;
+        top: 15px;
+        right: 0;
+        line-height: 35px;
     }
 
 
@@ -264,12 +293,12 @@
 
     .header-bell {
         position: absolute;
-        top: 171px;
-        right: 166px;
+        top: 207px;
+        /* right: 0px; */
         text-align: center;
         white-space: nowrap;
-        /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
         z-index: 3;
+        left: 75px;
     }
 
     .bell img {
@@ -278,20 +307,16 @@
     }
 
 
-    .bell {
-        position: relative;
-        width: 30px;
-        top: 11px;
-        height: 30px;
-        right: 41px;
-    }
+    .bell {}
 
     .header-profile {
         position: relative;
         text-align: center;
-        height: 100%;
+        height: 90%;
         white-space: nowrap;
-        /*Ã¬Â¤â€žÃ«Â°â€ÃªÂ¿Ë† Ã«Â°Â©Ã¬Â§â‚¬*/
+        z-index: 3;
+        top: 15px;
+        right: 0px;
         z-index: 3;
     }
 
@@ -326,9 +351,8 @@
     }
 
     .user-picture2 img {
-        position: a;
-        width: 158px;
-        height: 156px;
+        width: 170px;
+        height: 170px;
     }
 
     .user-name2 {
@@ -340,6 +364,7 @@
         left: 8px;
         font-size: 17px;
         color: gray;
+        top: 10px;
     }
 
 
@@ -425,8 +450,7 @@
 }
 
 
-/* 결제내역 상세보기 모바일 작업 */
-
+/* 결제내역 상세보기 모바일 작업 */ 
 @media (max-width: 639px) {
     .cal_page {
         position: absolute;
@@ -635,6 +659,7 @@
         float: right;
         margin-bottom: 10px;
         margin-right: 25px;
+        margin: auto 1px;
     }
 
     #host_discount {
@@ -647,5 +672,68 @@
 
     .discount_plus {
         color: #0026ff;
+    }
+
+    .storeModal_header_topper_back_img {
+        position: relative;
+        width: 60%;
+    }
+
+    .storeModal_header_topper_back_img_detail {
+        position: absolute;
+        width: 11%;
+        top: 0%;
+        left: 3%;
+    }
+
+    .storeModal_header_topper_back_img_invite {
+        position: absolute;
+        width: 11%;
+        top: 0%;
+        left: 3%;
+    }
+
+    .storeModal_header_topper h2 {
+        margin-left: 42px;
+        position: relative;
+    }
+
+    /* 상세 결제금액 */
+    .pay_detail {
+        display: none;
+        position: absolute;
+        z-index: 15;
+        width: 271px;
+        height: 267px;
+        background: #FFF;
+        left: 15px;
+        border: 1px solid;
+    }
+}
+
+/* 장바구니 모바일 배치 */
+@media (max-width: 639px) {
+    .basket-view {
+        position: absolute;
+        width: 80%;
+        height: 637px;
+        font-weight: bold;
+        display: none;
+        bottom: 23px;
+        margin-left: 8%;
+        min-width: 347px;
+        border: none;
+        background-color: #fff;
+        box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
+        border-radius: 5px;
+        left: 50%;
+        top: 36%;
+        transform: translate(-50%, -50%);
+        flex-direction: column;
+        align-items: center;
+        background: white;
+        z-index: 5;
+        padding: 8px 3px;
+        margin: 0 auto;
     }
 }
