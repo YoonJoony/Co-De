@@ -37,7 +37,7 @@ public class RestaurantsController {
     //사용자의 세션에 저장된 id를 통해 주소를 받아서 주소 출력
     @GetMapping("/mozip/storeList")
     @ResponseBody
-    public List<Restuarant> storeList(HttpServletRequest request) {
+    public List<Restuarant> storeList(HttpServletRequest request) throws InterruptedException {
         HttpSession session = request.getSession(false);
 
         restaurantService.driver();

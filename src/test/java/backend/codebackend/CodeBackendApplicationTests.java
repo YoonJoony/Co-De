@@ -37,7 +37,8 @@ class CodeBackendApplicationTests {
 
 	@Autowired
 	BasketService basketService;
-
+	@Autowired
+	MozipService mozipService;
 
 	@Test
 	@DisplayName("유저 리스트 조회")
@@ -83,7 +84,7 @@ class CodeBackendApplicationTests {
 
 	@Test
 	@DisplayName("가게 정보 조회 테스트")
-	void 가게정보조회() {
+	void 가게정보조회() throws InterruptedException {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
 		String category = "";
@@ -203,5 +204,11 @@ class CodeBackendApplicationTests {
 		long endTime = System.currentTimeMillis();
 		long executionTime = endTime - startTime;
 		System.out.println("테스트 실행 시간: " + executionTime + "ms");
+	}
+
+	@Test
+	@DisplayName("방 정산 상태 조회")
+	void 정산상태() {
+		System.out.println(mozipService.mozipStatus(95L));
 	}
 }

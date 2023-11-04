@@ -40,7 +40,9 @@ public class RestaurantService {
     public void driver() {
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
+
         this.driver = new ChromeDriver();
+        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(40));
     }
 
 
@@ -54,11 +56,16 @@ public class RestaurantService {
     }
 
     public void searchAddress(String address) {
-        WebElement searchBox = driver.findElement(By.name("address_input"));
+        // 검색창을 찾습니다. Google의 검색창은 'name' 속성이 'q'인 input 요소입니다.
+        WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("address_input")));
+
         searchBox.clear();
+
         searchBox.click();
+
         searchBox.sendKeys(address);
-        WebElement clickSearch = driver.findElement(By.className("ico-pick"));
+
+        WebElement clickSearch = wait.until(ExpectedConditions.elementToBeClickable(By.className("ico-pick")));
         clickSearch.click();
     }
 
@@ -74,7 +81,7 @@ public class RestaurantService {
         Restuarant rs;
         List<Restuarant> rsList = new ArrayList<Restuarant>();
         // 웹 페이지에서 restaurant-name 클래스를 가진 모든 요소를 선택하여 restaurants 리스트에 저장
-        List<WebElement> restaurants = driver.findElements(By.className("restaurant-name"));
+        List<WebElement> restaurants = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("restaurant-name")));
 
         //선택한 식당 이름을 기준으로 찾을거니 식당 이름을 기준으로 요소를 찾음
         for (WebElement restaurant : restaurants) {

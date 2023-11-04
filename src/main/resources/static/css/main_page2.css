@@ -636,6 +636,7 @@ a {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid hsla(220, 9%, 46%, 0.3);
+  cursor: pointer;
 }
 
 /* 모집글 header */

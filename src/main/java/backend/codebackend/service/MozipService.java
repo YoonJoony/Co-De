@@ -69,8 +69,8 @@ public class MozipService {
         mozipRepository.minusUserCnt(id);
     }
 
-
-
-
+    public boolean mozipStatus(Long id) {
+        return mozipRepository.mozipStatus(id);
+    }
 
 }
