@@ -7,9 +7,6 @@ document.write("<script\n" +
     "  crossorigin=\"anonymous\"></script>")
 
 
-var join = document.querySelector('#chat-join');
-var mainJoin = document.querySelector('#main-join');
-var main = document.querySelector('#main');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message'); //입력한 메시지 가져오기
 var messageArea = document.querySelector('#messageArea');
@@ -37,18 +34,6 @@ function connect(event) {
     nickname = document.querySelector("#user-name").textContent;
     //var profileImage = findProfileImage(); 자기 프로필 이미지 경로 찾기
 
-
-//    입장 버튼 클릭 시 입장 페이지 사라지고 채팅방 페이지가 뜬다
-    join.style.opacity = '1';
-    main.style.opacity = '1';
-    join.style.transform = 'translateY(-900px)';
-    setTimeout(function() {
-      main.classList.add('visible');
-      join.classList.remove('chat-join');
-      join.classList.add('hidden');
-      body.classList.add('body-chat');
-    }, 550);
-
     //연결하고자 하는 socket의 endpoint
     var socket = new SockJS('/ws-stomp');
     stompClient = Stomp.over(socket); //SockJS 객체 기반의 Stomp 클라이언트 객체 생성
@@ -61,6 +46,7 @@ function connect(event) {
 //연결 성공 시
 function onConnected() {
     console.log("연결 성공");
+    menuList();
     stompClient.subscribe("/sub/mozip/chat/room/"+ id, onMessageReceived);
        /*  Stomp 클라이언트 객체를 사용하여 서버로부터 메시지를 구독 한다. 이 메소드는 두 개의 인자를 받는다.
            첫 번째 인자는 구독할 대상의 주소(address)이다. 이 주소는 서버에서 메시지를 보낼 때 사용 된다.
@@ -181,29 +167,6 @@ function getUserList() {
     })
 
 }
-
-//사용자가 호스트인지 아닌지 구분한다.
-//function findHost(id, nickname) {
-//    $.ajax({
-//        type : "GET",
-//        url : "/mozip/chat/findHost",
-//        data : {
-//            "id" : id,
-//            "nickname" : nickname //보안을 위해서 세션에 적힌 아이디의 닉네임을 찾도록 백엔드에서 수정,
-//        },
-//        success: function(data) {
-//            if(data)
-//                return true;
-//            else
-//                return false;
-//        },
-//        error: function() {
-//            console.log("findHost 요청 실패");
-//        }
-//    })
-//}
-
-
 
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
@@ -455,53 +418,15 @@ function uploadFile(input) {
 
 
 
+window.onload = function() {
+    connect();
 
-mainJoin.addEventListener('submit', connect, true); //usernameForm 리스너에 connect 함수 연결
+};
+
 messageForm.addEventListener('submit', sendMessage, true); //messageForm 리스너에 sendMessage 함수 연결
 
 $(function () {
-    document.getElementById('back-button').addEventListener('click', function() {
-          window.history.back();
-        });
-   // 프로필 클릭시
-    var $profile = $(".header-profile");
-    var $layerProfile = $(".layer-header-profile");
 
-    $profile
-    .on('mouseenter', function (e) {
-        e.preventDefault();
-        $layerProfile.css({ left : 'auto'}).fadeIn(100);
-    })
-    .on('mouseleave', function (e) {
-        e.preventDefault();
-        $layerProfile.css({ left : 'auto'}).fadeOut(100);
-    });
-
-   // 채팅방 프로필 클릭시
-    var $chatProfile = $(".chat-header-left");
-    var $userList = $(".user-list");
-
-    $chatProfile
-    .on('mouseenter', function (e) {
-        e.preventDefault();
-        $userList.css({ left : 'auto'}).fadeIn(100);
-    })
-    .on('mouseleave', function (e) {
-        e.preventDefault();
-        $userList.css({ left : 'auto'}).fadeOut(100);
-    });
-
-    //페이지 이동 .. 잡 처리
-    var $mozipPage = $('.mozipPage');
-    var $out_img = $('.out-img');
-
-    $mozipPage.click(function() {
-      location.href = "/main_page.html"
-    });
-
-    $out_img.click(function() {
-        location.href = "/main_page.html"
-    });
 
     //헤더부분 '내 채팅' 에서 자기 방 들어가게 하기.
 //    $mozipPage.click(function() {
@@ -636,7 +561,7 @@ function menuList() {
             menu_body.appendChild(menu_group);
             loading_div.style.display = "none";
         }
-        document.getElementById('modify_menu_btn').onclick = null;
+        document.getElementById('choice-menu').onclick = null;
     },
     error: function() {
         console.log("리스트 요청 실패 : ");
@@ -754,6 +679,47 @@ var menuName;
 var menuPrice;
 var basketList = document.querySelector('.basket-list');
 $(function () {
+    // 프로필 클릭시
+    var $profile = $(".header-profile");
+    var $layerProfile = $(".layer-header-profile");
+
+    $profile
+        .on('mouseenter', function (e) {
+            e.preventDefault();
+            $layerProfile.css({ left : 'auto'}).fadeIn(100);
+        })
+        .on('mouseleave', function (e) {
+            e.preventDefault();
+            $layerProfile.css({ left : 'auto'}).fadeOut(100);
+        });
+
+    // 채팅방 프로필 클릭시
+    var $chatProfile = $(".chat-header-left");
+    var $userList = $(".user-list");
+
+    $chatProfile
+        .on('mouseenter', function (e) {
+            e.preventDefault();
+            $userList.css({ left : 'auto'}).fadeIn(100);
+        })
+        .on('mouseleave', function (e) {
+            e.preventDefault();
+            $userList.css({ left : 'auto'}).fadeOut(100);
+        });
+
+    //페이지 이동 .. 잡 처리
+    var $mozipPage = $('.mozipPage');
+    var $out_img = $('.out-img');
+
+    $mozipPage.click(function() {
+        location.href = "/main_page.html"
+    });
+
+    $out_img.click(function() {
+        location.href = "/main_page.html"
+    });
+
+    //메뉴 크롤링
     $(document).on('click', '.menu-group-list', function() { //메뉴판 선택
         menuName = $(this).find('.menu-name').text(); //내가 선택한 메뉴 이름
         menuPrice = $(this).find('.menu-price').text(); //내가 선택한 메뉴 가격
@@ -919,7 +885,33 @@ $(function () {
     });
 
 
+    //정산하기 버튼
+    $(document).on('click', '#start-settlement', function() {
+        //사용자가 호스트인지 아닌지 구분한다.
+        $.ajax({
+           type : "GET",
+           url : "/mozip/chat/findHost",
+           data : {
+               "id" : id,
+               "nickname" : nickname //보안을 위해서 세션에 적힌 아이디의 닉네임을 찾도록 백엔드에서 수정,
+           },
+           success: function(data) {
+               if(data) {
+                   alert("호스트 입니다!");
 
+
+
+               }
+               else{
+                   alert("참여자 입니다!");
+               }
+           },
+           error: function() {
+               console.log("findHost 요청 실패");
+           }
+       })
+    
+    });
 
 
 
@@ -1092,46 +1084,14 @@ function detailClose_cos3() {
 
 
 // 장바구니 이동
-const basket_wrap = document.querySelector(".basket-view");
-const basket_header = document.querySelector(".basket-title");
 
-let BlastX = 0;
-let BlastY = 0;
-let BstartX = 0;
-let BstartY = 0;
 
-basket_header.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-    BstartX = e.clientX;
-    BstartY = e.clientY;
 
-    // 2.
-    basket_header.classList.add('active');
 
-    // 3.
-    document.addEventListener('mouseup', onRemoveEvent);
 
-    // 4.
-    document.addEventListener('mousemove', onMove);
-});
 
-function onRemoveEvent() {
-    basket_header.classList.remove('active');
-    document.removeEventListener('mouseup', onRemoveEvent);
-    document.removeEventListener('mousemove', onMove);
-}
 
-function onMove(e) {
-    e.preventDefault();
-    BlastX = BstartX - e.clientX;
-    BlastY = BstartY - e.clientY;
 
-    BstartX = e.clientX;
-    BstartY = e.clientY;
-
-    basket_wrap.style.top = `${basket_wrap.offsetTop - BlastY}px`;
-    basket_wrap.style.left = `${basket_wrap.offsetLeft - BlastX}px`;
-}
 
 function initMap2() {
     // 호스트 좌표 변수

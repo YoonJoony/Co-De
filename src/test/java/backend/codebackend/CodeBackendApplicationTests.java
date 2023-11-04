@@ -83,7 +83,7 @@ class CodeBackendApplicationTests {
 
 	@Test
 	@DisplayName("가게 정보 조회 테스트")
-	void 가게정보조회() {
+	void 가게정보조회() throws InterruptedException {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
 		String category = "";

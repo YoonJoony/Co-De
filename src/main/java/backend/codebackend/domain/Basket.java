@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.openqa.selenium.devtools.v100.domstorage.model.Item;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.List;
