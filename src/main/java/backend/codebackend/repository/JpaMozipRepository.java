@@ -1,5 +1,6 @@
 package backend.codebackend.repository;
 
+import backend.codebackend.domain.Basket;
 import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import jakarta.persistence.EntityManager;
@@ -73,6 +74,19 @@ public class JpaMozipRepository implements MozipRepository {
             Mozip mozip = result.get(0);
             mozip.setUsercount(mozip.getUsercount()-1);
             em.merge(mozip);
+        }
+    }
+
+    @Override
+    public boolean mozipStatus(Long id) {
+        try {
+
+            String jpql = "SELECT m FROM Mozip m WHERE m.id = :id";
+            TypedQuery<Mozip> query = em.createQuery(jpql, Mozip.class);
+            query.setParameter("id", id);
+            return query.getSingleResult().getStatus() == Mozip.mozipStatus.정산전;
+        } finally {
+            em.close();
         }
     }
 }

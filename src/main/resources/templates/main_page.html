@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/css/main_page3.css">
+    <link rel="stylesheet" href="/css/main_page3.css?asd">
     <link rel="stylesheet" href="/css/main_page_mobile_header.css">
     <!-- vscode 전용 경로 ---------------------------------------------------->
     <link rel="stylesheet" href="../static/css/main_page2.css">
@@ -216,9 +216,11 @@
                                                     <div class="board-address" th:text="${post.store}">꾸브라꼬-의정부점</div>
                                                 </div>
                                                 <div class="board-footer-right">
-                                                    <div class="board-peoples-img">
+                                                    <div class="board-footer-right">
+                                                        <div class="status" th:text="${post.status}"></div>
+                                                        <div class="board-peoples-img">
                                                         <img src="images/people2.png">
-                                                    </div>
+                                                        </div>
                                                     <div class="board-peoples"
                                                         th:text="${post.usercount} + '/' +${post.peoples}"></div>
                                                 </div>
@@ -471,7 +473,7 @@
             }
         }
     </script>
-    <script src="/js/main_page/main_page2.js"></script>
+    <script src="/js/main_page/main_page2.js?asd"></script>
     <script src="/js/main_page/addStore2.js"></script>
     <!-- vscode 전용 경로 -------------------------------------------->
     <script src="../../../../apikey.js"></script>

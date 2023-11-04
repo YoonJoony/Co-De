@@ -37,7 +37,8 @@ class CodeBackendApplicationTests {
 
 	@Autowired
 	BasketService basketService;
-
+	@Autowired
+	MozipService mozipService;
 
 	@Test
 	@DisplayName("유저 리스트 조회")
@@ -203,5 +204,11 @@ class CodeBackendApplicationTests {
 		long endTime = System.currentTimeMillis();
 		long executionTime = endTime - startTime;
 		System.out.println("테스트 실행 시간: " + executionTime + "ms");
+	}
+
+	@Test
+	@DisplayName("방 정산 상태 조회")
+	void 정산상태() {
+		System.out.println(mozipService.mozipStatus(95L));
 	}
 }
