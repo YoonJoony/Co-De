@@ -77,16 +77,27 @@ public class JpaMozipRepository implements MozipRepository {
         }
     }
 
+    //모집글 정산 상태 확인
     @Override
     public boolean mozipStatus(Long id) {
         try {
-
             String jpql = "SELECT m FROM Mozip m WHERE m.id = :id";
             TypedQuery<Mozip> query = em.createQuery(jpql, Mozip.class);
             query.setParameter("id", id);
-            return query.getSingleResult().getStatus() == Mozip.mozipStatus.정산전;
+            return query.getSingleResult().getStatus() != Mozip.mozipStatus.정산전;
         } finally {
             em.close();
         }
+    }
+
+    //모집글 정산 상태 업데이트
+    @Override
+    public void updateMozipStatus(Long id) {
+        String minusItem = "update Mozip m set m.status = :status where m.id = :id ";
+
+        em.createQuery(minusItem)
+                .setParameter("id",  id)
+                .setParameter("status", Mozip.mozipStatus.정산시작)
+                .executeUpdate();   //executeUpdate 메서드는 업데이트된 엔티티 수를 반환
     }
 }

@@ -595,6 +595,7 @@ function menuList() {
                 return 0;
             }
         });
+
         if(foodDuplicateBool === 1)
             return 0;
 
@@ -719,7 +720,7 @@ $(function () {
         location.href = "/main_page.html"
     });
 
-    //메뉴 크롤링
+    //메뉴 선택
     $(document).on('click', '.menu-group-list', function() { //메뉴판 선택
         menuName = $(this).find('.menu-name').text(); //내가 선택한 메뉴 이름
         menuPrice = $(this).find('.menu-price').text(); //내가 선택한 메뉴 가격
@@ -736,8 +737,9 @@ $(function () {
                 basketSendMessage(); //채팅으로 장바구니에 메뉴를 추가했다고 알림
                 console.log("메뉴저장 성공");
             },
-            error: function() {
-                console.log("리스트 요청 실패 : ");
+            error : function(data) {
+                var response = JSON.parse(data.responseText)
+                alert(response.message);
             }
             })
 
@@ -762,6 +764,7 @@ $(function () {
                 for(let i = 0; i < data.length; i++) {
                     createBasketMenu(data[i]); //장바구니에 추가한 메뉴 div 생성
                 }
+                totalPrice();
             },
             error: function() {
                 console.log("리스트 요청 실패 : ");
@@ -775,38 +778,38 @@ $(function () {
     var updateQuantityPrice; //수량 수정할 메뉴의 가격
     var updateQuantityNickName //수량 수정할 메뉴의 주문자.
     var menuId; //메뉴판 기본키
+    var mozipStatus = '정산전' //정산 상태
 
     // + 버튼
     $(document).on('click', '#plus', function() {
-      countInput = $(this).parent().find('.count_css'); //클릭한 메뉴의 수량
-      //장바구니에 추가한 메뉴 요소에 data-room-id 값(메뉴 기본키)을 가져와 메뉴를 구분해줌
-      menuId = $(this).parents('.basket-list-item').data('room-id');
-      updateQuantityPrice = $(this).parents('.basket-list-item').find('.price');
-      updateQuantityNickName = $(this).parents('.basket-list-item').find('.food-order-name').text();
+
+        countInput = $(this).parent().find('.count_css'); //클릭한 메뉴의 수량
+        //장바구니에 추가한 메뉴 요소에 data-room-id 값(메뉴 기본키)을 가져와 메뉴를 구분해줌
+        menuId = $(this).parents('.basket-list-item').data('room-id');
+        updateQuantityPrice = $(this).parents('.basket-list-item').find('.price');
+        updateQuantityNickName = $(this).parents('.basket-list-item').find('.food-order-name').text();
 
       //다른 사람의 장바구니를 수정하려 했을 경우.
-      if(updateQuantityNickName === nickname){
-          updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) + (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())) + "원");
-          countInput.val(parseInt(countInput.val()) + 1);
-          totalPrice();
-      }
+        if(updateQuantityNickName === nickname && mozipStatus === '정산중'){
+            updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) + (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())) + "원");
+            countInput.val(parseInt(countInput.val()) + 1);
+            totalPrice();
+        }
 
       $.ajax({
           type : "POST",
           url : "/chat/basket/plusQuantity",
           data : {
+              "chatroom_id" : id,
               "menuId" : menuId
           },
           success : function(data) {
-            if(data === "") {
-                alert("본인의 메뉴만 수정할 수 있습니다!!");
-                return;
-            }
             basketUpdateSendMessage();
             console.log(data);
           },
-          error : function() {
-            console.log("수량 수정 API 오류");
+          error : function(data) {
+              var response = JSON.parse(data.responseText);
+              alert(response.message);
           }
        })
 
@@ -824,7 +827,7 @@ $(function () {
           updateQuantityNickName = $(this).parents('.basket-list-item').find('.food-order-name').text();
 
           //다른 사람의 장바구니를 수정하려 했을 경우 방지
-          if(updateQuantityNickName === nickname){
+          if(updateQuantityNickName === nickname && mozipStatus === '정산중'){
               updateQuantityPrice.text(parseInt(updateQuantityPrice.text()) - (parseInt(updateQuantityPrice.text())/parseInt(countInput.val())) + "원");
               countInput.val(parseInt(countInput.val()) - 1);
               totalPrice();
@@ -832,20 +835,18 @@ $(function () {
 
           $.ajax({
               type : "POST",
-              url : "/chat/basket/minusQuantity",
+              url : "/chat/basket/plusQuantity",
               data : {
+                  "chatroom_id" : id,
                   "menuId" : menuId
               },
               success : function(data) {
-                if(data === "") { //HTML로 닉네임을 조작해도 세션과 DB 테이블을 이용하여 타인 메뉴 수정을 방지할 수 있다.
-                    alert("본인의 메뉴만 수정할 수 있습니다!!");
-                    return;
-                }
                 basketUpdateSendMessage();
                 console.log(data);
               },
-              error : function() {
-                console.log("수량 수정 API 오류");
+              error : function(data) {
+                  var response = JSON.parse(data.responseText);
+                  alert(response.message);
               }
            })
       }
@@ -858,7 +859,7 @@ $(function () {
       updateQuantityNickName = $(this).parents('.basket-list-item').find('.food-order-name').text();
 
       //다른 사람의 장바구니를 수정하려 했을 경우 방지
-      if(updateQuantityNickName == nickname){
+      if(updateQuantityNickName === nickname && mozipStatus === '정산중'){
           totalPrice();
           //선택한 메뉴 삭제
           basketDeleteSendMessage(menuId);
@@ -868,6 +869,7 @@ $(function () {
           type : "POST",
           url : "/chat/basket/deleteByMenu",
           data : {
+              "chatroom_id" : id,
               "menuId" : menuId
           },
           success : function(data) {
@@ -877,8 +879,9 @@ $(function () {
             }
             console.log(data);
           },
-          error : function() {
-            console.log("장바구니 메뉴 삭제 API 오류");
+          error : function(data) {
+              var response = JSON.parse(data.responseText);
+              alert(response.message);
           }
        })
 
@@ -890,25 +893,22 @@ $(function () {
         //사용자가 호스트인지 아닌지 구분한다.
         $.ajax({
            type : "GET",
-           url : "/mozip/chat/findHost",
+           url : "/mozip/chat/startCalculate",
            data : {
-               "id" : id,
-               "nickname" : nickname //보안을 위해서 세션에 적힌 아이디의 닉네임을 찾도록 백엔드에서 수정,
+               "chatroom_id" : id,
+               "nickname" : nickname
            },
            success: function(data) {
                if(data) {
-                   alert("호스트 입니다!");
+                   alert(data);
+                   mozipStatus = '결제완료';
 
-
-
-               }
-               else{
-                   alert("참여자 입니다!");
                }
            },
-           error: function() {
-               console.log("findHost 요청 실패");
-           }
+            error : function(data) {
+                var response = JSON.parse(data.responseText);
+                alert(response.message);
+            }
        })
     
     });

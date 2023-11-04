@@ -77,7 +77,7 @@ class CodeBackendApplicationTests {
 	@DisplayName("방장 조회 테스트")
 	void 방장조회() {
 
-		if (chatService.isCurrentUserHost(64L, "김윤준")){
+		if (chatUserService.isCurrentUserHost(64L, "김윤준")){
 			System.out.println("방장 맞음 ");
 		}
 	}
@@ -210,5 +210,11 @@ class CodeBackendApplicationTests {
 	@DisplayName("방 정산 상태 조회")
 	void 정산상태() {
 		System.out.println(mozipService.mozipStatus(95L));
+	}
+
+	@Test
+	@DisplayName("방 정산 상태 변경")
+	void 정산상태변경() {
+		mozipService.updateMozipStatus(95L);
 	}
 }

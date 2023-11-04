@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -45,6 +47,7 @@ public class ChatController {
     private final ChatUserService chatUserService;
     private final BasketService basketService;
     private final MemberService memberService;
+    private final MozipService mozipService;
     @MessageMapping("/mozip/chat/enterUser") //해당 주소로 메시지가 도착시 메소드 실행
     public void enterUser(@Payload ChatDTO chat, SimpMessageHeaderAccessor headerAccessor) {//Payload : Message전송할 데이터가 담긴 Wrapper Class로 메시지 요청 시 instance화 된 Message를 생성한다. 그것을 ChatDTO 와 매핑시켜줌
     /*  @Payload : 메시지 핸들러에서 메시지를 처리할 때, 메시지의 payload를 추출하여 메서드 인자로 전달하는 기능
@@ -108,10 +111,26 @@ public class ChatController {
     //모집글에서 사용자가 현재 모집글의 호스트인지 아닌지 판별
     @GetMapping("/mozip/chat/findHost")
     @ResponseBody
-    public boolean chatPage(Long id, String nickname){   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
+    public boolean findHost(Long id, String nickname){   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
 
-        return chatService.isCurrentUserHost(id, nickname);
+        return chatUserService.isCurrentUserHost(id, nickname);
     }
 
+    //정산 시작 버튼 클릭 시 모집글을 정산 중으로 바뀌게
+    @GetMapping("/mozip/chat/startCalculate")
+    @ResponseBody
+    public ResponseEntity<?> startCalculate(Long chatroom_id, Long id, String nickname) {   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
 
+        //정산 상태 확인
+        if (mozipService.mozipStatus(chatroom_id)) {
+            return ResponseEntity.badRequest().body(Collections.singletonMap("message", "정산 시작된 상태입니다!"));
+        }
+
+        if (chatUserService.isCurrentUserHost(id, nickname))
+            return ResponseEntity.badRequest().body(Collections.singletonMap("message", "방장만 누를 수 있습니다."));
+
+        mozipService.updateMozipStatus(chatroom_id);
+
+        return ResponseEntity.ok( "정산이 시작되었습니다!");
+    }
 }

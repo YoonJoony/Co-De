@@ -69,8 +69,14 @@ public class MozipService {
         mozipRepository.minusUserCnt(id);
     }
 
+    //모집글 정산 상태 확인
     public boolean mozipStatus(Long id) {
         return mozipRepository.mozipStatus(id);
+    }
+
+    //정산 상태 변경
+    public void updateMozipStatus(Long id) {
+        mozipRepository.updateMozipStatus(id);
     }
 
 }

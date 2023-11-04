@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat4.css?after">
+  <link rel="stylesheet" href="/css/chatroom/chat4.css?after2">
   <link rel="stylesheet" href="/css/chatroom/mobile_chat.css?v=<%=System.currentTimeMillis()"> <!-- 모바일 시 채팅방 화면 css -->
   <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
@@ -100,7 +100,7 @@
     <div class="search-container">
       <div class="search">
         <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-          <img class="gps" src="images/search.png">
+          <img class="gps" src="/images/search.png">
         </button>
         <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
         <div class="tag-container">
@@ -136,7 +136,7 @@
           <div class="chat-header">
             <div class="chat-header-left">
                 <span class="user-picture2">
-                  <img src="images/profile/profile5.png" height="40px" width="40px">
+                  <img src="/images/profile/profile5.png" height="40px" width="40px">
                 </span>
               <div id="user-list" class="user-list" style="display : none">
               </div>
@@ -147,7 +147,7 @@
                 <div class="connecting">offline</div>
               </div>
             </div>
-            <div class="chat-header-right"><img src="images/Icon/menu_5259008.png" width="23px" height="23px"
+            <div class="chat-header-right"><img src="/images/Icon/menu_5259008.png" width="23px" height="23px"
                                                 class="header-img">
             </div>
           </div>
@@ -167,7 +167,7 @@
                     <div id="menu">
                       <label for="file">
                         <div class="btn-upload">
-                          <img src="images/picture.png" style="cursor:pointer;">
+                          <img src="/images/picture.png" style="cursor:pointer;">
                         </div>
                       </label>
                       <input type="file" name="file" id="file" onchange="uploadFile(this)">
@@ -442,7 +442,7 @@
     <div class="modal-content">
       <div class="storeModal_header_topper">
         <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal" >
-          <img class="storeModal_header_topper_back_img" src="images/back.png" style="cursor:pointer;">
+          <img class="storeModal_header_topper_back_img" src="/images/back.png" style="cursor:pointer;">
         </div>
         <div class="storeModal_header_topper_text">
           <p th:text="${room.store}"></p>
@@ -473,7 +473,7 @@
 
 
 
-          <script src="/js/chatroom/chat3.js"></script>
+          <script src="/js/chatroom/chat3.js?asd"></script>
           <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
           <!-- vscode용 ------------------------------------------------------------------>
