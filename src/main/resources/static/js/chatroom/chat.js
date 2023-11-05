@@ -324,7 +324,7 @@ function onMessageReceived(payload) {
         nickname: chat.sender,
       },
       success: function (data) {
-        if(isDuplicateBasket(data) === 1) {
+        if (isDuplicateBasket(data) === 1) {
           createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
         }
 
@@ -582,36 +582,36 @@ function menuList() {
 }
 
 //장바구니 중복
-function isDuplicateBasket(data){
+function isDuplicateBasket(data) {
   let foodNameElements = document.querySelectorAll(".food-name");
   let foodDuplicateBool = 0;
 
   // 각 요소에 대해 처리
-    foodNameElements.forEach(function (element) {
-      let text = element.textContent;
-      // 텍스트가 "스테이크"인 경우 처리
-      if (text === data.product_name) {
-        //텍스트가 '스테이크'인 요소의 기본키를 갖고온다.
-        let basketId = element.parentElement.parentElement.dataset.roomId;
-        //같은 음식일 경우와 그 음식을 시킨 닉네임이 다를 경우 제외한다. 같은 음식을 같은 사람이 시킬 경우 개수가 증가하게 해야함.
-        if(parseInt(basketId) !== data.id) {
-          return 2;
-        }
-
-        let parentElement = element.parentElement.parentElement;
-
-        let countElement = parentElement.querySelector(".count_css");
-        let priceElement = parentElement.querySelector(".price");
-
-        let count = parseInt(countElement.value);
-        let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
-
-        countElement.value = count + 1;
-        priceElement.textContent = price + price / count + "원";
-        foodDuplicateBool = 1;
-        return 0;
+  foodNameElements.forEach(function (element) {
+    let text = element.textContent;
+    // 텍스트가 "스테이크"인 경우 처리
+    if (text === data.product_name) {
+      //텍스트가 '스테이크'인 요소의 기본키를 갖고온다.
+      let basketId = element.parentElement.parentElement.dataset.roomId;
+      //같은 음식일 경우와 그 음식을 시킨 닉네임이 다를 경우 제외한다. 같은 음식을 같은 사람이 시킬 경우 개수가 증가하게 해야함.
+      if (parseInt(basketId) !== data.id) {
+        return 2;
       }
-    });
+
+      let parentElement = element.parentElement.parentElement;
+
+      let countElement = parentElement.querySelector(".count_css");
+      let priceElement = parentElement.querySelector(".price");
+
+      let count = parseInt(countElement.value);
+      let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
+
+      countElement.value = count + 1;
+      priceElement.textContent = price + price / count + "원";
+      foodDuplicateBool = 1;
+      return 0;
+    }
+  });
   if (foodDuplicateBool === 1) return 0;
 
   return 1;
@@ -619,7 +619,6 @@ function isDuplicateBasket(data){
 
 //징비구니 추가시 div 생성
 function createBasketMenu(data) {
-
   var basketListItem = document.createElement("div");
   basketListItem.className = "basket-list-item";
   basketListItem.setAttribute("data-room-id", data.id);
@@ -1045,7 +1044,7 @@ function totalRealPrice() {
 
 //정산 창
 
-const userListLength = ["농담곰", "망담곰", "ㅇㅇㅇ", "난난누"];
+const userListLength = ["농담곰", "망담곰", "ㅇㅇㅇ"];
 // const $list = $('#list'); // 참가자 명단
 
 var calualtor = document.querySelector(".calualtor");
