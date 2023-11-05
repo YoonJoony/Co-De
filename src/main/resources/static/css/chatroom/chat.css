@@ -1515,10 +1515,10 @@ div#menu {
 .cal_page {
   position: absolute;
   left: 47%;
-  top: 180px;
-  width: 90%;
-  height: 100%;
-  min-height: 560px;
+  top: 220px;
+  width: 100%;
+  height: auto;
+  min-height: 350px;
   display: block;
   flex-direction: column;
   align-items: center;
@@ -1544,7 +1544,7 @@ div#menu {
 }
 
 .pay_done {
-  width: 80px;
+  width: 60px;
   height: 35px;
   font-size: 16px;
   border: none;
@@ -1554,10 +1554,19 @@ div#menu {
   margin-left: 25px;
 }
 
+.pay_done:hover {
+  opacity: 0.7;
+}
+
 .calualtor {
+  display: flex;
+  flex-direction: column;
   font-size: 1.1rem;
   margin-bottom: 1.6rem;
   margin-top: 0;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .calbtn {
@@ -1576,9 +1585,14 @@ div#menu {
   width: 150px;
   height: 75px;
   white-space: nowrap;
+  text-align: center;
   font-size: 20px;
-  margin-left: 24px;
+  /* margin-left: 24px; */
   cursor: pointer;
+  margin: 0 auto;
+}
+.pay_username:hover {
+  color: #ff8c16;
 }
 
 .pay_result {
@@ -1631,7 +1645,7 @@ div#menu {
   background: #fff;
   left: -259px;
   opacity: 0;
-  top: -100px;
+  top: -30px;
   flex-direction: column;
   align-items: center;
   padding: 8px 3px;
@@ -1665,7 +1679,7 @@ div#menu {
   background: #fff;
   left: -259px;
   opacity: 0;
-  top: -100px;
+  top: -30px;
   flex-direction: column;
   align-items: center;
   padding: 8px 3px;
@@ -1699,7 +1713,7 @@ div#menu {
   background: #fff;
   left: -259px;
   opacity: 0;
-  top: -100px;
+  top: -30px;
   flex-direction: column;
   align-items: center;
   padding: 8px 3px;
