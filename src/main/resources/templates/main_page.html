@@ -118,8 +118,6 @@
                     <li class="menu-li mozipPage">
                         <a class="menu-a">전체 글</a>
                     </li>
-                    <li class="menu-li categories">
-                        <a class="menu-a">카테고리</a>
                     </li>
                     <li class="menu-li myChat">
                         <a class="menu-a">내 채팅</a>
@@ -221,7 +219,8 @@
                                                         <div class="board-peoples-img">
                                                             <img src="images/people2.png">
                                                         </div>
-                                                        <div class="board-peoples" th:text="${post.usercount} + '/' +${post.peoples}"></div>
+                                                        <div class="board-peoples"
+                                                            th:text="${post.usercount} + '/' +${post.peoples}"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -353,7 +352,8 @@
                     <div class="mozipCreate-people">
                         <div class="mozipCreate-info">
                             <div>인원 수 </div>
-                            <div style="position : relative;font-size : 11px;right : 5px;top: 2px;"> ㆍ미선택시 2명으로 선택 됩니다.</div>
+                            <div style="position : relative;font-size : 11px;right : 5px;top: 2px;"> ㆍ미선택시 2명으로 선택 됩니다.
+                            </div>
                         </div>
                         <div class="people-range">
                             <div class="sel people">
