@@ -33,7 +33,7 @@ var colors = [
 // id 파라미터 가져오기
 var url;
 var id;
-var mozipStatus = '정산전'; //정산 상태
+var mozipStatus = "정산전"; //정산 상태
 
 /* 입장 버튼 누르면 입장 페이지 사라지고 채팅방 페이지가 뜬다. */
 function connect(event) {
@@ -45,20 +45,19 @@ function connect(event) {
     type: "GET",
     url: "/mozip/chat/inquiry",
     data: {
-      "id" : id
+      id: id,
     },
     success: function (data) {
-      if(data) {
-        mozipStatus = '정산시작'; //정산 시작된 상태일 경우 반환
+      if (data) {
+        mozipStatus = "정산시작"; //정산 시작된 상태일 경우 반환
         console.log(mozipStatus);
-      }else {
-        mozipStatus = '정산전'; //정산 시작 전일 경우 반환
+      } else {
+        mozipStatus = "정산전"; //정산 시작 전일 경우 반환
         console.log(mozipStatus);
       }
       calculateStatus();
     },
-    error: function () {
-    },
+    error: function () {},
   });
 
   //var profileImage = findProfileImage(); 자기 프로필 이미지 경로 찾기
@@ -463,7 +462,6 @@ function uploadFile(input) {}
 
 window.onload = function () {
   connect();
-
 };
 
 messageForm.addEventListener("submit", sendMessage, true); //messageForm 리스너에 sendMessage 함수 연결
@@ -685,17 +683,17 @@ var startSettlement;
 var cancelSettlement;
 
 function calculateStatus() {
-  if(mozipStatus === '정산시작') {
-    startSettlement = document.getElementById('start-settlement');
-    if(startSettlement != null) {
-      startSettlement.value = '정산취소';
-      startSettlement.id = 'cancel-settlement';
+  if (mozipStatus === "정산시작") {
+    startSettlement = document.getElementById("start-settlement");
+    if (startSettlement != null) {
+      startSettlement.value = "정산취소";
+      startSettlement.id = "cancel-settlement";
     }
-  } else if(mozipStatus === '정산전') {
-    cancelSettlement = document.getElementById('cancel-settlement');
-    if(cancelSettlement != null) {
-      cancelSettlement.value = '정산시작';
-      cancelSettlement.id = 'start-settlement';
+  } else if (mozipStatus === "정산전") {
+    cancelSettlement = document.getElementById("cancel-settlement");
+    if (cancelSettlement != null) {
+      cancelSettlement.value = "정산시작";
+      cancelSettlement.id = "start-settlement";
     }
   }
 }
@@ -703,8 +701,7 @@ function calculateStatus() {
 function basketClose() {
   if (basket_content.style.display !== "block") {
     basket_content.style.display = "block";
-  }
-  else {
+  } else {
     basket_content.style.display = "none";
   }
 }
@@ -788,8 +785,7 @@ $(function () {
 
     if (basket_content.style.display !== "block") {
       basket_content.style.display = "block";
-    }
-    else {
+    } else {
       basket_content.style.display = "none";
     }
     //메뉴판 선택
@@ -797,7 +793,7 @@ $(function () {
       type: "GET",
       url: "/chat/basket",
       data: {
-        "roomId": id,
+        roomId: id,
       },
       success: function (data) {
         while (basketList.firstChild) {
@@ -1283,7 +1279,7 @@ function PaymentDetailsLoad() {
   storeModal_header_topper_back_img_pay_detail.className =
     "storeModal_header_topper_back_img_pay_detail";
   storeModal_header_topper_back_img_pay_detail.src = "/images/back.png";
-  storeModal_header_topper_back_img_pay_detail.onclick = "detailClose_cos1()";
+  storeModal_header_topper_back_img_pay_detail.onclick = detailClose_cos1();
 
   // (p)
   var p1 = document.createElement("p");
