@@ -1578,6 +1578,7 @@ div#menu {
   white-space: nowrap;
   font-size: 20px;
   margin-left: 24px;
+  cursor: pointer;
 }
 
 .pay_result {
