@@ -29,7 +29,7 @@
 
             var string = [id.val(), pw.val(), pwcheck.val(), username.val(), nickname.val(), address.val()];
 
-            if(string[0] == "" || string[0].match(pattern)){
+            if(string[0] === "" || string[0].match(pattern)){
                 if(string[0] != ""){
                     alert("아이디는 띄어쓰기가 입력될 수 없습니다.");
                 }

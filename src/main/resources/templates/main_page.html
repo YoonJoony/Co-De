@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
-    <link rel="stylesheet" href="/css/main_page.css?after">
+    <link rel="stylesheet" href="/css/main_page.css?a">
     <link rel="stylesheet" href="/css/main_page_mobile_header.css">
     <!-- vscode 전용 경로 ---------------------------------------------------->
     <link rel="stylesheet" href="../static/css/main_page.css">
@@ -142,7 +142,7 @@
                             <div class="width-header-center">
                                 <div class="header_rangeInput_div">
                                     <fieldset>
-                                        <input id="header_rangeInput" class="range" type="range" min=0 max=3>
+                                        <input id="header_rangeInput" class="range" type="range" min=0 max=3 value="2">
                                         <div class="rageInput-handle">
                                             <div class="handle"></div>
                                             <div class="handle"></div>
@@ -219,10 +219,10 @@
                                                     <div class="board-footer-right">
                                                         <div class="status" th:text="${post.status}"></div>
                                                         <div class="board-peoples-img">
-                                                        <img src="images/people2.png">
+                                                            <img src="images/people2.png">
                                                         </div>
-                                                    <div class="board-peoples"
-                                                        th:text="${post.usercount} + '/' +${post.peoples}"></div>
+                                                        <div class="board-peoples" th:text="${post.usercount} + '/' +${post.peoples}"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </li>
@@ -303,7 +303,7 @@
                         <div class="mozipCreate-info">글 노출 거리 설정 </div>
                         <div class="input-area-range">
                             <fieldset>
-                                <input id="rangeInput" class="range" type="range" min=0 max=3>
+                                <input id="rangeInput" class="range" type="range" min=0 max=3 value="2">
                                 <div class="rageInput-handle">
                                     <div class="handle"></div>
                                     <div class="handle"></div>
@@ -347,7 +347,10 @@
                         </div>
                     </div>
                     <div class="mozipCreate-people">
-                        <div class="mozipCreate-info">인원 수 </div>
+                        <div class="mozipCreate-info">
+                            <div>인원 수 </div>
+                            <div style="position : relative;font-size : 11px;right : 5px;top: 2px;"> ㆍ미선택시 2명으로 선택 됩니다.</div>
+                        </div>
                         <div class="people-range">
                             <div class="sel people">
                                 <select id="people" required>
@@ -432,12 +435,11 @@
         });
 
         $(function () {
-
+            //모달 창이 열릴 때 data-id로 적어둔 roomId와 nickname 갖고오기
             $("#enterRoomModal").on("show.bs.modal", function (event) {
                 id = $(event.relatedTarget).data('id');
                 nickname = $(event.relatedTarget).data('nickname');
             });
-
         })
 
 
@@ -454,7 +456,7 @@
                 async: false,
                 success: function (result) {
                     if (!result) {
-                        alert("채탕방이 꽉 찼다!");
+                        alert("인원이 다 찼거나 참여한 방이 있습니다!");
                     }
                     chk = result;
                 },
@@ -469,12 +471,25 @@
 
         function enterRoom() {
             if (chkRoomUserCnt(id, nickname)) {
-                location.href = "/mozip/chat/room?id=" + id;
+                $.ajax({
+                    type: "GET",
+                    url: "/mozip/chat/room?id=" + id,
+                    data: {
+                    },
+                    async: false,
+                    success: function (result) {
+                        location.href = "/mozip/chat/room?id=" + id;
+                    },
+                    error: function () {
+                        alert("실패!");
+                    }
+                })
             }
         }
+
     </script>
-    <script src="/js/main_page/main_page.js?asd"></script>
-    <script src="/js/main_page/addStore.js"></script>
+    <script src="/js/main_page/main_page.js?ab"></script>
+    <script src="/js/main_page/addStore.js?ab"></script>
     <!-- vscode 전용 경로 -------------------------------------------->
     <script src="../../../../apikey.js"></script>
     <script src="../static/js/main_page/main_page.js"></script>

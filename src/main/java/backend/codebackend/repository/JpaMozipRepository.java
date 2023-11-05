@@ -34,9 +34,9 @@ public class JpaMozipRepository implements MozipRepository {
     }
 
     @Override
-    public Optional<Mozip> findByName(String title) {
-        List<Mozip> result = em.createQuery("select m from mozip m where m.title = :title", Mozip.class)
-                .setParameter("title", title)
+    public Optional<Mozip> findByName(String nickname) {
+        List<Mozip> result = em.createQuery("select m from Mozip m where m.nickname = :nickname", Mozip.class)
+                .setParameter("nickname", nickname)
                 .getResultList();
 
         return result.stream().findAny();

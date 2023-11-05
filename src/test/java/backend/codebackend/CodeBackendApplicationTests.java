@@ -49,6 +49,25 @@ class CodeBackendApplicationTests {
 		System.out.println(result);
 		System.out.println(result2);
 	}
+	@Test
+	@DisplayName("모집글 중복 생성 조회")
+	void 모집글중복조회() {
+		if(mozipService.findNickName("불꽃주먹").isPresent())
+			System.out.println("방이 중복됩니다");
+		System.out.println("방을 생성할 수 있습니다.");
+	}
+
+	@Test
+	@DisplayName("모집글 중복 참여 조회")
+	void 모집글중복참여조회() {
+		if (chatUserService.isDuplicateRoom(111L, "12")){
+			System.out.println("방에 참여할 수 있습니다");
+		}
+		else {
+			System.out.println("입장한 방이 있습니다.");
+		}
+	}
+
 
 	@Test
 	@DisplayName("채팅방의 유저 닉네임 중복 조회")
@@ -92,14 +111,16 @@ class CodeBackendApplicationTests {
 		RestaurantService restaurantService = new RestaurantService();
 		restaurantService.driver();
 		restaurantService.loadPage();
-		restaurantService.searchAddress(member.getAddress());
-		if(category != "")
-			restaurantService.selectCategory(category);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+		restaurantService.searchAddress("경기 성남시 분당구 대왕판교로385번길 2");
+
+//		if(category != "")
+//			restaurantService.selectCategory(category);
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			throw new RuntimeException(e);
+//		}
+
 		List<Restuarant> rs =restaurantService.RsData();
 
 		try {

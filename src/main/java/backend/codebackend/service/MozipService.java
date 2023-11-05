@@ -31,10 +31,8 @@ public class MozipService {
     }
     
     //닉네임 조회
-    public String findNickName(String nickname) {
-        Member member = memberRepository.findByName(nickname).get();
-        System.out.println("이름 : "+ member.getNickname());
-        return member.getNickname();
+    public Optional<Mozip> findNickName(String nickname) {
+        return mozipRepository.findByName(nickname);
     }
 
     //이미 방에 입장 해 있는 경우 다시 접속 시

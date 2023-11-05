@@ -1,19 +1,24 @@
 package backend.codebackend.repository;
 
+import backend.codebackend.domain.Basket;
 import backend.codebackend.domain.ChatUser;
+import backend.codebackend.service.ChatUserService;
+import backend.codebackend.service.MozipService;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RequiredArgsConstructor //생성자 주입으로 생성자 생략
 public class JpaChatUserRepository implements ChatUserRepository{
     private final EntityManager em; //jpa를 라이브러리로 받으면 스프링 부트가 자동으로 EntityManager를 생성해줌
-
+    private final MozipService mozipService;
 
     @Override
     public boolean addUser(ChatUser chatUser) {
@@ -92,6 +97,34 @@ public class JpaChatUserRepository implements ChatUserRepository{
             return null;
         }
         return result.stream().findAny();
+    }
+
+    //접속한 방이 있을 경우
+    @Override
+    public boolean isDuplicateRoom(Long id, String nickname) {
+        try {
+            String jpql = "SELECT m FROM ChatUser m WHERE m.nickname = :nickname";
+            TypedQuery<ChatUser> query = em.createQuery(jpql, ChatUser.class);
+            query.setParameter("nickname", nickname);
+            ChatUser chatUser;
+
+            try {
+                chatUser = query.getSingleResult();
+            } catch (NoResultException e) { //참여한 방이 없을 경우
+                if(mozipService.chkRoomUserCnt(id)) {
+                    mozipService.plusUserCnt(id);
+                    System.out.println("현재 인원 : " + mozipService.findRoomById(id).get().getUsercount());
+                    System.out.println("신입이군요");
+                    return true;
+                }
+                return false;
+            }
+            
+            //접속한 방에 들어갔을 경우 true, 아닐경우 false
+            return Objects.equals(chatUser.getId(), id);
+        } finally {
+            em.close();
+        }
     }
 }
 

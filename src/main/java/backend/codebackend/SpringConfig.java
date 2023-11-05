@@ -87,7 +87,7 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
 
     @Bean
     public ChatUserRepository chatUserRepository() {
-        return new JpaChatUserRepository(em);
+        return new JpaChatUserRepository(em, mozipService());
     }
 
     @Bean

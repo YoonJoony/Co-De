@@ -20,6 +20,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
@@ -56,7 +57,9 @@ public class RestaurantService {
     }
 
     public void searchAddress(String address) {
-        // 검색창을 찾습니다. Google의 검색창은 'name' 속성이 'q'인 input 요소입니다.
+        //현재 창 주소 입력받음
+        String currentUrl = driver.getCurrentUrl();
+
         WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("address_input")));
 
         searchBox.clear();
@@ -67,6 +70,24 @@ public class RestaurantService {
 
         WebElement clickSearch = wait.until(ExpectedConditions.elementToBeClickable(By.className("ico-pick")));
         clickSearch.click();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //다음 창 주소 입력받음
+        String expectedUrl = driver.getCurrentUrl();
+
+        //현재 창이 유지 될 경우 -> 주소가 잘못 되었을 경우
+        if(Objects.equals(currentUrl, expectedUrl)) {
+            // dropdown-menu 요소를 찾습니다.
+            WebElement dropdownMenu = driver.findElement(By.className("dropdown-menu"));
+            // dropdown-menu 요소의 세번째 자식 요소를 찾습니다.
+            WebElement thirdChild = dropdownMenu.findElement(By.xpath("./*[3]"));
+            // 세번째 자식 요소를 클릭합니다.
+            thirdChild.click();
+        }
     }
 
     public void selectCategory(String category) {

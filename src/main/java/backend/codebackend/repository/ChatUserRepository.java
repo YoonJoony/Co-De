@@ -12,10 +12,14 @@ public interface ChatUserRepository {
     boolean isDuplicateName(Long id, String nickname);
 
     void deleteUser(Long id, String nickname);
+
     ArrayList<String> getUserList(Long id);
 
     boolean is_host(Long id, String nickname);
+
     String findHost(Long id);
 
     Optional<Long> findRoomId(String nickname);
+
+    boolean isDuplicateRoom(Long id, String nickname);
 }

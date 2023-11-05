@@ -391,10 +391,10 @@ scrollContainer.addEventListener('pointermove', (e) => {
 
 //------------------------------모집글 생성 부분------------------------------------------
 var mozipTitle; //제목
-var mozipRange; //거리
-var mozipCategory; //카테고리
-var mozipStore; //가게
-var mozipPeople; //인원 수
+var mozipRange = null; //거리
+var mozipCategory = null; //카테고리
+var mozipStore = null; //가게
+var mozipPeople = null; //인원 수
 var search_txt = document.querySelector(".search-txt"); //제목 input 요소
 document.querySelector("#modal_close_beck").addEventListener("click", close);
 
@@ -440,6 +440,17 @@ function createMozip() {
     mozipPeople = document.getElementById("people").value;
     console.log(mozipTitle + "///" + mozipRange + "///" + mozipCategory + "///" + mozipStore + "///" + mozipPeople);
 
+    if(mozipTitle === "") {
+        alert("제목을 작성 해주세요!")
+        return;
+    }else if(mozipCategory === null) {
+        alert("키테고리를 선택 해주세요!")
+        return;
+    }else if(mozipStore === null) {
+        alert("가게를 선택 해주세요!")
+        return;
+    }
+
     // ----------서버에 모집글 정보 전송------------
     $.ajax({
            type : "POST",
@@ -452,11 +463,13 @@ function createMozip() {
                 "mozipPeople" : mozipPeople,
            },
            success: function() {
-             location.reload();
-             console.log("/mozip 요청 성송")
+             location.reload(); //새로고침
+             console.log("모집글 생성 성공");
            },
-           error: function() {
-              console.log("/mozip 종료 요청 실패 : ");
+           error: function(data) {
+               var response = JSON.parse(data.responseText);
+               alert(response.message);
+               console.log(response.message);
            }
      })
 }

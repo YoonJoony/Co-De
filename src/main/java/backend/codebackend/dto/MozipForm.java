@@ -51,6 +51,7 @@ public class MozipForm {
                 .store(store)
                 .peoples(peoples)
                 .nickname(nickname)
+                .status(Mozip.mozipStatus.정산전)
                 .usercount(1)
                 .build();
         return build;

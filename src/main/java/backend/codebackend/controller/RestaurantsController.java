@@ -43,11 +43,6 @@ public class RestaurantsController {
         restaurantService.driver();
         restaurantService.loadPage();
         restaurantService.searchAddress(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         return restaurantService.RsData();
     }
 
