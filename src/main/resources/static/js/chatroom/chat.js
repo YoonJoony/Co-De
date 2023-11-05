@@ -1027,11 +1027,11 @@ function totalRealPrice() {
     type: "GET",
     url: "/chat/basket/totalPrice",
     data: {
-      "id": id,
+      id: id,
     },
     success: function (data) {
       for (let i = 0; i < data.length; i++) {
-        console.log(data[i].username + ': ' + data[i].totalPrice);
+        console.log(data[i].username + ": " + data[i].totalPrice);
       }
     },
     error: function () {
@@ -1044,33 +1044,34 @@ function totalRealPrice() {
 // const $list = $('#list'); // 참가자 명단
 
 var calualtor = document.querySelector(".calualtor");
-async function calShow() {
-  var userListLength = ["호스트", "참가자1", "참가자2", "참가자3"];
-  // try {
-  //   const response = await $.ajax({
-  //     type: "GET",
-  //     url: "/mozip/chat/userList",
-  //     data: {
-  //       id: id,
-  //     },
-  //   });
-  //   userListLength = response;
-  //   console.log(response);
-  // } catch (error) {
-  //   console.log("유저 리스트 요청 실패");
-  // }
+function calShow() {
+  var userListLength = [];
+  var menu_price = [];
 
-  // PaymentDetailsLoad() 주문내역 메소드 호출
-  PaymentDetailsLoad(userListLength.length - 1, userListLength);
+  $.ajax({
+    type: "GET",
+    async: false,
+    url: "/chat/basket/totalPrice",
+    data: {
+      id: id,
+    },
+    success: function (data) {
+      for (let i = 0; i < data.length; i++) {
+        // console.log(data[i].username + ": " + data[i].totalPrice);
 
-  document.querySelector(".cal_page").className = "cal_page cal_page_show";
-  // 금액 확인 클릭시
-  // const delivery_fee = 4000; // 배달비
-  // const delivery_fee_each = Math.ceil(delivery_fee / userListLength.length); // 각자 내야 하는 배달비
+        userListLength.push(data[i].username);
 
-  // 닉네임 생성
+        menu_price.push(data[i].totalPrice);
+        console.log(menu_price);
+      }
+    },
+    error: function () {
+      console.log("장바구니 메뉴 불러오기 오류");
+    },
+  });
 
-  // calualtor.innerHTML += `<p class="pay_username" id='host'> ${userListLength[0]} </p>`; // 방장 닉네임
+  PaymentDetailsLoad(userListLength.length - 1, userListLength, menu_price);
+
   for (var k = 1; k < userListLength.length; k++) {
     var pay_username = document.createElement("p");
     pay_username.className = "pay_username";
@@ -1092,6 +1093,31 @@ async function calShow() {
         $("#pay_username3").on("click", detailShow_cos3);
     }
   }
+  document.querySelector(".cal_page").className = "cal_page cal_page_show";
+  // var userListLength = ["호스트", "참가자1", "참가자2", "참가자3"];
+  // try {
+  //   const response = await $.ajax({
+  //     type: "GET",
+  //     url: "/mozip/chat/userList",
+  //     data: {
+  //       id: id,
+  //     },
+  //   });
+  //   userListLength = response;
+  //   console.log(response);
+  // } catch (error) {
+  //   console.log("유저 리스트 요청 실패");
+  // }
+
+  // PaymentDetailsLoad() 주문내역 메소드 호출
+
+  // 금액 확인 클릭시
+  // const delivery_fee = 4000; // 배달비
+  // const delivery_fee_each = Math.ceil(delivery_fee / userListLength.length); // 각자 내야 하는 배달비
+
+  // 닉네임 생성
+
+  // calualtor.innerHTML += `<p class="pay_username" id='host'> ${userListLength[0]} </p>`; // 방장 닉네임
 
   // for (var z = 1; z <= userListLength.length - 1; z++) {
   //   calualtor.innerHTML += `<p class="pay_username" name='costomer${z} onclick="detailShow_cos1()"'> ${userListLength[z]} </p>`; // 참가자 닉네임
@@ -1327,8 +1353,8 @@ function initMap2() {
 // 결제하기 창 -> 금액확인 -> 주문내역 창 생성 js
 // 참가자만 주문 내역 추가
 
-// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열))
-function PaymentDetailsLoad(num_people, user_list) {
+// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열), menu_price)
+function PaymentDetailsLoad(num_people, user_list, menu_price) {
   // storeModal_header_topper_back_img_pay_detail (img)
   for (var i = 1; i <= num_people; i++) {
     var storeModal_header_topper_back_img_pay_detail =
@@ -1359,14 +1385,16 @@ function PaymentDetailsLoad(num_people, user_list) {
     // pay_detail_text (li) 메뉴이름
     var pay_detail_text1 = document.createElement("li");
     pay_detail_text1.className = "pay_detail_text";
-    var pay_detail_text1_txt = document.createTextNode("(메뉴이름)");
+    var pay_detail_text1_txt = document.createTextNode("담은 메뉴 가격 합계");
     pay_detail_text1.appendChild(pay_detail_text1_txt);
 
     // id = meun_fee2 (p)
     var pay_text1 = document.createElement("p");
     pay_text1.className = "pay_text";
     pay_text1.id = "meun_fee2";
-    var pay_text1_txt = document.createTextNode("(메뉴가격)");
+    var pay_text1_txt = document.createTextNode(
+      menu_price[i].toLocaleString() + "원"
+    );
     pay_text1.appendChild(pay_text1_txt);
 
     // total_pay (div)
