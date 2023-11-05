@@ -21,47 +21,82 @@
 
 <body>
     <div class="main">
-        <div class="topper">
-            <!-- 로그인 부분 -->
-            <div class="login">
-                <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
-                <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
-                <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
-            </div>
+        <!-- 모바일 화면 로고 -->
+        <div class="moblie_logo">
+            <img src="/Chat_dbswns/images/menu_reverse.png" class="mobile_header-img" id="header_show">
+            <img class="logo" src="images/COOR.png">
         </div>
         <!-- 헤더 부분 -->
-        <div class="header">
-            <!-- CO-ORDER 제목 부분 -->
-            <div class="logo-img">
-                <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-                <img class="logo" src="images/COOR2.png">
-                <p>ALL 📒 POST </p>
+        <div class="header2">
+            <div class="topper">
+                <!-- 로그인 부분 -->
+                <div class="login">
+                    <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+                    <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+                    <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+                </div>
             </div>
-            <!-- 프로필 -->
-            <div class="profile">
-                <button id="profile_btn" type="button" onclick="profile_btn()">
-                    <img src="images/profile.png" height="40px" width="40px">
-                </button>
-                <div id="layer-header-profile">
-                    <div class="header-profile-direct">
-                        <div class="profile-div">
-                            엄준식</div>
-                        <div class="profile-div">
-                            <input type="button" class="profile-btn" id="profile_btn_btn1" onclick=""
-                                value="마이페이지"></input>
-                        </div>
-                        <div class="profile-div">
-                            <input type="button" class="profile-btn" id="profile_btn_btn2" onclick=""
-                                value="참여중인 모집글"></input>
-                        </div>
-                        <div class="profile-div">
-                            <input type="button" class="profile-btn" id="profile_btn_btn3" onclick=""
-                                value="거래 내역 조회"></input>
-                        </div>
+            <!-- CO-ORDER 제목 부분 -->
+            <div class="width-container">
+                <div class="user-info">
+                    <div class="logo-img">
+                        <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+                        <img class="logo" src="images/COOR2.png">
+                    </div>
+
+                    <div id="header-profile" class="header-profile">
+                        <a class="header-user">
+                          <span class="user-picture2">
+                            <img src="/images/profile.png" height="50px" width="50px">
+                          </span>
+                          <span id="user-name" class="user-name" th:text="${nickname}">
+                          </span>
+                          <span class="header-arrow">
+                            <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
+                          </span>
+                        </a>
+              
+                        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+                          <div class="block block-name">
+                              <div class="profile-name" th:text="${nickname}"> 야왕이네
+                              </div>
+                              <div class="buttons">
+                                  <a href="#">파티관리</a>
+                              </div>
+                          </div>
+                      </div>
 
                     </div>
                 </div>
             </div>
+            <!-- 주소 입력 부분 -->
+            <div class="search-container">
+                <div class="search">
+                    <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+                        <img class="gps" src="images/search.png">
+                    </button>
+                    <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
+                    <div class="tag-container">
+                        <div class="tag real-time-text">
+                            <p class="tag search-tag-text">실시간 검색 태그</p>
+                        </div>
+                        <div class="tag real-time">
+                            #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li class="menu-li mozipPage">
+                        <a class="menu-a">전체 글</a>
+                    </li>
+                    </li>
+                    <li class="menu-li myChat">
+                        <a class="menu-a">내 채팅</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- 프로필 -->
         </div>
         <!-- 거래 내역 -->
         <div class="body_title">
@@ -84,6 +119,7 @@
                         <div class="pay_price">
                             8,000원
                         </div>
+                        <br>
                         <div class="btn_div">
                             <div class="star-rating-btn">
                                 <button class="payment_list_btn" id="star_rating_btn">호스트 평가</button>
@@ -216,5 +252,19 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="Payment_details.js"></script>
 </body>
+
+<script>
+    // 모바일 헤더 js
+    function header_show() {
+        document.querySelector(".header2").className = "header2 header2_show";
+    }
+
+    function close() {
+        document.querySelector(".header2").className = "header2";
+    }
+
+    document.querySelector("#header_show").addEventListener('click', header_show);
+    document.querySelector(".body").addEventListener('click', close);
+</script>
 
 </html>
