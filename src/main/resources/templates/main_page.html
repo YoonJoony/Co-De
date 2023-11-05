@@ -268,7 +268,7 @@
                     <img class="join-img" src="images/join.png">
                     <p class="join-icon">💡</p>
                     <p class="join-p">입장 하시겠습니까?</p>
-                    <div class="loading-div">
+                    <div class="enter_loading-div">
                         <div id="loading" class="loading"> </div>
                         <div> 로딩중 입니다. 잠시만 기다려 주세요!</div>
                     </div>
@@ -476,7 +476,7 @@
 
         function enterRoom() {
             basket_content.style.display = "block";
-            document.querySelector(".join-p").style.display = "none";;
+            document.querySelector(".join-p").style.display = "none";
             if (chkRoomUserCnt(id, nickname)) {
                 $.ajax({
                     type: "GET",
