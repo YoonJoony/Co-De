@@ -1183,17 +1183,6 @@ for (var j = 1; j <= userListLength.length; j++) {
     pay_amount.toLocaleString() + " 원"; // toLocaleString() = 숫자에 콤마 찍어주는 함수
 }
 
-function show() {
-  document.querySelector(".header2").className = "header2 header2_show";
-}
-
-function close() {
-  document.querySelector(".header2").className = "header2";
-}
-
-document.querySelector("#chat_show").addEventListener("click", show);
-document.querySelector("#chat-page").addEventListener("click", close);
-
 // 호스트 상세 결제창 출력 + 애니메이션 효과
 function detailShow() {
   document.querySelector("#pay_detail_host").className =
