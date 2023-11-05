@@ -1272,182 +1272,179 @@ function initMap2() {
 // 결제하기 창 -> 금액확인 -> 주문내역 창 생성 js
 // 참가자만 주문 내역 추가
 
-function PaymentDetailsLoad() {
+function PaymentDetailsLoad(num_people) {
   // storeModal_header_topper_back_img_pay_detail (img)
-  var storeModal_header_topper_back_img_pay_detail =
-    document.createElement("img");
-  storeModal_header_topper_back_img_pay_detail.className =
-    "storeModal_header_topper_back_img_pay_detail";
-  storeModal_header_topper_back_img_pay_detail.src = "/images/back.png";
-  storeModal_header_topper_back_img_pay_detail.onclick = "detailClose_cos1()";
+  for (var i = 1; i <= num_people; i++) {
+    var storeModal_header_topper_back_img_pay_detail =
+      document.createElement("img");
+    storeModal_header_topper_back_img_pay_detail.className =
+      "storeModal_header_topper_back_img_pay_detail";
+    storeModal_header_topper_back_img_pay_detail.src = "/images/back.png";
+    storeModal_header_topper_back_img_pay_detail.onclick = "detailClose_cos1()";
 
-  // (p)
-  var p1 = document.createElement("p");
-  var p1_text = document.createTextNode("(참가자명)");
-  p1.appendChild(p1_text);
+    // (p)
+    var p1 = document.createElement("p");
+    var p1_text = document.createTextNode("(참가자명)");
+    p1.appendChild(p1_text);
 
-  // (li)
-  var li1 = document.createElement("li");
-  var li1_txt = document.createTextNode(" 주문 내역 ");
-  li1.appendChild(li1_txt);
+    // (li)
+    var li1 = document.createElement("li");
+    var li1_txt = document.createTextNode(" 주문 내역 ");
+    li1.appendChild(li1_txt);
 
-  // detail_hr (hr)
-  var detail_hr = document.createElement("hr");
-  detail_hr.className = "detail_hr";
+    // detail_hr (hr)
+    var detail_hr = document.createElement("hr");
+    detail_hr.className = "detail_hr";
 
-  // pay_detail_text (li) 메뉴이름
-  var pay_detail_text1 = document.createElement("li");
-  pay_detail_text1.className = "pay_detail_text";
-  var pay_detail_text1_txt = document.createTextNode("(메뉴이름)");
-  pay_detail_text1.appendChild(pay_detail_text1_txt);
+    // pay_detail_text (li) 메뉴이름
+    var pay_detail_text1 = document.createElement("li");
+    pay_detail_text1.className = "pay_detail_text";
+    var pay_detail_text1_txt = document.createTextNode("(메뉴이름)");
+    pay_detail_text1.appendChild(pay_detail_text1_txt);
 
-  // id = meun_fee2 (p)
-  var pay_text1 = document.createElement("p");
-  pay_text1.className = "pay_text";
-  pay_text1.id = "meun_fee2";
-  var pay_text1_txt = document.createTextNode("(메뉴가격)");
-  pay_text1.appendChild(pay_text1_txt);
+    // id = meun_fee2 (p)
+    var pay_text1 = document.createElement("p");
+    pay_text1.className = "pay_text";
+    pay_text1.id = "meun_fee2";
+    var pay_text1_txt = document.createTextNode("(메뉴가격)");
+    pay_text1.appendChild(pay_text1_txt);
 
-  // total_pay (div)
-  var total_pay1 = document.createElement("div");
-  total_pay1.className = "total_pay";
-  // 자식 요소 추가
-  total_pay1.appendChild(pay_detail_text1);
-  total_pay1.appendChild(pay_text1);
+    // total_pay (div)
+    var total_pay1 = document.createElement("div");
+    total_pay1.className = "total_pay";
+    // 자식 요소 추가
+    total_pay1.appendChild(pay_detail_text1);
+    total_pay1.appendChild(pay_text1);
 
-  // pay_detail_text (li) 배달요금
-  var pay_detail_text2 = document.createElement("li");
-  pay_detail_text2.className = "pay_detail_text";
-  var pay_detail_text2_txt = document.createTextNode(" 배달요금 ");
-  pay_detail_text2.appendChild(pay_detail_text2_txt);
+    // pay_detail_text (li) 배달요금
+    var pay_detail_text2 = document.createElement("li");
+    pay_detail_text2.className = "pay_detail_text";
+    var pay_detail_text2_txt = document.createTextNode(" 배달요금 ");
+    pay_detail_text2.appendChild(pay_detail_text2_txt);
 
-  // id = fee (p)
-  var pay_text2 = document.createElement("p");
-  pay_text2.className = "pay_text fee";
-  pay_text2.id = "fee";
-  var pay_text2_txt = document.createTextNode("(배달요금)");
-  pay_text2.appendChild(pay_text2_txt);
+    // id = fee (p)
+    var pay_text2 = document.createElement("p");
+    pay_text2.className = "pay_text fee";
+    pay_text2.id = "fee";
+    var pay_text2_txt = document.createTextNode("(배달요금)");
+    pay_text2.appendChild(pay_text2_txt);
 
-  // delivery_fee_div (div)
-  var delivery_fee_div = document.createElement("div");
-  delivery_fee_div.className = "delivery_fee_div";
-  // 자식 요소 추가
-  delivery_fee_div.appendChild(pay_detail_text2);
-  delivery_fee_div.appendChild(pay_text2);
+    // delivery_fee_div (div)
+    var delivery_fee_div = document.createElement("div");
+    delivery_fee_div.className = "delivery_fee_div";
+    // 자식 요소 추가
+    delivery_fee_div.appendChild(pay_detail_text2);
+    delivery_fee_div.appendChild(pay_text2);
 
-  // pay_detail_text (li) 인당요금
-  var pay_detail_text3 = document.createElement("li");
-  pay_detail_text3.className = "pay_detail_text";
-  var pay_detail_text3_txt = document.createTextNode(" 인당요금 ");
-  pay_detail_text3.appendChild(pay_detail_text3_txt);
+    // pay_detail_text (li) 인당요금
+    var pay_detail_text3 = document.createElement("li");
+    pay_detail_text3.className = "pay_detail_text";
+    var pay_detail_text3_txt = document.createTextNode(" 인당요금 ");
+    pay_detail_text3.appendChild(pay_detail_text3_txt);
 
-  // name = each_delifee (p)
-  var pay_text3 = document.createElement("p");
-  pay_text3.className = "pay_text";
-  pay_text3.name = "each_delifee";
-  var pay_text3_txt = document.createTextNode("(인당요금)");
-  pay_text3.appendChild(pay_text3_txt);
+    // name = each_delifee (p)
+    var pay_text3 = document.createElement("p");
+    pay_text3.className = "pay_text";
+    pay_text3.name = "each_delifee";
+    var pay_text3_txt = document.createTextNode("(인당요금)");
+    pay_text3.appendChild(pay_text3_txt);
 
-  // per_fee_div (div)
-  var per_fee_div = document.createElement("div");
-  per_fee_div.className = "per_fee_div";
-  // 자식 요소 추가
-  per_fee_div.appendChild(pay_detail_text3);
-  per_fee_div.appendChild(pay_text3);
+    // per_fee_div (div)
+    var per_fee_div = document.createElement("div");
+    per_fee_div.className = "per_fee_div";
+    // 자식 요소 추가
+    per_fee_div.appendChild(pay_detail_text3);
+    per_fee_div.appendChild(pay_text3);
 
-  // pay_detail_text (li) 방장할인 가액
-  var pay_detail_text4 = document.createElement("li");
-  pay_detail_text4.className = "pay_detail_text";
-  var pay_detail_text4_txt = document.createTextNode(" 방장할인 가액 ");
-  pay_detail_text4.appendChild(pay_detail_text4_txt);
+    // pay_detail_text (li) 방장할인 가액
+    var pay_detail_text4 = document.createElement("li");
+    pay_detail_text4.className = "pay_detail_text";
+    var pay_detail_text4_txt = document.createTextNode(" 방장할인 가액 ");
+    pay_detail_text4.appendChild(pay_detail_text4_txt);
 
-  // name = host_discount_add (p)
-  var pay_text4 = document.createElement("p");
-  pay_text4.className = "pay_text discount_plus";
-  pay_text4.name = "host_discount_add";
-  var pay_text4_txt = document.createTextNode("(방장할인 가액)");
-  pay_text4.appendChild(pay_text4_txt);
+    // name = host_discount_add (p)
+    var pay_text4 = document.createElement("p");
+    pay_text4.className = "pay_text discount_plus";
+    pay_text4.name = "host_discount_add";
+    var pay_text4_txt = document.createTextNode("(방장할인 가액)");
+    pay_text4.appendChild(pay_text4_txt);
 
-  // per_fee_div (div)
-  var host_fee_div = document.createElement("div");
-  host_fee_div.className = "host_fee_div";
-  // 자식 요소 추가
-  host_fee_div.appendChild(pay_detail_text4);
-  host_fee_div.appendChild(pay_text4);
+    // per_fee_div (div)
+    var host_fee_div = document.createElement("div");
+    host_fee_div.className = "host_fee_div";
+    // 자식 요소 추가
+    host_fee_div.appendChild(pay_detail_text4);
+    host_fee_div.appendChild(pay_text4);
 
-  // pay_detail_text (li) 지불 배달요금
-  var pay_detail_text5 = document.createElement("li");
-  pay_detail_text5.className = "pay_detail_text";
-  var pay_detail_text5_txt = document.createTextNode(" 지불 배달요금 ");
-  pay_detail_text5.appendChild(pay_detail_text5_txt);
+    // pay_detail_text (li) 지불 배달요금
+    var pay_detail_text5 = document.createElement("li");
+    pay_detail_text5.className = "pay_detail_text";
+    var pay_detail_text5_txt = document.createTextNode(" 지불 배달요금 ");
+    pay_detail_text5.appendChild(pay_detail_text5_txt);
 
-  // name = costomer_delifee (p)
-  var pay_text5 = document.createElement("p");
-  pay_text5.className = "pay_text";
-  pay_text5.name = "costomer_delifee";
-  var pay_text5_txt = document.createTextNode("(지불 배달요금)");
-  pay_text5.appendChild(pay_text5_txt);
+    // name = costomer_delifee (p)
+    var pay_text5 = document.createElement("p");
+    pay_text5.className = "pay_text";
+    pay_text5.name = "costomer_delifee";
+    var pay_text5_txt = document.createTextNode("(지불 배달요금)");
+    pay_text5.appendChild(pay_text5_txt);
 
-  // total_pay1 (div)
-  var total_pay2 = document.createElement("div");
-  total_pay2.className = "total_pay";
-  // 자식 요소 추가
-  total_pay2.appendChild(pay_detail_text5);
-  total_pay2.appendChild(pay_text5);
+    // total_pay1 (div)
+    var total_pay2 = document.createElement("div");
+    total_pay2.className = "total_pay";
+    // 자식 요소 추가
+    total_pay2.appendChild(pay_detail_text5);
+    total_pay2.appendChild(pay_text5);
 
-  // pay_detail_text (li) 결제 금액
-  var pay_detail_text6 = document.createElement("li");
-  pay_detail_text6.className = "pay_detail_text";
-  var pay_detail_text6_txt = document.createTextNode(" 결제 금액 ");
-  pay_detail_text6.appendChild(pay_detail_text6_txt);
+    // pay_detail_text (li) 결제 금액
+    var pay_detail_text6 = document.createElement("li");
+    pay_detail_text6.className = "pay_detail_text";
+    var pay_detail_text6_txt = document.createTextNode(" 결제 금액 ");
+    pay_detail_text6.appendChild(pay_detail_text6_txt);
 
-  // name = comtomer_totalfee (p)
-  var pay_text6 = document.createElement("p");
-  pay_text6.className = "pay_text";
-  pay_text6.name = "comtomer_totalfee";
-  var pay_text6_txt = document.createTextNode("(결제 금액)");
-  pay_text6.appendChild(pay_text6_txt);
+    // name = comtomer_totalfee (p)
+    var pay_text6 = document.createElement("p");
+    pay_text6.className = "pay_text";
+    pay_text6.name = "comtomer_totalfee";
+    var pay_text6_txt = document.createTextNode("(결제 금액)");
+    pay_text6.appendChild(pay_text6_txt);
 
-  // total_pay2 (div)
-  var total_pay3 = document.createElement("div");
-  total_pay3.className = "total_pay";
-  // 자식 요소 추가
-  total_pay3.appendChild(pay_detail_text6);
-  total_pay3.appendChild(pay_text6);
+    // total_pay2 (div)
+    var total_pay3 = document.createElement("div");
+    total_pay3.className = "total_pay";
+    // 자식 요소 추가
+    total_pay3.appendChild(pay_detail_text6);
+    total_pay3.appendChild(pay_text6);
 
-  //-----------------------------------------------------------
+    //-----------------------------------------------------------
 
-  var br = document.createElement("br");
+    var br = document.createElement("br");
 
-  var pay_detail1 = document.createElement("div");
-  pay_detail1.className = "pay_detail1";
-  pay_detail1.id = "pay_detail1";
-  // 자식 요소 추가
-  pay_detail1.appendChild(storeModal_header_topper_back_img_pay_detail);
-  pay_detail1.appendChild(p1);
-  pay_detail1.appendChild(li1);
-  pay_detail1.appendChild(detail_hr);
-  pay_detail1.appendChild(total_pay1);
-  pay_detail1.appendChild(document.createElement("br"));
-  pay_detail1.appendChild(delivery_fee_div);
-  pay_detail1.appendChild(document.createElement("br"));
-  pay_detail1.appendChild(per_fee_div);
-  pay_detail1.appendChild(document.createElement("br"));
-  pay_detail1.appendChild(host_fee_div);
-  pay_detail1.appendChild(document.createElement("br"));
-  pay_detail1.appendChild(total_pay2);
-  pay_detail1.appendChild(detail_hr);
-  pay_detail1.appendChild(document.createElement("br"));
-  pay_detail1.appendChild(total_pay3);
+    var pay_detail = document.createElement("div");
+    pay_detail.className = "pay_detail" + i;
+    pay_detail.id = "pay_detail1";
+    // 자식 요소 추가
+    pay_detail.appendChild(storeModal_header_topper_back_img_pay_detail);
+    pay_detail.appendChild(p1);
+    pay_detail.appendChild(li1);
+    pay_detail.appendChild(detail_hr);
+    pay_detail.appendChild(total_pay1);
+    pay_detail.appendChild(document.createElement("br"));
+    pay_detail.appendChild(delivery_fee_div);
+    pay_detail.appendChild(document.createElement("br"));
+    pay_detail.appendChild(per_fee_div);
+    pay_detail.appendChild(document.createElement("br"));
+    pay_detail.appendChild(host_fee_div);
+    pay_detail.appendChild(document.createElement("br"));
+    pay_detail.appendChild(total_pay2);
+    pay_detail.appendChild(detail_hr);
+    pay_detail.appendChild(document.createElement("br"));
+    pay_detail.appendChild(total_pay3);
 
-  // pay_detail_div (div)
-  var pay_detail_div = document.getElementById("pay_detail_div");
-  pay_detail_div.appendChild(pay_detail1);
-
-  $(".storeModal_header_topper_back_img_pay_detail").on(
-    "Click",
-    detailClose_cos1()
-  );
+    // pay_detail_div (div)
+    var pay_detail_div = document.getElementById("pay_detail_div");
+    pay_detail_div.appendChild(pay_detail);
+  }
 }
 
 //------------------------------------------------------------------------
