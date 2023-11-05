@@ -74,6 +74,7 @@ public class BasketService {
 
     //닉네임에 해당하는 장바구니 메뉴 투플 중 가장 최근 투플
     public Basket addItemToBasketReceive(String nickname) {
+//        if(basketRepository.duplicateBasketItem(chatroom_id, product_name, price, nickname).isPresent())
         return basketRepository.addItemToBasketReceive(nickname);
     }
 
