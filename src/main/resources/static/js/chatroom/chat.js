@@ -1138,6 +1138,11 @@ function calclose() {
   while (calualtor.firstChild) {
     calualtor.removeChild(calualtor.firstChild);
   }
+
+  let parent = document.getElementById("pay_detail_div");
+  while (parent.children.length > 1) {
+    parent.removeChild(parent.lastChild);
+  }
 }
 
 // 개별로 선택한 음식 가격
