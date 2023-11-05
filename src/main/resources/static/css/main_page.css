@@ -1676,7 +1676,8 @@ select::-ms-expand {
   position: relative;
   top: -30px;
   left: 1px;
-  width: 95%;
+  width: 30%;
+  min-width: 500px;
   height: 100%;
   padding: 8px 3px;
   margin: 0 auto;
