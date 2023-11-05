@@ -238,4 +238,11 @@ class CodeBackendApplicationTests {
 	void 정산상태변경() {
 		mozipService.calculateStartStatus(95L);
 	}
+
+	@Test
+	@DisplayName("최근 업데이트 된 장바구니")
+	void 최근업뎃장바구니() {
+		Basket basket = basketRepository.addItemToBasketReceive("1234");
+		System.out.println(basket.getId());
+	}
 }

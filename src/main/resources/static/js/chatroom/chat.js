@@ -324,7 +324,10 @@ function onMessageReceived(payload) {
         nickname: chat.sender,
       },
       success: function (data) {
-        createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
+        if(isDuplicateBasket(data) === 1) {
+          createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
+        }
+
         totalPrice();
         console.log("메뉴저장 성공");
       },
@@ -366,6 +369,7 @@ function onMessageReceived(payload) {
     );
     if (element) {
       element.remove();
+      totalPrice();
     }
   } else {
     messageElement.classList.add("chat-message");
@@ -577,33 +581,44 @@ function menuList() {
   });
 }
 
+//장바구니 중복
+function isDuplicateBasket(data){
+  let foodNameElements = document.querySelectorAll(".food-name");
+  let foodDuplicateBool = 0;
+
+  // 각 요소에 대해 처리
+    foodNameElements.forEach(function (element) {
+      let text = element.textContent;
+      // 텍스트가 "스테이크"인 경우 처리
+      if (text === data.product_name) {
+        //텍스트가 '스테이크'인 요소의 기본키를 갖고온다.
+        let basketId = element.parentElement.parentElement.dataset.roomId;
+        //같은 음식일 경우와 그 음식을 시킨 닉네임이 다를 경우 제외한다. 같은 음식을 같은 사람이 시킬 경우 개수가 증가하게 해야함.
+        if(parseInt(basketId) !== data.id) {
+          return 2;
+        }
+
+        let parentElement = element.parentElement.parentElement;
+
+        let countElement = parentElement.querySelector(".count_css");
+        let priceElement = parentElement.querySelector(".price");
+
+        let count = parseInt(countElement.value);
+        let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
+
+        countElement.value = count + 1;
+        priceElement.textContent = price + price / count + "원";
+        foodDuplicateBool = 1;
+        return 0;
+      }
+    });
+  if (foodDuplicateBool === 1) return 0;
+
+  return 1;
+}
+
 //징비구니 추가시 div 생성
 function createBasketMenu(data) {
-  // let foodNameElements = document.querySelectorAll(".food-name");
-  // let foodDuplicateBool = 0;
-  //
-  // // 각 요소에 대해 처리
-  // foodNameElements.forEach(function (element) {
-  //   let text = element.textContent;
-  //
-  //   // 텍스트가 "스테이크"인 경우 처리
-  //   if (text === data.product_name) {
-  //     let parentElement = element.parentElement.parentElement;
-  //
-  //     let countElement = parentElement.querySelector(".count_css");
-  //     let priceElement = parentElement.querySelector(".price");
-  //
-  //     let count = parseInt(countElement.value);
-  //     let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
-  //
-  //     countElement.value = count + 1;
-  //     priceElement.textContent = price + price / count + "원";
-  //     foodDuplicateBool = 1;
-  //     return 0;
-  //   }
-  // });
-  //
-  // if (foodDuplicateBool === 1) return 0;
 
   var basketListItem = document.createElement("div");
   basketListItem.className = "basket-list-item";
@@ -914,7 +929,6 @@ $(function () {
 
     //다른 사람의 장바구니를 수정하려 했을 경우 방지
     if (updateQuantityNickName === nickname && mozipStatus === "정산전") {
-      totalPrice();
       //선택한 메뉴 삭제
       basketDeleteSendMessage(menuId);
     }
@@ -1005,7 +1019,7 @@ function totalPrice() {
 
     // 숫자 추출
     totalPriceValues = totalPriceValues + parseInt(text.replace(/\D/g, ""));
-    totalPriceDiv.text(totalPriceValues);
+    totalPriceDiv.text(totalPriceValues + "원");
   });
 }
 
