@@ -43,7 +43,10 @@ public class Account {
     @Column(nullable = false)
     private LocalDateTime update_at;
 
-    public Account(Long id, String account_name, String number, String password, Long balance, String username, LocalDateTime create_at, LocalDateTime update_at) {
+    private int is_paid;          // 결제
+    private int complete_payment; // 결제 완료(결제 후)
+
+    public Account(Long id, String account_name, String number, String password, Long balance, String username, LocalDateTime create_at, LocalDateTime update_at, int is_paid, int complete_payment) {
         this.id = id;
         this.account_name = account_name;
         this.number = number;
@@ -52,5 +55,7 @@ public class Account {
         this.username = username;
         this.create_at = create_at;
         this.update_at = update_at;
+        this.is_paid = is_paid;
+        this.complete_payment = complete_payment;
     }
 }
