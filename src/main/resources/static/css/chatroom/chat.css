@@ -814,7 +814,6 @@ span.chat-user-name {
     box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
     border-radius: 5px;
     z-index: 1000;
-    left: -450px;
 }
 
 .basket-view .basket-title {
