@@ -776,7 +776,6 @@ $(function () {
     }
   }
 
-
   $out_img.click(function () {
     location.href = "/main_page.html";
   });
@@ -1057,8 +1056,6 @@ function totalRealPrice() {
 
 //정산 창
 // const $list = $('#list'); // 참가자 명단
-
-
 
 var calualtor = document.querySelector(".calualtor");
 function calShow() {
@@ -1580,16 +1577,17 @@ function PaymentDetailsLoad(num_people, user_list, menu_price, del_fee) {
 //------------------------------------------------------------------------
 
 // 결제 하기 버튼 이벤트
-function pay_done_btn() {
-  alert("결제완료");
-  console.log("결제완료");
-}
+// function pay_done_btn() {
+//   alert("결제완료");
+//   console.log("결제완료");
+// }
 
 // 결제 창 호출
-var IMP = window.IMP;
-IMP.init("imp38136157");
 
 function requestPay() {
+  var IMP = window.IMP;
+  IMP.init("imp38136157");
+
   IMP.request_pay(
     {
       pg: "uplus",
