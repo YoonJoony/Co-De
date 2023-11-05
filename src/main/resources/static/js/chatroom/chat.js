@@ -700,6 +700,7 @@ function calculateStatus() {
   }
 }
 //장바구니 닫기 버튼 시 모달 사라짐
+const basket_content = document.querySelector(".basket-view");
 function basketClose() {
   if (basket_content.style.display !== "block") {
     basket_content.style.display = "block";
@@ -708,6 +709,7 @@ function basketClose() {
     basket_content.style.display = "none";
   }
 }
+
 //선택한 메뉴 장바구니에 담기
 var menuName;
 var menuPrice;
@@ -783,9 +785,8 @@ $(function () {
 
   //장바구니 조회
   $(document).on("click", "#basket", function () {
-    calculateStatus();
-    const basket_content = document.querySelector(".basket-view");
-
+    calculateStatus(); //정산 상태 조회
+    //basket_content = basketClose() 메소드 위에 작성함
     if (basket_content.style.display !== "block") {
       basket_content.style.display = "block";
     }
