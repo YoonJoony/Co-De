@@ -483,35 +483,6 @@ $(function () {
 //  return RoomId;
 //}
 
-//장바구니 div
-function basket() {
-  const basket_content = document.querySelector(".basket-view");
-  //    $.ajax({
-  //      type : "POST",
-  //      url : "/basket",
-  //      data : {
-  //        "chatroom_id" : chatroom_id
-  //      },
-  //      success : function(data) {
-  // 숨기기 (display: none)
-  if (basket_content.style.display !== "block") {
-    basket_content.style.display = "block";
-  }
-  // 보이기 (display: block)
-  else {
-    basket_content.style.display = "none";
-  }
-
-  //
-  //
-  //
-  //      },
-  //      error : function() {
-  //        console.log("장바구니 리스트 요청 실패");
-  //      }
-  //    })
-}
-
 /* 메뉴 리스트 */
 var menu_body = document.querySelector(".menu-body");
 var loading_div = document.querySelector(".loading-div");
@@ -801,15 +772,32 @@ $(function () {
     console.log(menuPrice);
   });
 
+  function basket() {
+    if (basket_content.style.display !== "block") {
+      basket_content.style.display = "block";
+    }
+    else {
+      basket_content.style.display = "none";
+    }
+  }
+
   //장바구니 조회
   $(document).on("click", "#basket", function () {
     calculateStatus();
+    const basket_content = document.querySelector(".basket-view");
+
+    if (basket_content.style.display !== "block") {
+      basket_content.style.display = "block";
+    }
+    else {
+      basket_content.style.display = "none";
+    }
     //메뉴판 선택
     $.ajax({
       type: "GET",
       url: "/chat/basket",
       data: {
-        roomId: id,
+        "roomId": id,
       },
       success: function (data) {
         while (basketList.firstChild) {

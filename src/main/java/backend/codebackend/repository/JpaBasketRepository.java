@@ -36,9 +36,10 @@ public class JpaBasketRepository implements BasketRepository {
         Optional<Basket> basket = result.stream().findAny();
 
         if(basket.isPresent()) {
-            String updateQuery = "update Basket m set m.quantity = m.quantity + 1 where m.product_name = :product_name";
+            String updateQuery = "update Basket m set m.quantity = m.quantity + 1 where m.product_name = :product_name and m.nickname = :nickname";
             em.createQuery(updateQuery)
                     .setParameter("product_name", product_name)
+                    .setParameter("nickname", nickname)
                     .executeUpdate();
         }
 
