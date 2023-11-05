@@ -334,6 +334,23 @@ input:focus {
     cursor: pointer;
   }
 
+  .user-picture2 {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    left: 22px;
+    margin-right: 30px;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 10px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
   .user-name {
     font-family: "NanumSquareNeo-Variable";
     position: relative;
@@ -801,19 +818,19 @@ span.chat-user-name {
 
 /* 장바구니 모달 */
 .basket-view {
-    position: absolute;
-    bottom: 23px;
-    margin-left: 8%;
-    width: 80%;
-    min-width: 347px;
-    height: 637px;
-    font-weight: bold;
-    display: none;
-    border: none;
-    background-color: #fff;
-    box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
-    border-radius: 5px;
-    z-index: 1000;
+  position: absolute;
+  bottom: 23px;
+  margin-left: 8%;
+  width: 80%;
+  min-width: 347px;
+  height: 637px;
+  font-weight: bold;
+  display: none;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
+  border-radius: 5px;
+  z-index: 1000;
 }
 
 .basket-view .basket-title {
@@ -1669,6 +1686,10 @@ div#menu {
   margin-left: 15px;
 }
 
+.pay_detail2 div {
+  margin-top: 15px;
+}
+
 .pay_detail3 {
   display: block;
   position: absolute;
@@ -1689,6 +1710,19 @@ div#menu {
   border-bottom: solid 9px #ff8c16;
   transform: translate(-50%, 0%);
   transition: all 0.3s ease-in-out;
+}
+
+.pay_detail3 img {
+  cursor: pointer;
+}
+.pay_detail3 li {
+  list-style-type: none;
+  float: left;
+  margin-left: 15px;
+}
+
+.pay_detail3 div {
+  margin-top: 15px;
 }
 
 .pay_detail_show {

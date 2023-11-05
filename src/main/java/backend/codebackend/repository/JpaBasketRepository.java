@@ -90,14 +90,11 @@ public class JpaBasketRepository implements BasketRepository {
     //다른 사람이 추가한 최신 메뉴를 받음 (STOMP)
     @Override
     public Basket addItemToBasketReceive(String nickname) {
-        try {
-            String jpql = "SELECT b FROM Basket b WHERE b.nickname = :nickname AND b.id = (SELECT MAX(b2.id) FROM Basket b2 WHERE b2.nickname = :nickname)";
-            TypedQuery<Basket> query = em.createQuery(jpql, Basket.class);
-            query.setParameter("nickname", nickname);
-            return query.getSingleResult();
-        } finally {
-            em.close();
-        }
+        String jpql = "SELECT m FROM Basket m WHERE m.nickname = :nickname ORDER BY m.updated_at DESC";
+        TypedQuery<Basket> query = em.createQuery(jpql, Basket.class);
+        query.setParameter("nickname", nickname);
+        query.setMaxResults(1);
+        return query.getSingleResult();
     }
 
     @Override

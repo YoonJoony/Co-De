@@ -324,7 +324,10 @@ function onMessageReceived(payload) {
         nickname: chat.sender,
       },
       success: function (data) {
-        createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
+        if (isDuplicateBasket(data) === 1) {
+          createBasketMenu(data); //장바구니에 추가한 메뉴 div 생성
+        }
+
         totalPrice();
         console.log("메뉴저장 성공");
       },
@@ -366,6 +369,7 @@ function onMessageReceived(payload) {
     );
     if (element) {
       element.remove();
+      totalPrice();
     }
   } else {
     messageElement.classList.add("chat-message");
@@ -577,34 +581,44 @@ function menuList() {
   });
 }
 
+//장바구니 중복
+function isDuplicateBasket(data) {
+  let foodNameElements = document.querySelectorAll(".food-name");
+  let foodDuplicateBool = 0;
+
+  // 각 요소에 대해 처리
+  foodNameElements.forEach(function (element) {
+    let text = element.textContent;
+    // 텍스트가 "스테이크"인 경우 처리
+    if (text === data.product_name) {
+      //텍스트가 '스테이크'인 요소의 기본키를 갖고온다.
+      let basketId = element.parentElement.parentElement.dataset.roomId;
+      //같은 음식일 경우와 그 음식을 시킨 닉네임이 다를 경우 제외한다. 같은 음식을 같은 사람이 시킬 경우 개수가 증가하게 해야함.
+      if (parseInt(basketId) !== data.id) {
+        return 2;
+      }
+
+      let parentElement = element.parentElement.parentElement;
+
+      let countElement = parentElement.querySelector(".count_css");
+      let priceElement = parentElement.querySelector(".price");
+
+      let count = parseInt(countElement.value);
+      let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
+
+      countElement.value = count + 1;
+      priceElement.textContent = price + price / count + "원";
+      foodDuplicateBool = 1;
+      return 0;
+    }
+  });
+  if (foodDuplicateBool === 1) return 0;
+
+  return 1;
+}
+
 //징비구니 추가시 div 생성
 function createBasketMenu(data) {
-  // let foodNameElements = document.querySelectorAll(".food-name");
-  // let foodDuplicateBool = 0;
-  //
-  // // 각 요소에 대해 처리
-  // foodNameElements.forEach(function (element) {
-  //   let text = element.textContent;
-  //
-  //   // 텍스트가 "스테이크"인 경우 처리
-  //   if (text === data.product_name) {
-  //     let parentElement = element.parentElement.parentElement;
-  //
-  //     let countElement = parentElement.querySelector(".count_css");
-  //     let priceElement = parentElement.querySelector(".price");
-  //
-  //     let count = parseInt(countElement.value);
-  //     let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
-  //
-  //     countElement.value = count + 1;
-  //     priceElement.textContent = price + price / count + "원";
-  //     foodDuplicateBool = 1;
-  //     return 0;
-  //   }
-  // });
-  //
-  // if (foodDuplicateBool === 1) return 0;
-
   var basketListItem = document.createElement("div");
   basketListItem.className = "basket-list-item";
   basketListItem.setAttribute("data-room-id", data.id);
@@ -914,7 +928,6 @@ $(function () {
 
     //다른 사람의 장바구니를 수정하려 했을 경우 방지
     if (updateQuantityNickName === nickname && mozipStatus === "정산전") {
-      totalPrice();
       //선택한 메뉴 삭제
       basketDeleteSendMessage(menuId);
     }
@@ -1005,7 +1018,7 @@ function totalPrice() {
 
     // 숫자 추출
     totalPriceValues = totalPriceValues + parseInt(text.replace(/\D/g, ""));
-    totalPriceDiv.text(totalPriceValues);
+    totalPriceDiv.text(totalPriceValues + "원");
   });
 }
 
@@ -1021,7 +1034,6 @@ function totalRealPrice() {
         let nickname = resultMap[totalPrice];
         console.log("결제자 : " + nickname + ", 금액 : " + totalPrce);
       }
-      totalPriceDiv.text(totalPriceValues);
     },
     error: function () {
       console.log("장바구니 메뉴 삭제 API 오류");
@@ -1030,14 +1042,29 @@ function totalRealPrice() {
 }
 
 //정산 창
-
-const userListLength = ["농담곰", "망담곰", "엄준식"];
 // const $list = $('#list'); // 참가자 명단
 
 var calualtor = document.querySelector(".calualtor");
-var calualtor_name = document.querySelector(".pay_username");
+async function calShow() {
+  var userListLength = [];
+  try {
+    const response = await $.ajax({
+      type: "GET",
+      url: "/mozip/chat/userList",
+      data: {
+        "id": id,
+      },
+    });
+    userListLength = response;
+    console.log(response);
+  } catch (error) {
+    console.log("유저 리스트 요청 실패");
+  }
 
-function calShow() {
+  
+  // PaymentDetailsLoad() 주문내역 메소드 호출
+  PaymentDetailsLoad(userListLength.length - 1, userListLength);
+
   document.querySelector(".cal_page").className = "cal_page cal_page_show";
   // 금액 확인 클릭시
   const delivery_fee = 4000; // 배달비
@@ -1054,16 +1081,18 @@ function calShow() {
 
   let rate;
 
-  if (userListLength.length == 4) {
+  if (userListLength.length === 4) {
     // 참가자가 4인 일 때
     rate = Math.ceil(delivery_fee_each * 0.4);
-  } else if (userListLength.length == 3) {
+  } else if (userListLength.length === 3) {
     // 참가자가 3인 일 때
     rate = Math.ceil(delivery_fee_each * 0.3);
-  } else if (userListLength.length == 2) {
+  } else if (userListLength.length === 2) {
     // 참가자가 2인 일 때
     rate = Math.ceil(delivery_fee_each * 0.2);
+    console.log("할인 값" + rate);
   }
+
 
   let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
   // 모달창에 결과 출력
@@ -1089,29 +1118,30 @@ function calShow() {
     if (i == 1) {
       costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
           onclick="detailShow_cos1()"></p>`; // 참가자가 지불해야 하는 비용
-    } else if (i == 2) {
+    }
+    if (i == 2) {
       costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
           onclick="detailShow_cos2()"></p>`; // 참가자가 지불해야 하는 비용
-    } else if (i == 3) {
+    }
+    if (i == 3) {
       costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
               onclick="detailShow_cos3()"></p>`; // 참가자가 지불해야 하는 비용
     }
+  }
 
-    // 모두 공통인 부분 배열로 인원수 대로 일괄출력
-    for (var j = 0; j <= i; j++) {
-      document.getElementsByClassName("fee")[j].innerHTML =
-        delivery_fee.toLocaleString() + " 원"; // 원래 배달비
-      document.getElementsByName("each_delifee")[j].innerHTML =
-        Math.ceil(delivery_fee_each).toLocaleString() + " 원"; // 상세창에 개별 배달비 출력
+  // 모두 공통인 부분 배열로 인원수 대로 일괄출력
+  for (var j = 0; j <= i; j++) {
+    document.getElementsByClassName("fee")[j].innerHTML =
+      delivery_fee.toLocaleString() + " 원"; // 원래 배달비
+    document.getElementsByName("each_delifee")[j].innerHTML =
+      Math.ceil(delivery_fee_each).toLocaleString() + " 원"; // 상세창에 개별 배달비 출력
+    // document.getElementsByName("host_discount_add")[j].innerHTML =
+    //   "+" + costomer_add.toLocaleString() + " 원"; // 참가자 배달비 가액
+    document.getElementsByName("costomer_delifee")[j].innerHTML =
+      costomer_fee.toLocaleString() + " 원"; // 참가자 총 배달비
 
-      document.getElementsByName("host_discount_add")[j].innerHTML =
-        "+" + costomer_add.toLocaleString() + " 원"; // 참가자 배달비 가액
-      document.getElementsByName("costomer_delifee")[j].innerHTML =
-        costomer_fee.toLocaleString() + " 원"; // 참가자 총 배달비
-
-      document.getElementsByName("comtomer_totalfee")[j].innerHTML =
-        total_pay_coutomer.toLocaleString() + " 원"; // 참가자 결제 금액
-    }
+    document.getElementsByName("comtomer_totalfee")[j].innerHTML =
+      total_pay_coutomer.toLocaleString() + " 원"; // 참가자 결제 금액
   }
 }
 
@@ -1119,6 +1149,11 @@ function calclose() {
   document.querySelector(".cal_page").className = "cal_page";
   while (calualtor.firstChild) {
     calualtor.removeChild(calualtor.firstChild);
+  }
+
+  let parent = document.getElementById("pay_detail_div");
+  while (parent.children.length > 1) {
+    parent.removeChild(parent.lastChild);
   }
 }
 
@@ -1273,19 +1308,21 @@ function initMap2() {
 // 결제하기 창 -> 금액확인 -> 주문내역 창 생성 js
 // 참가자만 주문 내역 추가
 
-function PaymentDetailsLoad(num_people) {
+// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열))
+function PaymentDetailsLoad(num_people, user_list) {
+
   // storeModal_header_topper_back_img_pay_detail (img)
   for (var i = 1; i <= num_people; i++) {
     var storeModal_header_topper_back_img_pay_detail =
       document.createElement("img");
     storeModal_header_topper_back_img_pay_detail.className =
       "storeModal_header_topper_back_img_pay_detail";
+    storeModal_header_topper_back_img_pay_detail.id = "shtbipdc" + i;
     storeModal_header_topper_back_img_pay_detail.src = "/images/back.png";
-    storeModal_header_topper_back_img_pay_detail.onclick = "detailClose_cos1()";
 
     // (p)
     var p1 = document.createElement("p");
-    var p1_text = document.createTextNode("(참가자명)");
+    var p1_text = document.createTextNode(user_list[i]);
     p1.appendChild(p1_text);
 
     // (li)
@@ -1293,9 +1330,13 @@ function PaymentDetailsLoad(num_people) {
     var li1_txt = document.createTextNode(" 주문 내역 ");
     li1.appendChild(li1_txt);
 
-    // detail_hr (hr)
-    var detail_hr = document.createElement("hr");
-    detail_hr.className = "detail_hr";
+    // detail_hr1 (hr)
+    var detail_hr1 = document.createElement("hr");
+    detail_hr1.className = "detail_hr";
+
+    // detail_hr2 (hr)
+    var detail_hr2 = document.createElement("hr");
+    detail_hr2.className = "detail_hr";
 
     // pay_detail_text (li) 메뉴이름
     var pay_detail_text1 = document.createElement("li");
@@ -1419,16 +1460,20 @@ function PaymentDetailsLoad(num_people) {
 
     //-----------------------------------------------------------
 
-    var br = document.createElement("br");
-
     var pay_detail = document.createElement("div");
     pay_detail.className = "pay_detail" + i;
-    pay_detail.id = "pay_detail1";
+    pay_detail.id = "pay_detail" + i;
+
+    // storeModal_header_topper_back_img_pay_detail.onclick = function () {
+    //   document.querySelector(".pay_detail1").className = "pay_detail1";
+    //   console.log("지랄");
+    // };
     // 자식 요소 추가
     pay_detail.appendChild(storeModal_header_topper_back_img_pay_detail);
     pay_detail.appendChild(p1);
     pay_detail.appendChild(li1);
-    pay_detail.appendChild(detail_hr);
+    pay_detail.appendChild(document.createElement("br"));
+    pay_detail.appendChild(detail_hr1);
     pay_detail.appendChild(total_pay1);
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(delivery_fee_div);
@@ -1438,7 +1483,7 @@ function PaymentDetailsLoad(num_people) {
     pay_detail.appendChild(host_fee_div);
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(total_pay2);
-    pay_detail.appendChild(detail_hr);
+    pay_detail.appendChild(detail_hr2);
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(total_pay3);
 
@@ -1446,6 +1491,19 @@ function PaymentDetailsLoad(num_people) {
     var pay_detail_div = document.getElementById("pay_detail_div");
     pay_detail_div.appendChild(pay_detail);
   }
+
+  // 뒤로가기 이벤트 추가
+  $("#shtbipdc1").on("click", function () {
+    document.querySelector(".pay_detail1").className = "pay_detail1";
+  });
+
+  $("#shtbipdc2").on("click", function () {
+    document.querySelector(".pay_detail2").className = "pay_detail2";
+  });
+
+  $("#shtbipdc3").on("click", function () {
+    document.querySelector(".pay_detail3").className = "pay_detail3";
+  });
 }
 
 //------------------------------------------------------------------------
