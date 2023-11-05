@@ -98,17 +98,17 @@ public class JpaBasketRepository implements BasketRepository {
     }
 
     @Override
-    public Map<Integer,String> getTotalPrice(Long roomId) {
-        String priceQuery = "SELECT price * quantity AS total_price, nickname FROM Basket m WHERE m.chatroom_id = :roomId";
+    public Map<String,Integer> getTotalPrice(Long roomId) {
+        String priceQuery = "SELECT SUM(m.price * m.quantity), m.nickname FROM Basket m WHERE m.chatroom_id = :roomId GROUP BY m.nickname";
         TypedQuery<Object[]> query = em.createQuery(priceQuery, Object[].class);
         query.setParameter("roomId", roomId);
         List<Object[]> resultList = query.getResultList();
 
-        Map<Integer, String> resultMap = new HashMap<>();
+        Map<String, Integer> resultMap = new HashMap<>();
         for (Object[] result : resultList) {
             String nickname = (String) result[1];
             Integer totalPrice = ((Number) result[0]).intValue(); // total_price 컬럼은 숫자 타입이므로 intValue() 메소드를 사용하여 int 타입으로 변환
-            resultMap.put(totalPrice, nickname);
+            resultMap.put(nickname, totalPrice);
         }
 
         return resultMap;

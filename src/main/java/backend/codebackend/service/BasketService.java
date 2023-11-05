@@ -65,7 +65,6 @@ public class BasketService {
     }
 
 
-
     //메뉴 기본키에 해당하는 장바구니 메뉴 조회
     public Basket findBasketMenu(Long id) {
         return basketRepository.findBasketMenu(id);
@@ -79,8 +78,7 @@ public class BasketService {
     }
 
     //총 장바구니 금액, 닉네임 리턴
-    public Map<Integer, String> getTotalPrice(Long roomId) {
-
+    public Map<String, Integer> getTotalPrice(Long roomId) {
         return basketRepository.getTotalPrice(roomId);
     }
 

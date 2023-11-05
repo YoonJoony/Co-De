@@ -31,7 +31,6 @@ public class BasketController {
         return basketItems;
     }
 
-
     @PostMapping("/basket/add")
     public ResponseEntity<?> addItemToBasket(Long chatroom_id, String menuName, String menuPrice, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -161,7 +160,7 @@ public class BasketController {
     //장바구니 총 금액 뷰
     @GetMapping("/chat/basket/totalPrice")
     @ResponseBody
-    public Map<Integer, String> getTotalPrice(Long roomId) {
+    public Map<String, Integer> getTotalPrice(Long roomId) {
 
         return basketService.getTotalPrice(roomId);
     }

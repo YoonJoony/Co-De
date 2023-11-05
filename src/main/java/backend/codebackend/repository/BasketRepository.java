@@ -20,7 +20,7 @@ public interface BasketRepository {
     void deleteByMenu(Long menuId);
     Basket findBasketMenu(Long menuId);
     Basket addItemToBasketReceive(String nickname);
-    Map<Integer, String> getTotalPrice(Long roomId);
+    Map<String,Integer> getTotalPrice(Long roomId);
 }
 
 
