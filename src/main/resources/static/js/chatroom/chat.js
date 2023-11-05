@@ -699,6 +699,15 @@ function calculateStatus() {
     }
   }
 }
+//장바구니 닫기 버튼 시 모달 사라짐
+function basketClose() {
+  if (basket_content.style.display !== "block") {
+    basket_content.style.display = "block";
+  }
+  else {
+    basket_content.style.display = "none";
+  }
+}
 //선택한 메뉴 장바구니에 담기
 var menuName;
 var menuPrice;
@@ -771,15 +780,6 @@ $(function () {
     console.log(menuName);
     console.log(menuPrice);
   });
-
-  function basket() {
-    if (basket_content.style.display !== "block") {
-      basket_content.style.display = "block";
-    }
-    else {
-      basket_content.style.display = "none";
-    }
-  }
 
   //장바구니 조회
   $(document).on("click", "#basket", function () {
