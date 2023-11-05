@@ -70,7 +70,7 @@ public class MemberController {
         sessionList.put(session.getId(), session);
 
         //성공 시 메인 페이지 이동
-        return "Cotegory/cotegory.html";
+        return "redirect:/main_page.html";
     }
 
     //회원가입 성공 시 처음 화면으로 이동

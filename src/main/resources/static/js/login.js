@@ -13,23 +13,33 @@ loginButton.addEventListener("click", () => {
 });
 
 const signUpButton = document.getElementById('signUp');
+
 const signInButton = document.getElementById('signIn');
+
 const container = document.getElementById('container');
-
-signUpButton.addEventListener('click', () => {
-  container.classList.add("right-panel-active");
-});
-
-signInButton.addEventListener('click', () => {
-  container.classList.remove("right-panel-active");
-});
-
-const nextButton = document.getElementById('next');
-const forgotButton = document.getElementById('forgot');
 
 const termsService = document.getElementById('termsService');
 const termsPrivacy = document.getElementById('termsPrivacy');
 const termsLocation = document.getElementById('termsLocation');
+
+// sing up 눌렀을때 로그인 화면 넘기는 에니메이션 클래스 추가
+const loginMove = document.getElementById('login_main');
+
+signUpButton.addEventListener('click', () => {
+  termsService.checked = false;
+  termsPrivacy.checked = false;
+  termsLocation.checked = false;
+  container.classList.add("right-panel-active");
+  loginMove.classList.add("move");
+});
+
+signInButton.addEventListener('click', () => {
+  container.classList.remove("right-panel-active");
+  loginMove.classList.remove("move");
+});
+
+const nextButton = document.getElementById('next');
+const forgotButton = document.getElementById('forgot');
 
 
 nextButton.addEventListener('click', () => {
@@ -56,5 +66,3 @@ forgotButton.addEventListener('click', () => {
    function gotoForgot(){
        location.href="find_account.html";  // 이동주소
    }
-
-
