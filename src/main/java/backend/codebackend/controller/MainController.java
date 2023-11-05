@@ -72,11 +72,9 @@ public class MainController {
         String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
 
         //정산 상태 확인
-        if(mozipService.mozipStatus(id)) {
+        if(mozipService.mozipStatus(id) && chatUserService.isDuplicateName(id, nickname)) {
             return "정산 시작된 상태입니다!";
         }
-
-
 
         System.out.println("입장 성공!!" + id);
 

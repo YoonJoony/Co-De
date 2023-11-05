@@ -72,9 +72,16 @@ public class MozipService {
         return mozipRepository.mozipStatus(id);
     }
 
-    //정산 상태 변경
-    public void updateMozipStatus(Long id) {
-        mozipRepository.updateMozipStatus(id);
+    //정산 상태 변경 (정산시작)
+    public void calculateStartStatus(Long id) {
+        mozipRepository.calculateStartStatus(id);
     }
+
+    //정산 상태 변경 (정산 전)
+    public void preCalculateStartStatus(Long id) {
+        mozipRepository.preCalculateStartStatus(id);
+    }
+
+
 
 }

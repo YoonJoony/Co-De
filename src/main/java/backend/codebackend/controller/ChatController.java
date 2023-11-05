@@ -116,21 +116,48 @@ public class ChatController {
         return chatUserService.isCurrentUserHost(id, nickname);
     }
 
+    //모집글 정산 상태 조회
+    @GetMapping("/mozip/chat/inquiry")
+    @ResponseBody
+    public boolean inquiry(Long id){   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
+        return mozipService.mozipStatus(id);
+    }
+
     //정산 시작 버튼 클릭 시 모집글을 정산 중으로 바뀌게
     @GetMapping("/mozip/chat/startCalculate")
     @ResponseBody
-    public ResponseEntity<?> startCalculate(Long chatroom_id, Long id, String nickname) {   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
+    public ResponseEntity<?> startCalculate(Long chatroom_id, String nickname) {   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
 
         //정산 상태 확인
         if (mozipService.mozipStatus(chatroom_id)) {
+
+
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "정산 시작된 상태입니다!"));
         }
 
-        if (chatUserService.isCurrentUserHost(id, nickname))
+        if (!chatUserService.isCurrentUserHost(chatroom_id, nickname))
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "방장만 누를 수 있습니다."));
 
-        mozipService.updateMozipStatus(chatroom_id);
+        mozipService.calculateStartStatus(chatroom_id);
 
         return ResponseEntity.ok( "정산이 시작되었습니다!");
+    }
+
+    //정산 시작 버튼 클릭 시 모집글을 정산 전으로 바뀌게
+    @GetMapping("/mozip/chat/preCalculateStartStatus")
+    @ResponseBody
+    public ResponseEntity<?> preCalculateStartStatus(Long chatroom_id, String nickname) {   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
+
+        //정산 상태 확인
+        if (!mozipService.mozipStatus(chatroom_id)) {
+            return ResponseEntity.badRequest().body(Collections.singletonMap("message", "정산 시작 전입니다!"));
+        }
+
+        if (!chatUserService.isCurrentUserHost(chatroom_id, nickname))
+            return ResponseEntity.badRequest().body(Collections.singletonMap("message", "방장만 누를 수 있습니다."));
+
+        mozipService.preCalculateStartStatus(chatroom_id);
+
+        return ResponseEntity.ok( "정산 전으로 변동되었습니다!");
     }
 }

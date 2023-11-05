@@ -236,6 +236,6 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("방 정산 상태 변경")
 	void 정산상태변경() {
-		mozipService.updateMozipStatus(95L);
+		mozipService.calculateStartStatus(95L);
 	}
 }
