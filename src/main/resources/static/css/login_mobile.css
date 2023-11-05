@@ -109,9 +109,18 @@
 
     button.ghost {
         background-color: transparent;
-        /* 배경 투명? */
         border-color: #FFFFFF;
-        /* 외곽선 흰색? */
+        width: 120px;
+        right: -7px;
+    }
+
+    .ghost_text {
+        left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 0px;
+        letter-spacing: 0px;
+        margin: 0px 0px 0px -17px;
     }
 
     .ghost_mobile {
@@ -152,7 +161,7 @@
 
     .arrow-next::after {
         position: absolute;
-        left: 110px;
+        left: 90px;
         top: 10px;
         content: '';
         width: 15px;
