@@ -579,31 +579,31 @@ function menuList() {
 
 //징비구니 추가시 div 생성
 function createBasketMenu(data) {
-  let foodNameElements = document.querySelectorAll(".food-name");
-  let foodDuplicateBool = 0;
-
-  // 각 요소에 대해 처리
-  foodNameElements.forEach(function (element) {
-    let text = element.textContent;
-
-    // 텍스트가 "스테이크"인 경우 처리
-    if (text === data.product_name) {
-      let parentElement = element.parentElement.parentElement;
-
-      let countElement = parentElement.querySelector(".count_css");
-      let priceElement = parentElement.querySelector(".price");
-
-      let count = parseInt(countElement.value);
-      let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
-
-      countElement.value = count + 1;
-      priceElement.textContent = price + price / count + "원";
-      foodDuplicateBool = 1;
-      return 0;
-    }
-  });
-
-  if (foodDuplicateBool === 1) return 0;
+  // let foodNameElements = document.querySelectorAll(".food-name");
+  // let foodDuplicateBool = 0;
+  //
+  // // 각 요소에 대해 처리
+  // foodNameElements.forEach(function (element) {
+  //   let text = element.textContent;
+  //
+  //   // 텍스트가 "스테이크"인 경우 처리
+  //   if (text === data.product_name) {
+  //     let parentElement = element.parentElement.parentElement;
+  //
+  //     let countElement = parentElement.querySelector(".count_css");
+  //     let priceElement = parentElement.querySelector(".price");
+  //
+  //     let count = parseInt(countElement.value);
+  //     let price = parseInt(priceElement.textContent.replace(/\D/g, ""));
+  //
+  //     countElement.value = count + 1;
+  //     priceElement.textContent = price + price / count + "원";
+  //     foodDuplicateBool = 1;
+  //     return 0;
+  //   }
+  // });
+  //
+  // if (foodDuplicateBool === 1) return 0;
 
   var basketListItem = document.createElement("div");
   basketListItem.className = "basket-list-item";
@@ -698,6 +698,7 @@ function calculateStatus() {
   }
 }
 //장바구니 닫기 버튼 시 모달 사라짐
+const basket_content = document.querySelector(".basket-view");
 function basketClose() {
   if (basket_content.style.display !== "block") {
     basket_content.style.display = "block";
@@ -705,6 +706,7 @@ function basketClose() {
     basket_content.style.display = "none";
   }
 }
+
 //선택한 메뉴 장바구니에 담기
 var menuName;
 var menuPrice;
@@ -780,9 +782,8 @@ $(function () {
 
   //장바구니 조회
   $(document).on("click", "#basket", function () {
-    calculateStatus();
-    const basket_content = document.querySelector(".basket-view");
-
+    calculateStatus(); //정산 상태 조회
+    //basket_content = basketClose() 메소드 위에 작성함
     if (basket_content.style.display !== "block") {
       basket_content.style.display = "block";
     } else {
