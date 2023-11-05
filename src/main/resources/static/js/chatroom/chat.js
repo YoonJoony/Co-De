@@ -1038,7 +1038,8 @@ var calualtor = document.querySelector(".calualtor");
 var calualtor_name = document.querySelector(".pay_username");
 
 function calShow() {
-  PaymentDetailsLoad(userListLength.length - 1);
+  // PaymentDetailsLoad() 주문내역 메소드 호출
+  PaymentDetailsLoad(userListLength.length - 1, userListLength);
 
   document.querySelector(".cal_page").className = "cal_page cal_page_show";
   // 금액 확인 클릭시
@@ -1275,7 +1276,8 @@ function initMap2() {
 // 결제하기 창 -> 금액확인 -> 주문내역 창 생성 js
 // 참가자만 주문 내역 추가
 
-function PaymentDetailsLoad(num_people) {
+// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열))
+function PaymentDetailsLoad(num_people, user_list) {
   // storeModal_header_topper_back_img_pay_detail (img)
   for (var i = 1; i <= num_people; i++) {
     var storeModal_header_topper_back_img_pay_detail =
@@ -1286,7 +1288,7 @@ function PaymentDetailsLoad(num_people) {
 
     // (p)
     var p1 = document.createElement("p");
-    var p1_text = document.createTextNode("(참가자명)");
+    var p1_text = document.createTextNode(user_list[i]);
     p1.appendChild(p1_text);
 
     // (li)
