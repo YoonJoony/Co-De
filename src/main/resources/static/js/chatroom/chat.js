@@ -1031,7 +1031,7 @@ function totalRealPrice() {
 
 //정산 창
 
-const userListLength = ["농담곰", "망담곰", "엄준식", "난난누"];
+const userListLength = ["농담곰", "망담곰", "ㅇㅇㅇ", "난난누"];
 // const $list = $('#list'); // 참가자 명단
 
 var calualtor = document.querySelector(".calualtor");
@@ -1286,6 +1286,7 @@ function PaymentDetailsLoad(num_people, user_list) {
       document.createElement("img");
     storeModal_header_topper_back_img_pay_detail.className =
       "storeModal_header_topper_back_img_pay_detail";
+    storeModal_header_topper_back_img_pay_detail.id = "shtbipdc" + i;
     storeModal_header_topper_back_img_pay_detail.src = "/images/back.png";
 
     // (p)
@@ -1298,9 +1299,13 @@ function PaymentDetailsLoad(num_people, user_list) {
     var li1_txt = document.createTextNode(" 주문 내역 ");
     li1.appendChild(li1_txt);
 
-    // detail_hr (hr)
-    var detail_hr = document.createElement("hr");
-    detail_hr.className = "detail_hr";
+    // detail_hr1 (hr)
+    var detail_hr1 = document.createElement("hr");
+    detail_hr1.className = "detail_hr";
+
+    // detail_hr2 (hr)
+    var detail_hr2 = document.createElement("hr");
+    detail_hr2.className = "detail_hr";
 
     // pay_detail_text (li) 메뉴이름
     var pay_detail_text1 = document.createElement("li");
@@ -1428,15 +1433,16 @@ function PaymentDetailsLoad(num_people, user_list) {
     pay_detail.className = "pay_detail" + i;
     pay_detail.id = "pay_detail" + i;
 
-    storeModal_header_topper_back_img_pay_detail.onclick = function () {
-      document.querySelector(".pay_detail1").className = "pay_detail1";
-      console.log("지랄");
-    };
+    // storeModal_header_topper_back_img_pay_detail.onclick = function () {
+    //   document.querySelector(".pay_detail1").className = "pay_detail1";
+    //   console.log("지랄");
+    // };
     // 자식 요소 추가
     pay_detail.appendChild(storeModal_header_topper_back_img_pay_detail);
     pay_detail.appendChild(p1);
     pay_detail.appendChild(li1);
-    pay_detail.appendChild(detail_hr);
+    pay_detail.appendChild(document.createElement("br"));
+    pay_detail.appendChild(detail_hr1);
     pay_detail.appendChild(total_pay1);
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(delivery_fee_div);
@@ -1446,7 +1452,7 @@ function PaymentDetailsLoad(num_people, user_list) {
     pay_detail.appendChild(host_fee_div);
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(total_pay2);
-    pay_detail.appendChild(detail_hr);
+    pay_detail.appendChild(detail_hr2);
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(total_pay3);
 
@@ -1454,11 +1460,19 @@ function PaymentDetailsLoad(num_people, user_list) {
     var pay_detail_div = document.getElementById("pay_detail_div");
     pay_detail_div.appendChild(pay_detail);
   }
-  for (j = 1; j <= 3; j++) {
-    $("storeModal_header_topper_back_img_pay_detail").on("click", function () {
-      document.querySelector(".pay_detail" + j).className = "pay_detail" + j;
-    });
-  }
+
+  // 뒤로가기 이벤트 추가
+  $("#shtbipdc1").on("click", function () {
+    document.querySelector(".pay_detail1").className = "pay_detail1";
+  });
+
+  $("#shtbipdc2").on("click", function () {
+    document.querySelector(".pay_detail2").className = "pay_detail2";
+  });
+
+  $("#shtbipdc3").on("click", function () {
+    document.querySelector(".pay_detail3").className = "pay_detail3";
+  });
 }
 
 //------------------------------------------------------------------------
