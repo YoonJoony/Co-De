@@ -2,6 +2,7 @@ package backend.codebackend;
 
 import backend.codebackend.domain.*;
 import backend.codebackend.dto.ChatDTO;
+import backend.codebackend.dto.TotalPrice;
 import backend.codebackend.repository.BasketRepository;
 import backend.codebackend.repository.MemberRepository;
 import backend.codebackend.service.*;
@@ -214,17 +215,11 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("장바구니 총 금액 조회")
 	void 총금액() {
-		long startTime = System.currentTimeMillis();
-
-		Map<String, Integer> result = basketRepository.getTotalPrice(111L);
-		for(Map.Entry<String, Integer> entry : result.entrySet()) {
-			System.out.println(entry.getKey());
-			System.out.println(entry.getValue());
+		List<TotalPrice> totalPrices = basketRepository.getTotalPrice(111L);
+		for(int i = 0; i < totalPrices.size(); i++) {
+			System.out.println(totalPrices.get(i).getUsername());
+			System.out.println(totalPrices.get(i).getTotalPrice());
 		}
-
-		long endTime = System.currentTimeMillis();
-		long executionTime = endTime - startTime;
-		System.out.println("테스트 실행 시간: " + executionTime + "ms");
 	}
 
 	@Test
