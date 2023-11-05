@@ -1058,14 +1058,15 @@ function totalRealPrice() {
 //정산 창
 // const $list = $('#list'); // 참가자 명단
 
-// delivery_fee.innerText(배달요금) 숫자만 빼기
-var del_fee_before = delivery_fee.innerText;
-var ex1 = "sada3000sf";
-var regex = /[^0-9]/g;
-var del_fee = del_fee_before.replace(regex, "");
+
 
 var calualtor = document.querySelector(".calualtor");
 function calShow() {
+  // delivery_fee.innerText(배달요금) 숫자만 빼기
+  var del_fee_before = delivery_fee.innerText;
+  var ex1 = "sada3000sf";
+  var regex = /[^0-9]/g;
+  var del_fee = del_fee_before.replace(regex, "");
   var userListLength = [];
   var menu_price = [];
 

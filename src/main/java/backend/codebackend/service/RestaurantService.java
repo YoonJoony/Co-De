@@ -160,6 +160,7 @@ public class RestaurantService {
         // Google 웹 페이지를 엽니다.
         driver.get("https://www.yogiyo.co.kr/mobile/#/");
 
+        String currentUrl = driver.getCurrentUrl();
 
         // 검색창을 찾습니다. Google의 검색창은 'name' 속성이 'q'인 input 요소입니다.
         WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("address_input")));
@@ -172,6 +173,24 @@ public class RestaurantService {
 
         WebElement clickSearch = wait.until(ExpectedConditions.elementToBeClickable(By.className("ico-pick")));
         clickSearch.click();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        //다음 창 주소 입력받음
+        String expectedUrl = driver.getCurrentUrl();
+
+        //현재 창이 유지 될 경우 -> 주소가 잘못 되었을 경우
+        if(Objects.equals(currentUrl, expectedUrl)) {
+            // dropdown-menu 요소를 찾습니다.
+            WebElement dropdownMenu = driver.findElement(By.className("dropdown-menu"));
+            // dropdown-menu 요소의 세번째 자식 요소를 찾습니다.
+            WebElement thirdChild = dropdownMenu.findElement(By.xpath("./*[3]"));
+            // 세번째 자식 요소를 클릭합니다.
+            thirdChild.click();
+        }
 
         Menu menu; //메뉴 정보 저장시 선언한 Menu 클래스 객체
         Menu menu2; //타이틀 별로 메뉴를 저장하기 위해 선언한 객체
