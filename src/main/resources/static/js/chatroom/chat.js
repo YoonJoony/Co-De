@@ -1045,7 +1045,7 @@ function totalRealPrice() {
 
 //정산 창
 
-const userListLength = ["농담곰", "망담곰", "ㅇㅇㅇ", "난난누"];
+const userListLength = ["농담곰", "망담곰", "ㅇㅇㅇ"];
 // const $list = $('#list'); // 참가자 명단
 
 var calualtor = document.querySelector(".calualtor");
