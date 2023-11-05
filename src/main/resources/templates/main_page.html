@@ -85,7 +85,7 @@
                             </span>
                         </a>
 
-                        <!-- <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+                        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
                             <div class="block block-name">
                                 <div class="profile-name" th:text="${nickname}"> 야왕이네
                                 </div>
@@ -93,7 +93,7 @@
                                     <a href="#">파티관리</a>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
                     </div>
                 </div>
@@ -268,6 +268,10 @@
                     <img class="join-img" src="images/join.png">
                     <p class="join-icon">💡</p>
                     <p class="join-p">입장 하시겠습니까?</p>
+                    <div class="enter_loading-div">
+                        <div id="loading" class="loading"> </div>
+                        <div> 로딩중 입니다. 잠시만 기다려 주세요!</div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <input class="btn btn-access" id="join_btn" type="button" value="입장" data-bs-dismiss="modal"
@@ -468,8 +472,11 @@
         }
 
 
+        let enter_loading = document.querySelector(".loading-div");
 
         function enterRoom() {
+            basket_content.style.display = "block";
+            document.querySelector(".join-p").style.display = "none";
             if (chkRoomUserCnt(id, nickname)) {
                 $.ajax({
                     type: "GET",
