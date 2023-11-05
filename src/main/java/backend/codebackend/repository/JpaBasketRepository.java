@@ -1,15 +1,14 @@
 package backend.codebackend.repository;
 
 import backend.codebackend.domain.Basket;
+import backend.codebackend.dto.TotalPrice;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RequiredArgsConstructor
 @PersistenceContext // em.find() 메소드를 사용하여 Basket 클래스의 id가 8인 튜플을 조회할 수 있음
@@ -98,20 +97,27 @@ public class JpaBasketRepository implements BasketRepository {
     }
 
     @Override
-    public Map<String,Integer> getTotalPrice(Long roomId) {
-        String priceQuery = "SELECT SUM(m.price * m.quantity), m.nickname FROM Basket m WHERE m.chatroom_id = :roomId GROUP BY m.nickname";
-        TypedQuery<Object[]> query = em.createQuery(priceQuery, Object[].class);
+    public List<TotalPrice> getTotalPrice(Long roomId) {
+        String jpql = "SELECT b.nickname, SUM(b.price * b.quantity) " +
+                "FROM Basket b WHERE b.chatroom_id = :roomId GROUP BY b.nickname";
+        Query query = em.createQuery(jpql);
         query.setParameter("roomId", roomId);
-        List<Object[]> resultList = query.getResultList();
 
-        Map<String, Integer> resultMap = new HashMap<>();
-        for (Object[] result : resultList) {
-            String nickname = (String) result[1];
-            Integer totalPrice = ((Number) result[0]).intValue(); // total_price 컬럼은 숫자 타입이므로 intValue() 메소드를 사용하여 int 타입으로 변환
-            resultMap.put(nickname, totalPrice);
+        List<Object[]> results = query.getResultList();
+        List<TotalPrice> totalPriceList = new ArrayList<>();
+
+        for (Object[] result : results) {
+            String nickname = (String) result[0];
+            int totalPrice = ((Number) result[1]).intValue();
+
+            TotalPrice totalPriceObj = TotalPrice.builder()
+                    .username(nickname)
+                    .totalPrice(totalPrice)
+                    .build();
+            totalPriceList.add(totalPriceObj);
         }
 
-        return resultMap;
+        return totalPriceList;
     }
 
     //장바구니에 있는 항목 전체를 한꺼번에 삭제(모두 지우기)

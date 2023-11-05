@@ -1027,12 +1027,11 @@ function totalRealPrice() {
     type: "GET",
     url: "/chat/basket/totalPrice",
     data: {
-      roomId: id,
+      "id": id,
     },
-    success: function (resultMap) {
-      for (let nickname in resultMap) {
-        let totalPrice = resultMap[nickname];
-        console.log("결제자 : " + nickname + ", 금액 : " + totalPrice);
+    success: function (data) {
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i].username + ': ' + data[i].totalPrice);
       }
     },
     error: function () {
@@ -1041,7 +1040,7 @@ function totalRealPrice() {
   });
 }
 
-//정산 창----------------------------------------------------------------------
+//정산 창
 // const $list = $('#list'); // 참가자 명단
 
 var calualtor = document.querySelector(".calualtor");
@@ -1076,7 +1075,7 @@ async function calShow() {
     var pay_username = document.createElement("p");
     pay_username.className = "pay_username";
     pay_username.id = "pay_username" + k;
-    var pay_username_txt = document.createTextNode(userListLength[k] + " 금액");
+    var pay_username_txt = document.createTextNode(userListLength[k]);
     pay_username.appendChild(pay_username_txt);
 
     calualtor.appendChild(pay_username);
@@ -1093,7 +1092,7 @@ async function calShow() {
         $("#pay_username3").on("click", detailShow_cos3);
     }
   }
-  //정산 창----------------------------------------------------------------------
+
   // for (var z = 1; z <= userListLength.length - 1; z++) {
   //   calualtor.innerHTML += `<p class="pay_username" name='costomer${z} onclick="detailShow_cos1()"'> ${userListLength[z]} </p>`; // 참가자 닉네임
   // }
