@@ -105,6 +105,7 @@ input:focus {
     height: 37px;
     background-color: #ffffff;
     border-bottom: 1px solid #b0cbba6b;
+    top: -35px;
   }
 
   .header2 {
@@ -800,19 +801,20 @@ span.chat-user-name {
 
 /* 장바구니 모달 */
 .basket-view {
-  position: absolute;
-  bottom: 23px;
-  margin-left: 8%;
-  width: 80%;
-  min-width: 347px;
-  height: 637px;
-  font-weight: bold;
-  display: none;
-  border: none;
-  background-color: #fff;
-  box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
-  border-radius: 5px;
-  z-index: 1000;
+    position: absolute;
+    bottom: 23px;
+    margin-left: 8%;
+    width: 80%;
+    min-width: 347px;
+    height: 637px;
+    font-weight: bold;
+    display: none;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 4px 4px 0 rgb(128, 128, 128);
+    border-radius: 5px;
+    z-index: 1000;
+    left: -450px;
 }
 
 .basket-view .basket-title {
@@ -1235,7 +1237,7 @@ span.chat-user-name {
   font-size: 16px;
   border: none;
   border-radius: 6px;
-  z-index: 10;
+  z-index: 5;
 }
 
 div#menu {
