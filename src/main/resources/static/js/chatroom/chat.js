@@ -1457,7 +1457,7 @@ function PaymentDetailsLoad() {
 //------------------------------------------------------------------------
 
 // 장바구니 이동 2 try
-const modalHeader = document.querySelector(".basket-title_topper");
+const modalHeader = document.querySelector(".basket-title_topper_text");
 const modalDialog = document.querySelector(".basket-view");
 let isDragging = false;
 let mouseOffset = { x: 0, y: 0 };
