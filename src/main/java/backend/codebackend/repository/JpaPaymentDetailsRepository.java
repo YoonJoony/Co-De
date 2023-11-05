@@ -5,9 +5,16 @@ import backend.codebackend.dto.AccountDto;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 public class JpaPaymentDetailsRepository implements PaymentDetailsRepository{
     private EntityManager em;
+
+    @Override
+    public List<PaymentDetails> findAll(Long id) {
+        return null;
+    }
 
     @Override
     public void save(PaymentDetails paymentDetails) {

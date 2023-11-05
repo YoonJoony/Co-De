@@ -160,7 +160,7 @@ public class BasketController {
     //장바구니 총 금액 뷰
     @GetMapping("/chat/basket/totalPrice")
     @ResponseBody
-    public Map<Integer, String> getTotalPrice(Long roomId) {
+    public Map<String, Integer> getTotalPrice(Long roomId) {
 
         return basketService.getTotalPrice(roomId);
     }

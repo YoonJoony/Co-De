@@ -216,10 +216,10 @@ class CodeBackendApplicationTests {
 	void 총금액() {
 		long startTime = System.currentTimeMillis();
 
-		Map<Integer, String> result = basketRepository.getTotalPrice(103L);
-		for(Map.Entry<Integer, String> entry : result.entrySet()) {
-			System.out.println(entry.getValue());
+		Map<String, Integer> result = basketRepository.getTotalPrice(111L);
+		for(Map.Entry<String, Integer> entry : result.entrySet()) {
 			System.out.println(entry.getKey());
+			System.out.println(entry.getValue());
 		}
 
 		long endTime = System.currentTimeMillis();
@@ -245,5 +245,10 @@ class CodeBackendApplicationTests {
 		Basket basket = basketRepository.addItemToBasketReceive("1234");
 		System.out.println(basket.getId());
 	}
-
+	@Test
+	@DisplayName("송금")
+	void 송금() {
+		Basket basket = basketRepository.addItemToBasketReceive("1234");
+		System.out.println(basket.getId());
+	}
 }

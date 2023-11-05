@@ -1027,12 +1027,12 @@ function totalRealPrice() {
     type: "GET",
     url: "/chat/basket/totalPrice",
     data: {
-      roomId: id,
+      "roomId": id,
     },
     success: function (resultMap) {
-      for (let totalPrice in resultMap) {
-        let nickname = resultMap[totalPrice];
-        console.log("결제자 : " + nickname + ", 금액 : " + totalPrce);
+      for (let nickname in resultMap) {
+        let totalPrice = resultMap[nickname];
+        console.log("결제자 : " + nickname + ", 금액 : " + totalPrice);
       }
     },
     error: function () {

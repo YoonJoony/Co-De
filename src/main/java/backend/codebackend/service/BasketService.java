@@ -78,8 +78,7 @@ public class BasketService {
     }
 
     //총 장바구니 금액, 닉네임 리턴
-    public Map<Integer, String> getTotalPrice(Long roomId) {
-
+    public Map<String, Integer> getTotalPrice(Long roomId) {
         return basketRepository.getTotalPrice(roomId);
     }
 
