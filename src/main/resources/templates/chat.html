@@ -88,17 +88,17 @@
 
           <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
             <div class="block block-name">
-                <div class="profile-name" th:text="${nickname}"> 야왕이네
-                </div>
-                <div class="buttons">
-                    <a href="#">마이페이지</a>
-                </div>
-                <br>
-                <div class="buttons">
-                    <a href="#">거래내역</a>
-                </div>
+              <div class="profile-name" th:text="${nickname}"> 야왕이네
+              </div>
+              <div class="buttons">
+                <a href="#">마이페이지</a>
+              </div>
+              <br>
+              <div class="buttons">
+                <a href="#">거래내역</a>
+              </div>
             </div>
-        </div>
+          </div>
 
         </div>
       </div>
@@ -201,7 +201,7 @@
                       style="cursor:pointer;">
                   </div>
                   <h2>결제 하기</h2>
-                  <button type="button" class="pay_done" id="pay_done" onclick="pay_done_btn()">
+                  <button type="button" class="pay_done" id="menu_commit" value="확인" onclick="requestPay()">
                     결제
                   </button>
                 </div>
@@ -414,5 +414,9 @@
   document.querySelector("#chat_show").addEventListener("click", show);
   document.querySelector("#chat-page").addEventListener("click", close);
 </script>
+
+<!-- 포트원 라이브러리 -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 </html>
