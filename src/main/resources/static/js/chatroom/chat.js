@@ -1043,6 +1043,12 @@ function totalRealPrice() {
 //정산 창
 // const $list = $('#list'); // 참가자 명단
 
+// delivery_fee.innerText(배달요금) 숫자만 빼기
+var del_fee_before = delivery_fee.innerText;
+var ex1 = "sada3000sf";
+var regex = /[^0-9]/g;
+var del_fee = del_fee_before.replace(regex, "");
+
 var calualtor = document.querySelector(".calualtor");
 function calShow() {
   var userListLength = [];
@@ -1070,7 +1076,12 @@ function calShow() {
     },
   });
 
-  PaymentDetailsLoad(userListLength.length - 1, userListLength, menu_price);
+  PaymentDetailsLoad(
+    userListLength.length - 1,
+    userListLength,
+    menu_price,
+    del_fee
+  );
 
   for (var k = 1; k < userListLength.length; k++) {
     var pay_username = document.createElement("p");
@@ -1342,8 +1353,8 @@ function initMap2() {
 // 결제하기 창 -> 금액확인 -> 주문내역 창 생성 js
 // 참가자만 주문 내역 추가
 
-// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열), menu_price)
-function PaymentDetailsLoad(num_people, user_list, menu_price) {
+// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열), menu_price, del_fee)
+function PaymentDetailsLoad(num_people, user_list, menu_price, del_fee) {
   // storeModal_header_topper_back_img_pay_detail (img)
   for (var i = 1; i <= num_people; i++) {
     var storeModal_header_topper_back_img_pay_detail =
@@ -1382,7 +1393,7 @@ function PaymentDetailsLoad(num_people, user_list, menu_price) {
     pay_text1.className = "pay_text";
     pay_text1.id = "meun_fee2";
     var pay_text1_txt = document.createTextNode(
-      menu_price[i].toLocaleString() + "원"
+      menu_price[i].toLocaleString() + "원" // (메뉴합계)
     );
     pay_text1.appendChild(pay_text1_txt);
 
@@ -1403,7 +1414,9 @@ function PaymentDetailsLoad(num_people, user_list, menu_price) {
     var pay_text2 = document.createElement("p");
     pay_text2.className = "pay_text fee";
     pay_text2.id = "fee";
-    var pay_text2_txt = document.createTextNode("(배달요금)");
+    var pay_text2_txt = document.createTextNode(
+      parseInt(del_fee).toLocaleString() + "원" // (배달요금)
+    );
     pay_text2.appendChild(pay_text2_txt);
 
     // delivery_fee_div (div)
@@ -1423,7 +1436,9 @@ function PaymentDetailsLoad(num_people, user_list, menu_price) {
     var pay_text3 = document.createElement("p");
     pay_text3.className = "pay_text";
     pay_text3.name = "each_delifee";
-    var pay_text3_txt = document.createTextNode("(인당요금)");
+    var pay_text3_txt = document.createTextNode(
+      (parseInt(del_fee) / (num_people + 1)).toLocaleString() + "원"
+    ); // (인당요금)
     pay_text3.appendChild(pay_text3_txt);
 
     // per_fee_div (div)
@@ -1434,24 +1449,24 @@ function PaymentDetailsLoad(num_people, user_list, menu_price) {
     per_fee_div.appendChild(pay_text3);
 
     // pay_detail_text (li) 방장할인 가액
-    var pay_detail_text4 = document.createElement("li");
-    pay_detail_text4.className = "pay_detail_text";
-    var pay_detail_text4_txt = document.createTextNode(" 방장할인 가액 ");
-    pay_detail_text4.appendChild(pay_detail_text4_txt);
+    // var pay_detail_text4 = document.createElement("li");
+    // pay_detail_text4.className = "pay_detail_text";
+    // var pay_detail_text4_txt = document.createTextNode(" 방장할인 가액 ");
+    // pay_detail_text4.appendChild(pay_detail_text4_txt);
 
     // name = host_discount_add (p)
-    var pay_text4 = document.createElement("p");
-    pay_text4.className = "pay_text discount_plus";
-    pay_text4.name = "host_discount_add";
-    var pay_text4_txt = document.createTextNode("(방장할인 가액)");
-    pay_text4.appendChild(pay_text4_txt);
+    // var pay_text4 = document.createElement("p");
+    // pay_text4.className = "pay_text discount_plus";
+    // pay_text4.name = "host_discount_add";
+    // var pay_text4_txt = document.createTextNode("(방장할인 가액)");
+    // pay_text4.appendChild(pay_text4_txt);
 
     // per_fee_div (div)
-    var host_fee_div = document.createElement("div");
-    host_fee_div.className = "host_fee_div";
-    // 자식 요소 추가
-    host_fee_div.appendChild(pay_detail_text4);
-    host_fee_div.appendChild(pay_text4);
+    // var host_fee_div = document.createElement("div");
+    // host_fee_div.className = "host_fee_div";
+    // // 자식 요소 추가
+    // host_fee_div.appendChild(pay_detail_text4);
+    // host_fee_div.appendChild(pay_text4);
 
     // pay_detail_text (li) 지불 배달요금
     var pay_detail_text5 = document.createElement("li");
@@ -1463,7 +1478,9 @@ function PaymentDetailsLoad(num_people, user_list, menu_price) {
     var pay_text5 = document.createElement("p");
     pay_text5.className = "pay_text";
     pay_text5.name = "costomer_delifee";
-    var pay_text5_txt = document.createTextNode("(지불 배달요금)");
+    var pay_text5_txt = document.createTextNode(
+      (parseInt(del_fee) / (num_people + 1)).toLocaleString() + "원"
+    ); // (지불 배달 요금)
     pay_text5.appendChild(pay_text5_txt);
 
     // total_pay1 (div)
@@ -1483,7 +1500,10 @@ function PaymentDetailsLoad(num_people, user_list, menu_price) {
     var pay_text6 = document.createElement("p");
     pay_text6.className = "pay_text";
     pay_text6.name = "comtomer_totalfee";
-    var pay_text6_txt = document.createTextNode("(결제 금액)");
+    var pay_text6_txt = document.createTextNode(
+      (menu_price[i] + parseInt(del_fee) / (num_people + 1)).toLocaleString() +
+        "원"
+    ); // (결제 금액)
     pay_text6.appendChild(pay_text6_txt);
 
     // total_pay2 (div)
@@ -1515,8 +1535,8 @@ function PaymentDetailsLoad(num_people, user_list, menu_price) {
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(per_fee_div);
     pay_detail.appendChild(document.createElement("br"));
-    pay_detail.appendChild(host_fee_div);
-    pay_detail.appendChild(document.createElement("br"));
+    // pay_detail.appendChild(host_fee_div);
+    // pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(total_pay2);
     pay_detail.appendChild(detail_hr2);
     pay_detail.appendChild(document.createElement("br"));
