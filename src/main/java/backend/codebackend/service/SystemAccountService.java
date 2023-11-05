@@ -29,7 +29,7 @@ public class SystemAccountService {
         return systemAccountRepository.getSystemAccountInfo();
     }
 
-    //송금 처리(시스템 계좌 -> 방장(호스트)에게 모인 돈 송금
+    //송금 처리(시스템 계좌 -> 방장(호스트)에게 모인 돈 송금)
     public boolean sendMoneyToHost(Long id, Long price, String nickname) {
         SystemAccount systemAccount = getSystemAccountInfo();
         if (systemAccount.getBalance() >= price) {

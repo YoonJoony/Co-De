@@ -132,7 +132,6 @@ public class MainController {
     }
 
     //마이페이지로 이동
-
     @GetMapping("/myPage")
     public String myPage(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
