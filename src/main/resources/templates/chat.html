@@ -18,28 +18,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!--  <p> 폰트 적용 -->
   <link href="https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap" rel="stylesheet"> <!--  <p> 폰트 적용 -->
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Play:wght@700&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
 
   <!--  부트스트랩 보달 창 라이브러리-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   <!-- 다음 주소 찾기 API -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous">
+    integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-          integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-          crossorigin="anonymous"></script>
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
 
 
   <!-- 네이버 지도 API 추가 -->
@@ -48,158 +48,158 @@
 </head>
 
 <body>
-<div id="main">
-  <div class="moblie_logo">
-    <img src="/images/menu_reverse.png" class="mobile_header-img" id="chat_show">
-    <img class="logo" src="/images/COOR.png">
-  </div>
-  <div class="topper">
-    <!-- 로그인 부분 -->
-    <div class="login">
-      <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
-      <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
-      <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
+  <div id="main">
+    <div class="moblie_logo">
+      <img src="/images/menu_reverse.png" class="mobile_header-img" id="chat_show">
+      <img class="logo" src="/images/COOR.png">
     </div>
-  </div>
-  <!-- 헤더 부분 -->
-  <div class="header2">
-    <!-- CO-ORDER 제목 부분 -->
-    <div class="width-container">
-      <div class="logo-img">
-        <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
-        <img class="logo" src="/images/COOR2.png">
+    <div class="topper">
+      <!-- 로그인 부분 -->
+      <div class="login">
+        <a href="#" class="v-bar" style="color: #8E8E8E">도움말</a>
+        <a href="#" class="v-bar" style="color: #8E8E8E">이벤트</a>
+        <a href="/logout" class="logout" style="color: #8E8E8E">로그아웃</a>
       </div>
-      <div id="header-bell" class="header-bell">
+    </div>
+    <!-- 헤더 부분 -->
+    <div class="header2">
+      <!-- CO-ORDER 제목 부분 -->
+      <div class="width-container">
+        <div class="logo-img">
+          <!--            <a href="메인화면 링크" style="color: #7CAB75">CO-OR</a>-->
+          <img class="logo" src="/images/COOR2.png">
+        </div>
+        <div id="header-bell" class="header-bell">
           <span class="bell">
             <img src="/images/bell.png" style="width : 25px; height : 25px;" alt="">
           </span>
-      </div>
-      <div id="header-profile" class="header-profile">
-        <a class="header-user">
+        </div>
+        <div id="header-profile" class="header-profile">
+          <a class="header-user">
             <span class="user-picture2">
               <img src="/images/profile.png" height="50px" width="50px">
             </span>
-          <span id="user-name" class="user-name" th:text="${nickname}">
+            <span id="user-name" class="user-name" th:text="${nickname}">
             </span>
-          <span class="header-arrow">
+            <span class="header-arrow">
               <img src="https://buts.co.kr/thema/Buts/colorset/Basic/img/mymenu-arrow.png" alt="">
             </span>
-        </a>
-        <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
-          <div class="block block-name">
-            <div class="profile-name" th:text="${nickname}">
-            </div>
-            <div class="buttons">
-              <a href="#">파티관리</a>
+          </a>
+          <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
+            <div class="block block-name">
+              <div class="profile-name" th:text="${nickname}">
+              </div>
+              <div class="buttons">
+                <a href="#">파티관리</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- 주소 입력 부분 -->
-    <div class="search-container">
-      <div class="search">
-        <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-          <img class="gps" src="/images/search.png">
-        </button>
-        <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
-        <div class="tag-container">
-          <div class="tag real-time-text">
-            <p class="tag search-tag-text">실시간 검색 태그</p>
-          </div>
-          <div class="tag real-time">
-            #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
+      <!-- 주소 입력 부분 -->
+      <div class="search-container">
+        <div class="search">
+          <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
+            <img class="gps" src="/images/search.png">
+          </button>
+          <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
+          <div class="tag-container">
+            <div class="tag real-time-text">
+              <p class="tag search-tag-text">실시간 검색 태그</p>
+            </div>
+            <div class="tag real-time">
+              #치킨 &nbsp;&nbsp;#포케 &nbsp;&nbsp;#마라탕
+            </div>
           </div>
         </div>
+        <ul>
+          <li class="menu-li mozipPage">
+            <a class="menu-a">전체 글</a>
+          </li>
+          <li class="menu-li categories">
+            <a class="menu-a">카테고리</a>
+          </li>
+          <li class="menu-li myChat">
+            <a class="menu-a">내 채팅</a>
+          </li>
+        </ul>
+
       </div>
-      <ul>
-        <li class="menu-li mozipPage">
-          <a class="menu-a">전체 글</a>
-        </li>
-        <li class="menu-li categories">
-          <a class="menu-a">카테고리</a>
-        </li>
-        <li class="menu-li myChat">
-          <a class="menu-a">내 채팅</a>
-        </li>
-      </ul>
+      <!-- 프로필 -->
 
     </div>
-    <!-- 프로필 -->
 
-  </div>
-
-  <div id="chat-page">
-    <div class="chat-container">
-      <div class="chat">
-        <div class="chat-group">
-          <div class="chat-header">
-            <div class="chat-header-left">
+    <div id="chat-page">
+      <div class="chat-container">
+        <div class="chat">
+          <div class="chat-group">
+            <div class="chat-header">
+              <div class="chat-header-left">
                 <span class="user-picture2">
                   <img src="/images/profile/profile5.png" height="40px" width="40px">
                 </span>
-              <div id="user-list" class="user-list" style="display : none">
+                <div id="user-list" class="user-list" style="display : none">
+                </div>
+              </div>
+              <div class="chat-header-center">
+                <div class="chat-header-center-group">
+                  <h2 th:text="${room.title}"></h2>
+                  <div class="connecting">offline</div>
+                </div>
+              </div>
+              <div class="chat-header-right"><img src="/images/Icon/menu_5259008.png" width="23px" height="23px"
+                  class="header-img">
               </div>
             </div>
-            <div class="chat-header-center">
-              <div class="chat-header-center-group">
-                <h2 th:text="${room.title}"></h2>
-                <div class="connecting">offline</div>
-              </div>
-            </div>
-            <div class="chat-header-right"><img src="/images/Icon/menu_5259008.png" width="23px" height="23px"
-                                                class="header-img">
-            </div>
-          </div>
-          <div class="chat-left-right">
-            <div class="chat-left">
-              <ul id="messageArea">
-                <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
-              </ul>
-              <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
-                  <div class="input-group clearfix">
-                    <input type="text" id="message" placeholder="메시지를 입력 해보세요!" autocomplete="off" class="control"
-                           data-listener-added_1008ea1e="true">
-                    <button type="submit" class="primary">전송</button>
-                  </div>
-                  <div class="file-group">
-                    <div id="menu">
-                      <label for="file">
-                        <div class="btn-upload">
-                          <img src="/images/picture.png" style="cursor:pointer;">
-                        </div>
-                      </label>
-                      <input type="file" name="file" id="file" onchange="uploadFile(this)">
+            <div class="chat-left-right">
+              <div class="chat-left">
+                <ul id="messageArea">
+                  <!-- 여기에 이벤트 메시지 및 메시지(사용자 프로필, 이름) 이 socket.js에서 추가된다. -->
+                </ul>
+                <form id="messageForm" name="messageForm" nameForm="messageForm">
+                  <div class="form-group">
+                    <div class="input-group clearfix">
+                      <input type="text" id="message" placeholder="메시지를 입력 해보세요!" autocomplete="off" class="control"
+                        data-listener-added_1008ea1e="true">
+                      <button type="submit" class="primary">전송</button>
+                    </div>
+                    <div class="file-group">
+                      <div id="menu">
+                        <label for="file">
+                          <div class="btn-upload">
+                            <img src="/images/picture.png" style="cursor:pointer;">
+                          </div>
+                        </label>
+                        <input type="file" name="file" id="file" onchange="uploadFile(this)">
+                      </div>
                     </div>
                   </div>
-                </div>
-              </form>
-            </div>
-            <div class="chat-right">
-              <div class="chat-menu">
-                <img src="/images/bell.png">
-                <img src="/icon/map.png" id="map_button" onclick="map_btn()">
-                <img src="/images/icon/Budget.png" onclick="calShow()">
-                <img id="basket" src="/images/icon/basket.png" onclick="basket()">
-                <img src="/images/icon/setting.png">
+                </form>
               </div>
-              <img src="/images/icon/log-out_5565735.png" style="cursor: pointer" class="out-img">
-            </div>
+              <div class="chat-right">
+                <div class="chat-menu">
+                  <img src="/images/bell.png">
+                  <img src="/icon/map.png" id="map_button" onclick="map_btn()">
+                  <img src="/images/icon/Budget.png" onclick="calShow()">
+                  <img id="basket" src="/images/icon/basket.png" onclick="basket()">
+                  <img src="/images/icon/setting.png">
+                </div>
+                <img src="/images/icon/log-out_5565735.png" style="cursor: pointer" class="out-img">
+              </div>
 
-            <!-- 정산(결제) 확인창 -->
-            <div class="cal_page">
-              <div class="storeModal_header_topper">
-                <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
-                  <img class="storeModal_header_topper_back_img" src="/images/back.png" onclick="calclose()"
-                       style="cursor:pointer;">
+              <!-- 정산(결제) 확인창 -->
+              <div class="cal_page">
+                <div class="storeModal_header_topper">
+                  <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
+                    <img class="storeModal_header_topper_back_img" src="/images/back.png" onclick="calclose()"
+                      style="cursor:pointer;">
+                  </div>
+                  <h2>결제 하기</h2>
+                  <button class="pay_done" id="pay_done">
+                    금액 확인 </button>
                 </div>
-                <h2>결제 하기</h2>
-                <button class="pay_done" id="pay_done">
-                  금액 확인 </button>
-              </div>
-              <div class="calualtor">
-                <!--
+                <div class="calualtor">
+                  <!--
                                     방장일때는 p태그에 id를 호스트로 생성
                                     결제 창에 금액확인 버튼을 누르면 id를 인식해서 방장은 배달비 할인된 금액으로 출력이 되고
 
@@ -211,300 +211,335 @@
                             본인이 장바구니에서 선택한 메뉴값 + 배달비
                         -->
 
-                <div>
-                  <p class="pay_username" id="host">농담곰</p>
-                </div>
-
-                <div>
-                  <p class="pay_username" name="costomer1">망담곰</p>
-                </div>
-
-                <div>
-                  <p class="pay_username" name="costomer2">엄준식</p>
-                </div>
-
-                <div>
-                  <p class="pay_username" name="costomer3">볼링장</p>
-                </div>
-
-              </div>
-
-              <button class="calbtn" onclick="calclose()">닫기</button>
-            </div>
-
-            <!-- 결제내역 상세보기 모달 -->
-            <div class="pay_detail_host" id="pay_detail_host">
-              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose()"
-                   style="cursor:pointer;">
-              <p>호스트 농담곰</p>
-              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
-                <p class="pay_text" id="meun_fee1"></p>
-              </div>
-              <hr class="detail_hr">
-
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 배달요금 </li>
-                <p class="pay_text fee" id="fee"></p>
-              </div>
-              <br><br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 인당요금 </li>
-                <p class="pay_text" name="each_delifee"></p>
-              </div>
-              <br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 방장할인 </li>
-                <p class="pay_text" id="host_discount"></p>
-              </div>
-              <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 지불 배달요금 </li>
-                <p class="pay_text" id="host_delifee"></p>
-              </div>
-              <hr class="detail_hr">
-              <br>
-
-              <div class="total_pay" style="margin-top: 15px;">
-                <li class="pay_detail_text"> 결제 금액 </li>
-                <p class="pay_text" id="host_totalfee"></p>
-              </div>
-            </div>
-
-            <div class="pay_detail1" id="pay_detail1">
-              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
-                   onclick="detailClose_cos1()" style="cursor:pointer;">
-              <p>참가자 망그곰</p>
-              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
-                <p class="pay_text" id="meun_fee2"></p>
-              </div>
-              <hr class="detail_hr">
-
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 배달요금 </li>
-                <p class="pay_text fee" id="fee"></p>
-              </div>
-              <br><br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 인당요금 </li>
-                <p class="pay_text" name="each_delifee"></p>
-              </div>
-              <br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 방장할인 가액 </li>
-                <p class="pay_text discount_plus" name="host_discount_add"></p>
-              </div>
-              <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 지불 배달요금 </li>
-                <p class="pay_text" name="costomer_delifee"></p>
-              </div>
-              <hr class="detail_hr">
-              <br>
-
-              <div class="total_pay" style="margin-top: 15px;">
-                <li class="pay_detail_text"> 결제 금액 </li>
-                <p class="pay_text" name="comtomer_totalfee"></p>
-              </div>
-            </div>
-
-            <div class="pay_detail2" id="pay_detail2">
-              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
-                   onclick="detailClose_cos2()" style="cursor:pointer;">
-              <p>참가자2 엄준식</p>
-              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
-                <p class="pay_text" id="meun_fee3"></p>
-              </div>
-              <hr class="detail_hr">
-
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 배달요금 </li>
-                <p class="pay_text fee" id="fee"></p>
-              </div>
-              <br><br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 인당요금 </li>
-                <p class="pay_text" name="each_delifee"></p>
-              </div>
-              <br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 방장할인 가액 </li>
-                <p class="pay_text discount_plus" name="host_discount_add"></p>
-              </div>
-              <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 지불 배달요금 </li>
-                <p class="pay_text" name="costomer_delifee"></p>
-              </div>
-              <hr class="detail_hr">
-              <br>
-
-              <div class="total_pay" style="margin-top: 15px;">
-                <li class="pay_detail_text"> 결제 금액 </li>
-                <p class="pay_text" name="comtomer_totalfee"></p>
-              </div>
-            </div>
-
-            <div class="pay_detail3" id="pay_detail3">
-              <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
-                   onclick="detailClose_cos3()" style="cursor:pointer;">
-              <p>참가자3 볼링장</p>
-              <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
-                <p class="pay_text" id="meun_fee4"></p>
-              </div>
-              <hr class="detail_hr">
-
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 배달요금 </li>
-                <p class="pay_text fee" id="fee"></p>
-              </div>
-              <br><br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 인당요금 </li>
-                <p class="pay_text" name="each_delifee"></p>
-              </div>
-              <br>
-              <div style="margin-top: 15px;">
-                <li class="pay_detail_text"> 방장할인 가액 </li>
-                <p class="pay_text discount_plus" name="host_discount_add"></p>
-              </div>
-              <br>
-
-              <div style="margin-top: 15px;" class="total_pay">
-                <li class="pay_detail_text"> 지불 배달요금 </li>
-                <p class="pay_text" name="costomer_delifee"></p>
-              </div>
-              <hr class="detail_hr">
-              <br>
-
-              <div class="total_pay" style="margin-top: 15px;">
-                <li class="pay_detail_text"> 결제 금액 </li>
-                <p class="pay_text" name="comtomer_totalfee"></p>
-              </div>
-            </div>
-
-            <!-- 장바구니 모달 -->
-            <div class="basket-view" style="display: none;">
-              <div class="basket-title">
-                <div class="basket-title_topper">
-                  <div class="basket-title_topper_back">
-                    <img class="basket-title_topper_back_img" src="/images/back.png" onClick="basket()"
-                         style="cursor:pointer;">
+                  <div>
+                    <p class="pay_username" id="host">농담곰</p>
                   </div>
-                  <div class="basket-title_topper_text">
-                    <p>메뉴를 추가해 보세요!</p>
+
+                  <div>
+                    <p class="pay_username" name="costomer1">망담곰</p>
                   </div>
+
+                  <div>
+                    <p class="pay_username" name="costomer2">엄준식</p>
+                  </div>
+
+                  <div>
+                    <p class="pay_username" name="costomer3">볼링장</p>
+                  </div>
+
                 </div>
-                <div class="basket-title_topper_text2">
-                  <p>주문표</p>
+
+                <button class="calbtn" onclick="calclose()">닫기</button>
+              </div>
+
+              <!-- 결제내역 상세보기 모달 -->
+              <div class="pay_detail_host" id="pay_detail_host">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png" onclick="detailClose()"
+                  style="cursor:pointer;">
+
+                <p>호스트 농담곰</p>
+                <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+                <hr class="detail_hr">
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                  <p class="pay_text" id="meun_fee1"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 배달요금 </li>
+                  <p class="pay_text fee" id="fee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 인당요금 </li>
+                  <p class="pay_text" name="each_delifee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 방장할인 </li>
+                  <p class="pay_text" id="host_discount"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 지불 배달요금 </li>
+                  <p class="pay_text" id="host_delifee"></p>
+                </div>
+                <hr class="detail_hr">
+                <br>
+
+                <div class="total_pay" style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 결제 금액 </li>
+                  <p class="pay_text" id="host_totalfee"></p>
                 </div>
               </div>
+              <!-- ----------------------------------------------- -->
+              <div class="pay_detail1" id="pay_detail1">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                  onclick="detailClose_cos1()" style="cursor:pointer;">
+                <p>참가자 망그곰</p>
+                <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+                <hr class="detail_hr">
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                  <p class="pay_text" id="meun_fee2"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 배달요금 </li>
+                  <p class="pay_text fee" id="fee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 인당요금 </li>
+                  <p class="pay_text" name="each_delifee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 방장할인 가액 </li>
+                  <p class="pay_text discount_plus" name="host_discount_add"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 지불 배달요금 </li>
+                  <p class="pay_text" name="costomer_delifee"></p>
+                </div>
+                <hr class="detail_hr">
+
+                <br>
+
+                <div class="total_pay" style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 결제 금액 </li>
+                  <p class="pay_text" name="comtomer_totalfee"></p>
+                </div>
+              </div>
+              <!-- ----------------------------------------------- -->
+              <div class="pay_detail2" id="pay_detail2">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                  onclick="detailClose_cos2()" style="cursor:pointer;">
+                <p>참가자2 엄준식</p>
+                <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+                <hr class="detail_hr">
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                  <p class="pay_text" id="meun_fee3"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 배달요금 </li>
+                  <p class="pay_text fee" id="fee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 인당요금 </li>
+                  <p class="pay_text" name="each_delifee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 방장할인 가액 </li>
+                  <p class="pay_text discount_plus" name="host_discount_add"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 지불 배달요금 </li>
+                  <p class="pay_text" name="costomer_delifee"></p>
+                </div>
+                <hr class="detail_hr">
+                <br>
+
+                <div class="total_pay" style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 결제 금액 </li>
+                  <p class="pay_text" name="comtomer_totalfee"></p>
+                </div>
+              </div>
+              <!-- ----------------------------------------------- -->
+              <div class="pay_detail3" id="pay_detail3">
+                <img class="storeModal_header_topper_back_img_pay_detail" src="/images/back.png"
+                  onclick="detailClose_cos3()" style="cursor:pointer;">
+                <p>참가자3 볼링장</p>
+                <li style="font: 300; list-style-type: none; float: left; margin-left: 15px;"> 주문 내역 </li> <br>
+
+                <hr class="detail_hr">
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 황올 반 + BBQ 양념반(콤보) X 1 </li>
+                  <p class="pay_text" id="meun_fee4"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 배달요금 </li>
+                  <p class="pay_text fee" id="fee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 인당요금 </li>
+                  <p class="pay_text" name="each_delifee"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 방장할인 가액 </li>
+                  <p class="pay_text discount_plus" name="host_discount_add"></p>
+                </div>
+
+                <br>
+
+                <div style="margin-top: 15px;" class="total_pay">
+                  <li class="pay_detail_text"> 지불 배달요금 </li>
+                  <p class="pay_text" name="costomer_delifee"></p>
+                </div>
+                <hr class="detail_hr">
+
+                <br>
+
+                <div class="total_pay" style="margin-top: 15px;">
+                  <li class="pay_detail_text"> 결제 금액 </li>
+                  <p class="pay_text" name="comtomer_totalfee"></p>
+                </div>
+              </div>
+              <!-- ----------------------------------------------- -->
+
+              <!-- 장바구니 모달 -->
+              <div class="basket-view" style="display: none;">
+                <div class="basket-title">
+                  <div class="basket-title_topper">
+                    <div class="basket-title_topper_back">
+                      <img class="basket-title_topper_back_img" src="/images/back.png" onClick="basket()"
+                        style="cursor:pointer;">
+                    </div>
+                    <div class="basket-title_topper_text">
+                      <p>메뉴를 추가해 보세요!</p>
+                    </div>
+                  </div>
+                  <div class="basket-title_topper_text2">
+                    <p>주문표</p>
+                  </div>
+                </div>
                 <div class="basket-list">
                 </div>
 
-              <div class="menu-bottom">
-                <div class="totalPrice">
-                  <span class="priceText"> 합계 :</span>
-                  <span class="priceText" id="totalPrice">0원</span>
-                </div>
-                <div class="modify-menu">
-                  <input id="choice-menu" class="modify_menu_btn" type="button" value="메뉴 선택" wfd-id="id11" href="#CreateMozipModal"
-                         data-bs-toggle="modal" data-target="#CreateMozipModal">
-                  <input id="start-settlement" class="modify_menu_btn" type="button" value="정산 시작">
+                <div class="menu-bottom">
+                  <div class="totalPrice">
+                    <span class="priceText"> 합계 :</span>
+                    <span class="priceText" id="totalPrice">0원</span>
+                  </div>
+                  <div class="modify-menu">
+                    <input id="choice-menu" class="modify_menu_btn" type="button" value="메뉴 선택" wfd-id="id11"
+                      href="#CreateMozipModal" data-bs-toggle="modal" data-target="#CreateMozipModal">
+                    <input id="start-settlement" class="modify_menu_btn" type="button" value="정산 시작">
+                  </div>
                 </div>
               </div>
+
             </div>
-
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 메뉴 선택 모달창 -->
-<div class="modal fade mozipCreate" id="CreateMozipModal" tabindex="-1" aria-labelledby="enterRoomModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="storeModal_header_topper">
-        <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal" >
-          <img class="storeModal_header_topper_back_img" src="/images/back.png" style="cursor:pointer;">
-        </div>
-        <div class="storeModal_header_topper_text">
-          <p th:text="${room.store}"></p>
-        </div>
-      </div>
-      <div class="menu-header">
-        <div class="min_delivery">
-          <div class="deliver_info">
-            <div> 최소주문 </div>
-            <div class="min_price"> 조회 중입니다. </div>
+  <!-- 메뉴 선택 모달창 -->
+  <div class="modal fade mozipCreate" id="CreateMozipModal" tabindex="-1" aria-labelledby="enterRoomModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="storeModal_header_topper">
+          <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
+            <img class="storeModal_header_topper_back_img" src="/images/back.png" style="cursor:pointer;">
           </div>
-          <div class="deliver_info">
-            <div> 배달요금</div>
-            <div class="delivery_fee"> 조회 중입니다. </div>
+          <div class="storeModal_header_topper_text">
+            <p th:text="${room.store}"></p>
           </div>
         </div>
-      </div>
-      <div class="menu-body">
-        <div class="loading-div">
-          <div id="loading" class="loading">
+        <div class="menu-header">
+          <div class="min_delivery">
+            <div class="deliver_info">
+              <div> 최소주문 </div>
+              <div class="min_price"> 조회 중입니다. </div>
+            </div>
+            <div class="deliver_info">
+              <div> 배달요금</div>
+              <div class="delivery_fee"> 조회 중입니다. </div>
+            </div>
           </div>
-          <div> 로딩중 입니다. 잠시만 기다려 주세요!</div>
+        </div>
+        <div class="menu-body">
+          <div class="loading-div">
+            <div id="loading" class="loading">
+            </div>
+            <div> 로딩중 입니다. 잠시만 기다려 주세요!</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
-          <script src="/js/chatroom/chat3.js?asd"></script>
-          <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
+  <script src="/js/chatroom/chat3.js?asd"></script>
+  <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
-          <!-- vscode용 ------------------------------------------------------------------>
-          <script src="../static/js/chatroom/chat3.js"></script>
-          <!-- --------------------------------------------------------------------- -->
+  <!-- vscode용 ------------------------------------------------------------------>
+  <script src="../static/js/chatroom/chat3.js"></script>
+  <!-- --------------------------------------------------------------------- -->
 
-          <!-- Add Bootstrap JavaScript and its dependencies -->
-          <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                  integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z"
-                  crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-                  integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE"
-                  crossorigin="anonymous"></script>
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
-                  integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
-                  crossorigin="anonymous"></script>
-          <!--WebSocket 스크립트-->
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-          <!-- 예제 시작 -->
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-          <!-- http://localhost 에서 테스트 하시려면 cpw9RMOfkmb0qIa7Vz23 키를 사용해 보세요 -->
+  <!-- Add Bootstrap JavaScript and its dependencies -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+x+G+0x5zq3kprS5Df7w7C2q4L+x+ME5Q4u7j3Z"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz4fnFO9gybBud6b5sE1wnB7hRwKzVvdnP3DqwD6Y5h9Nl7gJgaxfY4WdE"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+    crossorigin="anonymous"></script>
+  <!--WebSocket 스크립트-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <!-- 예제 시작 -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- http://localhost 에서 테스트 하시려면 cpw9RMOfkmb0qIa7Vz23 키를 사용해 보세요 -->
 
-          <!-- 맵 v3 스크립트 -->
-          <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mn7cwsrvym"></script>
-          <!-- 모달창 움직이게 함 -->
-          <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-          <!-- 네이버 지도 API 관련 -->
-          <style type="text/css">
-
-
+  <!-- 맵 v3 스크립트 -->
+  <script src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=mn7cwsrvym"></script>
+  <!-- 모달창 움직이게 함 -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+  <!-- 네이버 지도 API 관련 -->
+  <style type="text/css">
     .map_wrap .map_div {
       box-sizing: border-box;
     }
@@ -513,12 +548,12 @@
       font-size: 12pt !important;
     }
   </style>
-          <script>
+  <script>
 
 
-          </script>
+  </script>
 
-          <!-- 예제 종료 -->
+  <!-- 예제 종료 -->
 
 
 </body>
