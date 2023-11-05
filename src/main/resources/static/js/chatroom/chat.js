@@ -1034,7 +1034,6 @@ function totalRealPrice() {
         let nickname = resultMap[totalPrice];
         console.log("결제자 : " + nickname + ", 금액 : " + totalPrce);
       }
-      totalPriceDiv.text(totalPriceValues);
     },
     error: function () {
       console.log("장바구니 메뉴 삭제 API 오류");
@@ -1043,14 +1042,26 @@ function totalRealPrice() {
 }
 
 //정산 창
-
-const userListLength = ["농담곰", "망담곰", "ㅇㅇㅇ"];
 // const $list = $('#list'); // 참가자 명단
 
 var calualtor = document.querySelector(".calualtor");
-var calualtor_name = document.querySelector(".pay_username");
+async function calShow() {
+  var userListLength = [];
+  try {
+    const response = await $.ajax({
+      type: "GET",
+      url: "/mozip/chat/userList",
+      data: {
+        "id": id,
+      },
+    });
+    userListLength = response;
+    console.log(response);
+  } catch (error) {
+    console.log("유저 리스트 요청 실패");
+  }
 
-function calShow() {
+  
   // PaymentDetailsLoad() 주문내역 메소드 호출
   PaymentDetailsLoad(userListLength.length - 1, userListLength);
 
@@ -1070,16 +1081,18 @@ function calShow() {
 
   let rate;
 
-  if (userListLength.length == 4) {
+  if (userListLength.length === 4) {
     // 참가자가 4인 일 때
     rate = Math.ceil(delivery_fee_each * 0.4);
-  } else if (userListLength.length == 3) {
+  } else if (userListLength.length === 3) {
     // 참가자가 3인 일 때
     rate = Math.ceil(delivery_fee_each * 0.3);
-  } else if (userListLength.length == 2) {
+  } else if (userListLength.length === 2) {
     // 참가자가 2인 일 때
     rate = Math.ceil(delivery_fee_each * 0.2);
+    console.log("할인 값" + rate);
   }
+
 
   let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
   // 모달창에 결과 출력
@@ -1122,9 +1135,8 @@ function calShow() {
       delivery_fee.toLocaleString() + " 원"; // 원래 배달비
     document.getElementsByName("each_delifee")[j].innerHTML =
       Math.ceil(delivery_fee_each).toLocaleString() + " 원"; // 상세창에 개별 배달비 출력
-
-    document.getElementsByName("host_discount_add")[j].innerHTML =
-      "+" + costomer_add.toLocaleString() + " 원"; // 참가자 배달비 가액
+    // document.getElementsByName("host_discount_add")[j].innerHTML =
+    //   "+" + costomer_add.toLocaleString() + " 원"; // 참가자 배달비 가액
     document.getElementsByName("costomer_delifee")[j].innerHTML =
       costomer_fee.toLocaleString() + " 원"; // 참가자 총 배달비
 
@@ -1298,6 +1310,7 @@ function initMap2() {
 
 // PaymentDetailsLoad(사람수(숫자), 사람리스트(배열))
 function PaymentDetailsLoad(num_people, user_list) {
+
   // storeModal_header_topper_back_img_pay_detail (img)
   for (var i = 1; i <= num_people; i++) {
     var storeModal_header_topper_back_img_pay_detail =

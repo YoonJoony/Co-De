@@ -475,7 +475,7 @@
         let enter_loading = document.querySelector(".loading-div");
 
         function enterRoom() {
-            basket_content.style.display = "block";
+            enter_loading.style.display = "block";
             document.querySelector(".join-p").style.display = "none";
             if (chkRoomUserCnt(id, nickname)) {
                 $.ajax({
