@@ -1527,6 +1527,12 @@ function PaymentDetailsLoad(num_people, user_list) {
 
 //------------------------------------------------------------------------
 
+// 결제 하기 버튼 이벤트
+function pay_done_btn() {
+  alert("결제완료");
+  console.log("결제완료");
+}
+
 // 장바구니 이동 2 try
 const modalHeader = document.querySelector(".basket-title_topper_text");
 const modalDialog = document.querySelector(".basket-view");
