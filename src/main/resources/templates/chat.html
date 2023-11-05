@@ -88,13 +88,18 @@
 
           <div id="layer-header-profile" class="layer-header-profile" style="display : none;">
             <div class="block block-name">
-              <div class="profile-name" th:text="${nickname}"> 야왕이네
-              </div>
-              <div class="buttons">
-                <a href="#">파티관리</a>
-              </div>
+                <div class="profile-name" th:text="${nickname}"> 야왕이네
+                </div>
+                <div class="buttons">
+                    <a href="#">마이페이지</a>
+                </div>
+                <br>
+                <div class="buttons">
+                    <a href="#">거래내역</a>
+                </div>
             </div>
-          </div>
+        </div>
+
         </div>
       </div>
       <!-- 주소 입력 부분 -->
@@ -196,8 +201,9 @@
                       style="cursor:pointer;">
                   </div>
                   <h2>결제 하기</h2>
-                  <button class="pay_done" id="pay_done">
-                    결제 </button>
+                  <button type="button" class="pay_done" id="pay_done" onclick="pay_done_btn()">
+                    결제
+                  </button>
                 </div>
                 <div class="calualtor">
                   <!--
@@ -395,5 +401,18 @@
 
 
 </body>
+
+<script>
+  function show() {
+    document.querySelector(".header2").className = "header2 header2_show";
+  }
+
+  function close() {
+    document.querySelector(".header2").className = "header2";
+  }
+
+  document.querySelector("#chat_show").addEventListener("click", show);
+  document.querySelector("#chat-page").addEventListener("click", close);
+</script>
 
 </html>
