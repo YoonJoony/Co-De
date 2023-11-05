@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.*;
@@ -49,13 +50,13 @@ public class MemberController {
 
     //로그인
     @PostMapping(value = "/login")
-    public String SignIn(@ModelAttribute SignInRequest signInRequest, HttpServletRequest httpServletRequest) {
+    public String SignIn(@ModelAttribute SignInRequest signInRequest, HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes) {
         //로그인 후 아이디가 데이터베이스에 존재하는지 검사
         Member member = memberService.signIn(signInRequest);
 
-        //없으면 에러 페이지를 보여줌
         if(member == null) {
-            return "errorpage";
+            redirectAttributes.addFlashAttribute("errorMessage", "회원 정보를 다시 입력해 주십시오");
+            return "redirect:/login.html";
         }
 
         //세션 생성하기 전 기존 세션 파기
