@@ -1038,6 +1038,8 @@ var calualtor = document.querySelector(".calualtor");
 var calualtor_name = document.querySelector(".pay_username");
 
 function calShow() {
+  PaymentDetailsLoad(userListLength.length - 1);
+
   document.querySelector(".cal_page").className = "cal_page cal_page_show";
   // 금액 확인 클릭시
   const delivery_fee = 4000; // 배달비
@@ -1281,7 +1283,6 @@ function PaymentDetailsLoad(num_people) {
     storeModal_header_topper_back_img_pay_detail.className =
       "storeModal_header_topper_back_img_pay_detail";
     storeModal_header_topper_back_img_pay_detail.src = "/images/back.png";
-    storeModal_header_topper_back_img_pay_detail.onclick = "detailClose_cos1()";
 
     // (p)
     var p1 = document.createElement("p");
@@ -1419,11 +1420,14 @@ function PaymentDetailsLoad(num_people) {
 
     //-----------------------------------------------------------
 
-    var br = document.createElement("br");
-
     var pay_detail = document.createElement("div");
     pay_detail.className = "pay_detail" + i;
-    pay_detail.id = "pay_detail1";
+    pay_detail.id = "pay_detail" + i;
+
+    storeModal_header_topper_back_img_pay_detail.onclick = function () {
+      document.querySelector(".pay_detail1").className = "pay_detail1";
+      console.log("지랄");
+    };
     // 자식 요소 추가
     pay_detail.appendChild(storeModal_header_topper_back_img_pay_detail);
     pay_detail.appendChild(p1);
@@ -1445,6 +1449,11 @@ function PaymentDetailsLoad(num_people) {
     // pay_detail_div (div)
     var pay_detail_div = document.getElementById("pay_detail_div");
     pay_detail_div.appendChild(pay_detail);
+  }
+  for (j = 1; j <= 3; j++) {
+    $("storeModal_header_topper_back_img_pay_detail").on("click", function () {
+      document.querySelector(".pay_detail" + j).className = "pay_detail" + j;
+    });
   }
 }
 
