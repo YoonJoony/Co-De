@@ -757,10 +757,25 @@ $(function () {
   //페이지 이동 .. 잡 처리
   var $mozipPage = $(".mozipPage");
   var $out_img = $(".out-img");
+  var $myChqt = $(".myChat");
 
   $mozipPage.click(function () {
     location.href = "/main_page.html";
   });
+
+  async function myChat() {
+    try {
+      const response = await $.ajax({
+        type: "GET",
+        url: "/mozip/chat/myChatroom",
+        data: {},
+      });
+      location.href = "/mozip/chat/room?id=" + response;
+    } catch (error) {
+      console.log("내 채팅 접속 요청 실패");
+    }
+  }
+
 
   $out_img.click(function () {
     location.href = "/main_page.html";

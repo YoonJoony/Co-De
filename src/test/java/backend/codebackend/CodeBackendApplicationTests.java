@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 //import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
@@ -168,7 +169,7 @@ class CodeBackendApplicationTests {
 	void 배달정보조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
+		Future<Menu> m = restaurantService.menuList("티바두마리치킨-의정부역점", member.getAddress());
 		Menu menu = m.get();
 
 		System.out.println("최소 주문 금액 : " + menu.getMinPrice());
@@ -241,9 +242,9 @@ class CodeBackendApplicationTests {
 		System.out.println(basket.getId());
 	}
 	@Test
-	@DisplayName("송금")
-	void 송금() {
-		Basket basket = basketRepository.addItemToBasketReceive("1234");
-		System.out.println(basket.getId());
+	@DisplayName("접속한 방 번호 조회")
+	void 접속한방번호조회() {
+		Long roomId= chatUserService.findMemberRoomId("1234");
+		System.out.println(roomId);
 	}
 }

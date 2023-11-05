@@ -85,6 +85,22 @@ public class MainController {
         return "chat";
     }
 
+    @GetMapping("/mozip/chat/myChatroom")
+    @ResponseBody
+    public Long myChatRoom(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return null;
+        }
+        String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
+
+        //자기가 접속한 채팅방 아이디 찾기
+        Long id = chatUserService.findMemberRoomId(nickname);
+
+        return id;
+    }
+
+
     //모집글 생성
     @PostMapping("/mozip")
     @ResponseBody
