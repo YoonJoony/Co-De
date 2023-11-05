@@ -1451,3 +1451,40 @@ function PaymentDetailsLoad() {
   pay_detail_div.appendChild(pay_detail1);
 }
 //------------------------------------------------------------------------
+
+// 장바구니 이동 2 try
+const modalHeader = document.querySelector(".basket-title_topper");
+const modalDialog = document.querySelector(".basket-view");
+let isDragging = false;
+let mouseOffset = { x: 0, y: 0 };
+let dialogOffset = { left: 0, right: 0 };
+
+modalHeader.addEventListener("mousedown", function (event) {
+  isDragging = true;
+  mouseOffset = { x: event.clientX, y: event.clientY };
+  dialogOffset = {
+    left:
+      modalDialog.style.left === ""
+        ? 0
+        : Number(modalDialog.style.left.replace("px", "")),
+    right:
+      modalDialog.style.top === ""
+        ? 0
+        : Number(modalDialog.style.top.replace("px", "")),
+  };
+});
+
+document.addEventListener("mousemove", function (event) {
+  if (!isDragging) {
+    return;
+  }
+  let newX = event.clientX - mouseOffset.x;
+  let newY = event.clientY - mouseOffset.y;
+
+  modalDialog.style.left = `${dialogOffset.left + newX}px`;
+  modalDialog.style.top = `${dialogOffset.right + newY}px`;
+});
+
+document.addEventListener("mouseup", function () {
+  isDragging = false;
+});
