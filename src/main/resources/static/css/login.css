@@ -112,6 +112,14 @@ button.ghost {
   border-color: #FFFFFF;
   /* 외곽선 흰색? */
 }
+.ghost_text{
+  left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 0px;
+  letter-spacing: 0px;
+  margin: 0px 0px 0px -8px;
+}
 
 .ghost_mobile {
   display: block;
