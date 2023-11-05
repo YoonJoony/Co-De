@@ -19,5 +19,6 @@ public interface MozipRepository {
 
     void minusUserCnt(Long id);
     boolean mozipStatus(Long id);
-    void updateMozipStatus(Long id);
+    void calculateStartStatus(Long id);
+    void preCalculateStartStatus(Long id);
 }

@@ -31,12 +31,36 @@ var colors = [
 ];
 
 // id 파라미터 가져오기
-const url = new URL(location.href).searchParams;
-const id = url.get("id");
+var url;
+var id;
+var mozipStatus = '정산전'; //정산 상태
 
 /* 입장 버튼 누르면 입장 페이지 사라지고 채팅방 페이지가 뜬다. */
 function connect(event) {
   nickname = document.querySelector("#user-name").textContent;
+  url = new URL(location.href).searchParams;
+  id = url.get("id");
+
+  $.ajax({
+    type: "GET",
+    url: "/mozip/chat/inquiry",
+    data: {
+      "id" : id
+    },
+    success: function (data) {
+      if(data) {
+        mozipStatus = '정산시작'; //정산 시작된 상태일 경우 반환
+        console.log(mozipStatus);
+      }else {
+        mozipStatus = '정산전'; //정산 시작 전일 경우 반환
+        console.log(mozipStatus);
+      }
+      calculateStatus();
+    },
+    error: function () {
+    },
+  });
+
   //var profileImage = findProfileImage(); 자기 프로필 이미지 경로 찾기
 
   //연결하고자 하는 socket의 endpoint
@@ -439,6 +463,7 @@ function uploadFile(input) {}
 
 window.onload = function () {
   connect();
+
 };
 
 messageForm.addEventListener("submit", sendMessage, true); //messageForm 리스너에 sendMessage 함수 연결
@@ -684,7 +709,25 @@ function createBasketMenu(data) {
   document.querySelector(".basket-list").appendChild(basketListItem);
   return 1;
 }
+//정산 상태 변경 시
+var startSettlement;
+var cancelSettlement;
 
+function calculateStatus() {
+  if(mozipStatus === '정산시작') {
+    startSettlement = document.getElementById('start-settlement');
+    if(startSettlement != null) {
+      startSettlement.value = '정산취소';
+      startSettlement.id = 'cancel-settlement';
+    }
+  } else if(mozipStatus === '정산전') {
+    cancelSettlement = document.getElementById('cancel-settlement');
+    if(cancelSettlement != null) {
+      cancelSettlement.value = '정산시작';
+      cancelSettlement.id = 'start-settlement';
+    }
+  }
+}
 //선택한 메뉴 장바구니에 담기
 var menuName;
 var menuPrice;
@@ -760,6 +803,7 @@ $(function () {
 
   //장바구니 조회
   $(document).on("click", "#basket", function () {
+    calculateStatus();
     //메뉴판 선택
     $.ajax({
       type: "GET",
@@ -789,7 +833,6 @@ $(function () {
   var updateQuantityPrice; //수량 수정할 메뉴의 가격
   var updateQuantityNickName; //수량 수정할 메뉴의 주문자.
   var menuId; //메뉴판 기본키
-  var mozipStatus = "정산전"; //정산 상태
 
   // + 버튼
   $(document).on("click", "#plus", function () {
@@ -803,7 +846,7 @@ $(function () {
       .text();
 
     //다른 사람의 장바구니를 수정하려 했을 경우.
-    if (updateQuantityNickName === nickname && mozipStatus === "정산중") {
+    if (updateQuantityNickName === nickname && mozipStatus === "정산전") {
       updateQuantityPrice.text(
         parseInt(updateQuantityPrice.text()) +
           parseInt(updateQuantityPrice.text()) / parseInt(countInput.val()) +
@@ -846,7 +889,7 @@ $(function () {
         .text();
 
       //다른 사람의 장바구니를 수정하려 했을 경우 방지
-      if (updateQuantityNickName === nickname && mozipStatus === "정산중") {
+      if (updateQuantityNickName === nickname && mozipStatus === "정산전") {
         updateQuantityPrice.text(
           parseInt(updateQuantityPrice.text()) -
             parseInt(updateQuantityPrice.text()) / parseInt(countInput.val()) +
@@ -858,7 +901,7 @@ $(function () {
 
       $.ajax({
         type: "POST",
-        url: "/chat/basket/plusQuantity",
+        url: "/chat/basket/minusQuantity",
         data: {
           chatroom_id: id,
           menuId: menuId,
@@ -885,7 +928,7 @@ $(function () {
       .text();
 
     //다른 사람의 장바구니를 수정하려 했을 경우 방지
-    if (updateQuantityNickName === nickname && mozipStatus === "정산중") {
+    if (updateQuantityNickName === nickname && mozipStatus === "정산전") {
       totalPrice();
       //선택한 메뉴 삭제
       basketDeleteSendMessage(menuId);
@@ -925,7 +968,32 @@ $(function () {
       success: function (data) {
         if (data) {
           alert(data);
-          mozipStatus = "결제완료";
+          mozipStatus = "정산시작";
+          calculateStatus();
+        }
+      },
+      error: function (data) {
+        var response = JSON.parse(data.responseText);
+        alert(response.message);
+      },
+    });
+  });
+
+  //정산 취소 버튼
+  $(document).on("click", "#cancel-settlement", function () {
+    //사용자가 호스트인지 아닌지 구분한다.
+    $.ajax({
+      type: "GET",
+      url: "/mozip/chat/preCalculateStartStatus",
+      data: {
+        chatroom_id: id,
+        nickname: nickname,
+      },
+      success: function (data) {
+        if (data) {
+          alert(data);
+          mozipStatus = "정산전";
+          calculateStatus();
         }
       },
       error: function (data) {

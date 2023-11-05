@@ -49,7 +49,7 @@ public class JpaChatUserRepository implements ChatUserRepository{
 
     @Override
     public void deleteUser(Long id, String nickname) {
-        Query query = em.createQuery("delete from chat_user where id = :id and nickname = :nickname");
+        Query query = em.createQuery("delete from ChatUser where id = :id and nickname = :nickname");
         query.setParameter("id", id);
         query.setParameter("nickname", nickname);
         query.executeUpdate();

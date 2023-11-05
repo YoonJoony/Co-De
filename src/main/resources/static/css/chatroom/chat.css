@@ -1062,6 +1062,10 @@ span.chat-user-name {
 #start-settlement {
   background-color: #7de689 !important;
 }
+
+#cancel-settlement {
+  background-color: #f6273e !important;
+}
 /* */
 
 /* 사진 전송 라인 */
