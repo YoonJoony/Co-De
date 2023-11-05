@@ -334,6 +334,23 @@ input:focus {
     cursor: pointer;
   }
 
+  .user-picture2 {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    left: 22px;
+    margin-right: 30px;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 10px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+
   .user-name {
     font-family: "NanumSquareNeo-Variable";
     position: relative;
