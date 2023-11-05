@@ -1279,7 +1279,7 @@ function PaymentDetailsLoad() {
   storeModal_header_topper_back_img_pay_detail.className =
     "storeModal_header_topper_back_img_pay_detail";
   storeModal_header_topper_back_img_pay_detail.src = "/images/back.png";
-  storeModal_header_topper_back_img_pay_detail.onclick = detailClose_cos1();
+  storeModal_header_topper_back_img_pay_detail.onclick = "detailClose_cos1()";
 
   // (p)
   var p1 = document.createElement("p");
