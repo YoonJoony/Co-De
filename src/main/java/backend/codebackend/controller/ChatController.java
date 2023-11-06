@@ -160,4 +160,19 @@ public class ChatController {
 
         return ResponseEntity.ok( "정산 전으로 변동되었습니다!");
     }
+
+    @GetMapping("/mozip/chat/deleteUser")
+    @ResponseBody
+    public String deleteUser(Long id, HttpServletRequest request){   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
+        HttpSession session = request.getSession(false);
+
+        if (session == null) {
+            return "세션이 없습니다.";
+        }
+
+        String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
+
+        chatUserService.deleteUser(id, nickname);
+        return "redirect:/main_page.html";
+    }
 }
