@@ -178,7 +178,10 @@ public class MainController {
         return "Payment_details"; //글 생성 시 다시 초기화면으로
     }
 
+
+    // 채팅방 삭제 버튼 메소드
     @PostMapping("/mozip/deleteChatRoom")
+    @ResponseBody
     public String deleteChatRoom(Long id ,HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
@@ -192,9 +195,9 @@ public class MainController {
             mozipService.deleteChatUsers(id);
             mozipService.deleteMozip(id);
 
-            return "redirect:/main_page.html";
+            return "success";
         } else {
-            return "방장이 아닙니다";
+            return "error";
         }
     }
 }
