@@ -82,6 +82,13 @@ public class MozipService {
         mozipRepository.preCalculateStartStatus(id);
     }
 
+    // 모집글 삭제
+    public void deleteMozip(Long id) {
+        mozipRepository.deleteMozip(id);
+    }
 
-
+    // 채팅방 유저 삭제
+    public void deleteChatUsers(Long id) {
+        mozipRepository.deleteChatUsers(id);
+    }
 }

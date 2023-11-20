@@ -1,6 +1,7 @@
 package backend.codebackend.repository;
 
 import backend.codebackend.domain.Basket;
+import backend.codebackend.domain.ChatUser;
 import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import jakarta.persistence.EntityManager;
@@ -110,5 +111,21 @@ public class JpaMozipRepository implements MozipRepository {
                 .setParameter("id",  id)
                 .setParameter("status", Mozip.mozipStatus.정산전)
                 .executeUpdate();   //executeUpdate 메서드는 업데이트된 엔티티 수를 반환
+    }
+    // 모집글 삭제 메소드
+    @Override
+    public void deleteMozip(Long id) {
+        Mozip mozip = em.find(Mozip.class, id); // id를 가진 Mozip 엔티티를 찾는다.
+        // 엔티티가 존재하면 삭제한다.
+        em.remove(mozip);
+    }
+    // 채팅방 내부 유저들 삭제
+    @Override
+    public void deleteChatUsers(Long chatId) {
+        // ChatUser 테이블의 id 값이 chatId인 모든 튜플 삭제
+        String jpql = "DELETE FROM ChatUser c WHERE c.id = :chatId";
+        em.createQuery(jpql)
+                .setParameter("chatId", chatId)
+                .executeUpdate();
     }
 }

@@ -79,4 +79,7 @@ public class ChatUserService {
         return roomId.get();
     }
 
+    public boolean findByNickname(Long id, String nickname) {
+        return chatUserRepository.is_host(id, nickname);
+    }
 }
