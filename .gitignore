@@ -37,3 +37,7 @@ out/
 .vscode/
 
 apikey.js
+
+# application.propertiew *
+
+*.properties
