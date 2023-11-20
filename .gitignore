@@ -40,4 +40,4 @@ apikey.js
 
 # application.propertiew *
 
-*.properties
+application.properties
