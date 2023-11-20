@@ -1,6 +1,6 @@
 // 결제 창 호출
 var IMP = window.IMP;
-// IMP.init("imp38136157");
+IMP.init("imp38136157");
 
 function requestPay() {
   IMP.request_pay(
