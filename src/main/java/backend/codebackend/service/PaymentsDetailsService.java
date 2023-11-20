@@ -52,8 +52,8 @@ public class PaymentsDetailsService {
         if (senderAccount.getBalance() >= price){
             senderAccount.setBalance(senderAccount.getBalance() - price);
             // 결제와 결제 완료 여부를 업데이트
-            senderAccount.setIsPaid(1);
-            if (senderAccount.getCompletePayment() == 1) {
+            senderAccount.setIs_paid(1);
+            if (senderAccount.getComplete_payment()== 1) {
                 // 모든 사용자가 결제완료 버튼 누르면 돈을 송금
                 accountService.save(senderAccountDto);
 
