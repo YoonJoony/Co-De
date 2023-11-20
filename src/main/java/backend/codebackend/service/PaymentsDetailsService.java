@@ -20,7 +20,6 @@ public class PaymentsDetailsService {
     private final AccountService accountService;
     private final SystemAccountService systemAccountService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final MemberRepository memberRepository;
     private final MemberService memberService;
     private final PaymentDetailsRepository paymentDetailsRepository;
 
@@ -30,10 +29,12 @@ public class PaymentsDetailsService {
     }
 
     // 송금 처리 (사용자 -> 시스템)
-    public boolean sendMoneyToSystemAccount(Long id, int price) {
+    public boolean sendMoneyToSystemAccount(String nickname, int price) {
         // 송금자 정보 가져오기
-        String memberid = memberRepository.findById(id);
-        Optional<Member> member = memberService.findByName(memberid);
+        Optional<Member> member = memberService.findByName(nickname);
+
+        if(member.isEmpty())
+            return false;
 
         Account senderAccount = accountService.findAccount(member.get().getId());
         AccountDto senderAccountDto = AccountDto.builder()
@@ -53,7 +54,7 @@ public class PaymentsDetailsService {
             senderAccount.setBalance(senderAccount.getBalance() - price);
             // 결제와 결제 완료 여부를 업데이트
             senderAccount.setIs_paid(1);
-            if (senderAccount.getComplete_payment()== 1) {
+            if (senderAccount.getComplete_payment() == 1) {
                 // 모든 사용자가 결제완료 버튼 누르면 돈을 송금
                 accountService.save(senderAccountDto);
 

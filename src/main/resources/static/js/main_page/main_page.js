@@ -169,6 +169,27 @@ $(function () {
     console.log(`Selected distance: ${selectedDistance}m`);
   });
 });
+
+//페이지 이동 .. 잡 처리
+var $mozipPage = $(".mozipPage");
+
+$mozipPage.click(function () {
+  location.href = "/main_page.html";
+});
+
+//내 채팅 누를 시 내 채팅방 이동
+async function myChat() {
+  try {
+    const response = await $.ajax({
+      type: "GET",
+      url: "/mozip/chat/myChatroom",
+      data: {},
+    });
+    location.href = "/mozip/chat/room?id=" + response;
+  } catch (error) {
+    console.log("내 채팅 접속 요청 실패");
+  }
+}
 //------------------------------------------------------------------------
 
 //모집글 board 영역 설정
@@ -240,7 +261,7 @@ async function fetchAIResponse(prompt) {
     // API 요청의 헤더를 설정
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${gpt_apikey}`,
+      Authorization: `Bearer ${"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"}`,
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo", // 사용할 AI 모델

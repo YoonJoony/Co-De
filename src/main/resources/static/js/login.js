@@ -66,3 +66,4 @@ forgotButton.addEventListener('click', () => {
    function gotoForgot(){
        location.href="find_account.html";  // 이동주소
    }
+

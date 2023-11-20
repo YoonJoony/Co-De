@@ -2,6 +2,7 @@ package backend.codebackend;
 
 import backend.codebackend.domain.*;
 import backend.codebackend.dto.ChatDTO;
+import backend.codebackend.dto.TotalPrice;
 import backend.codebackend.repository.BasketRepository;
 import backend.codebackend.repository.MemberRepository;
 import backend.codebackend.service.*;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 //import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
@@ -167,7 +169,7 @@ class CodeBackendApplicationTests {
 	void 배달정보조회() {
 		Member member = memberService.findLoginId("dbswns1101").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
+		Future<Menu> m = restaurantService.menuList("티바두마리치킨-의정부역점", member.getAddress());
 		Menu menu = m.get();
 
 		System.out.println("최소 주문 금액 : " + menu.getMinPrice());
@@ -214,17 +216,11 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("장바구니 총 금액 조회")
 	void 총금액() {
-		long startTime = System.currentTimeMillis();
-
-		Map<Integer, String> result = basketRepository.getTotalPrice(103L);
-		for(Map.Entry<Integer, String> entry : result.entrySet()) {
-			System.out.println(entry.getValue());
-			System.out.println(entry.getKey());
+		List<TotalPrice> totalPrices = basketRepository.getTotalPrice(111L);
+		for(int i = 0; i < totalPrices.size(); i++) {
+			System.out.println(totalPrices.get(i).getUsername());
+			System.out.println(totalPrices.get(i).getTotalPrice());
 		}
-
-		long endTime = System.currentTimeMillis();
-		long executionTime = endTime - startTime;
-		System.out.println("테스트 실행 시간: " + executionTime + "ms");
 	}
 
 	@Test
@@ -245,5 +241,10 @@ class CodeBackendApplicationTests {
 		Basket basket = basketRepository.addItemToBasketReceive("1234");
 		System.out.println(basket.getId());
 	}
-
+	@Test
+	@DisplayName("접속한 방 번호 조회")
+	void 접속한방번호조회() {
+		Long roomId= chatUserService.findMemberRoomId("1234");
+		System.out.println(roomId);
+	}
 }

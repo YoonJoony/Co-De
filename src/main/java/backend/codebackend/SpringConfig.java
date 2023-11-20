@@ -75,6 +75,7 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     public SystemAccountService systemAccountService() {
         return new SystemAccountService(em, systemAccountRepository(), chatUserRepository(), accountService(), encoder(), memberService());
     }
+
     @Bean
     public MemberRepository memberRepository() {
         return new JpaMemberRepository(em);

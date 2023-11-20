@@ -2,6 +2,7 @@ package backend.codebackend.controller;
 
 import backend.codebackend.domain.Basket;
 import backend.codebackend.domain.Member;
+import backend.codebackend.dto.TotalPrice;
 import backend.codebackend.service.BasketService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MozipService;
@@ -160,8 +161,8 @@ public class BasketController {
     //장바구니 총 금액 뷰
     @GetMapping("/chat/basket/totalPrice")
     @ResponseBody
-    public Map<Integer, String> getTotalPrice(Long roomId) {
+    public List<TotalPrice> getTotalPrice(Long id) {
 
-        return basketService.getTotalPrice(roomId);
+        return basketService.getTotalPrice(id);
     }
 }

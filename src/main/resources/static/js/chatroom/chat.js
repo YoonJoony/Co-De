@@ -273,6 +273,25 @@ function basketDeleteSendMessage(deleteMenuIdRecv) {
   }
 }
 
+//정산이 시작되었을 경우
+function mozipStatusUpdate(statusUpdateMassage) {
+  if (stompClient) {
+    var chatMessage = {
+      id: id,
+      sender: nickname,
+      message: nickname + "님이 " + statusUpdateMassage + " 상태로 변경하셨습니다.",
+      createdAt: new Date(), //채팅친 시간 추가.
+      type: "STATUS",
+    };
+
+    stompClient.send(
+        "/pub/mozip/chat/sendMessage",
+        {},
+        JSON.stringify(chatMessage)
+    );
+  }
+}
+
 let lastMessageTimeMinutes = 99;
 let lastMessageTimeHour = 99;
 let timeDifference = 1;
@@ -371,6 +390,19 @@ function onMessageReceived(payload) {
       element.remove();
       totalPrice();
     }
+  } else if (chat.type === "STATUS") {
+    //정산 상태 변경 시 알림
+    messageElement.classList.add("event-message");
+
+    var contentElement = document.createElement("p");
+
+    var messageText = document.createTextNode(chat.message);
+    contentElement.appendChild(messageText);
+
+    messageElement.appendChild(contentElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
   } else {
     messageElement.classList.add("chat-message");
 
@@ -460,6 +492,21 @@ function getAvatarColor(messageSender) {
 
   var index = Math.abs(hash % colors.length);
   return colors[index];
+}
+
+async function outChat() {
+  try {
+    const outChatPage = await $.ajax({
+      type: "GET",
+      url: "/mozip/chat/deleteUser",
+      data: {
+        "id" : id
+      },
+    });
+    location.href = outChatPage;
+  } catch (error) {
+    console.log("요청 실패");
+  }
 }
 
 function uploadFile(input) {}
@@ -756,15 +803,24 @@ $(function () {
 
   //페이지 이동 .. 잡 처리
   var $mozipPage = $(".mozipPage");
-  var $out_img = $(".out-img");
 
   $mozipPage.click(function () {
     location.href = "/main_page.html";
   });
+  
 
-  $out_img.click(function () {
-    location.href = "/main_page.html";
-  });
+  async function myChat() {
+    try {
+      const response = await $.ajax({
+        type: "GET",
+        url: "/mozip/chat/myChatroom",
+        data: {},
+      });
+      location.href = "/mozip/chat/room?id=" + response;
+    } catch (error) {
+      alert("채팅방에 입장해주세요!");
+    }
+  }
 
   //메뉴 선택
   $(document).on("click", ".menu-group-list", function () {
@@ -967,6 +1023,7 @@ $(function () {
         if (data) {
           alert(data);
           mozipStatus = "정산시작";
+          mozipStatusUpdate(mozipStatus);
           calculateStatus();
         }
       },
@@ -991,6 +1048,7 @@ $(function () {
         if (data) {
           alert(data);
           mozipStatus = "정산전";
+          mozipStatusUpdate(mozipStatus);
           calculateStatus();
         }
       },
@@ -1027,12 +1085,11 @@ function totalRealPrice() {
     type: "GET",
     url: "/chat/basket/totalPrice",
     data: {
-      roomId: id,
+      id: id,
     },
-    success: function (resultMap) {
-      for (let totalPrice in resultMap) {
-        let nickname = resultMap[totalPrice];
-        console.log("결제자 : " + nickname + ", 금액 : " + totalPrce);
+    success: function (data) {
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i].username + ": " + data[i].totalPrice);
       }
     },
     error: function () {
@@ -1044,105 +1101,69 @@ function totalRealPrice() {
 //정산 창
 // const $list = $('#list'); // 참가자 명단
 
+
+
 var calualtor = document.querySelector(".calualtor");
-async function calShow() {
+function calShow() {
+  // delivery_fee.innerText(배달요금) 숫자만 빼기
+  var del_fee_before = delivery_fee.innerText;
+  var ex1 = "sada3000sf";
+  var regex = /[^0-9]/g;
+  var del_fee = del_fee_before.replace(regex, "");
   var userListLength = [];
-  try {
-    const response = await $.ajax({
-      type: "GET",
-      url: "/mozip/chat/userList",
-      data: {
-        "id": id,
-      },
-    });
-    userListLength = response;
-    console.log(response);
-  } catch (error) {
-    console.log("유저 리스트 요청 실패");
+  var menu_price = [];
+
+  $.ajax({
+    type: "GET",
+    async: false,
+    url: "/chat/basket/totalPrice",
+    data: {
+      id: id,
+    },
+    success: function (data) {
+      for (let i = 0; i < data.length; i++) {
+        // console.log(data[i].username + ": " + data[i].totalPrice);
+
+        userListLength.push(data[i].username);
+
+        menu_price.push(data[i].totalPrice);
+        console.log(menu_price);
+      }
+    },
+    error: function () {
+      console.log("장바구니 메뉴 불러오기 오류");
+    },
+  });
+
+  PaymentDetailsLoad(
+    userListLength.length - 1,
+    userListLength,
+    menu_price,
+    del_fee
+  );
+
+  for (var k = 1; k < userListLength.length; k++) {
+    var pay_username = document.createElement("p");
+    pay_username.className = "pay_username";
+    pay_username.id = "pay_username" + k;
+    var pay_username_txt = document.createTextNode(userListLength[k]);
+    pay_username.appendChild(pay_username_txt);
+
+    calualtor.appendChild(pay_username);
   }
 
-  
-  // PaymentDetailsLoad() 주문내역 메소드 호출
-  PaymentDetailsLoad(userListLength.length - 1, userListLength);
-
+  for (var k = 1; k < userListLength.length; k++) {
+    //이벤트 추가
+    switch (k) {
+      case 1:
+        $("#pay_username1").on("click", detailShow_cos1);
+      case 2:
+        $("#pay_username2").on("click", detailShow_cos2);
+      case 3:
+        $("#pay_username3").on("click", detailShow_cos3);
+    }
+  }
   document.querySelector(".cal_page").className = "cal_page cal_page_show";
-  // 금액 확인 클릭시
-  const delivery_fee = 4000; // 배달비
-  const delivery_fee_each = Math.ceil(delivery_fee / userListLength.length); // 각자 내야 하는 배달비
-
-  // 닉네임 생성
-  calualtor.innerHTML += `<p class="pay_username" id='host'> ${userListLength[0]} </p>`; // 방장 닉네임
-
-  for (var z = 1; z <= userListLength.length - 1; z++) {
-    calualtor.innerHTML += `<p class="pay_username" name='costomer${z}'> ${userListLength[z]} </p>`; // 참가자 닉네임
-  }
-
-  const host_pay = document.getElementById("host");
-
-  let rate;
-
-  if (userListLength.length === 4) {
-    // 참가자가 4인 일 때
-    rate = Math.ceil(delivery_fee_each * 0.4);
-  } else if (userListLength.length === 3) {
-    // 참가자가 3인 일 때
-    rate = Math.ceil(delivery_fee_each * 0.3);
-  } else if (userListLength.length === 2) {
-    // 참가자가 2인 일 때
-    rate = Math.ceil(delivery_fee_each * 0.2);
-    console.log("할인 값" + rate);
-  }
-
-
-  let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
-  // 모달창에 결과 출력
-  document.getElementById("host_discount").innerHTML =
-    "-" + rate.toLocaleString() + " 원";
-  document.getElementById("host_delifee").innerHTML =
-    host_fee.toLocaleString() + " 원";
-
-  const costomer_add = Math.ceil(rate / (userListLength.length - 1));
-  const costomer_fee = delivery_fee_each + costomer_add; // 할인 된 금액만큼 나머지 사람들이 납부
-
-  const total_pay_host = pay_amount + host_fee;
-  host_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_host.toLocaleString()}원</p> <p class="arrow-down" id="detail_show"
-      onclick="detailShow()"></p>`; // 호스트가 내야 하는 비용
-  // 모달창에 결과 출력
-  document.getElementById("host_totalfee").innerHTML =
-    total_pay_host.toLocaleString() + " 원";
-
-  const total_pay_coutomer = pay_amount + costomer_fee;
-
-  for (var i = 1; i <= userListLength.length - 1; i++) {
-    var costomer_pay = document.querySelector("p[name=costomer" + i + "]");
-    if (i == 1) {
-      costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
-          onclick="detailShow_cos1()"></p>`; // 참가자가 지불해야 하는 비용
-    }
-    if (i == 2) {
-      costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
-          onclick="detailShow_cos2()"></p>`; // 참가자가 지불해야 하는 비용
-    }
-    if (i == 3) {
-      costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
-              onclick="detailShow_cos3()"></p>`; // 참가자가 지불해야 하는 비용
-    }
-  }
-
-  // 모두 공통인 부분 배열로 인원수 대로 일괄출력
-  for (var j = 0; j <= i; j++) {
-    document.getElementsByClassName("fee")[j].innerHTML =
-      delivery_fee.toLocaleString() + " 원"; // 원래 배달비
-    document.getElementsByName("each_delifee")[j].innerHTML =
-      Math.ceil(delivery_fee_each).toLocaleString() + " 원"; // 상세창에 개별 배달비 출력
-    // document.getElementsByName("host_discount_add")[j].innerHTML =
-    //   "+" + costomer_add.toLocaleString() + " 원"; // 참가자 배달비 가액
-    document.getElementsByName("costomer_delifee")[j].innerHTML =
-      costomer_fee.toLocaleString() + " 원"; // 참가자 총 배달비
-
-    document.getElementsByName("comtomer_totalfee")[j].innerHTML =
-      total_pay_coutomer.toLocaleString() + " 원"; // 참가자 결제 금액
-  }
 }
 
 function calclose() {
@@ -1152,7 +1173,7 @@ function calclose() {
   }
 
   let parent = document.getElementById("pay_detail_div");
-  while (parent.children.length > 1) {
+  while (parent.children.length > 0) {
     parent.removeChild(parent.lastChild);
   }
 }
@@ -1163,17 +1184,6 @@ for (var j = 1; j <= userListLength.length; j++) {
   document.getElementById("meun_fee" + j).innerHTML =
     pay_amount.toLocaleString() + " 원"; // toLocaleString() = 숫자에 콤마 찍어주는 함수
 }
-
-function show() {
-  document.querySelector(".header2").className = "header2 header2_show";
-}
-
-function close() {
-  document.querySelector(".header2").className = "header2";
-}
-
-document.querySelector("#chat_show").addEventListener("click", show);
-document.querySelector("#chat-page").addEventListener("click", close);
 
 // 호스트 상세 결제창 출력 + 애니메이션 효과
 function detailShow() {
@@ -1308,9 +1318,8 @@ function initMap2() {
 // 결제하기 창 -> 금액확인 -> 주문내역 창 생성 js
 // 참가자만 주문 내역 추가
 
-// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열))
-function PaymentDetailsLoad(num_people, user_list) {
-
+// PaymentDetailsLoad(사람수(숫자), 사람리스트(배열), menu_price, del_fee)
+function PaymentDetailsLoad(num_people, user_list, menu_price, del_fee) {
   // storeModal_header_topper_back_img_pay_detail (img)
   for (var i = 1; i <= num_people; i++) {
     var storeModal_header_topper_back_img_pay_detail =
@@ -1341,14 +1350,16 @@ function PaymentDetailsLoad(num_people, user_list) {
     // pay_detail_text (li) 메뉴이름
     var pay_detail_text1 = document.createElement("li");
     pay_detail_text1.className = "pay_detail_text";
-    var pay_detail_text1_txt = document.createTextNode("(메뉴이름)");
+    var pay_detail_text1_txt = document.createTextNode("담은 메뉴 가격 합계");
     pay_detail_text1.appendChild(pay_detail_text1_txt);
 
     // id = meun_fee2 (p)
     var pay_text1 = document.createElement("p");
     pay_text1.className = "pay_text";
     pay_text1.id = "meun_fee2";
-    var pay_text1_txt = document.createTextNode("(메뉴가격)");
+    var pay_text1_txt = document.createTextNode(
+      menu_price[i].toLocaleString() + "원" // (메뉴합계)
+    );
     pay_text1.appendChild(pay_text1_txt);
 
     // total_pay (div)
@@ -1368,7 +1379,9 @@ function PaymentDetailsLoad(num_people, user_list) {
     var pay_text2 = document.createElement("p");
     pay_text2.className = "pay_text fee";
     pay_text2.id = "fee";
-    var pay_text2_txt = document.createTextNode("(배달요금)");
+    var pay_text2_txt = document.createTextNode(
+      parseInt(del_fee).toLocaleString() + "원" // (배달요금)
+    );
     pay_text2.appendChild(pay_text2_txt);
 
     // delivery_fee_div (div)
@@ -1388,7 +1401,9 @@ function PaymentDetailsLoad(num_people, user_list) {
     var pay_text3 = document.createElement("p");
     pay_text3.className = "pay_text";
     pay_text3.name = "each_delifee";
-    var pay_text3_txt = document.createTextNode("(인당요금)");
+    var pay_text3_txt = document.createTextNode(
+      (parseInt(del_fee) / (num_people + 1)).toLocaleString() + "원"
+    ); // (인당요금)
     pay_text3.appendChild(pay_text3_txt);
 
     // per_fee_div (div)
@@ -1399,24 +1414,24 @@ function PaymentDetailsLoad(num_people, user_list) {
     per_fee_div.appendChild(pay_text3);
 
     // pay_detail_text (li) 방장할인 가액
-    var pay_detail_text4 = document.createElement("li");
-    pay_detail_text4.className = "pay_detail_text";
-    var pay_detail_text4_txt = document.createTextNode(" 방장할인 가액 ");
-    pay_detail_text4.appendChild(pay_detail_text4_txt);
+    // var pay_detail_text4 = document.createElement("li");
+    // pay_detail_text4.className = "pay_detail_text";
+    // var pay_detail_text4_txt = document.createTextNode(" 방장할인 가액 ");
+    // pay_detail_text4.appendChild(pay_detail_text4_txt);
 
     // name = host_discount_add (p)
-    var pay_text4 = document.createElement("p");
-    pay_text4.className = "pay_text discount_plus";
-    pay_text4.name = "host_discount_add";
-    var pay_text4_txt = document.createTextNode("(방장할인 가액)");
-    pay_text4.appendChild(pay_text4_txt);
+    // var pay_text4 = document.createElement("p");
+    // pay_text4.className = "pay_text discount_plus";
+    // pay_text4.name = "host_discount_add";
+    // var pay_text4_txt = document.createTextNode("(방장할인 가액)");
+    // pay_text4.appendChild(pay_text4_txt);
 
     // per_fee_div (div)
-    var host_fee_div = document.createElement("div");
-    host_fee_div.className = "host_fee_div";
-    // 자식 요소 추가
-    host_fee_div.appendChild(pay_detail_text4);
-    host_fee_div.appendChild(pay_text4);
+    // var host_fee_div = document.createElement("div");
+    // host_fee_div.className = "host_fee_div";
+    // // 자식 요소 추가
+    // host_fee_div.appendChild(pay_detail_text4);
+    // host_fee_div.appendChild(pay_text4);
 
     // pay_detail_text (li) 지불 배달요금
     var pay_detail_text5 = document.createElement("li");
@@ -1428,7 +1443,9 @@ function PaymentDetailsLoad(num_people, user_list) {
     var pay_text5 = document.createElement("p");
     pay_text5.className = "pay_text";
     pay_text5.name = "costomer_delifee";
-    var pay_text5_txt = document.createTextNode("(지불 배달요금)");
+    var pay_text5_txt = document.createTextNode(
+      (parseInt(del_fee) / (num_people + 1)).toLocaleString() + "원"
+    ); // (지불 배달 요금)
     pay_text5.appendChild(pay_text5_txt);
 
     // total_pay1 (div)
@@ -1448,7 +1465,10 @@ function PaymentDetailsLoad(num_people, user_list) {
     var pay_text6 = document.createElement("p");
     pay_text6.className = "pay_text";
     pay_text6.name = "comtomer_totalfee";
-    var pay_text6_txt = document.createTextNode("(결제 금액)");
+    var pay_text6_txt = document.createTextNode(
+      (menu_price[i] + parseInt(del_fee) / (num_people + 1)).toLocaleString() +
+        "원"
+    ); // (결제 금액)
     pay_text6.appendChild(pay_text6_txt);
 
     // total_pay2 (div)
@@ -1480,8 +1500,8 @@ function PaymentDetailsLoad(num_people, user_list) {
     pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(per_fee_div);
     pay_detail.appendChild(document.createElement("br"));
-    pay_detail.appendChild(host_fee_div);
-    pay_detail.appendChild(document.createElement("br"));
+    // pay_detail.appendChild(host_fee_div);
+    // pay_detail.appendChild(document.createElement("br"));
     pay_detail.appendChild(total_pay2);
     pay_detail.appendChild(detail_hr2);
     pay_detail.appendChild(document.createElement("br"));
@@ -1507,6 +1527,50 @@ function PaymentDetailsLoad(num_people, user_list) {
 }
 
 //------------------------------------------------------------------------
+
+// 결제 하기 버튼 이벤트
+function pay_done_btn() {
+  alert("결제완료");
+  console.log("결제완료");
+}
+
+
+
+function requestPay() {
+  // 결제 창 호출
+  var IMP = window.IMP;
+  IMP.init("imp38136157");
+
+  IMP.request_pay(
+    {
+      pg: "uplus",
+      pay_method: "card",
+      merchant_uid: "test_" + new Date().getTime(),
+      name: "테스트 결제",
+      amount: 100,
+      buyer_tel: "010-0000-0000",
+      buyer_name: "엄준식",
+      buyer_email: "111",
+    },
+    function (rsp) {
+      console.log(rsp);
+      // 결제검증
+      $.ajax({
+        type: "POST",
+        url: "/verifyIamport/" + rsp.imp_uid,
+      }).done(function (data) {
+        console.log(data);
+
+        // 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+        if (rsp.paid_amount == data.response.amount) {
+          alert("결제 및 결제검증완료");
+        } else {
+          alert("결제 실패");
+        }
+      });
+    }
+  );
+}
 
 // 장바구니 이동 2 try
 const modalHeader = document.querySelector(".basket-title_topper_text");

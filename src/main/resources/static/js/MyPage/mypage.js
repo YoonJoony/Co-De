@@ -34,7 +34,6 @@ $(function () {
             return;
         }
 
-
         $.ajax({
             type : "POST",
             url : "/myPage/account/save",

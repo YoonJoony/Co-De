@@ -2,6 +2,7 @@ package backend.codebackend.repository;
 
 
 import backend.codebackend.domain.Basket;
+import backend.codebackend.dto.TotalPrice;
 
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public interface BasketRepository {
     void deleteByMenu(Long menuId);
     Basket findBasketMenu(Long menuId);
     Basket addItemToBasketReceive(String nickname);
-    Map<Integer, String> getTotalPrice(Long roomId);
+    List<TotalPrice> getTotalPrice(Long roomId);
 }
 
 

@@ -45,7 +45,6 @@ public class ChatController {
     private final SimpMessageSendingOperations template;
     private final ChatService chatService;
     private final ChatUserService chatUserService;
-    private final BasketService basketService;
     private final MemberService memberService;
     private final MozipService mozipService;
     @MessageMapping("/mozip/chat/enterUser") //해당 주소로 메시지가 도착시 메소드 실행
@@ -159,5 +158,20 @@ public class ChatController {
         mozipService.preCalculateStartStatus(chatroom_id);
 
         return ResponseEntity.ok( "정산 전으로 변동되었습니다!");
+    }
+
+    @GetMapping("/mozip/chat/deleteUser")
+    @ResponseBody
+    public String deleteUser(Long id, HttpServletRequest request){   //모집글을 id로 찾아서 사용자 이름nickname을 찾음
+        HttpSession session = request.getSession(false);
+
+        if (session == null) {
+            return "세션이 없습니다.";
+        }
+
+        String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
+
+        chatUserService.deleteUser(id, nickname);
+        return "/main_page.html";
     }
 }
