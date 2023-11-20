@@ -273,6 +273,25 @@ function basketDeleteSendMessage(deleteMenuIdRecv) {
   }
 }
 
+//정산이 시작되었을 경우
+function mozipStatusUpdate(statusUpdateMassage) {
+  if (stompClient) {
+    var chatMessage = {
+      id: id,
+      sender: nickname,
+      message: nickname + "님이 " + statusUpdateMassage + " 상태로 변경하셨습니다.",
+      createdAt: new Date(), //채팅친 시간 추가.
+      type: "STATUS",
+    };
+
+    stompClient.send(
+        "/pub/mozip/chat/sendMessage",
+        {},
+        JSON.stringify(chatMessage)
+    );
+  }
+}
+
 let lastMessageTimeMinutes = 99;
 let lastMessageTimeHour = 99;
 let timeDifference = 1;
@@ -371,6 +390,19 @@ function onMessageReceived(payload) {
       element.remove();
       totalPrice();
     }
+  } else if (chat.type === "STATUS") {
+    //정산 상태 변경 시 알림
+    messageElement.classList.add("event-message");
+
+    var contentElement = document.createElement("p");
+
+    var messageText = document.createTextNode(chat.message);
+    contentElement.appendChild(messageText);
+
+    messageElement.appendChild(contentElement);
+
+    messageArea.appendChild(messageElement);
+    messageArea.scrollTop = messageArea.scrollHeight;
   } else {
     messageElement.classList.add("chat-message");
 
@@ -460,6 +492,21 @@ function getAvatarColor(messageSender) {
 
   var index = Math.abs(hash % colors.length);
   return colors[index];
+}
+
+async function outChat() {
+  try {
+    const outChatPage = await $.ajax({
+      type: "GET",
+      url: "/mozip/chat/deleteUser",
+      data: {
+        "id" : id
+      },
+    });
+    location.href = outChatPage;
+  } catch (error) {
+    console.log("요청 실패");
+  }
 }
 
 function uploadFile(input) {}
@@ -760,20 +807,7 @@ $(function () {
   $mozipPage.click(function () {
     location.href = "/main_page.html";
   });
-
-  async function outChat() {
-    try {
-      const response = await $.ajax({
-        type: "GET",
-        url: "/mozip/chat/deleteUser",
-        data: {
-          "id" : id
-        },
-      });
-    } catch (error) {
-      console.log("요청 실패");
-    }
-  }
+  
 
   async function myChat() {
     try {
@@ -784,7 +818,7 @@ $(function () {
       });
       location.href = "/mozip/chat/room?id=" + response;
     } catch (error) {
-      console.log("내 채팅 접속 요청 실패");
+      alert("채팅방에 입장해주세요!");
     }
   }
 
@@ -989,6 +1023,7 @@ $(function () {
         if (data) {
           alert(data);
           mozipStatus = "정산시작";
+          mozipStatusUpdate(mozipStatus);
           calculateStatus();
         }
       },
@@ -1013,6 +1048,7 @@ $(function () {
         if (data) {
           alert(data);
           mozipStatus = "정산전";
+          mozipStatusUpdate(mozipStatus);
           calculateStatus();
         }
       },
@@ -1128,100 +1164,6 @@ function calShow() {
     }
   }
   document.querySelector(".cal_page").className = "cal_page cal_page_show";
-  // var userListLength = ["호스트", "참가자1", "참가자2", "참가자3"];
-  // try {
-  //   const response = await $.ajax({
-  //     type: "GET",
-  //     url: "/mozip/chat/userList",
-  //     data: {
-  //       id: id,
-  //     },
-  //   });
-  //   userListLength = response;
-  //   console.log(response);
-  // } catch (error) {
-  //   console.log("유저 리스트 요청 실패");
-  // }
-
-  // PaymentDetailsLoad() 주문내역 메소드 호출
-
-  // 금액 확인 클릭시
-  // const delivery_fee = 4000; // 배달비
-  // const delivery_fee_each = Math.ceil(delivery_fee / userListLength.length); // 각자 내야 하는 배달비
-
-  // 닉네임 생성
-
-  // calualtor.innerHTML += `<p class="pay_username" id='host'> ${userListLength[0]} </p>`; // 방장 닉네임
-
-  // for (var z = 1; z <= userListLength.length - 1; z++) {
-  //   calualtor.innerHTML += `<p class="pay_username" name='costomer${z} onclick="detailShow_cos1()"'> ${userListLength[z]} </p>`; // 참가자 닉네임
-  // }
-
-  // const host_pay = document.getElementById("host");
-
-  // let rate;
-
-  // if (userListLength.length === 4) {
-  //   // 참가자가 4인 일 때
-  //   rate = Math.ceil(delivery_fee_each * 0.4);
-  // } else if (userListLength.length === 3) {
-  //   // 참가자가 3인 일 때
-  //   rate = Math.ceil(delivery_fee_each * 0.3);
-  // } else if (userListLength.length === 2) {
-  //   // 참가자가 2인 일 때
-  //   rate = Math.ceil(delivery_fee_each * 0.2);
-  //   console.log("할인 값" + rate);
-  // }
-
-  // let host_fee = Math.ceil(delivery_fee_each - rate); // 호스트 배달비 할인
-  // // 모달창에 결과 출력
-  // document.getElementById("host_discount").innerHTML =
-  //   "-" + rate.toLocaleString() + " 원";
-  // document.getElementById("host_delifee").innerHTML =
-  //   host_fee.toLocaleString() + " 원";
-
-  // const costomer_add = Math.ceil(rate / (userListLength.length - 1));
-  // const costomer_fee = delivery_fee_each + costomer_add; // 할인 된 금액만큼 나머지 사람들이 납부
-
-  // const total_pay_host = pay_amount + host_fee;
-  // host_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_host.toLocaleString()}원</p> <p class="arrow-down" id="detail_show"
-  //     onclick="detailShow()"></p>`; // 호스트가 내야 하는 비용
-  // // 모달창에 결과 출력
-  // document.getElementById("host_totalfee").innerHTML =
-  //   total_pay_host.toLocaleString() + " 원";
-
-  // const total_pay_coutomer = pay_amount + costomer_fee;
-
-  // for (var i = 1; i <= userListLength.length - 1; i++) {
-  //   var costomer_pay = document.querySelector("p[name=costomer" + i + "]");
-  //   if (i == 1) {
-  //     costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
-  //         onclick="detailShow_cos1()"></p>`; // 참가자가 지불해야 하는 비용
-  //   }
-  //   if (i == 2) {
-  //     costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
-  //         onclick="detailShow_cos2()"></p>`; // 참가자가 지불해야 하는 비용
-  //   }
-  //   if (i == 3) {
-  //     costomer_pay.innerHTML += `<p class="pay_result">결제금액:  ${total_pay_coutomer.toLocaleString()}원</p><p class="arrow-down "
-  //             onclick="detailShow_cos3()"></p>`; // 참가자가 지불해야 하는 비용
-  //   }
-  // }
-
-  // // 모두 공통인 부분 배열로 인원수 대로 일괄출력
-  // for (var j = 0; j <= i; j++) {
-  //   document.getElementsByClassName("fee")[j].innerHTML =
-  //     delivery_fee.toLocaleString() + " 원"; // 원래 배달비
-  //   document.getElementsByName("each_delifee")[j].innerHTML =
-  //     Math.ceil(delivery_fee_each).toLocaleString() + " 원"; // 상세창에 개별 배달비 출력
-  //   // document.getElementsByName("host_discount_add")[j].innerHTML =
-  //   //   "+" + costomer_add.toLocaleString() + " 원"; // 참가자 배달비 가액
-  //   document.getElementsByName("costomer_delifee")[j].innerHTML =
-  //     costomer_fee.toLocaleString() + " 원"; // 참가자 총 배달비
-
-  //   document.getElementsByName("comtomer_totalfee")[j].innerHTML =
-  //     total_pay_coutomer.toLocaleString() + " 원"; // 참가자 결제 금액
-  // }
 }
 
 function calclose() {
@@ -1592,11 +1534,13 @@ function pay_done_btn() {
   console.log("결제완료");
 }
 
-// 결제 창 호출
-var IMP = window.IMP;
-IMP.init("imp38136157");
+
 
 function requestPay() {
+  // 결제 창 호출
+  var IMP = window.IMP;
+  IMP.init("imp38136157");
+
   IMP.request_pay(
     {
       pg: "uplus",

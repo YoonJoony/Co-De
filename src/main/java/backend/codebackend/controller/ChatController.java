@@ -45,7 +45,6 @@ public class ChatController {
     private final SimpMessageSendingOperations template;
     private final ChatService chatService;
     private final ChatUserService chatUserService;
-    private final BasketService basketService;
     private final MemberService memberService;
     private final MozipService mozipService;
     @MessageMapping("/mozip/chat/enterUser") //해당 주소로 메시지가 도착시 메소드 실행
@@ -173,6 +172,6 @@ public class ChatController {
         String nickname = memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname();
 
         chatUserService.deleteUser(id, nickname);
-        return "redirect:/main_page.html";
+        return "/main_page.html";
     }
 }

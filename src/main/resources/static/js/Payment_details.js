@@ -12,6 +12,20 @@ function profile_btn() {
   }
 }
 
+//내 채팅 누를 시 내 채팅방 이동
+async function myChat() {
+  try {
+    const response = await $.ajax({
+      type: "GET",
+      url: "/mozip/chat/myChatroom",
+      data: {},
+    });
+    location.href = "/mozip/chat/room?id=" + response;
+  } catch (error) {
+    console.log("내 채팅 접속 요청 실패");
+  }
+}
+
 // 모달창 보여주는 함수
 function show_modal() {
   document.querySelector(".modal-background").className =

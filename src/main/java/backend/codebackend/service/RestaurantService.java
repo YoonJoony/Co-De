@@ -208,7 +208,7 @@ public class RestaurantService {
             //restaurant title이 선택한 가게 title 이였을 경우
             if (restaurant.getAttribute("title").equals(restaurantTitle)) {
                 restaurant.click();
-                Thread.sleep(500);
+                Thread.sleep(1000);
 
                 // 최소주문금액 요소 검색 후 값을 가져오기까지 기다립니다.
                 menu2.setMinPrice(wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(text(), '최소주문금액')]/span[@class='ng-binding']"))).getText());

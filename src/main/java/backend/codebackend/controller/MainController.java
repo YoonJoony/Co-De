@@ -156,8 +156,25 @@ public class MainController {
         }
         Account account = accountService.findAccount(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getId());
 
+        model.addAttribute("nickname",
+                memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname());
         model.addAttribute("account", account);
 
+
         return "myPage";
+    }
+
+    //결제내역 페이지 이동 시
+    @GetMapping("/Payment_details.html")
+    public String payment_details(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return "세션이 없습니다.";
+        }
+
+        model.addAttribute("nickname",
+                memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getNickname());
+
+        return "Payment_details"; //글 생성 시 다시 초기화면으로
     }
 }
