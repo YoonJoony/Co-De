@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat.css?after345">
-  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css?v=<%=System.currentTimeMillis()"> <!-- 모바일 시 채팅방 화면 css -->
+  <link rel="stylesheet" href="/static/css/chatroom/chat.css?abc">
+  <link rel="stylesheet" href="/static/css/chatroom/mobile_chat.css?abd"> <!-- 모바일 시 채팅방 화면 css -->
   <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
   <!-- vscode용 ------------------------------------------------------------------>
@@ -186,7 +186,8 @@
                   <img src="/images/icon/map.png" id="map_button" onclick="map_btn()">
                   <img src="/images/icon/Budget.png" onclick="calShow()">
                   <img id="basket" src="/images/icon/basket.png">
-                  <img src="/images/icon/setting.png">
+                  <img id="setting" src="/images/icon/setting.png" wfd-id="id11"
+                       href="#updateMozipModal" data-bs-toggle="modal" data-target="#updateMozipModal">
                 </div>
                 <img src="/images/icon/log-out_5565735.png" style="cursor: pointer" class="out-img" onclick="outChat()">
               </div>
@@ -350,9 +351,153 @@
     </div>
   </div>
 
+  <!-- 모집글 수정 모달창 -->
+  <div class="modal fade mozipUpdate" id="updateMozipModal" tabindex="-1" aria-labelledby="enterRoomModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="storeModal_header_topper">
+          <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
+            <img class="storeModal_header_topper_back_img" src="images/back.png" onClick="closeStoreList()"
+                 style="cursor:pointer;">
+          </div>
+          <div class="storeModal_header_topper_text">
+            <p>모집글 수정</p>
+          </div>
+        </div>
+        <div class="mozipUpdate-body">
+          <div class="mozipUpdate-title">
+            <div class="mozipUpdate-info">제목 </div>
+            <div class="search-box">
+              <input type="text" class="search-txt" name="search-txt">
+            </div>
+          </div>
+          <div class="mozipUpdate-range">
+            <div class="mozipUpdate-info">글 노출 거리 설정 </div>
+            <div class="input-area-range">
+              <fieldset>
+                <input id="rangeInput" class="range" type="range" min=0 max=3 value="2">
+                <div class="rageInput-handle">
+                  <div class="handle"></div>
+                  <div class="handle"></div>
+                  <div class="handle handle-last"></div>
+                </div>
+                <div class="rageInput-handle-distinct">
+                  <div class="distinct">0m</div>
+                  <div class="distinct">100m</div>
+                  <div class="distinct">300m</div>
+                  <div class="distinct">500m</div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="mozipUpdate-category">
+            <div class="mozipUpdate-info">카테고리 </div>
+            <div class="category">
+              <div class="categoty-content">
+                <div class="category-item">전체</div>
+                <div class="category-item">1인분 주문</div>
+                <div class="category-item">프랜차이즈</div>
+                <div class="category-item">치킨</div>
+                <div class="category-item">피자/양식</div>
+                <div class="category-item">중국집</div>
+                <div class="category-item">한식</div>
+                <div class="category-item">일식/돈까스</div>
+                <div class="category-item">족발/보쌈</div>
+                <div class="category-item">야식</div>
+                <div class="category-item">분식</div>
+                <div class="category-item">카페/디저트</div>
+              </div>
+            </div>
+          </div>
+          <div class="mozipUpdate-storeName">
+            <div class="mozipUpdate-info">가게 선택 </div>
+            <div class="storeName">
+              <input type="text" id="storeName-input" class="storeName-input" readonly>
+            </div>
+            <div class="storeName-select">
+              <button class="add_store" id="add_store" type="button">선택</button>
+            </div>
+          </div>
+          <div class="mozipUpdate-people">
+            <div class="mozipUpdate-info">
+              <div>인원 수 </div>
+              <div style="position : relative;font-size : 11px;right : 5px;top: 2px;"> ㆍ미선택시 2명으로 선택 됩니다.
+              </div>
+            </div>
+            <div class="people-range">
+              <div class="sel people">
+                <select id="people" required>
+                  <option class="option" value="" disabled>인원</option>
+                  <option class="option" value="2">2명</option>
+                  <option class="option" value="3">3명</option>
+                  <option class="option" value="4">4명</option>
+                </select>
+              </div>
+            </div>
+            <div class="people-range-select">
+              <button class="deleteMozip" id="deleteMozip" type="button">삭제하기</button>
+            </div>
+            <div class="people-range-select" onclick="createMozip()">
+              <button class="updateMozip" id="updateMozip" type="button">수정하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- 가게 선택 --------------------------->
+  <div class="storeModal">
+    <div class="storeModal_content">
+      <div class="storeModal_header">
+        <div class="storeModal_header_topper">
+          <div class="storeModal_header_topper_back">
+            <img class="storeModal_header_topper_back_img" src="images/back.png" onClick="closeStoreList()"
+                 style="cursor:pointer;">
+          </div>
+          <div class="storeModal_header_topper_text">
+            <p>가게를 선택해주세요!</p>
+          </div>
+        </div>
+        <div class="storeModal_header_search">
+          <div class="search-box">
+            <input type="text" class="search-txt" name="search-txt" placeholder="가게 이름을 입력해 주세요!">
+            <a class="search-btn" href="#">
+              <i class="fas fa-search"></i>
+            </a>
+          </div>
+        </div>
+        <div class="storeModal_header_categories">
+          <div class="scroll-content">
+            <div class="content-item" onclick="category_store_list('전체보기')">전체</div>
+            <div class="content-item" onclick="category_store_list('1인분 주문')">1인분 주문</div>
+            <div class="content-item" onclick="category_store_list('프랜차이즈')">프랜차이즈</div>
+            <div class="content-item" onclick="category_store_list('치킨')">치킨</div>
+            <div class="content-item" onclick="category_store_list('피자/양식')">피자/양식</div>
+            <div class="content-item" onclick="category_store_list('중국집')">중국집</div>
+            <div class="content-item" onclick="category_store_list('한식')">한식</div>
+            <div class="content-item" onclick="category_store_list('일식/돈까스')">일식/돈까스</div>
+            <div class="content-item" onclick="category_store_list('족발/보쌈')">족발/보쌈</div>
+            <div class="content-item" onclick="category_store_list('야식')">야식</div>
+            <div class="content-item" onclick="category_store_list('분식')">분식</div>
+            <div class="content-item" onclick="category_store_list('카페/디저트')">카페/디저트</div>
+          </div>
+        </div>
+      </div>
+      <!-- ---------------------------------------- -->
+      <div class="loading-div">
+        <div id="loading" class="loading">
+        </div>
+        <div> 로딩중 입니다. 잠시만 기다려 주세요!</div>
+      </div>
+      <div class="storeModal_body">
+      </div>
+    </div>
+  </div>
 
-  <script src="/js/chatroom/chat.js?abcdd"></script>
+  <script src="/static/js/chatroom/chat.js?abcdef"></script>
+  <script src="/static/js/main_page/addStore.js?abcd"></script>
   <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
   <!-- vscode용 ------------------------------------------------------------------>

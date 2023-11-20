@@ -1928,3 +1928,573 @@ div#menu {
   padding-top: 8px;
   top: -36px;
 }
+
+/* ------------ 모집글 수정 -------------------*/
+.mozipUpdate .modal-dialog {
+  font-family: "NanumSquareNeo-Variable";
+  height: 660px;
+  top: 13%;
+}
+
+.mozipUpdate .modal-dialog {
+  font-family: "NanumSquareNeo-Variable";
+  height: 660px;
+  top: 13%;
+}
+
+.mozipUpdate .modal-content {
+  position: relative;
+  height: 94%;
+  padding: 8px 3px;
+  margin: 0 auto;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 4px 4px 0 gray;
+  border-radius: 5px 5px 20px 20px;
+  border-bottom: solid 9px #ff8c16;
+  max-width: 530px;
+  min-width: 370px;
+  left: 3px;
+  top: -5%;
+}
+
+.mozipUpdate .storeModal_header_topper {
+  border: none !important;
+}
+
+.mozipUpdate-body {
+  position: relative;
+  width: 100%;
+  padding: 16px 10px 0px 8px;
+}
+
+/* 모집글 생성 제목 설정*/
+.mozipUpdate-body .mozipUpdate-title {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 5px 18px 17px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.mozipUpdate-title div {
+  position: relative;
+  width: 10%;
+  min-width: 40px;
+  display: inline-block;
+  font-size: 17px;
+}
+
+.mozipUpdate-title .search-box {
+  position: relative;
+  height: 31px;
+  width: 80%;
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 5px;
+  transition: 0.4s;
+  display: inline-block;
+}
+
+/* 모집글 생성 노출거리 설정*/
+.mozipUpdate-info {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  font-size: 17px;
+}
+
+.mozipUpdate-body .mozipUpdate-range {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 18px 17px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.mozipUpdate-range .input-area-range {
+  padding: 20px 40px 0px 40px;
+}
+
+.rageInput-handle {
+  width: 100%;
+  height: 5px;
+  display: flex;
+  padding: 0px 1px;
+}
+
+.handle {
+  position: relative;
+  flex: 1;
+  border-left: 1px solid #a4a4a4;
+}
+
+.handle-last {
+  border-right: 1px solid #a4a4a4;
+}
+
+.rageInput-handle-distinct {
+  position: relative;
+  font-size: 10px;
+  width: 134%;
+  right: 14px;
+  height: 20px;
+  display: flex;
+  padding: 5px 3px 0px 8px;
+}
+
+.distinct {
+  position: relative;
+  flex: 1;
+}
+
+/* 모집글 생성 카테고리 설정*/
+/* 가게 카테고리 div */
+.mozipUpdate-body .mozipUpdate-category {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 18px 30px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.category {
+  position: relative;
+  width: 100%;
+  top: 10px;
+}
+
+.categoty-content {
+  margin: 0 auto;
+  flex-wrap: wrap;
+  width: 70%;
+  min-width: 330px;
+  display: flex;
+  padding: 0px 5px 0px 5px;
+  outline: none;
+  line-height: 30px;
+  justify-content: center;
+}
+
+.category-item {
+  min-width: 40px;
+  height: 37px;
+  /* Adjust as needed */
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 17px;
+  font-size: 13px;
+  transition: 0.4s;
+  padding: 2px 8px 0px 8px;
+  z-index: 5;
+  margin: 0px 5px 7px 0px;
+  cursor: pointer;
+}
+
+/* 모집글 가게 선택 카테고리*/
+.mozipUpdate-body .mozipUpdate-storeName {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 0px 30px 14px;
+  display: inline-block;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.mozipUpdate-storeName .mozipUpdate-info {
+  width: max-content;
+  display: inline-block;
+  position: relative;
+  margin-right: 25px;
+}
+
+/* 가게 선택 input*/
+.storeName {
+  position: relative;
+  display: inline-block;
+  width: 264px;
+  margin-right: 15px;
+  bottom: 3px;
+  cursor: pointer;
+}
+
+.storeName .storeName-input {
+  width: 100%;
+  min-width: 200px;
+  font-size: 15px;
+  color: #222222;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
+.storeName-select {
+  position: relative;
+  display: inline;
+  bottom: 3px;
+}
+
+.storeName-select .add_store {
+  width: 13%;
+  height: 26px;
+  font-size: 14px;
+  border: 1px solid black;
+  /* color: #ffffff; */
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.storeName-select .add_store:hover {
+  opacity: 0.7;
+}
+
+/* 모집글 인원 선택 카테고리*/
+.mozipUpdate-body .mozipUpdate-people {
+  position: relative;
+  text-align: left;
+  width: 100%;
+  padding: 15px 0px 0px 14px;
+  display: flex;
+}
+
+.mozipUpdate-people .mozipUpdate-info {
+  width: max-content;
+  display: inline-block;
+  position: relative;
+  /* margin-right: 45px; */
+  /* left: 10px; */
+}
+
+/* 인원 선택 input*/
+.people-range {
+  position: relative;
+  display: inline-block;
+  width: 122px;
+  margin-right: 15px;
+  left: 7px;
+  /* bottom: 3px; */
+  top: 9px;
+  flex: 3;
+}
+
+.people-range .people-range-input {
+  width: 100%;
+  font-size: 15px;
+  color: #222222;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  position: relative;
+  background: none;
+}
+
+.people-range-select {
+  position: relative;
+  display: inline-block;
+  bottom: -8px;
+  right: 0;
+  flex: 1;
+}
+
+.people-range-select .updateMozip {
+  width: 80px;
+  height: 35px;
+  font-size: 16px;
+  border: none;
+  color: #ffffff;
+  background-color: #ff9e4e;
+  border-radius: 5px;
+}
+
+.people-range-select .deleteMozip {
+  width: 80px;
+  margin-right: 6px;
+  height: 35px;
+  font-size: 16px;
+  border: none;
+  color: #ffffff;
+  background-color: #f54343;
+  border-radius: 5px;
+}
+
+.storeName-select .updateMozip:hover {
+  opacity: 0.7;
+}
+
+.people-range-select input {
+}
+
+/* -------- 거리 슬라이더 -------- */
+
+:root {
+  --form-color: #a00;
+  /* CSS 변수로 색상 지정 */
+}
+
+fieldset {
+  min-width: 0;
+  width: 100%;
+  padding: 0 17px;
+  margin: 0;
+  border: 0;
+}
+
+fieldset legend {
+  padding: 5px;
+  background-color: #555;
+  color: #fff;
+}
+
+.range {
+  width: 100%;
+  accent-color: #6c6f8c;
+  /* 폼 요소에 변수 색상 지정 */
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+/* ----------------- 가게 선택 모달 --------------------*/
+/* 가게 모달창 */
+.storeModal {
+  font-family: "NanumSquareNeo-Variable";
+  position: fixed;
+  /* Stay in place */
+  z-index: 1980;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  display: none;
+}
+
+.storeModal_content {
+  position: relative;
+  top: -30px;
+  left: 1px;
+  width: 30%;
+  min-width: 500px;
+  height: 100%;
+  padding: 8px 3px;
+  margin: 0 auto;
+  border: none;
+  background-color: #fff;
+  box-shadow: 0 4px 4px 0 gray;
+  border-radius: 5px 5px 20px 20px;
+  border-bottom: solid 9px #ff8c16;
+  /* max-width: 430px; */
+  /* min-width: 370px; */
+}
+
+.storeModal_header {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 17%;
+  /*padding: 10px 6px;*/
+  white-space: nowrap;
+  text-align: center;
+}
+
+.storeModal_header_topper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 4px 20px 5px 17px;
+  margin-bottom: 4px;
+}
+
+.storeModal_header_topper_back {
+  position: relative;
+  right: 4px;
+  flex: 0.7;
+}
+
+.storeModal_header_topper_back_img {
+  position: relative;
+  width: 90%;
+  header: 90%;
+}
+
+.storeModal_header_topper_text {
+  flex: 7;
+  position: relative;
+  text-align: left;
+  margin-left: 9px;
+}
+
+.storeModal_header_topper p {
+  font-family: "NanumSquareNeo-Variable";
+  position: absolute;
+  left: 0;
+  top: 11%;
+  font-size: 20px;
+}
+
+/* 가게 검색 div */
+.storeModal_header_search {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding: 5px 18px 5px 21px;
+}
+
+.storeModal_header_search .search-box {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 11px;
+  transition: 0.4s;
+}
+
+.search-txt {
+  position: relative;
+  left: 4%;
+  text-align: center;
+  width: 80%;
+  border: none;
+  background: none;
+  outline: none;
+  line-height: 30px;
+  font-size: 12px;
+}
+
+.search-btn:before {
+  content: "|";
+  font-size: 13px;
+  color: #f7c999;
+  right: 12px;
+  position: relative;
+}
+
+.search-btn {
+  text-decoration: none;
+  position: relative;
+  float: right;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #51e3d4;
+}
+
+.search-btn .fas {
+  right: 15%;
+  position: relative;
+  font-size: 13.5px;
+  color: #ff8b4e;
+}
+
+/* 가게 카테고리 div */
+.storeModal_header_categories {
+  overflow-x: scroll;
+  position: absolute;
+  width: 92%;
+  height: max-content;
+  left: 0;
+  top: 121px;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 6;
+}
+
+/* 이거 해주니까 스크롤 바 사라짐 ㄷㄷ 개이득*/
+.storeModal_header_categories::-webkit-scrollbar {
+  width: 1%;
+}
+
+.scroll-content {
+  width: max-content;
+  display: flex;
+  padding: 0px 5px 0px 5px;
+  outline: none;
+  line-height: 30px;
+}
+
+.content-item {
+  min-width: 40px;
+  height: 37px;
+  /* Adjust as needed */
+  background-color: #fff;
+  border: 1px solid #ff8c16;
+  border-radius: 17px;
+  font-size: 13px;
+  transition: 0.4s;
+  margin-right: 8px;
+  padding: 2px 8px 0px 8px;
+  z-index: 5;
+}
+
+.storeModal_header #search_store {
+  font-family: "NanumSquareNeo-Variable";
+  position: relative;
+  height: 40px;
+  font-size: 13px;
+  padding: 10px 10px 10px 24px;
+  width: 87%;
+  border: none;
+  border-radius: 12px 0px 0px 12px;
+  background-color: #ffd18b;
+  color: black;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.storeModal_header #search_store_btn {
+  width: 13%;
+  height: 40px;
+  font-size: 14px;
+  border: none;
+  background-color: #ffb649;
+  display: inline-block;
+  border-radius: 0px 1px 1px 0px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#search_store_btn:hover {
+  opacity: 0.7;
+}
+
+.storeModal_body {
+  width: 100%;
+  position: relative;
+  top: 3.3%;
+  height: 79%;
+  padding: 10px 6px;
+  overflow-y: scroll;
+}
+
+.storeModal_body::-webkit-scrollbar {
+  width: 4px;
+  /* 스크롤바의 너비 */
+}
+
+.storeModal_body::-webkit-scrollbar-thumb {
+  height: 30%;
+  /* 스크롤바의 길이 */
+  background: #cfcfcf;
+  /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
