@@ -446,32 +446,32 @@ function createMozip() {
     }else if(mozipCategory === null) {
         alert("키테고리를 선택 해주세요!")
         return;
-    }else if(mozipStore === null) {
+    } else if(mozipStore === null) {
         alert("가게를 선택 해주세요!")
         return;
     }
 
     // ----------서버에 모집글 정보 전송------------
     $.ajax({
-           type : "POST",
-           url : "/mozip",
-           data : {
-                "mozipTitle" : mozipTitle,
-                "mozipRange" : mozipRange,
-                "mozipCategory" : mozipCategory,
-                "mozipStore" : mozipStore,
-                "mozipPeople" : mozipPeople,
-           },
-           success: function() {
-             location.reload(); //새로고침
-             console.log("모집글 생성 성공");
-           },
-           error: function(data) {
-               var response = JSON.parse(data.responseText);
-               alert(response.message);
-               console.log(response.message);
-           }
-     })
+        type : "POST",
+        url : "/mozip",
+        data : {
+            "mozipTitle" : mozipTitle,
+            "mozipRange" : mozipRange,
+            "mozipCategory" : mozipCategory,
+            "mozipStore" : mozipStore,
+            "mozipPeople" : mozipPeople,
+        },
+        success: function(response) {
+            console.log("모집글 생성 성공");
+            window.location.href = "/mozip/chat/room?id=" + response.mozipId;
+        },
+        error: function(data) {
+            var response = JSON.parse(data.responseText);
+            alert(response.message);
+            console.log(response.message);
+        }
+    })
 }
 
 
