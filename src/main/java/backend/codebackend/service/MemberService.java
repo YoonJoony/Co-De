@@ -43,6 +43,10 @@ public class MemberService {
 
     //회원 탈퇴
     public void withdrawMember(String login) {
+        //1. chat_user 삭제
+        //2. member 삭제
+        //3. basket 삭제
+
         memberRepository.withdrawMember(login);
     }
 

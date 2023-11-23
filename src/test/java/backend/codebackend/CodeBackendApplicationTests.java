@@ -264,10 +264,23 @@ class CodeBackendApplicationTests {
 		m.setCertified("testCertified");
 
 		Member savedMember = memberRepository.save(m);
+
+		List<Member> result = memberRepository.findAll();
+		for (Member member : result) {
+			System.out.println(member.getLogin());
+			System.out.println(member.getUsername());
+		}
+
 		memberService.withdrawMember(savedMember.getLogin());
 
 		Optional<Member> deletedMember = memberRepository.findById(String.valueOf(savedMember.getId()));
 		assertThat(deletedMember).isEmpty();
+
+		List<Member> result2 = memberRepository.findAll();
+		for (Member member : result) {
+			System.out.println(member.getLogin());
+			System.out.println(member.getUsername());
+		}
 	}
 	@Test
 	@DisplayName("회원 탈퇴2")
@@ -281,5 +294,5 @@ class CodeBackendApplicationTests {
 
 		Optional<Member> deletedMember = memberRepository.findByName(nickname_Delete);
 		assertThat(deletedMember).isEmpty(); // 삭제 후에 해당 회원이 존재하지 않는지 확인
-
+	}
 }

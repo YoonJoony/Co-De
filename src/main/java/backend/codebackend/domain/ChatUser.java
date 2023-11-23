@@ -21,14 +21,9 @@ public class ChatUser {
     private String nickname;
     private int host;    // 방장
 
-    @ManyToOne
-    @JoinColumn(name = "member_id") // 연관 관계의 주인인 Member 엔티티의 필드명을 지정
-    private Member member; // Member 엔티티와의 연관 관계를 설정하는 필드 추가
-
-    public ChatUser(Long id, String nickname, int host, Member member) {
+    public ChatUser(Long id, String nickname, int host) {
         this.id = id;
         this.nickname = nickname;
         this.host = host;
-        this.member = member;
     }
 }
