@@ -44,7 +44,7 @@
 ### 전체 모집글 UI
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/a72b2dd4-f7d6-4f3f-8253-d911462ddd59)" style="width:1030px; height:530px;">
 
-### 가게 및 가게 메뉴 리스트 출 UI
+### 가게 및 가게 메뉴 리스트 출력 UI
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e)https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e" style="width:1030px; height:530px;">
 
 # 🛠 기술스택
