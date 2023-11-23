@@ -251,6 +251,31 @@ class CodeBackendApplicationTests {
 	}
 
 	@Test
+	@DisplayName("모집글 삭제 테스트")
+	void 모집글_삭제_테스트() {
+		Long id = 112L;
+		mozipService.deleteChatUsers(id);
+		mozipService.deleteMozip(id);
+
+
+		List<Mozip> mozipList = mozipService.getMozipList();
+		for (int i = 0; i < mozipList.size(); i++) {
+			System.out.println(mozipList.get(i).getId());
+		}
+
+		List<String> chatUserList = chatUserService.getUserList(id);
+		if (!chatUserList.isEmpty()) {
+			for (int i = 0; i < chatUserList.size(); i++) {
+				// 리스트의 각 요소를 출력
+				System.out.println(chatUserList.get(i));
+			}
+		} else {
+			// chatUserList가 널일 경우 메시지 출력
+			System.out.println("chatUserList가 널입니다.");
+		}
+	}
+
+	@Test
 	@DisplayName("회원 탈퇴")
 	void 회원탈퇴() {
 		Member m = new Member();
@@ -264,10 +289,23 @@ class CodeBackendApplicationTests {
 		m.setCertified("testCertified");
 
 		Member savedMember = memberRepository.save(m);
+
+		List<Member> result = memberRepository.findAll();
+		for (Member member : result) {
+			System.out.println(member.getLogin());
+			System.out.println(member.getUsername());
+		}
+
 		memberService.withdrawMember(savedMember.getLogin());
 
 		Optional<Member> deletedMember = memberRepository.findById(String.valueOf(savedMember.getId()));
 		assertThat(deletedMember).isEmpty();
+
+		List<Member> result2 = memberRepository.findAll();
+		for (Member member : result) {
+			System.out.println(member.getLogin());
+			System.out.println(member.getUsername());
+		}
 	}
 	@Test
 	@DisplayName("회원 탈퇴2")

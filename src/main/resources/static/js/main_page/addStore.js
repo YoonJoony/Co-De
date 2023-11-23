@@ -462,9 +462,23 @@ function createMozip() {
                 "mozipStore" : mozipStore,
                 "mozipPeople" : mozipPeople,
            },
-           success: function() {
-             location.reload(); //새로고침
-             console.log("모집글 생성 성공");
+           success: function(mozip) {
+               if (chkRoomUserCnt(mozip.id, mozip.nickname)) {
+                   $.ajax({
+                       type: "GET",
+                       url: "/mozip/chat/room?id=" + mozip.id,
+                       data: {
+                       },
+                       async: false,
+                       success: function (result) {
+                           location.href = "/mozip/chat/room?id=" + mozip.id;
+                       },
+                       error: function () {
+                           alert("실패!");
+                       }
+                   })
+               }
+               console.log("모집글 생성 성공");
            },
            error: function(data) {
                var response = JSON.parse(data.responseText);
@@ -474,6 +488,72 @@ function createMozip() {
      })
 }
 
+// ---------------- 모집글 입장 시 ------------
+let id;
+
+function backdropDelete() {
+    // $('.modal-backdrop').remove();
+}
+
+var myModal = new bootstrap.Modal(document.getElementById('enterRoomModal'), {
+    backdropDelete: true
+});
+
+$(function () {
+    //모달 창이 열릴 때 data-id로 적어둔 roomId와 nickname 갖고오기
+    $("#enterRoomModal").on("show.bs.modal", function (event) {
+        id = $(event.relatedTarget).data('id');
+        nickname = $(event.relatedTarget).data('nickname');
+    });
+})
+
+
+function chkRoomUserCnt(id, nickname) {
+    let chk;
+
+    $.ajax({
+        type: "GET",
+        url: "/mozip/chat/chkRoomUserCnt",
+        data: {
+            id: id,
+            nickname: nickname
+        },
+        async: false,
+        success: function (result) {
+            if (!result) {
+                alert("인원이 다 찼거나 참여한 방이 있습니다!");
+            }
+            chk = result;
+        },
+        error: function () {
+            alert("실패!");
+        }
+    })
+    return chk;
+}
+
+
+let enter_loading = document.querySelector(".loading-div");
+
+function enterRoom() {
+    enter_loading.style.display = "block";
+    document.querySelector(".join-p").style.display = "none";
+    if (chkRoomUserCnt(id, nickname)) {
+        $.ajax({
+            type: "GET",
+            url: "/mozip/chat/room?id=" + id,
+            data: {
+            },
+            async: false,
+            success: function (result) {
+                location.href = "/mozip/chat/room?id=" + id;
+            },
+            error: function () {
+                alert("실패!");
+            }
+        })
+    }
+}
 
 
 

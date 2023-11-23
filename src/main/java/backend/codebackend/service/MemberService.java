@@ -42,8 +42,12 @@ public class MemberService {
     }
 
     //회원 탈퇴
-    public void withdrawMember(String nickname) {
-        memberRepository.withdrawMember(nickname);
+    public void withdrawMember(String login) {
+        //1. chat_user 삭제
+        //2. member 삭제
+        //3. basket 삭제
+
+        memberRepository.withdrawMember(login);
     }
 
     //아이디
@@ -64,16 +68,6 @@ public class MemberService {
         }
         
         return member;
-    }
-    // 비밀번호 확인
-    public boolean checkPassword(String login, String pw) {
-        Member member = memberRepository.findById(login).orElse(null);
-
-        if (member != null && pw.equals(member.getPw())) {
-            return true; // 비밀번호가 일치하면 true 반환
-        }
-
-        return false; // 일치하지 않으면 false 반환
     }
 
     private void validateDuplicateMember(Member Member) {

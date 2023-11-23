@@ -133,7 +133,7 @@ public class MainController {
         Mozip mozip = mozipService.savePost(mozipForm);
         //채팅방에 방 생성자 추가
         chatUserService.addUser(mozip.getId(), nickname);
-        return ResponseEntity.ok("redirect:/main_page.html");
+        return ResponseEntity.ok(mozip);
     }
 
     @GetMapping("/mozip/chat/chkRoomUserCnt")

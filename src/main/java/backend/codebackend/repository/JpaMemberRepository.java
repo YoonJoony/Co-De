@@ -44,8 +44,8 @@ public class JpaMemberRepository implements MemberRepository{
 
     @Override
     public List<Member> findAll() {
-        TypedQuery typedQuery = em.createQuery("select m from Member m", Member.class);
-        return typedQuery.getResultList();
+        return em.createQuery("select m from Member m", Member.class)
+                .getResultList();
         /*
         return em.createQuery("select m from Member m", Member.class) //객체를 대상으로 쿼리를 날림. m이 sql로 번역됨
                 .getResultList();
