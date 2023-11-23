@@ -10,7 +10,7 @@
 
 ------------
 
-# ✍️ 소개
+## ✍️ 소개
 **CO-OR(배달음식공동주문서비스)** 프로젝트는 졸업작품 및 해커톤을 진행하며 완성되었습니다. 
 <br>
 **CO-OR**은 최대 4명끼리 배달음식을 같이 주문할 수 있는 서비스를 제공합니다.
@@ -26,14 +26,25 @@
 - 웹 애플리케이션 자동화 기능 : Selenium
   - Selenium 기능을 활용하여 가게 선택 시 설정한 주소를 [요기요 페이지](https://www.yogiyo.co.kr/mobile/#/) 검색창에 자동으로 입력되어 가게 리스트를 받아오게 한다.
   - 메뉴 선택시에도 선택한 가게의 메뉴 리스트를 자동으로 받아온다.
+    
+<br>
+
+## 👯‍♂️ 팀원
+|BE 윤준|BE 민성|FE 동윤|FE 윤석|
+|------|---|---|---|
+|<a href="https://github.com/YoonJoony"><img src="https://github.com/YangYunSeok/Co-De/assets/110625854/d41777d4-f452-44ea-bae0-1b2f21996459" style="width:100px; height:100px;"></a>||<a href="https://github.com/YoonJoony"><img src="https://github.com/YangYunSeok/Co-De/assets/110625854/e16936b9-c8a4-457a-a487-6393575046f9" style="width:100px; height:100px;"></a>|
+
+<br>
+
+## 🎨 UI
  
-### 🌆 채팅방 UI
+### 채팅방 UI
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/8fbd3bdb-ed3d-4dcb-b6ac-82223dfab301" style="width:330px; height:670px;">
 
-### 🌆 전체 모집글 UI
+### 전체 모집글 UI
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/a72b2dd4-f7d6-4f3f-8253-d911462ddd59)" style="width:1030px; height:530px;">
 
-### 🌆 가게 및 가게 메뉴 리스트 출 UI
+### 가게 및 가게 메뉴 리스트 출 UI
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e)https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e" style="width:1030px; height:530px;">
 
 # 🛠 기술스택
