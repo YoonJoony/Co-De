@@ -74,6 +74,25 @@ public class MemberController {
         return "redirect:/main_page.html";
     }
 
+    // 회원 탈퇴
+    @GetMapping("/withdraw")
+    public String withdrawMember(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        HttpSession session = request.getSession(false); // 현재 세션 가져오기
+
+        if (session != null) {
+            String memberId = (String) session.getAttribute("memberId");
+            if (memberId != null) {
+                memberService.withdrawMember(memberId); // 회원 탈퇴 메서드 호출
+                session.invalidate(); // 세션 무효화
+                redirectAttributes.addFlashAttribute("successMessage", "회원 탈퇴가 완료되었습니다.");
+                return "redirect:/logout"; // 로그아웃 페이지나 다른 페이지로 리다이렉트
+            }
+        }
+
+        redirectAttributes.addFlashAttribute("errorMessage", "세션에 로그인 정보가 없습니다.");
+        return "redirect:/login.html"; // 세션에 로그인 정보가 없을 경우 다시 로그인 페이지로 리다이렉트
+    }
+
     //회원가입 성공 시 처음 화면으로 이동
     @PostMapping(value = "/members/new")
     public String create(@ModelAttribute MemberForm form) {

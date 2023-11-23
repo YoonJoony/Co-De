@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor //기본 생성자를 추가해주는 어노테이션
@@ -43,7 +44,13 @@ public class Member {
     @Column(length = 17, nullable = false)
     private String certified;
 
-    public Member(Long id, String login, String pw, String pwcheck, String username, String nickname, String address, String pnum, String certified) {
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Basket> baskets;
+
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    private ChatUser chatUser;
+
+    public Member(Long id, String login, String pw, String pwcheck, String username, String nickname, String address, String pnum, String certified, List<Basket> baskets, ChatUser chatUser) {
         this.id = id;
         this.login = login;
         this.pw = pw;
@@ -53,5 +60,7 @@ public class Member {
         this.address = address;
         this.pnum = pnum;
         this.certified = certified;
+        this.baskets = baskets;
+        this.chatUser = chatUser;
     }
 }

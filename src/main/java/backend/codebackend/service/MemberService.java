@@ -41,6 +41,11 @@ public class MemberService {
         return member;
     }
 
+    //회원 탈퇴
+    public void withdrawMember(String login) {
+        memberRepository.withdrawMember(login);
+    }
+
     //아이디
     public Member getMemberByLoginAndPw(String Login, String pw) {
         //값이 없는 에러 발생 시 (db에 로그인 한 아이디가 없을 시) 에러 캐치해서 null 리턴

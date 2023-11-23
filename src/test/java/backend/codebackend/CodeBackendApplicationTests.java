@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class CodeBackendApplicationTests {
 	@Autowired MemberService memberService;
 	@Autowired MemberRepository MemberRepository;
+	@Autowired MemberRepository memberRepository;
 	@Autowired
 	ChatService chatService;
 	@Autowired
@@ -246,5 +247,38 @@ class CodeBackendApplicationTests {
 	void 접속한방번호조회() {
 		Long roomId= chatUserService.findMemberRoomId("1234");
 		System.out.println(roomId);
+	}
+
+	@Test
+	@DisplayName("회원 탈퇴")
+	void 회원탈퇴() {
+		Member m = new Member();
+		m.setLogin("testUser");
+		m.setPw("testPassword");
+		m.setPwcheck("testPassword");
+		m.setUsername("Test");
+		m.setNickname("Tester");
+		m.setAddress("Test Address");
+		m.setPnum("1234567890");
+		m.setCertified("testCertified");
+
+		Member savedMember = memberRepository.save(m);
+		memberService.withdrawMember(savedMember.getLogin());
+
+		Optional<Member> deletedMember = memberRepository.findById(String.valueOf(savedMember.getId()));
+		assertThat(deletedMember).isEmpty();
+	}
+	@Test
+	@DisplayName("회원 탈퇴2")
+	void 회원탈퇴2() {
+		String nickname_Delete = "그램";
+
+		Optional<Member> memberToDelete = memberRepository.findByName(nickname_Delete);
+		assertThat(memberToDelete).isPresent(); // 삭제 전에 해당 회원이 존재하는지 확인
+
+		memberService.withdrawMember(nickname_Delete);
+
+		Optional<Member> deletedMember = memberRepository.findByName(nickname_Delete);
+		assertThat(deletedMember).isEmpty(); // 삭제 후에 해당 회원이 존재하지 않는지 확인
 	}
 }
