@@ -27,10 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @Transactional
 class CodeBackendApplicationTests {
-	@Autowired
-	MemberService memberService;
-	@Autowired
-	MemberRepository MemberRepository;
+	@Autowired MemberService memberService;
+	@Autowired MemberRepository MemberRepository;
 	@Autowired
 	ChatService chatService;
 	@Autowired
@@ -53,11 +51,10 @@ class CodeBackendApplicationTests {
 		System.out.println(result);
 		System.out.println(result2);
 	}
-
 	@Test
 	@DisplayName("모집글 중복 생성 조회")
 	void 모집글중복조회() {
-		if (mozipService.findNickName("불꽃주먹").isPresent())
+		if(mozipService.findNickName("불꽃주먹").isPresent())
 			System.out.println("방이 중복됩니다");
 		System.out.println("방을 생성할 수 있습니다.");
 	}
@@ -65,9 +62,10 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("모집글 중복 참여 조회")
 	void 모집글중복참여조회() {
-		if (chatUserService.isDuplicateRoom(111L, "12")) {
+		if (chatUserService.isDuplicateRoom(111L, "12")){
 			System.out.println("방에 참여할 수 있습니다");
-		} else {
+		}
+		else {
 			System.out.println("입장한 방이 있습니다.");
 		}
 	}
@@ -76,7 +74,7 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("채팅방의 유저 닉네임 중복 조회")
 	void 유저중복조회() {
-		if (chatUserService.addUser(87L, "야왕이네"))
+		if(chatUserService.addUser(87L, "야왕이네"))
 			System.out.println("저장 잘됨!");
 		else
 			System.out.println("저장 안됨!");
@@ -86,11 +84,11 @@ class CodeBackendApplicationTests {
 	@DisplayName("채팅 친 시간 조회")
 	void 채팅시간조회() {
 		ChatDTO chatDTO = ChatDTO.builder()
-				.id(13L)
-				.type(ChatDTO.MessageTYpe.valueOf("ENTER"))
-				.sender("야왕")
-				.message("테스트테스트테스트테스트테스트테스트테스트테스트테스트")
-				.build();
+						.id(13L)
+				        .type(ChatDTO.MessageTYpe.valueOf("ENTER"))
+						.sender("야왕")
+						.message("테스트테스트테스트테스트테스트테스트테스트테스트테스트")
+				        .build();
 
 		Chat chat = chatService.save(chatDTO);
 		chatService.timestamp(chat);
@@ -100,7 +98,7 @@ class CodeBackendApplicationTests {
 	@DisplayName("방장 조회 테스트")
 	void 방장조회() {
 
-		if (chatUserService.isCurrentUserHost(64L, "김윤준")) {
+		if (chatUserService.isCurrentUserHost(64L, "김윤준")){
 			System.out.println("방장 맞음 ");
 		}
 	}
@@ -125,7 +123,7 @@ class CodeBackendApplicationTests {
 //			throw new RuntimeException(e);
 //		}
 
-		List<Restuarant> rs = restaurantService.RsData();
+		List<Restuarant> rs =restaurantService.RsData();
 
 		try {
 			Thread.sleep(100);
@@ -133,7 +131,7 @@ class CodeBackendApplicationTests {
 			throw new RuntimeException(e);
 		}
 
-		for (int i = 0; i < rs.size(); i++) {
+		for(int i = 0; i < rs.size(); i++) {
 			System.out.println("가게 이름 : " + rs.get(i).getTitle());
 			System.out.println("최소 주문 금액 : " + rs.get(i).getMinPrice());
 			System.out.println("이미지 url : " + rs.get(i).getImageUrl());
@@ -145,52 +143,52 @@ class CodeBackendApplicationTests {
 	}
 
 
-//	@SneakyThrows
-//	@Test
-//	@DisplayName("메뉴 리스트 조회 테스트")
-//	void 메뉴리스트조회() {
-//		Member member = memberService.findLoginId("dbswns1101").get();
-//		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-//		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
-//		Menu menu = m.get();
-//
-//		for (int i = 0; i < menu.getMenuList_Title().size(); i++) {
-//			System.out.println("\n\n[" + menu.getMenuList_Title_Name().get(i) + "]");
-//			for (int j = 0; j < menu.getMenuList_Title().get(i).size(); j++) {
-//				System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
-//				System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
-//				System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
-//				System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
-//			}
-//		}
-//	}
+	@SneakyThrows
+	@Test
+	@DisplayName("메뉴 리스트 조회 테스트")
+	void 메뉴리스트조회() {
+		Member member = memberService.findLoginId("dbswns1101").get();
+		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
+		Menu menu = m.get();
 
-//	@SneakyThrows
-//	@Test
-//	@DisplayName("최소 주문 금액 및 배달 금액 크롤링 테스트")
-//	void 배달정보조회() {
-//		Member member = memberService.findLoginId("dbswns1101").get();
-//		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-//		Future<Menu> m = restaurantService.menuList("티바두마리치킨-의정부역점", member.getAddress());
-//		Menu menu = m.get();
-//
-//		System.out.println("최소 주문 금액 : " + menu.getMinPrice());
-//		System.out.println("배달 요금 : " + menu.getDelivery_fee());
-//
-//	}
+		for(int i = 0; i < menu.getMenuList_Title().size(); i++) {
+			System.out.println("\n\n[" + menu.getMenuList_Title_Name().get(i) + "]");
+			for(int j = 0; j < menu.getMenuList_Title().get(i).size(); j++) {
+				System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
+				System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
+				System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
+				System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
+			}
+		}
+	}
+
+	@SneakyThrows
+	@Test
+	@DisplayName("최소 주문 금액 및 배달 금액 크롤링 테스트")
+	void 배달정보조회() {
+		Member member = memberService.findLoginId("dbswns1101").get();
+		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+		Future<Menu> m = restaurantService.menuList("티바두마리치킨-의정부역점", member.getAddress());
+		Menu menu = m.get();
+
+		System.out.println("최소 주문 금액 : " + menu.getMinPrice());
+		System.out.println("배달 요금 : " + menu.getDelivery_fee());
+
+	}
 
 	@Test
 	@DisplayName("장바구니 담은 메뉴 조회")
 	void 장바구니담은메뉴조회() {
 		List<Basket> findAll = basketService.findAll(103l);
 		System.out.println("\n\n");
-		for (int i = 0; i < findAll.size(); i++) {
+		for(int i = 0; i < findAll.size(); i++) {
 			System.out.println("채팅방번호 " + findAll.get(i).getChatroom_id() + "메뉴이름 " + findAll.get(i).getProduct_name()
 					+ "메뉴가격 " + findAll.get(i).getProduct_name()
 					+ "메뉴수량 " + findAll.get(i).getQuantity());
 		}
 	}
-
+	
 	@Test
 	@DisplayName("장바구니 메뉴 추가 테스트")
 	void 메뉴추가() {
@@ -202,11 +200,10 @@ class CodeBackendApplicationTests {
 
 	@Autowired
 	BasketRepository basketRepository;
-
 	@Test
 	@DisplayName("장바구니 메뉴 중복 테스트")
 	void 메뉴중복() {
-		if (basketRepository.duplicateBasketItem(103l, "포테이토 L", 27900, "야왕이네").isPresent()) {
+		if(basketRepository.duplicateBasketItem(103l, "포테이토 L", 27900, "야왕이네").isPresent()){
 			System.out.println("메뉴 중복");
 			Basket basket = basketRepository.duplicateBasketItem(103l, "포테이토 L", 27900, "야왕이네").get();
 			System.out.println(basket.getQuantity());
@@ -220,7 +217,7 @@ class CodeBackendApplicationTests {
 	@DisplayName("장바구니 총 금액 조회")
 	void 총금액() {
 		List<TotalPrice> totalPrices = basketRepository.getTotalPrice(111L);
-		for (int i = 0; i < totalPrices.size(); i++) {
+		for(int i = 0; i < totalPrices.size(); i++) {
 			System.out.println(totalPrices.get(i).getUsername());
 			System.out.println(totalPrices.get(i).getTotalPrice());
 		}
@@ -244,36 +241,10 @@ class CodeBackendApplicationTests {
 		Basket basket = basketRepository.addItemToBasketReceive("1234");
 		System.out.println(basket.getId());
 	}
-
 	@Test
 	@DisplayName("접속한 방 번호 조회")
 	void 접속한방번호조회() {
-		Long roomId = chatUserService.findMemberRoomId("1234");
+		Long roomId= chatUserService.findMemberRoomId("1234");
 		System.out.println(roomId);
-	}
-
-	@Test
-	@DisplayName("모집글 삭제 테스트")
-	void 모집글_삭제_테스트() {
-		Long id = 112L;
-		mozipService.deleteChatUsers(id);
-		mozipService.deleteMozip(id);
-
-
-		List<Mozip> mozipList = mozipService.getMozipList();
-		for (int i = 0; i < mozipList.size(); i++) {
-			System.out.println(mozipList.get(i).getId());
-		}
-
-		List<String> chatUserList = chatUserService.getUserList(id);
-		if (!chatUserList.isEmpty()) {
-			for (int i = 0; i < chatUserList.size(); i++) {
-				// 리스트의 각 요소를 출력
-				System.out.println(chatUserList.get(i));
-			}
-		} else {
-			// chatUserList가 널일 경우 메시지 출력
-			System.out.println("chatUserList가 널입니다.");
-		}
 	}
 }

@@ -1,12 +1,9 @@
 package backend.codebackend.repository;
 
 import backend.codebackend.domain.Member;
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
@@ -54,6 +51,16 @@ public class JpaMemberRepository implements MemberRepository{
                 .getResultList();
 
          */
+    }
+
+    // 회원 탈퇴(삭제)
+    @Override
+    public void withdrawMember(String login) {
+        List<Member> result = em.createQuery("select m from Member m where m.login = :login", Member.class)
+                .setParameter("login", login)
+                .getResultList();
+
+        result.forEach(em::remove);     //로그인된 회원이 존재하면 삭제.
     }
 
 }
