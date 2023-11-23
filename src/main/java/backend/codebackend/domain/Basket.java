@@ -42,11 +42,7 @@ public class Basket {
     @Column(nullable = false)
     private LocalDateTime updated_at;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id") // 연관 관계의 주인인 Member 엔티티의 필드명을 지정
-    private Member member; // Member 엔티티와 연관된 필드 추가
-
-    public Basket(Long id, Long chatroom_id, String product_name, int price, int quantity, String nickname, LocalDateTime created_at, LocalDateTime updated_at, Member member) {
+    public Basket(Long id, Long chatroom_id, String product_name, int price, int quantity, String nickname, LocalDateTime created_at, LocalDateTime updated_at) {
         this.id = id;
         this.chatroom_id = chatroom_id;
         this.product_name = product_name;
@@ -55,6 +51,5 @@ public class Basket {
         this.nickname = nickname;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.member = member;
     }
 }

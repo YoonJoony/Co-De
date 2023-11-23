@@ -55,12 +55,22 @@ public class JpaMemberRepository implements MemberRepository{
 
     // 회원 탈퇴(삭제)
     @Override
-    public void withdrawMember(String login) {
-        List<Member> result = em.createQuery("select m from Member m where m.login = :login", Member.class)
-                .setParameter("login", login)
-                .getResultList();
+    public void withdrawMember(String nickname) {
+        // 회원 탈퇴
+        em.createQuery("delete from Member m where m.nickname = :nickname")
+                .setParameter("nickname", nickname)
+                .executeUpdate();
 
-        result.forEach(em::remove);     //로그인된 회원이 존재하면 삭제.
+        // ChatUser의 회원 정보 탈퇴
+        em.createQuery("delete from ChatUser c where c.nickname = :nickname")
+                .setParameter("nickname", nickname)
+                .executeUpdate();
+
+        // Basket의 회원 정보 탈퇴
+        em.createQuery("delete from Basket b where b.nickname = :nickname")
+                .setParameter("nickname", nickname)
+                .executeUpdate();
+
+
     }
-
 }

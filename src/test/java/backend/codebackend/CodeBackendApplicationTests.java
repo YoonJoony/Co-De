@@ -278,8 +278,12 @@ class CodeBackendApplicationTests {
 		assertThat(memberToDelete).isPresent(); // 삭제 전에 해당 회원이 존재하는지 확인
 
 		memberService.withdrawMember(nickname_Delete);
-
+//		List<Member> result = memberRepository.findAll();
+//		for(int i = 0; i < result.size(); i++) {
+//			System.out.println(result.get(i).getId());
+//			System.out.println(result.get(i).getNickname());
+//		}
 		Optional<Member> deletedMember = memberRepository.findByName(nickname_Delete);
 		assertThat(deletedMember).isEmpty(); // 삭제 후에 해당 회원이 존재하지 않는지 확인
-
+	}
 }
