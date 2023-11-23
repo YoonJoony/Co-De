@@ -1058,7 +1058,26 @@ $(function () {
       },
     });
   });
-
+  $(document).on("click", "#deleteMozip", function () {
+    console.log("error11");
+    $.ajax({
+      type: "POST",
+      url: "/mozip/deleteChatRoom",
+      data: {
+        "id": id,
+      },
+      success: function (data) {
+        if (data === "error"){
+          alert("삭제 중 오류가 발생했습니다.");
+        }else{
+          window.location.href = "/main_page.html";
+        }
+      },
+      error: function () {
+        console.log("통신 실패");
+      },
+    });
+  });
   initMap2();
 });
 
@@ -1608,3 +1627,7 @@ document.addEventListener("mousemove", function (event) {
 document.addEventListener("mouseup", function () {
   isDragging = false;
 });
+
+
+
+// 채팅방 삭제 버튼 메소드

@@ -15,8 +15,9 @@ public interface MozipRepository {
 
     List<Mozip> findAll();
 
+    void deleteMozip(Long id);
+    void deleteChatUsers(Long id);
     void plusUserCnt(Long id);
-
     void minusUserCnt(Long id);
     boolean mozipStatus(Long id);
     void calculateStartStatus(Long id);
