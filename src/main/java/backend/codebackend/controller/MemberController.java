@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -73,24 +76,16 @@ public class MemberController {
 
     // 회원 탈퇴
     @GetMapping("/withdraw")
-    public String withdrawMember(HttpServletRequest request, RedirectAttributes redirectAttributes,
-                                 @RequestParam String pw) {
+    public String withdrawMember(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         HttpSession session = request.getSession(false); // 현재 세션 가져오기
 
         if (session != null) {
             String memberId = (String) session.getAttribute("memberId");
             if (memberId != null) {
-                // 비밀번호 확인 로직 추가
-                boolean isPasswordCorrect = memberService.checkPassword(memberId, pw);
-                if (isPasswordCorrect) {
-                    memberService.withdrawMember(memberId); // 회원 탈퇴 메서드 호출
-                    session.invalidate(); // 세션 무효화
-                    redirectAttributes.addFlashAttribute("successMessage", "회원 탈퇴가 완료되었습니다.");
-                    return "redirect:/logout"; // 로그아웃 페이지나 다른 페이지로 리다이렉트
-                } else {
-                    redirectAttributes.addFlashAttribute("errorMessage", "비밀번호가 일치하지 않습니다.");
-                    return "redirect:/withdraw"; // 비밀번호가 일치하지 않으면 다시 회원 탈퇴 페이지로 리다이렉트
-                }
+                memberService.withdrawMember(memberId); // 회원 탈퇴 메서드 호출
+                session.invalidate(); // 세션 무효화
+                redirectAttributes.addFlashAttribute("successMessage", "회원 탈퇴가 완료되었습니다.");
+                return "redirect:/logout"; // 로그아웃 페이지나 다른 페이지로 리다이렉트
             }
         }
 
