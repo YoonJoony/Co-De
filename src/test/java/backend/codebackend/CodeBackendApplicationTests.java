@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -108,7 +109,7 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("가게 정보 조회 테스트")
 	void 가게정보조회() throws InterruptedException {
-		Member member = memberService.findLoginId("dbswns1101").get();
+		Member member = memberService.findLoginId("1234").get();
 		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
 		String category = "";
 
@@ -149,19 +150,26 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("메뉴 리스트 조회 테스트")
 	void 메뉴리스트조회() {
-		Member member = memberService.findLoginId("dbswns1101").get();
-		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("도미노피자-의정부호원점", member.getAddress());
-		Menu menu = m.get();
+		try {
+			Member member = memberService.findLoginId("1234").get();
+			System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress());
+			Menu menu = m.get();
 
-		for(int i = 0; i < menu.getMenuList_Title().size(); i++) {
-			System.out.println("\n\n[" + menu.getMenuList_Title_Name().get(i) + "]");
-			for(int j = 0; j < menu.getMenuList_Title().get(i).size(); j++) {
-				System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
-				System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
-				System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
-				System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
+			for (int i = 0; i < menu.getMenuList_Title().size(); i++) {
+				System.out.println("\n\n[" + menu.getMenuList_Title_Name().get(i) + "]");
+				for (int j = 0; j < menu.getMenuList_Title().get(i).size(); j++) {
+					System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
+					System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
+					System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
+					System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
+				}
 			}
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		} catch (ExecutionException e) {
+			// ExecutionException 처리 코드
+			e.printStackTrace(); // 예외 스택 트레이스 출력
 		}
 	}
 
@@ -169,14 +177,20 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("최소 주문 금액 및 배달 금액 크롤링 테스트")
 	void 배달정보조회() {
-		Member member = memberService.findLoginId("dbswns1101").get();
-		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		Future<Menu> m = restaurantService.menuList("티바두마리치킨-의정부역점", member.getAddress());
-		Menu menu = m.get();
+		try{
+			Member member = memberService.findLoginId("1234").get();
+			System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress());
+			Menu menu = m.get();
 
-		System.out.println("최소 주문 금액 : " + menu.getMinPrice());
-		System.out.println("배달 요금 : " + menu.getDelivery_fee());
-
+			System.out.println("최소 주문 금액 : " + menu.getMinPrice());
+			System.out.println("배달 요금 : " + menu.getDelivery_fee());
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		} catch (ExecutionException e) {
+			// ExecutionException 처리 코드
+			e.printStackTrace(); // 예외 스택 트레이스 출력
+		}
 	}
 
 	@Test
