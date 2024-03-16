@@ -41,7 +41,7 @@ public class RestaurantService {
     public void driver() {
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
-
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         this.driver = new ChromeDriver();
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(40));
     }
@@ -153,7 +153,7 @@ public class RestaurantService {
     public Future<Menu> menuList(String restaurantTitle, String address) throws InterruptedException {
 //        ChromeOptions options = new ChromeOptions();
 //        options.addArguments("--headless");
-
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
