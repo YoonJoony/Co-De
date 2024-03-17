@@ -116,7 +116,7 @@ class CodeBackendApplicationTests {
 		RestaurantService restaurantService = new RestaurantService();
 		restaurantService.driver();
 		restaurantService.loadPage();
-		restaurantService.searchAddress("경기 성남시 분당구 대왕판교로385번길 2");
+		restaurantService.searchAddress("경기도 고양시 일산동구 장항동 578-2 장항1동주민센터");
 
 //		if(category != "")
 //			restaurantService.selectCategory(category);
