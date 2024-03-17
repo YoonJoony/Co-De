@@ -1,6 +1,5 @@
 package backend.codebackend.controller;
 
-import backend.codebackend.domain.Basket;
 import backend.codebackend.domain.Menu;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.Restuarant;
@@ -13,10 +12,8 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -48,7 +45,12 @@ public class RestaurantsController {
 
     @GetMapping("/mozip/categoryList")
     @ResponseBody
-    public List<Restuarant> categoryList(String category) {
+    public List<Restuarant> categoryList(String category, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        restaurantService.driver();
+        restaurantService.loadPage();
+        restaurantService.searchAddress(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
         restaurantService.selectCategory(category);
         try {
             Thread.sleep(300);
