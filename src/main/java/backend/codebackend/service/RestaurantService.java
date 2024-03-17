@@ -39,10 +39,11 @@ public class RestaurantService {
     }
 
     public void driver() {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("window-size=1400,1500");
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
-        this.driver = new ChromeDriver();
+        this.driver = new ChromeDriver(options);
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(40));
     }
 
@@ -71,11 +72,8 @@ public class RestaurantService {
         WebElement clickSearch = wait.until(ExpectedConditions.elementToBeClickable(By.className("ico-pick")));
         clickSearch.click();
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(currentUrl)));
+
         //다음 창 주소 입력받음
         String expectedUrl = driver.getCurrentUrl();
 
@@ -91,9 +89,10 @@ public class RestaurantService {
     }
 
     public void selectCategory(String category) {
-        WebElement clickCategory = driver.findElement(By.xpath("//span[contains(@class, 'category-name') and text()='" + category + "']"));
+        WebElement clickCategory = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class, 'category-name') and text()='" + category + "']")));
         clickCategory.click();
     }
+
 
 
     public List<Restuarant> RsData() {
@@ -134,9 +133,12 @@ public class RestaurantService {
     public Menu deliveryInfo() {
         Menu menu;
 
+        WebElement minPriceElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(text(), '최소주문금액')]/span[@class='ng-binding']")));
+        WebElement deliveryFeeElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(), '배달요금')]")));
+
         menu = Menu.builder()
-                .minPrice(driver.findElement(By.xpath("//li[contains(text(), '최소주문금액')]/span[@class='ng-binding']")).getText())
-                .delivery_fee(driver.findElement(By.xpath("//span[contains(text(), '배달요금')]")).getText())
+                .minPrice(minPriceElement.getText())
+                .delivery_fee(deliveryFeeElement.getText())
                 .build();
 
         if(menu.getMinPrice() == null) {
@@ -149,12 +151,16 @@ public class RestaurantService {
 
 
 
+
+
+
     @Async
     public Future<Menu> menuList(String restaurantTitle, String address) throws InterruptedException {
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        options.addArguments("window-size=1400,1500");
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver(options);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Google 웹 페이지를 엽니다.
@@ -174,11 +180,8 @@ public class RestaurantService {
         WebElement clickSearch = wait.until(ExpectedConditions.elementToBeClickable(By.className("ico-pick")));
         clickSearch.click();
 
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(currentUrl)));
+
         //다음 창 주소 입력받음
         String expectedUrl = driver.getCurrentUrl();
 
