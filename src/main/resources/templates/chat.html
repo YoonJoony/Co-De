@@ -50,8 +50,8 @@
 <body>
   <div id="main">
     <div class="moblie_logo">
-      <img src="/images/Icon/menu_5259008.png" class="mobile_header-img" id="chat_show">
-      <img class="logo" src="/images/COOR.png">
+      <img src="images/Icon/menu_5259008.png" class="mobile_header-img" id="chat_show">
+      <img class="logo" src="images/COOR.png">
     </div>
     <!-- 헤더 부분 -->
     <div class="header2">
@@ -71,13 +71,13 @@
         </div>
         <div id="header-bell" class="header-bell">
           <span class="bell">
-            <img src="/images/bell.png" style="width : 25px; height : 25px;" alt="">
+            <img src="images/bell.png" style="width : 25px; height : 25px;" alt="">
           </span>
         </div>
         <div id="header-profile" class="header-profile">
           <a class="header-user">
             <span class="user-picture2">
-              <img src="/images/profile/profile2.png" height="50px" width="50px">
+              <img src="images/profile/profile2.png" height="50px" width="50px">
             </span>
             <span id="user-name" class="user-name" th:text="${nickname}">
             </span>
@@ -106,7 +106,7 @@
       <div class="search-container">
         <div class="search">
           <button id="loc_btn" type="button" name="loc_btn" onclick="getCurrentPosition()">
-            <img class="gps" src="/images/search.png">
+            <img class="gps" src="images/search.png">
           </button>
           <input id="search_input" type="text" name="address" required placeholder="모집글 검색을 시작해보세요!">
           <div class="tag-container">
@@ -140,7 +140,7 @@
             <div class="chat-header">
               <div class="chat-header-left">
                 <span class="user-picture2">
-                  <img src="/images/profile/profile5.png" height="40px" width="40px">
+                  <img src="images/profile/profile5.png" height="40px" width="40px">
                 </span>
                 <div id="user-list" class="user-list" style="display : none">
                 </div>
@@ -151,7 +151,7 @@
                   <div class="connecting">offline</div>
                 </div>
               </div>
-              <div class="chat-header-right"><img src="/images/Icon/menu_5259008.png" width="23px" height="23px"
+              <div class="chat-header-right"><img src="images/Icon/menu_5259008.png" width="23px" height="23px"
                   class="header-img">
               </div>
             </div>
@@ -171,7 +171,7 @@
                       <div id="menu">
                         <label for="file">
                           <div class="btn-upload">
-                            <img src="/images/picture.png" style="cursor:pointer;">
+                            <img src="images/picture.png" style="cursor:pointer;">
                           </div>
                         </label>
                         <input type="file" name="file" id="file" onchange="uploadFile(this)">
@@ -182,11 +182,11 @@
               </div>
               <div class="chat-right">
                 <div class="chat-menu">
-                  <img src="/images/bell.png" onclick="totalRealPrice()">
-                  <img src="/images/icon/map.png" id="map_button" onclick="map_btn()">
-                  <img src="/images/icon/Budget.png" onclick="calShow()">
-                  <img id="basket" src="/images/icon/basket.png">
-                  <img id="setting" src="/images/icon/setting.png" wfd-id="id11"
+                  <img src="images/bell.png" onclick="totalRealPrice()">
+                  <img src="images/icon/map.png" id="map_button" onclick="map_btn()">
+                  <img src="images/icon/Budget.png" onclick="calShow()">
+                  <img id="basket" src="images/icon/basket.png">
+                  <img id="setting" src="images/icon/setting.png" wfd-id="id11"
                        href="#updateMozipModal" data-bs-toggle="modal" data-target="#updateMozipModal">
                 </div>
                 <img src="/images/icon/log-out_5565735.png" style="cursor: pointer" class="out-img" onclick="outChat()">
@@ -196,7 +196,7 @@
               <div class="cal_page">
                 <div class="storeModal_header_topper">
                   <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
-                    <img class="storeModal_header_topper_back_img" src="/images/back.png" onclick="calclose()"
+                    <img class="storeModal_header_topper_back_img" src="images/back.png" onclick="calclose()"
                       style="cursor:pointer;">
                   </div>
                   <h2>결제 하기</h2>
@@ -281,7 +281,7 @@
                 <div class="basket-title">
                   <div class="basket-title_topper">
                     <div class="basket-title_topper_back">
-                      <img class="basket-title_topper_back_img" src="/images/back.png" onClick="basketClose()"
+                      <img class="basket-title_topper_back_img" src="images/back.png" onClick="basketClose()"
                         style="cursor:pointer;">
                     </div>
                     <div class="basket-title_topper_text">
@@ -322,7 +322,7 @@
       <div class="modal-content">
         <div class="storeModal_header_topper">
           <div class="storeModal_header_topper_back" id="modal_close_beck" data-bs-dismiss="modal">
-            <img class="storeModal_header_topper_back_img" src="/images/back.png" style="cursor:pointer;">
+            <img class="storeModal_header_topper_back_img" src="images/back.png" style="cursor:pointer;">
           </div>
           <div class="storeModal_header_topper_text">
             <p th:text="${room.store}"></p>
