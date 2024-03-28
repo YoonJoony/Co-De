@@ -20,6 +20,7 @@ function showStoreList() {
   selenium();
 }
 
+// 모집글 생성 시 가게 선택을 누를 경우 현재 등록된 주소 기준으로 가게 크롤링
 function selenium() {
   while(storeModal_body.firstChild) {
     storeModal_body.removeChild(storeModal_body.firstChild);
@@ -118,7 +119,7 @@ function selenium() {
     })
 }
 
-
+// 가게 선택 메뉴 UI 창에서 카테고리 메뉴를 클릭할 경우 해당 카테고리의 요기요 가게리스트 페이지에서 가게 크롤링
 function selenium_Category() {
   while(storeModal_body.firstChild) {
     storeModal_body.removeChild(storeModal_body.firstChild);
@@ -293,58 +294,6 @@ function closeStoreList() {
     })
 }
 
-
-function store_load() {
-  console.log("store_load");
-  // var nickname = JSON.parse(payload.body); // ex)엄준식
-  // payload는 클라이언트에서 수신한 메시지를 나타냄.
-  // 하지만 클라이언트가 수신한건지 서버로 송신한 메시지인지 모르니 payload.body로 수신한 메시지를 확인하는 로직을 써줌
-
-  // store_image
-  var store_image = document.createElement("img");
-  store_image.classList.add("store_image");
-  // 백앤드 데이터 가져오기
-  store_image.setAttribute("src", "images/profile.png"); // 이미지 소스 추가해야함
-
-  // store_image_div
-  var store_image_div = document.createElement("div");
-  store_image_div.classList.add("store_image_div"); // 클래스 이름 store_image_div으로 설정
-  store_image_div.appendChild(store_image); // store_info_div의 자식으로 store_images
-
-  // store_minimum_order_amount
-  var store_minimum_order_amount = document.createElement("div");
-  store_minimum_order_amount.classList.add("store_minimum_order_amount"); // 클래스 이름 store_minimum_order_amount으로 설정
-  // 백앤드 데이터 가져오기
-  //------------------------------------------------------------------------------------------
-  var minimumOrderData = document.createTextNode("최소주문금액 : " + "data"); // 크롤링 데이터로 가져온 가게 이름 넣어야함
-  store_minimum_order_amount.appendChild(minimumOrderData); // store_minimum_order_amount의 자식으로 최소주문가격 데이터
-  //-----------------------------------------------------------------------------------------
-
-  // store_name
-  var store_name = document.createElement("div");
-  store_name.classList.add("store_name"); // 클래스 이름 store_name으로 설정
-  // 백앤드 데이터 가져오기
-  //------------------------------------------------------------------------------------------
-  var storeName_data = document.createTextNode("가게이름 data"); // 크롤링 데이터로 가져온 가게 이름 넣어야함
-  store_name.appendChild(storeName_data); // bell_nickname의 자식으로 가게 이름 데이터
-  //-----------------------------------------------------------------------------------------
-
-  // store_info_div
-  var store_info_div = document.createElement("div");
-  store_info_div.classList.add("store_info_div"); // 클래스 이름 store_info_div으로 설정
-  store_info_div.appendChild(store_name); // store_info_div의 자식으로 store_name
-  store_info_div.appendChild(store_minimum_order_amount); // store_info_div의 자식으로 store_minimum_order_amount
-
-  // store_list
-  var store_list = document.createElement("div");
-  store_list.classList.add("store_list"); // 클래스 이름 store_list으로 설정
-  store_list.appendChild(store_image_div); // store_list의 자식으로 store_image_div
-  store_list.appendChild(store_info_div); // store_list의 자식으로 store_info_div
-
-  // storeModal_body
-  storeModal_body.appendChild(store_list);
-}
-
 //가게선택 검색창 설정
 const inputElement = document.querySelector(".search-txt");
 const placeholderText = inputElement.placeholder;
@@ -442,6 +391,9 @@ function createMozip() {
 
     if(mozipTitle === "") {
         alert("제목을 작성 해주세요!")
+        return;
+    }else if(mozipTitle.length > 30) {
+        alert("모집글 제목이 너무 길어요!")
         return;
     }else if(mozipCategory === null) {
         alert("키테고리를 선택 해주세요!")
