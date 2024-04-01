@@ -1,5 +1,15 @@
 // 주소 설정 완료 버튼 클릭시
-function Address_commit() {}
+//모바일 햄버거 창 클릭 시 보이고 사라지게
+function show() {
+  document.querySelector(".header2").className = "header2 header2_show";
+}
+
+function close() {
+  document.querySelector(".header2").className = "header2";
+}
+
+document.querySelector("#header_show").addEventListener("click", show);
+document.querySelector("#header_close").addEventListener("click", close);
 
 var stompClient = null;
 

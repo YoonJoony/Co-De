@@ -1,3 +1,15 @@
+//모바일 햄버거 창 클릭 시 보이고 사라지게
+function show() {
+  document.querySelector(".header2").className = "header2 header2_show";
+}
+
+function close() {
+  document.querySelector(".header2").className = "header2";
+}
+
+document.querySelector("#chat_show").addEventListener("click", show);
+document.querySelector("#chat-page").addEventListener("click", close);
+
 /* 소켓 js */
 "use strict";
 document.write(
@@ -1628,6 +1640,3 @@ document.addEventListener("mouseup", function () {
   isDragging = false;
 });
 
-
-
-// 채팅방 삭제 버튼 메소드
