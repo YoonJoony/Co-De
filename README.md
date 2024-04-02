@@ -50,7 +50,7 @@
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e)https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e" style="width:1030px; height:530px;">
 
 ### 가상 결제 기능
-<img src="https://github.com/YoonJoony/Co-De/assets/110625854/ca30a380-151c-4a4a-8df0-207e6574d2f2" style="width:1030px; height:530px;">
+<img src="https://github.com/YoonJoony/Co-De/assets/110625854/ca30a380-151c-4a4a-8df0-207e6574d2f2" style="width:1030px; height:750px;">
 
 
 # 🛠 기술스택
