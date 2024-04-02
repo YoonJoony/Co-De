@@ -42,11 +42,9 @@
 
 <p align="center">  <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/fa70004e-7fd2-4659-81db-b8b450d9090e" align="center" style="width:330px; height:670px;"> <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/8fbd3bdb-ed3d-4dcb-b6ac-82223dfab301" align="center" style="width:330px; height:670px;">  </p>
 
-![방 만들기]()
-
 
 ### 전체 모집글 UI
-<img src="https://github.com/YangYunSeok/Co-De/assets/110625854/a72b2dd4-f7d6-4f3f-8253-d911462ddd59)" style="width:1030px; height:530px;">
+<img src="https://github.com/YoonJoony/Co-De/assets/110625854/d8b4ccbd-0de5-4470-b077-f33a4e02bfd0" style="width:1030px; height:530px;">
 
 ### 가게 및 가게 메뉴 리스트 출력 UI
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e)https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e" style="width:1030px; height:530px;">
