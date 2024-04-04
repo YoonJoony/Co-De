@@ -1575,28 +1575,53 @@ async function fetchUserInfo() {
 async function requestPay() {
   //결제 창 보여주고 결제 정보에 사용자 정보를 담음.
   const userInfo = await fetchUserInfo();
+  let price = 0;
+  let menu = "항목 : ";
 
-  // 결제 창 호출
-  var IMP = window.IMP;
-  IMP.init("imp80525881");
+  $.ajax({
+    url: "/basket/personal",
+    type : "GET",
+    success : function(response) {
+      if (response != null ) {
+        for(let i = 0; i < response.length; i++) {
+          price += (response[i].price * response[i].quantity);
+          if (i !== response.length -1 ) {
+            menu += response[i].product_name + ", ";
+          } else {
+            menu += response[i].product_name;
+          }
+        }
+        // 결제 창 호출
+        var IMP = window.IMP;
+        IMP.init("imp80525881");
 
-  IMP.request_pay(
-    {
-      pg: "kakaopay",
-      pay_method: "card",
-      merchant_uid: "test_" + new Date().getTime(),
-      name: "장바구니 배달음식 결제",
-      amount: 1000,
-      buyer_tel: userInfo.pnum,
-      buyer_name: userInfo.username,
-      buyer_addr : userInfo.address
-    }, async function (rsp) {
-      console.log(rsp);
-      if (rsp.success) {
-        console.log(rsp);
+        IMP.request_pay(
+            {
+              pg: "kakaopay",
+              pay_method: "card",
+              merchant_uid: "test_" + new Date().getTime(),
+              name: menu,
+              amount: price,
+              buyer_tel: userInfo.pnum,
+              buyer_name: userInfo.username,
+              buyer_addr : userInfo.address
+            }, async function (rsp) {
+              console.log(rsp);
+              if (rsp.success) {
+              }
+            }
+        );
+      } else {
+        alert("장바구니에 메뉴를 담으세요!");
       }
+    },
+    error: function(response) {
+      // 오류 시 처리
+      alert(response.responseText);
     }
-  );
+  });
+
+
 }
 
 // 장바구니 이동 2 try
