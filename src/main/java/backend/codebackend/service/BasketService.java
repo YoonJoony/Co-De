@@ -78,6 +78,11 @@ public class BasketService {
         return basketRepository.addItemToBasketReceive(nickname);
     }
 
+    //닉네임에 해당하는 장바구니 전부 조회
+    public List<Basket> personalBasket(String nickname) {
+        return basketRepository.personalBasket(nickname);
+    }
+
     //총 장바구니 금액, 닉네임 리턴
     public List<TotalPrice> getTotalPrice(Long roomId) {
         return basketRepository.getTotalPrice(roomId);

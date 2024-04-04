@@ -66,6 +66,17 @@ public class BasketController {
         return basketService.addItemToBasketReceive(nickname);
     }
 
+    //내가 담은 장바구니 조회
+    @GetMapping("/basket/personal")
+    public ResponseEntity<?> personalBasket(HttpSession session) {
+        Optional<Member> member = memberService.findLoginId(String.valueOf(session.getAttribute("memberId")));
+        if (member.isPresent()) {
+            return ResponseEntity.ok(basketService.personalBasket(member.get().getNickname()));
+        } else {
+            return ResponseEntity.badRequest().body("세션 오류");
+        }
+    }
+
     //채팅방 장바구니 조회
     @GetMapping("/chat/basket")
     @ResponseBody

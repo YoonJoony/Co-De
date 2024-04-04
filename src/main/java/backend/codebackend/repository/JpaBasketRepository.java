@@ -96,6 +96,16 @@ public class JpaBasketRepository implements BasketRepository {
         return query.getSingleResult();
     }
 
+    //닉네임에 해당하는 장바구니 메뉴 전부 조회
+    @Override
+    public List<Basket> personalBasket(String nickname) {
+        String jpql = "SELECT m FROM Basket m WHERE m.nickname = :nickname";
+        TypedQuery<Basket> query = em.createQuery(jpql, Basket.class);
+        query.setParameter("nickname", nickname);
+
+        return query.getResultList();
+    }
+
     @Override
     public List<TotalPrice> getTotalPrice(Long roomId) {
         String jpql = "SELECT b.nickname, SUM(b.price * b.quantity) " +

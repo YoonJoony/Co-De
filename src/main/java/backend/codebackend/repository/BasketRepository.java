@@ -21,6 +21,7 @@ public interface BasketRepository {
     void deleteByMenu(Long menuId);
     Basket findBasketMenu(Long menuId);
     Basket addItemToBasketReceive(String nickname);
+    List<Basket> personalBasket(String nickname);
     List<TotalPrice> getTotalPrice(Long roomId);
 }
 
