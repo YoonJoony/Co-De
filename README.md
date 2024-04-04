@@ -21,7 +21,7 @@
 - 채팅방 기능
   - 생성된 모집글에 참가되면 채팅방에 자동으로 입장된다. 
 - 정산 기능
-- 결제 기능 (프로토타입 기능 구현)
+- 포트원 API를 이용한 가상 결제기능
 - AI 메뉴추천 기능
 - 웹 애플리케이션 자동화 기능 : Selenium
   - Selenium 기능을 활용하여 가게 선택 시 설정한 주소를 [요기요 페이지](https://www.yogiyo.co.kr/mobile/#/) 검색창에 자동으로 입력되어 가게 리스트를 받아오게 한다.
@@ -42,11 +42,16 @@
 
 <p align="center">  <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/fa70004e-7fd2-4659-81db-b8b450d9090e" align="center" style="width:330px; height:670px;"> <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/8fbd3bdb-ed3d-4dcb-b6ac-82223dfab301" align="center" style="width:330px; height:670px;">  </p>
 
-### 전체 모집글 UI
-<img src="https://github.com/YangYunSeok/Co-De/assets/110625854/a72b2dd4-f7d6-4f3f-8253-d911462ddd59)" style="width:1030px; height:530px;">
+
+### 모집글 생성
+<img src="https://github.com/YoonJoony/Co-De/assets/110625854/d8b4ccbd-0de5-4470-b077-f33a4e02bfd0" style="width:1030px; height:530px;">
 
 ### 가게 및 가게 메뉴 리스트 출력 UI
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e)https://github.com/YangYunSeok/Co-De/assets/110625854/3c45041d-cd37-4157-9080-27c586d3bb1e" style="width:1030px; height:530px;">
+
+### 가상 결제 기능
+<img src="https://github.com/YoonJoony/Co-De/assets/110625854/ca30a380-151c-4a4a-8df0-207e6574d2f2" style="width:1030px; height:750px;">
+
 
 # 🛠 기술스택
 
