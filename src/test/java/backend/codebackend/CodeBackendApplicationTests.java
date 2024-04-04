@@ -326,4 +326,11 @@ class CodeBackendApplicationTests {
 		Optional<Member> deletedMember = memberRepository.findByName(nickname_Delete);
 		assertThat(deletedMember).isEmpty(); // 삭제 후에 해당 회원이 존재하지 않는지 확인
 	}
+
+	@Test
+	@DisplayName("특정 사용자의 장바구니에 담긴 총 금액 조회")
+	void 사용자장바구니조회() {
+		int ammount = basketService.personalBasket("야왕이네");
+		System.out.println(ammount);
+	}
 }
