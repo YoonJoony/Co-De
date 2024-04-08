@@ -2,6 +2,7 @@ package backend.codebackend;
 
 import backend.codebackend.domain.*;
 import backend.codebackend.dto.ChatDTO;
+import backend.codebackend.dto.PaymentDetailsDto;
 import backend.codebackend.dto.TotalPrice;
 import backend.codebackend.repository.BasketRepository;
 import backend.codebackend.repository.MemberRepository;
@@ -19,6 +20,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.setAllowComparingPrivateFields;
 
 
 @SpringBootTest
@@ -32,15 +34,14 @@ class CodeBackendApplicationTests {
 	ChatUserService chatUserService;
 	@Autowired
 	MemberRepository memberRepository;
-
 	@Autowired
 	RestaurantService restaurantService;
-
 	@Autowired
 	BasketService basketService;
 	@Autowired
 	MozipService mozipService;
-
+	@Autowired
+	PaymentsDetailsService paymentsDetailsService;
 	@Test
 	@DisplayName("유저 리스트 조회")
 	void 유저리스트조회() {
@@ -330,7 +331,31 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("특정 사용자의 장바구니에 담긴 총 금액 조회")
 	void 사용자장바구니조회() {
-		int ammount = basketService.personalBasket("야왕이네");
-		System.out.println(ammount);
+		List<Basket> baskets = basketService.personalBasket("야왕이네");
+		System.out.println(baskets.get(0).getPrice());
+	}
+
+	@Test
+	@DisplayName("결제내역저장")
+	void 결제내역저장() {
+		PaymentDetailsDto paymentDetailsDto = PaymentDetailsDto.builder()
+				.paymentId(1L)
+				.nickname("야왕이네")
+				.orderList("짜장면, 탕수육")
+				.totalPrice(30000)
+				.payStatus(PaymentDetails.PaymentStatus.COMPLETED)
+				.deliveryAddress("서울특별시 은평구 불광로 118")
+				.build();
+
+		Mozip mozip = mozipService.findRoomById(1L).get();
+		Member member = memberService.findLoginId("1234").get();
+		PaymentDetailsDto after_Dto = paymentsDetailsService.savePayment(paymentDetailsDto, member, mozip);
+		System.out.println("\n\n\n");
+		System.out.println(after_Dto.getDeliveryAddress());
+		System.out.println(after_Dto.getUserId());
+		System.out.println(after_Dto.getMozipId());
+		System.out.println(after_Dto.getPayStatus());
+		System.out.println(after_Dto.getCreatedAt());
+		System.out.println("\n\n\n");
 	}
 }
