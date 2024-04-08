@@ -1,41 +1,64 @@
 package backend.codebackend.domain;
 
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
+import java.time.LocalDateTime;
 
 @Getter
-@Setter
+@Entity
+@Builder
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
+@Table(name = "payment")
 public class PaymentDetails {
+    public enum PaymentStatus{
+        COMPLETED, // 결제 완료
+        FAILED,    // 결제 실패
+        CANCELED   // 결제 취소
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long payment_id;            //주문 ID
+    private Long paymentId;          // 주문 ID
 
-    private Long room_id;        // 방 번호
-    private String nickname;     // 사용자 ID
-    private String productName;  // 항목 이름
-    private int price;           // 가격
-    private int quantity;        // 수량
-    private List<String> orderList;   // 주문 목록
-    private int is_paid;          // 결제
-    private int complete_payment; // 결제 완료(결제 후)
+    // 한명의 사용자에 대해 하나의 결제 내역만 존재
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
+    private Member member;
 
-    public PaymentDetails(Long payment_id, Long room_id, String nickname, String productName, int price, int quantity, List<String> orderList, int is_paid, int complete_payment) {
-        this.payment_id = payment_id;
-        this.room_id = room_id;
+    // 한개의 모집글에 대해 여러개의 결제내역이 존재
+    // nullable = ture 설정으로 채팅방이 삭제될 시 투플이 삭제되지 않고 null 로 표시
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mozipId", referencedColumnName = "id", nullable = true)
+    private Mozip mozip;             // 방 번호
+
+    private String nickname;         // 사용자 닉네임
+    private String orderList;        // 주문 목록
+    private int totalPrice ;         // 총 결제금액
+
+    @Enumerated(EnumType.STRING)     // enum을 DB와 맵핑하고 싶을때 필수 작성.
+    private PaymentStatus payStatus; // 결제 상태
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt; // 생성 시간
+
+    private String deliveryAddress;  // 배송 주소
+
+    @PrePersist // JPA가 엔티티를 데이터베이스 처음 저장할 때 호출
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    public PaymentDetails(Long paymentId, Member member, Mozip mozip, String nickname, String orderList, int totalPrice, PaymentStatus payStatus, LocalDateTime createdAt, String deliveryAddress) {
+        this.paymentId = paymentId;
+        this.member = member;
+        this.mozip = mozip;
         this.nickname = nickname;
-        this.productName = productName;
-        this.price = price;
-        this.quantity = quantity;
         this.orderList = orderList;
-        this.is_paid = is_paid;
-        this.complete_payment = complete_payment;
+        this.totalPrice = totalPrice;
+        this.payStatus = payStatus;
+        this.createdAt = createdAt;
+        this.deliveryAddress = deliveryAddress;
     }
 }
