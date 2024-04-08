@@ -1,72 +1,46 @@
 package backend.codebackend.service;
-
-import backend.codebackend.domain.Account;
 import backend.codebackend.domain.Member;
+import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.PaymentDetails;
-import backend.codebackend.domain.SystemAccount;
-import backend.codebackend.dto.AccountDto;
-import backend.codebackend.repository.MemberRepository;
+import backend.codebackend.dto.PaymentDetailsDto;
 import backend.codebackend.repository.PaymentDetailsRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
+@Service // 빈을 직접 추가해주지 않았기 때문에 서비스로 빈 추가
 @Transactional
 @RequiredArgsConstructor
 public class PaymentsDetailsService {
-    private final AccountService accountService;
-    private final SystemAccountService systemAccountService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final MemberService memberService;
     private final PaymentDetailsRepository paymentDetailsRepository;
-
-    //각 사용자의 거래내역 조회
-    public List<PaymentDetails> findAll(Long id) {
-        return paymentDetailsRepository.findAll(id);
-    }
-
-    // 송금 처리 (사용자 -> 시스템)
-    public boolean sendMoneyToSystemAccount(String nickname, int price) {
-        // 송금자 정보 가져오기
-        Optional<Member> member = memberService.findByName(nickname);
-
-        if(member.isEmpty())
-            return false;
-
-        Account senderAccount = accountService.findAccount(member.get().getId());
-        AccountDto senderAccountDto = AccountDto.builder()
-                .id(senderAccount.getId())
-                .number(senderAccount.getNumber())
-                .password(bCryptPasswordEncoder.encode(senderAccount.getPassword())) //비밀번호 암호화
-                .username(senderAccount.getUsername())
-                .balance(senderAccount.getBalance())
-                .account_name(senderAccount.getAccount_name())
+    // 결제 내역 저장
+    public PaymentDetailsDto savePayment(PaymentDetailsDto paymentDetailsDto, Member member, Mozip mozip){
+        PaymentDetails paymentDetails = PaymentDetails.builder()
+                .member(member)
+                .mozip(mozip)
+                .nickname(paymentDetailsDto.getNickname())
+                .orderList(paymentDetailsDto.getOrderList())
+                .totalPrice(paymentDetailsDto.getTotalPrice())
+                .payStatus(paymentDetailsDto.getPayStatus())
+                .deliveryAddress(paymentDetailsDto.getDeliveryAddress())
                 .build();
 
-        // 시스템 계좌 정보 가져오기
-        SystemAccount systemAccount = systemAccountService.getSystemAccountInfo();
-
-        // 송금자의 계좌에서 돈 감소
-        if (senderAccount.getBalance() >= price){
-            senderAccount.setBalance(senderAccount.getBalance() - price);
-            // 결제와 결제 완료 여부를 업데이트
-            senderAccount.setIs_paid(1);
-            if (senderAccount.getComplete_payment() == 1) {
-                // 모든 사용자가 결제완료 버튼 누르면 돈을 송금
-                accountService.save(senderAccountDto);
-
-                // 시스템 계좌에 돈 추가
-                systemAccount.setBalance(systemAccount.getBalance() + price);
-                systemAccountService.updateSystemAccount(systemAccount);
-
-                return true;
-            }
-        }
-        return false;
+        paymentDetailsRepository.save(paymentDetails);
+        return convertToDTO(paymentDetails);
     }
-
-
+    
+    // Entity 타입을 DTO 타입으로 변환
+    public PaymentDetailsDto convertToDTO(PaymentDetails paymentDetails){
+        return PaymentDetailsDto.builder()
+                .paymentId(paymentDetails.getPaymentId())
+                .userId(paymentDetails.getMember().getId())
+                .mozipId(paymentDetails.getMozip().getId())
+                .nickname(paymentDetails.getNickname())
+                .orderList(paymentDetails.getOrderList())
+                .totalPrice(paymentDetails.getTotalPrice())
+                .payStatus(paymentDetails.getPayStatus())
+                .createdAt(paymentDetails.getCreatedAt())
+                .deliveryAddress(paymentDetails.getDeliveryAddress())
+                .build();
+    }
 }
