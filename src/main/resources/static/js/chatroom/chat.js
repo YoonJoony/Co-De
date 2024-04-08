@@ -1607,8 +1607,24 @@ async function requestPay() {
               buyer_addr : userInfo.address
             }, async function (rsp) {
               console.log(rsp);
-              if (rsp.success) {
-              }
+              $.ajax({
+                url: "/payment/save",
+                type: "POST",
+                data: {
+                  "mozipId" : id,
+                  "menu" : rsp.name,
+                  "totalPrice" : rsp.paid_amount,
+                  "payStatus" : rsp.success
+                },
+                success: function (response) {
+                  // 오류 시 처리
+                  alert(response.responseText);
+                },
+                error: function(response) {
+                  // 오류 시 처리
+                  alert(response.responseText);
+                }
+              })
             }
         );
       } else {
