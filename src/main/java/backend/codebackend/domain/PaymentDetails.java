@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "payment")
 public class PaymentDetails {
     public enum PaymentStatus{
@@ -48,17 +49,5 @@ public class PaymentDetails {
     @PrePersist // JPA가 엔티티를 데이터베이스 처음 저장할 때 호출
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
-    }
-
-    public PaymentDetails(Long paymentId, Member member, Mozip mozip, String nickname, String orderList, int totalPrice, PaymentStatus payStatus, LocalDateTime createdAt, String deliveryAddress) {
-        this.paymentId = paymentId;
-        this.member = member;
-        this.mozip = mozip;
-        this.nickname = nickname;
-        this.orderList = orderList;
-        this.totalPrice = totalPrice;
-        this.payStatus = payStatus;
-        this.createdAt = createdAt;
-        this.deliveryAddress = deliveryAddress;
     }
 }
