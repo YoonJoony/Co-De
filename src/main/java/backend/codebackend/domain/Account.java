@@ -1,25 +1,24 @@
 package backend.codebackend.domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
 @Getter
 @Setter
+@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "account_tb", indexes = {
         @Index(name = "idx_account_number", columnList = "number")
 })
-@Entity
-@Builder
+
 public class Account {
 
     @Id
@@ -45,17 +44,4 @@ public class Account {
 
     private int is_paid;          // 결제
     private int complete_payment; // 결제 완료(결제 후)
-
-    public Account(Long id, String account_name, String number, String password, Long balance, String username, LocalDateTime create_at, LocalDateTime update_at, int is_paid, int complete_payment) {
-        this.id = id;
-        this.account_name = account_name;
-        this.number = number;
-        this.password = password;
-        this.balance = balance;
-        this.username = username;
-        this.create_at = create_at;
-        this.update_at = update_at;
-        this.is_paid = is_paid;
-        this.complete_payment = complete_payment;
-    }
 }

@@ -1,16 +1,12 @@
 package backend.codebackend.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class ChatDTO {
     //메시지 타입 : 입장, 채팅
     //메시지 타입에 따라서 동작하는 구조가 달라진ㄷ

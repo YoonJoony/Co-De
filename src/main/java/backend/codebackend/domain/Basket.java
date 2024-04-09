@@ -1,10 +1,7 @@
 package backend.codebackend.domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -17,8 +14,9 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Basket {
 
@@ -41,15 +39,4 @@ public class Basket {
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updated_at;
-
-    public Basket(Long id, Long chatroom_id, String product_name, int price, int quantity, String nickname, LocalDateTime created_at, LocalDateTime updated_at) {
-        this.id = id;
-        this.chatroom_id = chatroom_id;
-        this.product_name = product_name;
-        this.price = price;
-        this.quantity = quantity;
-        this.nickname = nickname;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
 }

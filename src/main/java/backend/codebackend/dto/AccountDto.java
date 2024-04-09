@@ -3,9 +3,7 @@ package backend.codebackend.dto;
 import backend.codebackend.domain.Member;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -29,15 +27,4 @@ public class AccountDto {
     private LocalDateTime createAt;
     @LastModifiedDate
     private LocalDateTime updateAt;
-
-    public AccountDto(Long id, String number, String password, Long balance, String username, String account_name, LocalDateTime createAt, LocalDateTime updateAt) {
-        this.id = id;
-        this.number = number;
-        this.password = password;
-        this.balance = balance;
-        this.username = username;
-        this.account_name = account_name;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-    }
 }

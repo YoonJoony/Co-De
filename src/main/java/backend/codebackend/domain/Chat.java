@@ -10,12 +10,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
-@Data
 @Getter
+@Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Chat {
     //메시지 타입 : 입장, 채팅
     //메시지 타입에 따라서 동작하는 구조가 달라진ㄷ
@@ -48,16 +49,4 @@ public class Chat {
     private String filename; // 파일이름
     @Column(nullable = true)
     private String filedir; // s3 파일 경로
-
-    public Chat(String type, String chatId, Long id, String sender, String message, LocalDateTime createdAt, String s3_data_url, String filename, String filedir) {
-        this.type = type;
-        this.chatId = chatId;
-        this.id = id;
-        this.sender = sender;
-        this.message = message;
-        this.createdAt = createdAt;
-        this.s3_data_url = s3_data_url;
-        this.filename = filename;
-        this.filedir = filedir;
-    }
 }

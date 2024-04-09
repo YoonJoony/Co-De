@@ -1,21 +1,12 @@
 package backend.codebackend.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Getter
-@Data
-@NoArgsConstructor
+@Setter
 @Builder
 public class TotalPrice {
     private String username;
     private int totalPrice;
-
-    public TotalPrice(String username, int totalPrice) {
-        this.username = username;
-        this.totalPrice = totalPrice;
-    }
 }

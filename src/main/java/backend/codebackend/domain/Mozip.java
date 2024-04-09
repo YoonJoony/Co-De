@@ -2,21 +2,17 @@ package backend.codebackend.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.extern.java.Log;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
 
 @Getter
+@Setter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EntityListeners(AuditingEntityListener.class)
 @Builder
-@Data
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Mozip {
     public enum mozipStatus {
         정산전, 정산시작, 거래확정, 결제완료;
@@ -55,17 +51,4 @@ public class Mozip {
 
     @Column(length = 20, nullable = false)
     private String nickname;
-
-    public Mozip(Long id, String title, Long distance_limit, String categories, String store, int usercount, int peoples, mozipStatus status, LocalDateTime create_Date, String nickname) {
-        this.id = id;
-        this.title = title;
-        this.distance_limit = distance_limit;
-        this.categories = categories;
-        this.store = store;
-        this.usercount = usercount;
-        this.peoples = peoples;
-        this.status = status;
-        this.create_Date = create_Date;
-        this.nickname = nickname;
-    }
 }

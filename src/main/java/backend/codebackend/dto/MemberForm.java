@@ -37,17 +37,6 @@ public class MemberForm {
     @NotEmpty(message = "공백을 포함해선 안됩니다.")
     private String certified;
 
-    public MemberForm(String login, String pw, String pwcheck, String username, String nickname, String address, String pnum, String certified) {
-        this.login = login;
-        this.pw = pw;
-        this.pwcheck = pwcheck;
-        this.username = username;
-        this.nickname = nickname;
-        this.address = address;
-        this.pnum = pnum;
-        this.certified = certified;
-    }
-
     public Member toEntity(){
         Member member = Member.builder()
                 .login(login)
