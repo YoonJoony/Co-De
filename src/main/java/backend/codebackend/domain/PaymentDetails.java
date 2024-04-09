@@ -23,8 +23,8 @@ public class PaymentDetails {
     private Long paymentId;          // 주문 ID
 
     // 한명의 사용자에 대해 하나의 결제 내역만 존재
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = true)
     private Member member;
 
     // 한개의 모집글에 대해 여러개의 결제내역이 존재
