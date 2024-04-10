@@ -25,13 +25,17 @@ public class PaymentDetails {
     // 한명의 사용자에 대해 하나의 결제 내역만 존재
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "id", nullable = true)
-    private Member member;
+    private Member userId;
 
     // 한개의 모집글에 대해 여러개의 결제내역이 존재
     // nullable = ture 설정으로 채팅방이 삭제될 시 투플이 삭제되지 않고 null 로 표시
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mozipId", referencedColumnName = "id", nullable = true)
-    private Mozip mozip;             // 방 번호
+    private Mozip mozipId;             // 방 번호
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mozipStatus", referencedColumnName = "status", nullable = true)
+    private Mozip mozipStatus;             // 모집글 정산 상태
 
     private String nickname;         // 사용자 닉네임
     private String orderList;        // 주문 목록

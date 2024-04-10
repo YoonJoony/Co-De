@@ -16,8 +16,9 @@ public class PaymentsDetailsService {
     // 결제 내역 저장
     public PaymentDetailsDto savePayment(PaymentDetailsDto paymentDetailsDto, Member member, Mozip mozip){
         PaymentDetails paymentDetails = PaymentDetails.builder()
-                .member(member)
-                .mozip(mozip)
+                .userId(member)
+                .mozipId(mozip)
+                .mozipStatus(mozip)
                 .nickname(paymentDetailsDto.getNickname())
                 .orderList(paymentDetailsDto.getOrderList())
                 .totalPrice(paymentDetailsDto.getTotalPrice())
@@ -33,8 +34,9 @@ public class PaymentsDetailsService {
     public PaymentDetailsDto convertToDTO(PaymentDetails paymentDetails){
         return PaymentDetailsDto.builder()
                 .paymentId(paymentDetails.getPaymentId())
-                .userId(paymentDetails.getMember().getId())
-                .mozipId(paymentDetails.getMozip().getId())
+                .userId(paymentDetails.getUserId().getId())
+                .mozipId(paymentDetails.getMozipId().getId())
+                .mozipStatus(paymentDetails.getMozipStatus().getStatus())
                 .nickname(paymentDetails.getNickname())
                 .orderList(paymentDetails.getOrderList())
                 .totalPrice(paymentDetails.getTotalPrice())

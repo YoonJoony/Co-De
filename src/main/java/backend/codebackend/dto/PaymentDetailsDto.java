@@ -1,4 +1,5 @@
 package backend.codebackend.dto;
+import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.PaymentDetails;
 import lombok.*;
 
@@ -12,6 +13,7 @@ public class PaymentDetailsDto {
     private Long paymentId;          // 주문 ID
     private Long userId;             // 유저 ID
     private Long mozipId;            // 방 번호
+    private Mozip.mozipStatus mozipStatus; // 모집글 정산 상태
     private String nickname;         // 사용자 닉네임
     private String orderList;        // 주문 목록
     private int totalPrice ;         // 총 결제금액
