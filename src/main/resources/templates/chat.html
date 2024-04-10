@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Main</title>
-  <link rel="stylesheet" href="/css/chatroom/chat.css?abc">
-  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css?abd"> <!-- 모바일 시 채팅방 화면 css -->
+  <link rel="stylesheet" href="/css/chatroom/chat.css?abcd">
+  <link rel="stylesheet" href="/css/chatroom/mobile_chat.css?abde"> <!-- 모바일 시 채팅방 화면 css -->
   <!-- Spring 서버 JS, CSS 적용 안될 시 경로 뒤에 ?v=<%=System.currentTimeMillis() -->
 
   <!-- vscode용 ------------------------------------------------------------------>
@@ -199,11 +199,31 @@
                     <img class="storeModal_header_topper_back_img" src="/images/back.png" onclick="calclose()"
                       style="cursor:pointer;">
                   </div>
-                  <h2>결제 하기</h2>
-                  <button type="button" class="pay_done" id="pay_done" value="확인" onclick="requestPay()">
-                    결제
-                  </button>
+                  <div class="storeModal_header_topper_title">
+                    <h2>결제 하기</h2>
+                  </div>
+                  <div class="storeModal_header_topper_button">
+                    <button type="button" class="pay_done" id="pay_done" value="확인" onclick="requestPay()">
+                      결제
+                    </button>
+                  </div>
                 </div>
+                <div class="line" role="presentation"></div>
+                <div class="personal_delivery_info">
+                  <div class="personal_delivery_info_div">
+                    <div class="personal_delivery_info_delivery_fee">
+                      <div>배달요금</div>
+                      <div class="delivery_fee"></div>
+                    </div>
+                    <div class="personal_delivery_info_personal_fee">
+                      <div>호스트요금</div>
+                      <div class="host_fee">2222</div>
+                      <div>인당요금</div>
+                      <div class="personal_fee">2222</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="line" role="presentation"></div>
                 <div class="calualtor">
                   <!--
                                     방장일때는 p태그에 id를 호스트로 생성
@@ -217,7 +237,10 @@
                             본인이 장바구니에서 선택한 메뉴값 + 배달비
                         -->
 
-
+                  <p class="pay_username" id="pay_username1">야왕이네 결제금액</p>
+                  <p class="pay_username" id="pay_username1">야왕이네 결제금액</p>
+                  <p class="pay_username" id="pay_username1">야왕이네 결제금액</p>
+                  <p class="pay_username" id="pay_username1">야왕이네 결제금액</p>
                 </div>
 
                 <!-- <button class="calbtn" onclick="calclose()">닫기</button> -->
