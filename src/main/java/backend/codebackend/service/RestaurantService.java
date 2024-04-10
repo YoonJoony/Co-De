@@ -34,9 +34,9 @@ public class RestaurantService {
 
     public void driver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         options.addArguments("window-size=1400,1500");
-//        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
         this.driver = new ChromeDriver(options);
         this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(40));
     }
@@ -88,7 +88,7 @@ public class RestaurantService {
     }
 
 
-
+    //가게 리스트 조회
     public List<Restuarant> RsData() {
         // 가게 이름과 최소주문금액을 저장할 리스트 생성
         Restuarant rs;
@@ -115,8 +115,32 @@ public class RestaurantService {
 
             rsList.add(rs);
         }
-        driver.quit();
         return rsList;
+    }
+
+
+    //배달 가격 조회
+    public List<Integer> searchDeliveryInfo(String restaurantTitle) throws InterruptedException {
+        List<Integer> deliveryInfos = new ArrayList<>();
+
+        List<WebElement> restaurants = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("restaurant-name")));
+
+        // 각 요소의 제목을 확인하여 사용자가 선택한 가게를 찾아서 클릭함.
+        for (WebElement restaurant : restaurants) {
+            //restaurant title이 선택한 가게 title 이였을 경우
+            if (restaurant.getAttribute("title").equals(restaurantTitle)) {
+                restaurant.click();
+                Thread.sleep(1000);
+
+                // 최소주문금액 요소 검색 후 값을 가져오기까지 기다립니다.
+                String minInfo = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(text(), '최소주문금액')]/span[@class='ng-binding']"))).getText().replaceAll("[^0-9]", "");
+                String delInfo = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(), '배달요금')]"))).getText().replaceAll("[^0-9]", "");
+                deliveryInfos.add(Integer.parseInt(minInfo));
+                deliveryInfos.add(Integer.parseInt(delInfo));
+                break;
+            }
+        }
+        return deliveryInfos;
     }
 
     public void quitDriver() {
