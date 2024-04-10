@@ -1,7 +1,6 @@
 package backend.codebackend.controller;
 
 import backend.codebackend.domain.Account;
-import backend.codebackend.domain.Basket;
 import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.dto.MozipForm;
@@ -28,7 +27,8 @@ public class MainController {
     private final MemberService memberService;
     private final ChatUserService chatUserService;
     private final AccountService accountService;
-    private final BasketService basketService;
+    private final DeliveryInfoService deliveryInfoService;
+    private final RestaurantService restaurantService;
 
     @GetMapping("/main_page.html")
     public String list(Model model, HttpServletRequest request) {
@@ -47,15 +47,6 @@ public class MainController {
 
         return "main_page"; //글 생성 시 다시 초기화면으로
     }
-
-//    @GetMapping("/mozip/storeList")
-//    @ResponseBody
-//    public List<Restuarant> storeList(HttpServletRequest request) {
-//        HttpSession session = request.getSession(false);
-//
-//        return restaurantService.RsData(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
-//    }
-
 
     @GetMapping("/session-info")
     public String sessionInfo(HttpServletRequest request) {
@@ -104,7 +95,7 @@ public class MainController {
     //모집글 생성
     @PostMapping("/mozip")
     @ResponseBody
-    public ResponseEntity<?> createMozip(String mozipTitle, int mozipRange, String mozipCategory, String mozipStore, int mozipPeople, HttpServletRequest request) { //세션에 저장된 id값의 닉네임을 가져오기 위해 request 선언
+    public ResponseEntity<?> createMozip(String mozipTitle, int mozipRange, String mozipCategory, String mozipStore, int mozipPeople, HttpServletRequest request) throws InterruptedException { //세션에 저장된 id값의 닉네임을 가져오기 위해 request 선언
         HttpSession session = request.getSession(false);
         if (session == null) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "세션이 없습니다. 다시 로그인 해주세요."));
@@ -133,6 +124,12 @@ public class MainController {
         Mozip mozip = mozipService.savePost(mozipForm);
         //채팅방에 방 생성자 추가
         chatUserService.addUser(mozip.getId(), nickname);
+
+        //배달비 조회 후 배달비 정보 엔티티 저장
+        List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo(mozipStore);
+        deliveryInfoService.deliveryInfoSave(mozip, deliveryInfos.get(0), deliveryInfos.get(1));
+        restaurantService.quitDriver();
+
         return ResponseEntity.ok(mozip);
     }
 
