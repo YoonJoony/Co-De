@@ -46,7 +46,7 @@ public class SpringConfig implements WebSocketMessageBrokerConfigurer {
 
     @Bean
     public MozipService mozipService() {
-        return new MozipService(mozipRepository(), memberRepository());
+        return new MozipService(mozipRepository());
     }
 
     @Bean
