@@ -275,24 +275,38 @@ function category_store_list(select_category){
 
 
 
-function closeStoreList() {
+function closeStoreList(flag) {
   var con = document.querySelector(".storeModal");
   if (con.style.display == "block") {
     con.style.display = "none";
   }
-   $.ajax({
-          type : "POST",
-          url : "/mozip/closeDriver",
-          data : {
-          },
-          success: function() {
+
+  if (flag === 1) {
+      closeDriver();
+  }
+}
+
+function closeDriver() {
+    $.ajax({
+        type : "POST",
+        url : "/mozip/closeDriver",
+        data : {
+        },
+        success: function() {
             console.log("Driver quit()")
-          },
-          error: function() {
-             console.log("Driver 종료 요청 실패 : ");
-          }
+        },
+        error: function() {
+            console.log("Driver 종료 요청 실패 : ");
+        }
     })
 }
+
+
+// 새로고침 하거나 페이지가 닫힐 시 탐색되는 크롤링 크롬 페이지 닫기
+window.addEventListener('beforeunload', function (e) {
+    closeDriver()
+});
+
 
 //가게선택 검색창 설정
 const inputElement = document.querySelector(".search-txt");
@@ -376,7 +390,7 @@ $(function () {
         choiceStore = $(this).find('.store_name').text();
         mozipStore = choiceStore;
         $('#storeName-input').val(choiceStore);
-        closeStoreList();
+        closeStoreList(0);
         console.log(choiceStore);
     });
 });
