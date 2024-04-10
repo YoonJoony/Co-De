@@ -45,18 +45,8 @@ public class RestaurantsController {
 
     @GetMapping("/mozip/categoryList")
     @ResponseBody
-    public List<Restuarant> categoryList(String category, HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-
-        restaurantService.driver();
-        restaurantService.loadPage();
-        restaurantService.searchAddress(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
+    public List<Restuarant> categoryList(String category) {
         restaurantService.selectCategory(category);
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         return restaurantService.RsData();
     }
 
