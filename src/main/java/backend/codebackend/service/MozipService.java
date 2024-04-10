@@ -1,9 +1,8 @@
 package backend.codebackend.service;
 
-import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.dto.MozipForm;
-import backend.codebackend.repository.JpaChatUserRepository;
+import backend.codebackend.repository.DeliveryInfoRepository;
 import backend.codebackend.repository.MemberRepository;
 import backend.codebackend.repository.MozipRepository;
 import jakarta.transaction.Transactional;
@@ -15,8 +14,6 @@ import java.util.*;
 @RequiredArgsConstructor //생성자 주입. 번거롭게 생성자를 생성해서 객체를 주입받지 않아도 됨.
 public class MozipService {
     private final MozipRepository mozipRepository; //final을 해줘야 config에서 생성자 주입이 됨.
-    private final MemberRepository memberRepository;
-
 
     public Mozip savePost(MozipForm mozipForm) {
         Mozip mozip = mozipForm.toEntity();
