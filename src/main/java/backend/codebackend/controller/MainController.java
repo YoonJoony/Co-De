@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -100,9 +102,9 @@ public class MainController {
         if (session == null) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "세션이 없습니다. 다시 로그인 해주세요."));
         }
-
+        String memberId = (String) session.getAttribute("memberId");
         //세션을 통한 닉네임 조회
-        Optional<Member> member = memberService.findLoginId(String.valueOf(session.getAttribute("memberId")));
+        Optional<Member> member = memberService.findLoginId(memberId);
         if (member.isEmpty())
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "사용자가 조회되지 않습니다."));
 
@@ -126,9 +128,11 @@ public class MainController {
         chatUserService.addUser(mozip.getId(), nickname);
 
         //배달비 조회 후 배달비 정보 엔티티 저장
-        List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo(mozipStore);
+        WebDriverWait wait = restaurantService.getWait(memberId);
+        WebDriver driver = restaurantService.driver(memberId);
+        List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo(mozipStore, wait);
         deliveryInfoService.deliveryInfoSave(mozip, deliveryInfos.get(0), deliveryInfos.get(1));
-        restaurantService.quitDriver();
+        restaurantService.quitDriver(memberId);
 
         return ResponseEntity.ok(mozip);
     }

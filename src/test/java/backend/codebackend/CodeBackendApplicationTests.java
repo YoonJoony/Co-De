@@ -10,6 +10,8 @@ import backend.codebackend.service.*;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +44,7 @@ class CodeBackendApplicationTests {
 	MozipService mozipService;
 	@Autowired
 	PaymentsDetailsService paymentsDetailsService;
+
 	@Test
 	@DisplayName("유저 리스트 조회")
 	void 유저리스트조회() {
@@ -111,12 +114,12 @@ class CodeBackendApplicationTests {
 		String category = "";
 
 		RestaurantService restaurantService = new RestaurantService();
-		restaurantService.driver();
-		restaurantService.loadPage();
-		restaurantService.searchAddress("경기도 고양시 일산동구 장항동 578-2 장항1동주민센터");
+		WebDriver driver = restaurantService.driver(member.getLogin());
+		WebDriverWait wait = restaurantService.getWait(member.getLogin());
+		restaurantService.loadPage(driver);
+		restaurantService.searchAddress("경기도 고양시 일산동구 장항동 578-2 장항1동주민센터", driver, wait);
 
-		List<Restuarant> rs =restaurantService.RsData();
-
+		List<Restuarant> rs =restaurantService.RsData(wait);
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -130,8 +133,29 @@ class CodeBackendApplicationTests {
 			System.out.println("별점 : " + rs.get(i).getIcoStar());
 			System.out.println("리뷰 개수 : " + rs.get(i).getReview_num());
 			System.out.println("배달예정시각 : " + rs.get(i).getDeliveryTime());
-
 		}
+		restaurantService.quitDriver(member.getLogin()); //드라이버 종료
+	}
+
+	@Test
+	@DisplayName("배달비, 최소주문금액 조회")
+	void 배달비정보조회() throws InterruptedException {
+		Member member = memberService.findLoginId("1234").get();
+		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+		String category = "";
+
+		RestaurantService restaurantService = new RestaurantService();
+		WebDriver driver = restaurantService.driver(member.getLogin());
+		WebDriverWait wait = restaurantService.getWait(member.getLogin());
+		restaurantService.loadPage(driver);
+
+		restaurantService.searchAddress("서울특별시 은평구 불광동 산 42-1 각황사", driver, wait);
+
+		List<Integer> deInfo = restaurantService.searchDeliveryInfo("본스치킨-불광북한산점", wait);
+
+		System.out.println("최소주문금액 : " + deInfo.get(0));
+		System.out.println("배달비 : " + deInfo.get(1));
+		restaurantService.quitDriver(member.getLogin()); //드라이버 종료
 	}
 
 
@@ -142,7 +166,10 @@ class CodeBackendApplicationTests {
 		try {
 			Member member = memberService.findLoginId("1234").get();
 			System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress());
+
+			WebDriver driver = restaurantService.driver(member.getLogin());
+			WebDriverWait wait = restaurantService.getWait(member.getLogin());
+			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress(), driver, wait, member.getLogin());
 			Menu menu = m.get();
 
 			for (int i = 0; i < menu.getMenuList_Title().size(); i++) {
@@ -169,7 +196,10 @@ class CodeBackendApplicationTests {
 		try{
 			Member member = memberService.findLoginId("1234").get();
 			System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress());
+
+			WebDriver driver = restaurantService.driver(member.getLogin());
+			WebDriverWait wait = restaurantService.getWait(member.getLogin());
+			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress(), driver, wait, member.getLogin());
 			Menu menu = m.get();
 
 			System.out.println("최소 주문 금액 : " + menu.getMinPrice());
@@ -344,11 +374,11 @@ class CodeBackendApplicationTests {
 				.orderList("짜장면, 탕수육")
 				.totalPrice(30000)
 				.payStatus(PaymentDetails.PaymentStatus.COMPLETED)
-				.deliveryAddress("서울특별시 은평구 불광로 118")
+				.deliveryAddress("서울특별시 은평구 불광로 339")
 				.build();
 
-		Mozip mozip = mozipService.findRoomById(1L).get();
-		Member member = memberService.findLoginId("1234").get();
+		Mozip mozip = mozipService.findRoomById(1L).get(); // 참여한 채팅방(모집글) 객체 찾음
+		Member member = memberService.findLoginId("1234").get(); // 결제한 당신 객체 찾음
 		PaymentDetailsDto after_Dto = paymentsDetailsService.savePayment(paymentDetailsDto, member, mozip);
 		System.out.println("\n\n\n");
 		System.out.println(after_Dto.getDeliveryAddress());

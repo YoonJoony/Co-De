@@ -2,6 +2,7 @@ package backend.codebackend.service;
 
 import backend.codebackend.domain.Menu;
 import backend.codebackend.domain.Restuarant;
+import jakarta.servlet.http.HttpSession;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,19 +13,20 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.Future;
 
 @Service
 public class RestaurantService {
     // TODO 수정사항 : By.xpath("//span[contains.. 처럼 크롤링하는 코드는 셀레니움 백그라운드로 변경 시 안될 가능성 있음.
     // TODO 수정사항(24.03.17) : 왠지 모르곘는데 백그라운드로 이제 잘 실행 됨. (주소를 잘 치자)
+    // TODO 수정사항(24.04.13) : 동시성 문제가 무조건 발생하는데 초기에 싱글톤 클래스에서 driver 인스턴스를 한개만 관리되게끔 만들어 놨음.
+    //  이제 RestaurantService 객체는 한개만 실행되돼 각 driver,wait 인스턴스는 Map에서 여러개로 관리되게 수정함. (동시성 제어)
     private static RestaurantService restaurantService;
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private Map<String, WebDriver> drivers = new HashMap<>(); // 접속한 세션으로 드라이버 세션 관리함.
+    private Map<String, WebDriverWait> waitMap = new HashMap<>(); // wait : 주로 페이지의 특정 요소가 나타나길 기다리는 용도.
 
+    // 싱글톤으로 객체 생성
     public static RestaurantService getInstance() {
         if(restaurantService == null) {
             restaurantService = new RestaurantService();
@@ -32,17 +34,28 @@ public class RestaurantService {
         return restaurantService;
     }
 
-    public void driver() {
-        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-        options.addArguments("window-size=1400,1500");
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
-        this.driver = new ChromeDriver(options);
-        this.wait = new WebDriverWait(this.driver, Duration.ofSeconds(40));
+    // WebDriver를 세션을 비교하여 생성/가져오기
+    public WebDriver driver(String memberId) {
+        if (!drivers.containsKey(memberId)) {
+            ChromeOptions options = new ChromeOptions();
+//            options.addArguments("--headless");
+            options.addArguments("window-size=1400,1500");
+            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
+
+            WebDriver driver = new ChromeDriver(options);
+            drivers.put(memberId, driver);
+        }
+        return drivers.get(memberId);
+    }
+    // WebDriverWait을 세션을 비교하여 생성/가져오기
+    public WebDriverWait getWait(String memberId) {
+        WebDriver driver = driver(memberId);
+        if(!waitMap.containsKey(memberId))
+            waitMap.put(memberId, new WebDriverWait(driver, Duration.ofSeconds(40)));
+        return waitMap.get(memberId);
     }
 
-
-    public void loadPage() {
+    public void loadPage(WebDriver driver) {
         driver.get("https://www.yogiyo.co.kr/mobile/#/");
         try {
             Thread.sleep(500);
@@ -51,7 +64,7 @@ public class RestaurantService {
         }
     }
 
-    public void searchAddress(String address) {
+    public void searchAddress(String address, WebDriver driver, WebDriverWait wait) {
         //현재 창 주소 입력받음
         String currentUrl = driver.getCurrentUrl();
 
@@ -82,14 +95,14 @@ public class RestaurantService {
         }
     }
 
-    public void selectCategory(String category) {
+    public void selectCategory(String category, WebDriverWait wait) {
         WebElement clickCategory = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class, 'category-name') and text()='" + category + "']")));
         clickCategory.click();
     }
 
 
     //가게 리스트 조회
-    public List<Restuarant> RsData() {
+    public List<Restuarant> RsData(WebDriverWait wait) {
         // 가게 이름과 최소주문금액을 저장할 리스트 생성
         Restuarant rs;
         List<Restuarant> rsList = new ArrayList<Restuarant>();
@@ -120,7 +133,7 @@ public class RestaurantService {
 
 
     //배달 가격 조회
-    public List<Integer> searchDeliveryInfo(String restaurantTitle) throws InterruptedException {
+    public List<Integer> searchDeliveryInfo(String restaurantTitle, WebDriverWait wait) throws InterruptedException {
         List<Integer> deliveryInfos = new ArrayList<>();
 
         List<WebElement> restaurants = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("restaurant-name")));
@@ -143,19 +156,16 @@ public class RestaurantService {
         return deliveryInfos;
     }
 
-    public void quitDriver() {
-        driver.quit();
+    public void quitDriver(String memberId) {
+        if (drivers.containsKey(memberId)) {
+            WebDriver driver = drivers.get(memberId);
+            driver.quit();
+            drivers.remove(memberId);
+        }
     }
 
     @Async
-    public Future<Menu> menuList(String restaurantTitle, String address) throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("window-size=1400,1500");
-//        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
-        WebDriver driver = new ChromeDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
+    public Future<Menu> menuList(String restaurantTitle, String address, WebDriver driver, WebDriverWait wait, String memberId) throws InterruptedException {
         // Google 웹 페이지를 엽니다.
         driver.get("https://www.yogiyo.co.kr/mobile/#/");
 
@@ -249,6 +259,7 @@ public class RestaurantService {
             }
         }
         driver.quit();
+        drivers.remove(memberId);
         return new AsyncResult<>(menu2) ;
     }
 }

@@ -7,10 +7,13 @@ import backend.codebackend.repository.MozipRepository;
 import backend.codebackend.service.BasketService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.RestaurantService;
+import com.google.api.Http;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,24 +39,29 @@ public class RestaurantsController {
     @ResponseBody
     public List<Restuarant> storeList(HttpServletRequest request) throws InterruptedException {
         HttpSession session = request.getSession(false);
-
-        restaurantService.driver();
-        restaurantService.loadPage();
-        restaurantService.searchAddress(memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
-        return restaurantService.RsData();
+        String memberId = (String) session.getAttribute("memberId");
+        WebDriver driver = restaurantService.driver(memberId);
+        WebDriverWait wait = restaurantService.getWait(memberId);
+        restaurantService.loadPage(driver);
+        restaurantService.searchAddress(memberService.findLoginId(memberId).get().getAddress(), driver, wait);
+        return restaurantService.RsData(wait);
     }
 
     @GetMapping("/mozip/categoryList")
     @ResponseBody
-    public List<Restuarant> categoryList(String category) {
-        restaurantService.selectCategory(category);
-        return restaurantService.RsData();
+    public List<Restuarant> categoryList(HttpServletRequest request, String category) {
+        HttpSession session = request.getSession(false);
+        // 나중에 ResponseEntity로 리턴되게 변경
+        WebDriverWait wait = restaurantService.getWait((String) session.getAttribute("memberId"));
+        restaurantService.selectCategory(category, wait);
+        return restaurantService.RsData(wait);
     }
 
     @PostMapping("/mozip/closeDriver")
-    public void categoryList() {
+    public void categoryList(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
         try {
-            restaurantService.quitDriver();
+            restaurantService.quitDriver((String) session.getAttribute("memberId"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -68,9 +76,12 @@ public class RestaurantsController {
         if(mozip.isPresent()) { //채팅방 id에 맞는 채팅방이 조회되었을 시
             if(mozip.get().getStore() == null) //선택한 가게가 없을 시
                 log.info("가게를 지정하지 않았습니다.");
+            String memberId = (String) session.getAttribute("memberId");
+            WebDriver driver = restaurantService.driver(memberId);
+            WebDriverWait wait = restaurantService.getWait(memberId);
 
             Future<Menu> m = restaurantService.menuList(mozip.get().getStore()
-                        , memberService.findLoginId(String.valueOf(session.getAttribute("memberId"))).get().getAddress());
+                        , memberService.findLoginId(memberId).get().getAddress(), driver, wait, (String) session.getAttribute("memberId"));
             Menu menu = m.get();
             return menu;
         }
