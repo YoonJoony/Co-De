@@ -102,6 +102,7 @@ public class RestaurantService {
 
 
     //가게 리스트 조회
+    @Async
     public List<Restuarant> RsData(WebDriverWait wait) {
         // 가게 이름과 최소주문금액을 저장할 리스트 생성
         Restuarant rs;
