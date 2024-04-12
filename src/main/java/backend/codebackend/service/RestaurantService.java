@@ -38,9 +38,9 @@ public class RestaurantService {
     public WebDriver driver(String memberId) {
         if (!drivers.containsKey(memberId)) {
             ChromeOptions options = new ChromeOptions();
-//            options.addArguments("--headless");
+            options.addArguments("--headless");
             options.addArguments("window-size=1400,1500");
-            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
+//            System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe"); //크롬 드라이버.exe 위치 지정
 
             WebDriver driver = new ChromeDriver(options);
             drivers.put(memberId, driver);
