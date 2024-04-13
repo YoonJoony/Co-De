@@ -23,8 +23,8 @@ public class RestaurantService {
     // TODO 수정사항(24.04.13) : 동시성 문제가 무조건 발생하는데 초기에 싱글톤 클래스에서 driver 인스턴스를 한개만 관리되게끔 만들어 놨음.
     //  이제 RestaurantService 객체는 한개만 실행되돼 각 driver,wait 인스턴스는 Map에서 여러개로 관리되게 수정함. (동시성 제어)
     private static RestaurantService restaurantService;
-    private Map<String, WebDriver> drivers = new HashMap<>(); // 접속한 세션으로 드라이버 세션 관리함.
-    private Map<String, WebDriverWait> waitMap = new HashMap<>(); // wait : 주로 페이지의 특정 요소가 나타나길 기다리는 용도.
+    private final Map<String, WebDriver> drivers = new HashMap<>(); // 접속한 세션으로 드라이버 세션 관리함.
+    private final Map<String, WebDriverWait> waitMap = new HashMap<>(); // wait : 주로 페이지의 특정 요소가 나타나길 기다리는 용도.
 
     // 싱글톤으로 객체 생성
     public static RestaurantService getInstance() {
@@ -49,9 +49,10 @@ public class RestaurantService {
     }
     // WebDriverWait을 세션을 비교하여 생성/가져오기
     public WebDriverWait getWait(String memberId) {
-        WebDriver driver = driver(memberId);
-        if(!waitMap.containsKey(memberId))
-            waitMap.put(memberId, new WebDriverWait(driver, Duration.ofSeconds(40)));
+        if(!waitMap.containsKey(memberId)) {
+            WebDriver driver = driver(memberId);
+            waitMap.put(memberId, new WebDriverWait(driver, Duration.ofSeconds(10)));
+        }
         return waitMap.get(memberId);
     }
 
@@ -161,6 +162,7 @@ public class RestaurantService {
         if (drivers.containsKey(memberId)) {
             WebDriver driver = drivers.get(memberId);
             driver.quit();
+            waitMap.remove(memberId);
             drivers.remove(memberId);
         }
     }

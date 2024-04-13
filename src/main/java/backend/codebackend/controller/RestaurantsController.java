@@ -29,10 +29,8 @@ import java.util.concurrent.Future;
 @RequiredArgsConstructor
 public class RestaurantsController {
     private final MemberService memberService;
-    private static RestaurantService restaurantService = RestaurantService.getInstance();
+    private final RestaurantService restaurantService = RestaurantService.getInstance();
     private final MozipRepository mozipRepository;
-    private final BasketService basketService;
-
 
     //사용자의 세션에 저장된 id를 통해 주소를 받아서 주소 출력
     @GetMapping("/mozip/storeList")
@@ -40,6 +38,7 @@ public class RestaurantsController {
     public List<Restuarant> storeList(HttpServletRequest request) throws InterruptedException {
         HttpSession session = request.getSession(false);
         String memberId = (String) session.getAttribute("memberId");
+
         WebDriver driver = restaurantService.driver(memberId);
         WebDriverWait wait = restaurantService.getWait(memberId);
         restaurantService.loadPage(driver);
