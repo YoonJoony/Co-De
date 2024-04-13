@@ -27,5 +27,5 @@ public class DeliveryInfo {
     @Column(nullable = true)
     int hostFee;     // 호스트 배달요금
     @Column(nullable = true)
-    int personalFee; // 호스트 제외인당 배다료금
+    int personalFee; // 호스트 제외인당 배달요금
 }
