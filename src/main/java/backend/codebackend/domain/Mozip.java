@@ -22,7 +22,7 @@ public class Mozip {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //DB가 ID를 자동으로 생성해 주는 전략 : IDENTITY
     private Long id;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 30, nullable = false)
     private String title;
 
     @Column(length = 10, nullable = false)
