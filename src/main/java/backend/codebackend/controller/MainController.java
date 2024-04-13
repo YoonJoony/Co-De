@@ -30,7 +30,7 @@ public class MainController {
     private final ChatUserService chatUserService;
     private final AccountService accountService;
     private final DeliveryInfoService deliveryInfoService;
-    private final RestaurantService restaurantService;
+    private final RestaurantService restaurantService = RestaurantService.getInstance();
 
     @GetMapping("/main_page.html")
     public String list(Model model, HttpServletRequest request) {
@@ -129,9 +129,9 @@ public class MainController {
 
         //배달비 조회 후 배달비 정보 엔티티 저장
         WebDriverWait wait = restaurantService.getWait(memberId);
-        WebDriver driver = restaurantService.driver(memberId);
         List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo(mozipStore, wait);
         deliveryInfoService.deliveryInfoSave(mozip, deliveryInfos.get(0), deliveryInfos.get(1));
+
         restaurantService.quitDriver(memberId);
 
         return ResponseEntity.ok(mozip);
