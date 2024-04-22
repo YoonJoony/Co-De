@@ -1,38 +1,35 @@
-const search_store_btn = document.querySelector("#add_store");
-const search_store_input_btn = document.querySelector(".storeName-input");
-search_store_btn.addEventListener("click", showStoreList);
-search_store_input_btn.addEventListener("click", showStoreList);
-
-var storeModal_body = document.querySelector(".storeModal_body");
-var loading_div = document.querySelector(".loading-div");
-
 var category;
 var choiceStore = null;
 
-let count = 0;
+// ----------- 가게 리스트 출력 부분 --------------
+var storeModal_body = document.querySelector(".storeModal_body"); // 가게 리스트 컴포넌트
+var loading_div = document.querySelector(".loading-div"); // 로딩창 컴포넌트
+
+const board_create_button = document.querySelector(".board-create-button"); // 가게 선택 버튼
+const storeName_input = document.querySelector(".storeName-input"); // 가게 텍스트 창
+const add_store = document.querySelector(".add_store"); // 작성하기 버튼
+
+storeName_input.addEventListener("click", showStoreList); // 가게 선택 버튼을 누르면 거개 선택 창이 켜짐.
+add_store.addEventListener("click", showStoreList);
+board_create_button.addEventListener("click", selenium); // 작성하기 버튼을 누르면 바로 크롤링이 실행됨.
 function showStoreList() {
   category = null;
-
   var con = document.querySelector(".storeModal");
-  con.style.display = "block";
-
-
-  selenium();
+  con.style.display = "block"; // 가게 선택 모달창 켜기
 }
 
 // 모집글 생성 시 가게 선택을 누를 경우 현재 등록된 주소 기준으로 가게 크롤링
 function selenium() {
-  while(storeModal_body.firstChild) {
-    storeModal_body.removeChild(storeModal_body.firstChild);
-  }
+    while (storeModal_body.firstChild) { // 크롤링 할때마다 가게 선택 모달창의 모든 가게들의 컴포넌트 다 지움
+        storeModal_body.removeChild(storeModal_body.firstChild);
+    }
 
-  loading_div.style.display = "block";
+    loading_div.style.display = "block"; // 가게 선택 창의 로딩 컴포넌트 켜기
 
     $.ajax({
         type : "GET",
         url : "/mozip/storeList",
         data : {
-
         },
         success: function(data) {
             for(let i = 0; i < data.length; i++) {
@@ -107,14 +104,13 @@ function selenium() {
                   store_list.appendChild(store_info_div);
                   store_list.appendChild(store_time_div);
 
-                  loading_div.style.display = "none";
+                  loading_div.style.display = "none"; // 가게 크롤링 로딩창 닫기
                   // storeModal_body
                   storeModal_body.appendChild(store_list);
               }
-              count = 1;
         },
-        error: function() {
-            console.log("리스트 요청 실패 : ");
+        error: function(response) {
+            console.log(response.responseText);
         }
     })
 }
@@ -124,7 +120,7 @@ function selenium_Category() {
   while(storeModal_body.firstChild) {
     storeModal_body.removeChild(storeModal_body.firstChild);
   }
-  loading_div.style.display = "block";
+  loading_div.style.display = "block"; // 가게 크롤링 로딩창 켜기
 
     $.ajax({
         type : "GET",
@@ -206,11 +202,10 @@ function selenium_Category() {
                   store_list.appendChild(store_time_div);
 
 
-                  loading_div.style.display = "none";
+                  loading_div.style.display = "none"; // 가게 크롤링 로딩창 닫기
                   // storeModal_body
                   storeModal_body.appendChild(store_list);
               }
-              count = 1;
         },
         error: function() {
             console.log("리스트 요청 실패 : ");
@@ -276,14 +271,14 @@ function category_store_list(select_category){
 
 
 function closeStoreList(flag) {
-  var con = document.querySelector(".storeModal");
-  if (con.style.display == "block") {
-    con.style.display = "none";
-  }
+    var con = document.querySelector(".storeModal");
+    if (con.style.display === "block") {
+      con.style.display = "none";
+    }
 
-  if (flag === 1) {
-      closeDriver();
-  }
+    if (flag === 1) {
+        closeDriver();
+    }
 }
 
 function closeDriver() {
@@ -303,8 +298,9 @@ function closeDriver() {
 
 
 // 새로고침 하거나 페이지가 닫힐 시 탐색되는 크롤링 크롬 페이지 닫기
-window.addEventListener('beforeunload', function (e) {
-    closeDriver()
+window.addEventListener('beforeunload', function () {
+    closeDriver();
+    isStoreDataLoaded = false;
 });
 
 
@@ -436,7 +432,7 @@ function createMozip() {
                        data: {
                        },
                        async: false,
-                       success: function (result) {
+                       success: function () {
                            location.href = "/mozip/chat/room?id=" + mozip.id;
                        },
                        error: function () {
@@ -511,7 +507,7 @@ function enterRoom() {
             data: {
             },
             async: false,
-            success: function (result) {
+            success: function () {
                 location.href = "/mozip/chat/room?id=" + id;
             },
             error: function () {
