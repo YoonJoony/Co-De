@@ -16,10 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.setAllowComparingPrivateFields;
@@ -109,32 +109,29 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("가게 정보 조회 테스트")
 	void 가게정보조회() throws InterruptedException {
-		Member member = memberService.findLoginId("1234").get();
-		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		String category = "";
+		ExecutorService executorService = Executors.newFixedThreadPool(8);
+		CountDownLatch latch = new CountDownLatch(8);
+		List<String> logingIds = Arrays.asList("1234", "1231", "12312", "qwe1234", "123", "12", "asd", "12345");
+		for (String loginId : logingIds) {
+			executorService.execute(() -> {
+				Member member = memberService.findLoginId(loginId).get();
+				System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
 
-		RestaurantService restaurantService = new RestaurantService();
-		WebDriver driver = restaurantService.driver(member.getLogin());
-		WebDriverWait wait = restaurantService.getWait(member.getLogin());
-		restaurantService.loadPage(driver);
-		restaurantService.searchAddress("경기도 고양시 일산동구 장항동 578-2 장항1동주민센터", driver, wait);
+				RestaurantService restaurantService = new RestaurantService();
+				WebDriver driver = restaurantService.driver(member.getLogin());
+				WebDriverWait wait = restaurantService.getWait(member.getLogin());
+				restaurantService.loadPage(driver);
+				restaurantService.searchAddress(member.getAddress(), driver, wait);
 
-		List<Restuarant> rs =restaurantService.RsData(wait);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
+				List<Restuarant> rs = restaurantService.RsData(wait);
+
+				System.out.println(member.getUsername() + " 스레드의 가게 개수 : " + rs.size());
+
+				restaurantService.quitDriver(member.getLogin()); //드라이버 종료
+				latch.countDown();
+			});
 		}
-
-		for(int i = 0; i < rs.size(); i++) {
-			System.out.println("가게 이름 : " + rs.get(i).getTitle());
-			System.out.println("최소 주문 금액 : " + rs.get(i).getMinPrice());
-			System.out.println("이미지 url : " + rs.get(i).getImageUrl());
-			System.out.println("별점 : " + rs.get(i).getIcoStar());
-			System.out.println("리뷰 개수 : " + rs.get(i).getReview_num());
-			System.out.println("배달예정시각 : " + rs.get(i).getDeliveryTime());
-		}
-		restaurantService.quitDriver(member.getLogin()); //드라이버 종료
+		latch.await();
 	}
 
 	@Test
