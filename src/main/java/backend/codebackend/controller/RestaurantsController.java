@@ -4,16 +4,15 @@ import backend.codebackend.domain.Menu;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.Restuarant;
 import backend.codebackend.repository.MozipRepository;
-import backend.codebackend.service.BasketService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.RestaurantService;
-import com.google.api.Http;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +33,7 @@ public class RestaurantsController {
 
     //사용자의 세션에 저장된 id를 통해 주소를 받아서 주소 출력
     @GetMapping("/mozip/storeList")
-    @ResponseBody
-    public List<Restuarant> storeList(HttpServletRequest request) throws InterruptedException {
+    public ResponseEntity<?> storeList(HttpServletRequest request) throws InterruptedException {
         HttpSession session = request.getSession(false);
         String memberId = (String) session.getAttribute("memberId");
 
@@ -43,7 +41,11 @@ public class RestaurantsController {
         WebDriverWait wait = restaurantService.getWait(memberId);
         restaurantService.loadPage(driver);
         restaurantService.searchAddress(memberService.findLoginId(memberId).get().getAddress(), driver, wait);
-        return restaurantService.RsData(wait);
+        List<Restuarant> restaurants = restaurantService.RsData(wait);
+        if(restaurants.isEmpty())
+            return ResponseEntity.badRequest().body("주변 가게가 존재하지 않거나 크롤링 오류");
+        else
+            return ResponseEntity.ok(restaurants);
     }
 
     @GetMapping("/mozip/categoryList")
