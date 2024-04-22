@@ -2,7 +2,6 @@ package backend.codebackend.service;
 
 import backend.codebackend.domain.Menu;
 import backend.codebackend.domain.Restuarant;
-import jakarta.servlet.http.HttpSession;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -103,11 +102,10 @@ public class RestaurantService {
 
 
     //가게 리스트 조회
-    @Async
     public List<Restuarant> RsData(WebDriverWait wait) {
         // 가게 이름과 최소주문금액을 저장할 리스트 생성
         Restuarant rs;
-        List<Restuarant> rsList = new ArrayList<Restuarant>();
+        List<Restuarant> rsList = new ArrayList<>();
         // 웹 페이지에서 restaurant-name 클래스를 가진 모든 요소를 선택하여 restaurants 리스트에 저장
         List<WebElement> restaurants = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("restaurant-name")));
 
@@ -207,8 +205,8 @@ public class RestaurantService {
         List<WebElement> restaurants = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("restaurant-name")));
 
         menu2 = Menu.builder()
-                .menuList_Title(new ArrayList<List<Menu>>())
-                .menuList_Title_Name(new ArrayList<String>())
+                .menuList_Title(new ArrayList<>())
+                .menuList_Title_Name(new ArrayList<>())
                 .build();
         menu2.getMenuList_Title_Name().add("🔥 인기메뉴");
 
