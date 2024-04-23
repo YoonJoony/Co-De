@@ -124,7 +124,7 @@ function onConnected() {
   connectingElement.style.color = "#32e12f";
 }
 
-function onError(error) {
+function onError() {
   console.log("실패!!");
   connectingElement.innerText = "Offline";
   connectingElement.style.color = "#ff4a4a";
@@ -146,8 +146,7 @@ function getUserList() {
       id: id,
     },
     success: function (data) {
-      const $user_list = $("#user-list");
-      var inviteTag = "";
+      var inviteTag;
       console.log("데이터 받기 성공 : " + data[0]);
 
       while (userList.firstChild) {
@@ -544,7 +543,7 @@ $(function () {
 //  return RoomId;
 //}
 
-/* 메뉴 리스트 */
+/* ---------------메뉴 리스트 조회 ----------------------*/
 var menu_body = document.querySelector(".menu-body");
 var loading_div = document.querySelector(".loading-div");
 var min_price = document.querySelector(".min_price");
@@ -555,15 +554,15 @@ function menuList() {
 
   $.ajax({
     type: "GET",
-    url: "/chat/menuList",
+    url: "/chat/mozip/menuListSelect",
     data: {
-      roomId: id,
+      "roomId": id
     },
     success: function (data) {
       min_price.textContent = data.minPrice; //최소 주문금액
       delivery_fee.textContent = data.delivery_fee; //배달비
 
-      for (let i = 0; i < data.menuList_Title.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         //메뉴 그룹(인기메뉴)
         var menu_group = document.createElement("div");
         menu_group.classList.add("menu-group");
@@ -572,16 +571,14 @@ function menuList() {
         menu_group_topper.classList.add("menu-group-topper");
         var menu_group_title = document.createElement("div");
         menu_group_title.classList.add("menu-group-title");
-        var menu_group_title_text = document.createTextNode(
-          data.menuList_Title_Name[i]
-        );
+        var menu_group_title_text = document.createTextNode(data[i][0].menuTitle);
 
         menu_group_title.appendChild(menu_group_title_text);
         menu_group_topper.appendChild(menu_group_title);
         menu_group.appendChild(menu_group_topper);
 
         //메뉴 타이틀별로(인기메뉴, 등등) 메뉴 리스트가 저장된 리스트 저장.
-        var menuList = data.menuList_Title[i];
+        var menuList = data[i];
         for (let j = 0; j < menuList.length; j++) {
           //메뉴가 저장된 리스트 저장.
           var menuItem = menuList[j];
