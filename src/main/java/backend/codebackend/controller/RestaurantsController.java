@@ -1,10 +1,12 @@
 package backend.codebackend.controller;
 
+import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Menu;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.Restuarant;
 import backend.codebackend.repository.MozipRepository;
 import backend.codebackend.service.MemberService;
+import backend.codebackend.service.MenuService;
 import backend.codebackend.service.RestaurantService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -20,8 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 @Controller
 @Slf4j
@@ -30,17 +32,20 @@ public class RestaurantsController {
     private final MemberService memberService;
     private final RestaurantService restaurantService = RestaurantService.getInstance();
     private final MozipRepository mozipRepository;
+    private final MenuService menuService;
 
-    //사용자의 세션에 저장된 id를 통해 주소를 받아서 주소 출력
     @GetMapping("/mozip/storeList")
     public ResponseEntity<?> storeList(HttpServletRequest request) throws InterruptedException {
         HttpSession session = request.getSession(false);
         String memberId = (String) session.getAttribute("memberId");
+        Optional<Member> member = memberService.findLoginId(memberId);
+        if(member.isEmpty())
+            return ResponseEntity.badRequest().body("사용자가 조회되지 않습니다.");
 
         WebDriver driver = restaurantService.driver(memberId);
         WebDriverWait wait = restaurantService.getWait(memberId);
         restaurantService.loadPage(driver);
-        restaurantService.searchAddress(memberService.findLoginId(memberId).get().getAddress(), driver, wait);
+        restaurantService.searchAddress(member.get().getAddress(), driver, wait);
         List<Restuarant> restaurants = restaurantService.RsData(wait);
         if(restaurants.isEmpty())
             return ResponseEntity.badRequest().body("주변 가게가 존재하지 않거나 크롤링 오류");
@@ -68,27 +73,42 @@ public class RestaurantsController {
         }
     }
 
-    @GetMapping("/chat/menuList")
-    @ResponseBody
-    public Menu menuList(Long roomId, HttpServletRequest request) throws ExecutionException, InterruptedException {
+    @PostMapping("/mozip/menuList")
+    public ResponseEntity<?> menuList(Long mozipId, HttpServletRequest request) throws ExecutionException, InterruptedException {
         HttpSession session = request.getSession(false);
-        Optional<Mozip> mozip = mozipRepository.findById(roomId);
+        Optional<Mozip> mozip = mozipRepository.findById(mozipId);
 
-        if(mozip.isPresent()) { //채팅방 id에 맞는 채팅방이 조회되었을 시
-            if(mozip.get().getStore() == null) //선택한 가게가 없을 시
-                log.info("가게를 지정하지 않았습니다.");
+        if(mozip.isPresent()) {
             String memberId = (String) session.getAttribute("memberId");
             WebDriver driver = restaurantService.driver(memberId);
             WebDriverWait wait = restaurantService.getWait(memberId);
 
-            Future<Menu> m = restaurantService.menuList(mozip.get().getStore()
-                        , memberService.findLoginId(memberId).get().getAddress(), driver, wait, (String) session.getAttribute("memberId"));
-            Menu menu = m.get();
-            return menu;
+            CompletableFuture<List<Menu>> future = restaurantService.menuList(mozip.get(), driver, wait, memberId);
+            List<Menu> menus = future.get();
+
+            menuService.menuSave(menus);
+
+            if(menus.isEmpty())
+                return ResponseEntity.badRequest().body("메뉴가 제대로 되지 않았습니다.");
+            else
+                return ResponseEntity.ok("메뉴가 성공적으로 저장 되었습니다.");
         }
 
-        log.info("채팅방이 조회되지 않습니다.");
-        return null;
+        return ResponseEntity.badRequest().body("채팅방이 조회되지 않았습니다.");
     }
 
+    @GetMapping("/chat/mozip/menuListSelect")
+    public ResponseEntity<?> menuListSelect(Long roomId) {
+        Optional<Mozip> mozip = mozipRepository.findById(roomId);
+
+        if(mozip.isPresent()) {
+            List<List<Menu>> menuSelect = menuService.menuListSelect(mozip.get().getId());
+            if(menuSelect.isEmpty())
+                return ResponseEntity.badRequest().body("메뉴가 조회되지 않습니다.");
+
+            return ResponseEntity.ok(menuSelect);
+        }
+
+        return ResponseEntity.badRequest().body("채팅방이 조회되지 않았습니다.");
+    }
 }

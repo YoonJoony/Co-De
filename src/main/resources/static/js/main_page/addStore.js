@@ -414,41 +414,51 @@ function createMozip() {
     }
 
     // ----------서버에 모집글 정보 전송------------
-    $.ajax({
-           type : "POST",
-           url : "/mozip",
-           data : {
+    createMozipAndJoinRoom();
+}
+
+async function createMozipAndJoinRoom() {
+    try {
+        const mozip = await $.ajax({
+            type: "POST",
+            url: "/mozip",
+            data: {
                 "mozipTitle" : mozipTitle,
                 "mozipRange" : mozipRange,
                 "mozipCategory" : mozipCategory,
                 "mozipStore" : mozipStore,
                 "mozipPeople" : mozipPeople,
-           },
-           success: function(mozip) {
-               if (chkRoomUserCnt(mozip.id, mozip.nickname)) {
-                   $.ajax({
-                       type: "GET",
-                       url: "/mozip/chat/room?id=" + mozip.id,
-                       data: {
-                       },
-                       async: false,
-                       success: function () {
-                           location.href = "/mozip/chat/room?id=" + mozip.id;
-                       },
-                       error: function () {
-                           alert("실패!");
-                       }
-                   })
-               }
-               console.log("모집글 생성 성공");
-           },
-           error: function(data) {
-               var response = JSON.parse(data.responseText);
-               alert(response.message);
-               console.log(response.message);
-           }
-     })
+            }
+        });
+
+        console.log("모집글 생성 성공.");
+
+        // 메뉴 리스트 크롤링은 작업이 오래 걸리므로 await 없이 비동기로 실행.
+        await $.ajax({
+            type: "POST",
+            url: "/mozip/menuList",
+            data: {
+                "mozipId" : mozip.id
+            }
+        })
+
+        console.log(mozip.id);
+
+        if (chkRoomUserCnt(mozip.id, mozip.nickname)) {
+            await $.ajax({
+                type: "GET",
+                url: "/mozip/chat/room?id=" + mozip.id
+            });
+
+            location.href = "/mozip/chat/room?id=" + mozip.id;
+        }
+    } catch (error) {
+        alert(error.responseText);
+        console.log(error.responseText);
+    }
 }
+
+
 
 // ---------------- 모집글 입장 시 ------------
 let id;
