@@ -1,7 +1,9 @@
 package backend.codebackend;
 
+import backend.codebackend.controller.MainController;
 import backend.codebackend.domain.*;
 import backend.codebackend.dto.ChatDTO;
+import backend.codebackend.dto.MozipForm;
 import backend.codebackend.dto.PaymentDetailsDto;
 import backend.codebackend.dto.TotalPrice;
 import backend.codebackend.repository.BasketRepository;
@@ -16,13 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
+import java.util.*;
+import java.util.concurrent.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.setAllowComparingPrivateFields;
 
 
 @SpringBootTest
@@ -44,16 +42,61 @@ class CodeBackendApplicationTests {
 	MozipService mozipService;
 	@Autowired
 	PaymentsDetailsService paymentsDetailsService;
+	@Autowired
+	MenuService menuService;
+	@Autowired
+	MainController mainController;
+	@Autowired
+	DeliveryInfoService deliveryInfoService;
 
 	@Test
-	@DisplayName("유저 리스트 조회")
-	void 유저리스트조회() {
-		List<String> result = chatUserService.getUserList(87L);
-		List<String> result2 = chatUserService.getUserList(88L);
+	@DisplayName("모집글 생성 테스트")
+	void 모집글생성() throws InterruptedException {
+		Member member = memberService.findLoginId("1234").get();
+		Mozip mozip1 = mozipService.findRoomById(1L).get();
 
-		System.out.println(result);
-		System.out.println(result2);
+		String mozipTitle = "모집글 생성 테스트";
+		int mozipRange = 300;
+		String mozipCategory = "양식";
+		String mozipStore = mozip1.getStore();
+		int mozipPeople = 3;
+
+		String nickname = member.getNickname();
+		//기존에 생성한 방이 있을 경우 생성 제한
+		if (mozipService.findNickName(nickname).isPresent())
+			System.out.println("모집글은 한개만 생성 가능합니다!");
+
+		MozipForm mozipForm = MozipForm.builder()
+				.title(mozipTitle)
+				.distance_limit((long) mozipRange)
+				.categories(mozipCategory)
+				.store(mozipStore)
+				.peoples(mozipPeople)
+				.nickname(nickname)
+				.build();
+
+		Mozip mozip2 = mozipService.savePost(mozipForm);
+		chatUserService.addUser(mozip2.getId(), nickname);
+
+		WebDriver driver = restaurantService.driver(member.getLogin());
+		WebDriverWait wait = restaurantService.getWait(member.getLogin());
+
+		restaurantService.loadPage(driver);
+		restaurantService.searchAddress(member.getAddress(), driver, wait);
+
+		//배달비 조회 후 배달비 정보 엔티티 저장
+		List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo(mozipStore, wait);
+		deliveryInfoService.deliveryInfoSave(mozip2, deliveryInfos.get(0), deliveryInfos.get(1));
+		Long id = mozip2.getId();
+
+		//정산 상태 확인
+		if (mozipService.mozipStatus(id) && chatUserService.isDuplicateName(id, nickname)) {
+			System.out.println("정산 시작된 상태입니다!");
+		}
+
+		System.out.println("입장 성공!!" + id);
 	}
+
 	@Test
 	@DisplayName("모집글 중복 생성 조회")
 	void 모집글중복조회() {
@@ -109,49 +152,43 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("가게 정보 조회 테스트")
 	void 가게정보조회() throws InterruptedException {
-		Member member = memberService.findLoginId("1234").get();
-		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		String category = "";
+		ExecutorService executorService = Executors.newFixedThreadPool(8);
+		CountDownLatch latch = new CountDownLatch(8);
+		List<String> logingIds = Arrays.asList("1234", "1231", "12312", "qwe1234", "123", "12", "asd", "12345");
+		for (String loginId : logingIds) {
+			executorService.execute(() -> {
+				Member member = memberService.findLoginId(loginId).get();
+				System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
 
-		RestaurantService restaurantService = new RestaurantService();
-		WebDriver driver = restaurantService.driver(member.getLogin());
-		WebDriverWait wait = restaurantService.getWait(member.getLogin());
-		restaurantService.loadPage(driver);
-		restaurantService.searchAddress("경기도 고양시 일산동구 장항동 578-2 장항1동주민센터", driver, wait);
+				RestaurantService restaurantService = new RestaurantService();
+				WebDriver driver = restaurantService.driver(member.getLogin());
+				WebDriverWait wait = restaurantService.getWait(member.getLogin());
+				restaurantService.loadPage(driver);
+				restaurantService.searchAddress(member.getAddress(), driver, wait);
 
-		List<Restuarant> rs =restaurantService.RsData(wait);
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
+				List<Restuarant> rs = restaurantService.RsData(wait);
+
+				System.out.println(member.getUsername() + " 스레드의 가게 개수 : " + rs.size());
+
+				restaurantService.quitDriver(member.getLogin()); //드라이버 종료
+				latch.countDown();
+			});
 		}
-
-		for(int i = 0; i < rs.size(); i++) {
-			System.out.println("가게 이름 : " + rs.get(i).getTitle());
-			System.out.println("최소 주문 금액 : " + rs.get(i).getMinPrice());
-			System.out.println("이미지 url : " + rs.get(i).getImageUrl());
-			System.out.println("별점 : " + rs.get(i).getIcoStar());
-			System.out.println("리뷰 개수 : " + rs.get(i).getReview_num());
-			System.out.println("배달예정시각 : " + rs.get(i).getDeliveryTime());
-		}
-		restaurantService.quitDriver(member.getLogin()); //드라이버 종료
+		latch.await();
 	}
 
 	@Test
 	@DisplayName("배달비, 최소주문금액 조회")
 	void 배달비정보조회() throws InterruptedException {
 		Member member = memberService.findLoginId("1234").get();
-		System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
-		String category = "";
+		Mozip mozip = mozipService.findRoomById(1L).get();
 
-		RestaurantService restaurantService = new RestaurantService();
 		WebDriver driver = restaurantService.driver(member.getLogin());
 		WebDriverWait wait = restaurantService.getWait(member.getLogin());
+
 		restaurantService.loadPage(driver);
-
-		restaurantService.searchAddress("서울특별시 은평구 불광동 산 42-1 각황사", driver, wait);
-
-		List<Integer> deInfo = restaurantService.searchDeliveryInfo("본스치킨-불광북한산점", wait);
+		restaurantService.searchAddress(member.getAddress(), driver, wait);
+		List<Integer> deInfo = restaurantService.searchDeliveryInfo(mozip.getStore(), wait);
 
 		System.out.println("최소주문금액 : " + deInfo.get(0));
 		System.out.println("배달비 : " + deInfo.get(1));
@@ -162,30 +199,38 @@ class CodeBackendApplicationTests {
 	@SneakyThrows
 	@Test
 	@DisplayName("메뉴 리스트 조회 테스트")
-	void 메뉴리스트조회() {
+	void 메뉴리스트조회() throws Exception{
 		try {
 			Member member = memberService.findLoginId("1234").get();
-			System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
+			Mozip mozip = mozipService.findRoomById(1L).get();
 
 			WebDriver driver = restaurantService.driver(member.getLogin());
 			WebDriverWait wait = restaurantService.getWait(member.getLogin());
-			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress(), driver, wait, member.getLogin());
-			Menu menu = m.get();
 
-			for (int i = 0; i < menu.getMenuList_Title().size(); i++) {
-				System.out.println("\n\n[" + menu.getMenuList_Title_Name().get(i) + "]");
-				for (int j = 0; j < menu.getMenuList_Title().get(i).size(); j++) {
-					System.out.println("메뉴 이름 : " + menu.getMenuList_Title().get(i).get(j).getMenuName());
-					System.out.println("메뉴 정보 : " + menu.getMenuList_Title().get(i).get(j).getMenuDesc());
-					System.out.println("메뉴 가격 : " + menu.getMenuList_Title().get(i).get(j).getMenuPrice());
-					System.out.println("메뉴 사진 :  " + menu.getMenuList_Title().get(i).get(j).getMenuPhoto());
-				}
-			}
+			restaurantService.loadPage(driver);
+			restaurantService.searchAddress(member.getAddress(), driver, wait);
+			restaurantService.searchDeliveryInfo(mozip.getStore(), wait);
+
+			CompletableFuture<List<Menu>> future = restaurantService.menuList(mozip, driver, wait, member.getLogin());
+			List<Menu> menus = future.get();
+
+			menuService.menuSave(menus);
+			List<List<Menu>> menuSelect = menuService.menuListSelect(mozip.getId());
+
+			if (menuSelect.isEmpty())
+				System.out.println("데이터 조회 안됨");
+
+            for (List<Menu> menuList : menuSelect) {
+                System.out.println("[" + menuList.get(0).getMenuTitle() + "]");
+                for (Menu menu : menuList) {
+                    System.out.println(menu.getMenuName());
+                    System.out.println(menu.getMenuPrice());
+                }
+                System.out.println();
+            }
+
 		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		} catch (ExecutionException e) {
-			// ExecutionException 처리 코드
-			e.printStackTrace(); // 예외 스택 트레이스 출력
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -193,22 +238,22 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("최소 주문 금액 및 배달 금액 크롤링 테스트")
 	void 배달정보조회() {
-		try{
+		try {
 			Member member = memberService.findLoginId("1234").get();
 			System.out.println(member + "님의 주소는 : " + member.getAddress() + "입니다.");
 
 			WebDriver driver = restaurantService.driver(member.getLogin());
 			WebDriverWait wait = restaurantService.getWait(member.getLogin());
-			Future<Menu> m = restaurantService.menuList("24시장안성", member.getAddress(), driver, wait, member.getLogin());
-			Menu menu = m.get();
 
-			System.out.println("최소 주문 금액 : " + menu.getMinPrice());
-			System.out.println("배달 요금 : " + menu.getDelivery_fee());
+			List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo("24시장안성", wait);
+			restaurantService.loadPage(driver);
+			restaurantService.searchAddress(member.getAddress(), driver, wait);
+
+			for (Integer deliveryInfo : deliveryInfos) {
+				System.out.println(deliveryInfo);
+			}
 		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		} catch (ExecutionException e) {
-			// ExecutionException 처리 코드
-			e.printStackTrace(); // 예외 스택 트레이스 출력
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -261,7 +306,7 @@ class CodeBackendApplicationTests {
 	@Test
 	@DisplayName("방 정산 상태 조회")
 	void 정산상태() {
-		System.out.println(mozipService.mozipStatus(95L));
+		System.out.println(mozipService.mozipStatus(22L));
 	}
 
 	@Test

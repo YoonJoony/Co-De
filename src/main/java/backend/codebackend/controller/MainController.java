@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -96,14 +95,13 @@ public class MainController {
 
     //모집글 생성
     @PostMapping("/mozip")
-    @ResponseBody
     public ResponseEntity<?> createMozip(String mozipTitle, int mozipRange, String mozipCategory, String mozipStore, int mozipPeople, HttpServletRequest request) throws InterruptedException { //세션에 저장된 id값의 닉네임을 가져오기 위해 request 선언
         HttpSession session = request.getSession(false);
         if (session == null) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "세션이 없습니다. 다시 로그인 해주세요."));
         }
         String memberId = (String) session.getAttribute("memberId");
-        //세션을 통한 닉네임 조회
+
         Optional<Member> member = memberService.findLoginId(memberId);
         if (member.isEmpty())
             return ResponseEntity.badRequest().body(Collections.singletonMap("message", "사용자가 조회되지 않습니다."));
@@ -122,18 +120,13 @@ public class MainController {
                 .nickname(nickname)
                 .build();
 
-        //세션ID에 저장된 로그인 한 ID를 가져온 후 memberSerice에서 해당 로그인 ID에 해당하는 nickname 가져옴
         Mozip mozip = mozipService.savePost(mozipForm);
-        //채팅방에 방 생성자 추가
         chatUserService.addUser(mozip.getId(), nickname);
 
         //배달비 조회 후 배달비 정보 엔티티 저장
         WebDriverWait wait = restaurantService.getWait(memberId);
         List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo(mozipStore, wait);
         deliveryInfoService.deliveryInfoSave(mozip, deliveryInfos.get(0), deliveryInfos.get(1));
-
-        restaurantService.quitDriver(memberId);
-
         return ResponseEntity.ok(mozip);
     }
 
