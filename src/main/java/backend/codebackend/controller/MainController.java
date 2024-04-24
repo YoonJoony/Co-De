@@ -126,7 +126,7 @@ public class MainController {
         //배달비 조회 후 배달비 정보 엔티티 저장
         WebDriverWait wait = restaurantService.getWait(memberId);
         List<Integer> deliveryInfos = restaurantService.searchDeliveryInfo(mozipStore, wait);
-        deliveryInfoService.deliveryInfoSave(mozip, deliveryInfos.get(0), deliveryInfos.get(1));
+        deliveryInfoService.deliveryInfoSave(mozip, deliveryInfos.get(1), deliveryInfos.get(0));
         return ResponseEntity.ok(mozip);
     }
 

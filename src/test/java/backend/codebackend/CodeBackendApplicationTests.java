@@ -195,6 +195,13 @@ class CodeBackendApplicationTests {
 		restaurantService.quitDriver(member.getLogin()); //드라이버 종료
 	}
 
+	@Test
+	@DisplayName("DB에서 배달비 조회")
+	void DB에서배달비정보조회() {
+		DeliveryInfo deliveryInfo = deliveryInfoService.deliveryInfoSelect(16L);
+		System.out.println(deliveryInfo.getDeliveryFee());
+	}
+
 
 	@SneakyThrows
 	@Test
@@ -233,6 +240,28 @@ class CodeBackendApplicationTests {
 			System.out.println(e.getMessage());
 		}
 	}
+
+	@SneakyThrows
+	@Test
+	@DisplayName("메뉴 리스트 조회 실패 테스트")
+	void 메뉴리스트조회실패() throws Exception{
+        Mozip mozip = mozipService.findRoomById(1L).get();
+
+        List<List<Menu>> menuSelect = menuService.menuListSelect(mozip.getId());
+
+        if (menuSelect.isEmpty())
+            System.out.println("데이터 조회 안됨");
+
+        for (List<Menu> menuList : menuSelect) {
+            System.out.println("[" + menuList.get(0).getMenuTitle() + "]");
+            for (Menu menu : menuList) {
+                System.out.println(menu.getMenuName());
+                System.out.println(menu.getMenuPrice());
+            }
+            System.out.println();
+        }
+
+    }
 
 	@SneakyThrows
 	@Test
