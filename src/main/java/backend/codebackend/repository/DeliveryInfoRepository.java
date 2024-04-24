@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DeliveryInfoRepository extends JpaRepository<DeliveryInfo, Long> {
+    DeliveryInfo findByMozipId_Id(Long mozipId);
 }
