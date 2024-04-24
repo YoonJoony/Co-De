@@ -5,6 +5,7 @@ import backend.codebackend.domain.Menu;
 import backend.codebackend.domain.Mozip;
 import backend.codebackend.domain.Restuarant;
 import backend.codebackend.repository.MozipRepository;
+import backend.codebackend.service.DeliveryInfoService;
 import backend.codebackend.service.MemberService;
 import backend.codebackend.service.MenuService;
 import backend.codebackend.service.RestaurantService;
@@ -33,6 +34,7 @@ public class RestaurantsController {
     private final RestaurantService restaurantService = RestaurantService.getInstance();
     private final MozipRepository mozipRepository;
     private final MenuService menuService;
+    private final DeliveryInfoService deliveryInfoService;
 
     @GetMapping("/mozip/storeList")
     public ResponseEntity<?> storeList(HttpServletRequest request) throws InterruptedException {
@@ -98,17 +100,32 @@ public class RestaurantsController {
     }
 
     @GetMapping("/chat/mozip/menuListSelect")
-    public ResponseEntity<?> menuListSelect(Long roomId) {
+    public ResponseEntity<?> menuListSelect(Long roomId, HttpServletRequest request) throws InterruptedException, ExecutionException {
         Optional<Mozip> mozip = mozipRepository.findById(roomId);
-
         if(mozip.isPresent()) {
             List<List<Menu>> menuSelect = menuService.menuListSelect(mozip.get().getId());
-            if(menuSelect.isEmpty())
-                return ResponseEntity.badRequest().body("메뉴가 조회되지 않습니다.");
+            if(menuSelect.isEmpty()) { // 메뉴 리스트가 DB에 존재하지 않으면 다시 크롤링하여 메뉴 리스트 반환함.
+                HttpSession session = request.getSession(false);
+                String memberId = (String) session.getAttribute("memberId");
+                Member member = memberService.findByName(mozip.get().getNickname()).get();
 
+                WebDriver driver = restaurantService.driver(memberId);
+                WebDriverWait wait = restaurantService.getWait(memberId);
+
+                restaurantService.loadPage(driver);
+                restaurantService.searchAddress(member.getAddress(), driver, wait);
+                List<Integer> deliveryInfo = restaurantService.searchDeliveryInfo(mozip.get().getStore(), wait);
+                deliveryInfoService.deliveryInfoSave(mozip.get(), deliveryInfo.get(1), deliveryInfo.get(0));
+
+                CompletableFuture<List<Menu>> future = restaurantService.menuList(mozip.get(), driver, wait, memberId);
+                List<Menu> menus = future.get();
+
+                menuService.menuSave(menus);
+                menuService.menuListSelect(mozip.get().getId());
+                return ResponseEntity.ok(menuService.menuCombination(menus));
+            }
             return ResponseEntity.ok(menuSelect);
         }
-
         return ResponseEntity.badRequest().body("채팅방이 조회되지 않았습니다.");
     }
 }
