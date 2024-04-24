@@ -19,9 +19,7 @@ public class MenuService {
         menuRepository.saveAll(menus);
     }
 
-    public List<List<Menu>> menuListSelect(Long mozipId) {
-        List<Menu> menus = menuRepository.findByMozipId_Id(mozipId);
-
+    public List<List<Menu>> menuCombination(List<Menu> menus) {
         List<List<Menu>> menusList = new ArrayList<>();
         List<Menu> menuEqualsTitle = new ArrayList<>();
 
@@ -36,7 +34,11 @@ public class MenuService {
                 menuEqualsTitle.add(value);
             }
         }
-
         return menusList;
+    }
+
+    public List<List<Menu>> menuListSelect(Long mozipId) {
+        List<Menu> menus = menuRepository.findByMozipId_Id(mozipId);
+        return menuCombination(menus);
     }
 }

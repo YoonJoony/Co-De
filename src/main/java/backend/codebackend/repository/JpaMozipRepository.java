@@ -1,8 +1,5 @@
 package backend.codebackend.repository;
 
-import backend.codebackend.domain.Basket;
-import backend.codebackend.domain.ChatUser;
-import backend.codebackend.domain.Member;
 import backend.codebackend.domain.Mozip;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -45,7 +42,7 @@ public class JpaMozipRepository implements MozipRepository {
 
     @Override
     public List<Mozip> findAll() {
-        TypedQuery typedQuery = em.createQuery("select m from Mozip m order by m.create_Date desc", Mozip.class); //테이블 생성시간 역순으로 조회
+        TypedQuery<Mozip> typedQuery = em.createQuery("select m from Mozip m order by m.create_Date desc", Mozip.class); //테이블 생성시간 역순으로 조회
         return typedQuery.getResultList();
         /*
         return em.createQuery("select m from Member m", Member.class) //객체를 대상으로 쿼리를 날림. m이 sql로 번역됨
@@ -83,9 +80,10 @@ public class JpaMozipRepository implements MozipRepository {
     public boolean mozipStatus(Long id) {
         try {
             String jpql = "SELECT m FROM Mozip m WHERE m.id = :id";
-            TypedQuery<Mozip> query = em.createQuery(jpql, Mozip.class);
-            query.setParameter("id", id);
-            return query.getSingleResult().getStatus() != Mozip.mozipStatus.정산전;
+            Mozip query = em.createQuery(jpql, Mozip.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+            return query.getStatus() != Mozip.mozipStatus.정산전;
         } finally {
             em.close();
         }

@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -21,5 +23,9 @@ public class DeliveryInfoService {
                 .build();
 
         deliveryInfoRepository.save(deliveryInfo);
+    }
+
+    public DeliveryInfo deliveryInfoSelect(Long roomId) {
+        return deliveryInfoRepository.findByMozipId_Id(roomId);
     }
 }
