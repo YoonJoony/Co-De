@@ -172,11 +172,6 @@ function getUserList() {
         var users = document.createTextNode(data[i]);
         chatUser.appendChild(users);
 
-        //니가 호스트일 경우
-        //                if (findHost(id, nickname)){
-        //                    chatUser.id = "host";
-        //                }
-
         var exileButton = document.createElement("img");
         exileButton.src = "/images/out.png";
         exileButton.classList.add("exile-button");
@@ -528,113 +523,108 @@ window.onload = function () {
 
 messageForm.addEventListener("submit", sendMessage, true); //messageForm 리스너에 sendMessage 함수 연결
 
-$(function () {
-  //헤더부분 '내 채팅' 에서 자기 방 들어가게 하기.
-  //    $mozipPage.click(function() {
-  //      location.href = "/mozip/chat/room?id="+findRoomId(nickname);
-  //    });
-});
-
-//자기 입장한 방 번호 찾기 함수
-//function findRoomId(nickname) {
-//    $.ajax({
-//        ...
-//    })
-//  return RoomId;
-//}
-
 /* ---------------메뉴 리스트 조회 ----------------------*/
 var menu_body = document.querySelector(".menu-body");
 var loading_div = document.querySelector(".loading-div");
 var min_price = document.querySelector(".min_price");
 var delivery_fee = document.querySelector(".delivery_fee");
+var payment_delivery_fee = document.querySelector(".payment_delivery_fee");
 
-function menuList() {
+async function menuList() {
   loading_div.style.display = "block";
-
-  $.ajax({
-    type: "GET",
-    url: "/chat/mozip/menuListSelect",
-    data: {
-      "roomId": id
-    },
-    success: function (data) {
-      min_price.textContent = data.minPrice; //최소 주문금액
-      delivery_fee.textContent = data.delivery_fee; //배달비
-
-      for (let i = 0; i < data.length; i++) {
-        //메뉴 그룹(인기메뉴)
-        var menu_group = document.createElement("div");
-        menu_group.classList.add("menu-group");
-
-        var menu_group_topper = document.createElement("div");
-        menu_group_topper.classList.add("menu-group-topper");
-        var menu_group_title = document.createElement("div");
-        menu_group_title.classList.add("menu-group-title");
-        var menu_group_title_text = document.createTextNode(data[i][0].menuTitle);
-
-        menu_group_title.appendChild(menu_group_title_text);
-        menu_group_topper.appendChild(menu_group_title);
-        menu_group.appendChild(menu_group_topper);
-
-        //메뉴 타이틀별로(인기메뉴, 등등) 메뉴 리스트가 저장된 리스트 저장.
-        var menuList = data[i];
-        for (let j = 0; j < menuList.length; j++) {
-          //메뉴가 저장된 리스트 저장.
-          var menuItem = menuList[j];
-
-          //메뉴판
-          var menu_group_list = document.createElement("div");
-          menu_group_list.classList.add("menu-group-list");
-          menu_group_list.setAttribute("data-bs-dismiss", "modal");
-          //메뉴판 왼쪽(이름, 정보, 가격)
-          var group_div_left = document.createElement("div");
-          group_div_left.classList.add("group-div-left");
-          //메뉴이름
-          var menu_name = document.createElement("div");
-          menu_name.classList.add("menu-name");
-          var menu_name_text = document.createTextNode(menuItem.menuName);
-          menu_name.appendChild(menu_name_text);
-          //메뉴상세
-          var menu_into = document.createElement("div");
-          menu_into.classList.add("menu-into");
-          var menu_into_text = document.createTextNode(menuItem.menuDesc);
-          menu_into.appendChild(menu_into_text);
-          //메뉴가격
-          var menu_price = document.createElement("div");
-          menu_price.classList.add("menu-price");
-          var menu_price_text = document.createTextNode(menuItem.menuPrice);
-          menu_price.appendChild(menu_price_text);
-
-          group_div_left.appendChild(menu_name);
-          group_div_left.appendChild(menu_into);
-          group_div_left.appendChild(menu_price);
-
-          //메뉴판 오른쪽(메뉴사진)
-          var group_div_right = document.createElement("div");
-          group_div_right.classList.add("group-div-right");
-
-          var menu_photo = document.createElement("img");
-          menu_photo.setAttribute("src", menuItem.menuPhoto);
-          group_div_right.appendChild(menu_photo);
-
-          //메뉴 리스트에 메뉴판 추가
-          menu_group_list.appendChild(group_div_left);
-          menu_group_list.appendChild(group_div_right);
-
-          //메뉴 그룹에 메뉴 추가
-          menu_group.appendChild(menu_group_list);
-        }
-
-        menu_body.appendChild(menu_group);
-        loading_div.style.display = "none";
+  try {
+    const data = await $.ajax({
+      type: "GET",
+      url: "/chat/mozip/menuListSelect",
+      data: {
+        "roomId": id
       }
-      document.getElementById("choice-menu").onclick = null;
-    },
-    error: function () {
-      console.log("리스트 요청 실패 : ");
-    },
-  });
+    });
+    // 빠른 메뉴 조회를 위해 배달비 조회는 비동기 처리
+    $.ajax({
+      type: "GET",
+      url: "/mozip/chat/deliveryInfo",
+      data: {
+        "roomId" : id
+      }
+    }).then(function(deliveryInfo) {
+      delivery_fee.textContent = deliveryInfo.deliveryFee + "원"; //배달비
+      min_price.textContent = deliveryInfo.minFee + "원"; //최소 주문금액
+      payment_delivery_fee.textContent = deliveryInfo.deliveryFee + "원"; //배달비
+    });
+
+    for (let i = 0; i < data.length; i++) {
+      //메뉴 그룹(인기메뉴)
+      var menu_group = document.createElement("div");
+      menu_group.classList.add("menu-group");
+
+      var menu_group_topper = document.createElement("div");
+      menu_group_topper.classList.add("menu-group-topper");
+      var menu_group_title = document.createElement("div");
+      menu_group_title.classList.add("menu-group-title");
+      var menu_group_title_text = document.createTextNode(data[i][0].menuTitle);
+
+      menu_group_title.appendChild(menu_group_title_text);
+      menu_group_topper.appendChild(menu_group_title);
+      menu_group.appendChild(menu_group_topper);
+
+      //메뉴 타이틀별로(인기메뉴, 등등) 메뉴 리스트가 저장된 리스트 저장.
+      var menuList = data[i];
+      for (let j = 0; j < menuList.length; j++) {
+        //메뉴가 저장된 리스트 저장.
+        var menuItem = menuList[j];
+
+        //메뉴판
+        var menu_group_list = document.createElement("div");
+        menu_group_list.classList.add("menu-group-list");
+        menu_group_list.setAttribute("data-bs-dismiss", "modal");
+        //메뉴판 왼쪽(이름, 정보, 가격)
+        var group_div_left = document.createElement("div");
+        group_div_left.classList.add("group-div-left");
+        //메뉴이름
+        var menu_name = document.createElement("div");
+        menu_name.classList.add("menu-name");
+        var menu_name_text = document.createTextNode(menuItem.menuName);
+        menu_name.appendChild(menu_name_text);
+        //메뉴상세
+        var menu_into = document.createElement("div");
+        menu_into.classList.add("menu-into");
+        var menu_into_text = document.createTextNode(menuItem.menuDesc);
+        menu_into.appendChild(menu_into_text);
+        //메뉴가격
+        var menu_price = document.createElement("div");
+        menu_price.classList.add("menu-price");
+        var menu_price_text = document.createTextNode(menuItem.menuPrice);
+        menu_price.appendChild(menu_price_text);
+
+        group_div_left.appendChild(menu_name);
+        group_div_left.appendChild(menu_into);
+        group_div_left.appendChild(menu_price);
+
+        //메뉴판 오른쪽(메뉴사진)
+        var group_div_right = document.createElement("div");
+        group_div_right.classList.add("group-div-right");
+
+        var menu_photo = document.createElement("img");
+        menu_photo.setAttribute("src", menuItem.menuPhoto);
+        group_div_right.appendChild(menu_photo);
+
+        //메뉴 리스트에 메뉴판 추가
+        menu_group_list.appendChild(group_div_left);
+        menu_group_list.appendChild(group_div_right);
+
+        //메뉴 그룹에 메뉴 추가
+        menu_group.appendChild(menu_group_list);
+      }
+
+      menu_body.appendChild(menu_group);
+      loading_div.style.display = "none";
+    }
+    document.getElementById("choice-menu").onclick = null;
+} catch (error) {
+    alert(error.responseText);
+    console.log(error.responseText);
+  }
 }
 
 //장바구니 중복
@@ -816,7 +806,6 @@ $(function () {
   $mozipPage.click(function () {
     location.href = "/main_page.html";
   });
-  
 
   async function myChat() {
     try {
@@ -1126,11 +1115,7 @@ function totalRealPrice() {
   });
 }
 
-//정산 창
-// const $list = $('#list'); // 참가자 명단
-
-
-
+// ------------ 정산 창 ------------------
 var calualtor = document.querySelector(".calualtor");
 function calShow() {
   // delivery_fee.innerText(배달요금) 숫자만 빼기
