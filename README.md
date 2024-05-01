@@ -33,11 +33,6 @@
   <img src="https://img.shields.io/badge/Websocket-F05032?style=for-the-badge&logo=Socket.io&logoColor=white">&nbsp
 </div>
 
-## 💁🏻 Team Member
-|BE 윤준|BE 민성|FE 동윤|FE 윤석|
-|------|---|---|---|
-|<a href="https://github.com/YoonJoony"><img src="https://github.com/YangYunSeok/Co-De/assets/110625854/d41777d4-f452-44ea-bae0-1b2f21996459" style="width:100px; height:100px;"></a>|<a href="https://github.com/M-ingS"><img src="https://avatars.githubusercontent.com/u/101794988?v=4" style="width:100px; height:100px;"></a>|<a href="https://github.com/namdongyun"><img src="https://github.com/YangYunSeok/Co-De/assets/110625854/e16936b9-c8a4-457a-a487-6393575046f9" style="width:100px; height:100px;"></a>||
-
 <br>
 
 ## 🎨 UI
@@ -58,4 +53,10 @@
 
 # 🤖 Architecture
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/7946a71c-7a0f-4c19-8c03-653df031165e" style="width:930px; height:380px;">
+<br>
+## 💁🏻 Team Member
+|BE 윤준|BE 민성|FE 동윤|FE 윤석|
+|------|---|---|---|
+|<a href="https://github.com/YoonJoony"><img src="https://github.com/YangYunSeok/Co-De/assets/110625854/d41777d4-f452-44ea-bae0-1b2f21996459" style="width:100px; height:100px;"></a>|<a href="https://github.com/M-ingS"><img src="https://avatars.githubusercontent.com/u/101794988?v=4" style="width:100px; height:100px;"></a>|<a href="https://github.com/namdongyun"><img src="https://github.com/YangYunSeok/Co-De/assets/110625854/e16936b9-c8a4-457a-a487-6393575046f9" style="width:100px; height:100px;"></a>||
+
 
