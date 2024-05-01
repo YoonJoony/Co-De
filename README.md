@@ -56,6 +56,6 @@
 ### 가상 결제 기능
 <img src="https://github.com/YoonJoony/Co-De/assets/110625854/ca30a380-151c-4a4a-8df0-207e6574d2f2" style="width:1030px; height:750px;">
 
-# 📌 아키텍처
+# 🤖 Architecture
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/7946a71c-7a0f-4c19-8c03-653df031165e" style="width:930px; height:380px;">
 
