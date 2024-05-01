@@ -53,7 +53,9 @@
 
 # 🤖 Architecture
 <img src="https://github.com/YangYunSeok/Co-De/assets/110625854/7946a71c-7a0f-4c19-8c03-653df031165e" style="width:930px; height:380px;">
+
 <br>
+
 ## 💁🏻 Team Member
 |BE 윤준|BE 민성|FE 동윤|FE 윤석|
 |------|---|---|---|
