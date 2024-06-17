@@ -1,4 +1,4 @@
-package backend.codebackend;
+package backend.codebackend.config;
 
 import backend.codebackend.controller.AccountController;
 import backend.codebackend.domain.Chat;
@@ -28,7 +28,6 @@ import java.time.LocalDateTime;
 
 @Configuration
 @EnableWebSocketMessageBroker
-@EnableAsync
 public class SpringConfig implements WebSocketMessageBrokerConfigurer {
     private final EntityManager em;
 

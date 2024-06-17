@@ -100,7 +100,7 @@ public class RestaurantService {
         clickCategory.click();
     }
 
-
+    @Async("taskExecutor")
     //가게 리스트 조회
     public List<Restuarant> RsData(WebDriverWait wait) {
         // 가게 이름과 최소주문금액을 저장할 리스트 생성
@@ -158,7 +158,7 @@ public class RestaurantService {
 
 
 
-    @Async
+    @Async("taskExecutor")
     public CompletableFuture<List<Menu>> menuList(Mozip mozip, WebDriver driver, WebDriverWait wait, String memberId) throws InterruptedException {
         // Google 웹 페이지를 엽니다.
         List<Menu> menus = new ArrayList<>(); //메뉴 정보 저장시 선언한 Menu 클래스 객체
